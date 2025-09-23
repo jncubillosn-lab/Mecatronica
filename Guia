@@ -1,1 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Primer Contacto - Propiedad Intelectual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #5a6c7d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+        }
+
+        .protection-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .protection-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .protection-item:hover {
+            border-left-color: #e74c3c;
+            transform: scale(1.02);
+        }
+
+        .protection-item h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .protection-detail {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .protection-detail strong {
+            color: #34495e;
+            display: inline-block;
+            min-width: 140px;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .principle-item {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .principle-item:hover {
+            border-color: #3498db;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .principle-item h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #f39c12;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #17a2b8;
+        }
+
+        .info-box h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .legal-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .legal-section h4, .legal-section h5 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .legal-section h4 {
+            font-size: 1.3em;
+        }
+
+        .legal-section h5 {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .percentage-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .percentage-list li {
+            background: rgba(52, 152, 219, 0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .percentage-list li strong {
+            color: #2c3e50;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .protection-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header fade-in">
+            <h1>🛡️ Guía de Propiedad Intelectual</h1>
+            <p>Guía sobre los mecanismos de protección de propiedad intelectual disponibles para desarrollos tecnológicos, resultados de investigación y soluciones innovadoras en el ámbito académico y científico, para la Facultad de Ingeníeria de la Universidad Nacional.</p>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showTab('tipos')">🛡️ Tipos de Protección</div>
+            <div class="nav-tab" onclick="showTab('principios')">⚖️ Principios</div>
+            <div class="nav-tab" onclick="showTab('derechos')">📜 Derechos y Normativas</div>
+        </div>
+
+        <div id="tipos" class="tab-content active">
+            <div class="card fade-in">
+                <h2>🛡️ Tipos de Protección de Propiedad Intelectual</h2>
+                <div class="protection-types">
+                    <div class="protection-item">
+                        <h3>🔧 Patente de Invención</h3>
+                        <div class="protection-detail">
+                            <strong>Productos académicos:</strong> Prototipos, dispositivos mecánicos/eléctricos, procesos industriales, métodos técnicos nuevos.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Mecanismo:</strong> Solicitud ante la Superintendencia de Industria y Comercio (SIC), examen de forma y fondo.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Consecuencia jurídica:</strong> Derecho exclusivo de explotar, fabricar, usar, vender o licenciar. Infracción conlleva sanciones civiles y penales. <em>Divulgación previa destruye novedad.</em>
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Vigencia:</strong> 20 años desde la fecha de presentación. Requiere pago de anualidades.
+                        </div>
+                    </div>
+
+                    <div class="protection-item">
+                        <h3>🔨 Modelo de Utilidad</h3>
+                        <div class="protection-detail">
+                            <strong>Productos académicos:</strong> Mejoras técnicas funcionales menores sobre dispositivos existentes, adaptaciones mecánicas, optimizaciones prácticas.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Mecanismo:</strong> Solicitud ante la Superintendencia de Industria y Comercio (SIC), requisitos menos exigentes que patente.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Consecuencia jurídica:</strong> Exclusividad de uso y explotación. Protege frente a copias de la mejora específica.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Vigencia:</strong> 10 años desde la fecha de presentación. Requiere anualidades.
+                        </div>
+                    </div>
+
+                    <div class="protection-item">
+                        <h3>🎨 Diseño Industrial</h3>
+                        <div class="protection-detail">
+                            <strong>Productos académicos:</strong> Productos físicos donde la forma estética es distintiva: carcasas, mobiliario, instrumentos, envases.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Mecanismo:</strong> Registro ante la Superintendencia de Industria y Comercio (SIC) con examen formal (no técnico).
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Consecuencia jurídica:</strong> Derecho exclusivo sobre la apariencia registrada, impide copias sustanciales del diseño.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Vigencia:</strong> 10 años desde la fecha de concesión.
+                        </div>
+                    </div>
+
+                    <div class="protection-item">
+                        <h3>📚 Derecho de Autor</h3>
+                        <div class="protection-detail">
+                            <strong>Productos académicos:</strong> Textos, artículos, manuales, planos, material docente, código de programación/software, bases de datos originales, material audiovisual.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Mecanismo:</strong> Protección automática desde la creación; registro declarativo en la Dirección Nacional de Derecho de Autor (DNDA).
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Consecuencia jurídica:</strong> Derechos morales (inalienables y perpetuos) + patrimoniales (reproducción, distribución, comunicación pública). Registro facilita prueba en juicio.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Vigencia:</strong> Vida del autor + 80 años.
+                        </div>
+                    </div>
+
+                    <div class="protection-item">
+                        <h3>🌱 Certificado de Obtentor de Variedades Vegetales</h3>
+                        <div class="protection-detail">
+                            <strong>Productos académicos:</strong> Variedades vegetales nuevas desarrolladas en proyectos de fitomejoramiento.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Mecanismo:</strong> Solicitud ante el Instituto Colombiano Agropecuario (ICA) con pruebas DUS (Distinguible, Uniforme, Estable).
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Consecuencia jurídica:</strong> Exclusividad en producción y comercialización de la variedad. Infracciones conllevan sanciones administrativas y civiles.
+                        </div>
+                        <div class="protection-detail">
+                            <strong>Vigencia:</strong> 15 a 25 años según la especie (ICA). Requiere cumplimiento técnico y tasas por ensayos durante trámite.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="principios" class="tab-content">
+            <div class="card fade-in">
+                <h2>⚖️ Principios de Patentabilidad</h2>
+                <div class="principles-grid">
+                    <div class="principle-item">
+                        <h4>🆕 Novedad</h4>
+                        <p>La invención no forma parte del estado del arte; no ha sido divulgada públicamente antes de la fecha de presentación.</p>
+                    </div>
+                    <div class="principle-item">
+                        <h4>💡 Actividad Inventiva (No Evidencia / Relevancia Técnica)</h4>
+                        <p>La solución no resulta evidente para un experto en la materia a partir del estado del arte; aporta una diferencia técnica no trivial.</p>
+                    </div>
+                    <div class="principle-item">
+                        <h4>🏭 Aplicación Industrial (Suficiencia de Explotación)</h4>
+                        <p>La invención puede ser fabricada o utilizada en una industria; su utilidad práctica es demostrable.</p>
+                    </div>
+                    <div class="principle-item">
+                        <h4>📝 Suficiencia Descriptiva</h4>
+                        <p><strong>Requisito de forma y fondo relacionado:</strong> La memoria descriptiva debe contener información suficiente para que un experto reproduzca la invención (bitácora, descripción, dibujos y ejemplos).</p>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Divulgación Previa</h4>
+                    <p><strong>En este punto es importante mencionar la prudencia para la divulgación,</strong> pues esto puede destruir el principio de novedad si se hace por fuera de las excepciones.</p>
+                    <div style="margin-top: 15px;">
+                        <p><strong>Para patentes, modelos de utilidad y diseños industriales:</strong> Existe un período de gracia único de 12 meses, tanto para divulgación académica como para explotación económica, siempre y cuando provenga del inventor.</p>
+                        <p><strong>Derecho de autor (incluye software):</strong> No hay exigencia de novedad. La divulgación académica no afecta la protección, incluso desde la primera publicación.</p>
+                        <p><strong>Certificado de obtentor de variedades vegetales:</strong> La novedad se pierde si la variedad ha sido comercializada en Colombia por más de un año antes de la solicitud (art. 6 Decisión 345).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="derechos" class="tab-content">
+            <div class="card fade-in">
+                <h2>📜 Derecho Moral y Patrimonial</h2>
+                <div class="info-box">
+                    <h4>🏆 Reconocimiento de Derechos</h4>
+                    <p>La Facultad reconoce y garantiza el derecho de atribución de las personas que hayan contribuido de manera creativa o inventiva a un resultado intelectual. Este reconocimiento es independiente de la titularidad patrimonial.</p>
+                    <p><strong>Importante:</strong> La aceptación de la titularidad institucional o de acuerdos de transferencia no elimina el derecho de atribución. La mención como autor o inventor no confiere por sí sola participación económica en los frutos de la explotación, salvo acuerdo expreso y escrito.</p>
+                    <p><strong>Recomendación:</strong> Para proteger la posibilidad de protección mediante patentes o modelos de utilidad, se recomienda coordinar cualquier divulgación pública con la Oficina de Transferencia y Propiedad Intelectual.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h4>📊 Distribución de Regalías</h4>
+                    <p><strong>Acuerdo 035 de 2003 - Artículo 31:</strong> La distribución de las regalías se encuentra regulada con el siguiente porcentaje de distribución:</p>
+                    <ul class="percentage-list">
+                        <li><strong>35%</strong> a la Facultad o Instituto interfacultades donde se generó la invención</li>
+                        <li><strong>30%</strong> al autor y sus colaboradores. La distribución de este porcentaje entre los participantes la hará el Comité de Propiedad Intelectual de la Universidad según el aporte creativo</li>
+                        <li><strong>20%</strong> al Fondo de la Dirección Académica de la respectiva Sede o su equivalente y será destinado al fomento de la investigación científica y tecnológica</li>
+                        <li><strong>15%</strong> restante a los Programas Prioritarios o Emergentes de la Universidad Nacional de Colombia</li>
+                    </ul>
+                </div>
+
+                <div class="legal-section">
+                    <h4>⚖️ Normativas Aplicables</h4>
+                    
+                    <h5>🏛️ Acuerdo 035 de 2003 - Artículo 35: Titularidad del Derecho de Obtentor</h5>
+                    <p><strong>Son propiedad de la Universidad Nacional de Colombia y/o de los organismos financiadores, según contrato previa y debidamente suscrito,</strong> las nuevas variedades vegetales que obtengan sus profesores, estudiantes o funcionarios administrativos, monitores o contratistas en los siguientes casos:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li><strong>A.</strong> Cuando sean desarrolladas dentro de investigaciones adelantadas por profesores, estudiantes, monitores, funcionarios administrativos y contratistas como parte de sus compromisos laborales, contractuales o académicos con la institución.</li>
+                        <li><strong>B.</strong> Sean producto de investigaciones contratadas con terceros por la Universidad.</li>
+                        <li><strong>C.</strong> Que se hayan producido dentro del ámbito laboral o académico del funcionario administrativo, del profesor, del monitor o estudiante, utilizando las instalaciones y/o los recursos o medios de que dispone la Universidad.</li>
+                        <li><strong>D.</strong> Que sean producto de un año sabático o de una pasantía o una comisión de estudios en la Universidad que realice un profesor.</li>
+                        <li><strong>E.</strong> Que sean el producto de un trabajo de grado o una tesis que se haya adelantado en la Universidad Nacional de Colombia y que no posea financiación externa ni haya sido desarrollada conjuntamente con terceros.</li>
+                        <li><strong>F.</strong> Que sean el resultado de pasantías o consultoría científica y tecnológica.</li>
+                    </ul>
+                    <p><em>Esto implica que en caso de que la invención se haya desarrollado en el marco de alguna de estas situaciones, la propiedad corresponde a la Universidad.</em></p>
+
+                    <h5>💻 Resolución 32 de 2012 - Artículo 5: Programas de Computador</h5>
+                    <p>Los programas de computador desarrollados como parte de las actividades, proyectos, programas y planes de extensión, se protegen en los mismos términos que las obras literarias. Dicha protección se extiende tanto a los programas operativos como a los programas aplicativos, ya sea en forma de código fuente o código objeto. Los profesores, estudiantes, contratistas y terceros podrán autorizar las modificaciones necesarias para la correcta utilización de estos programas.</p>
+
+                    <h5>🏅 Acuerdo 023 de 2008 - Reconocimiento Académico</h5>
+                    
+                    <div style="margin: 15px 0;">
+                        <p><strong>Artículo 25. Patentes de Invención:</strong></p>
+                        <p>Por invención se entiende la creación de un producto o procedimiento para solucionar un problema técnico y existente. Pueden ser objeto de patente de invención los productos (sustancias, composiciones, compuesto, aparatos, dispositivos, instrumentos) y los procedimientos en todos los campos de la tecnología, siempre que sean nuevos, tengan nivel inventivo y sean susceptibles de aplicación industrial (Decisión 486 de la Comisión de la Comunidad Andina). Por patentes de invención se asignarán <strong>veinticinco (25) puntos</strong>.</p>
+                        
+                        <p><strong>Son requisitos para el reconocimiento de este puntaje:</strong></p>
+                        <ul style="margin: 10px 0 15px 20px;">
+                            <li><strong>A.</strong> El registro de la patente a nombre de la Universidad Nacional de Colombia, si el producto o procedimiento patentado es desarrollado por un docente de planta.</li>
+                            <li><strong>B.</strong> Si el registro de la patente es nacional debe ser publicado en el Diario Oficial de la Superintendencia de Industria y Comercio.</li>
+                            <li><strong>C.</strong> Si el registro de la patente es internacional, debe ser publicado en la United States Patent and Trade Organizations - USPTO, Organización Mundial de la Propiedad Intelectual - OMPI (WIPO), la Organización Europea de Patentes - OEP o entidades homólogas.</li>
+                            <li><strong>D.</strong> El registro de la patente de invención por obtención de variedades genéticas animales o vegetales son consideradas patentes de invención, y deben estar registradas en el Instituto Colombiano Agropecuario - ICA.</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin: 15px 0;">
+                        <p><strong>Artículo 26. Producción Técnica:</strong></p>
+                        <p>La producción técnica hace referencia a las patentes de modelo de utilidad, las cuales deben contar con el registro expedido por la Superintendencia de Industria y Comercio.</p>
+                        <p>Toda nueva forma o configuración o disposición de elementos de algún artefacto, herramienta, mecanismo, aparato, o alguna parte de los mismos, que permita un mejor o diferente funcionamiento, utilización o fabricación del objeto, que le incorpore o que le proporcione alguna utilidad, ventaja o efecto técnico que antes no tenía, puede ser objeto de patente de modelo de utilidad (Decisión 486 de la Comisión de la Comunidad Andina).</p>
+                        
+                        <p><strong>Se asignará puntaje por producción técnica con base en los siguientes criterios:</strong></p>
+                        <ul style="margin: 10px 0 15px 20px;">
+                            <li><strong>A.</strong> Hasta quince (15) puntos por el diseño de sistemas o procesos que constituyan una <strong>innovación</strong> tecnológica y que tengan impacto y aplicación.</li>
+                            <li><strong>B.</strong> Hasta ocho (8) puntos por el diseño de sistemas o procesos que constituyan una <strong>adaptación</strong> tecnológica y que tengan impacto y aplicación.</li>
+                        </ul>
+                        <p><em>Tanto los procesos analíticos como los instrumentales se asimilan a producción técnica.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card, .protection-item, .principle-item');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
