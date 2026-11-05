@@ -378,6 +378,37 @@ a{color:var(--accent)}
 .mcol h4 .semcr{display:inline-flex;align-items:baseline;gap:5px;margin-left:6px;background:none;border:0;padding:0}
 .mcol h4 .semcr b{font:650 15px var(--serif);color:var(--ink);letter-spacing:0}
 .mcol h4 .semcr .delta{font-size:11px;text-transform:none;letter-spacing:0}
+/* ---------- Mapa de calor ---------- */
+.hm-sidelist{padding:10px;display:grid;gap:8px}
+.hm-tools{display:grid;gap:7px;padding:4px 5px 9px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.hm-tools .row{gap:5px}
+.hm-tools .btn{flex:1;justify-content:center;padding:5px 7px}
+.hm-asg{display:flex!important;justify-content:flex-start!important;gap:8px!important;align-items:center!important;padding:6px 8px!important;border:1px solid transparent!important;border-radius:8px!important}
+.hm-asg:hover{background:var(--surface2)!important}
+.hm-asg[aria-pressed="true"]{background:var(--surface2)!important;border-color:var(--line)!important;color:var(--ink)!important}
+.hm-asg[aria-pressed="false"]{opacity:.48;text-decoration:line-through}
+.hm-check{width:15px;height:15px;border:1px solid var(--line2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;flex:none;font-size:11px;color:transparent;background:var(--surface)}
+.hm-asg[aria-pressed="true"] .hm-check{background:var(--ok);border-color:var(--ok);color:#fff}
+.hm-asg .hm-dot{width:7px;height:7px;border-radius:50%;background:var(--heat);margin-left:auto;flex:none}
+.hm-main{min-width:0;display:grid;gap:10px;align-content:start}
+.hm-grid .hc{display:flex;align-items:center;justify-content:center;padding:0;font:650 11px var(--mono);color:var(--ink);border-top-color:color-mix(in srgb,var(--line) 75%,transparent);transition:background-color .12s}
+.hm-grid .hc.has-groups{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--heat) 22%,transparent)}
+.hm-grid .hc:hover{outline:2px solid var(--ink);outline-offset:-2px;z-index:2}
+.hm-legend{display:flex;gap:9px;align-items:center;flex-wrap:wrap;font-size:11.5px;color:var(--ink2)}
+.hm-scale{display:inline-flex;gap:2px;align-items:center}
+.hm-scale i{display:inline-block;width:17px;height:10px;border-radius:3px;background:color-mix(in srgb,var(--heat) var(--v),var(--surface2))}
+.hm-kpis{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.hm-kpi{padding:9px 10px;border-radius:9px;border:1px solid var(--line);background:var(--surface2);min-width:0}
+.hm-kpi b{display:block;font:650 22px var(--serif);line-height:1.1;margin-top:3px}
+.hm-kpi span{font-size:10.5px;color:var(--ink2);text-transform:uppercase;letter-spacing:.045em}
+.hm-day{display:grid;grid-template-columns:64px minmax(0,1fr) 36px;gap:7px;align-items:center;font-size:12px}
+.hm-day .bar{height:8px}
+.hm-day strong{font:600 11px var(--mono);text-align:right}
+.hm-top{padding:9px 10px;border-radius:9px;background:var(--heat-soft);display:grid;gap:2px}
+.hm-top b{font:650 16px var(--serif)}
+.hm-top span{font-size:11.5px;color:var(--ink2)}
+.hm-empty{padding:10px;border:1px dashed var(--line2);border-radius:9px;color:var(--ink2);font-size:12px}
+@media(max-width:720px){.hm-sidelist{max-height:260px}.hm-tools{position:sticky;top:0;background:var(--surface);z-index:2}.hm-day{grid-template-columns:56px minmax(0,1fr) 32px}}
 </style></head>
 <body><header class="top" id="top"></header><main id="view"></main><div id="drawer"></div>
 <script>
@@ -534,7 +565,7 @@ if (typeof module !== 'undefined') module.exports = { glabel, fromRaw, compute, 
 
 /* ===== APLICACIÓN: estado, utilidades, cabecera, Inicio, Interferencias, panel lateral ===== */
 const KEY = 'interferencias-horarios-v3';
-const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['malla', 'Prerrequisitos']];
+const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
 let S = fromRaw(RAW), S0 = clone(S), restored = false;
 try {
@@ -562,6 +593,7 @@ const ui = {
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
   hor: { a: S.asg.includes('Estática') ? 'Estática' : S.asg[0], comp: null, ov: [] },
+  heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
 };
@@ -1009,7 +1041,84 @@ function pageHor() {
     </div>
   </div>`;
 }
+/* ===== MAPA DE CALOR / OCUPACIÓN DE HORARIOS ===== */
+function pageHeat() {
+  const off = ui.heat.off;
+  const names = [...S.asg].sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
+  const selected = names.filter(n => !off.has(n));
+  const selectedSet = new Set(selected);
+  const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on);
+  const slots = {};
+  DAYS.forEach(d => { slots[d] = Array.from({ length: H_MAX - H_MIN }, () => ({ groups: new Set(), subjects: new Set() })); });
+  const scheduledGroups = new Set();
+  const scheduledSubjects = new Set();
 
+  // Cada grupo se cuenta una sola vez por franja, aunque tenga dos componentes.
+  groups.forEach(g => {
+    const components = new Set([g.c1, g.c2].filter(Boolean));
+    const blocks = S.bloques.filter(b => b.a === g.a && components.has(b.c));
+    if (blocks.length) {
+      const key = g.a + '\u0001' + g.g;
+      scheduledGroups.add(key);
+      scheduledSubjects.add(g.a);
+      blocks.forEach(b => {
+        const start = Math.max(H_MIN, b.s), end = Math.min(H_MAX, b.e);
+        for (let h = start; h < end; h++) {
+          const cell = slots[b.d] && slots[b.d][h - H_MIN];
+          if (!cell) continue;
+          cell.groups.add(key);
+          cell.subjects.add(g.a);
+        }
+      });
+    }
+  });
+
+  const flat = DAYS.flatMap(d => slots[d].map((cell, i) => ({ d, h: H_MIN + i, ...cell })));
+  const peak = flat.reduce((m, x) => Math.max(m, x.groups.size), 0);
+  const empty = flat.filter(x => x.groups.size === 0).length;
+  const occupied = flat.length - empty;
+  const top = peak ? flat.find(x => x.groups.size === peak) : null;
+  const dayLoad = DAYS.map(d => ({ d, n: slots[d].reduce((sum, x) => sum + x.groups.size, 0) }));
+  const maxDay = Math.max(1, ...dayLoad.map(x => x.n));
+  const sems = [...new Set(names.map(n => semOf(S, n)))];
+  const sidebar = sems.map(sem => {
+    const ns = names.filter(n => semOf(S, n) === sem);
+    const on = ns.filter(n => !off.has(n)).length;
+    return `<div class="sg">Semestre ${sem} <span class="faint">· ${on}/${ns.length}</span></div>${ns.map(n => `<button class="hm-asg" data-act="hm-toggle" data-n="${esc(n)}" aria-pressed="${!off.has(n)}" title="${off.has(n) ? 'Incluir en el mapa' : 'Excluir del mapa'}"><i class="hm-check">✓</i><span>${esc(n)}</span><i class="hm-dot" title="Tiene horario cargado"></i></button>`).join('')}`;
+  }).join('');
+  const columns = DAYS.map(d => `<div class="dcol" data-d="${d}">${slots[d].map((cell, i) => {
+    const h = H_MIN + i, count = cell.groups.size, subjectCount = cell.subjects.size;
+    const intensity = peak && count ? Math.round(14 + (count / peak) * 72) : 0;
+    const subjectNames = [...cell.subjects].sort((a, b) => a.localeCompare(b, 'es'));
+    const groupNames = [...cell.groups].map(k => k.split('\u0001').join(' · ')).sort((a, b) => a.localeCompare(b, 'es'));
+    const title = `${DAY_NAMES[d]} ${h}:00–${h + 1}:00\n${count} grupos · ${subjectCount} asignaturas\n${groupNames.join('; ') || 'Sin grupos programados'}\nAsignaturas: ${subjectNames.join(', ') || '—'}`;
+    return `<div class="hc ${count ? 'has-groups' : ''}" ${count ? `style="background:color-mix(in srgb,var(--heat) ${intensity}%,var(--surface2))"` : ''} title="${esc(title)}">${count || ''}</div>`;
+  }).join('')}</div>`).join('');
+  const dayRows = dayLoad.map(x => `<div class="hm-day"><span>${DAY_SHORT[x.d]}</span><div class="bar"><i style="width:${x.n / maxDay * 100}%"></i></div><strong>${x.n}</strong></div>`).join('');
+  const topText = top ? `${DAY_NAMES[top.d]} · ${top.h}:00–${top.h + 1}:00` : 'Sin horarios seleccionados';
+  const topDetail = top ? `${top.groups.size} grupos de ${top.subjects.size} asignaturas en esa franja` : 'Selecciona asignaturas que tengan grupos y horarios.';
+
+  return `<div class="page-title"><div><h1>Mapa de calor de horarios</h1><p>Concentra los grupos ofertados en una sola semana para identificar franjas de alta actividad y espacios con poca o ninguna programación. Todas las asignaturas entran inicialmente; puedes filtrarlas por semestre.</p></div></div>
+  <div class="hor">
+    <aside class="card sidelist hm-sidelist" aria-label="Asignaturas incluidas en el mapa">
+      <div class="hm-tools"><div class="lab">Asignaturas <span class="faint">${selected.length}/${names.length}</span></div><div class="row"><button class="btn sm" data-act="hm-all">Todas</button><button class="btn sm" data-act="hm-none">Ninguna</button></div><span class="hint">Activa o desactiva materias para recalcular el mapa.</span></div>
+      ${sidebar || '<div class="hint">No hay asignaturas incorporadas al análisis.</div>'}
+    </aside>
+    <div class="hm-main">
+      <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Vista semanal</span><div class="hint">${selected.length} asignaturas seleccionadas · ${scheduledGroups.size} grupos activos con horario</div></div><span class="sem">${H_MIN}:00–${H_MAX}:00</span></div>
+      <div class="weekgrid hm-grid"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${Array.from({ length: H_MAX - H_MIN }, (_, i) => `<div>${H_MIN + i}</div>`).join('')}</div>${columns}</div>
+      <div class="hm-legend"><span>Grupos programados por franja de una hora:</span><span class="hm-scale"><i style="--v:14%"></i><i style="--v:32%"></i><i style="--v:50%"></i><i style="--v:68%"></i><i style="--v:86%"></i></span><span>menor → mayor concentración</span><span class="faint">El número en cada celda es la cantidad de grupos.</span></div>
+    </div>
+    <div class="right" style="display:grid;gap:12px;align-content:start">
+      <section class="card impact"><div class="lab">Resumen de selección</div>
+        <div class="hm-kpis"><div class="hm-kpi"><span>Asignaturas incluidas</span><b class="num">${selected.length}/${names.length}</b></div><div class="hm-kpi"><span>Grupos con horario</span><b class="num">${scheduledGroups.size}</b></div><div class="hm-kpi"><span>Mayor concentración</span><b class="num">${peak}</b></div><div class="hm-kpi"><span>Franjas vacías</span><b class="num">${empty}/${flat.length}</b></div></div>
+        <div class="hint">${occupied} de ${flat.length} franjas tienen al menos un grupo (${pct(occupied / flat.length, 1)} de la semana visible).</div>
+      </section>
+      <section class="card impact"><div class="lab">Franja de mayor concentración</div><div class="hm-top"><b>${esc(topText)}</b><span>${esc(topDetail)}</span></div><div class="lab" style="margin-top:5px">Carga por día · grupos-hora</div>${dayRows}<div class="hint">Suma los grupos presentes en cada hora del día. No representa estudiantes matriculados ni salones ocupados.</div></section>
+      <section class="card impact"><div class="lab">Cómo leer el mapa</div><div class="hint">Cada celda corresponde a una hora. Se cuenta cada grupo activo una sola vez por franja, aunque tenga más de un componente horario. Los grupos alternativos sí se cuentan por separado.</div><div class="hint">Una celda vacía indica que ninguna de las asignaturas seleccionadas tiene un grupo programado allí. La intensidad del color se escala respecto al máximo de la selección actual.</div></section>
+    </div>
+  </div>`;
+}
 /* ===== MALLA / PRERREQUISITOS ===== */
 function semHead(s) {
   const c = semCred(s, S.malla), o = semCred(s, S0.malla), d = c.t - o.t;
@@ -1092,7 +1201,7 @@ function drawEdges() {
 }
 
 /* ===== RENDER ===== */
-const PAGES = { inicio: pageInicio, inter: pageInter, asig: pageAsig, grupos: pageGrupos, hor: pageHor, malla: pageMalla };
+const PAGES = { inicio: pageInicio, inter: pageInter, asig: pageAsig, grupos: pageGrupos, hor: pageHor, heat: pageHeat, malla: pageMalla };
 function render() {
   const ae = document.activeElement, fid = ae && ae.id, ss = ae && ae.selectionStart, se = ae && ae.selectionEnd;
   const keep = {}; ['canvas', 'mxwrap'].forEach(k => { const el = $(k === 'canvas' ? '#canvas' : '.mxwrap'); if (el) keep[k] = [el.scrollLeft, el.scrollTop]; });
@@ -1175,6 +1284,10 @@ function onAct(act, d, el, ev) {
       if (compsOf(A).includes(v)) return toast('Ya existe un componente con ese nombre.');
       S.bloques.push({ id: nextId(), a: A, c: v, d: 'L', s: 7, e: 9, o: '' }); ui.hor.comp = v; return commit(`Componente ${v} creado: asígnalo a un grupo en Grupos.`);
     }
+   /* mapa de calor */
+    case 'hm-toggle': { if (ui.heat.off.has(d.n)) ui.heat.off.delete(d.n); else ui.heat.off.add(d.n); return render(); }
+    case 'hm-all': ui.heat.off.clear(); return render();
+    case 'hm-none': S.asg.forEach(n => ui.heat.off.add(n)); return render();
     /* malla */
     case 'm-sel': ui.malla.sel = ui.malla.sel === d.n ? null : d.n; return render();
     case 'm-edges': ui.malla.edges = d.v; return render();
