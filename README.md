@@ -46,3 +46,5 @@ Opciones de comparación:
 |---------|-------------|
 | `index.html` | Aplicación completa (HTML, CSS y JavaScript en un solo archivo) |
 | `README.md` | Este documento |
+
+<!-- Prueba de escritura de ChatGPT: comentario inocuo añadido en rama de verificación el 2026-11-07. No altera la aplicación. -->
