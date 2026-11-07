@@ -22,7 +22,7 @@ En la cabecera de las vistas **Inicio**, **Interferencias**, **Asignaturas** y *
 - La selección de botones solo cambia la **representación y los cálculos de los informes**; no elimina grupos ni horarios, no modifica la malla y no se registra como una edición del escenario.
 - Grupos, Horarios y Prerrequisitos continúan mostrando la información completa, incluso de componentes temporalmente excluidos de los informes.
 - El Mapa de calor permite refinar la selección individual de asignaturas dentro de los componentes marcados.
-- **Libre Elección** se mantiene como orientación en la malla, sin botón de análisis. **Lengua Extranjera** se distingue de Nivelación y tampoco se incluye en estos tres botones.
+- **Libre Elección** se mantiene como orientación en la malla, sin botón de análisis. **Inglés I–IV se clasifica como Nivelación**, según el catálogo aportado, y se representa con ese botón cuando existan grupos incorporados al análisis.
 - Al incorporar grupos reales de asignaturas de un componente, sus cruces aparecerán automáticamente al marcarlo; no hay que cambiar los cálculos.
 
 La base actual tiene 15 asignaturas disciplinares y una de fundamentación incorporadas al análisis, **ninguna con grupos registrados en Nivelación**. Los botones no inventan horarios ausentes.
@@ -35,8 +35,8 @@ La aplicación trabaja **con lo que está registrado**. No exige datos completos
 
 - **Malla de referencia:** Ingeniería Mecatrónica, Acuerdo 6 de 2022; plano curricular versión 28 de julio de 2022.
 - **Horarios:** conjunto incorporado a los datos del programa; puede ampliarse sin cambiar las funciones de cálculo. La fecha exacta de actualización de la oferta no está registrada.
-- **Tipologías:** clasificación revisada el 7 de noviembre de 2026 con la malla y la información de oferta disponible. Cada asignatura de un plan tiene un **componente** y un **carácter** (obligatoria, optativa o no aplica). El catálogo actual distingue B: fundamentación, C: disciplinar, L: libre elección, N: nivelación y LE: lengua extranjera. **Inglés I–IV corresponde a lengua extranjera, no a nivelación.**
-- Los totales por componente son **resultados de sumar los registros de la malla**, no valores fijados en el código de cálculo. Actualmente Lengua Extranjera aporta 12 créditos adicionales a los del programa.
+- **Tipologías:** el catálogo conserva los tipos institucionales B, O, C, T, E y P. El plan usa componentes B: fundamentación, C: disciplinar, L: libre elección y N: nivelación. **Inglés I–IV pertenece a Nivelación (E en el catálogo)**. Cada asignatura mantiene además su carácter obligatorio u optativo cuando consta en la fuente.
+- Los totales por componente son **resultados de sumar los registros de la malla**, no constantes del cálculo. Los 12 créditos de Inglés I–IV figuran como Nivelación y no forman parte de los créditos propios del programa.
 - Los campos de componente y carácter pueden ajustarse en la ficha de una asignatura. Los cambios se guardan **solo en el escenario del navegador** y se distinguen de los datos iniciales.
 
 ### Interpretación de las interferencias
@@ -66,6 +66,38 @@ Las advertencias no bloquean el uso, no modifican automáticamente los semestres
 
 El plano curricular aportado contiene indicaciones «52 C», «65 C» y «69 C». La interpretación de «52 C» como créditos exclusivamente disciplinares **es el criterio de análisis indicado para esta herramienta**, no una interpretación institucional de dicha abreviatura que hayamos confirmado.
 
+## Base de información: tres fuentes independientes
+
+La herramienta tiene tres fuentes diferentes, **sin asumir que una contiene todo lo de las otras**:
+
+| Fuente | Información disponible | Archivo estructurado |
+|---|---|---|
+| Catálogo de asignaturas | Código, nombre, créditos, tipología original y descripción, cuando exista | `js/catalogo.js` |
+| Oferta académica detallada | Código, actividades, grupos, docentes, horarios, fechas, cupos disponibles y texto original de horario, cuando se informe | `js/oferta-fuente.js` |
+| Malla curricular | Posición por semestre, componentes que cuentan en el plan y prerrequisitos | `js/datos.js` |
+
+**El catálogo institucional utiliza B, O, C, T, E y P.** Son categorías originales de esa fuente; no se reescriben para hacerlas coincidir artificialmente con los componentes B, C, L y N del plan. Ejemplo: **Trabajo de Grado** tiene categoría institucional P, mientras que sus créditos se ubican en el componente disciplinar de la malla. **Inglés** tiene categoría institucional E y componente de Nivelación N en la malla.
+
+`RAW.vinculosCatalogo` mantiene correspondencias explícitas entre nombres de posiciones en la malla y códigos del catálogo. Los espacios genéricos de optativas o libre elección se dejan sin código específico: no representan una asignatura única.
+
+La clase `FuentesAcademicas` permite consultar por código y recuperar la malla, el catálogo y la oferta **sin exigir que existan las tres coincidencias**. Devuelve `null` o colecciones vacías cuando no haya registro: no completa datos con suposiciones ni produce alertas por falta de cobertura.
+
+Los grupos de la oferta permanecen agrupados según su **actividad original**. No se emparejan automáticamente magistrales, laboratorios y talleres, ya que la fuente no siempre permite establecer esas relaciones. No se confunde `cuposDisponibles: 0` con un grupo ausente, ni se interpreta como capacidad total. Un grupo sin horarios explícitos se conserva con `horarios: []`.
+
+**La aplicación pública conserva temporalmente el escenario de horarios que ya estaba verificado y en uso.** Incorporar las dos fuentes amplias al repositorio no activa automáticamente todos sus grupos en el cálculo de interferencias: ese paso requiere definir cuáles actividades de una asignatura forman un grupo matriculable. Así evitamos presentar resultados espurios por uniones inferidas.
+
+Los ficheros de referencia no se cargan automáticamente al abrir `index.html`, para mantener ligero el sitio estático. Están disponibles para futuros importadores y pantallas de consulta. Para inspeccionarlos localmente, pueden evaluarse junto con `js/fuentes.js`.
+
+### Regla para datos incompletos
+
+- Lo que no está informado permanece ausente (`null` o `[]`), **no se convierte en cero**.
+- Las funciones existentes trabajan con lo disponible. Ninguna ausencia de grupo u horario se convierte en conflicto.
+- Las comprobaciones numéricas de créditos no emiten advertencias si falta información indispensable para calcularlas.
+- La aplicación solo conserva las comprobaciones de consistencia que sí son calculables con la malla disponible.
+- Los cambios al escenario siguen siendo locales; las fuentes no reemplazan las decisiones del usuario.
+
+Ejecutar `node tests/fuentes.js` para verificar estas reglas sin depender de cifras universales.
+
 ## Escenarios personales
 
 - Los cambios se guardan automáticamente mediante `localStorage` del navegador.
@@ -80,10 +112,15 @@ El plano curricular aportado contiene indicaciones «52 C», «65 C» y «69 C»
 index.html          Entrada de la aplicación, versión y pie informativo
 css/estilos.css     Estilos principales
 css/pie.css         Pie de página
-js/datos.js         Datos editables: programa, malla, oferta, requisitos, calendario y metadatos
+js/datos.js         Malla y escenario inicial de grupos/horarios, vínculos y metadatos de fuentes
+js/catalogo.js      Catálogo completo: códigos, nombres, tipologías, créditos, descripciones
+js/oferta-fuente.js Oferta textual: actividades, grupos y franjas informadas
+js/fuentes.js       Objeto FuentesAcademicas para relacionar fuentes sin exigir completitud
 js/modelo.js        Objetos de dominio: PlanCurricular y CalendarioAcademico
 js/app.js           Cálculos de interferencias, escenarios, navegación e interfaz
-tests/verificar.js  Comprobaciones automáticas con datos variables (sin cifras fijas del plan)
+tests/verificar.js  Pruebas de cálculo con datos variables
+tests/filtros.js    Pruebas de selección de componentes
+tests/fuentes.js    Pruebas de tres fuentes y ausencia de datos
 ```
 
 Para uso local, clonar este repositorio y abrir `index.html`. Para ejecutar las pruebas, usar `node tests/verificar.js` (Node.js instalado).
@@ -95,7 +132,7 @@ La organización sigue **POO como filosofía de responsabilidades**, no la creac
 - **`PlanCurricular`** recibe el escenario y concentra la interpretación de tipologías, suma de créditos, reglas numéricas, semestres y operaciones de edición curricular. No genera HTML ni conoce Mecatrónica.
 - **`CalendarioAcademico`** encapsula los días y horas de la semana configurados en los datos. Las rejillas utilizan el número de días configurado.
 - **`js/app.js`** mantiene las vistas y eventos, y delega las reglas del plan en el objeto de dominio. El cálculo de interferencias continúa separado de esas reglas y no usa las tipologías para deducir horarios.
-- **`js/datos.js`** contiene la información académica. Cambiar una cantidad de créditos, una tipología, una regla de créditos, una fecha o el calendario **no exige editar el algoritmo**.
+- **`js/datos.js`** contiene el plan, las relaciones entre sus fuentes y el escenario inicial de grupos y horarios. **`js/catalogo.js`** y **`js/oferta-fuente.js`** conservan las otras dos fuentes. Cambiar datos académicos no exige editar el algoritmo.
 
 ### Dónde cambiar la información
 
