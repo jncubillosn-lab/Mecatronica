@@ -92,6 +92,18 @@ verificar('Otra malla con valores distintos funciona sin cambiar el modelo', () 
   assert.equal(plan.evaluarCreditos(m,r).total,2);
 });
 
+verificar('Los créditos desconocidos no producen falsas advertencias', () => {
+  const S = api.fromRaw(api.RAW);
+  const plan = new api.PlanCurricular(S);
+  const regla = S.reqCred[0], materia = plan.asignatura(regla.n);
+  const previa = S.malla.find(a => a.s < materia.s && regla.componentes.includes(a.comp));
+  assert(previa);
+  previa.cr = null;
+  const q = plan.evaluarCreditos(materia, regla);
+  assert.equal(q.unknown, true);
+  assert.equal(q.low, false);
+});
+
 verificar('El número de semestres se toma de la malla', () => {
   const S = api.fromRaw(api.RAW);
   const actual = Math.max(1, ...S.malla.map(m => m.s));
