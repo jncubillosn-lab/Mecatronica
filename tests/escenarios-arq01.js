@@ -94,4 +94,36 @@ probar('Una eliminación personal y un bloque editado sobreviven a la migración
  assert(actual.bloques.some(x=>x.idAnterior===mod.idAnterior&&x.d==='V'&&x.s===17));
 });
 
+probar('Ampliar la oferta no altera los cálculos sobre grupos anteriores',()=>{
+  const d={...contrato,agrupaciones:contrato.agrupaciones.filter(g=>
+    g.introducidoEn==='0.4.2'||g.introducidoEn==='0.4.3')};
+  const antiguo=modulo.fromRaw(new EntradaAcademica(d).generarEscenarioBase());
+  const actual=copiar(base);
+  const grupos=new Set(antiguo.grupos.map(g=>g.ref));
+  actual.asg=[...antiguo.asg];
+  actual.grupos=actual.grupos.filter(g=>grupos.has(g.ref));
+  actual.bloques=actual.bloques.filter(b=>b.idAnterior!=null);
+  const pa=modulo.compute(antiguo),pb=modulo.compute(actual);
+  const clave=p=>[p.A,p.B].sort().join('|');
+  const a=new Map(pa.pairs.map(p=>[clave(p),[p.total,p.clash,p.enRango]]));
+  const b=new Map(pb.pairs.map(p=>[clave(p),[p.total,p.clash,p.enRango]]));
+  assert.deepEqual([...a].sort(),[...b].sort());
+});
+
+probar('Grupo académico nuevo coincide con grupo personal sin duplicarlo',()=>{
+  const s=copiar(base),g=s.grupos[0];
+  const personal={a:g.a,g:'GPRUEBA-REFERENCIA',c1:'GPRUEBA-REFERENCIA',c2:'',on:false,ref:null};
+  s.grupos.push(personal);
+  const cambios=EscenarioPersonal.diferencias(base,s);
+  const d=copiar(contrato);
+  const pos=d.malla.find(p=>p.nombre===g.a);
+  d.agrupaciones.push({id:pos.id+'|GPRUEBA-REFERENCIA',posicionId:pos.id,
+    etiqueta:'GPRUEBA-REFERENCIA',componentes:[{id:'GPRUEBA-REFERENCIA',bloques:[]}],
+    procedencia:'oferta-actividad-unica',introducidoEn:'0.6.0'});
+  const actualizado=EscenarioPersonal.aplicar(modulo.fromRaw(new EntradaAcademica(d).generarEscenarioBase()),cambios);
+  const existentes=actualizado.grupos.filter(x=>x.a===personal.a&&x.g===personal.g);
+  assert.equal(existentes.length,1);
+  assert.equal(existentes[0].on,false);
+});
+
 console.log('Persistencia y compatibilidad: comprobaciones finalizadas.');
