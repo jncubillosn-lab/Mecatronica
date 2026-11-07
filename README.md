@@ -2,6 +2,14 @@
 
 Herramienta **no oficial** de la representación estudiantil para examinar la malla curricular, los grupos ofertados y las interferencias de horario. Publicación: https://jncubillosn-lab.github.io/Mecatronica/
 
+## Arquitectura de referencia — ARQ-01
+
+**[Leer el mapa maestro y contrato de entrada académica](docs/ARQUITECTURA.md)** · **[Guía para futuras intervenciones](AGENTS.md)**
+
+**Decisión arquitectónica:** el sistema objetivo recibe **una única entrada normalizada, FuentesAcadémicas** (contrato de `datos/academico.json`). La malla, el catálogo y la oferta original —y cualquier conversión necesaria para unificar esas fuentes— son **externos al sistema web**. No existen rutas académicas paralelas al cálculo ni módulos de conversión dentro de la aplicación.
+
+**Estado:** ARQ-01 ya es la referencia de diseño; la aplicación publicada en v0.4.3 conserva archivos y mecanismos anteriores. **Este cambio documental no implementa la migración ni modifica resultados.** Las descripciones de `RAW` y de las tres fuentes en el resto del README explican la versión heredada, no un modelo autorizado para nuevas funciones.
+
 ## Secciones actuales
 
 | Sección | Función |
@@ -66,9 +74,9 @@ Las advertencias no bloquean el uso, no modifican automáticamente los semestres
 
 El plano curricular aportado contiene indicaciones «52 C», «65 C» y «69 C». La interpretación de «52 C» como créditos exclusivamente disciplinares **es el criterio de análisis indicado para esta herramienta**, no una interpretación institucional de dicha abreviatura que hayamos confirmado.
 
-## Base de información: tres fuentes independientes
+## Datos de la versión actual: tres archivos de referencia heredados
 
-La herramienta tiene tres fuentes diferentes, **sin asumir que una contiene todo lo de las otras**:
+En **v0.4.3** se conservan estos tres conjuntos de información, **sin asumir que uno contiene todo lo de los otros**. Según ARQ-01, no serán entradas independientes a la aplicación cuando se implemente el contrato normalizado:
 
 | Fuente | Información disponible | Archivo estructurado |
 |---|---|---|
@@ -139,7 +147,7 @@ La organización sigue **POO como filosofía de responsabilidades**, no la creac
 - **`js/app.js`** mantiene las vistas y eventos, y delega las reglas del plan en el objeto de dominio. El cálculo de interferencias continúa separado de esas reglas y no usa las tipologías para deducir horarios.
 - **`js/datos.js`** contiene el plan, las relaciones entre sus fuentes y el escenario inicial de grupos y horarios. **`js/catalogo.js`** y **`js/oferta-fuente.js`** conservan las otras dos fuentes. Cambiar datos académicos no exige editar el algoritmo.
 
-### Dónde cambiar la información
+### Dónde están los datos en la versión heredada (v0.4.3)
 
 | Registro de `RAW` | Contenido |
 |---|---|
