@@ -90,7 +90,11 @@ class EscenarioPersonal {
 
     const groups=cambios.grupos||{},quitarGroups=new Set(groups.quitar||[]);
     s.grupos=s.grupos.filter(g=>!quitarGroups.has(EscenarioPersonal.claveGrupo(g)));
-    for(const g of groups.agregar||[])if(!s.grupos.some(x=>EscenarioPersonal.claveGrupo(x)===EscenarioPersonal.claveGrupo(g)))s.grupos.push(EscenarioPersonal.copia(g));
+    for(const g of groups.agregar||[]) {
+      const existente=s.grupos.find(x=>x.a===g.a&&x.g===g.g);
+      if(existente) Object.assign(existente,{on:g.on,c1:g.c1,c2:g.c2});
+      else s.grupos.push(EscenarioPersonal.copia(g));
+    }
     for(const r of groups.modificar||[]){
       const g=s.grupos.find(x=>EscenarioPersonal.claveGrupo(x)===r.key);
       if(g)Object.assign(g,r.valores||{});
