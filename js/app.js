@@ -31,6 +31,7 @@ function glabel(g) {
 }
 const natKey = s => { const m = String(s).match(/\d+/); return m ? +m[0] : 1e9; };
 function semOf(S, name) { const m = S.malla.find(x => x.n === name); return m ? m.s : 0; }
+function maxSemester(S) { return Math.max(1, ...S.malla.map(m => m.s)); }
 
 /* Cierre transitivo del grafo de prerrequisitos (req -> t). */
 function closure(S) {
@@ -757,7 +758,7 @@ function pageMalla() {
   const M = ui.malla, sel = M.sel;
   if (sel && !S.malla.find(m => m.n === sel)) M.sel = null;
   const L = M.sel ? lineage(S, M.sel) : null;
-  const maxSem = Math.max(9, ...S.malla.map(m => m.s));
+  const maxSem = maxSemester(S);
   const cols = Array.from({ length: maxSem }, (_, i) => i + 1).map(s => {
     const cs = S.malla.filter(m => m.s === s && (!M.soloHor || S.asg.includes(m.n)));
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s)}</h4>${cs.map(m => {
@@ -787,7 +788,7 @@ function mallaSide(L) {
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
-    <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= 10 ? 'disabled' : ''}>+</button></span></div>
+    <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= maxSemester(S) ? 'disabled' : ''}>+</button></span></div>
     ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
     ${creditRequirementNote(m)}
     <div><div class="lab" style="margin-bottom:6px">Requiere (directos)</div><div class="rel">${rel(dirIn, 'in', 'r')}</div>
@@ -923,7 +924,7 @@ function onAct(act, d, el, ev) {
     case 'm-sel': ui.malla.sel = ui.malla.sel === d.n ? null : d.n; return render();
     case 'm-edges': ui.malla.edges = d.v; return render();
     case 'm-cr': { const m = S.malla.find(x => x.n === ui.malla.sel); m.cr = Math.max(0, m.cr + +d.dx); return commit(); }
-    case 'm-sem': { const m = S.malla.find(x => x.n === ui.malla.sel); const o = m.s; m.s = Math.max(1, Math.min(10, m.s + +d.dx)); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
+    case 'm-sem': { const m = S.malla.find(x => x.n === ui.malla.sel); const o = m.s; m.s = Math.max(1, Math.min(maxSemester(S), m.s + +d.dx)); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
     case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); render(); return toast('Volviste a los datos originales del Excel.');
     case 'export': return download('escenario-horarios.json', JSON.stringify({ app: 'interferencias-horarios', v: 1, S }, null, 1), 'application/json');
