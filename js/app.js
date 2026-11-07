@@ -18,7 +18,8 @@ function fromRaw(D) {
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2]) => ({ a, g, c1, c2: c2 || '', on: true })),
     bloques: D.bl.map(([a, c, d, s, e, o], i) => ({ id: i + 1, a, c, d, s, e, o: o || '' })),
-    reqCred: (D.reqCred || []).map(([n, min, scope]) => ({ n, min, scope })),
+    reqCred: (D.reqCred || []).map(([n, min, componentes]) => ({ n, min, componentes: [...componentes] })),
+    tipos: { componentes: (D.componentes || []).map(([id, nombre]) => ({ id, nombre })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
   };
 }
 
@@ -162,7 +163,20 @@ try {
 /* Completa escenarios guardados con asignaturas nuevas de la malla (Inglés, libre elección, proyecto, trabajo de grado…). */
 function fixMalla(s) {
   const base = fromRaw(RAW);
+  if (!s.tipos) s.tipos = clone(base.tipos);
+  else for (const tipo of ['componentes', 'caracteres']) {
+    if (!Array.isArray(s.tipos[tipo])) s.tipos[tipo] = [];
+    base.tipos[tipo].forEach(item => { if (!s.tipos[tipo].some(x => x.id === item.id)) s.tipos[tipo].push({ ...item }); });
+  }
   if (!Array.isArray(s.reqCred)) s.reqCred = clone(base.reqCred);
+  else {
+    s.reqCred = s.reqCred.map(r => {
+      if (Array.isArray(r.componentes)) return r;
+      const baseRule = base.reqCred.find(x => x.n === r.n);
+      return { n: r.n, min: r.min, componentes: clone(baseRule ? baseRule.componentes : []) };
+    });
+    base.reqCred.forEach(r => { if (!s.reqCred.some(x => x.n === r.n)) s.reqCred.push(clone(r)); });
+  }
   base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; if (!x.comp) x.comp = m.comp; if (x.car == null) x.car = m.car; } });
   if (!s.mig3) { s.mig3 = 1; s.malla = s.malla.filter(m => !['Libre elección (X-5)', 'Libre elección (X-6)'].includes(m.n)); }
   if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
@@ -191,27 +205,31 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const pct = (x, d = 0) => (x * 100).toFixed(d) + '%';
-const COMPONENT_LABELS = { B: 'Fundamentación', C: 'Disciplinar', L: 'Libre elección', N: 'Nivelación' };
-const CHARACTER_LABELS = { obl: 'Obligatoria', opt: 'Optativa' };
-const compName = c => COMPONENT_LABELS[c] || 'Sin clasificar';
-const carName = c => CHARACTER_LABELS[c] || '';
+function compName(id) {
+  const c = (S.tipos?.componentes || []).find(x => x.id === id);
+  return c ? c.nombre : 'Sin clasificar';
+}
+function carName(id) {
+  const c = (S.tipos?.caracteres || []).find(x => x.id === id);
+  return c ? c.nombre : '';
+}
 function creditRuleFor(n) { return (S.reqCred || []).find(r => r.n === n); }
-/* Comprueba consistencia curricular; no equivale a créditos aprobados por una persona. */
+/* Comprobación genérica: requisitos y componentes se definen en los datos, no en la función. */
 function creditStatus(m, r) {
   const prev = S.malla.filter(x => x.s < m.s);
-  const valid = new Set(['B', 'C', 'L', 'N']);
-  const unknown = prev.some(x => !valid.has(x.comp));
-  const total = prev.filter(x => valid.has(x.comp) && (r.scope === 'PLAN' ? x.comp !== 'N' : x.comp === r.scope)).reduce((sum, x) => sum + x.cr, 0);
+  const catalog = new Set((S.tipos?.componentes || []).map(x => x.id));
+  const allowed = new Set(r.componentes || []);
+  const unknown = !allowed.size || [...allowed].some(x => !catalog.has(x)) || prev.some(x => !catalog.has(x.comp));
+  const total = prev.filter(x => allowed.has(x.comp)).reduce((sum, x) => sum + x.cr, 0);
   return { total, unknown, low: !unknown && total < r.min };
 }
 function creditRequirementNote(m) {
   const r = creditRuleFor(m.n);
   if (!r) return m.nota ? '<div class="note">' + esc(m.nota) + '.</div>' : '';
   const q = creditStatus(m, r);
-  const which = r.scope === 'PLAN' ? 'del plan (sin nivelación)' : 'del componente ' + compName(r.scope).toLowerCase();
-  const statement = q.unknown ? 'No se comprueba con tipologías sin clasificar.' : (q.low ? 'Inconsistencia en la distribución por semestres: faltan ' + (r.min - q.total) + ' créditos.' : 'No se detecta inconsistencia en la distribución por semestres.');
-  const context = r.scope === 'C' ? 'Criterio de análisis específico para TPI: contar solo créditos disciplinares anteriores.' : 'Se consideran los créditos del programa de semestres anteriores, sin nivelación.';
-  return '<div class="note ' + (q.low ? 'heat' : '') + '"><b>Requisito mínimo:</b> ' + r.min + ' créditos ' + esc(which) + '.<div style="margin-top:5px">Créditos anteriores: <b>' + q.total + '</b>. ' + esc(statement) + '</div><small style="display:block;margin-top:6px">' + esc(context) + ' Esta comprobación no acredita materias aprobadas por un estudiante.</small></div>';
+  const which = (r.componentes || []).map(compName).join(' + ') || 'sin especificar';
+  const statement = q.unknown ? 'No se comprueba con componentes sin clasificar.' : (q.low ? 'Inconsistencia en la distribución por semestres: faltan ' + (r.min - q.total) + ' créditos.' : 'No se detecta inconsistencia en la distribución por semestres.');
+  return '<div class="note ' + (q.low ? 'heat' : '') + '"><b>Requisito mínimo:</b> ' + r.min + ' créditos. <span>Se cuentan: ' + esc(which) + '.</span><div style="margin-top:5px">Créditos anteriores: <b>' + q.total + '</b>. ' + esc(statement) + '</div><small style="display:block;margin-top:6px">Comprobación de distribución curricular, no de asignaturas aprobadas por un estudiante.</small></div>';
 }
 const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const fmtB = b => `${DAY_SHORT[b.d]} ${b.s}–${b.e}`;
@@ -767,8 +785,8 @@ function mallaSide(L) {
   return `<aside class="card sidecard">
     <div><span class="eyebrow">Asignatura</span><h2 style="font:650 18px/1.25 var(--serif);margin-top:2px">${esc(n)}</h2></div>
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
-    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${Object.entries(COMPONENT_LABELS).map(([k,v]) => `<option value="${k}" ${m.comp === k ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
-    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'],['obl','Obligatoria'],['opt','Optativa']].map(([k,v]) => `<option value="${k}" ${m.car === k ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= 10 ? 'disabled' : ''}>+</button></span></div>
     ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
     ${creditRequirementNote(m)}
@@ -935,8 +953,8 @@ function onChange(k, el) {
       S.grupos.forEach(g => { if (g.a === A) { if (g.c1 === old) g.c1 = nv; if (g.c2 === old) g.c2 = nv; } });
       if (ui.hor.comp === old) ui.hor.comp = nv; return commit();
     }
-    case 'm-comp': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || !COMPONENT_LABELS[el.value]) return; m.comp = el.value; return commit('Componente de ' + m.n + ': ' + compName(m.comp)); }
-    case 'm-car': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || !['', 'obl', 'opt'].includes(el.value)) return; m.car = el.value; return commit('Carácter de ' + m.n + ': ' + (carName(m.car) || 'No aplica')); }
+    case 'm-comp': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || !(S.tipos?.componentes || []).some(x => x.id === el.value)) return; m.comp = el.value; return commit('Componente de ' + m.n + ': ' + compName(m.comp)); }
+    case 'm-car': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || (el.value && !(S.tipos?.caracteres || []).some(x => x.id === el.value))) return; m.car = el.value; return commit('Carácter de ' + m.n + ': ' + (carName(m.car) || 'No aplica')); }
     case 'm-addreq': if (el.value) { S.pre.push({ r: el.value, t: ui.malla.sel, m: 'agregado' }); return commit(`Agregado: ${el.value} → ${ui.malla.sel}`); } return;
     case 'm-addopen': if (el.value) { S.pre.push({ r: ui.malla.sel, t: el.value, m: 'agregado' }); return commit(`Agregado: ${ui.malla.sel} → ${el.value}`); } return;
     case 'import-file': {
@@ -996,6 +1014,9 @@ document.addEventListener('drop', e => {
   const h = (location.hash || '').replace('#', '');
   if (PAGES[h]) ui.page = h;
   render();
+  const meta = RAW.metadatos || {};
+  const pie = document.getElementById('pie-datos');
+  if (pie) pie.textContent = ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
   if (restored && changes().length) toast('Recuperé los cambios que tenías guardados en este navegador.');
 })();
 
