@@ -14,7 +14,7 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
 function fromRaw(D) {
   return {
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
-    malla: D.malla.map(([n, s, nota, cr, comp, car]) => ({ n, s, nota: nota || '', cr: cr == null ? 0 : cr, comp: comp || '', car: car || '' })),
+    malla: D.malla.map(([n, s, nota, cr, comp, car]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '' })),
     pre: D.pre.map(([r, t, m]) => ({ r, t, m: m || '' })),
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2]) => ({ a, g, c1, c2: c2 || '', on: true })),
@@ -754,7 +754,7 @@ function pageHeat() {
 /* ===== MALLA / PRERREQUISITOS ===== */
 function semHead(s) {
   const c = semCred(s, S.malla);
-  return `<span class="semcr" title="${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
+  return `<span class="semcr" title="${c.incompleto ? 'Créditos registrados (hay asignaturas sin créditos definidos): ' : ''}${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
 }
 function pageMalla() {
   const M = ui.malla, sel = M.sel;
@@ -767,7 +767,7 @@ function pageMalla() {
       const sc = R.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
       let cls = sc ? '' : 'nosched';
       if (L) cls += m.n === M.sel ? ' sel' : L.up.has(m.n) ? ' up' : L.down.has(m.n) ? ' down' : ' dim';
-      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car ? ' · ' + esc(carName(m.car)) : ''}</span></small>${check && check.low ? `<small><span class="tag heat">Faltan ${req.min - check.total} cr. previos</span></small>` : ''}${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${!req && m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
+      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr == null ? '—' : m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car ? ' · ' + esc(carName(m.car)) : ''}</span></small>${check && check.low ? `<small><span class="tag heat">Faltan ${req.min - check.total} cr. previos</span></small>` : ''}${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${!req && m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
     }).join('')}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
@@ -787,7 +787,7 @@ function mallaSide(L) {
   const rel = (list, key, other) => list.length ? list.map(p => { const o = p[other], om = S.malla.find(x => x.n === o); const bad = key === 'in' ? om.s >= m.s : om.s <= m.s; return `<div class="it"><span><button style="all:unset;cursor:pointer;text-decoration:underline dotted" data-act="m-sel" data-n="${esc(o)}">${esc(o)}</button> <span class="sem">S${om.s}</span>${bad ? ' <span class="tag heat">mismo sem. o posterior</span>' : ''}</span><button data-act="m-del" data-r="${esc(p.r)}" data-t="${esc(p.t)}" aria-label="Quitar relación" title="Quitar relación">×</button></div>`; }).join('') : '<span class="hint">Ninguno.</span>';
   return `<aside class="card sidecard">
     <div><span class="eyebrow">Asignatura</span><h2 style="font:650 18px/1.25 var(--serif);margin-top:2px">${esc(n)}</h2></div>
-    <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
+    <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr == null ? '—' : m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= maxSemester(S) ? 'disabled' : ''}>+</button></span></div>
