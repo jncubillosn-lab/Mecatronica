@@ -130,5 +130,11 @@ function primeraDif(a, b) { a = String(a); b = String(b); let i = 0; while (i < 
   console.log('Pasos del guion que no encontraron su elemento en el ORIGINAL (cobertura a mejorar):', faltas.length ? '\n  ' + faltas.join('\n  ') : 'ninguno');
   difs.forEach(d => console.log('\n✗', d.paso, '[' + d.campos.join(',') + ']\n   ', d.ejemplo));
   fs.writeFileSync('ultimo_informe.json', JSON.stringify({ total: A.out.length, identicos: ok, difs, faltas }, null, 1));
+  const h = s => crypto.createHash('sha256').update(s).digest('hex').slice(0, 12), rd = f => fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : null;
+  const ref = rd(path.join(dirA, 'index.html')), css = ref.match(/<style>([\s\S]*?)<\/style>/)[1], js = ref.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/^const RAW=.*\n/m, '');
+  const cm = rd(path.join(dirB, 'css/estilos.css')), jm = rd(path.join(dirB, 'js/app.js')), im = rd(path.join(dirB, 'index.html'));
+  console.log('\nESTÁTICO  CSS idéntico al original:', cm !== null && h(cm) === h(css), '| JS idéntico al original:', jm !== null && h(jm) === h(js));
+  const v = im && im.match(/<span class="pie-version"[^>]*>([^<]+)<\/span>/), mv = im && im.match(/<meta name="version" content="([^"]+)"/);
+  console.log('ESTÁTICO  Pie con versión en el HTML:', v ? v[1] : 'NO HAY', '| meta version:', mv ? mv[1] : 'NO HAY', '| coherentes:', !!(v && mv && v[1].includes(mv[1])));
   sa.close(); sb.close(); process.exit(0);
 })();

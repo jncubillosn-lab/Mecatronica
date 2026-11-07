@@ -1,0 +1,10 @@
+/* Barra inferior de verificación: versión, contacto y aviso de sitio no oficial.
+   Usa las variables de color de estilos.css, así sigue el modo claro/oscuro. */
+.pie{border-top:1px solid var(--line);background:var(--surface2);color:var(--ink2);font-size:12.5px;line-height:1.5}
+.pie-in{max-width:1360px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:6px 24px;align-items:center;justify-content:space-between}
+.pie-aviso{flex:1 1 360px;max-width:80ch}
+.pie-aviso strong{color:var(--ink)}
+.pie-meta{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center}
+.pie-version{font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
+.pie-contacto{color:var(--accent);text-decoration:none;white-space:nowrap}
+.pie-contacto:hover,.pie-contacto:focus-visible{text-decoration:underline}
