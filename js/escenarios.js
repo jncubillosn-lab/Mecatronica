@@ -6,7 +6,7 @@
  */
 class EscenarioPersonal {
   static copia(x) { return JSON.parse(JSON.stringify(x)); }
-  static claveGrupo(g) { return g.a + '\u0001' + g.g; }
+  static claveGrupo(g) { return g.ref ? 'r:' + g.ref : g.a + '\u0001' + g.g; }
   static clavePre(p) { return p.r + '\u0001' + p.t; }
   static claveBloque(b) { return b.ref ? 'r:' + b.ref : 'i:' + b.id; }
   static propiedadesBloque(b) {
@@ -27,13 +27,13 @@ class EscenarioPersonal {
         out.params[key] = EscenarioPersonal.copia(actual.params[key]);
       }
     }
-    const bm = new Map(base.malla.map(m=>[m.n,m]));
+    const bm = new Map(base.malla.map(m=>[m.idPos || m.n,m]));
     for (const m of actual.malla) {
-      const b=bm.get(m.n);
-      if (!b) { out.malla.push({nombre:m.n,nueva:EscenarioPersonal.copia(m)}); continue; }
+      const b=bm.get(m.idPos || m.n);
+      if (!b) { out.malla.push({nombre:m.n,posicionId:m.idPos||null,nueva:EscenarioPersonal.copia(m)}); continue; }
       const valores={};
       for(const k of ['s','cr','comp','car','nota'])if(JSON.stringify(m[k])!==JSON.stringify(b[k]))valores[k]=m[k];
-      if(Object.keys(valores).length)out.malla.push({nombre:m.n,valores});
+      if(Object.keys(valores).length)out.malla.push({nombre:m.n,posicionId:m.idPos||null,valores});
     }
     const ap=new Map(actual.pre.map(p=>[EscenarioPersonal.clavePre(p),p]));
     const bp=new Map(base.pre.map(p=>[EscenarioPersonal.clavePre(p),p]));
@@ -75,7 +75,7 @@ class EscenarioPersonal {
     if (!cambios || typeof cambios!=='object') return s;
     Object.assign(s.params, cambios.params || {});
     for(const r of cambios.malla || []){
-      const m=s.malla.find(x=>x.n===r.nombre);
+      const m=s.malla.find(x=>(r.posicionId&&x.idPos===r.posicionId)||x.n===r.nombre);
       if(m)Object.assign(m,r.valores||{});
       else if(r.nueva)s.malla.push(EscenarioPersonal.copia(r.nueva));
     }
@@ -130,11 +130,16 @@ class EscenarioPersonal {
     const referencia = { ...contrato, agrupaciones:anteriores };
     const baseAnterior=construirEstado(new LectorAcademico(referencia).generarEscenarioBase());
     // Los escenarios históricos identificaban los bloques por su posición numérica.
+    baseAnterior.grupos.forEach(g=>{g.ref=null;});
     baseAnterior.bloques.forEach(b=>{
       b.id=b.idAnterior ?? b.id;
       b.ref=null;
     });
     const cambios=EscenarioPersonal.diferencias(baseAnterior,snapshot);
+    // Las ediciones heredadas por nombre se enlazan al ID estable del grupo.
+    const referenciaGrupo=new Map(baseVigente.grupos.map(g=>[g.a+'\u0001'+g.g,g.ref]));
+    cambios.grupos.quitar=cambios.grupos.quitar.map(key=>referenciaGrupo.has(key)?'r:'+referenciaGrupo.get(key):key);
+    cambios.grupos.modificar=cambios.grupos.modificar.map(x=>({...x,key:referenciaGrupo.has(x.key)?'r:'+referenciaGrupo.get(x.key):x.key}));
     // Identificar referencias originales mediante el número heredado cuando sea posible.
     const refPorId=new Map(baseAnterior.bloques.filter(b=>b.idAnterior!=null)
       .map(b=>[b.idAnterior,baseVigente.bloques.find(x=>x.idAnterior===b.idAnterior)?.ref||null]));
