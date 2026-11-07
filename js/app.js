@@ -1,9 +1,10 @@
 
 /* ===== NÚCLEO DE CÁLCULO (sin DOM) ===== */
-const DAYS = ['L', 'M', 'X', 'J', 'V', 'S'];
-const DAY_NAMES = { L: 'Lunes', M: 'Martes', X: 'Miércoles', J: 'Jueves', V: 'Viernes', S: 'Sábado' };
-const DAY_SHORT = { L: 'Lun', M: 'Mar', X: 'Mié', J: 'Jue', V: 'Vie', S: 'Sáb' };
-const H_MIN = 6, H_MAX = 21;
+const CALENDARIO = new CalendarioAcademico(RAW.calendario);
+const DAYS = CALENDARIO.ids();
+const DAY_NAMES = Object.fromEntries(DAYS.map(id => [id, CALENDARIO.nombre(id)]));
+const DAY_SHORT = Object.fromEntries(DAYS.map(id => [id, CALENDARIO.corto(id)]));
+const H_MIN = CALENDARIO.inicio, H_MAX = CALENDARIO.fin;
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
 
@@ -12,14 +13,14 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
      grupos:[{a,g,c1,c2,on}], bloques:[{id,a,c,d,s,e,o}] } */
 function fromRaw(D) {
   return {
-    params: { dists: [0, 1], indirect: 1 },
-    malla: D.malla.map(([n, s, nota, cr, comp, car]) => ({ n, s, nota: nota || '', cr: cr == null ? 3 : cr, comp: comp || '', car: car || '' })),
+    params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
+    malla: D.malla.map(([n, s, nota, cr, comp, car]) => ({ n, s, nota: nota || '', cr: cr == null ? 0 : cr, comp: comp || '', car: car || '' })),
     pre: D.pre.map(([r, t, m]) => ({ r, t, m: m || '' })),
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2]) => ({ a, g, c1, c2: c2 || '', on: true })),
     bloques: D.bl.map(([a, c, d, s, e, o], i) => ({ id: i + 1, a, c, d, s, e, o: o || '' })),
     reqCred: (D.reqCred || []).map(([n, min, componentes]) => ({ n, min, componentes: [...componentes] })),
-    tipos: { componentes: (D.componentes || []).map(([id, nombre]) => ({ id, nombre })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
+    tipos: { componentes: (D.componentes || []).map(([id, nombre, enPlan]) => ({ id, nombre, enPlan })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
   };
 }
 
@@ -31,7 +32,7 @@ function glabel(g) {
 }
 const natKey = s => { const m = String(s).match(/\d+/); return m ? +m[0] : 1e9; };
 function semOf(S, name) { const m = S.malla.find(x => x.n === name); return m ? m.s : 0; }
-function maxSemester(S) { return Math.max(1, ...S.malla.map(m => m.s)); }
+function maxSemester(S) { return new PlanCurricular(S).maxSemestre(); }
 
 /* Cierre transitivo del grafo de prerrequisitos (req -> t). */
 function closure(S) {
@@ -153,7 +154,7 @@ function lineage(S, n) {
 if (typeof module !== 'undefined') module.exports = { glabel, fromRaw, compute, closure, clone, wouldCycle, lineage, clashDetail, semOf, overlap };
 
 /* ===== APLICACIÓN: estado, utilidades, cabecera, Inicio, Interferencias, panel lateral ===== */
-const KEY = 'interferencias-horarios-v3';
+const KEY = RAW.almacenamiento.clave;
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
 let S = fromRaw(RAW), S0 = clone(S), restored = false;
@@ -167,7 +168,11 @@ function fixMalla(s) {
   if (!s.tipos) s.tipos = clone(base.tipos);
   else for (const tipo of ['componentes', 'caracteres']) {
     if (!Array.isArray(s.tipos[tipo])) s.tipos[tipo] = [];
-    base.tipos[tipo].forEach(item => { if (!s.tipos[tipo].some(x => x.id === item.id)) s.tipos[tipo].push({ ...item }); });
+    base.tipos[tipo].forEach(item => {
+      const actual = s.tipos[tipo].find(x => x.id === item.id);
+      if (!actual) s.tipos[tipo].push({ ...item });
+      else if (tipo === 'componentes' && actual.enPlan == null) actual.enPlan = item.enPlan;
+    });
   }
   if (!Array.isArray(s.reqCred)) s.reqCred = clone(base.reqCred);
   else {
@@ -183,11 +188,20 @@ function fixMalla(s) {
   if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
   if (!s.mig1) { s.mig1 = 1; s.pre = s.pre.filter(p => !(p.r === 'Proyecto Aplicado de Ingeniería' && p.t === 'Trabajo de Grado')); }
   if (!s.mig4) { s.mig4 = 1; s.pre = base.pre.map(p => ({ ...p })).concat(s.pre.filter(p => p.m === 'agregado' && !base.pre.some(q => q.r === p.r && q.t === p.t))); s.malla.forEach(m => { const o = base.malla.find(y => y.n === m.n); if (o && /créditos del plan|% de los créditos/.test(m.nota || '')) m.nota = o.nota; }); }
-  base.pre.forEach(p => { if (!s.pre.some(q => q.r === p.r && q.t === p.t)) s.pre.push({ ...p }); });
+  // No restaurar aquí requisitos que el usuario retiró deliberadamente de su escenario.
   return s;
 }
-function fixParams(s) { if (!Array.isArray(s.params.dists)) { const m = s.params.maxDist == null ? 1 : s.params.maxDist; s.params.dists = Array.from({ length: Math.min(m, 2) + 1 }, (_, i) => i); } return s; }
+function fixParams(s) {
+  if (!Array.isArray(s.params.dists)) {
+    const d = RAW.opciones.distanciasDisponibles;
+    const max = s.params.maxDist == null ? Math.max(...RAW.opciones.distanciasIniciales) : s.params.maxDist;
+    s.params.dists = d.filter(x => x <= max);
+    if (!s.params.dists.length) s.params.dists = [...RAW.opciones.distanciasIniciales];
+  }
+  return s;
+}
 fixParams(S); fixMalla(S);
+fixParams(S0); fixMalla(S0);
 let R = compute(S), R0 = compute(S0);
 
 const ui = {
@@ -195,7 +209,7 @@ const ui = {
   inter: { view: 'lista', dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
-  hor: { a: S.asg.includes('Estática') ? 'Estática' : S.asg[0], comp: null, ov: [] },
+  hor: { a: S.asg.includes(RAW.opciones.asignaturaInicial) ? RAW.opciones.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
@@ -206,24 +220,11 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const pct = (x, d = 0) => (x * 100).toFixed(d) + '%';
-function compName(id) {
-  const c = (S.tipos?.componentes || []).find(x => x.id === id);
-  return c ? c.nombre : 'Sin clasificar';
-}
-function carName(id) {
-  const c = (S.tipos?.caracteres || []).find(x => x.id === id);
-  return c ? c.nombre : '';
-}
-function creditRuleFor(n) { return (S.reqCred || []).find(r => r.n === n); }
-/* Comprobación genérica: requisitos y componentes se definen en los datos, no en la función. */
-function creditStatus(m, r) {
-  const prev = S.malla.filter(x => x.s < m.s);
-  const catalog = new Set((S.tipos?.componentes || []).map(x => x.id));
-  const allowed = new Set(r.componentes || []);
-  const unknown = !allowed.size || [...allowed].some(x => !catalog.has(x)) || prev.some(x => !catalog.has(x.comp));
-  const total = prev.filter(x => allowed.has(x.comp)).reduce((sum, x) => sum + x.cr, 0);
-  return { total, unknown, low: !unknown && total < r.min };
-}
+const planActual = () => new PlanCurricular(S);
+const compName = id => planActual().nombreComponente(id);
+const carName = id => planActual().nombreCaracter(id);
+const creditRuleFor = n => planActual().requisitoCreditos(n);
+const creditStatus = (m, r) => planActual().evaluarCreditos(m, r);
 function creditRequirementNote(m) {
   const r = creditRuleFor(m.n);
   if (!r) return m.nota ? '<div class="note">' + esc(m.nota) + '.</div>' : '';
@@ -324,12 +325,12 @@ function renderTop() {
 /* ---------- INICIO ---------- */
 function gl(a, gname) { const g = S.grupos.find(x => x.a === a && x.g === gname); return g ? glabel(g) : gname; }
 function sev(p) { return p.clash === 0 ? ['ok', 'Compatibles'] : p.clash === p.total ? ['a', 'Incompatibles'] : ['b', 'Depende del grupo']; }
-const DIST_LBL = ['mismo semestre', '1 semestre de diferencia', '2 semestres de diferencia'];
-function semCred(s, n) { const l = n.filter(m => m.s === s); const t = l.reduce((a, m) => a + m.cr, 0), en = l.filter(m => /^Inglés/.test(m.n)).reduce((a, m) => a + m.cr, 0); return { t, en, n: l.length }; }
-function distNames(ds) { return [...ds].sort().map(d => DIST_LBL[d]).join(' · '); }
-function distSummary() { const l = [...S.params.dists].sort().map(d => DIST_LBL[d]); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : l[0]; }
+const distLabel = d => d === 0 ? 'mismo semestre' : d + (d === 1 ? ' semestre de diferencia' : ' semestres de diferencia');
+function semCred(s, n) { return new PlanCurricular({malla:n, tipos:S.tipos}).resumenSemestre(s); }
+function distNames(ds) { return [...ds].sort((a,b)=>a-b).map(distLabel).join(' · '); }
+function distSummary() { const l = [...S.params.dists].sort((a,b)=>a-b).map(distLabel); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : (l[0] || 'sin selección'); }
 function distChips(counts) {
-  return [0, 1, 2].map(d => { const n = counts ? R.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
+  return RAW.opciones.distanciasDisponibles.map(d => { const n = counts ? R.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
 }
 function distText(p) { return p.dist === 0 ? 'Mismo semestre' : p.dist === 1 ? '1 semestre de diferencia' : p.dist + ' semestres de diferencia'; }
 function compGroups(A, c) { return S.grupos.filter(g => g.a === A && (g.c1 === c || g.c2 === c)).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y))); }
@@ -751,8 +752,8 @@ function pageHeat() {
 }
 /* ===== MALLA / PRERREQUISITOS ===== */
 function semHead(s) {
-  const c = semCred(s, S.malla), o = semCred(s, S0.malla), d = c.t - o.t;
-  return `<span class="semcr" title="${c.t} créditos en total${c.en ? ` (${c.t - c.en} del plan + ${c.en} de inglés)` : ''}"><b class="num">${c.t - c.en}${c.en ? '+' + c.en : ''}</b></span>`;
+  const c = semCred(s, S.malla);
+  return `<span class="semcr" title="${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
 }
 function pageMalla() {
   const M = ui.malla, sel = M.sel;
@@ -923,8 +924,8 @@ function onAct(act, d, el, ev) {
     /* malla */
     case 'm-sel': ui.malla.sel = ui.malla.sel === d.n ? null : d.n; return render();
     case 'm-edges': ui.malla.edges = d.v; return render();
-    case 'm-cr': { const m = S.malla.find(x => x.n === ui.malla.sel); m.cr = Math.max(0, m.cr + +d.dx); return commit(); }
-    case 'm-sem': { const m = S.malla.find(x => x.n === ui.malla.sel); const o = m.s; m.s = Math.max(1, Math.min(maxSemester(S), m.s + +d.dx)); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
+    case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
+    case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
     case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); render(); return toast('Volviste a los datos originales del Excel.');
     case 'export': return download('escenario-horarios.json', JSON.stringify({ app: 'interferencias-horarios', v: 1, S }, null, 1), 'application/json');
@@ -954,8 +955,8 @@ function onChange(k, el) {
       S.grupos.forEach(g => { if (g.a === A) { if (g.c1 === old) g.c1 = nv; if (g.c2 === old) g.c2 = nv; } });
       if (ui.hor.comp === old) ui.hor.comp = nv; return commit();
     }
-    case 'm-comp': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || !(S.tipos?.componentes || []).some(x => x.id === el.value)) return; m.comp = el.value; return commit('Componente de ' + m.n + ': ' + compName(m.comp)); }
-    case 'm-car': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || (el.value && !(S.tipos?.caracteres || []).some(x => x.id === el.value))) return; m.car = el.value; return commit('Carácter de ' + m.n + ': ' + (carName(m.car) || 'No aplica')); }
+    case 'm-comp': { const m = planActual().cambiarComponente(ui.malla.sel, el.value); if (!m) return; return commit('Componente de ' + m.n + ': ' + compName(m.comp)); }
+    case 'm-car': { const m = planActual().cambiarCaracter(ui.malla.sel, el.value); if (!m) return; return commit('Carácter de ' + m.n + ': ' + (carName(m.car) || 'No aplica')); }
     case 'm-addreq': if (el.value) { S.pre.push({ r: el.value, t: ui.malla.sel, m: 'agregado' }); return commit(`Agregado: ${el.value} → ${ui.malla.sel}`); } return;
     case 'm-addopen': if (el.value) { S.pre.push({ r: ui.malla.sel, t: el.value, m: 'agregado' }); return commit(`Agregado: ${ui.malla.sel} → ${el.value}`); } return;
     case 'import-file': {
@@ -1004,9 +1005,9 @@ document.addEventListener('drop', e => {
     commit(`${b.c}: ${old} → ${fmtB(b)}`);
   } else {
     const col = e.target.closest('.mcol'); if (!col) return; e.preventDefault();
-    const m = S.malla.find(x => x.n === dragData.n), ns = +col.dataset.sem; dragData = null;
+    const m = planActual().asignatura(dragData.n), ns = +col.dataset.sem; dragData = null;
     if (!m || m.s === ns) return render();
-    const o = m.s; m.s = ns; ui.malla.sel = m.n; commit(`${m.n}: semestre ${o} → ${ns}`);
+    const o = m.s; planActual().moverSemestre(m.n, ns); ui.malla.sel = m.n; commit(`${m.n}: semestre ${o} → ${m.s}`);
   }
 });
 
