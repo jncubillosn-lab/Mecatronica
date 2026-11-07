@@ -1,0 +1,872 @@
+{
+  "programa": "Ingeniería Mecatrónica",
+  "facultad": "ingenieria",
+  "fuente_plan": "Acuerdo 6 de 2022 del Consejo de Facultad de Ingeniería",
+  "fuente_horarios": "Excel original de horarios",
+  "asignaturas": [
+    {
+      "id": "calculo-diferencial",
+      "codigo": null,
+      "nombre": "Cálculo Diferencial",
+      "semestre": 1,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "dibujo-basico",
+      "codigo": null,
+      "nombre": "Dibujo básico",
+      "semestre": 1,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "programacion-de-computadores",
+      "codigo": null,
+      "nombre": "Programación de Computadores",
+      "semestre": 1,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "tec-mecanica-basica",
+      "codigo": null,
+      "nombre": "Tec. Mecánica Básica",
+      "semestre": 2,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ing-y-des-sostenible",
+      "codigo": null,
+      "nombre": "Ing. y Des. Sostenible",
+      "semestre": 1,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "calculo-integral",
+      "codigo": null,
+      "nombre": "Cálculo Integral",
+      "semestre": 2,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "fundamentos-de-mecanica",
+      "codigo": null,
+      "nombre": "Fundamentos de Mecánica",
+      "semestre": 2,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "algebra-lineal",
+      "codigo": null,
+      "nombre": "Álgebra Lineal",
+      "semestre": 2,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "taller-ing-electronica",
+      "codigo": null,
+      "nombre": "Taller Ing. Electrónica",
+      "semestre": 1,
+      "creditos": 2,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "calculo-en-varias-variables",
+      "codigo": null,
+      "nombre": "Cálculo en Varias Variables",
+      "semestre": 3,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "fundamentos-de-electricidad-y-magnetismo",
+      "codigo": null,
+      "nombre": "Fundamentos de Electricidad y Magnetismo",
+      "semestre": 3,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "probabilidad-y-estadistica-fundamental",
+      "codigo": null,
+      "nombre": "Probabilidad y Estadística Fundamental",
+      "semestre": 3,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "principios-de-quimica",
+      "codigo": null,
+      "nombre": "Principios de Química",
+      "semestre": 3,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "estatica",
+      "codigo": null,
+      "nombre": "Estática",
+      "semestre": 3,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "circuitos-electricos-i",
+      "codigo": null,
+      "nombre": "Circuitos Eléctricos I",
+      "semestre": 3,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ecuaciones-diferenciales",
+      "codigo": null,
+      "nombre": "Ecuaciones Diferenciales",
+      "semestre": 4,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "programacion-orientada-a-objetos",
+      "codigo": null,
+      "nombre": "Programación Orientada a Objetos",
+      "semestre": 4,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "dinamica",
+      "codigo": null,
+      "nombre": "Dinámica",
+      "semestre": 4,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "electronica-analoga-i",
+      "codigo": null,
+      "nombre": "Electrónica Análoga I",
+      "semestre": 4,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "variable-compleja",
+      "codigo": null,
+      "nombre": "Variable Compleja",
+      "semestre": 5,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "optativa-fisica-v",
+      "codigo": null,
+      "nombre": "Optativa Física (V)",
+      "semestre": 5,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": true
+    },
+    {
+      "id": "senales-y-sistemas-i",
+      "codigo": null,
+      "nombre": "Señales y Sistemas I",
+      "semestre": 5,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ciencia-e-ing-de-materiales",
+      "codigo": null,
+      "nombre": "Ciencia e Ing. de Materiales",
+      "semestre": 5,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "resistencia-de-materiales",
+      "codigo": null,
+      "nombre": "Resistencia de Materiales",
+      "semestre": 5,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "estructuras-de-datos",
+      "codigo": null,
+      "nombre": "Estructuras de Datos",
+      "semestre": 5,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ingenieria-economica",
+      "codigo": null,
+      "nombre": "Ingeniería Económica",
+      "semestre": 6,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "senales-y-sistemas-ii",
+      "codigo": null,
+      "nombre": "Señales y Sistemas II",
+      "semestre": 6,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "optativa-materiales-y-procesos-vi",
+      "codigo": null,
+      "nombre": "Optativa Materiales y Procesos (VI)",
+      "semestre": 6,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": true
+    },
+    {
+      "id": "diseno-mecatronico",
+      "codigo": null,
+      "nombre": "Diseño Mecatrónico",
+      "semestre": 6,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "electronica-digital-i",
+      "codigo": null,
+      "nombre": "Electrónica Digital I",
+      "semestre": 6,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "optativa-cs-economicas-vii",
+      "codigo": null,
+      "nombre": "Optativa Cs. Económicas (VII)",
+      "semestre": 7,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": true
+    },
+    {
+      "id": "optativa-informatica-vii",
+      "codigo": null,
+      "nombre": "Optativa Informática (VII)",
+      "semestre": 7,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": true
+    },
+    {
+      "id": "control",
+      "codigo": null,
+      "nombre": "Control",
+      "semestre": 7,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "sensores-y-actuadores",
+      "codigo": null,
+      "nombre": "Sensores y Actuadores",
+      "semestre": 7,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "redes-de-computadores",
+      "codigo": null,
+      "nombre": "Redes de Computadores",
+      "semestre": 7,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "microcontroladores",
+      "codigo": null,
+      "nombre": "Microcontroladores",
+      "semestre": 7,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "robotica",
+      "codigo": null,
+      "nombre": "Robótica",
+      "semestre": 8,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "optativa-automatizacion-y-control-viii",
+      "codigo": null,
+      "nombre": "Optativa Automatización y Control (VIII)",
+      "semestre": 8,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": true
+    },
+    {
+      "id": "servomecanismos",
+      "codigo": null,
+      "nombre": "Servomecanismos",
+      "semestre": 8,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "automatizacion-de-procesos",
+      "codigo": null,
+      "nombre": "Automatización de Procesos",
+      "semestre": 9,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ingles-i",
+      "codigo": null,
+      "nombre": "Inglés I",
+      "semestre": 1,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ingles-ii",
+      "codigo": null,
+      "nombre": "Inglés II",
+      "semestre": 2,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ingles-iii",
+      "codigo": null,
+      "nombre": "Inglés III",
+      "semestre": 3,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "ingles-iv",
+      "codigo": null,
+      "nombre": "Inglés IV",
+      "semestre": 4,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false
+    },
+    {
+      "id": "taller-de-proyectos-interdisciplinarios",
+      "codigo": null,
+      "nombre": "Taller de Proyectos Interdisciplinarios",
+      "semestre": 6,
+      "creditos": 3,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false,
+      "requisito_creditos_aprobados": 52,
+      "nota": "Requiere 52 créditos aprobados del plan"
+    },
+    {
+      "id": "libre-eleccion-viii-1",
+      "codigo": null,
+      "nombre": "Libre elección (VIII-1)",
+      "semestre": 8,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-viii-2",
+      "codigo": null,
+      "nombre": "Libre elección (VIII-2)",
+      "semestre": 8,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-viii-3",
+      "codigo": null,
+      "nombre": "Libre elección (VIII-3)",
+      "semestre": 8,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-ix-1",
+      "codigo": null,
+      "nombre": "Libre elección (IX-1)",
+      "semestre": 9,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-ix-2",
+      "codigo": null,
+      "nombre": "Libre elección (IX-2)",
+      "semestre": 9,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-ix-3",
+      "codigo": null,
+      "nombre": "Libre elección (IX-3)",
+      "semestre": 9,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "proyecto-aplicado-de-ingenieria",
+      "codigo": null,
+      "nombre": "Proyecto Aplicado de Ingeniería",
+      "semestre": 9,
+      "creditos": 4,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false,
+      "requisito_creditos_aprobados": 65,
+      "nota": "Requiere 65 créditos aprobados del plan"
+    },
+    {
+      "id": "libre-eleccion-x-1",
+      "codigo": null,
+      "nombre": "Libre elección (X-1)",
+      "semestre": 10,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-x-2",
+      "codigo": null,
+      "nombre": "Libre elección (X-2)",
+      "semestre": 10,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-x-3",
+      "codigo": null,
+      "nombre": "Libre elección (X-3)",
+      "semestre": 10,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "trabajo-de-grado",
+      "codigo": null,
+      "nombre": "Trabajo de Grado",
+      "semestre": 10,
+      "creditos": 6,
+      "categoria": null,
+      "facultad_que_dicta": null,
+      "optativa": false,
+      "requisito_creditos_aprobados": 69,
+      "nota": "Requiere 69 créditos aprobados del plan"
+    },
+    {
+      "id": "libre-eleccion-x-4",
+      "codigo": null,
+      "nombre": "Libre elección (X-4)",
+      "semestre": 10,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-ii",
+      "codigo": null,
+      "nombre": "Libre elección (II)",
+      "semestre": 2,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    },
+    {
+      "id": "libre-eleccion-iv",
+      "codigo": null,
+      "nombre": "Libre elección (IV)",
+      "semestre": 4,
+      "creditos": 3,
+      "categoria": "libre_eleccion",
+      "facultad_que_dicta": "sede",
+      "optativa": false
+    }
+  ],
+  "prerrequisitos": [
+    {
+      "de": "calculo-diferencial",
+      "a": "calculo-integral",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "calculo-diferencial",
+      "a": "probabilidad-y-estadistica-fundamental",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "calculo-diferencial",
+      "a": "fundamentos-de-mecanica",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "calculo-integral",
+      "a": "calculo-en-varias-variables",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "calculo-integral",
+      "a": "ecuaciones-diferenciales",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "calculo-integral",
+      "a": "fundamentos-de-electricidad-y-magnetismo",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "calculo-integral",
+      "a": "ingenieria-economica",
+      "dibujo": "letra",
+      "letra": "A"
+    },
+    {
+      "de": "algebra-lineal",
+      "a": "calculo-en-varias-variables",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "algebra-lineal",
+      "a": "ecuaciones-diferenciales",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "algebra-lineal",
+      "a": "circuitos-electricos-i",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "algebra-lineal",
+      "a": "estatica",
+      "dibujo": "letra",
+      "letra": "B"
+    },
+    {
+      "de": "algebra-lineal",
+      "a": "dinamica",
+      "dibujo": "letra",
+      "letra": "B"
+    },
+    {
+      "de": "fundamentos-de-mecanica",
+      "a": "fundamentos-de-electricidad-y-magnetismo",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "fundamentos-de-mecanica",
+      "a": "optativa-fisica-v",
+      "dibujo": "letra",
+      "letra": "D"
+    },
+    {
+      "de": "ecuaciones-diferenciales",
+      "a": "variable-compleja",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ecuaciones-diferenciales",
+      "a": "senales-y-sistemas-i",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ecuaciones-diferenciales",
+      "a": "optativa-fisica-v",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ecuaciones-diferenciales",
+      "a": "optativa-informatica-vii",
+      "dibujo": "letra",
+      "letra": "C"
+    },
+    {
+      "de": "variable-compleja",
+      "a": "senales-y-sistemas-ii",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "fundamentos-de-electricidad-y-magnetismo",
+      "a": "optativa-cs-economicas-vii",
+      "dibujo": "letra",
+      "letra": "E"
+    },
+    {
+      "de": "ingenieria-economica",
+      "a": "optativa-cs-economicas-vii",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "programacion-de-computadores",
+      "a": "programacion-orientada-a-objetos",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "programacion-orientada-a-objetos",
+      "a": "estructuras-de-datos",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "estructuras-de-datos",
+      "a": "redes-de-computadores",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "taller-ing-electronica",
+      "a": "circuitos-electricos-i",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "circuitos-electricos-i",
+      "a": "electronica-analoga-i",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "circuitos-electricos-i",
+      "a": "senales-y-sistemas-i",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "electronica-analoga-i",
+      "a": "electronica-digital-i",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "electronica-digital-i",
+      "a": "microcontroladores",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "senales-y-sistemas-i",
+      "a": "senales-y-sistemas-ii",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "senales-y-sistemas-ii",
+      "a": "control",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "senales-y-sistemas-ii",
+      "a": "sensores-y-actuadores",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "control",
+      "a": "robotica",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "control",
+      "a": "optativa-automatizacion-y-control-viii",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "estatica",
+      "a": "resistencia-de-materiales",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "resistencia-de-materiales",
+      "a": "diseno-mecatronico",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "dinamica",
+      "a": "diseno-mecatronico",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "diseno-mecatronico",
+      "a": "servomecanismos",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "principios-de-quimica",
+      "a": "ciencia-e-ing-de-materiales",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "tec-mecanica-basica",
+      "a": "ciencia-e-ing-de-materiales",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "dibujo-basico",
+      "a": "tec-mecanica-basica",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ing-y-des-sostenible",
+      "a": "tec-mecanica-basica",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ing-y-des-sostenible",
+      "a": "taller-de-proyectos-interdisciplinarios",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ciencia-e-ing-de-materiales",
+      "a": "optativa-materiales-y-procesos-vi",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "resistencia-de-materiales",
+      "a": "optativa-materiales-y-procesos-vi",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "optativa-materiales-y-procesos-vi",
+      "a": "automatizacion-de-procesos",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "sensores-y-actuadores",
+      "a": "automatizacion-de-procesos",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "robotica",
+      "a": "automatizacion-de-procesos",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "servomecanismos",
+      "a": "automatizacion-de-procesos",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ingles-i",
+      "a": "ingles-ii",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ingles-ii",
+      "a": "ingles-iii",
+      "dibujo": "flecha"
+    },
+    {
+      "de": "ingles-iii",
+      "a": "ingles-iv",
+      "dibujo": "flecha"
+    }
+  ]
+}

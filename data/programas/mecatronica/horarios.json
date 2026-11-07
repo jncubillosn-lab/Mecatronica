@@ -1,0 +1,1270 @@
+{
+  "grupos": [
+    {
+      "asignatura": "dibujo-basico",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "grupo": "G12",
+      "componentes": [
+        "G12"
+      ]
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "grupo": "G13",
+      "componentes": [
+        "G13"
+      ]
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "grupo": "G15",
+      "componentes": [
+        "G15"
+      ]
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "grupo": "G3",
+      "componentes": [
+        "G3"
+      ]
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "grupo": "G6",
+      "componentes": [
+        "G6"
+      ]
+    },
+    {
+      "asignatura": "ing-y-des-sostenible",
+      "grupo": "G1",
+      "componentes": [
+        "T1",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "ing-y-des-sostenible",
+      "grupo": "G3",
+      "componentes": [
+        "T3",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "ing-y-des-sostenible",
+      "grupo": "G4",
+      "componentes": [
+        "T4",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "grupo": "G3",
+      "componentes": [
+        "G3"
+      ]
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "grupo": "G4",
+      "componentes": [
+        "G4"
+      ]
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "grupo": "G6",
+      "componentes": [
+        "G6"
+      ]
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "grupo": "G7",
+      "componentes": [
+        "G7"
+      ]
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "grupo": "G8",
+      "componentes": [
+        "G8"
+      ]
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "grupo": "G3",
+      "componentes": [
+        "G3"
+      ]
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "grupo": "G4",
+      "componentes": [
+        "G4"
+      ]
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "grupo": "G5",
+      "componentes": [
+        "G5"
+      ]
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "grupo": "G6",
+      "componentes": [
+        "G6"
+      ]
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "grupo": "G7",
+      "componentes": [
+        "G7"
+      ]
+    },
+    {
+      "asignatura": "estatica",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "estatica",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "estatica",
+      "grupo": "G4",
+      "componentes": [
+        "G4"
+      ]
+    },
+    {
+      "asignatura": "estatica",
+      "grupo": "G5",
+      "componentes": [
+        "G5"
+      ]
+    },
+    {
+      "asignatura": "estatica",
+      "grupo": "G6",
+      "componentes": [
+        "G6"
+      ]
+    },
+    {
+      "asignatura": "dinamica",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "dinamica",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "dinamica",
+      "grupo": "G3",
+      "componentes": [
+        "G3"
+      ]
+    },
+    {
+      "asignatura": "dinamica",
+      "grupo": "G4",
+      "componentes": [
+        "G4"
+      ]
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "grupo": "G3",
+      "componentes": [
+        "G3"
+      ]
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "grupo": "G4",
+      "componentes": [
+        "G4"
+      ]
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "grupo": "G3",
+      "componentes": [
+        "G3"
+      ]
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "grupo": "G3",
+      "componentes": [
+        "G3"
+      ]
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "grupo": "G4",
+      "componentes": [
+        "G4"
+      ]
+    },
+    {
+      "asignatura": "diseno-mecatronico",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "diseno-mecatronico",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M1+L1",
+      "componentes": [
+        "M1",
+        "L1"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M1+L2",
+      "componentes": [
+        "M1",
+        "L2"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M2+L3",
+      "componentes": [
+        "M2",
+        "L3"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M2+L4",
+      "componentes": [
+        "M2",
+        "L4"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M3+L5",
+      "componentes": [
+        "M3",
+        "L5"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M3+L6",
+      "componentes": [
+        "M3",
+        "L6"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M4+L7",
+      "componentes": [
+        "M4",
+        "L7"
+      ]
+    },
+    {
+      "asignatura": "control",
+      "grupo": "M4+L8",
+      "componentes": [
+        "M4",
+        "L8"
+      ]
+    },
+    {
+      "asignatura": "sensores-y-actuadores",
+      "grupo": "G1",
+      "componentes": [
+        "T1",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "sensores-y-actuadores",
+      "grupo": "G2",
+      "componentes": [
+        "T2",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "microcontroladores",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    },
+    {
+      "asignatura": "microcontroladores",
+      "grupo": "G2",
+      "componentes": [
+        "G2"
+      ]
+    },
+    {
+      "asignatura": "robotica",
+      "grupo": "G1",
+      "componentes": [
+        "T1",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "robotica",
+      "grupo": "G2",
+      "componentes": [
+        "T2",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "robotica",
+      "grupo": "G3",
+      "componentes": [
+        "T3",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "servomecanismos",
+      "grupo": "G1",
+      "componentes": [
+        "T1",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "servomecanismos",
+      "grupo": "G2",
+      "componentes": [
+        "T2",
+        "Mag"
+      ]
+    },
+    {
+      "asignatura": "automatizacion-de-procesos",
+      "grupo": "G1",
+      "componentes": [
+        "G1"
+      ]
+    }
+  ],
+  "bloques": [
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G1",
+      "dia": "M",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G1",
+      "dia": "V",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G12",
+      "dia": "L",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G12",
+      "dia": "X",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G13",
+      "dia": "X",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G13",
+      "dia": "V",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G15",
+      "dia": "V",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G15",
+      "dia": "S",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G2",
+      "dia": "V",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G3",
+      "dia": "X",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G3",
+      "dia": "V",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G6",
+      "dia": "X",
+      "inicio": 16,
+      "fin": 18
+    },
+    {
+      "asignatura": "dibujo-basico",
+      "componente": "G6",
+      "dia": "V",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "ing-y-des-sostenible",
+      "componente": "T1",
+      "dia": "M",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "ing-y-des-sostenible",
+      "componente": "T3",
+      "dia": "J",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "ing-y-des-sostenible",
+      "componente": "T4",
+      "dia": "V",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "ing-y-des-sostenible",
+      "componente": "Mag",
+      "dia": "L",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "componente": "G1",
+      "dia": "M",
+      "inicio": 7,
+      "fin": 11
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 13,
+      "fin": 17
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "componente": "G3",
+      "dia": "X",
+      "inicio": 7,
+      "fin": 11
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "componente": "G4",
+      "dia": "X",
+      "inicio": 13,
+      "fin": 17
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "componente": "G6",
+      "dia": "J",
+      "inicio": 13,
+      "fin": 17
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "componente": "G7",
+      "dia": "V",
+      "inicio": 7,
+      "fin": 11
+    },
+    {
+      "asignatura": "tec-mecanica-basica",
+      "componente": "G8",
+      "dia": "V",
+      "inicio": 12,
+      "fin": 16
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "componente": "G1",
+      "dia": "J",
+      "inicio": 10,
+      "fin": 13
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "componente": "G2",
+      "dia": "X",
+      "inicio": 10,
+      "fin": 13
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "componente": "G3",
+      "dia": "X",
+      "inicio": 7,
+      "fin": 10
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "componente": "G4",
+      "dia": "M",
+      "inicio": 7,
+      "fin": 10
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "componente": "G5",
+      "dia": "V",
+      "inicio": 14,
+      "fin": 17
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "componente": "G6",
+      "dia": "L",
+      "inicio": 7,
+      "fin": 10
+    },
+    {
+      "asignatura": "taller-ing-electronica",
+      "componente": "G7",
+      "dia": "L",
+      "inicio": 10,
+      "fin": 13
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G1",
+      "dia": "L",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G1",
+      "dia": "X",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G2",
+      "dia": "J",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G4",
+      "dia": "L",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G4",
+      "dia": "X",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G5",
+      "dia": "M",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G5",
+      "dia": "J",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G6",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "estatica",
+      "componente": "G6",
+      "dia": "J",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G1",
+      "dia": "M",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G1",
+      "dia": "J",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G2",
+      "dia": "J",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G3",
+      "dia": "X",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G3",
+      "dia": "V",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G4",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "dinamica",
+      "componente": "G4",
+      "dia": "J",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G1",
+      "dia": "L",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G1",
+      "dia": "X",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G1",
+      "dia": "V",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G2",
+      "dia": "L",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G2",
+      "dia": "J",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G3",
+      "dia": "L",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G3",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G3",
+      "dia": "V",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G4",
+      "dia": "M",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G4",
+      "dia": "X",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "ciencia-e-ing-de-materiales",
+      "componente": "G4",
+      "dia": "J",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "componente": "G1",
+      "dia": "M",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "componente": "G1",
+      "dia": "J",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "componente": "G2",
+      "dia": "J",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "componente": "G3",
+      "dia": "M",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "resistencia-de-materiales",
+      "componente": "G3",
+      "dia": "J",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G1",
+      "dia": "M",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G1",
+      "dia": "J",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G2",
+      "dia": "X",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G2",
+      "dia": "V",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G3",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G3",
+      "dia": "J",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G4",
+      "dia": "X",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "senales-y-sistemas-ii",
+      "componente": "G4",
+      "dia": "V",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "diseno-mecatronico",
+      "componente": "G1",
+      "dia": "X",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "diseno-mecatronico",
+      "componente": "G1",
+      "dia": "V",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "diseno-mecatronico",
+      "componente": "G2",
+      "dia": "X",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "diseno-mecatronico",
+      "componente": "G2",
+      "dia": "V",
+      "inicio": 7,
+      "fin": 9
+    },
+    {
+      "asignatura": "control",
+      "componente": "M1",
+      "dia": "L",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "control",
+      "componente": "M1",
+      "dia": "X",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "control",
+      "componente": "M2",
+      "dia": "M",
+      "inicio": 16,
+      "fin": 18
+    },
+    {
+      "asignatura": "control",
+      "componente": "M2",
+      "dia": "J",
+      "inicio": 16,
+      "fin": 18
+    },
+    {
+      "asignatura": "control",
+      "componente": "M3",
+      "dia": "L",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "control",
+      "componente": "M3",
+      "dia": "X",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "control",
+      "componente": "M4",
+      "dia": "L",
+      "inicio": 16,
+      "fin": 18
+    },
+    {
+      "asignatura": "control",
+      "componente": "M4",
+      "dia": "X",
+      "inicio": 16,
+      "fin": 18
+    },
+    {
+      "asignatura": "control",
+      "componente": "L1",
+      "dia": "J",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "control",
+      "componente": "L2",
+      "dia": "J",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "control",
+      "componente": "L3",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "control",
+      "componente": "L4",
+      "dia": "M",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "control",
+      "componente": "L5",
+      "dia": "M",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "control",
+      "componente": "L6",
+      "dia": "X",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "control",
+      "componente": "L7",
+      "dia": "J",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "control",
+      "componente": "L8",
+      "dia": "J",
+      "inicio": 16,
+      "fin": 18
+    },
+    {
+      "asignatura": "sensores-y-actuadores",
+      "componente": "T1",
+      "dia": "L",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "sensores-y-actuadores",
+      "componente": "T1",
+      "dia": "L",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "sensores-y-actuadores",
+      "componente": "T2",
+      "dia": "V",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "sensores-y-actuadores",
+      "componente": "T2",
+      "dia": "V",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "sensores-y-actuadores",
+      "componente": "Mag",
+      "dia": "M",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "microcontroladores",
+      "componente": "G1",
+      "dia": "J",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "microcontroladores",
+      "componente": "G1",
+      "dia": "J",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "microcontroladores",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "microcontroladores",
+      "componente": "G2",
+      "dia": "M",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "robotica",
+      "componente": "T1",
+      "dia": "M",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "robotica",
+      "componente": "T2",
+      "dia": "X",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "robotica",
+      "componente": "T3",
+      "dia": "J",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "robotica",
+      "componente": "Mag",
+      "dia": "M",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "servomecanismos",
+      "componente": "T1",
+      "dia": "J",
+      "inicio": 9,
+      "fin": 11
+    },
+    {
+      "asignatura": "servomecanismos",
+      "componente": "T2",
+      "dia": "J",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "servomecanismos",
+      "componente": "Mag",
+      "dia": "V",
+      "inicio": 11,
+      "fin": 13
+    },
+    {
+      "asignatura": "automatizacion-de-procesos",
+      "componente": "G1",
+      "dia": "X",
+      "inicio": 14,
+      "fin": 16
+    },
+    {
+      "asignatura": "automatizacion-de-procesos",
+      "componente": "G1",
+      "dia": "V",
+      "inicio": 14,
+      "fin": 16
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+[
+  { "id": "fundamentacion", "nombre": "Fundamentación" },
+  { "id": "disciplinar", "nombre": "Disciplinar o profesional" },
+  { "id": "libre_eleccion", "nombre": "Libre elección" },
+  { "id": "nivelacion", "nombre": "Nivelación" }
+]

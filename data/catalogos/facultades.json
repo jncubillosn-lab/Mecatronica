@@ -1,0 +1,5 @@
+[
+  { "id": "ingenieria", "nombre": "Ingeniería" },
+  { "id": "ciencias", "nombre": "Ciencias" },
+  { "id": "sede", "nombre": "Toda la sede" }
+]
