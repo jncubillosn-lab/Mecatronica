@@ -1,0 +1,9 @@
+{
+  "name": "mecatronica-interferencias",
+  "private": true,
+  "scripts": {
+    "comparar": "node pruebas/compare.js pruebas/referencia .",
+    "mutar": "bash pruebas/mutar.sh"
+  },
+  "devDependencies": { "jsdom": "^31.0.0" }
+}
