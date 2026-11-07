@@ -65,12 +65,43 @@ El plano curricular aportado contiene indicaciones «52 C», «65 C» y «69 C»
 index.html          Entrada de la aplicación, versión y pie informativo
 css/estilos.css     Estilos principales
 css/pie.css         Pie de página
-js/datos.js         Malla, oferta, catálogos, carácter, requisitos y fechas
-js/app.js           Cálculos, escenarios, navegación e interfaz
+js/datos.js         Datos editables: programa, malla, oferta, requisitos, calendario y metadatos
+js/modelo.js        Objetos de dominio: PlanCurricular y CalendarioAcademico
+js/app.js           Cálculos de interferencias, escenarios, navegación e interfaz
 tests/verificar.js  Comprobaciones automáticas con datos variables (sin cifras fijas del plan)
 ```
 
 Para uso local, clonar este repositorio y abrir `index.html`. Para ejecutar las pruebas, usar `node tests/verificar.js` (Node.js instalado).
+
+## Criterios de diseño y mantenimiento
+
+La organización sigue **POO como filosofía de responsabilidades**, no la creación obligatoria de una clase por registro:
+
+- **`PlanCurricular`** recibe el escenario y concentra la interpretación de tipologías, suma de créditos, reglas numéricas, semestres y operaciones de edición curricular. No genera HTML ni conoce Mecatrónica.
+- **`CalendarioAcademico`** encapsula los días y horas de la semana configurados en los datos. Las rejillas utilizan el número de días configurado.
+- **`js/app.js`** mantiene las vistas y eventos, y delega las reglas del plan en el objeto de dominio. El cálculo de interferencias continúa separado de esas reglas y no usa las tipologías para deducir horarios.
+- **`js/datos.js`** contiene la información académica. Cambiar una cantidad de créditos, una tipología, una regla de créditos, una fecha o el calendario **no exige editar el algoritmo**.
+
+### Dónde cambiar la información
+
+| Registro de `RAW` | Contenido |
+|---|---|
+| `programa` | Identificador y nombre del programa |
+| `malla` | Registros `[nombre, semestre, nota, créditos, componente, carácter]` |
+| `componentes` | Catálogo `[id, nombre, enPlan]`: `enPlan` determina si cuenta en el total de créditos del programa |
+| `caracteres` | Catálogo de obligatoria/optativa u otras categorías |
+| `reqCred` | Reglas `[asignatura, créditos mínimos, [componentes que cuentan]]` |
+| `asg`, `gr`, `bl`, `pre` | Asignaturas incorporadas, grupos, bloques y relaciones entre asignaturas |
+| `calendario` | Días de la semana y horario visible de inicio/fin |
+| `opciones` | Distancias permitidas e iniciales, exclusión de prerrequisitos indirectos, asignatura inicial |
+| `metadatos` | Fechas de las fuentes presentadas en el pie |
+| `almacenamiento` | Clave local de escenarios; no cambiarla inadvertidamente si se desea conservar la compatibilidad existente |
+
+Los datos no tienen por qué estar completos: un grupo sin bloques no genera conflictos ni impide usar la aplicación. Si en el futuro se incorpora otra carrera, tendrá sus propias asignaturas, tipologías, requisitos y oferta; la lógica compartida no debe recibir excepciones por nombre.
+
+**Compatibilidad:** los escenarios se almacenan como JSON; las clases no se serializan. Al recuperarlos se completan los campos introducidos en versiones posteriores. Las correcciones históricas de escenarios antiguos, por su propia naturaleza, pueden conservar nombres de registros de versiones pasadas. Los cambios voluntarios de prerrequisitos deben mantenerse después de guardar y cargar.
+
+**Limitación a considerar al incorporar otros programas:** actualmente las relaciones entre asignaturas se identifican principalmente mediante sus nombres dentro de una malla. Al compartir asignaturas entre varios planes, convendrá asociar códigos estables cuando estén disponibles, sin imponer ese cambio antes de necesitarlo.
 
 ## Evolución prevista, no implementada
 
