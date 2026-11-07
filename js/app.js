@@ -188,6 +188,16 @@ function fixMalla(s) {
   if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
   if (!s.mig1) { s.mig1 = 1; s.pre = s.pre.filter(p => !(p.r === 'Proyecto Aplicado de Ingeniería' && p.t === 'Trabajo de Grado')); }
   if (!s.mig4) { s.mig4 = 1; s.pre = base.pre.map(p => ({ ...p })).concat(s.pre.filter(p => p.m === 'agregado' && !base.pre.some(q => q.r === p.r && q.t === p.t))); s.malla.forEach(m => { const o = base.malla.find(y => y.n === m.n); if (o && /créditos del plan|% de los créditos/.test(m.nota || '')) m.nota = o.nota; }); }
+  // Transición histórica: Inglés dejó de tener código de componente LE separado
+  // porque el catálogo institucional lo clasifica como Nivelación (E).
+  // Solo se cambia el registro antiguo cuando el nuevo plan confirma la equivalencia.
+  s.malla.forEach(m => {
+    const actual = base.malla.find(x => x.n === m.n);
+    if (m.comp === 'LE' && actual?.comp === 'N') m.comp = 'N';
+  });
+  if (Array.isArray(s.tipos?.componentes) && !s.malla.some(m => m.comp === 'LE')) {
+    s.tipos.componentes = s.tipos.componentes.filter(c => c.id !== 'LE');
+  }
   // No restaurar aquí requisitos que el usuario retiró deliberadamente de su escenario.
   return s;
 }
@@ -242,7 +252,10 @@ function creditRequirementNote(m) {
   if (!r) return m.nota ? '<div class="note">' + esc(m.nota) + '.</div>' : '';
   const q = creditStatus(m, r);
   const which = (r.componentes || []).map(compName).join(' + ') || 'sin especificar';
-  const statement = q.unknown ? 'No se comprueba con componentes sin clasificar.' : (q.low ? 'Inconsistencia en la distribución por semestres: faltan ' + (r.min - q.total) + ' créditos.' : 'No se detecta inconsistencia en la distribución por semestres.');
+  // Si no hay información suficiente, se presenta únicamente la regla conocida,
+  // sin total parcial ni aviso de inconsistencia.
+  if (q.unknown) return '<div class="note"><b>Requisito mínimo:</b> ' + r.min + ' créditos. Se cuentan: ' + esc(which) + '.</div>';
+  const statement = q.low ? 'Inconsistencia en la distribución por semestres: faltan ' + (r.min - q.total) + ' créditos.' : 'No se detecta inconsistencia en la distribución por semestres.';
   return '<div class="note ' + (q.low ? 'heat' : '') + '"><b>Requisito mínimo:</b> ' + r.min + ' créditos. <span>Se cuentan: ' + esc(which) + '.</span><div style="margin-top:5px">Créditos anteriores: <b>' + q.total + '</b>. ' + esc(statement) + '</div><small style="display:block;margin-top:6px">Comprobación de distribución curricular, no de asignaturas aprobadas por un estudiante.</small></div>';
 }
 const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
