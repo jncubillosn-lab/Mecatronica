@@ -14,6 +14,21 @@ Herramienta **no oficial** de la representación estudiantil para examinar la ma
 | Mapa de calor | Concentración de grupos programados por franja y día; no mide matrícula ni ocupación de aulas |
 | Prerrequisitos | Malla por semestres, relaciones entre asignaturas, tipologías y comprobación de créditos mínimos |
 
+## Filtros de componentes (v0.4.1)
+
+En la cabecera de las vistas **Inicio**, **Interferencias**, **Asignaturas** y **Mapa de calor** hay tres botones independientes: **Disciplinar**, **Fundamentación** y **Nivelación**. Pueden mantenerse activos simultáneamente, desactivarse individualmente o dejarse los tres apagados. Por defecto están activos todos.
+
+- La configuración de botones disponibles está en `RAW.opciones.componentesComparables` de `js/datos.js`. **No hay componentes fijados en el algoritmo.**
+- La selección de botones solo cambia la **representación y los cálculos de los informes**; no elimina grupos ni horarios, no modifica la malla y no se registra como una edición del escenario.
+- Grupos, Horarios y Prerrequisitos continúan mostrando la información completa, incluso de componentes temporalmente excluidos de los informes.
+- El Mapa de calor permite refinar la selección individual de asignaturas dentro de los componentes marcados.
+- **Libre Elección** se mantiene como orientación en la malla, sin botón de análisis. **Lengua Extranjera** se distingue de Nivelación y tampoco se incluye en estos tres botones.
+- Al incorporar grupos reales de asignaturas de un componente, sus cruces aparecerán automáticamente al marcarlo; no hay que cambiar los cálculos.
+
+La base actual tiene 15 asignaturas disciplinares y una de fundamentación incorporadas al análisis, **ninguna con grupos registrados en Nivelación**. Los botones no inventan horarios ausentes.
+
+Para verificar los filtros ejecutar `node tests/filtros.js`, además de `node tests/verificar.js`.
+
 ## Alcance de los datos
 
 La aplicación trabaja **con lo que está registrado**. No exige datos completos ni interpreta la ausencia de un horario como conflicto.
