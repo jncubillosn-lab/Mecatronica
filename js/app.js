@@ -302,7 +302,7 @@ function pairDeltas() {
 }
 
 /* ---------- cabecera ---------- */
-function resetLabel(long) { return ui.confirmReset ? '¿Seguro? Clic otra vez' : (long ? 'Restablecer al Excel original' : 'Restablecer'); }
+function resetLabel(long) { return ui.confirmReset ? '¿Seguro? Clic otra vez' : (long ? 'Restablecer a datos de referencia' : 'Restablecer'); }
 function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
@@ -623,6 +623,7 @@ function lanes(blocks) {
   return res;
 }
 function pageHor() {
+  if (!S.asg.length) return `<div class="page-title"><div><h1>Horarios</h1><p>No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</p></div></div>`;
   const h = ui.hor;
   if (!S.asg.includes(h.a)) h.a = S.asg[0];
   const A = h.a, comps = compsOf(A), mine = S.bloques.filter(b => b.a === A);
@@ -777,7 +778,7 @@ function pageMalla() {
 }
 function mallaSide(L) {
   const n = ui.malla.sel;
-  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas vienen del Excel (hoja Prerrequisitos).</p></aside>`;
+  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p></aside>`;
   const m = S.malla.find(x => x.n === n), sc = R.st[n];
   const dirIn = S.pre.filter(p => p.t === n), dirOut = S.pre.filter(p => p.r === n);
   const indUp = [...L.up.keys()].filter(x => !dirIn.some(p => p.r === x)), indDown = [...L.down.keys()].filter(x => !dirOut.some(p => p.t === x));
@@ -927,7 +928,7 @@ function onAct(act, d, el, ev) {
     case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
     case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
-    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); render(); return toast('Volviste a los datos originales del Excel.');
+    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); render(); return toast('Volviste a los datos de referencia del programa.');
     case 'export': return download('escenario-horarios.json', JSON.stringify({ app: 'interferencias-horarios', v: 1, S }, null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
