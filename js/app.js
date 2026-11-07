@@ -163,7 +163,7 @@ try {
 function fixMalla(s) {
   const base = fromRaw(RAW);
   if (!Array.isArray(s.reqCred)) s.reqCred = clone(base.reqCred);
-  base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; if (!x.comp) x.comp = m.comp; if (!x.car) x.car = m.car; } });
+  base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; if (!x.comp) x.comp = m.comp; if (x.car == null) x.car = m.car; } });
   if (!s.mig3) { s.mig3 = 1; s.malla = s.malla.filter(m => !['Libre elección (X-5)', 'Libre elección (X-6)'].includes(m.n)); }
   if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
   if (!s.mig1) { s.mig1 = 1; s.pre = s.pre.filter(p => !(p.r === 'Proyecto Aplicado de Ingeniería' && p.t === 'Trabajo de Grado')); }
