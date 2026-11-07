@@ -246,7 +246,7 @@ function recuperarEscenarioGuardado(o) {
   }
   const anterior = clone(o.S);
   fixParams(anterior); fixMalla(anterior);
-  return EscenarioPersonal.migrarAnterior(S0, anterior, window.fuentesAcademicas.datos, fromRaw);
+  return EscenarioPersonal.migrarAnterior(S0, anterior, window.fuentesAcademicas.datos, fromRaw, EntradaAcademica);
 }
 if (datosGuardados) {
   try {
