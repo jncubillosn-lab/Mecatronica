@@ -1,6 +1,5 @@
-// Datos iniciales de la malla y oferta utilizada por los informes (sin supuestos sobre información ausente).
-// Los grupos importados de Fund./Nivelación proceden de js/oferta-fuente.js.
-// Coincidencias entre actividades únicamente por código y mismo identificador de grupo.
+// Datos iniciales basados en las fuentes disponibles; grupos sin horario permanecen válidos.
+// No se inventan horarios ni se combinan grupos con identificadores diferentes.
 const RAW = {
   "asg": [
     [
@@ -9896,8 +9895,14 @@ const RAW = {
       "Inglés III",
       "Inglés IV"
     ],
-    "complementarGruposEn": [
-      "Dibujo básico"
+    "complementarGrupos": [
+      [
+        "Dibujo básico",
+        [
+          "GSUMA-01",
+          "GORIN-01"
+        ]
+      ]
     ]
   }
 };
