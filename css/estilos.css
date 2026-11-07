@@ -48,6 +48,14 @@ h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.01em}
 .nav button:hover{background:var(--surface2);color:var(--ink)}
 .nav button[aria-current="page"]{background:var(--ink);color:var(--bg)}
 .chg{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+/* Filtros no excluyentes de componentes (afectan solo a las vistas analíticas). */
+.componentes-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-left:6px;padding-left:12px;border-left:1px solid var(--line2)}
+.componentes-label{font-size:11px;color:var(--ink3);font-weight:650;letter-spacing:.02em;margin-right:1px}
+.component-toggle{border:1px solid var(--line2);border-radius:999px;background:var(--surface);color:var(--ink2);padding:5px 11px;font-size:12px;font-weight:600;white-space:nowrap;transition:background .12s,border-color .12s}
+.component-toggle:hover{border-color:var(--ink3)}
+.component-toggle[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.component-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:720px){.componentes-bar{margin-left:0;padding-left:0;border-left:0;width:100%}}
 .pill-stat{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 6px 5px 12px;font-size:12.5px}
 .pill-stat.dirty{border-color:var(--warn);background:var(--warn-soft)}
 .btn{border:1px solid var(--line2);background:var(--surface);border-radius:9px;padding:6px 11px;font-weight:550;font-size:13px;display:inline-flex;align-items:center;gap:6px}
