@@ -391,7 +391,8 @@ const RAW = {
       1
     ],
     "excluirIndirectos": true,
-    "asignaturaInicial": "Estática"
+    "asignaturaInicial": "Estática",
+    "componentesComparables": ["C", "B", "N"]
   },
   "almacenamiento": {
     "clave": "interferencias-horarios-v3"
