@@ -5,9 +5,9 @@
 ## Antes de cualquier cambio
 
 - Leer ARQ-01 y verificar qué capa del sistema se verá afectada.
-- **La única entrada de datos académicos del sistema objetivo es FuentesAcadémicas, representada por el contrato normalizado de `datos/academico.json`.**
+- **La única entrada académica de la migración v0.5.0 es FuentesAcadémicas, representada por el contrato normalizado de `datos/academico.json`.** La interfaz puede usar una proyección interna `RAW` generada desde ese contrato, nunca otra entrada.
 - La extracción y conversión desde catálogo, oferta de horarios y malla sucede **íntegramente fuera del sistema**. No incorporar lectores, conversores, cargadores ni conexiones paralelas desde esos archivos a la aplicación.
-- El sistema consume el contrato común, no el formato de las fuentes ni archivos históricos `js/catalogo.js`, `js/oferta-fuente.js` o `js/datos.js`. Estos últimos siguen existiendo en v0.4.3 como **implementación heredada**, no como arquitectura autorizada para desarrollos nuevos.
+- El sistema consume el contrato común, no el formato de las fuentes ni archivos históricos `js/catalogo.js`, `js/oferta-fuente.js` o `js/datos.js`. Se conservan en el repositorio como **archivos de referencia heredados**, pero la aplicación migrada no los carga.
 - Los nombres, créditos, requisitos, tipologías, componentes, calendarios y vínculos académicos son **datos**, no constantes universales programadas.
 - Aceptar información incompleta sin inventar valores ni generar avisos de alerta por su ausencia.
 - Los grupos de actividad no se combinan salvo relación explícita del contrato.
