@@ -377,6 +377,7 @@ function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
   const filtroAnalisis = ['inicio', 'inter', 'asig', 'heat'].includes(ui.page);
+  const resultadoVisible = filtroAnalisis ? RV : R, anteriorVisible = filtroAnalisis ? RV0 : R0;
   const componentes = (RAW.opciones.componentesComparables || []).map(id => {
     const tipo = new PlanCurricular(S).componente(id);
     const nombre = tipo?.nombre || id;
@@ -389,7 +390,7 @@ function renderTop() {
     <nav class="nav" aria-label="Secciones">${PAGES_ORDER.map(([k, l]) => `<button data-act="nav" data-p="${k}" ${ui.page === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
-        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${R0.totalPairs} → ${R.totalPairs}</b> ${dlt(R.totalPairs, R0.totalPairs)}` : 'Datos de referencia del programa'}</span>
+        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${anteriorVisible.totalPairs} → ${resultadoVisible.totalPairs}</b> ${dlt(resultadoVisible.totalPairs, anteriorVisible.totalPairs)}` : 'Datos de referencia del programa'}</span>
         ${dirty ? `<button class="btn sm" data-act="drawer-cambios">Ver cambios</button><button class="btn sm danger" data-act="reset">${resetLabel()}</button>` : ''}
       </div>
       <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
