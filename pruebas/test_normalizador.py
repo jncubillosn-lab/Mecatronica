@@ -13,7 +13,7 @@ class Mini(unittest.TestCase):
     @classmethod
     def setUpClass(cls): cls.o, cls.rep = normalizar(RAIZ / "pruebas/fixtures/oferta_mini.txt"); cls.a = cls.o["asignaturas"]
     def test_asignaturas_y_categoria(self):
-        self.assertEqual([x["codigo"] for x in self.a], ["1000099", "2000001"]); self.assertEqual(self.a[0]["categoria"], "fundamentacion"); self.assertFalse(self.a[0]["optativa"])
+        self.assertEqual([x["codigo"] for x in self.a][:2], ["1000099", "2000001"]); self.assertEqual(self.a[0]["categoria"], "fundamentacion"); self.assertFalse(self.a[0]["optativa"])
     def test_tipologia_desconocida_se_conserva_y_se_reporta(self):
         self.assertIsNone(self.a[1]["categoria"]); self.assertEqual(self.a[1]["tipologia_sia"], "TIPOLOGÍA NUEVA"); self.assertIn("TIPOLOGÍA NUEVA", self.rep)
     def test_bloques_y_dias(self):
@@ -22,6 +22,15 @@ class Mini(unittest.TestCase):
         gs = [g for c in self.a[0]["componentes"] for g in c["grupos"]]
         self.assertEqual(sorted(g["alcance"] for g in gs), ["especial", "regular", "regular", "regular", "regular", "validacion"])
         esp = next(g for g in gs if g["alcance"] == "especial"); self.assertEqual((esp["programa_especial"], esp["sede_origen"]), ("PEAMA", "Sumapaz")); self.assertFalse(esp["incluir_en_analisis"])
+    def test_regla_de_pares_magistral_laboratorio(self):
+        v = self.a[2]["vinculacion"]; self.assertEqual(v["tipo"], "por_bloques_consecutivos"); self.assertEqual(v["razon"], 2); self.assertEqual(v["mapa"], {"1": [1, 2], "2": [3, 4]})
+    def test_sin_regla_aplicable_queda_por_confirmar(self): self.assertEqual(self.a[3]["vinculacion"]["tipo"], "por_confirmar")
+    def test_todo_lo_que_no_es_bogota_es_especial(self):
+        g = next(g for c in self.a[2]["componentes"] for g in c["grupos"] if g["id"] == "7"); self.assertEqual(g["alcance"], "especial"); self.assertFalse(g["incluir_en_analisis"])
+    def test_facultad_que_dicta_es_casilla_a_seleccionar(self):
+        self.assertTrue(all(x["facultad_que_dicta"] is None and x["departamento_que_dicta"] is None for x in self.a))
+    def test_fechas_se_registran_pero_no_se_usan(self):
+        g = self.a[0]["componentes"][0]["grupos"][0]; self.assertEqual(g["fecha_inicio"], "2026-08-24"); self.assertIn("no se usan", self.rep)
     def test_vinculacion_por_numero(self): self.assertEqual(self.a[0]["vinculacion"]["tipo"], "por_numero_de_grupo")
     def test_condicion_con_alternativas(self):
         c = self.a[0]["condiciones"][0]; self.assertEqual((c["tipo"], c["todas"], c["n_requeridas"], len(c["asignaturas"])), ("M", False, 1, 2))

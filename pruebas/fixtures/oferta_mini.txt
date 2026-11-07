@@ -67,3 +67,117 @@ Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026LUNES de 07:30 a 09:00.A
 Duración: Semestral
 Jornada: DIURNO
 Cupos disponibles: 2
+Par Prueba (2000002)
+Tipología: DISCIPLINAR OBLIGATORIA
+Créditos:3
+INGENIERÍA MECATRÓNICA
+Facultad: FACULTAD DE INGENIERÍA
+Contenido de la asignatura
+CLASE MAGISTRAL (2000002)
+(1) Grupo 1
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(2) Grupo 2
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(7) Grupo 7
+Profesor: P.
+Facultad: SEDE TUMACO
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+CLASE LABORATORIO (2000002)
+(1) Grupo 1 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(2) Grupo 2 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(3) Grupo 3 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(4) Grupo 4 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+Impar Prueba (2000003)
+Tipología: DISCIPLINAR OBLIGATORIA
+Créditos:3
+INGENIERÍA MECATRÓNICA
+Facultad: FACULTAD DE INGENIERÍA
+Contenido de la asignatura
+CLASE MAGISTRAL (2000003)
+(1) Grupo 1
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(2) Grupo 2
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(3) Grupo 3
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+CLASE LABORATORIO (2000003)
+(1) Grupo 1 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(2) Grupo 2 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(3) Grupo 3 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0
+(4) Grupo 4 - Grupo Lab
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 0

@@ -18,21 +18,24 @@ La herramienta se limita a la Facultad de Ingeniería de la Universidad Nacional
 | Tipología | Se traduce a `categoria` + `optativa`: FUND./DISCIPLINAR × OBLIGATORIA/OPTATIVA, NIVELACIÓN y TRABAJO DE GRADO. Una tipología nueva se conserva y se reporta. |
 | Días | L, M, X, J, V, S (como la página). Domingo no existe en la página y se avisaría. |
 | Horas | Se esperan horas en punto. Una hora distinta se avisa. |
-| Facultad | Tres clases: `facultad`, `sede` y `paet`; vacío se registra como vacío. Es la facultad **del profesor del grupo**, y a menudo viene vacía. |
-| Facultad que dicta | Solo se **propone** por evidencia (ver reporte); requiere confirmación humana. |
+| Facultad del profesor | Tres clases: `facultad`, `sede` y `paet`; vacío se registra como vacío. Es la del profesor del grupo y a menudo viene vacía; solo sirve de ayuda. |
+| Facultad y departamento que dicta | **Casillas a seleccionar** por una persona en `seleccion_facultad_departamento.csv` (no se deducen). La plantilla se crea una vez y nunca se sobrescribe. |
+| Fechas | Se registran pero **no se usan**: se asume que todas las asignaturas inician y terminan juntas (16 semanas). Las fechas del SIA son ruido de gestión. |
+| Fuentes | Ante una diferencia entre fuentes **prevalece el SIA** (más reciente); la malla es una imagen estática y puede traer códigos desactualizados. |
 
 ## Alcance de cada grupo
 - **regular:** id numérico. Es lo que entra al análisis de cruces.
-- **especial:** otras sedes o programas especiales (PEAMA, PAET, sedes como Tumaco, Amazonia, Orinoquia, Caribe, Sumapaz). **Se conservan y se marcan** (`programa_especial`, `sede_origen`), pero `incluir_en_analisis` es falso por ahora. Una categoría especial sin nombre queda como `OTRO` y se reporta.
+- **especial:** todo lo que no sea oferta regular de Bogotá (PEAMA, PAET, otras sedes como Tumaco, Amazonia, Orinoquia, Caribe, Sumapaz). **Se conservan y se marcan** (`programa_especial`, `sede_origen`), pero `incluir_en_analisis` es falso por ahora. Si no tiene programa nombrado queda como `sin_clasificar` (informativo).
 - **validacion:** grupos de ajuste del SIA (duración «Validación» o id tipo `2017275-1M`). No son oferta real.
 
 ## Vinculación entre componentes de una misma asignatura
-Cuando una asignatura tiene taller, magistral y laboratorio con los **mismos números de grupo** (por ejemplo Fundamentos de Electricidad y Magnetismo), el grupo N se cursa completo: taller N + magistral N + laboratorio N. Se marca `por_numero_de_grupo`.
-Si los números no coinciden (Control: 4 magistrales y 8 laboratorios), se marca `por_confirmar`: **no se asume** el emparejamiento.
+1. **Por número de grupo:** taller, magistral y laboratorio con los mismos números (Fundamentos de Electricidad y Magnetismo): el grupo N se cursa completo.
+2. **Por pares consecutivos:** hay una magistral por cada *r* laboratorios (división exacta). Magistral 1 con laboratorios 1 y 2, magistral 2 con 3 y 4, y así (Control, Electrónica Digital I).
+3. **Por confirmar:** si ninguna regla aplica (Electrónica Análoga I tiene 5 y 12; Matemáticas Básicas mezcla teóricas y magistrales) **no se asume** nada y se reporta.
 
 ## Qué bloquea y qué solo avisa
 - **Bloquea (error):** encabezado de asignatura ilegible, componente que no se reconoce, grupo sin id.
-- **Avisa (reporte):** tipología, tipo de componente o programa especial nuevos; hora que no es en punto; grupos regulares sin horario; fechas distintas al semestre completo; números de grupo repetidos; códigos que no coinciden con la malla.
+- **Avisa (reporte):** tipología, tipo de componente o programa especial nuevos; hora que no es en punto; grupos regulares sin horario; números de grupo repetidos; códigos de la malla que no están en el SIA (informativo: prevalece el SIA).
 
 ## Privacidad
 El repositorio es público: **no se guardan nombres de docentes** (solo la facultad). Si algún día se necesitan, se pide explícitamente con `--profesores` y se decide dónde guardarlos.

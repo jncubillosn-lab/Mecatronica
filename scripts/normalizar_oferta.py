@@ -39,7 +39,7 @@ def parsear(lineas, nuevos, avisos):
             if not r: nuevos["tipologías"][tip] += 1
             a = {"codigo": m.group(2), "sufijo_codigo": m.group(3), "nombre": m.group(1).strip(), "tipologia_sia": tip,
                  "categoria": r["categoria"] if r else None, "optativa": r["optativa"] if r else None,
-                 "creditos": None, "programa": None, "facultad_plan": None, "componentes": [], "condiciones": []}
+                 "creditos": None, "programa": None, "facultad_plan": None, "facultad_que_dicta": None, "departamento_que_dicta": None, "componentes": [], "condiciones": []}
             asigs.append(a); comp = g = seccion = cond = None; continue
         if a is None: continue
         if l.startswith("Créditos:"): a["creditos"] = int(re.sub(r"\D", "", l)); continue
@@ -99,7 +99,7 @@ def completar_grupo(a, c, g):
     fac = g["facultad_profesor"] or clasificar_facultad("")
     esp = next((p["id"] for p in REGLAS["programas_especiales"] if any(k.lower() in (txt + " " + fac["texto"]).lower() for k in p["reconocer_en"])), None)
     if g["duracion"] == "Validación" or m: alcance = "validacion"
-    elif esp or not gid.isdigit() or (fac["clase"] == "sede" and "BOGOTÁ" not in fac["texto"]): alcance = "especial"; esp = esp or "OTRO"
+    elif esp or not gid.isdigit() or fac["clase"] == "paet" or (fac["clase"] == "sede" and "BOGOT" not in fac["texto"].upper()): alcance = "especial"; esp = esp or "sin_clasificar"
     else: alcance = "regular"
     pref = gid.split("-")[0] if not gid.isdigit() else None
     g.update({"sede_origen": REGLAS["prefijos_grupo_especial"].get(pref) if alcance == "especial" else None, "numero": num, "alcance": alcance, "programa_especial": esp if alcance == "especial" else None,
@@ -114,6 +114,12 @@ def vinculacion(a):
     if len(por_comp) == 1: return {"tipo": "componente_unico"}
     conjuntos = list(por_comp.values())
     if all(s == conjuntos[0] for s in conjuntos): return {"tipo": "por_numero_de_grupo", "grupos": sorted(conjuntos[0])}
+    if len(por_comp) == 2:   # regla de pares: magistral 1 con laboratorios 1 y 2, magistral 2 con 3 y 4, …
+        (kp, sp), (ks, ss) = sorted(por_comp.items(), key=lambda kv: len(kv[1]))
+        if sp == set(range(1, len(sp) + 1)) and ss == set(range(1, len(ss) + 1)) and len(ss) % len(sp) == 0 and len(ss) > len(sp):
+            r = len(ss) // len(sp)
+            return {"tipo": "por_bloques_consecutivos", "principal": kp, "secundario": ks, "razon": r,
+                    "mapa": {str(m): list(range((m - 1) * r + 1, m * r + 1)) for m in sorted(sp)}}
     union = set().union(*conjuntos)
     return {"tipo": "por_confirmar", "grupos_por_componente": {k: len(v) for k, v in por_comp.items()},
             "faltantes": {k: sorted(union - v) for k, v in por_comp.items() if union - v}}
@@ -130,45 +136,63 @@ def main(txt_path, destino, malla_txt=None):
         cont = collections.Counter(g["facultad_profesor"]["id"] for g in regs if g["facultad_profesor"] and g["facultad_profesor"]["id"])
         sin = sum(1 for g in regs if not (g["facultad_profesor"] and g["facultad_profesor"]["id"]))
         a["registros_regulares"] = len(regs); a["registros_regulares_sin_facultad"] = sin
-        a["facultades_que_dictan_evidencia"] = dict(cont)
-        a["facultad_que_dicta_propuesta"] = (next(iter(cont)) if len(cont) == 1 else "mixta" if cont else None)
+        a["facultad_evidencia_sia"] = dict(cont)
     out = Path(destino); out.mkdir(parents=True, exist_ok=True)
+    aplicar_seleccion(asigs, out / "seleccion_facultad_departamento.csv", avisos)
     (out / "oferta.json").write_text(json.dumps({"fuente": {"tipo": "SIA (texto copiado y pegado)", "archivo": Path(txt_path).name}, "asignaturas": asigs}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     informe(asigs, nuevos, avisos, out / "reporte_entrada.md", malla_txt)
+
+def aplicar_seleccion(asigs, ruta, avisos):
+    """Facultad y departamento que dicta cada asignatura son casillas a SELECCIONAR (no se deducen).
+    La plantilla CSV se crea una sola vez y nunca se sobrescribe: ahí vive lo que elige una persona."""
+    import csv
+    facs = {f["id"] for f in json.loads((Path(__file__).parent.parent / "data/catalogos/facultades.json").read_text(encoding="utf-8"))}
+    if not ruta.exists():
+        with open(ruta, "w", newline="", encoding="utf-8-sig") as f:
+            w = csv.writer(f); w.writerow(["codigo", "nombre", "categoria", "evidencia_sia", "facultad_que_dicta", "departamento_que_dicta"])
+            for a in asigs: w.writerow([a["codigo"], a["nombre"], a["categoria"] or "", "; ".join(f"{k}:{v}" for k, v in a["facultad_evidencia_sia"].items()), "", ""])
+        return
+    sel = {r["codigo"]: r for r in csv.DictReader(open(ruta, encoding="utf-8-sig"))}
+    for a in asigs:
+        r = sel.get(a["codigo"])
+        if not r: continue
+        fq, dq = (r.get("facultad_que_dicta") or "").strip(), (r.get("departamento_que_dicta") or "").strip()
+        if fq and fq not in facs: avisos.append(f"{a['codigo']}: facultad '{fq}' no está en data/catalogos/facultades.json")
+        elif fq: a["facultad_que_dicta"] = fq
+        if dq: a["departamento_que_dicta"] = dq
 
 def informe(asigs, nuevos, avisos, ruta, malla_txt):
     G = [(a, c, g) for a in asigs for c in a["componentes"] for g in c["grupos"]]
     L = ["# Reporte de entrada (oferta SIA)", "", "Generado por `scripts/normalizar_oferta.py`. Lo que aparece aquí requiere una decisión o una verificación.", "",
          f"- Asignaturas: **{len(asigs)}** · componentes: {sum(len(a['componentes']) for a in asigs)} · grupos: **{len(G)}**",
-         "- Grupos por alcance: " + ", ".join(f"{k} {v}" for k, v in collections.Counter(g["alcance"] for _, _, g in G).items()),
+         "- Grupos por alcance: " + ", ".join(f"{k} {v}" for k, v in collections.Counter(g["alcance"] for _, _, g in G).items()) + " (especial = todo lo que no es oferta regular de Bogotá)",
          f"- Grupos regulares sin horario informado: {sum(1 for _, _, g in G if g['alcance']=='regular' and not g['horario_informado'])}",
-         "- Programas especiales detectados: " + (", ".join(f"{k} ({v} grupos)" for k, v in collections.Counter(g["programa_especial"] for _, _, g in G if g["programa_especial"]).items()) or "ninguno"), ""]
+         "- Programas especiales: " + (", ".join(f"{k} ({v})" for k, v in collections.Counter(g["programa_especial"] for _, _, g in G if g["programa_especial"]).items()) or "ninguno"),
+         "- Fechas: se registran pero **no se usan** (se asume que todas las asignaturas inician y terminan juntas, 16 semanas).", ""]
     L += ["## Valores nuevos (no están en `reglas_entrada.json`)", ""] + ([f"- {k}: {dict(v)}" for k, v in nuevos.items()] or ["- ninguno"]) + [""]
     L += ["## Vinculación entre componentes de una misma asignatura", "", "| Asignatura | Vinculación | Detalle |", "|---|---|---|"]
     for a in asigs:
-        v = a["vinculacion"]
-        if v["tipo"] in ("por_numero_de_grupo", "por_confirmar"):
-            det = f"grupos {v['grupos'][0]}–{v['grupos'][-1]} ({len(v['grupos'])})" if v["tipo"] == "por_numero_de_grupo" else f"{v['grupos_por_componente']}; faltan {v['faltantes'] or 'ninguno'}"
-            L.append(f"| {a['nombre']} ({a['codigo']}) | {v['tipo']} | {det} |")
-    L += ["", "## Fechas distintas al semestre completo (pueden no coincidir en el tiempo)", ""]
-    rangos = collections.Counter((g["fecha_inicio"], g["fecha_fin"]) for _, _, g in G if g["alcance"] == "regular" and g["fecha_inicio"])
-    L += [f"- {i} a {f}: {n} grupos" for (i, f), n in sorted(rangos.items(), key=lambda x: -x[1])] + [""]
-    L += ["## Duplicados de grupo (mismo número dentro de un mismo componente)", ""]
+        v = a["vinculacion"]; t = v["tipo"]
+        if t == "por_numero_de_grupo": det = f"grupos {v['grupos'][0]}–{v['grupos'][-1]} ({len(v['grupos'])})"
+        elif t == "por_bloques_consecutivos": det = f"{v['principal']} 1 con {v['secundario']} {v['mapa']['1'][0]}–{v['mapa']['1'][-1]}, {v['principal']} 2 con {v['mapa']['2'][0]}–{v['mapa']['2'][-1]}… (razón 1:{v['razon']})"
+        elif t == "por_confirmar": det = f"{v['grupos_por_componente']}; faltan {v['faltantes'] or 'ninguno'} — **sin regla aplicable, requiere decisión**"
+        else: continue
+        L.append(f"| {a['nombre']} ({a['codigo']}) | {t} | {det} |")
+    L += ["", "## Facultad y departamento que dicta (casillas a seleccionar en `seleccion_facultad_departamento.csv`)", "",
+          f"- Asignaturas con facultad seleccionada: {sum(1 for a in asigs if a['facultad_que_dicta'])}/{len(asigs)} · con departamento: {sum(1 for a in asigs if a['departamento_que_dicta'])}/{len(asigs)}",
+          "- La columna `evidencia_sia` del CSV muestra la facultad del profesor en los grupos regulares, solo como ayuda (a menudo viene vacía).", ""]
+    L += ["## Grupos especiales sin programa nombrado (informativo)", ""]
+    L += [f"- {a['codigo']} {a['nombre']}: {g['texto_sia']}" for a, _, g in G if g["programa_especial"] == "sin_clasificar"] or ["- ninguno"]
+    L += ["", "## Duplicados de grupo (mismo número dentro de un mismo componente)", ""]
     dup = [f"{a['nombre']} / {c['tipo']}: grupo {n}" for a in asigs for c in a["componentes"] for n, k in collections.Counter(g["numero"] for g in c["grupos"] if g["alcance"] == "regular").items() if k > 1]
     L += [f"- {d}" for d in dup] or ["- ninguno"]
-    L += ["", "## Grupos especiales no reconocidos (categoría que existe pero aún no tiene nombre en las reglas)", ""]
-    otros = [f"{a['codigo']} {a['nombre']}: {g['texto_sia']}" for a, _, g in G if g["programa_especial"] == "OTRO"]
-    L += [f"- {x}" for x in otros] or ["- ninguno"]
-    L += ["", "## Facultad que dicta: propuesta por evidencia (facultad del profesor en grupos regulares)", "",
-          "Solo es evidencia: muchos grupos no traen la facultad del profesor. Hay que confirmarla.", "", "| Asignatura | Categoría | Evidencia | Propuesta | Registros sin dato |", "|---|---|---|---|---|"]
-    for a in asigs:
-        if a["registros_regulares"]:
-            L.append(f"| {a['nombre']} | {a['categoria']} | {a['facultades_que_dictan_evidencia'] or '—'} | {a['facultad_que_dicta_propuesta'] or 'sin dato'} | {a['registros_regulares_sin_facultad']}/{a['registros_regulares']} |")
     L += ["", "## Avisos del lector", ""] + ([f"- {x}" for x in avisos[:40]] or ["- ninguno"]) + [""]
     if malla_txt:
-        t = Path(malla_txt).read_text(encoding="utf-8"); cm = set(re.findall(r"\b(\d{6,7})\b", t)); co = {a["codigo"]: a["nombre"] for a in asigs}
-        L += ["## Cruce de códigos oferta ↔ malla (PDF)", "", "- En la malla con código de 7 dígitos que NO está en la oferta: " + (", ".join(sorted(c for c in cm if len(c) == 7 and c[0] in "12" and c not in co)) or "ninguno"),
-              "- En la malla con código de 6 dígitos (posible error de transcripción): " + (", ".join(sorted(c for c in cm if len(c) == 6 and c[0] == "2")) or "ninguno"), ""]
+        t = Path(malla_txt).read_text(encoding="utf-8"); cm = set(re.findall(r"\b(\d{6,7})\b", t)); co = {a["codigo"] for a in asigs}
+        L += ["## Diferencias con la malla (PDF) — prevalece el SIA", "",
+              "El SIA es la fuente más reciente; la malla es una imagen estática y puede traer códigos desactualizados o mal transcritos. Ante una diferencia se usa el código del SIA.", "",
+              "- Códigos de 7 dígitos en la malla que no están en la oferta del SIA: " + (", ".join(sorted(c for c in cm if len(c) == 7 and c[0] in "12" and c not in co)) or "ninguno"),
+              "- Códigos de 6 dígitos en la malla (error de transcripción): " + (", ".join(sorted(c for c in cm if len(c) == 6 and c[0] == "2")) or "ninguno"), ""]
     ruta.write_text("\n".join(L), encoding="utf-8")
 
 if __name__ == "__main__":

@@ -1,5 +1,22 @@
 [
-  { "id": "ingenieria", "nombre": "Ingeniería" },
-  { "id": "ciencias", "nombre": "Ciencias" },
-  { "id": "sede", "nombre": "Toda la sede" }
+  {
+    "id": "ingenieria",
+    "nombre": "Ingeniería"
+  },
+  {
+    "id": "ciencias",
+    "nombre": "Ciencias"
+  },
+  {
+    "id": "ciencias-humanas",
+    "nombre": "Ciencias Humanas"
+  },
+  {
+    "id": "artes",
+    "nombre": "Artes"
+  },
+  {
+    "id": "sede",
+    "nombre": "Toda la sede"
+  }
 ]

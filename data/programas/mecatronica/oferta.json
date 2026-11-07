@@ -14,6 +14,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -765,10 +767,9 @@
    },
    "registros_regulares": 18,
    "registros_regulares_sin_facultad": 7,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 11
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "2015942",
@@ -780,6 +781,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -934,8 +937,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017280",
@@ -947,6 +949,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -1047,8 +1051,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000004",
@@ -1060,6 +1063,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -2410,10 +2415,9 @@
    },
    "registros_regulares": 27,
    "registros_regulares_sin_facultad": 10,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 17
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000006",
@@ -2425,6 +2429,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -2992,10 +2998,9 @@
    },
    "registros_regulares": 14,
    "registros_regulares_sin_facultad": 6,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 8
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000005",
@@ -3007,6 +3012,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -3847,10 +3854,9 @@
    },
    "registros_regulares": 19,
    "registros_regulares_sin_facultad": 10,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 9
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "2017256",
@@ -3862,6 +3868,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -4076,8 +4084,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016489",
@@ -4089,6 +4096,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -4354,10 +4363,9 @@
    },
    "registros_regulares": 6,
    "registros_regulares_sin_facultad": 5,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 1
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2016493",
@@ -4369,6 +4377,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -4781,15 +4791,24 @@
     }
    ],
    "vinculacion": {
-    "tipo": "por_confirmar",
-    "grupos_por_componente": {
-     "magistral": 4,
-     "laboratorio": 8
-    },
-    "faltantes": {
-     "magistral": [
+    "tipo": "por_bloques_consecutivos",
+    "principal": "magistral",
+    "secundario": "laboratorio",
+    "razon": 2,
+    "mapa": {
+     "1": [
+      1,
+      2
+     ],
+     "2": [
+      3,
+      4
+     ],
+     "3": [
       5,
-      6,
+      6
+     ],
+     "4": [
       7,
       8
      ]
@@ -4797,10 +4816,9 @@
    },
    "registros_regulares": 12,
    "registros_regulares_sin_facultad": 11,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 1
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2015711",
@@ -4812,6 +4830,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -5143,8 +5163,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017282",
@@ -5156,6 +5175,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -5262,8 +5283,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000007",
@@ -5275,6 +5295,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -5702,10 +5724,9 @@
    },
    "registros_regulares": 10,
    "registros_regulares_sin_facultad": 4,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 6
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "2016495",
@@ -5717,6 +5738,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -6299,8 +6322,7 @@
    },
    "registros_regulares": 17,
    "registros_regulares_sin_facultad": 17,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016498",
@@ -6312,6 +6334,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -6817,16 +6841,28 @@
     }
    ],
    "vinculacion": {
-    "tipo": "por_confirmar",
-    "grupos_por_componente": {
-     "magistral": 5,
-     "laboratorio": 10
-    },
-    "faltantes": {
-     "magistral": [
-      6,
+    "tipo": "por_bloques_consecutivos",
+    "principal": "magistral",
+    "secundario": "laboratorio",
+    "razon": 2,
+    "mapa": {
+     "1": [
+      1,
+      2
+     ],
+     "2": [
+      3,
+      4
+     ],
+     "3": [
+      5,
+      6
+     ],
+     "4": [
       7,
-      8,
+      8
+     ],
+     "5": [
       9,
       10
      ]
@@ -6834,10 +6870,9 @@
    },
    "registros_regulares": 15,
    "registros_regulares_sin_facultad": 13,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 2
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2016699",
@@ -6849,6 +6884,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "practica",
@@ -7095,10 +7132,9 @@
    },
    "registros_regulares": 6,
    "registros_regulares_sin_facultad": 2,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 4
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2016741",
@@ -7110,6 +7146,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -7321,10 +7359,9 @@
    },
    "registros_regulares": 5,
    "registros_regulares_sin_facultad": 3,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 2
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2016500",
@@ -7336,6 +7373,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -7477,10 +7516,9 @@
    },
    "registros_regulares": 3,
    "registros_regulares_sin_facultad": 2,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 1
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000017",
@@ -7492,6 +7530,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "taller",
@@ -8985,10 +9025,9 @@
    },
    "registros_regulares": 48,
    "registros_regulares_sin_facultad": 33,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 15
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000018",
@@ -9000,6 +9039,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -9076,10 +9117,9 @@
    },
    "registros_regulares": 1,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 1
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000019",
@@ -9091,6 +9131,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "laboratorio",
@@ -11873,10 +11915,9 @@
    },
    "registros_regulares": 87,
    "registros_regulares_sin_facultad": 63,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 24
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000021",
@@ -11888,6 +11929,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -12064,10 +12107,9 @@
    },
    "registros_regulares": 4,
    "registros_regulares_sin_facultad": 3,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 1
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000020",
@@ -12079,6 +12121,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -12298,10 +12342,9 @@
    },
    "registros_regulares": 4,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 4
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "2015702",
@@ -12313,6 +12356,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -12384,10 +12429,9 @@
    },
    "registros_regulares": 1,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 1
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2015703",
@@ -12399,6 +12443,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -12820,11 +12866,10 @@
    },
    "registros_regulares": 11,
    "registros_regulares_sin_facultad": 1,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 1,
     "ingenieria": 9
-   },
-   "facultad_que_dicta_propuesta": "mixta"
+   }
   },
   {
    "codigo": "2017265",
@@ -12836,6 +12881,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -13020,8 +13067,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000044",
@@ -13033,6 +13079,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -14097,10 +14145,9 @@
    },
    "registros_regulares": 9,
    "registros_regulares_sin_facultad": 5,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias-humanas": 4
-   },
-   "facultad_que_dicta_propuesta": "ciencias-humanas"
+   }
   },
   {
    "codigo": "1000045",
@@ -14112,6 +14159,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -15149,10 +15198,9 @@
    },
    "registros_regulares": 16,
    "registros_regulares_sin_facultad": 2,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias-humanas": 14
-   },
-   "facultad_que_dicta_propuesta": "ciencias-humanas"
+   }
   },
   {
    "codigo": "1000049",
@@ -15164,6 +15212,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -15238,8 +15288,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000046",
@@ -15251,6 +15300,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -16165,10 +16216,9 @@
    },
    "registros_regulares": 18,
    "registros_regulares_sin_facultad": 5,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias-humanas": 13
-   },
-   "facultad_que_dicta_propuesta": "ciencias-humanas"
+   }
   },
   {
    "codigo": "1000050",
@@ -16180,6 +16230,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -16259,8 +16311,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000052",
@@ -16272,6 +16323,8 @@
    "creditos": 6,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -16502,8 +16555,7 @@
    },
    "registros_regulares": 3,
    "registros_regulares_sin_facultad": 3,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000053",
@@ -16515,6 +16567,8 @@
    "creditos": 6,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -16906,11 +16960,10 @@
    },
    "registros_regulares": 6,
    "registros_regulares_sin_facultad": 1,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "artes": 4,
     "ciencias-humanas": 1
-   },
-   "facultad_que_dicta_propuesta": "mixta"
+   }
   },
   {
    "codigo": "1000047",
@@ -16922,6 +16975,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -17901,10 +17956,9 @@
    },
    "registros_regulares": 22,
    "registros_regulares_sin_facultad": 7,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias-humanas": 15
-   },
-   "facultad_que_dicta_propuesta": "ciencias-humanas"
+   }
   },
   {
    "codigo": "1000051",
@@ -17916,6 +17970,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -17990,8 +18046,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000002",
@@ -18003,6 +18058,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -18754,7 +18811,7 @@
        "sede_origen": "Amazonia",
        "numero": null,
        "alcance": "especial",
-       "programa_especial": "OTRO",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -18766,10 +18823,9 @@
    },
    "registros_regulares": 1,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "sede-bogota": 1
-   },
-   "facultad_que_dicta_propuesta": "sede-bogota"
+   }
   },
   {
    "codigo": "1000001",
@@ -18781,6 +18837,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -20386,10 +20444,9 @@
    },
    "registros_regulares": 15,
    "registros_regulares_sin_facultad": 7,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 8
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "2015970",
@@ -20401,6 +20458,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "practica",
@@ -20687,8 +20746,7 @@
    },
    "registros_regulares": 7,
    "registros_regulares_sin_facultad": 7,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016753",
@@ -20700,6 +20758,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -20806,8 +20866,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017293",
@@ -20819,6 +20878,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -20973,8 +21034,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017271",
@@ -20986,6 +21046,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -21162,8 +21224,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016640",
@@ -21175,6 +21236,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -21408,8 +21471,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "1000024",
@@ -21421,6 +21483,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -21897,10 +21961,9 @@
    },
    "registros_regulares": 4,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ciencias": 4
-   },
-   "facultad_que_dicta_propuesta": "ciencias"
+   }
   },
   {
    "codigo": "1000013",
@@ -21912,6 +21975,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -22355,8 +22420,7 @@
    },
    "registros_regulares": 11,
    "registros_regulares_sin_facultad": 11,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017273",
@@ -22368,6 +22432,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -22500,8 +22566,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017274",
@@ -22513,6 +22578,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -22716,8 +22783,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2015734",
@@ -22729,6 +22795,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "practica",
@@ -23362,10 +23430,9 @@
    },
    "registros_regulares": 14,
    "registros_regulares_sin_facultad": 10,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 4
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2016375",
@@ -23377,6 +23444,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "practica",
@@ -23774,10 +23843,9 @@
    },
    "registros_regulares": 10,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 10
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2017275",
@@ -23789,6 +23857,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -23929,8 +23999,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2025967",
@@ -23942,6 +24011,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -24153,10 +24224,9 @@
    },
    "registros_regulares": 5,
    "registros_regulares_sin_facultad": 2,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 3
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2017277",
@@ -24168,6 +24238,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -24309,8 +24381,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016770",
@@ -24322,6 +24393,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -24482,8 +24555,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016609",
@@ -24495,6 +24567,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "practica",
@@ -24566,10 +24640,9 @@
    },
    "registros_regulares": 1,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 1
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2017287",
@@ -24581,6 +24654,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -24724,8 +24799,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016506",
@@ -24737,6 +24811,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -24997,8 +25073,7 @@
    },
    "registros_regulares": 6,
    "registros_regulares_sin_facultad": 6,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016507",
@@ -25010,6 +25085,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -25205,10 +25282,9 @@
    },
    "registros_regulares": 4,
    "registros_regulares_sin_facultad": 2,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 2
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2017288",
@@ -25220,6 +25296,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -25351,8 +25429,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2016509",
@@ -25364,6 +25441,8 @@
    "creditos": 2,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "magistral",
@@ -25583,10 +25662,9 @@
    },
    "registros_regulares": 7,
    "registros_regulares_sin_facultad": 2,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 5
-   },
-   "facultad_que_dicta_propuesta": "ingenieria"
+   }
   },
   {
    "codigo": "2024045",
@@ -25598,6 +25676,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -26386,8 +26466,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2022888",
@@ -26399,6 +26478,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -26470,8 +26551,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017290",
@@ -26483,6 +26563,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -26554,8 +26636,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017278",
@@ -26567,6 +26648,8 @@
    "creditos": 3,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -26806,8 +26889,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017297",
@@ -26819,6 +26901,8 @@
    "creditos": 6,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -27055,8 +27139,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2017298",
@@ -27068,6 +27151,8 @@
    "creditos": 6,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -27106,8 +27191,7 @@
    },
    "registros_regulares": 0,
    "registros_regulares_sin_facultad": 0,
-   "facultades_que_dictan_evidencia": {},
-   "facultad_que_dicta_propuesta": null
+   "facultad_evidencia_sia": {}
   },
   {
    "codigo": "2015159",
@@ -27119,6 +27203,8 @@
    "creditos": 4,
    "programa": "INGENIERÍA MECATRÓNICA",
    "facultad_plan": "FACULTAD DE INGENIERÍA",
+   "facultad_que_dicta": null,
+   "departamento_que_dicta": null,
    "componentes": [
     {
      "tipo": "teorica",
@@ -27322,11 +27408,10 @@
    },
    "registros_regulares": 4,
    "registros_regulares_sin_facultad": 1,
-   "facultades_que_dictan_evidencia": {
+   "facultad_evidencia_sia": {
     "ingenieria": 1,
     "ciencias": 2
-   },
-   "facultad_que_dicta_propuesta": "mixta"
+   }
   }
  ]
 }

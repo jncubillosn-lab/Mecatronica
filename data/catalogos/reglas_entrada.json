@@ -75,5 +75,17 @@
     "ORIN": "Orinoquia",
     "AMAZ": "Amazonia",
     "CARI": "Caribe"
-  }
+  },
+  "prevalencia_de_fuentes": {
+    "orden": [
+      "SIA",
+      "malla"
+    ],
+    "motivo": "El SIA es más reciente; la malla es una imagen estática y puede traer códigos desactualizados."
+  },
+  "fechas": {
+    "usar_en_analisis": false,
+    "motivo": "Las fechas del SIA son ruido de gestión; se asume que las asignaturas inician y terminan juntas (16 semanas). Se registran pero no se usan."
+  },
+  "alcance_especial": "Todo lo que no sea oferta regular de Bogotá (otras sedes, PEAMA, PAET y similares) se agrupa como especial por ahora."
 }
