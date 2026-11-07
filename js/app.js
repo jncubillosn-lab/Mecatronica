@@ -206,6 +206,7 @@ let R = compute(S), R0 = compute(S0);
 
 const ui = {
   page: 'inicio',
+  componentes: new Set(RAW.opciones.componentesComparables || []),
   inter: { view: 'lista', dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
@@ -214,6 +215,17 @@ const ui = {
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
 };
+
+/* El filtro es solo de visualización: grupos, horarios, malla y escenarios se conservan. */
+let RV, RV0;
+function actualizarVistaComponentes() {
+  const nombres = (estado) => new PlanCurricular(estado).seleccionarPorComponentes(
+    estado.asg, ui.componentes
+  );
+  RV = compute({ ...S, asg: nombres(S) });
+  RV0 = compute({ ...S0, asg: nombres(S0) });
+}
+actualizarVistaComponentes();
 
 /* ---------- utilidades ---------- */
 const $ = (s, r = document) => r.querySelector(s);
@@ -259,7 +271,7 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify({ S })); } catc
 
 /* Aplica un cambio de datos: recalcula, avisa si algún par entra o sale del análisis, repinta. */
 function commit(extraMsg) {
-  const prev = R; R = compute(S); save();
+  const prev = R; R = compute(S); actualizarVistaComponentes(); save();
   const flips = [];
   R.pairs.forEach(p => { const q = prev.pairs.find(x => x.key === p.key); if (q && q.enRango !== p.enRango && (p.clash || q.clash)) flips.push(`${p.A} ⇄ ${p.B} ${p.enRango ? 'ahora cuenta' : 'deja de contar'}`); });
   const msg = [extraMsg, flips.slice(0, 2).join(' · ') + (flips.length > 2 ? ` (+${flips.length - 2} más)` : '')].filter(Boolean).join(' — ');
@@ -306,6 +318,13 @@ function resetLabel(long) { return ui.confirmReset ? '¿Seguro? Clic otra vez' :
 function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
+  const filtroAnalisis = ['inicio', 'inter', 'asig', 'heat'].includes(ui.page);
+  const componentes = (RAW.opciones.componentesComparables || []).map(id => {
+    const tipo = new PlanCurricular(S).componente(id);
+    const nombre = tipo?.nombre || id;
+    const total = new PlanCurricular(S).seleccionarPorComponentes(S.asg, [id]).length;
+    return `<button type="button" class="component-toggle" data-act="comp-toggle" data-comp="${esc(id)}" aria-pressed="${ui.componentes.has(id)}" title="${total} asignaturas de ${esc(nombre)} incorporadas al análisis">${esc(nombre)}</button>`;
+  }).join('');
   return `<a class="cta-bar" href="https://www.instagram.com/repremecatronicaun/" target="_blank" rel="noopener noreferrer"><span class="cta-in"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="cta-t"><b>Queremos tu opinión.</b> ¿Encontraste un error o tienes una idea para optimizar esta herramienta?</span><span class="cta-b">Escríbenos en Instagram · @repremecatronicaun →</span></span></a>
   <div class="top-in">
     <div class="brand-wrap"><div class="brand"><b>Interferencias de horario</b><span>${esc(RAW.programa.nombre)}</span></div><span class="rep-badge">Representación estudiantil 26 - 28</span></div>
@@ -318,6 +337,7 @@ function renderTop() {
       <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
       <button class="btn sm" data-act="import" title="Cargar un escenario guardado">Cargar</button>
       <input type="file" id="file-in" accept=".json,application/json" class="sr" tabindex="-1">
+      ${filtroAnalisis ? `<div class="componentes-bar" role="group" aria-label="Componentes incluidos en los análisis"><span class="componentes-label">Incluir:</span>${componentes}</div>` : ''}
     </div>
   </div>`;
 }
@@ -330,13 +350,14 @@ function semCred(s, n) { return new PlanCurricular({malla:n, tipos:S.tipos}).res
 function distNames(ds) { return [...ds].sort((a,b)=>a-b).map(distLabel).join(' · '); }
 function distSummary() { const l = [...S.params.dists].sort((a,b)=>a-b).map(distLabel); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : (l[0] || 'sin selección'); }
 function distChips(counts) {
-  return RAW.opciones.distanciasDisponibles.map(d => { const n = counts ? R.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
+  return RAW.opciones.distanciasDisponibles.map(d => { const n = counts ? RV.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
 }
 function distText(p) { return p.dist === 0 ? 'Mismo semestre' : p.dist === 1 ? '1 semestre de diferencia' : p.dist + ' semestres de diferencia'; }
 function compGroups(A, c) { return S.grupos.filter(g => g.a === A && (g.c1 === c || g.c2 === c)).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y))); }
 function compLabel(A, c) { const gs = compGroups(A, c); return gs.length ? gs.map(glabel).join(' · ') : 'Sin grupo'; }
 
 function pageInicio() {
+  const R = RV, R0 = RV0;
   const P = S.params;
   const inr = R.pairs.filter(p => p.enRango), con = inr.filter(p => p.clash), sie = inr.filter(p => p.clash && p.clash === p.total);
   const gIdx = R.totalCombos ? R.totalClash / R.totalCombos : 0;
@@ -371,9 +392,9 @@ function pageInicio() {
       <ol class="steps"><li>Se toma una <b>pareja de asignaturas</b> que un estudiante podría cursar a la vez.</li><li>Se prueba cada grupo de la primera con cada grupo de la segunda: son las <b>combinaciones</b>.</li><li>Una combinación <b>choca</b> si sus horarios se traslapan aunque sea una hora. Los bloques pegados (9–11 y 11–13) no chocan.</li><li>El <b>porcentaje</b> es qué parte de las combinaciones choca. 100 % = <b>incompatibles</b> (ninguna funciona); entre 0 y 100 % = <b>depende del grupo</b> que elijas.</li></ol>
     </div></section>
   <details class="fold"><summary>Supuestos de los datos</summary><dl>
-    <dt>Asignaturas incluidas</dt><dd>Las que tienen horario cargado (${R.names.length}). Las optativas y las demás aparecen en la malla pero no se comparan hasta que las agregues en Grupos.</dd>
-    <dt>Horas</dt><dd>Horas enteras entre las 6 y las 21, de lunes a sábado.</dd>
-    <dt>Prerrequisitos</dt><dd>Tomados de la malla vigente (Acuerdo 6 de 2022 del Consejo de Facultad de Ingeniería). Los créditos mínimos de Taller de Proyectos Interdisciplinarios (52), Proyecto Aplicado (65) y Trabajo de Grado (69) se muestran como nota y no entran al análisis.</dd>
+    <dt>Asignaturas incluidas</dt><dd>Las que están incorporadas al análisis y pertenecen a los componentes seleccionados (${R.names.length}). La malla conserva también las asignaturas sin grupos cargados.</dd>
+    <dt>Horas</dt><dd>Franja y días definidos en la configuración de la oferta.</dd>
+    <dt>Prerrequisitos</dt><dd>Tomados de la malla vigente (Acuerdo 6 de 2022 del Consejo de Facultad de Ingeniería). Los requisitos de créditos se consultan en la malla, pero no modifican los cálculos de interferencias.</dd>
     <dt>Control</dt><dd>Cada grupo (G1 a G8) combina una magistral con un laboratorio. El emparejamiento de la magistral 3 (grupos G5 y G6) no está confirmado.</dd>
     <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos de referencia del programa.</dd></dl></details>`;
 }
@@ -413,6 +434,7 @@ function prow(p) {
     <span class="idxcol"><span class="big"><b class="num">${pct(p.idx)}</b><span class="num">${p.clash} de ${p.total} combinaciones</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span></span></button>`;
 }
 function matrixView() {
+  const R = RV;
   const N = R.names, f = ui.inter;
   const cells = N.map((a, i) => `<tr class="${i && R.st[a].s !== R.st[N[i - 1]].s ? 'semgap' : ''}"><th class="rowh" scope="row">${esc(a)} <span class="sem">S${R.st[a].s}</span></th>${N.map((b, j) => {
     const sg = j && R.st[b].s !== R.st[N[j - 1]].s ? 'semgap' : '';
@@ -430,6 +452,7 @@ function matrixView() {
   <div class="legend" style="padding:0 16px 14px"><span>Cada celda = índice de solape (%)</span><span><i class="sw" style="background:var(--surface2)"></i>0<i class="heatscale"></i>100</span><span><i class="sw" style="background:var(--ok-soft)"></i>sin choque</span><span><i class="sw" style="background:repeating-linear-gradient(135deg,transparent 0 3px,var(--line2) 3px 4px);border:1px solid var(--line)"></i>no se compara (prerrequisito o distancia no elegida)</span><span class="faint">Las celdas atenuadas no cumplen los filtros.</span></div></div>`;
 }
 function pageInter() {
+  const R = RV;
   const f = ui.inter;
   const sems = [...new Set(R.names.map(n => R.st[n].s))].sort((a, b) => a - b);
   const list = sortPairs(R.pairs.filter(p => pairMatches(p)));
@@ -534,6 +557,7 @@ function renderDrawer() {
 
 /* ===== ASIGNATURAS ===== */
 function pageAsig() {
+  const R = RV, R0 = RV0;
   const f = ui.asig;
   const L = [...R.stats].sort({
     pares: (a, b) => b.conChoque - a.conChoque || b.idxG - a.idxG,
@@ -676,7 +700,7 @@ function pageHor() {
 /* ===== MAPA DE CALOR / OCUPACIÓN DE HORARIOS ===== */
 function pageHeat() {
   const off = ui.heat.off;
-  const names = [...S.asg].sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
+  const names = new PlanCurricular(S).seleccionarPorComponentes(S.asg, ui.componentes).sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
   const selected = names.filter(n => !off.has(n));
   const selectedSet = new Set(selected);
   const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on);
@@ -730,7 +754,7 @@ function pageHeat() {
   const topText = top ? `${DAY_NAMES[top.d]} · ${top.h}:00–${top.h + 1}:00` : 'Sin horarios seleccionados';
   const topDetail = top ? `${top.groups.size} grupos de ${top.subjects.size} asignaturas en esa franja` : 'Selecciona asignaturas que tengan grupos y horarios.';
 
-  return `<div class="page-title"><div><h1>Mapa de calor de horarios</h1><p>Concentra los grupos ofertados en una sola semana para identificar franjas de alta actividad y espacios con poca o ninguna programación. Todas las asignaturas entran inicialmente; puedes filtrarlas por semestre.</p></div></div>
+  return `<div class="page-title"><div><h1>Mapa de calor de horarios</h1><p>Concentra los grupos ofertados en una sola semana. Se muestran los componentes marcados arriba y puedes excluir o incorporar asignaturas individualmente.</p></div></div>
   <div class="hor">
     <aside class="card sidelist hm-sidelist" aria-label="Asignaturas incluidas en el mapa">
       <div class="hm-tools"><div class="lab">Asignaturas <span class="faint">${selected.length}/${names.length}</span></div><div class="row"><button class="btn sm" data-act="hm-all">Todas</button><button class="btn sm" data-act="hm-none">Ninguna</button></div><span class="hint">Activa o desactiva materias para recalcular el mapa.</span></div>
@@ -862,6 +886,15 @@ function onAct(act, d, el, ev) {
   const f = ui.inter;
   switch (act) {
     case 'nav': ev.preventDefault(); return go(d.p);
+    case 'comp-toggle': {
+      if (!(RAW.opciones.componentesComparables || []).includes(d.comp)) return;
+      if (ui.componentes.has(d.comp)) ui.componentes.delete(d.comp);
+      else ui.componentes.add(d.comp);
+      actualizarVistaComponentes();
+      if (ui.inter.asig && !RV.names.includes(ui.inter.asig)) ui.inter.asig = '';
+      if (ui.asig.open && !RV.names.includes(ui.asig.open)) ui.asig.open = null;
+      return render();
+    }
     case 'dist': { const x = +d.d, ds = S.params.dists; if (ds.includes(x)) { if (ds.length === 1) return toast('Deja al menos una distancia elegida.'); S.params.dists = ds.filter(v => v !== x); } else S.params.dists = [...ds, x].sort(); return commit(); }
         case 'i-view': f.view = d.v; return render();
     case 'i-dist': { const x = +d.d; f.dists.has(x) ? f.dists.delete(x) : f.dists.add(x); return render(); }
@@ -870,7 +903,7 @@ function onAct(act, d, el, ev) {
     case 'i-sem': { const s = +d.s; f.sems.has(s) ? f.sems.delete(s) : f.sems.add(s); return render(); }
     case 'i-clear': Object.assign(f, { dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '' }); return render();
     case 'i-csv': {
-      const L = sortPairs(R.pairs.filter(p => pairMatches(p)));
+      const L = sortPairs(RV.pairs.filter(p => pairMatches(p)));
       const q = v => '"' + String(v).replace(/"/g, '""') + '"';
       const rows = [['Nivel', 'Sem. A', 'Asignatura A', 'Grupos A', 'Sem. B', 'Asignatura B', 'Grupos B', 'Parejas de grupos', 'Parejas en choque', 'Índice de solape', 'Distancia', 'Prerrequisito', 'Aplica', 'En rango'], ...L.map(p => [p.nivel, p.sA, p.A, p.nA, p.sB, p.B, p.nB, p.total, p.clash, p.idx.toFixed(4), p.dist, p.pre, p.aplica, p.enRango])];
       return download('interferencias.csv', '﻿' + rows.map(r => r.map(q).join(',')).join('\n'), 'text/csv');
@@ -928,7 +961,7 @@ function onAct(act, d, el, ev) {
     case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
     case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
-    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); render(); return toast('Volviste a los datos de referencia del programa.');
+    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
     case 'export': return download('escenario-horarios.json', JSON.stringify({ app: 'interferencias-horarios', v: 1, S }, null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
