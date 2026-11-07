@@ -36,7 +36,7 @@ class EntradaAcademica {
   generarEscenarioBase() {
     const d = this.datos, nombreDe = id => this.posiciones.get(id)?.nombre || null;
     const disponibles = new Set();
-    const grupos = [], bloques = [], vistos = new Set();
+    const grupos = [], bloques = [], vistos = new Set(), bloquesPorReferencia = new Map();
     for (const grupo of d.agrupaciones) {
       const asignatura = nombreDe(grupo.posicionId);
       if (!asignatura) continue; // Relación incompleta: no se inventa una asignatura
@@ -57,14 +57,23 @@ class EntradaAcademica {
 
       for (const parte of partes) {
         (parte.bloques || []).forEach((b, i) => {
-          const original = grupo.id + '\u0001' + parte.id + '\u0001' + i;
+          const original = grupo.posicionId + '\u0001' + (compactar ? etiqueta + '\u0001' + parte.id : parte.id) + '\u0001' + i;
           const clave = compactar ? etiqueta : parte.id;
           const desde = this.hora(b.inicio), hasta = this.hora(b.fin);
           if (!Number.isFinite(desde) || !Number.isFinite(hasta) || desde >= hasta) {
             // Horario no interpretable: no fabricar un bloque válido.
             return;
           }
-          bloques.push([asignatura, clave, b.dia, desde, hasta, b.nota || null, original]);
+          const bloque = [asignatura, clave, b.dia, desde, hasta, b.nota || null, original];
+          const anterior = bloquesPorReferencia.get(original);
+          if (anterior) {
+            if (JSON.stringify(anterior) !== JSON.stringify(bloque)) {
+              throw new Error('El mismo bloque tiene horarios incompatibles en las agrupaciones: ' + original);
+            }
+            return; // Componente compartido por varias agrupaciones: no duplicarlo.
+          }
+          bloquesPorReferencia.set(original, bloque);
+          bloques.push(bloque);
         });
       }
     }
