@@ -157,11 +157,15 @@ if (typeof module !== 'undefined') module.exports = { glabel, fromRaw, compute, 
 const KEY = RAW.almacenamiento.clave;
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
-let S = fromRaw(RAW), S0 = clone(S), restored = false;
+let S0 = fromRaw(RAW), S = clone(S0), restored = false, datosGuardados = null;
 try {
-  const t = localStorage.getItem(KEY);
-  if (t) { const o = JSON.parse(t); if (o && o.S && Array.isArray(o.S.bloques) && o.S.params) { S = o.S; restored = true; } }
-} catch (e) { /* sin almacenamiento: la herramienta funciona igual */ }
+  const texto = localStorage.getItem(KEY);
+  if (texto) {
+    const o = JSON.parse(texto);
+    if (o?.tipo === 'escenario-personal' && o.version === 1 && o.cambios) datosGuardados = o;
+    else if (o?.S && Array.isArray(o.S.bloques) && o.S.params) datosGuardados = o;
+  }
+} catch (e) { /* la herramienta funciona sin almacenamiento */ }
 /* Completa escenarios guardados con asignaturas nuevas de la malla (Inglés, libre elección, proyecto, trabajo de grado…). */
 function fixMalla(s) {
   const base = fromRaw(RAW);
@@ -234,8 +238,25 @@ function fixParams(s) {
   }
   return s;
 }
-fixParams(S); fixMalla(S);
 fixParams(S0); fixMalla(S0);
+S = clone(S0);
+function recuperarEscenarioGuardado(o) {
+  if (o.tipo === 'escenario-personal' && o.version === 1) {
+    return EscenarioPersonal.aplicar(S0, o.cambios);
+  }
+  const anterior = clone(o.S);
+  fixParams(anterior); fixMalla(anterior);
+  return EscenarioPersonal.migrarAnterior(S0, anterior, window.fuentesAcademicas.datos, fromRaw);
+}
+if (datosGuardados) {
+  try {
+    S = recuperarEscenarioGuardado(datosGuardados);
+    restored = true;
+  } catch (e) {
+    console.error('No se pudo reconstruir el escenario anterior:', e);
+    S = clone(S0);
+  }
+}
 let R = compute(S), R0 = compute(S0);
 
 const ui = {
@@ -304,7 +325,7 @@ function toast(msg) {
   const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; document.body.appendChild(t);
   setTimeout(() => t.remove(), 4200);
 }
-function save() { try { localStorage.setItem(KEY, JSON.stringify({ S })); } catch (e) { } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); } catch (e) { } }
 
 /* Aplica un cambio de datos: recalcula, avisa si algún par entra o sale del análisis, repinta. */
 function commit(extraMsg) {
@@ -999,7 +1020,7 @@ function onAct(act, d, el, ev) {
     case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
     case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
-    case 'export': return download('escenario-horarios.json', JSON.stringify({ app: 'interferencias-horarios', v: 1, S }, null, 1), 'application/json');
+    case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
 }
@@ -1035,9 +1056,10 @@ function onChange(k, el) {
       const rd = new FileReader();
       rd.onload = () => {
         try {
-          const o = JSON.parse(rd.result); const n = o && o.S;
-          if (!n || !n.params || !Array.isArray(n.bloques) || !Array.isArray(n.grupos) || !Array.isArray(n.malla) || !Array.isArray(n.pre) || !Array.isArray(n.asg)) throw new Error('formato');
-          S = fixMalla(fixParams(n)); ui.drawer = null; commit('Escenario cargado.');
+          const o = JSON.parse(rd.result);
+          if (!o || !((o.tipo === 'escenario-personal' && o.version === 1 && o.cambios) ||
+            (o.S && o.S.params && Array.isArray(o.S.bloques) && Array.isArray(o.S.grupos)))) throw new Error('formato');
+          S = recuperarEscenarioGuardado(o); ui.drawer = null; commit('Escenario cargado.');
         } catch (e) { toast('Ese archivo no es un escenario válido.'); }
       };
       rd.readAsText(file); el.value = ''; return;
