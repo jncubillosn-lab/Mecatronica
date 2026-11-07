@@ -198,6 +198,30 @@ function fixMalla(s) {
   if (Array.isArray(s.tipos?.componentes) && !s.malla.some(m => m.comp === 'LE')) {
     s.tipos.componentes = s.tipos.componentes.filter(c => c.id !== 'LE');
   }
+  // Incorporación única de los grupos nuevos de la oferta, sin restablecer
+  // grupos antiguos eliminados por el usuario ni sobrescribir horarios editados.
+  const inc = RAW.incrementosOferta;
+  if (inc && !(s.incorporacionesOferta || []).includes(inc.id)) {
+    const nuevas = new Set(inc.nuevasAsignaturas || []);
+    const extras = new Map((inc.complementarGrupos || []).map(([n, ids]) => [n, new Set(ids)]));
+    nuevas.forEach(n => { if (!s.asg.includes(n) && base.asg.includes(n)) s.asg.push(n); });
+    const porComponente = new Map();
+    base.bloques.forEach(b => {
+      const k = b.a + '\u0001' + b.c;
+      if (!porComponente.has(k)) porComponente.set(k, []);
+      porComponente.get(k).push(b);
+    });
+    let siguiente = s.bloques.reduce((id, b) => Math.max(id, b.id || 0), 0);
+    base.grupos.forEach(g => {
+      const aplicable = nuevas.has(g.a) || extras.get(g.a)?.has(g.g);
+      if (!aplicable || !s.asg.includes(g.a) || s.grupos.some(x => x.a === g.a && x.g === g.g)) return;
+      s.grupos.push({ ...g });
+      const componentes = [g.c1, g.c2].filter(Boolean);
+      componentes.forEach(c => (porComponente.get(g.a + '\u0001' + c) || [])
+        .forEach(b => s.bloques.push({ ...b, id: ++siguiente })));
+    });
+    s.incorporacionesOferta = [...(s.incorporacionesOferta || []), inc.id];
+  }
   // No restaurar aquí requisitos que el usuario retiró deliberadamente de su escenario.
   return s;
 }
