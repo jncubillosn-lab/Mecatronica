@@ -19,9 +19,9 @@ Herramienta **no oficial** de la representación estudiantil para examinar la ma
 La aplicación trabaja **con lo que está registrado**. No exige datos completos ni interpreta la ausencia de un horario como conflicto.
 
 - **Malla de referencia:** Ingeniería Mecatrónica, Acuerdo 6 de 2022; plano curricular versión 28 de julio de 2022.
-- **Horarios:** conjunto incorporado al repositorio (16 asignaturas, 64 grupos y 114 bloques en la base inicial). La fecha exacta de actualización de la oferta no está registrada.
-- **Tipologías:** clasificación revisada el 7 de noviembre de 2026 con la malla y la información de oferta disponible. Cada entrada de malla tiene un **componente** (B: fundamentación; C: disciplinar; L: libre elección; N: nivelación) y un **carácter** (obligatoria, optativa o no aplica).
-- **Totales del plan actual:** 56 créditos de fundamentación, 87 disciplinares, 36 de libre elección y 12 de nivelación/lengua extranjera (191 en conjunto).
+- **Horarios:** conjunto incorporado a los datos del programa; puede ampliarse sin cambiar las funciones de cálculo. La fecha exacta de actualización de la oferta no está registrada.
+- **Tipologías:** clasificación revisada el 7 de noviembre de 2026 con la malla y la información de oferta disponible. Cada asignatura de un plan tiene un **componente** y un **carácter** (obligatoria, optativa o no aplica). El catálogo actual distingue B: fundamentación, C: disciplinar, L: libre elección, N: nivelación y LE: lengua extranjera. **Inglés I–IV corresponde a lengua extranjera, no a nivelación.**
+- Los totales por componente son **resultados de sumar los registros de la malla**, no valores fijados en el código de cálculo. Actualmente Lengua Extranjera aporta 12 créditos adicionales a los del programa.
 - Los campos de componente y carácter pueden ajustarse en la ficha de una asignatura. Los cambios se guardan **solo en el escenario del navegador** y se distinguen de los datos iniciales.
 
 ### Interpretación de las interferencias
@@ -34,13 +34,22 @@ La aplicación trabaja **con lo que está registrado**. No exige datos completos
 
 ### Comprobación de créditos mínimos en la malla
 
-Es un **indicador de consistencia de la distribución por semestres**: suma créditos de asignaturas situadas en semestres anteriores al de la asignatura seleccionada. No equivale a créditos efectivamente aprobados por ningún estudiante.
+Es un **indicador de consistencia de la distribución por semestres**: suma exclusivamente los créditos de asignaturas situadas en semestres anteriores al de la asignatura seleccionada **y cuyo componente esté incluido en la regla**. No equivale a créditos aprobados por un estudiante.
 
-- **Taller de Proyectos Interdisciplinarios:** 52 créditos **del componente disciplinar (C)**, conforme al criterio específico solicitado para el análisis. En la base actual hay **36 créditos disciplinares antes del semestre VI**; por eso se señala una diferencia de 16 créditos. El plano curricular indica «52 C» sin aclarar en esa etiqueta que se trate exclusivamente del componente disciplinar: **este alcance es un criterio de la herramienta, no una interpretación institucional verificada**.
-- **Proyecto Aplicado de Ingeniería:** 65 créditos previos del plan, sin nivelación.
-- **Trabajo de Grado:** 69 créditos previos del plan, sin nivelación.
+Las reglas se expresan **solo como datos**, dentro de `js/datos.js`, con la forma:
 
-Los requisitos se almacenan como datos del plan, de modo que otro programa pueda tener reglas diferentes. Las advertencias no bloquean el uso ni modifican automáticamente los semestres. Si hubiera tipologías previas sin clasificar, no se formula una advertencia de insuficiencia a partir de una suma incompleta.
+```js
+// [asignatura, créditos mínimos, componentes que cuentan]
+["Taller de Proyectos Interdisciplinarios", 52, ["C"]]
+```
+
+Esta es la configuración de ejemplo del plan actual: exige créditos disciplinares. Cualquier cambio en la cantidad exigida o los componentes que cuentan requiere editar el dato, **no la función de cálculo**. Del mismo modo, otras asignaturas pueden contabilizar diferentes conjuntos de componentes.
+
+Los catálogos `componentes` y `caracteres`, los campos de `malla`, las reglas `reqCred` y las fechas `metadatos` se encuentran en `RAW`. El pie de la página lee las fechas de `metadatos` automáticamente.
+
+Las advertencias no bloquean el uso, no modifican automáticamente los semestres y solo se muestran cuando la suma de créditos anteriores de los componentes indicados queda por debajo del mínimo. Si hubiera componentes sin clasificar, no se genera una falsa advertencia de insuficiencia.
+
+El plano curricular aportado contiene indicaciones «52 C», «65 C» y «69 C». La interpretación de «52 C» como créditos exclusivamente disciplinares **es el criterio de análisis indicado para esta herramienta**, no una interpretación institucional de dicha abreviatura que hayamos confirmado.
 
 ## Escenarios personales
 
@@ -56,9 +65,9 @@ Los requisitos se almacenan como datos del plan, de modo que otro programa pueda
 index.html          Entrada de la aplicación, versión y pie informativo
 css/estilos.css     Estilos principales
 css/pie.css         Pie de página
-js/datos.js         Malla, oferta, componentes, carácter y reglas de créditos
+js/datos.js         Malla, oferta, catálogos, carácter, requisitos y fechas
 js/app.js           Cálculos, escenarios, navegación e interfaz
-tests/verificar.js  Comprobaciones automáticas sin dependencias externas
+tests/verificar.js  Comprobaciones automáticas con datos variables (sin cifras fijas del plan)
 ```
 
 Para uso local, clonar este repositorio y abrir `index.html`. Para ejecutar las pruebas, usar `node tests/verificar.js` (Node.js instalado).
