@@ -18,6 +18,13 @@ class PlanCurricular {
   nombreComponente(id) { return this.componente(id)?.nombre || 'Sin clasificar'; }
   nombreCaracter(id) { return this.caracter(id)?.nombre || ''; }
 
+  /** Selección de visualización: no borra ni modifica asignaturas, grupos o bloques. */
+  seleccionarPorComponentes(nombres, componentes) {
+    const permitidos = new Set(componentes);
+    const indice = new Map(this.estado.malla.map(a => [a.n, a.comp]));
+    return nombres.filter(nombre => permitidos.has(indice.get(nombre)));
+  }
+
   requisitoCreditos(nombre) { return (this.estado.reqCred || []).find(r => r.n === nombre); }
 
   /**
