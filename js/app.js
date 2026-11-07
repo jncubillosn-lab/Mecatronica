@@ -1,9 +1,10 @@
 
 /* ===== NÚCLEO DE CÁLCULO (sin DOM) ===== */
-const DAYS = ['L', 'M', 'X', 'J', 'V', 'S'];
-const DAY_NAMES = { L: 'Lunes', M: 'Martes', X: 'Miércoles', J: 'Jueves', V: 'Viernes', S: 'Sábado' };
-const DAY_SHORT = { L: 'Lun', M: 'Mar', X: 'Mié', J: 'Jue', V: 'Vie', S: 'Sáb' };
-const H_MIN = 6, H_MAX = 21;
+const CALENDARIO = new CalendarioAcademico(RAW.calendario);
+const DAYS = CALENDARIO.ids();
+const DAY_NAMES = Object.fromEntries(DAYS.map(id => [id, CALENDARIO.nombre(id)]));
+const DAY_SHORT = Object.fromEntries(DAYS.map(id => [id, CALENDARIO.corto(id)]));
+const H_MIN = CALENDARIO.inicio, H_MAX = CALENDARIO.fin;
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
 
@@ -12,12 +13,14 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
      grupos:[{a,g,c1,c2,on}], bloques:[{id,a,c,d,s,e,o}] } */
 function fromRaw(D) {
   return {
-    params: { dists: [0, 1], indirect: 1 },
-    malla: D.malla.map(([n, s, nota, cr]) => ({ n, s, nota: nota || '', cr: cr == null ? 3 : cr })),
+    params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
+    malla: D.malla.map(([n, s, nota, cr, comp, car]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '' })),
     pre: D.pre.map(([r, t, m]) => ({ r, t, m: m || '' })),
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2]) => ({ a, g, c1, c2: c2 || '', on: true })),
     bloques: D.bl.map(([a, c, d, s, e, o], i) => ({ id: i + 1, a, c, d, s, e, o: o || '' })),
+    reqCred: (D.reqCred || []).map(([n, min, componentes]) => ({ n, min, componentes: [...componentes] })),
+    tipos: { componentes: (D.componentes || []).map(([id, nombre, enPlan]) => ({ id, nombre, enPlan })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
   };
 }
 
@@ -29,6 +32,7 @@ function glabel(g) {
 }
 const natKey = s => { const m = String(s).match(/\d+/); return m ? +m[0] : 1e9; };
 function semOf(S, name) { const m = S.malla.find(x => x.n === name); return m ? m.s : 0; }
+function maxSemester(S) { return new PlanCurricular(S).maxSemestre(); }
 
 /* Cierre transitivo del grafo de prerrequisitos (req -> t). */
 function closure(S) {
@@ -150,7 +154,7 @@ function lineage(S, n) {
 if (typeof module !== 'undefined') module.exports = { glabel, fromRaw, compute, closure, clone, wouldCycle, lineage, clashDetail, semOf, overlap };
 
 /* ===== APLICACIÓN: estado, utilidades, cabecera, Inicio, Interferencias, panel lateral ===== */
-const KEY = 'interferencias-horarios-v3';
+const KEY = RAW.almacenamiento.clave;
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
 let S = fromRaw(RAW), S0 = clone(S), restored = false;
@@ -161,16 +165,43 @@ try {
 /* Completa escenarios guardados con asignaturas nuevas de la malla (Inglés, libre elección, proyecto, trabajo de grado…). */
 function fixMalla(s) {
   const base = fromRaw(RAW);
-  base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; } });
+  if (!s.tipos) s.tipos = clone(base.tipos);
+  else for (const tipo of ['componentes', 'caracteres']) {
+    if (!Array.isArray(s.tipos[tipo])) s.tipos[tipo] = [];
+    base.tipos[tipo].forEach(item => {
+      const actual = s.tipos[tipo].find(x => x.id === item.id);
+      if (!actual) s.tipos[tipo].push({ ...item });
+      else if (tipo === 'componentes' && actual.enPlan == null) actual.enPlan = item.enPlan;
+    });
+  }
+  if (!Array.isArray(s.reqCred)) s.reqCred = clone(base.reqCred);
+  else {
+    s.reqCred = s.reqCred.map(r => {
+      if (Array.isArray(r.componentes)) return r;
+      const baseRule = base.reqCred.find(x => x.n === r.n);
+      return { n: r.n, min: r.min, componentes: clone(baseRule ? baseRule.componentes : []) };
+    });
+    base.reqCred.forEach(r => { if (!s.reqCred.some(x => x.n === r.n)) s.reqCred.push(clone(r)); });
+  }
+  base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; if (!x.comp) x.comp = m.comp; if (x.car == null) x.car = m.car; } });
   if (!s.mig3) { s.mig3 = 1; s.malla = s.malla.filter(m => !['Libre elección (X-5)', 'Libre elección (X-6)'].includes(m.n)); }
   if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
   if (!s.mig1) { s.mig1 = 1; s.pre = s.pre.filter(p => !(p.r === 'Proyecto Aplicado de Ingeniería' && p.t === 'Trabajo de Grado')); }
   if (!s.mig4) { s.mig4 = 1; s.pre = base.pre.map(p => ({ ...p })).concat(s.pre.filter(p => p.m === 'agregado' && !base.pre.some(q => q.r === p.r && q.t === p.t))); s.malla.forEach(m => { const o = base.malla.find(y => y.n === m.n); if (o && /créditos del plan|% de los créditos/.test(m.nota || '')) m.nota = o.nota; }); }
-  base.pre.forEach(p => { if (!s.pre.some(q => q.r === p.r && q.t === p.t)) s.pre.push({ ...p }); });
+  // No restaurar aquí requisitos que el usuario retiró deliberadamente de su escenario.
   return s;
 }
-function fixParams(s) { if (!Array.isArray(s.params.dists)) { const m = s.params.maxDist == null ? 1 : s.params.maxDist; s.params.dists = Array.from({ length: Math.min(m, 2) + 1 }, (_, i) => i); } return s; }
+function fixParams(s) {
+  if (!Array.isArray(s.params.dists)) {
+    const d = RAW.opciones.distanciasDisponibles;
+    const max = s.params.maxDist == null ? Math.max(...RAW.opciones.distanciasIniciales) : s.params.maxDist;
+    s.params.dists = d.filter(x => x <= max);
+    if (!s.params.dists.length) s.params.dists = [...RAW.opciones.distanciasIniciales];
+  }
+  return s;
+}
 fixParams(S); fixMalla(S);
+fixParams(S0); fixMalla(S0);
 let R = compute(S), R0 = compute(S0);
 
 const ui = {
@@ -178,7 +209,7 @@ const ui = {
   inter: { view: 'lista', dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
-  hor: { a: S.asg.includes('Estática') ? 'Estática' : S.asg[0], comp: null, ov: [] },
+  hor: { a: S.asg.includes(RAW.opciones.asignaturaInicial) ? RAW.opciones.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
@@ -189,6 +220,19 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const pct = (x, d = 0) => (x * 100).toFixed(d) + '%';
+const planActual = () => new PlanCurricular(S);
+const compName = id => planActual().nombreComponente(id);
+const carName = id => planActual().nombreCaracter(id);
+const creditRuleFor = n => planActual().requisitoCreditos(n);
+const creditStatus = (m, r) => planActual().evaluarCreditos(m, r);
+function creditRequirementNote(m) {
+  const r = creditRuleFor(m.n);
+  if (!r) return m.nota ? '<div class="note">' + esc(m.nota) + '.</div>' : '';
+  const q = creditStatus(m, r);
+  const which = (r.componentes || []).map(compName).join(' + ') || 'sin especificar';
+  const statement = q.unknown ? 'No se comprueba con componentes sin clasificar.' : (q.low ? 'Inconsistencia en la distribución por semestres: faltan ' + (r.min - q.total) + ' créditos.' : 'No se detecta inconsistencia en la distribución por semestres.');
+  return '<div class="note ' + (q.low ? 'heat' : '') + '"><b>Requisito mínimo:</b> ' + r.min + ' créditos. <span>Se cuentan: ' + esc(which) + '.</span><div style="margin-top:5px">Créditos anteriores: <b>' + q.total + '</b>. ' + esc(statement) + '</div><small style="display:block;margin-top:6px">Comprobación de distribución curricular, no de asignaturas aprobadas por un estudiante.</small></div>';
+}
 const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const fmtB = b => `${DAY_SHORT[b.d]} ${b.s}–${b.e}`;
 const heatBg = t => `color-mix(in srgb,var(--heat) ${Math.round(Math.min(1, Math.sqrt(t)) * 92)}%,var(--surface2))`;
@@ -223,12 +267,12 @@ function commit(extraMsg) {
   if (msg) toast(msg);
 }
 
-/* ---------- diferencias respecto al Excel original ---------- */
+/* ---------- diferencias respecto a la fuente inicial del programa ---------- */
 function changes() {
   const out = [];
   if (S.params.dists.join() !== S0.params.dists.join()) out.push(['Parámetro', `Distancia entre semestres: ${distNames(S0.params.dists)} → ${distNames(S.params.dists)}`]);
   if (S.params.indirect !== S0.params.indirect) out.push(['Parámetro', `Excluir prerrequisitos indirectos: ${S0.params.indirect ? 'sí' : 'no'} → ${S.params.indirect ? 'sí' : 'no'}`]);
-  S.malla.forEach(m => { const o = S0.malla.find(x => x.n === m.n); if (!o) out.push(['Malla', `Asignatura nueva: ${m.n} (sem ${m.s})`]); else { if (o.s !== m.s) out.push(['Semestre', `${m.n}: semestre ${o.s} → ${m.s}`]); if (o.cr !== m.cr) out.push(['Créditos', `${m.n}: ${o.cr} → ${m.cr} créditos`]); } });
+  S.malla.forEach(m => { const o = S0.malla.find(x => x.n === m.n); if (!o) out.push(['Malla', `Asignatura nueva: ${m.n} (sem ${m.s})`]); else { if (o.s !== m.s) out.push(['Semestre', `${m.n}: semestre ${o.s} → ${m.s}`]); if (o.cr !== m.cr) out.push(['Créditos', `${m.n}: ${o.cr} → ${m.cr} créditos`]); if (o.comp !== m.comp) out.push(['Tipología', `${m.n}: ${compName(o.comp)} → ${compName(m.comp)}`]); if (o.car !== m.car) out.push(['Tipología', `${m.n}: ${carName(o.car) || '—'} → ${carName(m.car) || '—'}`]); } });
   const pk = p => p.r + ' → ' + p.t;
   const a0 = new Set(S0.pre.map(pk)), a1 = new Set(S.pre.map(pk));
   a1.forEach(k => { if (!a0.has(k)) out.push(['Prerrequisito', `Agregado: ${k}`]); });
@@ -258,17 +302,17 @@ function pairDeltas() {
 }
 
 /* ---------- cabecera ---------- */
-function resetLabel(long) { return ui.confirmReset ? '¿Seguro? Clic otra vez' : (long ? 'Restablecer al Excel original' : 'Restablecer'); }
+function resetLabel(long) { return ui.confirmReset ? '¿Seguro? Clic otra vez' : (long ? 'Restablecer a datos de referencia' : 'Restablecer'); }
 function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
   return `<a class="cta-bar" href="https://www.instagram.com/repremecatronicaun/" target="_blank" rel="noopener noreferrer"><span class="cta-in"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="cta-t"><b>Queremos tu opinión.</b> ¿Encontraste un error o tienes una idea para optimizar esta herramienta?</span><span class="cta-b">Escríbenos en Instagram · @repremecatronicaun →</span></span></a>
   <div class="top-in">
-    <div class="brand-wrap"><div class="brand"><b>Interferencias de horario</b><span>Ingeniería Mecatrónica</span></div><span class="rep-badge">Representación estudiantil 26 - 28</span></div>
+    <div class="brand-wrap"><div class="brand"><b>Interferencias de horario</b><span>${esc(RAW.programa.nombre)}</span></div><span class="rep-badge">Representación estudiantil 26 - 28</span></div>
     <nav class="nav" aria-label="Secciones">${PAGES_ORDER.map(([k, l]) => `<button data-act="nav" data-p="${k}" ${ui.page === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
-        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${R0.totalPairs} → ${R.totalPairs}</b> ${dlt(R.totalPairs, R0.totalPairs)}` : 'Datos originales del Excel'}</span>
+        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${R0.totalPairs} → ${R.totalPairs}</b> ${dlt(R.totalPairs, R0.totalPairs)}` : 'Datos de referencia del programa'}</span>
         ${dirty ? `<button class="btn sm" data-act="drawer-cambios">Ver cambios</button><button class="btn sm danger" data-act="reset">${resetLabel()}</button>` : ''}
       </div>
       <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
@@ -281,12 +325,12 @@ function renderTop() {
 /* ---------- INICIO ---------- */
 function gl(a, gname) { const g = S.grupos.find(x => x.a === a && x.g === gname); return g ? glabel(g) : gname; }
 function sev(p) { return p.clash === 0 ? ['ok', 'Compatibles'] : p.clash === p.total ? ['a', 'Incompatibles'] : ['b', 'Depende del grupo']; }
-const DIST_LBL = ['mismo semestre', '1 semestre de diferencia', '2 semestres de diferencia'];
-function semCred(s, n) { const l = n.filter(m => m.s === s); const t = l.reduce((a, m) => a + m.cr, 0), en = l.filter(m => /^Inglés/.test(m.n)).reduce((a, m) => a + m.cr, 0); return { t, en, n: l.length }; }
-function distNames(ds) { return [...ds].sort().map(d => DIST_LBL[d]).join(' · '); }
-function distSummary() { const l = [...S.params.dists].sort().map(d => DIST_LBL[d]); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : l[0]; }
+const distLabel = d => d === 0 ? 'mismo semestre' : d + (d === 1 ? ' semestre de diferencia' : ' semestres de diferencia');
+function semCred(s, n) { return new PlanCurricular({malla:n, tipos:S.tipos}).resumenSemestre(s); }
+function distNames(ds) { return [...ds].sort((a,b)=>a-b).map(distLabel).join(' · '); }
+function distSummary() { const l = [...S.params.dists].sort((a,b)=>a-b).map(distLabel); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : (l[0] || 'sin selección'); }
 function distChips(counts) {
-  return [0, 1, 2].map(d => { const n = counts ? R.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
+  return RAW.opciones.distanciasDisponibles.map(d => { const n = counts ? R.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
 }
 function distText(p) { return p.dist === 0 ? 'Mismo semestre' : p.dist === 1 ? '1 semestre de diferencia' : p.dist + ' semestres de diferencia'; }
 function compGroups(A, c) { return S.grupos.filter(g => g.a === A && (g.c1 === c || g.c2 === c)).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y))); }
@@ -331,7 +375,7 @@ function pageInicio() {
     <dt>Horas</dt><dd>Horas enteras entre las 6 y las 21, de lunes a sábado.</dd>
     <dt>Prerrequisitos</dt><dd>Tomados de la malla vigente (Acuerdo 6 de 2022 del Consejo de Facultad de Ingeniería). Los créditos mínimos de Taller de Proyectos Interdisciplinarios (52), Proyecto Aplicado (65) y Trabajo de Grado (69) se muestran como nota y no entran al análisis.</dd>
     <dt>Control</dt><dd>Cada grupo (G1 a G8) combina una magistral con un laboratorio. El emparejamiento de la magistral 3 (grupos G5 y G6) no está confirmado.</dd>
-    <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos del Excel.</dd></dl></details>`;
+    <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos de referencia del programa.</dd></dl></details>`;
 }
 
 /* ---------- INTERFERENCIAS ---------- */
@@ -419,7 +463,7 @@ function miniWeek(bA, bB, ov) {
     const mk = (b, c, lbl) => `<div class="bk ${c}" style="top:${(b.s - lo) * RH}px;height:${(b.e - b.s) * RH - 1}px" title="${lbl}">${lbl}</div>`;
     return `<div class="dc" style="height:${rows * RH}px">${Array.from({ length: rows }, (_, i) => `<div class="ln" style="height:${RH}px"></div>`).join('')}${bA.filter(b => b.d === d).map(b => mk(b, 'A', b.s + '–' + b.e)).join('')}${bB.filter(b => b.d === d).map(b => mk(b, 'B', b.s + '–' + b.e)).join('')}${ov.filter(o => o.d === d).map(o => `<div class="bk X" style="top:${(o.s - lo) * RH}px;height:${(o.e - o.s) * RH - 1}px">choque</div>`).join('')}</div>`;
   };
-  return `<div class="wk"><div></div>${DAYS.map(d => `<div class="dh">${DAY_SHORT[d]}</div>`).join('')}<div>${Array.from({ length: rows }, (_, i) => `<div class="hr" style="height:${RH}px">${lo + i}</div>`).join('')}</div>${DAYS.map(col).join('')}</div>`;
+  return `<div class="wk" style="--numero-dias:${DAYS.length}"><div></div>${DAYS.map(d => `<div class="dh">${DAY_SHORT[d]}</div>`).join('')}<div>${Array.from({ length: rows }, (_, i) => `<div class="hr" style="height:${RH}px">${lo + i}</div>`).join('')}</div>${DAYS.map(col).join('')}</div>`;
 }
 function drawerPair(dw) {
   const p = R.pairs.find(x => x.key === dw.key);
@@ -468,7 +512,7 @@ function drawerPair(dw) {
 }
 function drawerCambios() {
   const ch = changes(), pd = pairDeltas();
-  return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. Excel original</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
+  return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. datos de referencia</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
     <div class="kv"><div><div class="k">Pares con choque</div><div class="v num">${R0.totalPairs} → ${R.totalPairs}</div></div><div><div class="k">Parejas en choque</div><div class="v num">${R0.totalClash} → ${R.totalClash}</div></div><div><div class="k">Índice global</div><div class="v num">${pct(R0.totalCombos ? R0.totalClash / R0.totalCombos : 0, 1)} → ${pct(R.totalCombos ? R.totalClash / R.totalCombos : 0, 1)}</div></div></div>
     <section><div class="lab" style="margin-bottom:6px">Qué cambiaste</div>${ch.length ? ch.map(([k, t]) => `<div class="chg-item"><span class="tag">${k}</span><span>${esc(t)}</span></div>`).join('') : '<div class="hint">Nada: estás viendo los datos originales.</div>'}</section>
@@ -579,6 +623,7 @@ function lanes(blocks) {
   return res;
 }
 function pageHor() {
+  if (!S.asg.length) return `<div class="page-title"><div><h1>Horarios</h1><p>No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</p></div></div>`;
   const h = ui.hor;
   if (!S.asg.includes(h.a)) h.a = S.asg[0];
   const A = h.a, comps = compsOf(A), mine = S.bloques.filter(b => b.a === A);
@@ -620,7 +665,7 @@ function pageHor() {
         <select data-chg="h-ov-add" aria-label="Superponer asignatura"><option value="">Superponer otra asignatura…</option>${R.names.filter(n => n !== A && !h.ov.includes(n)).map(n => `<option>${esc(n)}</option>`).join('')}</select>
         <button class="btn sm" data-act="h-ov-clash" ${choques.length ? '' : 'disabled'} title="Superpone las asignaturas con las que choca">Las que chocan (${choques.length})</button></div>
       ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}">${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
-      <div class="weekgrid"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div>
+      <div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div>
       <div class="legend" style="margin-top:8px"><span>Cada bloque lleva el nombre del grupo (o grupos) que lo usan; bloques lado a lado son grupos alternativos a la misma hora.</span>${hasOv ? '<span><i class="sw" style="background:color-mix(in srgb,var(--heat) 22%,transparent)"></i>horas donde se pisan con lo superpuesto</span>' : ''}</div>
     </div>
     <div class="right" style="display:grid;gap:12px">${impact}
@@ -693,7 +738,7 @@ function pageHeat() {
     </aside>
     <div class="hm-main">
       <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Vista semanal</span><div class="hint">${selected.length} asignaturas seleccionadas · ${scheduledGroups.size} grupos activos con horario</div></div><span class="sem">${H_MIN}:00–${H_MAX}:00</span></div>
-      <div class="weekgrid hm-grid"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${Array.from({ length: H_MAX - H_MIN }, (_, i) => `<div>${H_MIN + i}</div>`).join('')}</div>${columns}</div>
+      <div class="weekgrid hm-grid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${Array.from({ length: H_MAX - H_MIN }, (_, i) => `<div>${H_MIN + i}</div>`).join('')}</div>${columns}</div>
       <div class="hm-legend"><span>Grupos programados por franja de una hora:</span><span class="hm-scale"><i style="--v:14%"></i><i style="--v:32%"></i><i style="--v:50%"></i><i style="--v:68%"></i><i style="--v:86%"></i></span><span>menor → mayor concentración</span><span class="faint">El número en cada celda es la cantidad de grupos.</span></div>
     </div>
     <div class="right" style="display:grid;gap:12px;align-content:start">
@@ -708,21 +753,21 @@ function pageHeat() {
 }
 /* ===== MALLA / PRERREQUISITOS ===== */
 function semHead(s) {
-  const c = semCred(s, S.malla), o = semCred(s, S0.malla), d = c.t - o.t;
-  return `<span class="semcr" title="${c.t} créditos en total${c.en ? ` (${c.t - c.en} del plan + ${c.en} de inglés)` : ''}"><b class="num">${c.t - c.en}${c.en ? '+' + c.en : ''}</b></span>`;
+  const c = semCred(s, S.malla);
+  return `<span class="semcr" title="${c.incompleto ? 'Créditos registrados (hay asignaturas sin créditos definidos): ' : ''}${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
 }
 function pageMalla() {
   const M = ui.malla, sel = M.sel;
   if (sel && !S.malla.find(m => m.n === sel)) M.sel = null;
   const L = M.sel ? lineage(S, M.sel) : null;
-  const maxSem = Math.max(9, ...S.malla.map(m => m.s));
+  const maxSem = maxSemester(S);
   const cols = Array.from({ length: maxSem }, (_, i) => i + 1).map(s => {
     const cs = S.malla.filter(m => m.s === s && (!M.soloHor || S.asg.includes(m.n)));
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s)}</h4>${cs.map(m => {
-      const sc = R.st[m.n];
+      const sc = R.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
       let cls = sc ? '' : 'nosched';
       if (L) cls += m.n === M.sel ? ' sel' : L.up.has(m.n) ? ' up' : L.down.has(m.n) ? ' down' : ' dim';
-      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr} cr</span></span>${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
+      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr == null ? '—' : m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car ? ' · ' + esc(carName(m.car)) : ''}</span></small>${check && check.low ? `<small><span class="tag heat">Faltan ${req.min - check.total} cr. previos</span></small>` : ''}${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${!req && m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
     }).join('')}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
@@ -733,7 +778,7 @@ function pageMalla() {
 }
 function mallaSide(L) {
   const n = ui.malla.sel;
-  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas vienen del Excel (hoja Prerrequisitos).</p></aside>`;
+  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p></aside>`;
   const m = S.malla.find(x => x.n === n), sc = R.st[n];
   const dirIn = S.pre.filter(p => p.t === n), dirOut = S.pre.filter(p => p.r === n);
   const indUp = [...L.up.keys()].filter(x => !dirIn.some(p => p.r === x)), indDown = [...L.down.keys()].filter(x => !dirOut.some(p => p.t === x));
@@ -742,10 +787,12 @@ function mallaSide(L) {
   const rel = (list, key, other) => list.length ? list.map(p => { const o = p[other], om = S.malla.find(x => x.n === o); const bad = key === 'in' ? om.s >= m.s : om.s <= m.s; return `<div class="it"><span><button style="all:unset;cursor:pointer;text-decoration:underline dotted" data-act="m-sel" data-n="${esc(o)}">${esc(o)}</button> <span class="sem">S${om.s}</span>${bad ? ' <span class="tag heat">mismo sem. o posterior</span>' : ''}</span><button data-act="m-del" data-r="${esc(p.r)}" data-t="${esc(p.t)}" aria-label="Quitar relación" title="Quitar relación">×</button></div>`; }).join('') : '<span class="hint">Ninguno.</span>';
   return `<aside class="card sidecard">
     <div><span class="eyebrow">Asignatura</span><h2 style="font:650 18px/1.25 var(--serif);margin-top:2px">${esc(n)}</h2></div>
-    <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
-    <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= 10 ? 'disabled' : ''}>+</button></span></div>
+    <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr == null ? '—' : m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
+    <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= maxSemester(S) ? 'disabled' : ''}>+</button></span></div>
     ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
-    ${m.nota ? `<div class="note">${esc(m.nota)}.</div>` : ''}
+    ${creditRequirementNote(m)}
     <div><div class="lab" style="margin-bottom:6px">Requiere (directos)</div><div class="rel">${rel(dirIn, 'in', 'r')}</div>
       <select data-chg="m-addreq" aria-label="Agregar requisito" style="margin-top:6px;width:100%"><option value="">+ Agregar requisito…</option>${optsReq.map(c => `<option value="${esc(c.n)}">${esc(c.n)} (sem ${c.s})</option>`).join('')}</select>
       ${indUp.length ? `<div class="hint" style="margin-top:6px">Indirectos: ${indUp.map(esc).join(', ')}</div>` : ''}</div>
@@ -878,10 +925,10 @@ function onAct(act, d, el, ev) {
     /* malla */
     case 'm-sel': ui.malla.sel = ui.malla.sel === d.n ? null : d.n; return render();
     case 'm-edges': ui.malla.edges = d.v; return render();
-    case 'm-cr': { const m = S.malla.find(x => x.n === ui.malla.sel); m.cr = Math.max(0, m.cr + +d.dx); return commit(); }
-    case 'm-sem': { const m = S.malla.find(x => x.n === ui.malla.sel); const o = m.s; m.s = Math.max(1, Math.min(10, m.s + +d.dx)); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
+    case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
+    case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
-    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); render(); return toast('Volviste a los datos originales del Excel.');
+    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); render(); return toast('Volviste a los datos de referencia del programa.');
     case 'export': return download('escenario-horarios.json', JSON.stringify({ app: 'interferencias-horarios', v: 1, S }, null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
@@ -909,6 +956,8 @@ function onChange(k, el) {
       S.grupos.forEach(g => { if (g.a === A) { if (g.c1 === old) g.c1 = nv; if (g.c2 === old) g.c2 = nv; } });
       if (ui.hor.comp === old) ui.hor.comp = nv; return commit();
     }
+    case 'm-comp': { const m = planActual().cambiarComponente(ui.malla.sel, el.value); if (!m) return; return commit('Componente de ' + m.n + ': ' + compName(m.comp)); }
+    case 'm-car': { const m = planActual().cambiarCaracter(ui.malla.sel, el.value); if (!m) return; return commit('Carácter de ' + m.n + ': ' + (carName(m.car) || 'No aplica')); }
     case 'm-addreq': if (el.value) { S.pre.push({ r: el.value, t: ui.malla.sel, m: 'agregado' }); return commit(`Agregado: ${el.value} → ${ui.malla.sel}`); } return;
     case 'm-addopen': if (el.value) { S.pre.push({ r: ui.malla.sel, t: el.value, m: 'agregado' }); return commit(`Agregado: ${ui.malla.sel} → ${el.value}`); } return;
     case 'import-file': {
@@ -957,9 +1006,9 @@ document.addEventListener('drop', e => {
     commit(`${b.c}: ${old} → ${fmtB(b)}`);
   } else {
     const col = e.target.closest('.mcol'); if (!col) return; e.preventDefault();
-    const m = S.malla.find(x => x.n === dragData.n), ns = +col.dataset.sem; dragData = null;
+    const m = planActual().asignatura(dragData.n), ns = +col.dataset.sem; dragData = null;
     if (!m || m.s === ns) return render();
-    const o = m.s; m.s = ns; ui.malla.sel = m.n; commit(`${m.n}: semestre ${o} → ${ns}`);
+    const o = m.s; planActual().moverSemestre(m.n, ns); ui.malla.sel = m.n; commit(`${m.n}: semestre ${o} → ${m.s}`);
   }
 });
 
@@ -968,6 +1017,10 @@ document.addEventListener('drop', e => {
   const h = (location.hash || '').replace('#', '');
   if (PAGES[h]) ui.page = h;
   render();
+  if (RAW.programa?.nombre) document.title = 'Interferencias de horario · ' + RAW.programa.nombre;
+  const meta = RAW.metadatos || {};
+  const pie = document.getElementById('pie-datos');
+  if (pie) pie.textContent = ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
   if (restored && changes().length) toast('Recuperé los cambios que tenías guardados en este navegador.');
 })();
 
