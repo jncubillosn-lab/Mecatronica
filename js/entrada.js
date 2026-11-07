@@ -53,7 +53,7 @@ class EntradaAcademica {
       // sola unidad; el detalle de actividades sigue en el contrato académico.
       const compactar = partes.length > 2;
       const nombres = compactar ? [etiqueta] : partes.map(c => c.id);
-      grupos.push([asignatura, etiqueta, nombres[0], nombres[1] || null]);
+      grupos.push([asignatura, etiqueta, nombres[0], nombres[1] || null, grupo.id]);
 
       for (const parte of partes) {
         (parte.bloques || []).forEach((b, i) => {
