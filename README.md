@@ -29,25 +29,25 @@ La malla, el catálogo institucional y la oferta de grupos se transforman **fuer
                 filtros y visualizaciones
 ~~~
 
-En v0.5.0 la interfaz histórica sigue utilizando una estructura interna denominada \`RAW\`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
+En v0.5.0 la interfaz histórica sigue utilizando una estructura interna denominada `RAW`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
 
-**Estado del proyecto:** la migración se prepara en una rama y debe validarse antes de publicarse en \`main\`. ARQ-01 distingue el diseño establecido de lo que sigue siendo transitorio.
+**Estado del proyecto:** la migración se prepara en una rama y debe validarse antes de publicarse en `main`. ARQ-01 distingue el diseño establecido de lo que sigue siendo transitorio.
 
 ## Qué contiene el contrato
 
 | Sección | Información |
 |---|---|
-| \`versionEsquema\` | Identificación de la estructura de entrada |
-| \`programa\` | Programa y versión del plan |
-| \`componentes\` y \`caracteres\` | Clasificaciones curriculares configurables |
-| \`catalogo\` | Asignaturas, códigos institucionales, créditos, tipologías y descripciones disponibles |
-| \`malla\` | Posiciones por semestre, código relacionado cuando exista, componente y carácter |
-| \`requisitos\` | Prerrequisitos y condiciones numéricas por componente |
-| \`oferta\` | Actividades, grupos, cupos y horarios cuando constan |
-| \`agrupaciones\` | Opciones analizables con relaciones expresas entre actividades |
-| \`exclusionesAgrupacion\` | Posiciones cuya oferta no permite determinar aún opciones analizables |
-| \`configuracion\` | Calendario, filtros y opciones de consulta |
-| \`procedencia\` | Metadatos de procedencia disponibles, sin nuevas rutas de lectura |
+| `versionEsquema` | Identificación de la estructura de entrada |
+| `programa` | Programa y versión del plan |
+| `componentes` y `caracteres` | Clasificaciones curriculares configurables |
+| `catalogo` | Asignaturas, códigos institucionales, créditos, tipologías y descripciones disponibles |
+| `malla` | Posiciones por semestre, código relacionado cuando exista, componente y carácter |
+| `requisitos` | Prerrequisitos y condiciones numéricas por componente |
+| `oferta` | Actividades, grupos, cupos y horarios cuando constan |
+| `agrupaciones` | Opciones analizables con relaciones expresas entre actividades |
+| `exclusionesAgrupacion` | Posiciones cuya oferta no permite determinar aún opciones analizables |
+| `configuracion` | Calendario, filtros y opciones de consulta |
+| `procedencia` | Metadatos de procedencia disponibles, sin nuevas rutas de lectura |
 
 Las posiciones genéricas de optativas y Libre Elección no se vinculan artificialmente con una asignatura específica. Inglés I–IV se clasifica en **Nivelación**. El catálogo conserva su tipología institucional, que no tiene por qué coincidir con el componente del plan.
 
@@ -85,8 +85,8 @@ Los datos académicos de referencia **no se modifican** al experimentar con hora
 
 - Los cambios se guardan localmente como **diferencias respecto al escenario de referencia**; no se guarda otra copia autoritativa de las fuentes.
 - «Guardar» descarga un archivo JSON con las modificaciones; «Cargar» permite reconstruirlas.
-- Se aceptan archivos de escenario de versiones anteriores con estructura \`{S}\`; la migración conserva las ediciones del estudiante cuando se pueden identificar mediante las referencias históricas del mismo contrato.
-- Al actualizar \`academico.json\`, los grupos nuevos se incorporan desde la referencia; los grupos eliminados deliberadamente por una persona siguen eliminados en su escenario.
+- Se aceptan archivos de escenario de versiones anteriores con estructura `{S}`; la migración conserva las ediciones del estudiante cuando se pueden identificar mediante las referencias históricas del mismo contrato.
+- Al actualizar `academico.json`, los grupos nuevos se incorporan desde la referencia; los grupos eliminados deliberadamente por una persona siguen eliminados en su escenario.
 - «Restablecer» recupera la referencia académica vigente.
 
 No se requieren cuentas, servidor ni servicios externos. La aplicación funciona sobre GitHub Pages.
@@ -105,7 +105,7 @@ css/estilos.css
 css/pie.css
 ~~~
 
-Los archivos \`js/datos.js\`, \`js/catalogo.js\`, \`js/oferta-fuente.js\` y \`js/fuentes.js\` se conservan como **referencias históricas del repositorio**. No se cargan en \`index.html\` ni son rutas de entrada de producción. Convertir nuevas fuentes originales a \`academico.json\` es un trabajo **externo** a esta aplicación.
+Los archivos `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fuentes.js` se conservan como **referencias históricas del repositorio**. No se cargan en `index.html` ni son rutas de entrada de producción. Convertir nuevas fuentes originales a `academico.json` es un trabajo **externo** a esta aplicación.
 
 ## Pruebas
 
@@ -118,7 +118,7 @@ node tests/escenarios-arq01.js
 node tests/vistas-arq01.js
 ~~~
 
-Las pruebas nuevas usan solamente el JSON normalizado y verifican estructura, cobertura, horas exactas, escenarios personales y coherencia de las vistas. \`tests/verificar.js\`, \`tests/filtros.js\` y \`tests/fuentes.js\` se mantienen como verificaciones del comportamiento anterior y de los archivos históricos, no como entradas alternativas de producción.
+Las pruebas nuevas usan solamente el JSON normalizado y verifican estructura, cobertura, horas exactas, escenarios personales y coherencia de las vistas. `tests/verificar.js`, `tests/filtros.js` y `tests/fuentes.js` se mantienen como verificaciones del comportamiento anterior y de los archivos históricos, no como entradas alternativas de producción.
 
 ## Evolución futura
 
