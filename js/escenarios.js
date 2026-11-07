@@ -123,12 +123,12 @@ class EscenarioPersonal {
    * Transición de archivos {S} antiguos. La fuente académica sigue siendo una:
    * se usa la identidad histórica DECLARADA EN EL MISMO CONTRATO NORMALIZADO.
    */
-  static migrarAnterior(baseVigente, snapshot, contrato, construirEstado) {
+  static migrarAnterior(baseVigente, snapshot, contrato, construirEstado, LectorAcademico) {
     const aplicado = Array.isArray(snapshot.incorporacionesOferta) && snapshot.incorporacionesOferta.length > 0;
     const anteriores = contrato.agrupaciones.filter(g =>
       g.introducidoEn === '0.4.2' || (aplicado && g.introducidoEn === '0.4.3'));
     const referencia = { ...contrato, agrupaciones:anteriores };
-    const baseAnterior=construirEstado(new EntradaAcademica(referencia).generarEscenarioBase());
+    const baseAnterior=construirEstado(new LectorAcademico(referencia).generarEscenarioBase());
     // Los escenarios históricos identificaban los bloques por su posición numérica.
     baseAnterior.bloques.forEach(b=>{
       b.id=b.idAnterior ?? b.id;
