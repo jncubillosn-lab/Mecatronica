@@ -64,7 +64,7 @@ class EntradaAcademica {
             // Horario no interpretable: no fabricar un bloque válido.
             return;
           }
-          const bloque = [asignatura, clave, b.dia, desde, hasta, b.nota || null, original];
+          const bloque = [asignatura, clave, b.dia, desde, hasta, b.nota || null, original, b.idAnterior ?? null];
           const anterior = bloquesPorReferencia.get(original);
           if (anterior) {
             if (JSON.stringify(anterior) !== JSON.stringify(bloque)) {
@@ -82,7 +82,7 @@ class EntradaAcademica {
     const req = d.requisitos || {};
     const raw = {
       programa: { ...d.programa },
-      malla: d.malla.map(p => [p.nombre, p.semestre, p.nota || '', p.creditos ?? null, p.componente || '', p.caracter || '']),
+      malla: d.malla.map(p => [p.nombre, p.semestre, p.nota || '', p.creditos ?? null, p.componente || '', p.caracter || '', p.id]),
       componentes: (d.componentes || []).map(c => [c.id, c.nombre, c.enPlan]),
       caracteres: (d.caracteres || []).map(c => [c.id, c.nombre]),
       reqCred: (req.minimosCreditos || []).flatMap(r => {
