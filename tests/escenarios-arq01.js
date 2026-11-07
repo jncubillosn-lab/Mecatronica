@@ -69,7 +69,7 @@ function anterior(version){
 
 probar('Referencia antigua v0.4.3 se recupera sin falsas modificaciones',()=>{
  const antiguo=anterior('0.4.3');
- const actual=EscenarioPersonal.migrarAnterior(base,antiguo,contrato,modulo.fromRaw);
+ const actual=EscenarioPersonal.migrarAnterior(base,antiguo,contrato,modulo.fromRaw,EntradaAcademica);
  assert.equal(actual.grupos.length,base.grupos.length);
  assert.equal(actual.bloques.length,base.bloques.length);
  assert.deepEqual(EscenarioPersonal.diferencias(base,actual).grupos.quitar,[]);
@@ -78,7 +78,7 @@ probar('Referencia antigua v0.4.3 se recupera sin falsas modificaciones',()=>{
 
 probar('Referencia anterior a la incorporación B/N recupera grupos nuevos',()=>{
  const antiguo=anterior('0.4.2');
- const actual=EscenarioPersonal.migrarAnterior(base,antiguo,contrato,modulo.fromRaw);
+ const actual=EscenarioPersonal.migrarAnterior(base,antiguo,contrato,modulo.fromRaw,EntradaAcademica);
  assert.equal(actual.grupos.length,base.grupos.length);
  assert.equal(actual.asg.length,base.asg.length);
 });
@@ -89,7 +89,7 @@ probar('Una eliminación personal y un bloque editado sobreviven a la migración
  antiguo.bloques=antiguo.bloques.filter(b=>!(b.a===g.a&&b.c===g.c1));
  const mod=antiguo.bloques.find(b=>b.idAnterior!=null);
  mod.d='V';mod.s=17;mod.e=19;
- const actual=EscenarioPersonal.migrarAnterior(base,antiguo,contrato,modulo.fromRaw);
+ const actual=EscenarioPersonal.migrarAnterior(base,antiguo,contrato,modulo.fromRaw,EntradaAcademica);
  assert(!actual.grupos.some(x=>x.a===g.a&&x.g===g.g));
  assert(actual.bloques.some(x=>x.idAnterior===mod.idAnterior&&x.d==='V'&&x.s===17));
 });
