@@ -267,7 +267,7 @@ function commit(extraMsg) {
   if (msg) toast(msg);
 }
 
-/* ---------- diferencias respecto al Excel original ---------- */
+/* ---------- diferencias respecto a la fuente inicial del programa ---------- */
 function changes() {
   const out = [];
   if (S.params.dists.join() !== S0.params.dists.join()) out.push(['Parámetro', `Distancia entre semestres: ${distNames(S0.params.dists)} → ${distNames(S.params.dists)}`]);
@@ -308,11 +308,11 @@ function renderTop() {
   const dirty = nChg > 0;
   return `<a class="cta-bar" href="https://www.instagram.com/repremecatronicaun/" target="_blank" rel="noopener noreferrer"><span class="cta-in"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="cta-t"><b>Queremos tu opinión.</b> ¿Encontraste un error o tienes una idea para optimizar esta herramienta?</span><span class="cta-b">Escríbenos en Instagram · @repremecatronicaun →</span></span></a>
   <div class="top-in">
-    <div class="brand-wrap"><div class="brand"><b>Interferencias de horario</b><span>Ingeniería Mecatrónica</span></div><span class="rep-badge">Representación estudiantil 26 - 28</span></div>
+    <div class="brand-wrap"><div class="brand"><b>Interferencias de horario</b><span>${esc(RAW.programa.nombre)}</span></div><span class="rep-badge">Representación estudiantil 26 - 28</span></div>
     <nav class="nav" aria-label="Secciones">${PAGES_ORDER.map(([k, l]) => `<button data-act="nav" data-p="${k}" ${ui.page === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
-        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${R0.totalPairs} → ${R.totalPairs}</b> ${dlt(R.totalPairs, R0.totalPairs)}` : 'Datos originales del Excel'}</span>
+        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${R0.totalPairs} → ${R.totalPairs}</b> ${dlt(R.totalPairs, R0.totalPairs)}` : 'Datos de referencia del programa'}</span>
         ${dirty ? `<button class="btn sm" data-act="drawer-cambios">Ver cambios</button><button class="btn sm danger" data-act="reset">${resetLabel()}</button>` : ''}
       </div>
       <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
@@ -375,7 +375,7 @@ function pageInicio() {
     <dt>Horas</dt><dd>Horas enteras entre las 6 y las 21, de lunes a sábado.</dd>
     <dt>Prerrequisitos</dt><dd>Tomados de la malla vigente (Acuerdo 6 de 2022 del Consejo de Facultad de Ingeniería). Los créditos mínimos de Taller de Proyectos Interdisciplinarios (52), Proyecto Aplicado (65) y Trabajo de Grado (69) se muestran como nota y no entran al análisis.</dd>
     <dt>Control</dt><dd>Cada grupo (G1 a G8) combina una magistral con un laboratorio. El emparejamiento de la magistral 3 (grupos G5 y G6) no está confirmado.</dd>
-    <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos del Excel.</dd></dl></details>`;
+    <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos de referencia del programa.</dd></dl></details>`;
 }
 
 /* ---------- INTERFERENCIAS ---------- */
@@ -512,7 +512,7 @@ function drawerPair(dw) {
 }
 function drawerCambios() {
   const ch = changes(), pd = pairDeltas();
-  return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. Excel original</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
+  return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. datos de referencia</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
     <div class="kv"><div><div class="k">Pares con choque</div><div class="v num">${R0.totalPairs} → ${R.totalPairs}</div></div><div><div class="k">Parejas en choque</div><div class="v num">${R0.totalClash} → ${R.totalClash}</div></div><div><div class="k">Índice global</div><div class="v num">${pct(R0.totalCombos ? R0.totalClash / R0.totalCombos : 0, 1)} → ${pct(R.totalCombos ? R.totalClash / R.totalCombos : 0, 1)}</div></div></div>
     <section><div class="lab" style="margin-bottom:6px">Qué cambiaste</div>${ch.length ? ch.map(([k, t]) => `<div class="chg-item"><span class="tag">${k}</span><span>${esc(t)}</span></div>`).join('') : '<div class="hint">Nada: estás viendo los datos originales.</div>'}</section>
@@ -1017,6 +1017,7 @@ document.addEventListener('drop', e => {
   const h = (location.hash || '').replace('#', '');
   if (PAGES[h]) ui.page = h;
   render();
+  if (RAW.programa?.nombre) document.title = 'Interferencias de horario · ' + RAW.programa.nombre;
   const meta = RAW.metadatos || {};
   const pie = document.getElementById('pie-datos');
   if (pie) pie.textContent = ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
