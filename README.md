@@ -14,7 +14,7 @@ Herramienta **no oficial** de la representación estudiantil para examinar la ma
 | Mapa de calor | Concentración de grupos programados por franja y día; no mide matrícula ni ocupación de aulas |
 | Prerrequisitos | Malla por semestres, relaciones entre asignaturas, tipologías y comprobación de créditos mínimos |
 
-## Filtros de componentes (v0.4.1)
+## Filtros de componentes (v0.4.3)
 
 En la cabecera de las vistas **Inicio**, **Interferencias**, **Asignaturas** y **Mapa de calor** hay tres botones independientes: **Disciplinar**, **Fundamentación** y **Nivelación**. Pueden mantenerse activos simultáneamente, desactivarse individualmente o dejarse los tres apagados. Por defecto están activos todos.
 
@@ -25,7 +25,7 @@ En la cabecera de las vistas **Inicio**, **Interferencias**, **Asignaturas** y *
 - **Libre Elección** se mantiene como orientación en la malla, sin botón de análisis. **Inglés I–IV se clasifica como Nivelación**, según el catálogo aportado, y se representa con ese botón cuando existan grupos incorporados al análisis.
 - Al incorporar grupos reales de asignaturas de un componente, sus cruces aparecerán automáticamente al marcarlo; no hay que cambiar los cálculos.
 
-La base actual tiene 15 asignaturas disciplinares y una de fundamentación incorporadas al análisis, **ninguna con grupos registrados en Nivelación**. Los botones no inventan horarios ausentes.
+El escenario inicial incluye asignaturas con horarios de los tres componentes. Las asignaturas sin grupos en la oferta siguen sin crear choques; los filtros no inventan bloques horarios.
 
 Para verificar los filtros ejecutar `node tests/filtros.js`, además de `node tests/verificar.js`.
 
@@ -82,9 +82,13 @@ La herramienta tiene tres fuentes diferentes, **sin asumir que una contiene todo
 
 La clase `FuentesAcademicas` permite consultar por código y recuperar la malla, el catálogo y la oferta **sin exigir que existan las tres coincidencias**. Devuelve `null` o colecciones vacías cuando no haya registro: no completa datos con suposiciones ni produce alertas por falta de cobertura.
 
-Los grupos de la oferta permanecen agrupados según su **actividad original**. No se emparejan automáticamente magistrales, laboratorios y talleres, ya que la fuente no siempre permite establecer esas relaciones. No se confunde `cuposDisponibles: 0` con un grupo ausente, ni se interpreta como capacidad total. Un grupo sin horarios explícitos se conserva con `horarios: []`.
+Los grupos permanecen agrupados por su **actividad original** en `js/oferta-fuente.js`. Para los horarios activados en Fundamentación y Nivelación, las distintas actividades de un mismo identificador de grupo se consolidan; no se emparejan identificadores diferentes. No se confunde `cuposDisponibles: 0` con un grupo ausente, ni se interpreta como capacidad total. Un grupo sin horarios explícitos se conserva con `horarios: []`.
 
-**La aplicación pública conserva temporalmente el escenario de horarios que ya estaba verificado y en uso.** Incorporar las dos fuentes amplias al repositorio no activa automáticamente todos sus grupos en el cálculo de interferencias: ese paso requiere definir cuáles actividades de una asignatura forman un grupo matriculable. Así evitamos presentar resultados espurios por uniones inferidas.
+**La aplicación utiliza los horarios disponibles de Fundamentación y Nivelación en los informes y en el mapa de calor**, además de los grupos disciplinares que ya estaban incorporados. Las optativas genéricas no se asocian por conjetura a una asignatura concreta.
+
+Para cursos de Fundamentación con varias actividades, se agrupan bloques únicamente cuando **el identificador de grupo es exactamente el mismo en las distintas actividades** de la oferta. Así, un grupo puede tener teoría, taller y laboratorio en su horario sin unir arbitrariamente grupos distintos. La incorporación no es una reconstrucción completa de la oferta disciplinar: los grupos nuevos de ese componente se conservan todavía en la fuente de referencia hasta comprobar sus relaciones.
+
+Al recuperar escenarios anteriores se añaden una sola vez las asignaturas y grupos que no existían en esa versión. La migración **no reincorpora grupos antiguos eliminados ni modifica bloques que el estudiante haya editado**. Si se desea volver completamente a la oferta de referencia, puede usarse Restablecer.
 
 Los ficheros de referencia no se cargan automáticamente al abrir `index.html`, para mantener ligero el sitio estático. Están disponibles para futuros importadores y pantallas de consulta. Para inspeccionarlos localmente, pueden evaluarse junto con `js/fuentes.js`.
 
@@ -96,7 +100,7 @@ Los ficheros de referencia no se cargan automáticamente al abrir `index.html`, 
 - La aplicación solo conserva las comprobaciones de consistencia que sí son calculables con la malla disponible.
 - Los cambios al escenario siguen siendo locales; las fuentes no reemplazan las decisiones del usuario.
 
-Ejecutar `node tests/fuentes.js` para verificar estas reglas sin depender de cifras universales.
+Ejecutar `node tests/fuentes.js` para verificar la integridad de las fuentes y `node tests/oferta-activa.js` para verificar que los horarios de Fundamentación y Nivelación se incorporan sin romper escenarios.
 
 ## Escenarios personales
 
@@ -121,6 +125,7 @@ js/app.js           Cálculos de interferencias, escenarios, navegación e inter
 tests/verificar.js  Pruebas de cálculo con datos variables
 tests/filtros.js    Pruebas de selección de componentes
 tests/fuentes.js    Pruebas de tres fuentes y ausencia de datos
+tests/oferta-activa.js Pruebas de incorporación B/N, bloques y migración local
 ```
 
 Para uso local, clonar este repositorio y abrir `index.html`. Para ejecutar las pruebas, usar `node tests/verificar.js` (Node.js instalado).
