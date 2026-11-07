@@ -1,23 +1,24 @@
 'use strict';
-// Pruebas independientes de los números vigentes del plan: node tests/verificar.js
+// Pruebas del modelo de dominio; no dependen de totales fijos de Mecatrónica.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 const data = fs.readFileSync(path.join(root, 'js/datos.js'), 'utf8');
+const modelo = fs.readFileSync(path.join(root, 'js/modelo.js'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
 const core = app.slice(0, app.indexOf('/* ===== APLICACIÓN'));
-const helpers = app.slice(app.indexOf('function compName(id)'), app.indexOf('const norm ='));
+const helpers = app.slice(app.indexOf('const planActual'), app.indexOf('const norm ='));
 const migration = app.match(/function fixMalla\(s\) \{[\s\S]*?\n\}/)?.[0];
 assert(core.includes('function compute(S)'));
-assert(helpers.includes('function creditStatus(m, r)'));
+assert(helpers.includes('const creditStatus ='));
 assert(migration);
 
 const api = new Function(
-  data + '\n' + core +
-  '\nlet S=fromRaw(RAW); const esc=x=>String(x);\n' +
+  modelo + '\n' + data + '\n' + core +
+  '\nlet S = fromRaw(RAW); const esc = x => String(x);\n' +
   helpers + '\n' + migration +
-  '\nreturn { RAW, fromRaw, compute, clone, overlap, maxSemester, fixMalla, creditRuleFor, creditStatus, setState: x => S=x };'
+  '\nreturn { RAW, fromRaw, compute, clone, overlap, maxSemester, fixMalla, creditRuleFor, creditStatus, PlanCurricular, CalendarioAcademico, setState: x => S=x };'
 )();
 
 function verificar(nombre, fn) {
@@ -41,17 +42,16 @@ verificar('Todos los componentes y requisitos provienen de los datos', () => {
 });
 
 verificar('Los resultados horarios no dependen de las tipologías', () => {
-  const base = api.fromRaw(api.RAW);
-  const modificado = api.clone(base);
+  const base = api.fromRaw(api.RAW), modificado = api.clone(base);
   modificado.malla.forEach(m => { m.comp = 'otro'; m.car = 'otro'; });
-  const metricas = s => {
-    const r = api.compute(s);
+  const metricas = S => {
+    const r = api.compute(S);
     return [r.totalPairs, r.totalClash, r.totalCombos, r.pairs.map(p => [p.key,p.clash,p.total])];
   };
   assert.deepEqual(metricas(base), metricas(modificado));
 });
 
-verificar('Los requisitos se calculan usando los valores de la malla cargada', () => {
+verificar('Las reglas cuentan los componentes de los datos cargados', () => {
   const S = api.fromRaw(api.RAW);
   api.setState(S);
   for (const r of S.reqCred) {
@@ -64,61 +64,100 @@ verificar('Los requisitos se calculan usando los valores de la malla cargada', (
   }
 });
 
-verificar('Cambiar créditos, semestres y componentes no requiere cambiar el algoritmo', () => {
+verificar('Otra malla con valores distintos funciona sin cambiar el modelo', () => {
   const D = {
     malla: [
-      ['Fundamento',1,'',2,'F','obl'],
-      ['Especialidad',2,'',5,'E','obl'],
-      ['Proyecto',3,'',2,'E','obl']
+      ['Fundamento', 1, '', 2, 'F', 'obl'],
+      ['Especialidad', 2, '', 5, 'E', 'obl'],
+      ['Proyecto', 3, '', 2, 'E', 'obl']
     ],
-    componentes: [['F','Fundamento'],['E','Especialidad']],
+    componentes: [['F','Fundamento',true],['E','Especialidad',true]],
     caracteres: [['obl','Obligatoria']],
     reqCred: [['Proyecto',7,['E']]],
-    asg: [], pre: [], gr: [], bl: []
+    asg: [], pre: [], gr: [], bl: [],
+    opciones: { distanciasIniciales:[0], excluirIndirectos:false }
   };
-  const S = api.fromRaw(D); api.setState(S);
-  const m = S.malla.find(x => x.n === 'Proyecto'), r = S.reqCred[0];
-  assert.equal(api.creditStatus(m,r).total,5);
-  assert.equal(api.creditStatus(m,r).low,true);
-  S.malla[1].cr = 8;
-  assert.equal(api.creditStatus(m,r).total,8);
-  assert.equal(api.creditStatus(m,r).low,false);
-  S.malla[1].s = 3;
-  assert.equal(api.creditStatus(m,r).total,0);
+  const S = api.fromRaw(D);
+  api.setState(S);
+  const plan = new api.PlanCurricular(S);
+  const m = plan.asignatura('Proyecto'), r = plan.requisitoCreditos('Proyecto');
+  assert.equal(plan.evaluarCreditos(m,r).total,5);
+  assert.equal(plan.evaluarCreditos(m,r).low,true);
+  plan.ajustarCreditos('Especialidad',3);
+  assert.equal(plan.evaluarCreditos(m,r).total,8);
+  assert.equal(plan.evaluarCreditos(m,r).low,false);
+  plan.moverSemestre('Especialidad',3);
+  assert.equal(plan.evaluarCreditos(m,r).total,0);
   r.componentes = ['F','E'];
-  assert.equal(api.creditStatus(m,r).total,2);
+  assert.equal(plan.evaluarCreditos(m,r).total,2);
 });
 
-verificar('El número de semestres se calcula desde la malla', () => {
+verificar('El número de semestres se toma de la malla', () => {
   const S = api.fromRaw(api.RAW);
   const actual = Math.max(1, ...S.malla.map(m => m.s));
   assert.equal(api.maxSemester(S), actual);
-  S.malla.push({ n: 'Asignatura ilustrativa', s: actual + 2, nota: '', cr: 2, comp: S.tipos.componentes[0].id, car: '' });
-  assert.equal(api.maxSemester(S), actual + 2);
+  S.malla.push({ n:'Otra',s:actual+2,nota:'',cr:2,comp:S.tipos.componentes[0].id,car:'' });
+  assert.equal(api.maxSemester(S),actual+2);
 });
 
-verificar('Los escenarios guardados previamente siguen cargando', () => {
+verificar('Créditos del plan vs adicionales: componente, nunca nombre', () => {
+  const S = api.fromRaw(api.RAW), plan = new api.PlanCurricular(S);
+  const ex = S.malla.find(a => plan.componente(a.comp)?.enPlan === false);
+  assert(ex);
+  const antes = plan.resumenSemestre(ex.s);
+  ex.n = 'Nombre que no contiene la palabra Inglés';
+  assert.equal(plan.resumenSemestre(ex.s).adicionales,antes.adicionales);
+  plan.componente(ex.comp).enPlan = true;
+  assert.equal(plan.resumenSemestre(ex.s).adicionales,antes.adicionales - S.malla.filter(a => a.s === ex.s && a.comp===ex.comp).reduce((t,a)=>t+a.cr,0));
+});
+
+verificar('Objeto curricular edita datos y comprueba catálogos', () => {
+  const S = api.fromRaw(api.RAW), plan = new api.PlanCurricular(S);
+  const materia = S.malla[0], anterior = materia.cr;
+  assert.equal(plan.ajustarCreditos(materia.n,1).cr,anterior+1);
+  assert.equal(plan.ajustarCreditos(materia.n,-1).cr,anterior);
+  assert.equal(plan.cambiarComponente(materia.n,S.tipos.componentes[0].id).comp,S.tipos.componentes[0].id);
+  assert.equal(plan.cambiarComponente(materia.n,'NO_EXISTE'),null);
+});
+
+verificar('Calendario con días y horas distintos', () => {
+  const calendario = new api.CalendarioAcademico({
+    dias:[['A','Día Alfa','Alf'],['B','Día Beta','Bet']],
+    inicio:8, fin:12
+  });
+  assert.deepEqual(calendario.ids(),['A','B']);
+  assert.deepEqual(calendario.horas(),[8,9,10,11]);
+  assert.equal(calendario.nombre('B'),'Día Beta');
+});
+
+verificar('La eliminación voluntaria de prerrequisitos persiste', () => {
+  const S = api.fixMalla(api.fromRaw(api.RAW));
+  const antiguo = S.pre[0];
+  S.pre = S.pre.filter(p => p !== antiguo);
+  const recuperado = api.fixMalla(api.clone(S));
+  assert.equal(recuperado.pre.some(p => p.r===antiguo.r && p.t===antiguo.t),false);
+});
+
+verificar('Los escenarios antiguos se recuperan', () => {
   const S = api.fromRaw(api.RAW);
-  const cambiado = S.malla[0], semestre = cambiado.s + 1;
-  cambiado.s = semestre;
+  const semestre = S.malla[0].s + 1;
+  S.malla[0].s = semestre;
   delete S.tipos; delete S.reqCred;
   S.malla.forEach(m => { delete m.comp; delete m.car; });
-  const guardado = JSON.stringify({ S });
-  const recuperado = api.fixMalla(JSON.parse(guardado).S);
+  const recuperado = api.fixMalla(JSON.parse(JSON.stringify({ S })).S);
   assert.equal(recuperado.malla[0].s,semestre);
   assert(recuperado.malla[0].comp);
   assert(recuperado.tipos.componentes.length);
-  assert.equal(recuperado.reqCred.length, api.RAW.reqCred.length);
+  assert.equal(recuperado.reqCred.length,api.RAW.reqCred.length);
 });
 
-verificar('Se respeta el carácter «No aplica»', () => {
+verificar('Se conserva carácter «No aplica»', () => {
   const S = api.fromRaw(api.RAW);
   S.malla[0].car = '';
-  const recuperado = api.fixMalla(api.clone(S));
-  assert.equal(recuperado.malla[0].car,'');
+  assert.equal(api.fixMalla(api.clone(S)).malla[0].car,'');
 });
 
-verificar('Los grupos sin horarios no generan conflictos', () => {
+verificar('Grupos sin horarios no generan conflictos', () => {
   const S = api.fromRaw(api.RAW);
   S.bloques = [];
   assert.equal(api.compute(S).totalClash,0);
