@@ -3,13 +3,13 @@
 > **Estado:** criterio arquitectónico adoptado para el desarrollo posterior.  
 > **Fecha:** 7 de noviembre de 2026.  
 > **Alcance:** sistema web de planeación curricular de Mecatrónica, extensible a otros programas.  
-> **Arquitectura normativa:** la descrita en este documento. **La implementación v0.4.3 aún no cumple íntegramente esta arquitectura.**
+> **Arquitectura normativa:** la descrita en este documento. **La migración v0.5.0 adopta la entrada única, el escenario derivado y los cambios personales; conserva una proyección interna transitoria para la interfaz existente.**
 
 ## 0. Regla principal, no negociable
 
 **El sistema recibe una sola entrada académica estandarizada: `FuentesAcadémicas`.**
 
-El artefacto de intercambio se denomina en este documento **`datos/academico.json`** (nombre de ruta objetivo, todavía no implementada). Contiene todos los datos normalizados que la aplicación puede utilizar: asignaturas, planes y mallas, requisitos, oferta y relaciones entre actividades, además de la configuración necesaria.
+El artefacto de intercambio se denomina en este documento **`datos/academico.json`** (archivo normalizado implementado desde la migración v0.5.0). Contiene todos los datos normalizados que la aplicación puede utilizar: asignaturas, planes y mallas, requisitos, oferta y relaciones entre actividades, además de la configuración necesaria.
 
 **Fuera del sistema** quedan por completo la recopilación, lectura, extracción, OCR, transcripción, limpieza, comparación, corrección y **conversión** del catálogo institucional, de la oferta de grupos y de la malla curricular. No constituyen capas ni módulos de la aplicación. Quien produzca el JSON decide cómo convertir las fuentes; la aplicación **no conoce ni necesita conocer** ese proceso.
 
@@ -106,16 +106,26 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
       "caracter": "obligatoria"
     }
   ],
-  "requisitos": [],
+  "requisitos": {
+    "prerrequisitos": [],
+    "minimosCreditos": []
+  },
   "oferta": [],
   "agrupaciones": [],
   "configuracion": {
     "calendario": {
-      "dias": ["L", "M", "X", "J", "V", "S"],
+      "dias": [
+        { "id": "L", "nombre": "Lunes", "corto": "Lun" },
+        { "id": "M", "nombre": "Martes", "corto": "Mar" }
+      ],
       "horaInicio": 6,
       "horaFin": 21
     },
-    "componentesComparables": ["B", "C", "N"]
+    "opciones": {
+      "componentesComparables": ["B", "C", "N"],
+      "distanciasDisponibles": [0, 1, 2],
+      "distanciasIniciales": [0, 1]
+    }
   },
   "procedencia": {
     "catalogo": null,
@@ -202,29 +212,32 @@ La revisión técnica debe comprobar la **fidelidad al contrato**, no exigir dat
 
 Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora final anterior a la inicial) se distinguen de **vacíos académicos legítimos**. No convertir vacíos de las fuentes en fallos de la interfaz.
 
-## 5. Arquitectura actual versus arquitectura normativa
+## 5. Migración de v0.4.3 a v0.5.0 — implementación de ARQ-01
 
-**Estado actual comprobado (v0.4.3):**
-- `index.html` carga `js/datos.js`, `js/modelo.js` y `js/app.js`.
-- `js/datos.js` contiene `RAW.asg`, `RAW.gr`, `RAW.bl`, malla y reglas ya preparadas.
-- `js/catalogo.js` y `js/oferta-fuente.js` están almacenados como referencias separadas; no son la entrada única de la página.
-- `js/fuentes.js` define un objeto de consulta para esas tres estructuras.
-- `localStorage` guarda una copia completa del escenario, con migraciones históricas particulares.
+La v0.4.3 todavía utilizaba `js/datos.js` como entrada principal de ejecución, con grupos preparados manualmente, y guardaba copias completas del escenario.
 
-**Esto es deuda de transición, NO una excepción permitida al diagrama rector.** No deben interpretarse los archivos históricos como las interfaces que los futuros módulos están autorizados a consumir. No se retirarán durante la publicación de este documento: el cambio de arquitectura requiere una intervención posterior y pruebas de compatibilidad.
+**En la rama de migración v0.5.0:**
+- **Entrada única:** `index.html` ya no carga `js/datos.js`, `js/catalogo.js` ni `js/oferta-fuente.js`. `js/iniciar.js` solicita exclusivamente `datos/academico.json`.
+- **Modelo/escenario:** `js/entrada.js` interpreta el contrato y genera el escenario base. El motor y la interfaz heredados continúan usando temporalmente una proyección de ese contrato llamada `RAW`; **esta proyección no es otra entrada ni lee otras fuentes**.
+- **Personalización:** `js/escenarios.js` conserva las diferencias del usuario respecto a la referencia actual y reconstruye el escenario efectivo. Puede reconocer archivos antiguos `{S}` usando las identidades históricas incluidas en la **misma entrada académica**.
+- **Análisis y vistas:** el cálculo se ejecuta sobre el escenario efectivo y los indicadores, paneles analíticos y exportaciones toman la selección de componentes. Las páginas de edición conservan los datos completos.
+- **Pruebas:** verificaciones de integridad del contrato, cobertura de agrupaciones, igualdad exacta de horarios, escenarios viejos y nuevos y siete vistas. No se inventan relaciones entre actividades incompletas.
 
-### Migración posterior, no iniciada por este documento
+Las estructuras `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fuentes.js` se conservan **únicamente como archivos históricos fuera de la ruta de ejecución**. No son entradas alternativas. Su conversión ya ocurrió **fuera del sistema**: no hay módulo interno para interpretar TXT, HTML, Excel o PDF.
 
-1. Cerrar los detalles técnicos del **único contrato de entrada** `FuentesAcadémicas`.
-2. Producir externamente un JSON normalizado que represente los datos vigentes.
-3. Contrastar la entrada normalizada con los registros que realmente se conocen, sin completar vacíos.
-4. Sustituir en el lector de la aplicación la dependencia de `RAW` por la lectura del archivo normalizado.
-5. Construir el estado base de forma genérica desde esa entrada.
-6. Migrar escenarios personales, conservando modificaciones deliberadas.
-7. Asegurar que todos los módulos y pruebas de producción utilicen **una sola vía de datos**; retirar las rutas redundantes.
-8. Publicar solo tras verificar consistencia funcional y compatibilidad.
+**Alcance restante de la transición:** la interfaz y las funciones existentes aún reciben la proyección `RAW` en lugar de operar sobre objetos del dominio de extremo a extremo. Esto es deuda de implementación localizada y no autoriza rutas paralelas de información. Tampoco se han definido agrupaciones no verificadas para cursos con varias actividades; sus registros permanecen disponibles en `oferta`.
 
-**Importante:** una conversión de PDF/TXT/HTML/Excel a JSON, si se necesita, se ejecuta **fuera de este sistema**. No es una etapa del sistema web, no se muestra en su arquitectura interna y no se implementa como requisito de funcionamiento de la aplicación.
+**Verificación y puesta en producción:** la migración debe probarse antes de integrarse a `main`. El comportamiento actual publicado permanece hasta esa integración. El contrato no obliga a completar datos faltantes ni a generar alertas por su ausencia.
+
+### Orden invariable de implementación
+
+1. Entrada única normalizada, producida fuera del sistema.
+2. Lector y escenario base generados desde esa entrada.
+3. Diferencias personales y compatibilidad de escenarios anteriores.
+4. Análisis, filtros y presentación coherentes.
+5. Pruebas técnicas, regresión y publicación controlada.
+
+**Ninguna fase habilita a reintroducir una segunda entrada académica.**
 
 ## 6. Aplicación a nuevas funciones
 
