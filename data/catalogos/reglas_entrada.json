@@ -1,0 +1,79 @@
+{
+  "_nota": "Vocabulario base de la entrada copiada del SIA. Un valor que no esté aquí NO se descarta: se conserva y se reporta como nuevo.",
+  "tipologias": {
+    "FUND. OBLIGATORIA": {
+      "categoria": "fundamentacion",
+      "optativa": false
+    },
+    "FUND. OPTATIVA": {
+      "categoria": "fundamentacion",
+      "optativa": true
+    },
+    "DISCIPLINAR OBLIGATORIA": {
+      "categoria": "disciplinar",
+      "optativa": false
+    },
+    "DISCIPLINAR OPTATIVA": {
+      "categoria": "disciplinar",
+      "optativa": true
+    },
+    "NIVELACIÓN": {
+      "categoria": "nivelacion",
+      "optativa": false
+    },
+    "TRABAJO DE GRADO": {
+      "categoria": "trabajo_de_grado",
+      "optativa": false
+    }
+  },
+  "tipos_componente": {
+    "TEORICA": "teorica",
+    "MAGISTRAL": "magistral",
+    "LABORATORIO": "laboratorio",
+    "TALLER": "taller",
+    "PRACTICA": "practica"
+  },
+  "dias": {
+    "LUNES": "L",
+    "MARTES": "M",
+    "MIÉRCOLES": "X",
+    "MIERCOLES": "X",
+    "JUEVES": "J",
+    "VIERNES": "V",
+    "SÁBADO": "S",
+    "SABADO": "S"
+  },
+  "tipos_prerrequisito": {
+    "M": "obligatorio: no puede matricular sin superarlo",
+    "O": "puede matricular, pero no ser calificado sin superarlo",
+    "E": "lo matricula simultáneamente o ya lo matriculó alguna vez",
+    "A": "anulación por incompatibilidad"
+  },
+  "tipos_correquisito": {
+    "E": "excluyentes",
+    "I": "incluyentes",
+    "D": "diferido",
+    "A": "anulación por incompatibilidad (el SIA la lista bajo Correquisitos)"
+  },
+  "programas_especiales": [
+    {
+      "id": "PEAMA",
+      "reconocer_en": [
+        "PEAMA"
+      ]
+    },
+    {
+      "id": "PAET",
+      "reconocer_en": [
+        "PAET"
+      ]
+    }
+  ],
+  "prefijos_grupo_especial": {
+    "SUMA": "Sumapaz",
+    "TUMA": "Tumaco",
+    "ORIN": "Orinoquia",
+    "AMAZ": "Amazonia",
+    "CARI": "Caribe"
+  }
+}
