@@ -360,8 +360,8 @@ function changes() {
 }
 function pairDeltas() {
   const out = [];
-  R.pairs.forEach(p => {
-    const q = R0.pairs.find(x => x.key === p.key);
+  RV.pairs.forEach(p => {
+    const q = RV0.pairs.find(x => x.key === p.key);
     const before = q && q.enRango ? q : null, now = p.enRango ? p : null;
     const bi = before ? before.idx : 0, ni = now ? now.idx : 0;
     const bc = before ? before.clash : 0, nc = now ? now.clash : 0;
@@ -547,6 +547,7 @@ function miniWeek(bA, bB, ov) {
   return `<div class="wk" style="--numero-dias:${DAYS.length}"><div></div>${DAYS.map(d => `<div class="dh">${DAY_SHORT[d]}</div>`).join('')}<div>${Array.from({ length: rows }, (_, i) => `<div class="hr" style="height:${RH}px">${lo + i}</div>`).join('')}</div>${DAYS.map(col).join('')}</div>`;
 }
 function drawerPair(dw) {
+  const R = RV;
   const p = R.pairs.find(x => x.key === dw.key);
   if (!p) return null;
   const GA = R.allGroupsOf[p.A], GB = R.allGroupsOf[p.B];
@@ -593,9 +594,11 @@ function drawerPair(dw) {
 }
 function drawerCambios() {
   const ch = changes(), pd = pairDeltas();
+  const reporte = ['inicio','inter','asig','heat'].includes(ui.page) ? [RV,RV0] : [R,R0];
+  const [resultado, anterior] = reporte;
   return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. datos de referencia</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
-    <div class="kv"><div><div class="k">Pares con choque</div><div class="v num">${R0.totalPairs} → ${R.totalPairs}</div></div><div><div class="k">Parejas en choque</div><div class="v num">${R0.totalClash} → ${R.totalClash}</div></div><div><div class="k">Índice global</div><div class="v num">${pct(R0.totalCombos ? R0.totalClash / R0.totalCombos : 0, 1)} → ${pct(R.totalCombos ? R.totalClash / R.totalCombos : 0, 1)}</div></div></div>
+    <div class="kv"><div><div class="k">Pares con choque</div><div class="v num">${anterior.totalPairs} → ${resultado.totalPairs}</div></div><div><div class="k">Parejas en choque</div><div class="v num">${anterior.totalClash} → ${resultado.totalClash}</div></div><div><div class="k">Índice global</div><div class="v num">${pct(anterior.totalCombos ? anterior.totalClash / anterior.totalCombos : 0, 1)} → ${pct(resultado.totalCombos ? resultado.totalClash / resultado.totalCombos : 0, 1)}</div></div></div>
     <section><div class="lab" style="margin-bottom:6px">Qué cambiaste</div>${ch.length ? ch.map(([k, t]) => `<div class="chg-item"><span class="tag">${k}</span><span>${esc(t)}</span></div>`).join('') : '<div class="hint">Nada: estás viendo los datos originales.</div>'}</section>
     <section><div class="lab" style="margin-bottom:6px">Pares afectados</div>${pd.length ? pd.slice(0, 40).map(x => { const up = x.ni > x.bi + 1e-9, dn = x.ni < x.bi - 1e-9; return `<button class="prt" style="grid-template-columns:minmax(0,1fr) auto" data-act="pair-open" data-k="${esc(x.p.key)}"><span>${esc(x.p.A)} <span class="faint">⇄</span> ${esc(x.p.B)}</span><span class="num"><span class="faint">${pct(x.bi)}</span> → <b class="delta ${up ? 'up' : dn ? 'down' : 'zero'}">${pct(x.ni)}</b></span></button>`; }).join('') : '<div class="hint">Ningún par cambió todavía.</div>'}</section>
     <div class="row"><button class="btn danger" data-act="reset">${resetLabel(true)}</button></div>
