@@ -30,8 +30,8 @@ class PlanCurricular {
     const contables = new Set(regla.componentes || []);
     const desconocido = contables.size === 0 ||
       [...contables].some(c => !catalogo.has(c)) ||
-      previas.some(a => !catalogo.has(a.comp));
-    const total = previas.filter(a => contables.has(a.comp))
+      previas.some(a => !catalogo.has(a.comp) || (contables.has(a.comp) && !Number.isFinite(a.cr)));
+    const total = previas.filter(a => contables.has(a.comp) && Number.isFinite(a.cr))
       .reduce((sum, a) => sum + a.cr, 0);
     return { total, unknown: desconocido, low: !desconocido && total < regla.min };
   }
@@ -39,10 +39,10 @@ class PlanCurricular {
   /** Diferencia créditos del plan de otros créditos según metadatos del componente. */
   resumenSemestre(semestre) {
     const asignaturas = this.estado.malla.filter(a => a.s === semestre);
-    const total = asignaturas.reduce((sum, a) => sum + a.cr, 0);
+    const total = asignaturas.reduce((sum, a) => sum + (Number.isFinite(a.cr) ? a.cr : 0), 0);
     const adicionales = asignaturas.filter(a => this.componente(a.comp)?.enPlan === false)
-      .reduce((sum, a) => sum + a.cr, 0);
-    return { total, plan: total - adicionales, adicionales, n: asignaturas.length };
+      .reduce((sum, a) => sum + (Number.isFinite(a.cr) ? a.cr : 0), 0);
+    return { total, plan: total - adicionales, adicionales, n: asignaturas.length, incompleto: asignaturas.some(a => !Number.isFinite(a.cr)) };
   }
 
   cambiarComponente(nombre, id) {
@@ -62,7 +62,7 @@ class PlanCurricular {
   ajustarCreditos(nombre, diferencia) {
     const a = this.asignatura(nombre);
     if (!a) return null;
-    a.cr = Math.max(0, a.cr + diferencia);
+    a.cr = Math.max(0, (Number.isFinite(a.cr) ? a.cr : 0) + diferencia);
     return a;
   }
 
