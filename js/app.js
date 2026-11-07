@@ -13,11 +13,12 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
 function fromRaw(D) {
   return {
     params: { dists: [0, 1], indirect: 1 },
-    malla: D.malla.map(([n, s, nota, cr]) => ({ n, s, nota: nota || '', cr: cr == null ? 3 : cr })),
+    malla: D.malla.map(([n, s, nota, cr, comp, car]) => ({ n, s, nota: nota || '', cr: cr == null ? 3 : cr, comp: comp || '', car: car || '' })),
     pre: D.pre.map(([r, t, m]) => ({ r, t, m: m || '' })),
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2]) => ({ a, g, c1, c2: c2 || '', on: true })),
     bloques: D.bl.map(([a, c, d, s, e, o], i) => ({ id: i + 1, a, c, d, s, e, o: o || '' })),
+    reqCred: (D.reqCred || []).map(([n, min, scope]) => ({ n, min, scope })),
   };
 }
 
@@ -161,7 +162,8 @@ try {
 /* Completa escenarios guardados con asignaturas nuevas de la malla (Inglés, libre elección, proyecto, trabajo de grado…). */
 function fixMalla(s) {
   const base = fromRaw(RAW);
-  base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; } });
+  if (!Array.isArray(s.reqCred)) s.reqCred = clone(base.reqCred);
+  base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; if (!x.comp) x.comp = m.comp; if (!x.car) x.car = m.car; } });
   if (!s.mig3) { s.mig3 = 1; s.malla = s.malla.filter(m => !['Libre elección (X-5)', 'Libre elección (X-6)'].includes(m.n)); }
   if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
   if (!s.mig1) { s.mig1 = 1; s.pre = s.pre.filter(p => !(p.r === 'Proyecto Aplicado de Ingeniería' && p.t === 'Trabajo de Grado')); }
@@ -189,6 +191,28 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const pct = (x, d = 0) => (x * 100).toFixed(d) + '%';
+const COMPONENT_LABELS = { B: 'Fundamentación', C: 'Disciplinar', L: 'Libre elección', N: 'Nivelación' };
+const CHARACTER_LABELS = { obl: 'Obligatoria', opt: 'Optativa' };
+const compName = c => COMPONENT_LABELS[c] || 'Sin clasificar';
+const carName = c => CHARACTER_LABELS[c] || '';
+function creditRuleFor(n) { return (S.reqCred || []).find(r => r.n === n); }
+/* Comprueba consistencia curricular; no equivale a créditos aprobados por una persona. */
+function creditStatus(m, r) {
+  const prev = S.malla.filter(x => x.s < m.s);
+  const valid = new Set(['B', 'C', 'L', 'N']);
+  const unknown = prev.some(x => !valid.has(x.comp));
+  const total = prev.filter(x => valid.has(x.comp) && (r.scope === 'PLAN' ? x.comp !== 'N' : x.comp === r.scope)).reduce((sum, x) => sum + x.cr, 0);
+  return { total, unknown, low: !unknown && total < r.min };
+}
+function creditRequirementNote(m) {
+  const r = creditRuleFor(m.n);
+  if (!r) return m.nota ? '<div class="note">' + esc(m.nota) + '.</div>' : '';
+  const q = creditStatus(m, r);
+  const which = r.scope === 'PLAN' ? 'del plan (sin nivelación)' : 'del componente ' + compName(r.scope).toLowerCase();
+  const statement = q.unknown ? 'No se comprueba con tipologías sin clasificar.' : (q.low ? 'Inconsistencia en la distribución por semestres: faltan ' + (r.min - q.total) + ' créditos.' : 'No se detecta inconsistencia en la distribución por semestres.');
+  const context = r.scope === 'C' ? 'Criterio de análisis específico para TPI: contar solo créditos disciplinares anteriores.' : 'Se consideran los créditos del programa de semestres anteriores, sin nivelación.';
+  return '<div class="note ' + (q.low ? 'heat' : '') + '"><b>Requisito mínimo:</b> ' + r.min + ' créditos ' + esc(which) + '.<div style="margin-top:5px">Créditos anteriores: <b>' + q.total + '</b>. ' + esc(statement) + '</div><small style="display:block;margin-top:6px">' + esc(context) + ' Esta comprobación no acredita materias aprobadas por un estudiante.</small></div>';
+}
 const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const fmtB = b => `${DAY_SHORT[b.d]} ${b.s}–${b.e}`;
 const heatBg = t => `color-mix(in srgb,var(--heat) ${Math.round(Math.min(1, Math.sqrt(t)) * 92)}%,var(--surface2))`;
@@ -228,7 +252,7 @@ function changes() {
   const out = [];
   if (S.params.dists.join() !== S0.params.dists.join()) out.push(['Parámetro', `Distancia entre semestres: ${distNames(S0.params.dists)} → ${distNames(S.params.dists)}`]);
   if (S.params.indirect !== S0.params.indirect) out.push(['Parámetro', `Excluir prerrequisitos indirectos: ${S0.params.indirect ? 'sí' : 'no'} → ${S.params.indirect ? 'sí' : 'no'}`]);
-  S.malla.forEach(m => { const o = S0.malla.find(x => x.n === m.n); if (!o) out.push(['Malla', `Asignatura nueva: ${m.n} (sem ${m.s})`]); else { if (o.s !== m.s) out.push(['Semestre', `${m.n}: semestre ${o.s} → ${m.s}`]); if (o.cr !== m.cr) out.push(['Créditos', `${m.n}: ${o.cr} → ${m.cr} créditos`]); } });
+  S.malla.forEach(m => { const o = S0.malla.find(x => x.n === m.n); if (!o) out.push(['Malla', `Asignatura nueva: ${m.n} (sem ${m.s})`]); else { if (o.s !== m.s) out.push(['Semestre', `${m.n}: semestre ${o.s} → ${m.s}`]); if (o.cr !== m.cr) out.push(['Créditos', `${m.n}: ${o.cr} → ${m.cr} créditos`]); if (o.comp !== m.comp) out.push(['Tipología', `${m.n}: ${compName(o.comp)} → ${compName(m.comp)}`]); if (o.car !== m.car) out.push(['Tipología', `${m.n}: ${carName(o.car) || '—'} → ${carName(m.car) || '—'}`]); } });
   const pk = p => p.r + ' → ' + p.t;
   const a0 = new Set(S0.pre.map(pk)), a1 = new Set(S.pre.map(pk));
   a1.forEach(k => { if (!a0.has(k)) out.push(['Prerrequisito', `Agregado: ${k}`]); });
@@ -719,10 +743,10 @@ function pageMalla() {
   const cols = Array.from({ length: maxSem }, (_, i) => i + 1).map(s => {
     const cs = S.malla.filter(m => m.s === s && (!M.soloHor || S.asg.includes(m.n)));
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s)}</h4>${cs.map(m => {
-      const sc = R.st[m.n];
+      const sc = R.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
       let cls = sc ? '' : 'nosched';
       if (L) cls += m.n === M.sel ? ' sel' : L.up.has(m.n) ? ' up' : L.down.has(m.n) ? ' down' : ' dim';
-      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr} cr</span></span>${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
+      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car ? ' · ' + esc(carName(m.car)) : ''}</span></small>${check && check.low ? `<small><span class="tag heat">Faltan ${req.min - check.total} cr. previos</span></small>` : ''}${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${!req && m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
     }).join('')}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
@@ -743,9 +767,11 @@ function mallaSide(L) {
   return `<aside class="card sidecard">
     <div><span class="eyebrow">Asignatura</span><h2 style="font:650 18px/1.25 var(--serif);margin-top:2px">${esc(n)}</h2></div>
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${Object.entries(COMPONENT_LABELS).map(([k,v]) => `<option value="${k}" ${m.comp === k ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'],['obl','Obligatoria'],['opt','Optativa']].map(([k,v]) => `<option value="${k}" ${m.car === k ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= 10 ? 'disabled' : ''}>+</button></span></div>
     ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
-    ${m.nota ? `<div class="note">${esc(m.nota)}.</div>` : ''}
+    ${creditRequirementNote(m)}
     <div><div class="lab" style="margin-bottom:6px">Requiere (directos)</div><div class="rel">${rel(dirIn, 'in', 'r')}</div>
       <select data-chg="m-addreq" aria-label="Agregar requisito" style="margin-top:6px;width:100%"><option value="">+ Agregar requisito…</option>${optsReq.map(c => `<option value="${esc(c.n)}">${esc(c.n)} (sem ${c.s})</option>`).join('')}</select>
       ${indUp.length ? `<div class="hint" style="margin-top:6px">Indirectos: ${indUp.map(esc).join(', ')}</div>` : ''}</div>
@@ -909,6 +935,8 @@ function onChange(k, el) {
       S.grupos.forEach(g => { if (g.a === A) { if (g.c1 === old) g.c1 = nv; if (g.c2 === old) g.c2 = nv; } });
       if (ui.hor.comp === old) ui.hor.comp = nv; return commit();
     }
+    case 'm-comp': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || !COMPONENT_LABELS[el.value]) return; m.comp = el.value; return commit('Componente de ' + m.n + ': ' + compName(m.comp)); }
+    case 'm-car': { const m = S.malla.find(x => x.n === ui.malla.sel); if (!m || !['', 'obl', 'opt'].includes(el.value)) return; m.car = el.value; return commit('Carácter de ' + m.n + ': ' + (carName(m.car) || 'No aplica')); }
     case 'm-addreq': if (el.value) { S.pre.push({ r: el.value, t: ui.malla.sel, m: 'agregado' }); return commit(`Agregado: ${el.value} → ${ui.malla.sel}`); } return;
     case 'm-addopen': if (el.value) { S.pre.push({ r: ui.malla.sel, t: el.value, m: 'agregado' }); return commit(`Agregado: ${ui.malla.sel} → ${el.value}`); } return;
     case 'import-file': {
