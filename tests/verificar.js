@@ -17,7 +17,7 @@ const api = new Function(
   data + '\n' + core +
   '\nlet S=fromRaw(RAW); const esc=x=>String(x);\n' +
   helpers + '\n' + migration +
-  '\nreturn { RAW, fromRaw, compute, clone, overlap, fixMalla, creditRuleFor, creditStatus, setState: x => S=x };'
+  '\nreturn { RAW, fromRaw, compute, clone, overlap, maxSemester, fixMalla, creditRuleFor, creditStatus, setState: x => S=x };'
 )();
 
 function verificar(nombre, fn) {
@@ -87,6 +87,14 @@ verificar('Cambiar créditos, semestres y componentes no requiere cambiar el alg
   assert.equal(api.creditStatus(m,r).total,0);
   r.componentes = ['F','E'];
   assert.equal(api.creditStatus(m,r).total,2);
+});
+
+verificar('El número de semestres se calcula desde la malla', () => {
+  const S = api.fromRaw(api.RAW);
+  const actual = Math.max(1, ...S.malla.map(m => m.s));
+  assert.equal(api.maxSemester(S), actual);
+  S.malla.push({ n: 'Asignatura ilustrativa', s: actual + 2, nota: '', cr: 2, comp: S.tipos.componentes[0].id, car: '' });
+  assert.equal(api.maxSemester(S), actual + 2);
 });
 
 verificar('Los escenarios guardados previamente siguen cargando', () => {
