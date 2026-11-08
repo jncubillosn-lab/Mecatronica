@@ -9,7 +9,8 @@ const datos = fs.readFileSync(path.join(root, 'js/datos.js'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
 const antesEventos = app.slice(0, app.indexOf("document.addEventListener('click'"));
 
-const codigo = modelo + '\n' + datos + '\n' + antesEventos + '\n' +
+const analisis = fs.readFileSync(path.join(root, 'js/analisis.js'), 'utf8');
+const codigo = modelo + '\n' + datos + '\n' + analisis + '\n' + antesEventos + '\n' +
   "render = () => {}; return { S, R, ui, getRV: () => RV, getRV0: () => RV0, pageInicio, pageInter, pageAsig, pageHeat, pageGrupos, pageHor, pageMalla, renderTop, changes, onAct };";
 const tester = new Function('window','document',codigo)({ innerWidth:1200 }, {});
 const { S, R, ui } = tester;
