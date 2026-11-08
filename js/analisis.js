@@ -34,11 +34,11 @@ function fromRaw(D) {
   return {
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
     malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null })),
-    pre: D.pre.map(([r, t, m]) => ({ r, t, m: m || '' })),
+    pre: D.pre.map(([r, t, m, rId, tId]) => ({ r, t, m: m || '', rId: rId || null, tId: tId || null })), // IDs del contrato, nombres solo para UI/legado
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2, ref, analizable]) => ({ a, g, c1, c2: c2 || '', on: true, ref: ref || null, analizable: analizable !== false })),
     bloques: D.bl.map(([a, c, d, s, e, o, ref, idAnterior], i) => ({ id: ref ? EntradaAcademica.idNumerico(ref) : i + 1, a, c, d, s, e, o: o || '', ref: ref || null, idAnterior: idAnterior ?? null })),
-    reqCred: (D.reqCred || []).map(([n, min, componentes]) => ({ n, min, componentes: [...componentes] })),
+    reqCred: (D.reqCred || []).map(([n, min, componentes, posicionId]) => ({ n, min, componentes: [...componentes], posicionId: posicionId || null })),
     tipos: { componentes: (D.componentes || []).map(([id, nombre, enPlan]) => ({ id, nombre, enPlan })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
   };
 }
@@ -61,14 +61,20 @@ function maxSemester(S) { return new PlanCurricular(S).maxSemestre(); }
 function closure(S) {
   const adj = new Map();
   S.malla.forEach(m => adj.set(m.n, []));
-  S.pre.forEach(p => { if (!adj.has(p.r)) adj.set(p.r, []); adj.get(p.r).push(p.t); });
+  // El contrato utiliza IDs estables; la interfaz y los escenarios antiguos
+  // todavía pueden conservar nombres. Resolver por ID evita depender del
+  // texto visible cuando existe una referencia académica inequívoca.
+  const nombresPorId = new Map(S.malla.filter(m => m.idPos).map(m => [m.idPos, m.n]));
+  const nombre = (id, antiguo) => id && nombresPorId.has(id) ? nombresPorId.get(id) : antiguo;
+  const relaciones = S.pre.map(p => ({ r: nombre(p.rId, p.r), t: nombre(p.tId, p.t) }));
+  relaciones.forEach(p => { if (!adj.has(p.r)) adj.set(p.r, []); adj.get(p.r).push(p.t); });
   const desc = new Map();
   for (const n of adj.keys()) {
     const seen = new Set(), st = [...(adj.get(n) || [])];
     while (st.length) { const x = st.pop(); if (seen.has(x)) continue; seen.add(x); (adj.get(x) || []).forEach(y => st.push(y)); }
     desc.set(n, seen);
   }
-  const direct = new Set(S.pre.map(p => p.r + '\u0001' + p.t));
+  const direct = new Set(relaciones.map(p => p.r + '\u0001' + p.t));
   return { desc, direct };
 }
 
