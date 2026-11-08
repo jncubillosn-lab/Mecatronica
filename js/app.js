@@ -165,7 +165,8 @@ const ui = {
   hor: { a: S.asg.includes(OPCIONES.asignaturaInicial) ? OPCIONES.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
   demanda: { orden:'porGrupo', semestre:'', seleccion:'', puntoActivo:'', sinDato:false, vistaEjemplo:false, metricaMalla:'porGrupo', confirmarEjemplo:false, confirmarBorrar:false },
-  malla: { sel: null, edges: 'all', soloHor: false, zoom: 1, ampliado: false },
+  malla: { sel: null, edges: 'all', soloHor: false, zoom: 1, ampliado: false,
+    libres: true, equilibrar: true, libresFijas: new Set(), ubicacionesLibres: new Map() },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
 };
 
@@ -556,12 +557,14 @@ function onAct(act, d, el, ev) {
     case 'm-zoom': return ajustarZoomMapa(ui.malla.zoom + Number(d.dx));
     case 'm-zoom-reset': return ajustarZoomMapa(1);
     case 'm-ampliar': ui.malla.ampliado = !ui.malla.ampliado; return render();
+    case 'm-libres': ui.malla.libres = !ui.malla.libres; return render();
+    case 'm-equilibrar': ui.malla.equilibrar = !ui.malla.equilibrar; return render();
     case 'm-sel': ui.malla.sel = ui.malla.sel === d.n ? null : d.n; return render();
     case 'm-edges': ui.malla.edges = d.v; return render();
     case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
-    case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
+    case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); if (m.comp === idComponenteLibre(S.tipos)) ui.malla.libresFijas.add(m.n); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
-    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
+    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; ui.malla.libresFijas.clear(); R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
     case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
@@ -690,7 +693,9 @@ document.addEventListener('drop', e => {
   } else {
     const col = e.target.closest('.mcol'); if (!col) return; e.preventDefault();
     const m = planActual().asignatura(dragData.n), ns = +col.dataset.sem; dragData = null;
-    if (!m || m.s === ns) return render();
+    if (!m) return render();
+    if (m.comp === idComponenteLibre(S.tipos)) ui.malla.libresFijas.add(m.n);
+    if (m.s === ns) { ui.malla.sel = m.n; return render(); }
     const o = m.s; planActual().moverSemestre(m.n, ns); ui.malla.sel = m.n; commit(`${m.n}: semestre ${o} → ${m.s}`);
   }
 });

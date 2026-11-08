@@ -3,7 +3,7 @@
 Aplicación web estudiantil **no oficial**, con identidad visual universitaria compartida y tema por programa, para consultar la malla curricular, examinar grupos ofertados y sus interferencias de horario, evaluar escenarios y explorar una semana mediante un mapa de calor.
 
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
-**Guía visual:** [UNI-UI-01 — identidad universitaria y temas por programa](docs/ESTILO-UNIVERSITARIO.md) · [RESP-01 — adaptabilidad y visualizaciones](docs/RESP-01.md)  
+**Guía visual:** [UNI-UI-01 — identidad universitaria y temas por programa](docs/ESTILO-UNIVERSITARIO.md) · [RESP-01 — adaptabilidad y visualizaciones](docs/RESP-01.md) · [LIB-01 — Libre elección en Prerrequisitos](docs/LIB-01.md)  
 **Documentación de referencia:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial](docs/MIGRACION-ARQ01.md) · [Guía de desarrollo](AGENTS.md)
 
 ## Arquitectura vigente — v0.5.5

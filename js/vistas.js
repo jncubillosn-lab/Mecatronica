@@ -472,38 +472,150 @@ function pageHeat() {
   </div>`;
 }
 /* ===== MALLA / PRERREQUISITOS ===== */
-function semHead(s) {
-  const c = semCred(s, S.malla.filter(m=>pasaFiltros(m) && (!ui.malla.soloHor || S.asg.includes(m.n))));
+/**
+ * Representación de Libre elección, específica de Prerrequisitos:
+ * el ID de componente proviene del plan, no de un filtro global ni de un
+ * porcentaje fijo. Nunca genera registros académicos ni modifica S.
+ */
+function idComponenteLibre(tipos) {
+  return (tipos?.componentes || []).find(c =>
+    /libre eleccion/i.test(String(c.nombre || '').normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
+  )?.id || null;
+}
+function mallaVisible(m) {
+  if (!m) return false;
+  const libre = idComponenteLibre(S.tipos);
+  const unidad = !ui.unidad || (ui.unidad === SIN_UNIDAD ? !m.unidad : m.unidad === ui.unidad);
+  if (libre && m.comp === libre) return !!ui.malla.libres && unidad;
+  return pasaFiltros(m);
+}
+/**
+ * @param {object} estado Escenario vigente (no se muta).
+ * @param {object} referencia Escenario académico base, para respetar traslados personales.
+ * @param {Set<string>} fijadas Posiciones movidas explícitamente en la sesión.
+ * @param {boolean} equilibrar Si false conserva los semestres registrados.
+ * @returns {{posiciones:object[], creditos:number, incompleto:boolean, cargas:number[]}}
+ *
+ * Las posiciones L con más de 3 créditos se desglosan SOLO visualmente en
+ * tramos de 3 y un posible residuo. Los tramos virtuales nunca son asignaturas
+ * ni tienen acciones de edición individual. Los 36 créditos de Mecatrónica
+ * se obtienen de las posiciones L de su fuente, no de una constante.
+ */
+function proyeccionLibresMalla(estado, referencia, fijadas = new Set(), equilibrar = true) {
+  const libre = idComponenteLibre(estado.tipos);
+  const maxSem = Math.max(1, ...estado.malla.map(m => m.s));
+  const componentes = new Map((estado.tipos?.componentes || []).map(c => [c.id, c]));
+  const cargas = Array.from({ length: maxSem + 1 }, () => 0);
+  const originales = new Map(referencia.malla.map(m => [m.idPos || m.n, m.s]));
+  const libres = [];
+  // La base real suma todos los componentes del plan salvo Libre elección;
+  // Nivelación se identifica por enPlan=false, NO por créditos universales.
+  for (const m of estado.malla) {
+    if (m.comp === libre) {
+      if (Number.isInteger(m.cr) && m.cr > 3) {
+        let pendiente = m.cr, i = 0;
+        while (pendiente > 0) {
+          const cr = Math.min(3, pendiente);
+          libres.push({ ...m, n: m.n + ' · tramo ' + (++i), cr, _libreVirtual: true,
+            _libreOrigen: m.n, _libreReferencia: m.s });
+          pendiente -= cr;
+        }
+      } else {
+        libres.push({ ...m, _libreVirtual: false, _libreOrigen: m.n,
+          _libreReferencia: m.s });
+      }
+    } else if (componentes.get(m.comp)?.enPlan !== false && Number.isFinite(m.cr) &&
+               Number.isInteger(m.s) && m.s >= 1 && m.s <= maxSem) {
+      cargas[m.s] += m.cr;
+    }
+  }
+  const creditos = estado.malla.filter(m => m.comp === libre && Number.isFinite(m.cr))
+    .reduce((sum, m) => sum + m.cr, 0);
+  const fijasAhora = libres.filter(m => !equilibrar ||
+    fijadas.has(m._libreOrigen) ||
+    originales.get(m.idPos || m._libreOrigen) !== m._libreReferencia ||
+    !Number.isFinite(m.cr) || m.cr <= 0);
+  const porUbicar = libres.filter(m => !fijasAhora.includes(m));
+  for (const m of fijasAhora) if (Number.isFinite(m.cr) && m.s>=1 && m.s<=maxSem)
+    cargas[m.s] += m.cr;
+  // Comparador de estabilidad: no se cambia una ubicación registrada por una
+  // propuesta distinta cuando la referencia ya está igual de equilibrada.
+  const cargasRegistradas = cargas.slice();
+  for (const m of porUbicar) if (Number.isFinite(m.cr) && m.s>=1 && m.s<=maxSem)
+    cargasRegistradas[m.s] += m.cr;
+  // Empates por semestre más temprano y nombre estable; es una proyección
+  // matemática de carga, no la certificación de un prerrequisito de avance.
+  porUbicar.sort((a,b) => b.cr-a.cr ||
+    a._libreReferencia-b._libreReferencia || a._libreOrigen.localeCompare(b._libreOrigen,'es'));
+  for (const m of porUbicar) {
+    let mejor=1;
+    for (let s=2; s<=maxSem; s++) if (cargas[s] < cargas[mejor]) mejor=s;
+    m.s=mejor;
+    cargas[mejor]+=m.cr;
+  }
+  const dispersion = arr => {
+    const promedio=arr.slice(1).reduce((a,n)=>a+n,0)/maxSem;
+    return arr.slice(1).reduce((a,n)=>a+(n-promedio)**2,0);
+  };
+  if (equilibrar && dispersion(cargasRegistradas) <= dispersion(cargas) + 1e-9) {
+    porUbicar.forEach(m => { m.s=m._libreReferencia; });
+    cargas.splice(0,cargas.length,...cargasRegistradas);
+  }
+  return { posiciones:libres, creditos,
+    incompleto:estado.malla.some(m => m.comp === libre && !Number.isFinite(m.cr)),
+    cargas:cargas.slice(1) };
+}
+function semHead(s, visibles) {
+  const c = semCred(s, visibles);
   return `<span class="semcr" title="${c.incompleto ? 'Créditos registrados (hay asignaturas sin créditos definidos): ' : ''}${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
 }
 function pageMalla() {
   const M=ui.malla;
-  if(M.sel && !S.malla.find(m=>m.n===M.sel))M.sel=null;
-  const visibles=new Set(nombresVisibles(S,S.malla.map(m=>m.n)));
-  const sel=visibles.has(M.sel)?M.sel:null;
+  if(M.sel && !S.malla.find(m=>m.n===M.sel)) M.sel=null;
+  const componentes = S.malla.filter(m => mallaVisible(m) &&
+    (!M.soloHor || S.asg.includes(m.n)));
+  const libres = proyeccionLibresMalla(S,S0,M.libresFijas,M.equilibrar);
+  const idLibre = idComponenteLibre(S.tipos);
+  const visibles = componentes.filter(m => m.comp !== idLibre)
+    .concat(M.libres && !M.soloHor ?
+      libres.posiciones.filter(m => mallaVisible(m)) : []);
+  // Se usa exclusivamente para informar al panel de edición de la diferencia
+  // entre el semestre registrado y la ubicación visual sugerida.
+  M.ubicacionesLibres = new Map(visibles.filter(m => m.comp === idLibre &&
+    !m._libreVirtual).map(m => [m.n,m.s]));
+  const seleccionable = new Set(visibles.filter(m => !m._libreVirtual).map(m=>m.n));
+  const sel=seleccionable.has(M.sel)?M.sel:null;
   const L=sel?lineage(S,sel):null;
-  const maxSem = maxSemester(S);
-  const cols = Array.from({ length: maxSem }, (_, i) => i + 1).map(s => {
-    const cs = S.malla.filter(m=>m.s===s && visibles.has(m.n) && (!M.soloHor||S.asg.includes(m.n)));
-    return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s)}</h4>${cs.map(m => {
-      const sc = RV.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
-      let cls = sc ? '' : 'nosched';
-      if (L) cls += m.n === M.sel ? ' sel' : L.up.has(m.n) ? ' up' : L.down.has(m.n) ? ' down' : ' dim';
-      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr == null ? '—' : m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car ? ' · ' + esc(carName(m.car)) : ''}</span></small>${check && check.low ? `<small><span class="tag heat">Faltan ${req.min - check.total} cr. previos</span></small>` : ''}${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${!req && m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
+  const maxSem=maxSemester(S);
+  const cols=Array.from({length:maxSem},(_,i)=>i+1).map(s=>{
+    const cs=visibles.filter(m=>m.s===s);
+    return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s,cs)}</h4>${cs.map(m=>{
+      const virtual=!!m._libreVirtual;
+      const esLibre=!!idLibre && m.comp===idLibre;
+      if(virtual)return `<div class="mcard nosched mcard-libre" title="Tramo visual de créditos de Libre elección; no es una nueva asignatura académica"><span class="mt"><span>${esc(m.n)}</span><span class="cr">${m.cr} cr</span></span><small><span>Distribución visual de Libre elección</span></small></div>`;
+      const sc=RV.st[m.n], req=creditRuleFor(m.n), check=req?creditStatus(m,req):null;
+      let cls=sc?'':'nosched';
+      if(esLibre)cls+=' mcard-libre';
+      if(L) cls+=m.n===M.sel?' sel':L.up.has(m.n)?' up':L.down.has(m.n)?' down':' dim';
+      const sugerencia = esLibre && M.equilibrar && m.s !== m._libreReferencia;
+      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n===M.sel}" title="${sugerencia?'Ubicación visual sugerida; ':''}Arrastra a otro semestre para cambiar tu escenario"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr==null?'—':m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car?' · '+esc(carName(m.car)):''}</span></small>${check&&check.low?`<small><span class="tag heat">Faltan ${req.min-check.total} cr. previos</span></small>`:''}${sc?`<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100,sc.idxG*200)}%"></i></span>`:esLibre?'<small><span>Créditos flexibles · sin asignatura definida</span></small>':'<small><span>sin horario</span></small>'}${!req&&m.nota?`<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ','').replace(' de los créditos del plan',' de créditos'))}</span></small>`:''}</button>`;
     }).join('')}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
-    <div class="row"><div class="seg"><button data-act="m-edges" data-v="all" aria-pressed="${M.edges === 'all'}">Todas las flechas</button><button data-act="m-edges" data-v="sel" aria-pressed="${M.edges === 'sel'}">Solo la selección</button></div>
-    <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor ? 'checked' : ''}><i></i>Solo con horario</label></div></div>
-  <div class="mallawrap"><section class="malla-panel ${M.ampliado ? 'malla-panel--ampliado' : ''}" id="malla-panel" aria-label="Mapa de prerrequisitos">
+    <div class="row"><div class="seg"><button data-act="m-edges" data-v="all" aria-pressed="${M.edges==='all'}">Todas las flechas</button><button data-act="m-edges" data-v="sel" aria-pressed="${M.edges==='sel'}">Solo la selección</button></div>
+    <button class="btn sm malla-libre-toggle" data-act="m-libres" aria-pressed="${!!M.libres}" ${!libres.posiciones.length?'disabled':''}>Libre elección · ${!libres.posiciones.length?'sin posiciones':libres.incompleto?'≥'+libres.creditos+' cr informados':libres.creditos+' cr'}</button>
+    <button class="btn sm" data-act="m-equilibrar" aria-pressed="${!!M.equilibrar}" ${!M.libres?'disabled':''}>${M.equilibrar?'Carga equilibrada':'Semestres registrados'}</button>
+    <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor?'checked':''}><i></i>Solo con horario</label></div></div>
+  ${M.libres && M.equilibrar?'<p class="hint malla-proyeccion-aviso">Distribución visual sugerida para equilibrar créditos del plan, excluyendo Nivelación. No cambia el semestre registrado ni certifica requisitos de avance. Para guardarlo como cambio personal, mueve una posición.</p>':''}
+  <div class="mallawrap"><section class="malla-panel ${M.ampliado?'malla-panel--ampliado':''}" id="malla-panel" aria-label="Mapa de prerrequisitos">
      <div class="malla-toolbar">
        <div class="malla-toolbar-titulo"><strong>Mapa curricular</strong><span>Desplaza para explorar los semestres</span></div>
        <div class="malla-controles" role="group" aria-label="Escala y tamaño del mapa">
-         <button class="btn sm" type="button" data-act="m-zoom" data-dx="-0.1" aria-label="Alejar mapa" ${M.zoom <= .6 ? 'disabled' : ''}>−</button>
+         <button class="btn sm" type="button" data-act="m-zoom" data-dx="-0.1" aria-label="Alejar mapa" ${M.zoom<=.6?'disabled':''}>−</button>
          <output class="malla-zoom-etiqueta" aria-live="polite">${Math.round(M.zoom*100)} %</output>
-         <button class="btn sm" type="button" data-act="m-zoom" data-dx="0.1" aria-label="Acercar mapa" ${M.zoom >= 1.6 ? 'disabled' : ''}>+</button>
+         <button class="btn sm" type="button" data-act="m-zoom" data-dx="0.1" aria-label="Acercar mapa" ${M.zoom>=1.6?'disabled':''}>+</button>
          <button class="btn sm" type="button" data-act="m-zoom-reset" aria-label="Restablecer escala al 100 por ciento">100 %</button>
-         <button class="btn sm malla-ampliar" type="button" data-act="m-ampliar" aria-pressed="${!!M.ampliado}">${M.ampliado ? 'Salir de pantalla completa' : 'Pantalla completa'}</button>
+         <button class="btn sm malla-ampliar" type="button" data-act="m-ampliar" aria-pressed="${!!M.ampliado}">${M.ampliado?'Salir de pantalla completa':'Pantalla completa'}</button>
        </div>
      </div>
      <div class="card canvas" id="canvas" role="region" tabindex="0" aria-label="Mapa de prerrequisitos con desplazamiento horizontal y vertical">
@@ -515,7 +627,7 @@ function pageMalla() {
   <div class="legend" style="margin-top:10px"><span><i class="sw" style="background:var(--surface);border:1px solid var(--line2)"></i>con horario (barra = % de combinaciones que chocan)</span><span><i class="sw" style="border:1px dashed var(--line2)"></i>sin horario (no entra al análisis)</span><span><i class="sw" style="background:var(--ca-soft);border:1px solid var(--ca)"></i>requisitos</span><span><i class="sw" style="background:var(--ok-soft);border:1px solid var(--ok)"></i>la requieren</span><span style="color:var(--heat)">⟲ flecha roja punteada = requisito en el mismo semestre o posterior</span></div>`;
 }
 function mallaSide(L) {
-  const n = ui.malla.sel && pasaFiltros(S.malla.find(m=>m.n===ui.malla.sel)) ? ui.malla.sel : null;
+  const n = ui.malla.sel && mallaVisible(S.malla.find(m=>m.n===ui.malla.sel)) ? ui.malla.sel : null;
   if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p></aside>`;
   const m = S.malla.find(x => x.n === n), sc = RV.st[n];
   const dirIn = S.pre.filter(p => p.t === n), dirOut = S.pre.filter(p => p.r === n);
@@ -528,6 +640,7 @@ function mallaSide(L) {
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr == null ? '—' : m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
+    ${ui.malla.equilibrar && mallaVisible(m) && ui.malla.ubicacionesLibres?.get(n) !== undefined && ui.malla.ubicacionesLibres.get(n) !== m.s ? `<div class="hint">Ubicación sugerida: semestre ${ui.malla.ubicacionesLibres.get(n)} · semestre registrado: ${m.s}. La sugerencia solo afecta a este mapa.</div>` : ''}
     ${editorUnidad(n)}
     <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= maxSemester(S) ? 'disabled' : ''}>+</button></span></div>
     ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
@@ -543,7 +656,7 @@ function mallaSide(L) {
 function drawEdges() {
   const cv = $('#canvas'), svg = $('#edges'), cols = $('#mcols'), stage = $('#malla-stage');
   if (!cv || !svg || !cols || !stage) return;
-  const M = ui.malla, L = M.sel && pasaFiltros(S.malla.find(m=>m.n===M.sel)) ? lineage(S,M.sel) : null;
+  const M = ui.malla, L = M.sel && mallaVisible(S.malla.find(m=>m.n===M.sel)) ? lineage(S,M.sel) : null;
   // Coordenadas de diseño, NO coordenadas de ventana: el zoom del mapa
   // cambia la escala visual sin desalinear las flechas al desplazarlo.
   const posicionEnMapa = elemento => {

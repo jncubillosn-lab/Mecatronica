@@ -62,6 +62,32 @@ async function main() {
       assert(d.querySelector('#view h1')?.textContent.includes(heading),
         'No se presentó ' + heading);
     }
+    // LIB-01: mostrar Libre elección exclusivamente en el grafo curricular.
+    const beforeLibre=d.querySelector('.pill-stat')?.textContent;
+    assert(d.querySelector('[data-act="m-libres"]')?.textContent.includes('36 cr'));
+    assert.equal(d.querySelectorAll('#mcols .mcard-libre').length,12,
+      'Las doce posiciones L de Mecatrónica vuelven a aparecer en Prerrequisitos');
+    assert(d.querySelector('.malla-proyeccion-aviso'));
+    assert.equal(d.querySelectorAll('#top [data-comp="L"]').length,0,
+      'Libre elección no se incorpora al filtro global de ocho secciones');
+    // El plan vigente de Mecatrónica ya estaba igual de equilibrado;
+    // evitar cambiar arbitrariamente sus semestres en la proyección inicial.
+    assert.equal(d.querySelector('.mcard-libre[data-n="Libre elección (II)"]')
+      ?.closest('[data-sem]').dataset.sem,'2');
+    d.querySelector('[data-act="m-equilibrar"]').click();
+    assert(d.querySelector('[data-act="m-equilibrar"]').textContent.includes('Semestres registrados'));
+    assert.equal(d.querySelector('.mcard-libre[data-n="Libre elección (II)"]')
+      ?.closest('[data-sem]').dataset.sem,'2',
+      'El cambio de modo no mueve los créditos registrados');
+    d.querySelector('[data-act="m-equilibrar"]').click();
+    d.querySelector('[data-act="m-libres"]').click();
+    assert.equal(d.querySelectorAll('#mcols .mcard-libre').length,0,
+      'El control local oculta solo las posiciones flexibles');
+    d.querySelector('[data-act="m-libres"]').click();
+    assert.equal(d.querySelectorAll('#mcols .mcard-libre').length,12);
+    assert.equal(d.querySelector('.pill-stat')?.textContent,beforeLibre,
+      'Los cambios visuales no generan modificaciones académicas');
+
     // RESP-01: el mapa permite explorar una malla extensa sin tocar el escenario.
     const mapa=d.querySelector('#malla-panel');
     assert(mapa && d.querySelector('#malla-stage') && d.querySelector('#canvas'),
