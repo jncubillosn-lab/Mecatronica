@@ -55,3 +55,15 @@ Los índices no muestran escasez, ocupación, cantidad de cupos faltantes ni mat
 La vista incluye tarjetas calculadas con las asignaturas **visibles**: mayor demanda observada, mayor concentración por grupo, índice relativo destacado (más de 1,5 veces la mediana), posible valor atípico robusto (desviación robusta superior a 3,5 con al menos cinco comparables y dispersión positiva), co-solicitudes con cruces de horarios cuando hay respuestas anónimas y mensajes de insuficiencia de información. También incorpora percentil por semestre y selector del indicador para la visualización curricular. Ninguna de estas señales implica conocer los cupos ofertados o faltantes. La mediana base se mantiene fija frente a los filtros de consulta.
 
 Las cantidades ficticias pueden modificarse una vez guardado el ejemplo; al editar cantidades de la demostración, se retiran las respuestas anónimas sintéticas para evitar contradicción con el agregado y deja de ser calculable la demanda conjunta hasta importar nuevas respuestas. Los datos reales con respuestas anónimas solo se cambian importando datos consistentes.
+
+## DEM-02 — Visualización y simulación contrastada (v0.5.8)
+
+La página ordena los análisis así: **mapa de demanda**, **comparación curricular por semestre**, **detalle estadístico** (con edición desplegable), **lectura y recomendaciones**, **tabla de ranking**, **demanda conjunta**. La tabla ya no antecede las representaciones.
+
+La gráfica usa **medianas de solicitudes y de agrupaciones presentes en la selección visible** para dividir cuatro zonas descriptivas. Son puntos de referencia estadísticos, no umbrales universales. Se distinguen: demanda elevada con pocos grupos, demanda masiva con más grupos, menor demanda con pocos grupos y menor demanda con más grupos. El indicador numérico de concentración sigue siendo solicitudes por agrupación completa analizable, **nunca el déficit de cupos**.
+
+Para mejorar la separación de puntos bajos frente a asignaturas con decenas de grupos, **ambos ejes aplican una transformación de raíz cuadrada**, informada expresamente junto a la gráfica. Los números en los ejes siguen siendo solicitudes y grupos reales. Colores legibles en modo claro/oscuro, leyenda, casos señalados 1–3, títulos de cuadrantes y selección accesible por teclado permiten interpretar el gráfico sin abrir la tabla.
+
+La **demostración** sigue contando con 240 respuestas ficticias, pero distribuye intencionalmente casos contrastantes (altas solicitudes/pocos grupos, demanda masiva/muchos grupos y grupos de demanda menor). Los ID curriculares y los números de grupos proceden de la malla y de las agrupaciones disponibles; las solicitudes son **completamente simuladas** y no afirman que una asignatura particular tenga un problema real. No se guardan automáticamente al abrir la vista previa, ni reemplazan encuestas reales sin acción explícita.
+
+Cuando no haya información suficiente para un cuadrante o indicador, se conservará el estado desconocido y se mostrarán las señales disponibles; no se fabricarán grupos ni cupos.
