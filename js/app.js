@@ -329,6 +329,10 @@ function renderTop() {
   <div class="top-in">
     <div class="brand-wrap"><div class="brand"><b>Gestor de horarios</b><span>Comunidad UNAL · sitio no oficial</span></div><div class="programa-actual" aria-label="Programa académico en consulta"><span class="programa-senal" aria-hidden="true"></span><span class="programa-etiqueta"><small>Programa en consulta</small><strong>${esc(PROGRAMA.nombre)}</strong></span></div></div>
     <nav class="nav" aria-label="Secciones">${PAGES_ORDER.map(([k, l]) => `<button data-act="nav" data-p="${k}" ${ui.page === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
+    <button type="button" class="btn sm tema-toggle" data-act="tema-cambiar"
+      aria-label="${TemaVisual.actual()==='dark'?'Activar modo claro':'Activar modo oscuro'}"
+      aria-pressed="${TemaVisual.actual()==='light'}"
+      title="Tema visual; no modifica datos ni escenarios">${TemaVisual.actual()==='dark'?'☀ Modo claro':'☾ Modo oscuro'}</button>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
         <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${anteriorVisible.totalPairs} → ${resultadoVisible.totalPairs}</b> ${dlt(resultadoVisible.totalPairs, anteriorVisible.totalPairs)}` : 'Datos de referencia del programa'}</span>
@@ -422,6 +426,7 @@ function download(name, text, type) { const u = URL.createObjectURL(new Blob([te
 function onAct(act, d, el, ev) {
   const f = ui.inter;
   switch (act) {
+    case 'tema-cambiar': TemaVisual.alternar(); return render();
     case 'nav': ev.preventDefault(); return go(d.p);
     case 'dem-sel': {
       // Sincronizar el detalle con la identificación junto a la gráfica.
