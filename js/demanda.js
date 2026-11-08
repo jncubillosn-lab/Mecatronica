@@ -142,30 +142,52 @@ class DemandaEstadistica {
    * enteramente ficticias. Nunca se almacena automáticamente al entrar.
    */
   static ejemplo(malla,grupos) {
-    const disponibles=new Set(grupos.filter(g=>g.analizable!==false&&g.on!==false).map(g=>g.a));
-    const semestres=new Map();
-    for(const m of malla.filter(x=>x.idPos)){
-      if(!semestres.has(m.s))semestres.set(m.s,[]);
-      semestres.get(m.s).push(m);
+    // Población ficticia de 240 respuestas; se eligen asignaturas REALES
+    // solo como etiquetas para las situaciones hipotéticas. No se deducen
+    // necesidades, capacidad ni dificultades de inscripción verdaderas.
+    const conteo=new Map();
+    for(const g of grupos.filter(g=>g.on!==false&&g.analizable!==false)){
+      if(!conteo.has(g.a))conteo.set(g.a,new Set());
+      conteo.get(g.a).add(g.ref||g.a+'\u0001'+g.g);
     }
-    const cohortes=[...semestres.values()].map(lista=>lista.sort((a,b)=>
-      Number(disponibles.has(b.n))-Number(disponibles.has(a.n))||
-      a.n.localeCompare(b.n,'es')).slice(0,6).map(m=>m.idPos)).filter(x=>x.length);
-    if(!cohortes.length)return DemandaEstadistica.normalizar({solicitudes:[],simulado:true});
-    const respuestasAnonimas=Array.from({length:240},(_,i)=>{
-      const sem=cohortes[i%cohortes.length], sig=cohortes[(i+1)%cohortes.length], r=[];
-      if(sem[0]&&i%5!==0)r.push(sem[0]);
-      if(sem[1]&&i%3!==0)r.push(sem[1]);
-      if(sem[2]&&i%4!==0)r.push(sem[2]);
-      if(sem[3]&&i%3===0)r.push(sem[3]);
-      if(sem[4]&&i%7===0)r.push(sem[4]);
-      if(sem[5]&&i%11===0)r.push(sem[5]);
-      if(sig[0]&&i%9===0)r.push(sig[0]);
-      return [...new Set(r)];
-    });
+    const disponibles=malla.filter(m=>m.idPos&&conteo.has(m.n))
+      .map(m=>({...m,gruposDemo:conteo.get(m.n).size}));
+    const porSem=new Map();
+    for(const m of disponibles){
+      if(!porSem.has(m.s))porSem.set(m.s,[]);
+      porSem.get(m.s).push(m);
+    }
+    const elegidos=new Map();
+    // Distintos contextos curriculares; hasta cuatro clases por semestre,
+    // privilegiando cantidades de agrupaciones contrastantes.
+    for(const xs of porSem.values()){
+      const lista=[...xs].sort((a,b)=>a.gruposDemo-b.gruposDemo||a.n.localeCompare(b.n,'es'));
+      const indices=[0,lista.length-1,Math.floor(lista.length/2),1];
+      for(const k of indices){const m=lista[k];if(m)elegidos.set(m.idPos,m);}
+    }
+    const cursos=[...elegidos.values()];
+    if(!cursos.length)return DemandaEstadistica.normalizar({solicitudes:[],simulado:true});
+    const escasos=[...cursos].filter(m=>m.gruposDemo<=3).sort((a,b)=>
+      a.gruposDemo-b.gruposDemo||b.s-a.s).slice(0,3).map(m=>m.idPos);
+    const masivos=[...cursos].filter(m=>m.gruposDemo>=10).sort((a,b)=>
+      b.gruposDemo-a.gruposDemo).slice(0,2).map(m=>m.idPos);
+    const metas=new Map(cursos.map((m,i)=>{
+      let meta=m.gruposDemo<=3?12+(i*7)%22:
+        m.gruposDemo>=10?35+(i*13)%30:20+(i*11)%24;
+      const indiceEscaso=escasos.indexOf(m.idPos);
+      const indiceMasivo=masivos.indexOf(m.idPos);
+      if(indiceEscaso>=0)meta=[175,155,135][indiceEscaso];
+      if(indiceMasivo>=0)meta=[195,185][indiceMasivo];
+      return [m.idPos,meta];
+    }));
+    const respuestasAnonimas=Array.from({length:240},(_,i)=>
+      cursos.filter((m,k)=>((i*73+k*47)%241)<metas.get(m.idPos)).map(m=>m.idPos)
+    );
     return DemandaEstadistica.normalizar({
-      respuestasAnonimas,simulado:true,fechaEncuesta:'Ejemplo ficticio, sin datos reales'
+      respuestasAnonimas,simulado:true,
+      fechaEncuesta:'Simulación ficticia de concentraciones contrastantes'
     });
+
   }
 }
 if(typeof module!=='undefined')module.exports={DemandaEstadistica};
