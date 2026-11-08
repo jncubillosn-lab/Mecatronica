@@ -812,3 +812,18 @@ body.mapa-ampliado{overflow:hidden}
   .nav button,.btn,.component-toggle,.chip{min-height:38px}
   .malla-controles .btn{min-height:42px}
 }
+
+/* LIB-01: libres en la malla, sin extender filtros globales ni mezclar colores
+ * semánticos. El borde fino diferencia posiciones flexibles del plan. */
+.mcard-libre{border-style:dashed;background:var(--surface2)}
+.mcard-libre:not(button){cursor:default}
+.malla-libre-toggle[aria-pressed="true"]{
+  box-shadow:inset 0 -2px 0 var(--programa-borde);border-color:var(--line2);
+  background:var(--surface2);color:var(--ink)
+}
+.malla-proyeccion-aviso{margin:-3px 0 12px;padding-left:9px;
+  border-left:2px solid var(--line2);max-width:95ch}
+@media(max-width:720px){
+  .page-title>.row{width:100%;align-items:center;gap:7px}
+  .malla-libre-toggle{min-height:38px}
+}
