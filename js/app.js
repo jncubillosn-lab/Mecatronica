@@ -400,7 +400,7 @@ function onAct(act, d, el, ev) {
       render();
       // Al seleccionar con teclado, conservar el foco después del redibujado.
       if(ev?.type==='keydown'&&el?.classList?.contains('dem-marca'))
-        $('.dem-marca').find(x=>x.dataset.pos===d.pos)?.focus();
+        Array.from(document.querySelectorAll('.dem-marca')).find(x=>x.dataset.pos===d.pos)?.focus();
       return;
     }
     case 'dem-vista': ui.demanda.vistaEjemplo=!ui.demanda.vistaEjemplo;
