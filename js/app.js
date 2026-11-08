@@ -18,6 +18,22 @@ const H_MIN = CALENDARIO.inicio, H_MAX = CALENDARIO.fin;
 
 /* ===== APLICACIÓN: estado, utilidades, cabecera, Inicio, Interferencias, panel lateral ===== */
 const KEY = CONTEXTO.almacenamiento.clave;
+// Autocompletado para ediciones PERSONALES, no asignaciones institucionales.
+// Opción libre: algunas materias pueden tener unidades fuera de estas sugerencias.
+const UNIDADES_SUGERIDAS=[
+  'Departamento de Ingeniería Civil y Agrícola · Facultad de Ingeniería',
+  'Departamento de Ingeniería Eléctrica y Electrónica · Facultad de Ingeniería',
+  'Departamento de Ingeniería de Sistemas e Industrial · Facultad de Ingeniería',
+  'Departamento de Ingeniería Mecánica y Mecatrónica · Facultad de Ingeniería',
+  'Departamento de Ingeniería Química y Ambiental · Facultad de Ingeniería',
+  'Facultad de Artes','Facultad de Ciencias','Facultad de Ciencias Agrarias',
+  'Facultad de Ciencias Económicas','Facultad de Ciencias Humanas',
+  'Facultad de Derecho, Ciencias Políticas y Sociales','Facultad de Enfermería',
+  'Facultad de Medicina','Facultad de Medicina Veterinaria y de Zootecnia',
+  'Facultad de Odontología'
+];
+const SIN_UNIDAD='__sin_unidad__';
+
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
 // S0 = referencia reconstruida desde el contrato; S = copia editable personal.
@@ -142,6 +158,7 @@ let R = compute(S), R0 = compute(S0);
 const ui = {
   page: 'inicio',
   componentes: new Set(OPCIONES.componentesComparables || []),
+  unidad: '', // filtro de vista, nunca edición del contrato
   inter: { view: 'lista', dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
@@ -158,12 +175,24 @@ let RV, RV0;
  * Se aplica a copias superficiales con `asg` filtrada; no se borran grupos,
  * ni bloques, ni ediciones personales de S o S0.
  */
+/**
+ * Los filtros globales limitan CONSULTAS, nunca modifican el escenario.
+ * Unidad desconocida permanece vacía: no se infiere desde el profesor.
+ */
+function pasaFiltros(m) {
+  return !!m && ui.componentes.has(m.comp) &&
+    (!ui.unidad || (ui.unidad===SIN_UNIDAD ? !m.unidad : m.unidad===ui.unidad));
+}
+function nombresVisibles(estado, candidatos=estado.asg) {
+  const indice=new Map(estado.malla.map(m=>[m.n,m]));
+  return candidatos.filter(n=>pasaFiltros(indice.get(n)));
+}
 function actualizarVistaComponentes() {
-  const nombres = (estado) => new PlanCurricular(estado).seleccionarPorComponentes(
-    estado.asg, ui.componentes
-  );
-  RV = compute({ ...S, asg: nombres(S) });
-  RV0 = compute({ ...S0, asg: nombres(S0) });
+  const nombres=nombresVisibles(S),seleccion=new Set(nombres);
+  RV=compute({...S,asg:nombres});
+  // Misma selección de asignaturas contra la referencia, aunque la unidad
+  // solo se haya registrado como modificación personal en S.
+  RV0=compute({...S0,asg:S0.asg.filter(n=>seleccion.has(n))});
 }
 actualizarVistaComponentes();
 
@@ -172,6 +201,15 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const pct = (x, d = 0) => (x * 100).toFixed(d) + '%';
+
+// Editor de unidad responsable. No supone relación permanente con un docente;
+// admite datos incompletos y una opción fuera del autocompletado.
+function editorUnidad(nombre) {
+  const m=S.malla.find(x=>x.n===nombre);
+  if(!m)return '';
+  return `<div class="unidad-editor"><label>Departamento / facultad responsable</label><input type="text" list="unidades-academicas" data-chg="unidad-asig" data-n="${esc(nombre)}" value="${esc(m.unidad||'')}" placeholder="Sin información · elegir o escribir" maxlength="180" aria-label="Unidad responsable de ${esc(nombre)}"><span class="hint">Dato opcional del escenario; no se deduce del docente.</span></div>`;
+}
+
 const planActual = () => new PlanCurricular(S);
 const compName = id => planActual().nombreComponente(id);
 const carName = id => planActual().nombreCaracter(id);
