@@ -551,7 +551,8 @@ function drawerPair(dw) {
   const R = RV;
   const p = R.pairs.find(x => x.key === dw.key);
   if (!p) return null;
-  const GA = R.allGroupsOf[p.A], GB = R.allGroupsOf[p.B];
+  const GA = R.allGroupsOf[p.A].filter(g => g.analizable !== false);
+  const GB = R.allGroupsOf[p.B].filter(g => g.analizable !== false);
   const actA = GA.filter(g => g.on), actB = GB.filter(g => g.on);
   if (!dw.ga || !actA.find(g => g.g === dw.ga) || !dw.gb || !actB.find(g => g.g === dw.gb)) {
     let found = false;
