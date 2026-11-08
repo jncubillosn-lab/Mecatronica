@@ -23,18 +23,18 @@ No habrá una conexión alternativa desde la malla, el catálogo, una fuente sin
 
 ```mermaid
 flowchart TB
-    EN["ÚNICA ENTRADA ACADÉMICA<br/>FuentesAcadémicas<br/>datos/academico.json"]
+    EN["FuentesAcadémicas: datos/academico.json"]
 
     subgraph SISTEMA["SISTEMA WEB — límite de responsabilidad"]
         L["Lector del contrato normalizado"]
-        MA["Modelo académico<br/>catálogo · plan · oferta · relaciones"]
+        MA["Modelo académico"]
         SB["Escenario base de referencia"]
         AP["Aplicación de cambios personales"]
         EF["Escenario efectivo"]
         AN["Motor de análisis curricular y de horarios"]
         VF["Selección de componentes y filtros de consulta"]
         RE["Resultados de la selección"]
-        VI["Interfaz: inicio · interferencias · asignaturas<br/>grupos · horarios · mapa de calor · prerrequisitos"]
+        VI["Ocho vistas, incluida Demanda"]
         PE["Persistencia local de modificaciones personales"]
 
         L --> MA --> SB --> AP --> EF
@@ -184,7 +184,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 - Los filtros de Fundamentación, Disciplinar y Nivelación son **selecciones de consulta**, no operaciones de eliminación de información.
 - Una agrupación con `analizable: false` puede consultarse; los cambios personales no pueden convertirla por sí solos en una agrupación calculable.
 - Inicio, Interferencias, Asignaturas, exportaciones, paneles y mapa de calor deben interpretar **la misma selección activa**; no debe persistir una vía de resultados no filtrados en un panel cuando su filtro está desmarcado.
-- Desde v0.5.4, los filtros de componente y unidad académica se muestran **en las siete páginas**, incluso Grupos, Horarios y Prerrequisitos. Reducen solo la **vista** y sus resultados; el escenario conserva todos los registros, y la selección puede restablecerse para volver a consultarlos.
+- En el corte v0.7.5, los filtros de componente y unidad académica se muestran **en las ocho páginas**, incluso Grupos, Horarios y Prerrequisitos. Reducen solo la **vista** y sus resultados; el escenario conserva todos los registros, y la selección puede restablecerse para volver a consultarlos.
 - Un grupo con varias actividades conserva todos sus bloques **según las agrupaciones explícitas del contrato**.
 - No se confunde el número de grupos disponibles con número de estudiantes, capacidad de aulas u ocupación efectiva.
 - Los créditos mínimos se comprueban por los componentes y criterios registrados en el plan, no por totales fijos del código.
@@ -197,7 +197,7 @@ El estado académico normalizado es una **referencia**. Un estudiante puede desa
 
 **DEM-01 — demanda de preinscripción:** una encuesta agregada es una anotación de escenario personal por ID curricular, no una entrada académica institucional ni una ampliación obligatoria de `FuentesAcadémicas`. Se carga como JSON de solicitudes ya estructuradas; la conversión desde formularios queda fuera del sistema. Sus indicadores de solicitudes por agrupación usan solamente las agrupaciones explícitas del escenario, sin inferir capacidades. Los filtros solo modifican consultas y las ausencias siguen siendo valores desconocidos. Véase [DEM-01](DEM-01.md).
 
-La arquitectura objetivo conserva **operaciones o diferencias personales** vinculadas a identificadores estables. Al cargar una versión posterior de `FuentesAcadémicas` se reconstruye el escenario utilizando la nueva referencia y las modificaciones de la persona.
+La arquitectura implementada conserva **operaciones o diferencias personales** vinculadas a identificadores estables. Al cargar una versión posterior de `FuentesAcadémicas` se reconstruye el escenario utilizando la nueva referencia y las modificaciones de la persona.
 
 **Invariantes:**
 1. La actualización del archivo académico no se atribuye a una edición personal.
@@ -223,7 +223,9 @@ La revisión técnica debe comprobar la **fidelidad al contrato**, no exigir dat
 
 Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora final anterior a la inicial) se distinguen de **vacíos académicos legítimos**. No convertir vacíos de las fuentes en fallos de la interfaz.
 
-## 5. Migración de v0.4.3 a v0.5.0 — implementación de ARQ-01
+## 5. Migración integrada — registro histórico
+
+La migración de entrada única está cerrada como implantación. Los párrafos siguientes describen hitos históricos, no tareas abiertas de v0.7.5. La compatibilidad interna todavía usada no se retira por antigüedad; su mantenimiento se documenta en [AUD-075](AUDITORIA-0.7.5.md).
 
 La v0.4.3 todavía utilizaba `js/datos.js` como entrada principal de ejecución, con grupos preparados manualmente, y guardaba copias completas del escenario.
 

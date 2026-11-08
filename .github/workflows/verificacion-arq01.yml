@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [arquitectura/migracion-arq01-entrada-unica]
+    branches: [main]
 
 permissions:
   contents: read

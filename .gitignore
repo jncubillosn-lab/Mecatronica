@@ -1,3 +1,5 @@
 node_modules/
 mut/
 ultimo_informe.json
+__pycache__/
+*.py[cod]
