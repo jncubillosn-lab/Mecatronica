@@ -5,19 +5,24 @@
  * El motor puro está en js/analisis.js, cargado antes de esta interfaz.
  * No consulta datos académicos originales ni define el algoritmo de choques.
  */
-const CALENDARIO = new CalendarioAcademico(RAW.calendario);
+const CONTEXTO = window.CONTEXTO_ACADEMICO;
+if (!CONTEXTO || !CONTEXTO.estadoBase) throw new Error('No existe un contexto académico inicializado');
+const OPCIONES = CONTEXTO.opciones;
+const PROGRAMA = CONTEXTO.programa;
+const METADATOS = CONTEXTO.metadatos;
+const CALENDARIO = new CalendarioAcademico(CONTEXTO.calendario);
 const DAYS = CALENDARIO.ids();
 const DAY_NAMES = Object.fromEntries(DAYS.map(id => [id, CALENDARIO.nombre(id)]));
 const DAY_SHORT = Object.fromEntries(DAYS.map(id => [id, CALENDARIO.corto(id)]));
 const H_MIN = CALENDARIO.inicio, H_MAX = CALENDARIO.fin;
 
 /* ===== APLICACIÓN: estado, utilidades, cabecera, Inicio, Interferencias, panel lateral ===== */
-const KEY = RAW.almacenamiento.clave;
+const KEY = CONTEXTO.almacenamiento.clave;
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
 // S0 = referencia reconstruida desde el contrato; S = copia editable personal.
 // Mantener separadas estas identidades al importar, guardar y restablecer.
-let S0 = fromRaw(RAW), S = clone(S0), restored = false, datosGuardados = null;
+let S0 = clone(CONTEXTO.estadoBase), S = clone(S0), restored = false, datosGuardados = null;
 try {
   const texto = localStorage.getItem(KEY);
   if (texto) {
@@ -32,7 +37,7 @@ try {
  * No usarla para editar `datos/academico.json` ni inventar datos del plan.
  */
 function fixMalla(s) {
-  const base = fromRaw(RAW);
+  const base = clone(CONTEXTO.estadoBase);
   if (!s.tipos) s.tipos = clone(base.tipos);
   else for (const tipo of ['componentes', 'caracteres']) {
     if (!Array.isArray(s.tipos[tipo])) s.tipos[tipo] = [];
@@ -68,7 +73,7 @@ function fixMalla(s) {
   }
   // Incorporación única de los grupos nuevos de la oferta, sin restablecer
   // grupos antiguos eliminados por el usuario ni sobrescribir horarios editados.
-  const inc = RAW.incrementosOferta;
+  const inc = CONTEXTO.incrementosOferta;
   if (inc && !(s.incorporacionesOferta || []).includes(inc.id)) {
     const nuevas = new Set(inc.nuevasAsignaturas || []);
     const extras = new Map((inc.complementarGrupos || []).map(([n, ids]) => [n, new Set(ids)]));
@@ -95,10 +100,10 @@ function fixMalla(s) {
 }
 function fixParams(s) {
   if (!Array.isArray(s.params.dists)) {
-    const d = RAW.opciones.distanciasDisponibles;
-    const max = s.params.maxDist == null ? Math.max(...RAW.opciones.distanciasIniciales) : s.params.maxDist;
+    const d = OPCIONES.distanciasDisponibles;
+    const max = s.params.maxDist == null ? Math.max(...OPCIONES.distanciasIniciales) : s.params.maxDist;
     s.params.dists = d.filter(x => x <= max);
-    if (!s.params.dists.length) s.params.dists = [...RAW.opciones.distanciasIniciales];
+    if (!s.params.dists.length) s.params.dists = [...OPCIONES.distanciasIniciales];
   }
   return s;
 }
@@ -136,11 +141,11 @@ let R = compute(S), R0 = compute(S0);
  */
 const ui = {
   page: 'inicio',
-  componentes: new Set(RAW.opciones.componentesComparables || []),
+  componentes: new Set(OPCIONES.componentesComparables || []),
   inter: { view: 'lista', dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
-  hor: { a: S.asg.includes(RAW.opciones.asignaturaInicial) ? RAW.opciones.asignaturaInicial : S.asg[0], comp: null, ov: [] },
+  hor: { a: S.asg.includes(OPCIONES.asignaturaInicial) ? OPCIONES.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
@@ -272,7 +277,7 @@ function renderTop() {
   const dirty = nChg > 0;
   const filtroAnalisis = ['inicio', 'inter', 'asig', 'heat'].includes(ui.page);
   const resultadoVisible = filtroAnalisis ? RV : R, anteriorVisible = filtroAnalisis ? RV0 : R0;
-  const componentes = (RAW.opciones.componentesComparables || []).map(id => {
+  const componentes = (OPCIONES.componentesComparables || []).map(id => {
     const tipo = new PlanCurricular(S).componente(id);
     const nombre = tipo?.nombre || id;
     const total = new PlanCurricular(S).seleccionarPorComponentes(S.asg, [id]).length;
@@ -280,7 +285,7 @@ function renderTop() {
   }).join('');
   return `<a class="cta-bar" href="https://www.instagram.com/repremecatronicaun/" target="_blank" rel="noopener noreferrer"><span class="cta-in"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="cta-t"><b>Queremos tu opinión.</b> ¿Encontraste un error o tienes una idea para optimizar esta herramienta?</span><span class="cta-b">Escríbenos en Instagram · @repremecatronicaun →</span></span></a>
   <div class="top-in">
-    <div class="brand-wrap"><div class="brand"><b>Interferencias de horario</b><span>${esc(RAW.programa.nombre)}</span></div><span class="rep-badge">Representación estudiantil 26 - 28</span></div>
+    <div class="brand-wrap"><div class="brand"><b>Interferencias de horario</b><span>${esc(PROGRAMA.nombre)}</span></div><span class="rep-badge">Representación estudiantil 26 - 28</span></div>
     <nav class="nav" aria-label="Secciones">${PAGES_ORDER.map(([k, l]) => `<button data-act="nav" data-p="${k}" ${ui.page === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
@@ -303,7 +308,7 @@ function semCred(s, n) { return new PlanCurricular({malla:n, tipos:S.tipos}).res
 function distNames(ds) { return [...ds].sort((a,b)=>a-b).map(distLabel).join(' · '); }
 function distSummary() { const l = [...S.params.dists].sort((a,b)=>a-b).map(distLabel); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : (l[0] || 'sin selección'); }
 function distChips(counts) {
-  return RAW.opciones.distanciasDisponibles.map(d => { const n = counts ? RV.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
+  return OPCIONES.distanciasDisponibles.map(d => { const n = counts ? RV.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
 }
 function distText(p) { return p.dist === 0 ? 'Mismo semestre' : p.dist === 1 ? '1 semestre de diferencia' : p.dist + ' semestres de diferencia'; }
 function compGroups(A, c) { return S.grupos.filter(g => g.a === A && (g.c1 === c || g.c2 === c)).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y))); }
@@ -878,7 +883,7 @@ function onAct(act, d, el, ev) {
   switch (act) {
     case 'nav': ev.preventDefault(); return go(d.p);
     case 'comp-toggle': {
-      if (!(RAW.opciones.componentesComparables || []).includes(d.comp)) return;
+      if (!(OPCIONES.componentesComparables || []).includes(d.comp)) return;
       if (ui.componentes.has(d.comp)) ui.componentes.delete(d.comp);
       else ui.componentes.add(d.comp);
       actualizarVistaComponentes();
@@ -1048,8 +1053,8 @@ document.addEventListener('drop', e => {
   const h = (location.hash || '').replace('#', '');
   if (PAGES[h]) ui.page = h;
   render();
-  if (RAW.programa?.nombre) document.title = 'Interferencias de horario · ' + RAW.programa.nombre;
-  const meta = RAW.metadatos || {};
+  if (PROGRAMA?.nombre) document.title = 'Interferencias de horario · ' + PROGRAMA.nombre;
+  const meta = METADATOS || {};
   const pie = document.getElementById('pie-datos');
   if (pie) pie.textContent = ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
   if (restored && changes().length) toast('Recuperé los cambios que tenías guardados en este navegador.');
