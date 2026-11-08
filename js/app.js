@@ -1058,9 +1058,10 @@ function compsGone(a, c) { return !S.grupos.some(g => g.a === a && (g.c1 === c |
 function download(name, text, type) { const u = URL.createObjectURL(new Blob([text], { type })); const a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 1000); }
 
 /**
- * Acciones delegadas desde `data-act`. Las que alteran S pasan por commit;
- * cambios de navegación y filtros solo redibujan. No leer archivos de
- * oferta/malla/catálogo originales desde eventos de interfaz.
+ * Acciones delegadas desde `data-act`. Las ediciones ordinarias de S
+ * pasan por commit; `reset` tiene su ruta propia para limpiar el almacenamiento.
+ * Navegación y filtros solo redibujan. No leer archivos originales de oferta,
+ * malla o catálogo desde eventos de interfaz.
  */
 function onAct(act, d, el, ev) {
   const f = ui.inter;
