@@ -3,9 +3,9 @@
 Aplicación web **no oficial** para consultar la malla curricular, examinar grupos ofertados y sus interferencias de horario, evaluar escenarios y explorar una semana mediante un mapa de calor.
 
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
-**Arquitectura obligatoria:** [ARQ-01](docs/ARQUITECTURA.md) · [Guía de desarrollo](AGENTS.md)
+**Documentación de referencia:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial](docs/MIGRACION-ARQ01.md) · [Guía de desarrollo](AGENTS.md)
 
-## Arquitectura y migración v0.5.0
+## Arquitectura vigente — v0.5.1
 
 **La aplicación tiene una única entrada académica estandarizada: [datos/academico.json](datos/academico.json).**
 
@@ -29,9 +29,9 @@ La malla, el catálogo institucional y la oferta de grupos se transforman **fuer
                 filtros y visualizaciones
 ~~~
 
-En v0.5.0 la interfaz histórica sigue utilizando una estructura interna denominada `RAW`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
+Desde v0.5.0 la interfaz histórica utiliza una representación interna llamada `RAW`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
 
-**Estado del proyecto:** la migración se prepara en una rama y debe validarse antes de publicarse en `main`. ARQ-01 distingue el diseño establecido de lo que sigue siendo transitorio.
+**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
 
 ## Qué contiene el contrato
 
@@ -118,10 +118,12 @@ npm ci
 npm test
 ~~~
 
-Incluye pruebas del contrato, oferta, escenarios y vistas, las pruebas heredadas y una prueba de integración de las siete secciones con `jsdom`. GitHub Actions aplica esta batería a la PR antes de publicar; el resultado de la ejecución remota debe comprobarse antes de fusionar.
+Incluye **nueve conjuntos de pruebas**: versión pública, contrato, oferta, escenarios, vistas, pruebas heredadas e integración simulada de las siete secciones con `jsdom`. GitHub Actions aplica esta batería a cada PR y además exige incrementar el número visible de versión cuando cambian los archivos HTML, JS, CSS o JSON de producción. Los cambios solo documentales no exigen incrementar versión.
 
 Las pruebas nuevas usan solamente el JSON normalizado y verifican estructura, cobertura, horas exactas, escenarios personales y coherencia de las vistas. `tests/verificar.js`, `tests/filtros.js` y `tests/fuentes.js` se mantienen como verificaciones del comportamiento anterior y de los archivos históricos, no como entradas alternativas de producción.
 
-## Evolución futura
+## Alcance y continuidad
 
-Consulta de materiales mediante enlaces externos, comparación de programas de asignatura, estimación de demanda y soporte para otros programas. Estas funciones no forman parte de la versión actual y **no son defectos por estar ausentes**. Cuando requieran nuevos campos académicos, deberán incorporarse al **mismo contrato normalizado**, sin abrir conexiones paralelas.
+**No se establece una hoja de ruta implícita.** Las funciones que el proyecto no ha solicitado no se incorporan como «pendientes» ni como deficiencias de la versión actual. Cualquier ampliación debe partir de una necesidad aprobada y respetar ARQ-01, la entrada única y las decisiones de [DEC-01](docs/DECISIONES-Y-ALCANCE.md).
+
+Para proponer cambios, comprobar primero [EST-01](docs/ESTADO-Y-PUBLICACION.md) y la [guía de desarrollo](AGENTS.md), conservar todas las funcionalidades y revisar el control de versiones antes de fusionar una PR.
