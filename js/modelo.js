@@ -30,7 +30,13 @@ class PlanCurricular {
     return nombres.filter(nombre => permitidos.has(indice.get(nombre)));
   }
 
-  requisitoCreditos(nombre) { return (this.estado.reqCred || []).find(r => r.n === nombre); }
+  requisitoCreditos(nombre) {
+    const posicion=this.asignatura(nombre);
+    // La identidad contractual prevalece cuando está informada. El nombre se
+    // mantiene como respaldo para ediciones personales y archivos históricos.
+    return (this.estado.reqCred || []).find(r =>
+      (r.posicionId && posicion?.idPos === r.posicionId) || r.n === nombre);
+  }
 
   /**
    * La regla declara qué componentes suman. Ningún nombre ni cifra académica
