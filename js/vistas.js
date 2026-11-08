@@ -7,6 +7,15 @@
  * modificaciones personales. Se carga antes del arranque de la aplicación.
  */
 /* ---------- INICIO ---------- */
+/**
+ * Señal tipológica exclusivamente visual; los IDs proceden del escenario
+ * académico vigente, no del nombre, horario o color de la carrera.
+ * El CSS solo aplica tonos a IDs conocidos; los demás quedan neutros.
+ */
+function atributoComponente(comp) { return comp ? ' data-tipologia="'+esc(comp)+'"' : ''; }
+function atributoTipologia(nombre) {
+  return atributoComponente(S.malla.find(m => m.n === nombre)?.comp);
+}
 function gl(a, gname) { const g = S.grupos.find(x => x.a === a && x.g === gname); return g ? glabel(g) : gname; }
 function sev(p) { return p.clash === 0 ? ['ok', 'Compatibles'] : p.clash === p.total ? ['a', 'Incompatibles'] : ['b', 'Depende del grupo']; }
 const distLabel = d => d === 0 ? 'mismo semestre' : d + (d === 1 ? ' semestre de diferencia' : ' semestres de diferencia');
@@ -41,9 +50,9 @@ function pageInicio() {
     </div></section>
   <div class="grid2" style="margin-top:16px">
     <section class="card"><div class="card-h"><h2>Parejas con más choque</h2><button class="btn sm ghost" data-act="nav" data-p="inter">Ver todos →</button></div>
-      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || '<div class="hint">No hay choques con los parámetros actuales.</div>'}</div></section>
+      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b class="asig-etiqueta"${atributoTipologia(p.A)}>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b class="asig-etiqueta"${atributoTipologia(p.B)}>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || '<div class="hint">No hay choques con los parámetros actuales.</div>'}</div></section>
     <section class="card"><div class="card-h"><h2>Asignaturas más afectadas</h2><button class="btn sm ghost" data-act="nav" data-p="asig">Ver todas →</button></div>
-      <div class="card-b" style="display:grid;gap:2px">${topA.map(s => `<button class="toprow" data-act="a-go" data-n="${esc(s.n)}"><span><b>${esc(s.n)}</b> <span class="sem">S${s.s}</span><br><span class="hint">se cruza con ${s.conChoque} de ${s.pares} asignaturas con las que se compara</span></span><span class="bar"><i style="width:${Math.min(100, s.idxG * 100 / (topA[0].idxG || 1))}%"></i></span><b class="num">${pct(s.idxG)}</b></button>`).join('')}</div></section>
+      <div class="card-b" style="display:grid;gap:2px">${topA.map(s => `<button class="toprow" data-act="a-go" data-n="${esc(s.n)}"><span><b class="asig-etiqueta"${atributoTipologia(s.n)}>${esc(s.n)}</b> <span class="sem">S${s.s}</span><br><span class="hint">se cruza con ${s.conChoque} de ${s.pares} asignaturas con las que se compara</span></span><span class="bar"><i style="width:${Math.min(100, s.idxG * 100 / (topA[0].idxG || 1))}%"></i></span><b class="num">${pct(s.idxG)}</b></button>`).join('')}</div></section>
   </div>
   <section class="card" style="margin-top:16px"><div class="card-h"><h2>Qué se compara y cómo se calcula</h2></div>
     <div class="card-b grid2" style="gap:24px">
@@ -92,7 +101,7 @@ function fingerprint(p) {
 function prow(p) {
   const [c, t] = sev(p);
   return `<button class="prow" data-act="pair-open" data-k="${esc(p.key)}">
-    <span class="names"><span class="a"><i class="dotA"></i>${esc(p.A)} <span class="sem">S${p.sA}</span></span><span class="x">⇄</span><span class="b"><i class="dotB"></i>${esc(p.B)} <span class="sem">S${p.sB}</span></span></span>
+    <span class="names"><span class="a"${atributoTipologia(p.A)}><i class="dotA"></i>${esc(p.A)} <span class="sem">S${p.sA}</span></span><span class="x">⇄</span><span class="b"${atributoTipologia(p.B)}><i class="dotB"></i>${esc(p.B)} <span class="sem">S${p.sB}</span></span></span>
     ${fingerprint(p)}
     <span class="sub"><span class="lvl ${c}">${t}</span><span>${distText(p)}</span><span>· ${p.nA} y ${p.nB} grupos ofertados</span></span>
     <span class="idxcol"><span class="big"><b class="num">${pct(p.idx)}</b><span class="num">${p.clash} de ${p.total} combinaciones</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span></span></button>`;
@@ -100,7 +109,7 @@ function prow(p) {
 function matrixView() {
   const R = RV;
   const N = R.names, f = ui.inter;
-  const cells = N.map((a, i) => `<tr class="${i && R.st[a].s !== R.st[N[i - 1]].s ? 'semgap' : ''}"><th class="rowh" scope="row">${esc(a)} <span class="sem">S${R.st[a].s}</span></th>${N.map((b, j) => {
+  const cells = N.map((a, i) => `<tr class="${i && R.st[a].s !== R.st[N[i - 1]].s ? 'semgap' : ''}"><th class="rowh" scope="row"><span class="asig-etiqueta"${atributoTipologia(a)}>${esc(a)}</span> <span class="sem">S${R.st[a].s}</span></th>${N.map((b, j) => {
     const sg = j && R.st[b].s !== R.st[N[j - 1]].s ? 'semgap' : '';
     if (i === j) return `<td class="${sg}"><div class="cell none"></div></td>`;
     const p = R.pairs.find(x => (x.A === a && x.B === b) || (x.A === b && x.B === a));
@@ -112,7 +121,7 @@ function matrixView() {
     if (!m) cls += ' dim';
     return `<td class="${sg}"><button class="${cls}" style="${style}" data-act="pair-open" data-k="${esc(p.key)}" title="${esc(p.A)} ⇄ ${esc(p.B)}: ${p.clash} de ${p.total} (${pct(p.idx)})${whyOff(p) ? ' · ' + whyOff(p) : ''}">${txt}</button></td>`;
   }).join('')}</tr>`).join('');
-  return `<div class="card"><div class="mxwrap"><table class="mx"><thead><tr><th></th>${N.map((b, j) => `<th class="colh ${j && R.st[b].s !== R.st[N[j - 1]].s ? 'semgap' : ''}" scope="col"><div>${esc(b)} · S${R.st[b].s}</div></th>`).join('')}</tr></thead><tbody>${cells}</tbody></table></div>
+  return `<div class="card"><div class="mxwrap"><table class="mx"><thead><tr><th></th>${N.map((b, j) => `<th class="colh ${j && R.st[b].s !== R.st[N[j - 1]].s ? 'semgap' : ''}" scope="col"><div><span class="asig-etiqueta"${atributoTipologia(b)}>${esc(b)}</span> · S${R.st[b].s}</div></th>`).join('')}</tr></thead><tbody>${cells}</tbody></table></div>
   <div class="legend" style="padding:0 16px 14px"><span>Cada celda = índice de solape (%)</span><span><i class="sw" style="background:var(--surface2)"></i>0<i class="heatscale"></i>100</span><span><i class="sw" style="background:var(--ok-soft)"></i>sin choque</span><span><i class="sw" style="background:repeating-linear-gradient(135deg,transparent 0 3px,var(--line2) 3px 4px);border:1px solid var(--line)"></i>no se compara (prerrequisito o distancia no elegida)</span><span class="faint">Las celdas atenuadas no cumplen los filtros.</span></div></div>`;
 }
 function pageInter() {
@@ -188,7 +197,7 @@ function drawerPair(dw) {
   const why = whyOff(p), [sc, st] = sev(p);
   const bAx = gx ? R.gBlocks(gx) : [], bBx = gy ? R.gBlocks(gy) : [];
   return `<div class="dr-h"><div><div class="row" style="gap:8px;margin-bottom:6px"><span class="lvl ${sc}">${st}</span><span class="eyebrow">Pareja de asignaturas</span></div>
-      <h2><span style="color:var(--ca)">${esc(p.A)}</span> <span class="faint">⇄</span> <span style="color:var(--cb)">${esc(p.B)}</span></h2>
+      <h2><span class="asig-etiqueta"${atributoTipologia(p.A)} style="color:var(--ca)">${esc(p.A)}</span> <span class="faint">⇄</span> <span class="asig-etiqueta"${atributoTipologia(p.B)} style="color:var(--cb)">${esc(p.B)}</span></h2>
       <div class="hint" style="margin-top:4px">Semestres ${p.sA} y ${p.sB} · ${distText(p).toLowerCase()}</div></div>
     <button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
@@ -243,7 +252,7 @@ function pageAsig() {
     const worst = [...mine].sort((a, b) => b.p.idx - a.p.idx)[0];
     const open = f.open === x.n;
     const rk = f.sort === 'idx' ? x.rankIdx : f.sort === 'pares' ? x.rankPares : null;
-    return `<div class="arow ${open ? 'open' : ''}" data-aname="${esc(x.n)}"><button class="head" data-act="a-open" data-n="${esc(x.n)}" aria-expanded="${open}">
+    return `<div class="arow ${open ? 'open' : ''}"${atributoTipologia(x.n)} data-aname="${esc(x.n)}"><button class="head" data-act="a-open" data-n="${esc(x.n)}" aria-expanded="${open}">
       <span class="rank ${rk && rk <= 3 ? 'top' : ''}">${rk ? '#' + rk : 'S' + x.s}</span>
       <span><b>${esc(x.n)}</b> <span class="sem">S${x.s}</span><br><span class="hint">${x.grupos} grupo${x.grupos === 1 ? '' : 's'}${x.gruposTotal !== x.grupos ? ` (${x.gruposTotal - x.grupos} desactivado${x.gruposTotal - x.grupos > 1 ? 's' : ''})` : ''}</span></span>
       <span class="met"><span class="l"><span>Se cruza con</span><b class="num">${x.conChoque} de ${x.pares} asignaturas</b></span><span class="bar"><i style="width:${x.pares ? x.conChoque / x.pares * 100 : 0}%"></i></span><span class="l"><span>${dlt(x.conChoque, (R0.st[x.n] || x).conChoque)}</span></span></span>
@@ -251,7 +260,7 @@ function pageAsig() {
       <span class="chev">›</span></button>
       ${open ? `<div class="body"><div class="row" style="justify-content:space-between;padding:10px 0 4px"><span class="lab">Se cruza con ${mine.length} asignaturas</span><span class="row"><button class="btn sm" data-act="grp-go" data-n="${esc(x.n)}">Ver grupos</button><button class="btn sm" data-act="hor-go" data-n="${esc(x.n)}">Ver horarios</button></span></div>
       ${editorUnidad(x.n)}
-       ${[...mine].sort((a, b) => b.p.idx - a.p.idx).map(m => `<button class="prt" data-act="pair-open" data-k="${esc(m.p.key)}"><span class="lvl ${sev(m.p)[0]}" style="min-width:0">${sev(m.p)[1]}</span><span>${esc(m.o)} <span class="sem">S${m.os}</span><br><span class="hint">${m.p.clash} de ${m.p.total} combinaciones de grupos chocan</span></span><span class="bar"><i style="width:${m.p.idx * 100}%"></i></span><b class="num">${pct(m.p.idx)}</b></button>`).join('')}</div>` : ''}</div>`;
+       ${[...mine].sort((a, b) => b.p.idx - a.p.idx).map(m => `<button class="prt" data-act="pair-open" data-k="${esc(m.p.key)}"><span class="lvl ${sev(m.p)[0]}" style="min-width:0">${sev(m.p)[1]}</span><span><span class="asig-etiqueta"${atributoTipologia(m.o)}>${esc(m.o)}</span> <span class="sem">S${m.os}</span><br><span class="hint">${m.p.clash} de ${m.p.total} combinaciones de grupos chocan</span></span><span class="bar"><i style="width:${m.p.idx * 100}%"></i></span><b class="num">${pct(m.p.idx)}</b></button>`).join('')}</div>` : ''}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Asignaturas</h1><p>Cada asignatura se cruza con las que podría cursar a la vez (${distSummary()}; sin contar las que son prerrequisito suyo). Aquí ves con cuántas de ellas tiene conflicto y qué porcentaje de sus combinaciones de grupos choca. El semestre se cambia en <a href="#malla" data-act="nav" data-p="malla">Prerrequisitos</a>.</p></div>
     <div class="row" style="gap:20px;align-items:flex-end"><div class="field"><label>Distancia entre semestres</label><div class="chips">${distChips(false)}</div></div><div class="field"><label>Ordenar por</label><div class="seg"><button data-act="a-sort" data-s="idx" aria-pressed="${f.sort === 'idx'}">Mayor % de choque</button><button data-act="a-sort" data-s="pares" aria-pressed="${f.sort === 'pares'}">Más asignaturas en conflicto</button><button data-act="a-sort" data-s="sem" aria-pressed="${f.sort === 'sem'}">Semestre</button></div></div></div></div>
@@ -279,7 +288,7 @@ function groupDetail(a, g) {
   }).join('');
   return `<div class="gdet"><div><b>${esc(glabel(g))}</b> <span class="faint">${g.analizable === false ? '(grupo de otra sede: solo consulta)' : (g.on ? '' : '(no se oferta en esta simulación)')}</span></div>
     ${parts}
-    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.analizable === false ? '<span class="hint">Registrado para consulta; no participa en los cálculos.</span>' : g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}">${esc(n)}</button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
+    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.analizable === false ? '<span class="hint">Registrado para consulta; no participa en los cálculos.</span>' : g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}"><span class="asig-etiqueta"${atributoTipologia(n)}>${esc(n)}</span></button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
     <div class="row">${g.analizable === false ? '' : `<button class="btn sm" data-act="g-toggle" data-a="${esc(a)}" data-g="${esc(g.g)}">${g.on ? 'Dejar de ofertar' : 'Volver a ofertar'}</button>`}<button class="btn sm" data-act="hor-go" data-n="${esc(a)}" data-c="${esc(g.c1)}">Editar horario</button><button class="btn sm danger" data-act="g-del" data-a="${esc(a)}" data-g="${esc(g.g)}">Eliminar</button></div></div>`;
 }
 /**
@@ -294,8 +303,8 @@ function pageGrupos() {
   const cards=R.names.map(n=>{
     const gs = R.allGroupsOf[n], st = R.st[n];
     const selG = sel && sel.a === n ? gs.find(g => g.g === sel.g) : null;
-    return `<section class="card gcard" data-aname="${esc(n)}">
-      <div class="hd"><div><h3>${esc(n)} <span class="sem">S${st.s}</span></h3><span class="hint">${st.grupos} en el análisis · ${gs.length} registrados</span></div><button class="btn sm ghost" data-act="asg-del" data-n="${esc(n)}" title="Quitar del análisis">Quitar</button></div>
+    return `<section class="card gcard"${atributoTipologia(n)} data-aname="${esc(n)}">
+      <div class="hd"><div><h3><span class="asig-etiqueta"${atributoTipologia(n)}>${esc(n)}</span> <span class="sem">S${st.s}</span></h3><span class="hint">${st.grupos} en el análisis · ${gs.length} registrados</span></div><button class="btn sm ghost" data-act="asg-del" data-n="${esc(n)}" title="Quitar del análisis">Quitar</button></div>
       <div class="gchips">${gs.map(g => {
         const c = (R.groupClash.get(n + '\u0001' + g.g) || []).length;
         return `<button class="gchip ${g.on ? '' : 'off'} ${selG && selG.g === g.g ? 'sel' : ''}" data-act="g-sel" data-a="${esc(n)}" data-g="${esc(g.g)}">${esc(glabel(g))}${g.analizable === false ? '<span class="faint"> · otra sede</span>' : g.on ? `<span class="b ${c ? 'h' : 'o'}">${c ? c : '✓'}</span>` : ''}</button>`;
@@ -371,14 +380,14 @@ function pageHor() {
   const choques = R.pairs.filter(p => p.enRango && p.clash && (p.A === A || p.B === A)).map(p => p.A === A ? p.B : p.A);
   return `<div class="page-title"><div><h1>Horarios</h1><p>La semana de cada asignatura con todos sus grupos superpuestos. <b>Arrastra un bloque</b> a otro día u hora (o edítalo a la derecha) y mira cómo cambia el impacto. Superpón otras asignaturas para ver dónde se pisan.</p></div></div>
   <div class="hor">
-    <aside class="card sidelist" aria-label="Asignaturas">${sems.map(s => `<div class="sg">Semestre ${s}</div>${R.names.filter(n => R.st[n].s === s).map(n => `<button data-act="h-sel" data-n="${esc(n)}" aria-current="${n === A}"><span>${esc(n)}</span><i class="hdot" title="${pct(R.st[n].idxG)} de combinaciones chocan" style="background:${heatBg(R.st[n].idxG * 2)}"></i></button>`).join('')}`).join('')}</aside>
+    <aside class="card sidelist" aria-label="Asignaturas">${sems.map(s => `<div class="sg">Semestre ${s}</div>${R.names.filter(n => R.st[n].s === s).map(n => `<button data-act="h-sel" data-n="${esc(n)}" aria-current="${n === A}"${atributoTipologia(n)}><span>${esc(n)}</span><i class="hdot" title="${pct(R.st[n].idxG)} de combinaciones chocan" style="background:${heatBg(R.st[n].idxG * 2)}"></i></button>`).join('')}`).join('')}</aside>
     <div>
       <select class="mobile-only" data-chg="h-pick" aria-label="Asignatura" style="width:100%;margin-bottom:10px">${R.names.map(n => `<option ${n === A ? 'selected' : ''}>${esc(n)}</option>`).join('')}</select>
-      <div class="row" style="margin-bottom:10px"><h2 style="font:650 20px var(--serif)">${esc(A)}</h2><span class="sem">S${R.st[A].s}</span><span style="flex:1"></span>
+      <div class="row" style="margin-bottom:10px"><h2 style="font:650 20px var(--serif)"><span class="asig-etiqueta"${atributoTipologia(A)}>${esc(A)}</span></h2><span class="sem">S${R.st[A].s}</span><span style="flex:1"></span>
         <select data-chg="h-ov-add" aria-label="Superponer asignatura"><option value="">Superponer otra asignatura…</option>${R.names.filter(n => n !== A && !h.ov.includes(n)).map(n => `<option>${esc(n)}</option>`).join('')}</select>
         <button class="btn sm" data-act="h-ov-clash" ${choques.length ? '' : 'disabled'} title="Superpone las asignaturas con las que choca">Las que chocan (${choques.length})</button></div>
       ${editorUnidad(A)}
-      ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}">${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
+      ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}"${atributoTipologia(n)}>${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
       <div class="weekgrid-scroll" role="region" tabindex="0" aria-label="Horario semanal desplazable"><div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div></div>
       <div class="legend" style="margin-top:8px"><span>Cada bloque lleva el nombre del grupo (o grupos) que lo usan; bloques lado a lado son grupos alternativos a la misma hora.</span>${hasOv ? '<span><i class="sw" style="background:color-mix(in srgb,var(--heat) 22%,transparent)"></i>horas donde se pisan con lo superpuesto</span>' : ''}</div>
     </div>
@@ -436,7 +445,7 @@ function pageHeat() {
   const sidebar = sems.map(sem => {
     const ns = names.filter(n => semOf(S, n) === sem);
     const on = ns.filter(n => !off.has(n)).length;
-    return `<div class="sg">Semestre ${sem} <span class="faint">· ${on}/${ns.length}</span></div>${ns.map(n => `<button class="hm-asg" data-act="hm-toggle" data-n="${esc(n)}" aria-pressed="${!off.has(n)}" title="${off.has(n) ? 'Incluir en el mapa' : 'Excluir del mapa'}"><i class="hm-check">✓</i><span>${esc(n)}</span><i class="hm-dot" title="Tiene horario cargado"></i></button>`).join('')}`;
+    return `<div class="sg">Semestre ${sem} <span class="faint">· ${on}/${ns.length}</span></div>${ns.map(n => `<button class="hm-asg"${atributoTipologia(n)} data-act="hm-toggle" data-n="${esc(n)}" aria-pressed="${!off.has(n)}" title="${off.has(n) ? 'Incluir en el mapa' : 'Excluir del mapa'}"><i class="hm-check">✓</i><span>${esc(n)}</span><i class="hm-dot" title="Tiene horario cargado"></i></button>`).join('')}`;
   }).join('');
   const columns = DAYS.map(d => `<div class="dcol" data-d="${d}">${slots[d].map((cell, i) => {
     const h = H_MIN + i, count = cell.groups.size, subjectCount = cell.subjects.size;
@@ -592,13 +601,13 @@ function pageMalla() {
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s,cs)}</h4>${cs.map(m=>{
       const virtual=!!m._libreVirtual;
       const esLibre=!!idLibre && m.comp===idLibre;
-      if(virtual)return `<div class="mcard nosched mcard-libre" title="Tramo visual de créditos de Libre elección; no es una nueva asignatura académica"><span class="mt"><span>${esc(m.n)}</span><span class="cr">${m.cr} cr</span></span><small><span>Distribución visual de Libre elección</span></small></div>`;
+      if(virtual)return `<div class="mcard nosched mcard-libre"${atributoComponente(m.comp)} title="Tramo visual de créditos de Libre elección; no es una nueva asignatura académica"><span class="mt"><span>${esc(m.n)}</span><span class="cr">${m.cr} cr</span></span><small><span>Distribución visual de Libre elección</span></small></div>`;
       const sc=RV.st[m.n], req=creditRuleFor(m.n), check=req?creditStatus(m,req):null;
       let cls=sc?'':'nosched';
       if(esLibre)cls+=' mcard-libre';
       if(L) cls+=m.n===M.sel?' sel':L.up.has(m.n)?' up':L.down.has(m.n)?' down':' dim';
       const sugerencia = esLibre && M.equilibrar && m.s !== m._libreReferencia;
-      return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n===M.sel}" title="${sugerencia?'Ubicación visual sugerida; ':''}Arrastra a otro semestre para cambiar tu escenario"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr==null?'—':m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car?' · '+esc(carName(m.car)):''}</span></small>${check&&check.low?`<small><span class="tag heat">Faltan ${req.min-check.total} cr. previos</span></small>`:''}${sc?`<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100,sc.idxG*200)}%"></i></span>`:esLibre?'<small><span>Créditos flexibles · sin asignatura definida</span></small>':'<small><span>sin horario</span></small>'}${!req&&m.nota?`<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ','').replace(' de los créditos del plan',' de créditos'))}</span></small>`:''}</button>`;
+      return `<button class="mcard ${cls}"${atributoComponente(m.comp)} draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n===M.sel}" title="${sugerencia?'Ubicación visual sugerida; ':''}Arrastra a otro semestre para cambiar tu escenario"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr==null?'—':m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car?' · '+esc(carName(m.car)):''}</span></small>${check&&check.low?`<small><span class="tag heat">Faltan ${req.min-check.total} cr. previos</span></small>`:''}${sc?`<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100,sc.idxG*200)}%"></i></span>`:esLibre?'<small><span>Créditos flexibles · sin asignatura definida</span></small>':'<small><span>sin horario</span></small>'}${!req&&m.nota?`<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ','').replace(' de los créditos del plan',' de créditos'))}</span></small>`:''}</button>`;
     }).join('')}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
@@ -636,7 +645,7 @@ function mallaSide(L) {
   const optsOut = S.malla.filter(c => c.n !== n && !dirOut.some(p => p.t === c.n) && !wouldCycle(S, n, c.n)).sort((a, b) => a.s - b.s || a.n.localeCompare(b.n));
   const rel = (list, key, other) => list.length ? list.map(p => { const o = p[other], om = S.malla.find(x => x.n === o); const bad = key === 'in' ? om.s >= m.s : om.s <= m.s; return `<div class="it"><span><button style="all:unset;cursor:pointer;text-decoration:underline dotted" data-act="m-sel" data-n="${esc(o)}">${esc(o)}</button> <span class="sem">S${om.s}</span>${bad ? ' <span class="tag heat">mismo sem. o posterior</span>' : ''}</span><button data-act="m-del" data-r="${esc(p.r)}" data-t="${esc(p.t)}" aria-label="Quitar relación" title="Quitar relación">×</button></div>`; }).join('') : '<span class="hint">Ninguno.</span>';
   return `<aside class="card sidecard">
-    <div><span class="eyebrow">Asignatura</span><h2 style="font:650 18px/1.25 var(--serif);margin-top:2px">${esc(n)}</h2></div>
+    <div><span class="eyebrow">Asignatura</span><h2 style="font:650 18px/1.25 var(--serif);margin-top:2px"><span class="asig-etiqueta"${atributoTipologia(n)}>${esc(n)}</span></h2></div>
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr == null ? '—' : m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
