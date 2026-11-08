@@ -459,3 +459,48 @@ main{padding-bottom:40px}
 .unidad-editor label{font-size:11px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3)}
 .unidad-editor input{width:100%;min-width:0}
 @media(max-width:720px){.unidad-filtro{margin-left:0;width:100%;justify-content:space-between}.unidad-filtro select{min-width:0;max-width:55vw}.unidad-editor{max-width:100%}}
+
+
+/* DEM-01: página de intención de inscripción, datos ausentes no equivalen a cero. */
+.dem-panel{display:grid;gap:16px}
+.dem-panel h2{font:650 18px var(--serif);margin:3px 0}
+.dem-panel .note{margin:0}
+.dem-metricas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.dem-metricas>div{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:13px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.dem-metricas strong{font:700 24px var(--sans);color:var(--ink);font-variant-numeric:tabular-nums}
+.dem-metricas small{font:500 11px/1.4 var(--sans);color:var(--ink3)}
+.dem-acciones{display:flex;gap:8px;flex-wrap:wrap}
+.dem-separador{height:1px;background:var(--line);width:100%}
+.dem-campos{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.dem-campos label{display:grid;gap:5px;font:600 12px var(--sans);color:var(--ink3);flex:1;min-width:170px}
+.dem-campos label select,.dem-campos label input{width:100%;min-width:0}
+.dem-campos .dem-check{display:flex;align-items:center;min-width:160px;gap:8px;padding:9px 0}
+.dem-tabla-wrap{overflow-x:auto;max-width:100%}
+.dem-tabla{width:100%;border-collapse:collapse;font-size:12px;min-width:590px}
+.dem-tabla th{color:var(--ink3);font-weight:700;text-align:left;border-bottom:1px solid var(--line2);padding:8px 7px}
+.dem-tabla td{padding:9px 7px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.dem-tabla td:not(:first-child){white-space:nowrap}
+.dem-tabla td small{display:block;color:var(--ink3);margin-top:3px}
+.dem-enlace{color:var(--ink);background:none;border:0;cursor:pointer;padding:0;text-align:left;text-decoration:underline;text-underline-offset:3px;font:600 12px var(--sans)}
+.dem-enlace:hover{color:var(--accent)}
+.dem-grafico{width:100%;height:auto;max-height:290px;min-width:0;overflow:visible}
+.dem-grafico text{font:11px var(--sans);fill:var(--ink3)}
+.dem-eje{stroke:var(--ink3);stroke-width:1.2}
+.dem-punto{fill:var(--accent);fill-opacity:.8;stroke:var(--surface);stroke-width:2;cursor:pointer}
+.dem-punto:hover,.dem-punto:focus{fill-opacity:1;stroke:var(--ink);stroke-width:2.5;outline:none}
+.dem-sems{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.dem-sem{display:grid;align-content:start;gap:8px;padding:12px;background:var(--surface2);border:1px solid var(--line);border-radius:10px}
+.dem-sem h3{font:650 13px var(--sans)}
+.dem-mini{display:grid;grid-template-columns:minmax(0,1fr) auto;position:relative;overflow:hidden;gap:4px;text-align:left;cursor:pointer;padding:6px 5px 9px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink)}
+.dem-mini span{overflow-wrap:anywhere;font:12px var(--sans)}
+.dem-mini b{font:650 12px var(--sans);font-variant-numeric:tabular-nums}
+.dem-mini i{display:block;position:absolute;bottom:0;left:0;height:3px;background:var(--accent);max-width:100%}
+.dem-detalle{padding:14px;background:var(--surface2);border-radius:10px;display:grid;gap:8px}
+.dem-detalle p{font:12px/1.5 var(--sans);margin:0}
+.dem-detalle small{color:var(--ink3);font:11px/1.5 var(--sans)}
+.dem-pares{display:grid;gap:8px}
+.dem-par{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px;padding:8px 10px;background:var(--surface2);border:1px solid var(--line);border-radius:8px;font-size:12px}
+.dem-par b{font-variant-numeric:tabular-nums}
+.dem-par small{grid-column:1/-1;color:var(--ink3)}
+@media(max-width:800px){.dem-metricas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.dem-metricas strong{font-size:20px}.dem-campos label{min-width:100%}.dem-grafico{min-height:180px}}

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Interfaz: estado de consulta, escenas personales y siete vistas.
+ * Interfaz: estado de consulta, escenarios personales y ocho vistas.
  * El motor puro está en js/analisis.js, cargado antes de esta interfaz.
  * No consulta datos académicos originales ni define el algoritmo de choques.
  */
@@ -34,7 +34,7 @@ const UNIDADES_SUGERIDAS=[
 ];
 const SIN_UNIDAD='__sin_unidad__';
 
-const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
+const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['demanda', 'Demanda'], ['malla', 'Prerrequisitos']];
 
 // S0 = referencia reconstruida desde el contrato; S = copia editable personal.
 // Mantener separadas estas identidades al importar, guardar y restablecer.
@@ -164,6 +164,7 @@ const ui = {
   grp: { sel: null },
   hor: { a: S.asg.includes(OPCIONES.asignaturaInicial) ? OPCIONES.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
+  demanda: { orden:'porGrupo', semestre:'', seleccion:'', sinDato:false, confirmarEjemplo:false, confirmarBorrar:false },
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
 };
@@ -293,6 +294,9 @@ function changes() {
   const b0 = new Map(S0.bloques.map(b => [b.id, b])), b1 = new Map(S.bloques.map(b => [b.id, b]));
   b1.forEach((b, id) => { const o = b0.get(id); if (!o) out.push(['Horario', `${b.a} · ${b.c}: nuevo bloque ${fmtB(b)}`]); else if (o.d !== b.d || o.s !== b.s || o.e !== b.e) out.push(['Horario', `${b.a} · ${b.c}: ${fmtB(o)} → ${fmtB(b)}`]); else if (o.c !== b.c) out.push(['Horario', `${b.a}: componente ${o.c} → ${b.c}`]); });
   b0.forEach((b, id) => { if (!b1.has(id)) out.push(['Horario', `${b.a} · ${b.c}: bloque quitado (${fmtB(b)})`]); });
+  // Una encuesta es una anotación personal separada, nunca un cambio académico.
+  if (JSON.stringify(S.demanda??null)!==JSON.stringify(S0.demanda??null))
+    out.push(['Demanda', 'Datos de preinscripción: '+(S.demanda?.solicitudes?.length||0)+' asignaturas registradas'+(S.demanda?.simulado?' (simulación)':'')]);
   return out;
 }
 function pairDeltas() {
@@ -348,10 +352,10 @@ function renderTop() {
   </div>`;
 }
 
-/* Las siete vistas y los paneles viven en js/vistas.js. */
+/* Las siete vistas previas siguen en js/vistas.js; DEM-01 está en js/demanda.js. */
 
 /* ===== RENDER ===== */
-const PAGES = { inicio: pageInicio, inter: pageInter, asig: pageAsig, grupos: pageGrupos, hor: pageHor, heat: pageHeat, malla: pageMalla };
+const PAGES = { inicio: pageInicio, inter: pageInter, asig: pageAsig, grupos: pageGrupos, hor: pageHor, heat: pageHeat, demanda: pageDemanda, malla: pageMalla };
 /**
  * Redibuja la vista activa a partir de resultados existentes y preserva,
  * cuando es posible, desplazamiento y foco de interacción. La selección
@@ -389,6 +393,43 @@ function onAct(act, d, el, ev) {
   const f = ui.inter;
   switch (act) {
     case 'nav': ev.preventDefault(); return go(d.p);
+    case 'dem-sel': ui.demanda.seleccion=d.pos; return render();
+    case 'dem-plantilla': return download('plantilla-demanda.json',JSON.stringify({tipo:'demanda-preinscripcion',version:1,solicitudes:[]},null,2),'application/json');
+    case 'dem-export': if(S.demanda)return download('demanda-preinscripcion.json',JSON.stringify(S.demanda,null,2),'application/json');return;
+    case 'dem-import': return $('#demanda-file')?.click();
+    case 'dem-ejemplo': {
+      if(S.demanda&&!ui.demanda.confirmarEjemplo){ui.demanda.confirmarEjemplo=true;return render();}
+      ui.demanda.confirmarEjemplo=false;
+      S.demanda=DemandaEstadistica.ejemplo(S.malla,S.grupos);
+      ui.demanda.seleccion='';
+      return commit('Datos simulados cargados y claramente identificados.');
+    }
+    case 'dem-borrar': {
+      if(!S.demanda)return;
+      if(!ui.demanda.confirmarBorrar){ui.demanda.confirmarBorrar=true;return render();}
+      ui.demanda.confirmarBorrar=false; S.demanda=null;ui.demanda.seleccion='';
+      return commit('Se retiraron los datos de demanda del escenario.');
+    }
+    case 'dem-guardar': {
+      const pos=ui.demanda.seleccion, entrada=$('#dem-cantidad');
+      if(!pos||!entrada)return;
+      if(S.demanda?.respuestasAnonimas)return toast('Con respuestas anónimas, importa un archivo actualizado para mantener los conteos consistentes.');
+      const texto=entrada.value.trim();
+      if(!/^\d+$/.test(texto)||!Number.isSafeInteger(Number(texto)))return toast('Escribe un entero no negativo. Para dato desconocido usa «Marcar desconocido».');
+      try{
+        const o=DemandaEstadistica.normalizar(S.demanda||{solicitudes:[]});
+        o.solicitudes=o.solicitudes.filter(x=>x.posicionId!==pos);
+        o.solicitudes.push({posicionId:pos,cantidad:Number(texto)});
+        S.demanda=DemandaEstadistica.normalizar(o);
+        return commit('Se registró la solicitud observada.');
+      }catch(e){return toast(e.message);}
+    }
+    case 'dem-quitar': {
+      const pos=ui.demanda.seleccion;if(!pos||!S.demanda)return;
+      if(S.demanda.respuestasAnonimas)return toast('Con respuestas anónimas, carga un archivo actualizado para cambiar las solicitudes.');
+      S.demanda=DemandaEstadistica.normalizar({...S.demanda,solicitudes:S.demanda.solicitudes.filter(x=>x.posicionId!==pos)});
+      return commit('La cantidad quedó desconocida, no en cero.');
+    }
     case 'filtro-reset': {
       ui.componentes=new Set(OPCIONES.componentesComparables||[]);
       ui.unidad='';
@@ -484,6 +525,22 @@ function onChange(k, el) {
   const f = ui.inter;
   switch (k) {
     case 'unidad-filtro': ui.unidad=el.value; actualizarVistaComponentes(); return render();
+    case 'dem-orden': ui.demanda.orden=el.value;return render();
+    case 'dem-semestre': ui.demanda.semestre=el.value;ui.demanda.seleccion='';return render();
+    case 'dem-elegir': ui.demanda.seleccion=el.value;return render();
+    case 'dem-sindato': ui.demanda.sinDato=el.checked;return render();
+    case 'dem-import-file': {
+      const archivo=el.files?.[0];if(!archivo)return;
+      const lector=new FileReader();
+      lector.onload=()=>{
+        try{
+          const datos=DemandaEstadistica.normalizar(JSON.parse(lector.result));
+          S.demanda=datos;ui.demanda.seleccion='';ui.demanda.confirmarEjemplo=false;
+          commit('Encuesta importada: '+datos.solicitudes.length+' asignaturas.');
+        }catch(e){toast('No se pudo cargar la demanda: '+e.message);}
+      };
+      lector.readAsText(archivo);el.value='';return;
+    }
     case 'unidad-asig': {
       const m=S.malla.find(x=>x.n===el.dataset.n);
       if(!m)return;
@@ -539,7 +596,7 @@ function onChange(k, el) {
 }
 
 document.addEventListener('click', e => { const el = e.target.closest('[data-act]'); if (!el) return; onAct(el.dataset.act, el.dataset, el, e); });
-document.addEventListener('change', e => { const el = e.target.closest('[data-chg]'); if (el) onChange(el.dataset.chg, el); else if (e.target.id === 'file-in') onChange('import-file', e.target); });
+document.addEventListener('change', e => { const el = e.target.closest('[data-chg]'); if (el) onChange(el.dataset.chg, el); else if (e.target.id === 'file-in') onChange('import-file', e.target); else if(e.target.id === 'demanda-file') onChange('dem-import-file',e.target); });
 document.addEventListener('input', e => { const el = e.target.closest('[data-inp]'); if (el && el.dataset.inp === 'i-q') { ui.inter.q = el.value; render(); } });
 document.addEventListener('toggle', e => { if (e.target.classList && e.target.classList.contains('filters')) ui.fopen = e.target.open; }, true);
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && ui.drawer) { ui.drawer = null; render(); } });

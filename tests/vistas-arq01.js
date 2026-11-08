@@ -8,18 +8,18 @@ const contrato=JSON.parse(read('datos/academico.json'));
 const {EntradaAcademica}=require('../js/entrada.js');
 const raw=new EntradaAcademica(contrato).generarEscenarioBase();
 const appCode=read('js/modelo.js')+'\n'+read('js/entrada.js')+'\n'+read('js/escenarios.js')+'\n'+
- read('js/analisis.js')+'\n'+read('js/vistas.js')+'\n'+
+ read('js/analisis.js')+'\n'+read('js/demanda.js')+'\n'+read('js/vistas.js')+'\n'+
  'window.CONTEXTO_ACADEMICO = { estadoBase: fromRaw(RAW), opciones: RAW.opciones, programa: RAW.programa, calendario: RAW.calendario, almacenamiento: RAW.almacenamiento, metadatos: RAW.metadatos, incrementosOferta: RAW.incrementosOferta };\n'+
  read('js/app.js').split("document.addEventListener('click'")[0];
 const api=new Function('RAW','localStorage','window','document',appCode+
-  '\nrender=()=>{};toast=()=>{};return {S,S0,R,ui,changes,onAct,onChange,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageMalla,renderTop,drawerPair,getVista:()=>RV};')(
+  '\nrender=()=>{};toast=()=>{};return {S,S0,R,ui,changes,onAct,onChange,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageDemanda,pageMalla,renderTop,drawerPair,getVista:()=>RV};')(
   raw,{getItem:()=>null,setItem(){},removeItem(){}},
   {innerWidth:1200,fuentesAcademicas:{datos:contrato}},{}
 );
 function verificar(nombre,trabajo){trabajo();console.log('OK '+nombre);}
 
-verificar('Siete vistas se generan desde el contrato normalizado',()=>{
- const paginas=[api.pageInicio,api.pageInter,api.pageAsig,api.pageGrupos,api.pageHor,api.pageHeat,api.pageMalla];
+verificar('Ocho vistas se generan desde el contrato normalizado',()=>{
+ const paginas=[api.pageInicio,api.pageInter,api.pageAsig,api.pageGrupos,api.pageHor,api.pageHeat,api.pageDemanda,api.pageMalla];
  for(const fn of paginas)assert(fn().length>200);
 });
 
@@ -31,7 +31,8 @@ verificar('Los filtros solo modifican los resultados de consulta',()=>{
  assert.equal(api.getVista().pairs.length,0);
  assert.equal(JSON.stringify(api.S),antes);
  assert.equal(api.changes().length,cambios);
- assert(api.pageHeat().includes('Mapa de calor'));
+ assert(api.pageHeat().includes('Mapa de calor'))
+ assert(api.pageDemanda().includes('Demanda de preinscripción'));
  assert(!api.pageGrupos().includes('data-aname="Dibujo básico"'),
      'El filtro global también debe excluir asignaturas de Grupos');
  for(const id of contrato.configuracion.opciones.componentesComparables){
@@ -82,7 +83,7 @@ verificar('Las otras sedes están disponibles para consulta pero no afectan mapa
 
 
 verificar('Tipología y unidad están visibles y actúan en las siete secciones',()=>{
- const paginas=['inicio','inter','asig','grupos','hor','heat','malla'];
+ const paginas=['inicio','inter','asig','grupos','hor','heat','demanda','malla'];
  for(const page of paginas){
    api.ui.page=page;
    assert(api.renderTop().includes('data-act="comp-toggle"'));
