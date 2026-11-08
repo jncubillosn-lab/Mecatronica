@@ -27,8 +27,10 @@ assert.equal(equilibradas.posiciones.reduce((a,m)=>a+(m.cr||0),0),36);
 assert.equal(equilibradas.cargas.reduce((a,n)=>a+n,0),179,
   'La carga del plan excluye los 12 créditos de Nivelación');
 const amplitud=a=>Math.max(...a)-Math.min(...a);
-assert(amplitud(equilibradas.cargas)<amplitud(originales.cargas),
-  'El equilibrado debe reducir el máximo menos el mínimo de créditos semestrales');
+assert(amplitud(equilibradas.cargas)<=amplitud(originales.cargas),
+  'El equilibrado no puede empeorar la amplitud de cargas del plan');
+assert.deepEqual(equilibradas.posiciones.map(m=>m.s),originales.posiciones.map(m=>m.s),
+  'Si la malla original ya está igual de equilibrada se conservan sus semestres');
 assert.equal(JSON.stringify(estado),antes,'La sugerencia no edita el escenario ni la fuente');
 
 // Programa hipotético con 8 créditos L: 3 + 3 + 2, sin fijar 36.
@@ -51,6 +53,13 @@ assert.deepEqual(extra.posiciones.map(x=>x.cr),[3,3,2]);
 assert(extra.posiciones.every(x=>x._libreVirtual),'No inventa asignaturas editables');
 assert.equal(extra.cargas.reduce((a,n)=>a+n,0),24,'Nivelación no se suma');
 assert.equal(JSON.stringify(otra),otraAntes);
+// Un plan desbalanceado sí debe redistribuir posiciones visuales.
+const desequilibrada=JSON.parse(JSON.stringify(otra));
+desequilibrada.malla.find(m=>m.idPos==='b1').cr=3;
+const previa=proyeccionLibresMalla(desequilibrada,desequilibrada,new Set(),false);
+const mejorada=proyeccionLibresMalla(desequilibrada,desequilibrada,new Set(),true);
+assert(amplitud(mejorada.cargas)<amplitud(previa.cargas),
+  'Los totales de un plan desbalanceado se redistribuyen');
 const fijo=proyeccionLibresMalla(otra,otra,new Set(['Libres']),true);
 assert(fijo.posiciones.every(x=>x.s===2),'Una ubicación manual permanece fija');
 const modificado=JSON.parse(JSON.stringify(otra));
