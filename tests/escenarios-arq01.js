@@ -164,4 +164,35 @@ probar('Validación básica rechaza horarios imposibles sin rechazar créditos d
   assert.throws(()=>EscenarioPersonal.validarEstado(invalido,calendario),/Bloque horario inválido/);
 });
 
+
+probar('Requisitos académicos conservan IDs estables y compatibilidad con claves anteriores',()=>{
+  const origen=base.pre[0];
+  assert(origen?.rId&&origen?.tId,'Un requisito institucional necesita IDs estables');
+  const cambiado=copiar(base);
+  cambiado.pre[0].r='Texto de visualización diferente';
+  const noEditar=EscenarioPersonal.diferencias(base,cambiado);
+  assert.deepEqual(noEditar.pre.agregar,[]);
+  assert.deepEqual(noEditar.pre.quitar,[]);
+  const m0=modulo.compute(base),m1=modulo.compute(cambiado);
+  assert.deepEqual(m0.pairs,m1.pairs,'El cálculo debe usar identidad de requisito, no el texto visible');
+  const quitado=copiar(base);
+  quitado.pre.splice(0,1);
+  const cambios=EscenarioPersonal.diferencias(base,quitado);
+  assert(cambios.pre.quitar.some(k=>k.startsWith('id:')));
+  assert(!EscenarioPersonal.aplicar(base,cambios).pre.some(p=>p.rId===origen.rId&&p.tId===origen.tId));
+  const parcheLegacy={pre:{agregar:[],quitar:[origen.r+'\u0001'+origen.t]}};
+  assert(!EscenarioPersonal.aplicar(base,parcheLegacy).pre.some(p=>p.rId===origen.rId&&p.tId===origen.tId));
+});
+
+probar('Escenarios históricos sin IDs no generan cambios falsos en requisitos',()=>{
+  const previo=anterior('0.4.3');
+  previo.pre.forEach(p=>{delete p.rId;delete p.tId;});
+  previo.reqCred?.forEach(r=>delete r.posicionId);
+  const migrado=EscenarioPersonal.migrarAnterior(base,previo,contrato,modulo.fromRaw,EntradaAcademica);
+  const cambios=EscenarioPersonal.diferencias(base,migrado);
+  assert.deepEqual(cambios.pre.agregar,[]);
+  assert.deepEqual(cambios.pre.quitar,[]);
+  assert.equal(Object.hasOwn(cambios,'reqCred'),false);
+});
+
 console.log('Persistencia y compatibilidad: comprobaciones finalizadas.');
