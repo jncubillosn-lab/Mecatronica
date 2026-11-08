@@ -1,0 +1,27 @@
+name: Verificación ARQ-01
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [arquitectura/migracion-arq01-entrada-unica]
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Instalar dependencias declaradas
+        run: npm ci
+      - name: Contrato, escenarios, cálculo e integración
+        run: npm test
