@@ -491,6 +491,10 @@ function onChange(k, el) {
       if(valor.length>180)return toast('Unidad académica demasiado extensa.');
       if((m.unidad||'')===valor)return;
       m.unidad=valor;
+      // Una unidad ya no registrada no debe quedar seleccionada invisible
+      // mientras el desplegable aparenta mostrar «Todas».
+      if(ui.unidad && ui.unidad!==SIN_UNIDAD &&
+        !S.malla.some(x=>x.unidad===ui.unidad))ui.unidad='';
       return commit(m.n+': unidad '+(valor||'sin información'));
     }
     case 'indirect': S.params.indirect = el.checked ? 1 : 0; return commit();
