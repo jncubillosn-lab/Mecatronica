@@ -59,7 +59,6 @@ const natKey = s => { const m = String(s).match(/\d+/); return m ? +m[0] : 1e9; 
 function semOf(S, name) { const m = S.malla.find(x => x.n === name); return m ? m.s : 0; }
 function maxSemester(S) { return new PlanCurricular(S).maxSemestre(); }
 
-/* Cierre transitivo del grafo de prerrequisitos (req -> t). */
 /**
  * Cierre transitivo de prerrequisitos del escenario actual: r -> t significa
  * que r es requisito de t. Se usa para evitar comparar asignaturas que el
@@ -79,14 +78,12 @@ function closure(S) {
   return { desc, direct };
 }
 
-/* ¿Dos bloques se traslapan? */
 /**
  * Intersección de intervalos semiabiertos [inicio,fin) del mismo día.
  * Dos clases que se tocan solo en el límite no se superponen.
  */
 function overlap(a, b) { return a.d === b.d && a.s < b.e && b.s < a.e; }
 
-/* Calcula todo: pares, estadísticas por asignatura, resumen por nivel, choques por grupo. */
 /**
  * Motor sin DOM y sin dependencias de la interfaz. Calcula matriz de cada
  * par de asignaturas del escenario, choques de grupos, índices y totales.
@@ -219,7 +216,6 @@ try {
     else if (o?.S && Array.isArray(o.S.bloques) && o.S.params) datosGuardados = o;
   }
 } catch (e) { /* la herramienta funciona sin almacenamiento */ }
-/* Completa escenarios guardados con asignaturas nuevas de la malla (Inglés, libre elección, proyecto, trabajo de grado…). */
 /**
  * Transición de escenarios históricos, NO conversión de fuentes académicas.
  * Conserva la semántica v0.4.x y resuelve compatibilidad de datos guardados.
@@ -406,7 +402,6 @@ function toast(msg) {
  */
 function save() { try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); } catch (e) { } }
 
-/* Aplica un cambio de datos: recalcula, avisa si algún par entra o sale del análisis, repinta. */
 /**
  * Consolida una acción VOLUNTARIA de edición en S: recalcula R y RV,
  * guarda el delta personal y actualiza la interfaz. No es un commit de Git
