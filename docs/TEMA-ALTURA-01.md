@@ -44,6 +44,10 @@ Este comportamiento sigue la filosofía de minimalismo informativo: se muestra l
 
 **Verificación necesaria antes de un cambio posterior:** recuperar el articulado normativo completo y/o las reglas de inscripción SIA correspondientes a TPI y PAI para el plan 2022, indicando expresamente el numerador, los componentes y la condición de créditos aprobados. Si hay discrepancia, debe registrarse por escrito cuál fuente normativa prevalece.
 
+### Decisión posterior, v0.7.3
+
+La incertidumbre anterior **ya no aplica a la configuración actual de TPI y PAI**: por criterio explícito indicado para el proyecto se implementaron **TPI = 52 créditos C (SIA 2024045, 3 cr)** y **PAI = 65 créditos C (SIA 2017275, 4 cr)** en la única entrada normalizada. Esta configuración no se presenta como verificación independiente de una norma textual. Véase [REQ-C-01](REQ-C-01.md). Trabajo de Grado y otras condiciones permanecen sin modificaciones.
+
 ## 4. Pruebas
 
 - `tests/tema-visual.js`: modo oscuro inicial, cambio al claro, persistencia, valores desconocidos y carga temprana.

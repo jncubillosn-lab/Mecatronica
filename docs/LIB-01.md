@@ -45,21 +45,11 @@ Fuentes institucionales consultadas:
 - [Malla oficial de Ingeniería Electrónica (2023)](https://ingenieria.bogota.unal.edu.co/images/Malla_Ing_Electrnica_2023.pdf): distingue expresamente 121 créditos (70 % del programa) y 63 créditos (80 % del componente disciplinar).
 - [Plan de Ingeniería Industrial — UNAL Palmira](https://fia.unal.edu.co/pregrados/ingenieria-industrial/): otro ejemplo institucional con Trabajo de Grado sujeto al 80 % de créditos exigidos en el componente disciplinar.
 
-### Diferencias actuales a verificar, sin alterar el contrato
+### Actualización posterior de TPI y PAI (REQ-C-01, v0.7.3)
 
-La entrada Mecatrónica vigente contiene:
+La revisión original de esta sección era válida hasta v0.7.2. El 8 de noviembre de 2026 se adoptó expresamente el siguiente criterio para Mecatrónica: **TPI, 52 créditos aprobados de C (SIA 2024045, 3 cr)**; **PAI, 65 créditos aprobados de C (SIA 2017275, 4 cr)**. Se corrigió el campo de componentes de PAI, que antes sumaba B+C+L, y se actualizaron las notas de ambos. Consulta [REQ-C-01](REQ-C-01.md).
 
-| Posición | Umbral | Componentes hoy codificados |
-|---|---:|---|
-| Taller de Proyectos Interdisciplinarios | 52 cr | C |
-| Proyecto Aplicado de Ingeniería | 65 cr | B + C + L |
-| Trabajo de Grado | 69 cr | B + C + L |
-
-La malla oficial 2022 presenta las notaciones 52 C, 65 C, 69 C y 70 % Prog. Existen antecedentes de Mecatrónica que interpretan **69 créditos del componente disciplinar** para Trabajo de Grado; no se cambia la definición actual de los dos últimos requisitos basándose únicamente en semejanzas, ni se asume que la regla heredada sea necesariamente idéntica en todos los planes. Se requiere corroborar el artículo y la reglamentación aplicable al plan 2022.
-
-**Importante:** `70 % Prog.` no aparece hoy como una regla explícita del contrato académico normalizado, por lo que el motor actual no debe fingir calcularla o alertar por ella. Como referencia matemática, un 70 % de 179 créditos exige al menos 126 créditos completos; no equivale al 70 % de 87 créditos del componente disciplinar, ni autoriza presumir qué asignaturas reales se pueden inscribir.
-
-**Pendiente separado:** verificar jurídicamente cada mínimo y su denominador, registrar las reglas en `FuentesAcadémicas` si corresponden y añadirlas al motor **solo después** de aprobar esa ampliación. Las reglas de Libre elección aquí desarrolladas son visuales y no requieren modificar el contrato.
+**Trabajo de Grado** permanece con el mínimo de 69 créditos y componentes B+C+L en la referencia; el criterio de `70 % Prog.` no está modelado. La visualización de distribución semestral no acredita créditos aprobados por una persona.
 
 ## 5. Pruebas
 

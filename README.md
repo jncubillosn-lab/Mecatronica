@@ -4,6 +4,7 @@ Aplicación web estudiantil **no oficial**, con identidad visual universitaria c
 
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Guía visual:** [UNI-UI-01 — identidad universitaria y temas por programa](docs/ESTILO-UNIVERSITARIO.md) · [RESP-01 — adaptabilidad y visualizaciones](docs/RESP-01.md) · [LIB-01 — Libre elección en Prerrequisitos](docs/LIB-01.md) · [TEMA-ALTURA-01 — contraste y altura de malla](docs/TEMA-ALTURA-01.md)  
+**Requisitos TPI y PAI:** [REQ-C-01 — mínimos disciplinares por código SIA](docs/REQ-C-01.md)  
 **Documentación de referencia:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial](docs/MIGRACION-ARQ01.md) · [Guía de desarrollo](AGENTS.md)
 
 ## Arquitectura vigente — v0.5.5
