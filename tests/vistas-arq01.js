@@ -60,6 +60,10 @@ verificar('La oferta nueva no inventa horarios ausentes',()=>{
 verificar('Las otras sedes están disponibles para consulta pero no afectan mapa ni matrices',()=>{
   const externo=api.S.grupos.find(g=>g.analizable===false);
   assert(externo);
+  // La prueba anterior deja los filtros apagados: restituir la selección de consulta.
+  for(const id of contrato.configuracion.opciones.componentesComparables){
+    if(!api.ui.componentes.has(id))api.onAct('comp-toggle',{comp:id},{},{preventDefault(){}});
+  }
   assert(api.pageGrupos().includes('otra sede'));
   const antes=api.pageHeat();
   const horarios=api.S.bloques.filter(b=>b.a===externo.a&&[externo.c1,externo.c2].includes(b.c));
