@@ -111,14 +111,14 @@ Los archivos `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fuente
 
 ## Pruebas
 
-Ejecutar con Node.js (sin instalar paquetes):
+La batería completa se ejecuta con Node.js y las dependencias de desarrollo declaradas:
 
 ~~~sh
-node tests/contrato-arq01.js
-node tests/oferta-activa.js
-node tests/escenarios-arq01.js
-node tests/vistas-arq01.js
+npm ci
+npm test
 ~~~
+
+Incluye pruebas del contrato, oferta, escenarios y vistas, las pruebas heredadas y una prueba de integración de las siete secciones con `jsdom`. GitHub Actions aplica esta batería a la PR antes de publicar; el resultado de la ejecución remota debe comprobarse antes de fusionar.
 
 Las pruebas nuevas usan solamente el JSON normalizado y verifican estructura, cobertura, horas exactas, escenarios personales y coherencia de las vistas. `tests/verificar.js`, `tests/filtros.js` y `tests/fuentes.js` se mantienen como verificaciones del comportamiento anterior y de los archivos históricos, no como entradas alternativas de producción.
 
