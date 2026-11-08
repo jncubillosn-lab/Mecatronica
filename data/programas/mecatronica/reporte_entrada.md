@@ -1,5 +1,10 @@
 # Reporte de entrada (oferta SIA)
 
+> **Archivo histórico de normalización externa — no estado actual de la aplicación.** Este reporte fue generado para un flujo anterior a ARQ-01. Sus categorías de grupos (regular, especial, validación), sus recomendaciones de vinculación de actividades y sus avisos describen **la entrada original de ese flujo**, no las 453 agrupaciones normalizadas que hoy consume la aplicación. No debe emplearse para inferir, crear, eliminar ni cambiar agrupaciones de `datos/academico.json`.
+
+> **Contrato vigente:** [ARQ-01](../../../docs/ARQUITECTURA.md). **Estado y cantidades de ejecución:** [EST-01](../../../docs/ESTADO-Y-PUBLICACION.md). El proceso que produjo este reporte permanece **fuera del sistema web**. Los datos incompletos se conservan sin crear choques o alertas hipotéticas.
+
+
 Generado por `scripts/normalizar_oferta.py`. Lo que aparece aquí requiere una decisión o una verificación.
 
 - Asignaturas: **64** · componentes: 80 · grupos: **716**

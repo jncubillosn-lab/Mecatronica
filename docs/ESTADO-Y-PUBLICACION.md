@@ -16,9 +16,9 @@ Este archivo es una **fotografía verificable de implementación**, no una hoja 
 | ARQ-01, PR #7 | Arquitectura de una entrada académica adoptada en `docs/ARQUITECTURA.md`. |
 | v0.5.0, [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8) | Fusionada en `main`, commit `7e3739c2fe3eea0ab7e36c280910c65c90fbca12`. Entrada única, lector, cambios personales, conservación de grupos especiales y pruebas. |
 | v0.5.1, [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) | Fusionada en `main`, commit `9220474b27ecd2226fcec3fca4a46a312bd423a5`. Corrección del indicador público y parámetros de caché, más guardas automáticas de versión. |
-| v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
+| v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | **Fusionada en `main`**, commit `a398cfb068ce3747fee289adc9b151505107a570`. Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
 
-La PR #8 superó GitHub Actions (ejecución `42434980198`). La PR #9 superó la ejecución `42435837261`, incluida la comparación de versión. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
+La PR #8 superó GitHub Actions (ejecución `42434980198`), la PR #9 superó la ejecución `42435837261` y la PR #11 superó la ejecución `42437245624`, todas sobre sus commits correspondientes. La PR #10 consolidó únicamente documentación, sin requerir una nueva versión pública. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
 
 ## 2. Flujo ejecutado actualmente
 
@@ -61,7 +61,7 @@ La proyección `RAW` **solo existe en memoria**, derivada del JSON. La decisión
 | Bloques del escenario base `S0` | 904 | Los bloques compartidos entre agrupaciones se proyectan una sola vez. |
 | Posiciones con agrupaciones aún no verificadas | 3 | Electrónica Análoga I, Electrónica Digital I y Proyecto Aplicado de Ingeniería. No se inventan combinaciones. |
 
-Los bloques declarados dentro de componentes de distintas agrupaciones pueden referirse a una misma sesión compartida; por ello una cantidad de apariciones en el JSON no debe confundirse con los **904 bloques únicos del escenario base**. La comprobación de fidelidad compara días, horas, asociaciones y referencias, no solo totales.
+Los bloques declarados dentro de componentes de distintas agrupaciones pueden referirse a una misma sesión compartida; por ello una cantidad de apariciones en el JSON no debe confundirse con los **904 bloques únicos del escenario base**. Las **52 relaciones de prerrequisito** y **3 mínimos de créditos** de esta referencia apuntan a posiciones identificadas de la malla: no se detectaron referencias huérfanas en la revisión documental. La comprobación de fidelidad compara días, horas, asociaciones y referencias, no solo totales.
 
 **Precisión de alcance:** los 79 registros informativos son los explícitamente identificados y marcados en **esta referencia**. No se fija una regla universal de detección por el texto del ID. Una actualización académica debe suministrar su clasificación en el mismo contrato. Una alteración del análisis debe distinguir cambios deliberados de cobertura de posibles regresiones del algoritmo.
 
@@ -112,6 +112,7 @@ La fecha al lado del número del pie es una **fecha editorial**, no un mecanismo
 | Agrupaciones no verificadas | Tres posiciones con actividades múltiples sin relación suficientemente validada. | Conservar oferta; no inventar emparejamientos. |
 | Grupos de otras sedes | Solo informativos en cálculos del alcance actual. | No incluirlos sin decisión y respaldo académico. |
 | Archivos y scripts históricos | Permanecen en el árbol, no son entradas de producción. | No volverlos rutas activas por comodidad. |
+| Comparador original `pruebas/compare.js` y mutaciones | Son herramientas históricas: el comparador puede informar diferencias aun con código de salida 0; la mutación utiliza `js/datos.js`, que no es la entrada productiva vigente. | No usar estos resultados como verificación obligatoria de ARQ-01; consultar [pruebas/LEEME.md](../pruebas/LEEME.md) y la batería `npm test`. |
 | GitHub Pages y visualización real | La fusión y CI de v0.5.1 están confirmadas. La documentación interna de v0.5.2 no sustituye la comprobación visual pública posterior a su integración. | No declarar despliegue o aspecto visual comprobados sin evidencia directa. |
 
 **Nota de higiene documental:** `docs/entrada-datos.md` describe un procedimiento **histórico y externo** de tratamiento de fuentes. No es la especificación de ejecución de ARQ-01. Su afirmación histórica sobre ausencia de nombres de docentes no coincide con todos los archivos públicos heredados; no se debe interpretar como una garantía técnica vigente ni corregir archivos académicos sin una decisión separada.

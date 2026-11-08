@@ -2,8 +2,8 @@
 
 > **Estado:** criterio arquitectónico adoptado para el desarrollo posterior.  
 > **Fecha:** 7 de noviembre de 2026.  
-> **Alcance:** sistema web de planeación curricular de Mecatrónica, extensible a otros programas.  
-> **Arquitectura normativa:** la descrita en este documento. **Vigente en `main` desde v0.5.0 y mantenida en v0.5.1.** El sistema adopta entrada única, escenario derivado y cambios personales; conserva una proyección interna transitoria para la interfaz existente.
+> **Alcance:** sistema web de planeación curricular de Mecatrónica. La estructura evita fijar reglas de una carrera en el motor, pero esto **no establece como función solicitada** el soporte de otros programas.  
+> **Arquitectura normativa:** la descrita en este documento. **Integrada en `main` desde v0.5.0.** El sistema adopta entrada única, escenario derivado y cambios personales; conserva una proyección interna transitoria para la interfaz existente. Las versiones posteriores y su estado se registran en [EST-01](ESTADO-Y-PUBLICACION.md), sin requerir que esta norma cambie con cada versión.
 >
 > **Documentos complementarios:** [DEC-01 — decisiones y alcance](DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial de migración](MIGRACION-ARQ01.md).
 
@@ -64,12 +64,13 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 |---|---|---|
 | `versionEsquema` | Identifica la forma del contrato | Entero, distinto de la versión de la página y de la fecha de las fuentes |
 | `programa` | Identifica programa y plan | Los identificadores se definen en los datos; no en funciones |
-| `componentes` | Catálogo de componentes del plan y su inclusión en créditos | Configurable; no se fijan B/C/N o valores numéricos en el motor |
+| `componentes` y `caracteres` | Componentes del plan, inclusión en créditos y caracteres curriculares | Configurables; no se fijan B/C/N ni otros valores institucionales en el motor |
 | `catalogo` | Asignaturas institucionales, código, nombre, créditos, tipología y texto cuando exista | No depende de que el curso aparezca en la malla u oferta |
 | `malla` | Posiciones curriculares, semestre, componente y carácter | Una posición puede representar una optativa genérica y no tener código de asignatura |
 | `requisitos` | Relaciones y mínimos de créditos definidos para un plan | No se copian automáticamente a otros planes; se expresa qué componentes cuentan |
 | `oferta` | Oferta por periodo, actividades, grupos y bloques horarios | Se preservan los grupos aunque no tengan bloques |
 | `agrupaciones` | Relaciones de grupos por actividad y su elegibilidad para el análisis | `analizable: false` conserva la agrupación como información sin incorporarla a cálculos; ausente equivale a `true` |
+| `exclusionesAgrupacion` | Posiciones cuya oferta tiene actividades, pero no hay agrupaciones verificadas | Se conserva el motivo sin fabricar combinaciones ni perder los grupos de `oferta` |
 | `configuracion` | Calendario, filtros disponibles y reglas de comparación | Sin constantes propias de una carrera en el algoritmo |
 | `procedencia` | Identificación/fecha de la información si consta | Metadatos opcionales; nunca instrucciones para leer otras fuentes |
 
@@ -137,7 +138,7 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 }
 ```
 
-Los identificadores de ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. El esquema completo de cada colección, su cardinalidad y sus reglas de identidad deberán derivarse de este contrato, sin ampliar la frontera de entrada.
+Los identificadores del ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. **La estructura real adoptada está en `datos/academico.json` y sus pruebas de contrato**; el fragmento ilustrativo no autoriza crear campos académicos obligatorios ni inventar cardinalidades. Las reglas de identidad y la flexibilidad ante vacíos se mantienen según la información normalizada disponible, sin ampliar la frontera de entrada.
 
 ### Semántica de datos ausentes
 
