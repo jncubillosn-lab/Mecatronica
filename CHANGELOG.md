@@ -2,11 +2,9 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
-## Actualización en revisión
-
-- **0.5.5** (7 nov 2026): referencia académica de TPI simplificada voluntariamente a un único grupo G1, lunes y miércoles de 14:00 a 16:00. Se retiran 21 alternativas de la oferta normalizada y las agrupaciones, sin modificar otras asignaturas ni el motor. Se actualizan pruebas y versión pública.
-
 ## Versiones integradas
+
+- **0.5.5** (7 nov 2026, [PR #15](https://github.com/jncubillosn-lab/Mecatronica/pull/15)): referencia académica de TPI simplificada voluntariamente a un único grupo G1, lunes y miércoles de 14:00 a 16:00. Se retiran 21 alternativas de la oferta normalizada y las agrupaciones, sin modificar otras asignaturas ni el motor. Se actualizan pruebas y versión pública.
 
 - **0.5.4** (7 nov 2026, [PR #14](https://github.com/jncubillosn-lab/Mecatronica/pull/14)): filtro de tipología visible y operativo en las siete páginas; filtro adicional por unidad académica responsable. Cada asignatura puede registrar voluntariamente un departamento de Ingeniería o facultad, incluso sin docente, y conservarlo al exportar/importar escenarios. La entrada `datos/academico.json` y el formato de escenario versión 1 no cambian.
 - **0.5.3** (7 nov 2026, [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13)): lectura estricta de referencias académicas; extracción del motor a `js/analisis.js` y de las siete vistas a `js/vistas.js`; contexto de ejecución sin `window.RAW`; claves de prerrequisitos por ID con respaldo para escenarios personales antiguos. Sin modificación de la única fuente académica ni de las fórmulas de interferencia.
