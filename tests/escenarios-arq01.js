@@ -10,7 +10,7 @@ const leer=p=>fs.readFileSync(path.join(raiz,p),'utf8');
 const contrato=JSON.parse(leer('datos/academico.json'));
 const raw=new EntradaAcademica(contrato).generarEscenarioBase();
 const modulo=new Function('RAW',leer('js/modelo.js')+'\n'+leer('js/entrada.js')+'\n'+
-  leer('js/app.js').split('/* ===== APLICACIÓN')[0]+'\nreturn {fromRaw,compute}')(raw);
+  leer('js/analisis.js')+'\nreturn {fromRaw,compute}')(raw);
 const base=modulo.fromRaw(raw);
 const copiar=EscenarioPersonal.copia;
 function probar(nombre,trabajo){trabajo();console.log('OK '+nombre);}
