@@ -54,7 +54,6 @@ class PlanCurricular {
     return { total, unknown: desconocido, low: !desconocido && total < regla.min };
   }
 
-  /** Diferencia créditos del plan de otros créditos según metadatos del componente. */
   /**
    * La suma numérica no implica que la información sea completa: `incompleto`
    * permanece verdadero si alguna asignatura carece de créditos conocidos.
@@ -106,7 +105,6 @@ class PlanCurricular {
   }
 }
 
-/** Calendario de la oferta. Días y franja horaria se leen de la fuente. */
 /**
  * Interpreta los días y límites horarios aportados por `configuracion.calendario`.
  * El motor usa intervalos [inicio, fin); no asume un calendario universal.
