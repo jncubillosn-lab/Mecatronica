@@ -49,7 +49,13 @@ class EscenarioPersonal {
       const b=bm.get(m.idPos || m.n);
       if (!b) { out.malla.push({nombre:m.n,posicionId:m.idPos||null,nueva:EscenarioPersonal.copia(m)}); continue; }
       const valores={};
-      for(const k of ['s','cr','comp','car','nota'])if(JSON.stringify(m[k])!==JSON.stringify(b[k]))valores[k]=m[k];
+      for(const k of ['s','cr','comp','car','nota']){
+        // Los escenarios {S} anteriores no tenían unidad académica.
+        const actual=k==='unidad'?(m[k]||''):m[k];
+        const baseValor=k==='unidad'?(b[k]||''):b[k];
+        if(JSON.stringify(actual)!==JSON.stringify(baseValor))valores[k]=actual;
+      }
+      if((m.unidad||'')!==(b.unidad||''))valores.unidad=m.unidad||'';
       if(Object.keys(valores).length)out.malla.push({nombre:m.n,posicionId:m.idPos||null,valores});
     }
     const idsPorNombre=new Map([...EscenarioPersonal.indicePosiciones(base), ...EscenarioPersonal.indicePosiciones(actual)]);
@@ -106,7 +112,10 @@ class EscenarioPersonal {
     Object.assign(s.params, cambios.params || {});
     for(const r of cambios.malla || []){
       const m=s.malla.find(x=>(r.posicionId&&x.idPos===r.posicionId)||x.n===r.nombre);
-      if(m)Object.assign(m,r.valores||{});
+      if(m){
+        Object.assign(m,r.valores||{});
+        if(typeof m.unidad!=='string')m.unidad='';
+      }
       else if(r.nueva)s.malla.push(EscenarioPersonal.copia(r.nueva));
     }
     const pre=cambios.pre || {};
@@ -181,6 +190,10 @@ class EscenarioPersonal {
         throw new Error('Bloque horario inválido en el escenario');
       }
       ids.add(b.id);
+    }
+    for(const m of estado.malla){
+      if(m?.unidad!=null && (typeof m.unidad!=='string' || m.unidad.length>180))
+        throw new Error('Unidad académica inválida en el escenario');
     }
     for(const regla of estado.reqCred||[]){
       if(!regla || !Number.isFinite(regla.min)){
