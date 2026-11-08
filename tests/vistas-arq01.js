@@ -32,7 +32,8 @@ verificar('Los filtros solo modifican los resultados de consulta',()=>{
  assert.equal(JSON.stringify(api.S),antes);
  assert.equal(api.changes().length,cambios);
  assert(api.pageHeat().includes('Mapa de calor'));
- assert(api.pageGrupos().includes('Dibujo básico'));
+ assert(!api.pageGrupos().includes('data-aname="Dibujo básico"'),
+     'El filtro global también debe excluir asignaturas de Grupos');
  for(const id of contrato.configuracion.opciones.componentesComparables){
    api.onAct('comp-toggle',{comp:id},{},{preventDefault(){}});
  }
