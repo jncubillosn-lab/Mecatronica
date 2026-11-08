@@ -31,7 +31,7 @@ La malla, el catálogo institucional y la oferta de grupos se transforman **fuer
 
 Desde v0.5.0 la interfaz histórica utiliza una representación interna llamada `RAW`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
 
-**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. En v0.5.2 se documentan las responsabilidades y reglas directamente dentro de los archivos de código, sin modificar el comportamiento previsto. La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
+**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. La [PR #10](https://github.com/jncubillosn-lab/Mecatronica/pull/10) consolidó los acuerdos generales y la [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) documentó las responsabilidades y reglas directamente dentro del código, sin cambiar los algoritmos (v0.5.2). La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
 
 ## Qué contiene el contrato
 
