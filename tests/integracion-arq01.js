@@ -62,7 +62,17 @@ async function main() {
       assert(d.querySelector('#view h1')?.textContent.includes(heading),
         'No se presentó ' + heading);
     }
-    assert(d.querySelector('#view h1'), 'La vista final está vacía');
+    // DEM-01: sin encuesta, los resultados simulados se ven desde el primer
+    // acceso sin almacenarse ni alterar el escenario personal.
+    d.querySelector('[data-act="nav"][data-p="demanda"]').click();
+    assert(d.querySelector('#view').textContent.includes('VISTA PREVIA · DATOS SIMULADOS'));
+    assert(d.querySelector('#view').textContent.includes('Lectura y recomendaciones basadas en los datos'));
+    assert(d.querySelectorAll('.dem-tabla tbody tr').length>0);
+    assert.equal(dom.window.localStorage.length,0,'La vista previa no persiste datos ficticios');
+    d.querySelector('[data-act="dem-ejemplo"]').click();
+    assert(d.querySelector('#view').textContent.includes('DATOS SIMULADOS GUARDADOS'));
+    assert(dom.window.localStorage.length>0,'Adoptar el ejemplo sí persiste un escenario');
+        assert(d.querySelector('#view h1'), 'La vista final está vacía');
     const scriptErrors = errors.filter(msg => /Uncaught|Could not load script/i.test(msg));
     assert.deepEqual(scriptErrors, [], 'Error en scripts de la aplicación: ' + scriptErrors.join(' | '));
     console.log('OK: carga normalizada y navegación de ocho vistas en navegador simulado.');
