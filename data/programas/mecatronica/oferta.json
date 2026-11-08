@@ -821,9 +821,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -856,9 +856,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     },
@@ -899,8 +899,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -933,11 +933,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 2,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 2
+   }
   },
   {
    "codigo": "2017280",
@@ -989,9 +991,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -1047,10 +1049,10 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
+   "registros_regulares": 1,
+   "registros_regulares_sin_facultad": 1,
    "facultad_evidencia_sia": {}
   },
   {
@@ -3914,9 +3916,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -3955,9 +3957,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -3996,9 +3998,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "4",
@@ -4037,9 +4039,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -4080,11 +4082,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 4,
+   "registros_regulares_sin_facultad": 3,
+   "facultad_evidencia_sia": {
+    "ingenieria": 1
+   }
   },
   {
    "codigo": "2016489",
@@ -4940,9 +4944,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "12",
@@ -4975,9 +4979,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 12,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "13",
@@ -5010,9 +5014,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 13,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "15",
@@ -5045,9 +5049,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 15,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -5080,9 +5084,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -5115,9 +5119,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "6",
@@ -5150,20 +5154,22 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 6,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
    ],
    "condiciones": [],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 7,
+   "registros_regulares_sin_facultad": 3,
+   "facultad_evidencia_sia": {
+    "ingenieria": 4
+   }
   },
   {
    "codigo": "2017282",
@@ -5215,9 +5221,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -5250,9 +5256,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -5279,11 +5285,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 2,
+   "registros_regulares_sin_facultad": 1,
+   "facultad_evidencia_sia": {
+    "ingenieria": 1
+   }
   },
   {
    "codigo": "1000007",
@@ -12937,9 +12945,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -12966,9 +12974,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "4",
@@ -12995,9 +13003,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     },
@@ -13054,8 +13062,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -13063,11 +13071,13 @@
    ],
    "condiciones": [],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 3,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 3
+   }
   },
   {
    "codigo": "1000044",
@@ -20798,9 +20808,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -20833,9 +20843,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -20862,11 +20872,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 2,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 2
+   }
   },
   {
    "codigo": "2017293",
@@ -20918,9 +20930,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -20953,9 +20965,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     },
@@ -20996,8 +21008,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -21030,11 +21042,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 2,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 2
+   }
   },
   {
    "codigo": "2017271",
@@ -21086,9 +21100,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -21121,9 +21135,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -21156,9 +21170,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "4",
@@ -21191,9 +21205,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -21220,11 +21234,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 4,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 4
+   }
   },
   {
    "codigo": "2016640",
@@ -21298,9 +21314,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -21333,9 +21349,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "4",
@@ -21368,9 +21384,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "5",
@@ -21403,9 +21419,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 5,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "6",
@@ -21438,9 +21454,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 6,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -21467,11 +21483,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 5,
+   "registros_regulares_sin_facultad": 2,
+   "facultad_evidencia_sia": {
+    "ingenieria": 3
+   }
   },
   {
    "codigo": "1000024",
@@ -22478,9 +22496,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -22519,9 +22537,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -22562,11 +22580,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 2,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 2
+   }
   },
   {
    "codigo": "2017274",
@@ -22612,8 +22632,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -22649,9 +22669,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -22678,9 +22698,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -22707,9 +22727,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "4",
@@ -22736,9 +22756,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -22779,10 +22799,10 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
+   "registros_regulares": 4,
+   "registros_regulares_sin_facultad": 4,
    "facultad_evidencia_sia": {}
   },
   {
@@ -23891,9 +23911,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -23920,9 +23940,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -23949,9 +23969,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     },
@@ -23986,8 +24006,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -23995,11 +24015,13 @@
    ],
    "condiciones": [],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 3,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 3
+   }
   },
   {
    "codigo": "2025967",
@@ -24278,9 +24300,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -24313,9 +24335,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -24348,9 +24370,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -24377,11 +24399,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 3,
+   "registros_regulares_sin_facultad": 1,
+   "facultad_evidencia_sia": {
+    "ingenieria": 2
+   }
   },
   {
    "codigo": "2016770",
@@ -24427,9 +24451,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -24456,9 +24480,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -24485,9 +24509,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     },
@@ -24522,8 +24546,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -24551,11 +24575,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 3,
+   "registros_regulares_sin_facultad": 2,
+   "facultad_evidencia_sia": {
+    "ingenieria": 1
+   }
   },
   {
    "codigo": "2016609",
@@ -24694,9 +24720,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -24729,9 +24755,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     },
@@ -24766,8 +24792,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -24795,11 +24821,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 2,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 2
+   }
   },
   {
    "codigo": "2016506",
@@ -25330,9 +25358,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -25359,9 +25387,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     },
@@ -25396,8 +25424,8 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
-       "programa_especial": null,
+       "alcance": "especial",
+       "programa_especial": "sin_clasificar",
        "incluir_en_analisis": false
       }
      ]
@@ -25425,11 +25453,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 2,
+   "registros_regulares_sin_facultad": 1,
+   "facultad_evidencia_sia": {
+    "ingenieria": 1
+   }
   },
   {
    "codigo": "2016509",
@@ -25716,9 +25746,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "10",
@@ -25751,9 +25781,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 10,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "12",
@@ -25786,9 +25816,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 12,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "13",
@@ -25821,9 +25851,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 13,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "14",
@@ -25856,9 +25886,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 14,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "15",
@@ -25891,9 +25921,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 15,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "16",
@@ -25926,9 +25956,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 16,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "17",
@@ -25961,9 +25991,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 17,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "19",
@@ -25996,9 +26026,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 19,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -26031,9 +26061,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "22",
@@ -26066,9 +26096,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 22,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "23",
@@ -26101,9 +26131,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 23,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "24",
@@ -26136,9 +26166,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 24,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -26171,9 +26201,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "4",
@@ -26206,9 +26236,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "40",
@@ -26241,9 +26271,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 40,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "41",
@@ -26263,7 +26293,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 41,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -26298,9 +26328,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 5,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "6",
@@ -26333,9 +26363,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 6,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "7",
@@ -26368,9 +26398,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 7,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "8",
@@ -26403,9 +26433,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 8,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "9",
@@ -26438,9 +26468,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 9,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -26462,11 +26492,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "registros_regulares": 22,
+   "registros_regulares_sin_facultad": 12,
+   "facultad_evidencia_sia": {
+    "ingenieria": 10
+   }
   },
   {
    "codigo": "2022888",
@@ -26518,9 +26550,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -26547,10 +26579,10 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
+   "registros_regulares": 1,
+   "registros_regulares_sin_facultad": 1,
    "facultad_evidencia_sia": {}
   },
   {
@@ -26603,9 +26635,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -26632,11 +26664,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 1,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 1
+   }
   },
   {
    "codigo": "2017278",
@@ -26682,9 +26716,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "2",
@@ -26711,9 +26745,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "3",
@@ -26740,9 +26774,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "4",
@@ -26769,9 +26803,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "6",
@@ -26798,9 +26832,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 6,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "7",
@@ -26827,9 +26861,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 7,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       },
       {
        "id": "8",
@@ -26856,9 +26890,9 @@
        "horario_informado": true,
        "sede_origen": null,
        "numero": 8,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
-       "incluir_en_analisis": false
+       "incluir_en_analisis": true
       }
      ]
     }
@@ -26885,11 +26919,13 @@
     }
    ],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 7,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 7
+   }
   },
   {
    "codigo": "2017297",
@@ -26928,7 +26964,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -26950,7 +26986,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 10,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -26972,7 +27008,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 2,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -26994,7 +27030,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 3,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -27016,7 +27052,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 4,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -27038,7 +27074,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 5,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -27060,7 +27096,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 6,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -27082,7 +27118,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 7,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -27104,7 +27140,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 8,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       },
@@ -27126,7 +27162,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 9,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       }
@@ -27135,10 +27171,10 @@
    ],
    "condiciones": [],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
-   "registros_regulares_sin_facultad": 0,
+   "registros_regulares": 10,
+   "registros_regulares_sin_facultad": 10,
    "facultad_evidencia_sia": {}
   },
   {
@@ -27178,7 +27214,7 @@
        "horario_informado": false,
        "sede_origen": null,
        "numero": 1,
-       "alcance": "validacion",
+       "alcance": "regular",
        "programa_especial": null,
        "incluir_en_analisis": false
       }
@@ -27187,11 +27223,13 @@
    ],
    "condiciones": [],
    "vinculacion": {
-    "tipo": "sin_oferta_regular"
+    "tipo": "componente_unico"
    },
-   "registros_regulares": 0,
+   "registros_regulares": 1,
    "registros_regulares_sin_facultad": 0,
-   "facultad_evidencia_sia": {}
+   "facultad_evidencia_sia": {
+    "ingenieria": 1
+   }
   },
   {
    "codigo": "2015159",

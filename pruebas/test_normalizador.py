@@ -31,6 +31,9 @@ class Mini(unittest.TestCase):
         self.assertTrue(all(x["facultad_que_dicta"] is None and x["departamento_que_dicta"] is None for x in self.a))
     def test_fechas_se_registran_pero_no_se_usan(self):
         g = self.a[0]["componentes"][0]["grupos"][0]; self.assertEqual(g["fecha_inicio"], "2026-08-24"); self.assertIn("no se usan", self.rep)
+    def test_etiqueta_codigo_n_es_oferta_regular_y_validacion_es_solo_lo_declarado(self):
+        a = next(x for x in self.a if x["codigo"] == "2000004"); gs = {g["id"]: g for c in a["componentes"] for g in c["grupos"]}
+        self.assertEqual((gs["1"]["alcance"], gs["1"]["numero"], gs["1"]["incluir_en_analisis"]), ("regular", 1, True)); self.assertEqual(gs["7"]["alcance"], "validacion")
     def test_vinculacion_por_numero(self): self.assertEqual(self.a[0]["vinculacion"]["tipo"], "por_numero_de_grupo")
     def test_condicion_con_alternativas(self):
         c = self.a[0]["condiciones"][0]; self.assertEqual((c["tipo"], c["todas"], c["n_requeridas"], len(c["asignaturas"])), ("M", False, 1, 2))

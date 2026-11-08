@@ -3,9 +3,9 @@
 Generado por `scripts/normalizar_oferta.py`. Lo que aparece aquí requiere una decisión o una verificación.
 
 - Asignaturas: **64** · componentes: 80 · grupos: **716**
-- Grupos por alcance: regular 471, especial 141, validacion 104 (especial = todo lo que no es oferta regular de Bogotá)
-- Grupos regulares sin horario informado: 0
-- Programas especiales: PEAMA (116), PAET (24), sin_clasificar (1)
+- Grupos por alcance: regular 564, especial 149, validacion 3 (especial = todo lo que no es oferta regular de Bogotá)
+- Grupos regulares sin horario informado: 12
+- Programas especiales: PEAMA (116), sin_clasificar (9), PAET (24)
 - Fechas: se registran pero **no se usan** (se asume que todas las asignaturas inician y terminan juntas, 16 semanas).
 
 ## Valores nuevos (no están en `reglas_entrada.json`)
@@ -30,7 +30,15 @@ Generado por `scripts/normalizar_oferta.py`. Lo que aparece aquí requiere una d
 
 ## Grupos especiales sin programa nombrado (informativo)
 
+- 2015942 Aplicaciones de elementos finitos: (1M) 2015942-1M Aplicaciones de elementos finitos - Magistral
+- 2017265 Ingeniería y desarrollo sostenible: (1M) 2017265-1M Ingeniería y Desarrollo Sostenible - Magistral
 - 1000002 Lecto-Escritura: (AMAZ-08) VISI - Amazonia grupo 5
+- 2017293 Modelación matemática: (1M) 2017293-1M Modelación matemática - Magistral
+- 2017274 Procesos de Manufactura II: (1M) 2017274 -1M Procesos de Manufactura II - Magistral
+- 2017275 Proyecto aplicado de ingeniería: (1M) 2017275-1M Proyecto aplicado de ingeniería - Magistral
+- 2016770 Robótica: (1M) 2016770-1M Robótica - Magistral
+- 2017287 Sensores y actuadores: (1M) 2017287-1M Sensores y actuadores - Magistral
+- 2017288 Servomecanismos: (1M) 2017288-1 Servomecanismos - Magistral
 
 ## Duplicados de grupo (mismo número dentro de un mismo componente)
 

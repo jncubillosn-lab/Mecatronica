@@ -98,7 +98,7 @@ def completar_grupo(a, c, g):
     if num is None and (mn := re.search(r"Grupo\s+(\d+)", txt)): num = int(mn.group(1))
     fac = g["facultad_profesor"] or clasificar_facultad("")
     esp = next((p["id"] for p in REGLAS["programas_especiales"] if any(k.lower() in (txt + " " + fac["texto"]).lower() for k in p["reconocer_en"])), None)
-    if g["duracion"] == "Validación" or m: alcance = "validacion"
+    if (g["duracion"] or "").strip().lower() == "validación": alcance = "validacion"   # solo lo que el SIA declara como validación; la etiqueta «código-n Nombre» es un formato normal de grupo
     elif esp or not gid.isdigit() or fac["clase"] == "paet" or (fac["clase"] == "sede" and "BOGOT" not in fac["texto"].upper()): alcance = "especial"; esp = esp or "sin_clasificar"
     else: alcance = "regular"
     pref = gid.split("-")[0] if not gid.isdigit() else None

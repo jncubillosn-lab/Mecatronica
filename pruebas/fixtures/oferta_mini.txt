@@ -181,3 +181,24 @@ Horarios/Aula: No informado
 Duración: Semestral
 Jornada: DIURNO
 Cupos disponibles: 0
+Etiqueta Código (2000004)
+Tipología: DISCIPLINAR OBLIGATORIA
+Créditos:3
+INGENIERÍA MECATRÓNICA
+Facultad: FACULTAD DE INGENIERÍA
+Contenido de la asignatura
+CLASE TEORICA (2000004)
+(1) 2000004-1 Etiqueta Código
+Profesor: P.
+Facultad:
+Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026LUNES de 09:00 a 11:00.AULA. X-1. Edif. SALON.
+Duración: Semestral
+Jornada: DIURNO
+Cupos disponibles: 4
+(7) Grupo 7 VAL
+Profesor: P.
+Facultad:
+Horarios/Aula: No informado
+Duración: Validación
+Jornada: DIURNO
+Cupos disponibles: 0

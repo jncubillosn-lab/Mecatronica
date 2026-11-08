@@ -26,7 +26,7 @@ La herramienta se limita a la Facultad de Ingeniería de la Universidad Nacional
 ## Alcance de cada grupo
 - **regular:** id numérico. Es lo que entra al análisis de cruces.
 - **especial:** todo lo que no sea oferta regular de Bogotá (PEAMA, PAET, otras sedes como Tumaco, Amazonia, Orinoquia, Caribe, Sumapaz). **Se conservan y se marcan** (`programa_especial`, `sede_origen`), pero `incluir_en_analisis` es falso por ahora. Si no tiene programa nombrado queda como `sin_clasificar` (informativo).
-- **validacion:** grupos de ajuste del SIA (duración «Validación» o id tipo `2017275-1M`). No son oferta real.
+- **validacion:** únicamente los grupos cuya **Duración** el SIA declara «Validación». La etiqueta `código-n Nombre` (por ejemplo `2016640-1 Principios de Estática`) es un formato normal de grupo regular y **no** indica validación.
 
 ## Vinculación entre componentes de una misma asignatura
 1. **Por número de grupo:** taller, magistral y laboratorio con los mismos números (Fundamentos de Electricidad y Magnetismo): el grupo N se cursa completo.
