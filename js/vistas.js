@@ -555,7 +555,7 @@ function drawEdges() {
     return { x, y };
   };
   const pos = new Map();
-  $('.mcard', stage).forEach(c => {
+  stage.querySelectorAll('.mcard').forEach(c => {
     const {x,y} = posicionEnMapa(c);
     pos.set(c.dataset.n, { l:x, r:x+c.offsetWidth, y:y+c.offsetHeight/2 });
   });
