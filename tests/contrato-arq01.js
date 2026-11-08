@@ -107,4 +107,34 @@ probar('Un plan pequeño y parcialmente vacío también se puede abrir', () => {
   assert.deepEqual(data.bl,[]);
 });
 
+
+probar('Grupos de otras sedes: se conservan sin ser analizables', () => {
+  const especiales=datos.agrupaciones.filter(g=>g.analizable===false);
+  const calculables=datos.agrupaciones.filter(g=>g.analizable!==false);
+  assert.equal(datos.agrupaciones.length,453);
+  assert.equal(especiales.length,79);
+  assert.equal(calculables.length,374);
+  const catalogo=new Map(datos.malla.map(p=>[p.id,p]));
+  const oferta=new Map(datos.oferta.map(o=>[o.codigoAsignatura,o]));
+  for(const g of especiales){
+    assert(/^G(?:ORIN|SUMA|TUMA|AMAZ|CARI)-/.test(g.etiqueta),'Sin respaldo del criterio de otra sede: '+g.id);
+    const codigo=catalogo.get(g.posicionId)?.codigoAsignatura;
+    const original=oferta.get(codigo);
+    assert(original?.actividades.some(a=>a.grupos.some(x=>x.id===g.etiqueta.slice(1))),
+      'Grupo informativo sin registro de oferta: '+g.id);
+  }
+  const base=new EntradaAcademica(datos).generarEscenarioBase();
+  assert.equal(base.gr.length,453);
+  assert.equal(base.gr.filter(g=>g[5]===false).length,79);
+  assert.equal(base.bl.length,904);
+});
+
+probar('Horarios técnicamente inválidos no se descartan silenciosamente', () => {
+  const copia=JSON.parse(JSON.stringify(datos));
+  copia.agrupaciones[0].componentes[0].bloques[0].fin='01:00';
+  assert.throws(()=>new EntradaAcademica(copia).generarEscenarioBase(),/Bloque horario inválido/);
+  copia.agrupaciones[0].componentes=[];
+  assert.throws(()=>new EntradaAcademica(copia).generarEscenarioBase(),/sin componentes/);
+});
+
 console.log('Contrato de entrada académica: comprobaciones finalizadas.');
