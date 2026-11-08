@@ -30,7 +30,7 @@ El tamaño de *tramo visual* es 3 créditos por decisión de presentación; **no
 
 1. Obtiene los semestres reales del escenario y su carga académica de todos los componentes **enPlan=true** excepto Libre elección; los que tienen **enPlan=false** (Nivelación en la referencia actual) no suman.
 2. Respeta posiciones con ubicaciones personales ya modificadas respecto de S0, o desplazadas manualmente durante la sesión.
-3. Distribuye cada tramo L restante por el semestre con menor suma acumulada de créditos; desempata por semestre más temprano. Repite hasta completar el total informado.
+3. Distribuye cada tramo L restante por el semestre con menor suma acumulada de créditos; desempata por semestre más temprano. Repite hasta completar el total informado. **Si la distribución registrada ya es igual de equilibrada o mejor (varianza de la carga), se conserva el orden registrado:** no se reubican créditos arbitrariamente.
 4. Mantiene la referencia sin modificar, las reglas de créditos y prerrequisitos en el escenario real y las posiciones de componentes distintos de L intactas.
 
 **Distinción indispensable:** la distribución visual **no afirma elegibilidad de inscripción ni cumplimiento de prerrequisitos**. Algunas asignaturas reales de Libre elección o profundización pueden exigir un porcentaje de avance, según las normas del programa. Para convertir una ubicación visual en modificación del escenario personal se debe mover expresamente la tarjeta real de Libre elección: el editor respeta esa elección, como cualquier modificación académica personal.
