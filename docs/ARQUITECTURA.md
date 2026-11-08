@@ -2,7 +2,7 @@
 
 > **Estado:** criterio arquitectónico adoptado para el desarrollo posterior.  
 > **Fecha:** 7 de noviembre de 2026.  
-> **Alcance:** sistema web de planeación curricular de Mecatrónica, extensible a otros programas.  
+> **Alcance:** sistema web de planeación curricular de Mecatrónica. La estructura evita fijar reglas de una carrera en el motor, pero esto **no establece como función solicitada** el soporte de otros programas.  
 > **Arquitectura normativa:** la descrita en este documento. **Integrada en `main` desde v0.5.0.** El sistema adopta entrada única, escenario derivado y cambios personales; conserva una proyección interna transitoria para la interfaz existente. Las versiones posteriores y su estado se registran en [EST-01](ESTADO-Y-PUBLICACION.md), sin requerir que esta norma cambie con cada versión.
 >
 > **Documentos complementarios:** [DEC-01 — decisiones y alcance](DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial de migración](MIGRACION-ARQ01.md).
@@ -138,7 +138,7 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 }
 ```
 
-Los identificadores de ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. El esquema completo de cada colección, su cardinalidad y sus reglas de identidad deberán derivarse de este contrato, sin ampliar la frontera de entrada.
+Los identificadores del ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. **La estructura real adoptada está en `datos/academico.json` y sus pruebas de contrato**; el fragmento ilustrativo no autoriza crear campos académicos obligatorios ni inventar cardinalidades. Las reglas de identidad y la flexibilidad ante vacíos se mantienen según la información normalizada disponible, sin ampliar la frontera de entrada.
 
 ### Semántica de datos ausentes
 
