@@ -1,7 +1,7 @@
 # EST-01 — Estado real, historial y publicación
 
 **Corte documentado:** 7 de noviembre de 2026.  
-**Código principal:** `main`, versión pública `0.5.1`.  
+**Código principal tras la integración de la PR #11:** `main`, versión pública `0.5.2`.  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Acuerdos de alcance:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Registro histórico de migración:** [MIG-ARQ01](MIGRACION-ARQ01.md).
@@ -16,6 +16,7 @@ Este archivo es una **fotografía verificable de implementación**, no una hoja 
 | ARQ-01, PR #7 | Arquitectura de una entrada académica adoptada en `docs/ARQUITECTURA.md`. |
 | v0.5.0, [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8) | Fusionada en `main`, commit `7e3739c2fe3eea0ab7e36c280910c65c90fbca12`. Entrada única, lector, cambios personales, conservación de grupos especiales y pruebas. |
 | v0.5.1, [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) | Fusionada en `main`, commit `9220474b27ecd2226fcec3fca4a46a312bd423a5`. Corrección del indicador público y parámetros de caché, más guardas automáticas de versión. |
+| v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
 
 La PR #8 superó GitHub Actions (ejecución `42434980198`). La PR #9 superó la ejecución `42435837261`, incluida la comparación de versión. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
 
@@ -41,6 +42,8 @@ La PR #8 superó GitHub Actions (ejecución `42434980198`). La PR #9 superó la 
 - `EscenarioPersonal`: extrae, aplica, valida y migra diferencias personales; incluye lectura de escenarios `{S}` antiguos.
 - `js/app.js`: contiene `fromRaw`, `compute`, estado de consulta y siete vistas; sigue siendo un módulo amplio heredado.
 - `js/iniciar.js`: inicia desde `datos/academico.json` y carga la interfaz. No consulta `js/datos.js`, `js/catalogo.js` ni `js/oferta-fuente.js`.
+
+**Documentación interna de v0.5.2:** las clases y funciones importantes tienen JSDoc/comentarios próximos a su implementación. Identifican entradas y salidas, invariantes del escenario, diferencia entre `on` y `analizable`, semántica de los vacíos, separación entre filtros y estado, conservación de referencias históricas y responsabilidades POO. También se documenta la carga de scripts y el significado de los estilos del mapa de calor. Estos comentarios **no cambian los cálculos** ni reemplazan ARQ-01, las pruebas o las fuentes normalizadas.
 
 La proyección `RAW` **solo existe en memoria**, derivada del JSON. La decisión de eliminarla internamente en otro momento **no está aprobada como requisito funcional inmediato** y exige regresiones antes de cambiar su forma.
 
@@ -80,7 +83,7 @@ Además: persistencia local, descarga/carga de escenarios, restablecimiento de r
 
 | Identificador | En esta versión | ¿Qué expresa? |
 |---|---|---|
-| Versión del sitio | `0.5.1` | Release visible y parámetros de caché de recursos estáticos. |
+| Versión del sitio | `0.5.2` | Release visible y parámetros de caché de recursos estáticos. |
 | `versionEsquema` | `1` | Estructura de la entrada académica. **No** se incrementa por cualquier publicación. |
 | `escenario-personal.version` | `1` | Formato de exportaciones y cambios personales. **No** es la versión del sitio. |
 
@@ -88,7 +91,7 @@ Los escenarios personales se guardan bajo la clave configurada en el contrato (a
 
 ## 6. Verificación y publicación: procedimiento obligatorio
 
-1. **Antes de editar:** leer ARQ-01, DEC-01, este archivo y `AGENTS.md`; definir impacto en contrato, escenario y vistas.
+1. **Antes de editar:** leer ARQ-01, DEC-01, este archivo y `AGENTS.md`; definir impacto en contrato, escenario y vistas. Revisar y mantener coherentes los comentarios técnicos ubicados junto a las funciones afectadas.
 2. **Si cambian datos:** modificar solamente `datos/academico.json`; preservar códigos, bloques, huecos legítimos y `analizable` según evidencia. No ejecutar generadores históricos como fuente productiva.
 3. **Si cambian HTML, JS, CSS o datos públicos:** incrementar el número del sitio. Mantener coincidentes `<meta name="version">`, texto `Versión x.y.z` del pie, parámetros `?v=` de todos los recursos de `index.html` y las dos rutas dinámicas en `js/iniciar.js`.
 4. **Ejecutar pruebas:** `npm ci` y `npm test` en la rama. Las nueve suites comprueban versión, contrato, oferta, escenarios, vistas, reglas antiguas, filtros, fuentes heredadas e integración simulada.
@@ -109,7 +112,7 @@ La fecha al lado del número del pie es una **fecha editorial**, no un mecanismo
 | Agrupaciones no verificadas | Tres posiciones con actividades múltiples sin relación suficientemente validada. | Conservar oferta; no inventar emparejamientos. |
 | Grupos de otras sedes | Solo informativos en cálculos del alcance actual. | No incluirlos sin decisión y respaldo académico. |
 | Archivos y scripts históricos | Permanecen en el árbol, no son entradas de producción. | No volverlos rutas activas por comodidad. |
-| GitHub Pages y visualización real | La fusión y CI de v0.5.1 están confirmadas; no se dispone en este registro de inspección pública de navegador real posterior a la fusión. | No declarar despliegue o aspecto visual comprobados sin evidencia directa. |
+| GitHub Pages y visualización real | La fusión y CI de v0.5.1 están confirmadas. La documentación interna de v0.5.2 no sustituye la comprobación visual pública posterior a su integración. | No declarar despliegue o aspecto visual comprobados sin evidencia directa. |
 
 **Nota de higiene documental:** `docs/entrada-datos.md` describe un procedimiento **histórico y externo** de tratamiento de fuentes. No es la especificación de ejecución de ARQ-01. Su afirmación histórica sobre ausencia de nombres de docentes no coincide con todos los archivos públicos heredados; no se debe interpretar como una garantía técnica vigente ni corregir archivos académicos sin una decisión separada.
 

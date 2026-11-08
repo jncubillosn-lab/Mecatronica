@@ -1,4 +1,12 @@
 
+/**
+ * Fachada de compatibilidad de la interfaz v0.4.x (ARQ-01).
+ * Recibe EXCLUSIVAMENTE la proyección del contrato normalizado creada en
+ * `js/iniciar.js` -> `EntradaAcademica`; no abre ni transforma fuentes SIA.
+ * Responsabilidades: cálculo independiente del DOM y presentación heredada.
+ * @see docs/ARQUITECTURA.md
+ * @see docs/DECISIONES-Y-ALCANCE.md
+ */
 /* ===== NÚCLEO DE CÁLCULO (sin DOM) ===== */
 const CALENDARIO = new CalendarioAcademico(RAW.calendario);
 const DAYS = CALENDARIO.ids();
@@ -8,9 +16,26 @@ const H_MIN = CALENDARIO.inicio, H_MAX = CALENDARIO.fin;
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
 
-/* Estado de datos:
-   { params:{maxDist, indirect}, malla:[{n,s}], pre:[{r,t,m}], asg:[nombre],
-     grupos:[{a,g,c1,c2,on}], bloques:[{id,a,c,d,s,e,o}] } */
+/**
+ * Escenario de trabajo (S), distinto del JSON académico de referencia:
+ * - params: {dists: número[], indirect: 0|1} para seleccionar comparaciones;
+ * - malla: posiciones {n,s,nota,cr,comp,car,idPos}, con créditos nulos válidos;
+ * - pre: relaciones {r,t,m}; asg: nombres incorporados al escenario;
+ * - grupos: {a,g,c1,c2,on,ref,analizable}; on = decisión de simulación,
+ *   analizable = elegibilidad ACADÉMICA declarada en el contrato;
+ * - bloques: {id,a,c,d,s,e,o,ref,idAnterior}, sin horarios inventados;
+ * - reqCred y tipos: reglas/clasificaciones del programa en el escenario.
+ * `RAW` es una proyección interna recibida de EntradaAcademica, no una
+ * segunda entrada ni una estructura de datos institucional editable.
+ */
+/**
+ * Construye un escenario mutable NUEVO a partir de la referencia proyectada.
+ * `idPos`, `ref` e `idAnterior` preservan vínculos/migraciones; 
+ * `analizable` NO equivale a `on`: una edición personal no activa una
+ * agrupación de otra sede que el contrato declaró solo informativa.
+ * @param {object} D Proyección RAW interna, no archivo académico adicional.
+ * @returns {object} Escenario inicial de análisis y edición.
+ */
 function fromRaw(D) {
   return {
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
@@ -34,7 +59,11 @@ const natKey = s => { const m = String(s).match(/\d+/); return m ? +m[0] : 1e9; 
 function semOf(S, name) { const m = S.malla.find(x => x.n === name); return m ? m.s : 0; }
 function maxSemester(S) { return new PlanCurricular(S).maxSemestre(); }
 
-/* Cierre transitivo del grafo de prerrequisitos (req -> t). */
+/**
+ * Cierre transitivo de prerrequisitos del escenario actual: r -> t significa
+ * que r es requisito de t. Se usa para evitar comparar asignaturas que el
+ * plan declara dependientes, no para adivinar relaciones ausentes.
+ */
 function closure(S) {
   const adj = new Map();
   S.malla.forEach(m => adj.set(m.n, []));
@@ -49,10 +78,24 @@ function closure(S) {
   return { desc, direct };
 }
 
-/* ¿Dos bloques se traslapan? */
+/**
+ * Intersección de intervalos semiabiertos [inicio,fin) del mismo día.
+ * Dos clases que se tocan solo en el límite no se superponen.
+ */
 function overlap(a, b) { return a.d === b.d && a.s < b.e && b.s < a.e; }
 
-/* Calcula todo: pares, estadísticas por asignatura, resumen por nivel, choques por grupo. */
+/**
+ * Motor sin DOM y sin dependencias de la interfaz. Calcula matriz de cada
+ * par de asignaturas del escenario, choques de grupos, índices y totales.
+ * Solo entran grupos con `on === true` Y `analizable !== false`.
+ * Un grupo sin bloques NO produce choque supuesto. Con cero combinaciones,
+ * el índice es 0 por decisión funcional, no un aviso de incompletitud.
+ * Los filtros de componentes se aplican aparte en `actualizarVistaComponentes`
+ * sin modificar grupos, bloques, referencia ni cambios personales.
+ * @param {object} S Escenario efectivo de trabajo.
+ * @returns {object} Resultados completos con `pairs`, `stats`, `groupsOf`,
+ *   `allGroupsOf`, `totalPairs`, `totalClash` y `totalCombos`.
+ */
 function compute(S) {
   const indirect = S.params.indirect, dists = S.params.dists || [0, 1];
   const cl = closure(S);
@@ -61,6 +104,8 @@ function compute(S) {
   const gBlocks = g => [...(byComp.get(g.a + '\u0001' + g.c1) || []), ...(g.c2 ? byComp.get(g.a + '\u0001' + g.c2) || [] : [])];
 
   const names = S.asg.map((n, i) => ({ n, i, s: semOf(S, n) })).sort((x, y) => x.s - y.s || x.i - y.i).map(x => x.n);
+  // `allGroupsOf`: grupos registrados (también informativos/desactivados)
+  // para consulta. `groupsOf`: solo opciones elegibles y activas para cálculo.
   const groupsOf = {}, allGroupsOf = {};
   names.forEach(n => { allGroupsOf[n] = S.grupos.filter(g => g.a === n).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y)) || glabel(x).localeCompare(glabel(y))); groupsOf[n] = allGroupsOf[n].filter(g => g.on && g.analizable !== false); });
 
@@ -88,6 +133,9 @@ function compute(S) {
     else if ((cl.desc.get(A) && cl.desc.get(A).has(B)) || (cl.desc.get(B) && cl.desc.get(B).has(A))) pre = 'Indirecto';
     const aplica = pre === 'Directo' ? 0 : (pre === 'Indirecto' && indirect ? 0 : 1);
     const enRango = aplica && dists.includes(dist) ? 1 : 0;
+    // Si no se informó ninguna combinación, NO inventar cruces ni alertas.
+    // El cero representa la ausencia de choque calculado, no un certificado
+    // de compatibilidad académica definitiva.
     const idx = total ? clash / total : 0;
     const nivel = clash === 0 ? 'sin choque' : dist + (clash === total ? 'a' : 'b');
     const p = { key: A + '|' + B, A, B, sA, sB, nA: gA.length, nB: gB.length, total, clash, idx, dist, pre, aplica, enRango, nivel, matrix, gA: gA.map(g => g.g), gB: gB.map(g => g.g) };
@@ -157,6 +205,8 @@ if (typeof module !== 'undefined') module.exports = { glabel, fromRaw, compute, 
 const KEY = RAW.almacenamiento.clave;
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
+// S0 = referencia reconstruida desde el contrato; S = copia editable personal.
+// Mantener separadas estas identidades al importar, guardar y restablecer.
 let S0 = fromRaw(RAW), S = clone(S0), restored = false, datosGuardados = null;
 try {
   const texto = localStorage.getItem(KEY);
@@ -166,7 +216,11 @@ try {
     else if (o?.S && Array.isArray(o.S.bloques) && o.S.params) datosGuardados = o;
   }
 } catch (e) { /* la herramienta funciona sin almacenamiento */ }
-/* Completa escenarios guardados con asignaturas nuevas de la malla (Inglés, libre elección, proyecto, trabajo de grado…). */
+/**
+ * Transición de escenarios históricos, NO conversión de fuentes académicas.
+ * Conserva la semántica v0.4.x y resuelve compatibilidad de datos guardados.
+ * No usarla para editar `datos/academico.json` ni inventar datos del plan.
+ */
 function fixMalla(s) {
   const base = fromRaw(RAW);
   if (!s.tipos) s.tipos = clone(base.tipos);
@@ -240,6 +294,11 @@ function fixParams(s) {
 }
 fixParams(S0); fixMalla(S0);
 S = clone(S0);
+/**
+ * Distingue el formato actual de diferencias personales (v1) del antiguo
+ * `{S}` completo. Ambos se reconstruyen sobre S0; después se validan los
+ * intervalos técnicos antes de reemplazar el escenario efectivo de la UI.
+ */
 function recuperarEscenarioGuardado(o) {
   if (o.tipo === 'escenario-personal' && o.version === 1) {
     return EscenarioPersonal.aplicar(S0, o.cambios);
@@ -257,8 +316,14 @@ if (datosGuardados) {
     S = clone(S0);
   }
 }
+// R: resultados sin filtro de componentes de la sesión; R0: referencia.
+// RV/RV0 son consultas filtradas y NUNCA reemplazan al escenario S/S0.
 let R = compute(S), R0 = compute(S0);
 
+/**
+ * Estado TRANSITORIO de navegación, selección y paneles. Se distingue de S:
+ * los filtros de visualización no se persistirán como cambios académicos.
+ */
 const ui = {
   page: 'inicio',
   componentes: new Set(RAW.opciones.componentesComparables || []),
@@ -273,6 +338,11 @@ const ui = {
 
 /* El filtro es solo de visualización: grupos, horarios, malla y escenarios se conservan. */
 let RV, RV0;
+/**
+ * Recalcula resultados de CONSULTA para los componentes seleccionados.
+ * Se aplica a copias superficiales con `asg` filtrada; no se borran grupos,
+ * ni bloques, ni ediciones personales de S o S0.
+ */
 function actualizarVistaComponentes() {
   const nombres = (estado) => new PlanCurricular(estado).seleccionarPorComponentes(
     estado.asg, ui.componentes
@@ -325,9 +395,18 @@ function toast(msg) {
   const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; document.body.appendChild(t);
   setTimeout(() => t.remove(), 4200);
 }
+/**
+ * Persistencia local: solo `{tipo,version,cambios}` generados por
+ * EscenarioPersonal.empaquetar(S0,S), no otra fuente académica ni un S0 nuevo.
+ * No depende del servidor ni altera el archivo normalizado.
+ */
 function save() { try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); } catch (e) { } }
 
-/* Aplica un cambio de datos: recalcula, avisa si algún par entra o sale del análisis, repinta. */
+/**
+ * Consolida una acción VOLUNTARIA de edición en S: recalcula R y RV,
+ * guarda el delta personal y actualiza la interfaz. No es un commit de Git
+ * ni debe llamarse desde filtros que solo cambian la selección de consulta.
+ */
 function commit(extraMsg) {
   const prev = R; R = compute(S); actualizarVistaComponentes(); save();
   const flips = [];
@@ -338,6 +417,11 @@ function commit(extraMsg) {
 }
 
 /* ---------- diferencias respecto a la fuente inicial del programa ---------- */
+/**
+ * Resumen legible de cambios para paneles de la UI. La representación
+ * persistida/autoritativa de las ediciones es EscenarioPersonal.diferencias,
+ * no las etiquetas de esta función.
+ */
 function changes() {
   const out = [];
   if (S.params.dists.join() !== S0.params.dists.join()) out.push(['Parámetro', `Distancia entre semestres: ${distNames(S0.params.dists)} → ${distNames(S.params.dists)}`]);
@@ -547,6 +631,11 @@ function miniWeek(bA, bB, ov) {
   };
   return `<div class="wk" style="--numero-dias:${DAYS.length}"><div></div>${DAYS.map(d => `<div class="dh">${DAY_SHORT[d]}</div>`).join('')}<div>${Array.from({ length: rows }, (_, i) => `<div class="hr" style="height:${RH}px">${lo + i}</div>`).join('')}</div>${DAYS.map(col).join('')}</div>`;
 }
+/**
+ * Detalle matricial de una pareja: utiliza grupos ANALIZABLES, aunque
+ * `allGroupsOf` conserve también opciones de otras sedes para consulta en
+ * la sección Grupos. Las celdas deben conservar el mismo orden que `matrix`.
+ */
 function drawerPair(dw) {
   const R = RV;
   const p = R.pairs.find(x => x.key === dw.key);
@@ -670,6 +759,11 @@ function groupDetail(a, g) {
     <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.analizable === false ? '<span class="hint">Registrado para consulta; no participa en los cálculos.</span>' : g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}">${esc(n)}</button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
     <div class="row">${g.analizable === false ? '' : `<button class="btn sm" data-act="g-toggle" data-a="${esc(a)}" data-g="${esc(g.g)}">${g.on ? 'Dejar de ofertar' : 'Volver a ofertar'}</button>`}<button class="btn sm" data-act="hor-go" data-n="${esc(a)}" data-c="${esc(g.c1)}">Editar horario</button><button class="btn sm danger" data-act="g-del" data-a="${esc(a)}" data-g="${esc(g.g)}">Eliminar</button></div></div>`;
 }
+/**
+ * Consulta y edición de TODOS los grupos registrados. `analizable:false`
+ * conserva información visible de otras sedes sin activarla en el cálculo;
+ * ocultar estos grupos equivaldría a descartar información del contrato.
+ */
 function pageGrupos() {
   const sel = ui.grp.sel;
   const avail = S.malla.filter(m => !S.asg.includes(m.n)).sort((a, b) => a.s - b.s || a.n.localeCompare(b.n));
@@ -709,6 +803,11 @@ function lanes(blocks) {
   });
   return res;
 }
+/**
+ * Consulta/edición de los horarios del escenario personal completo.
+ * Mostrar un bloque informativo no implica incluirlo en estadísticas;
+ * el resaltado de cruces entre superposiciones consulta elegibilidad.
+ */
 function pageHor() {
   if (!S.asg.length) return `<div class="page-title"><div><h1>Horarios</h1><p>No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</p></div></div>`;
   const h = ui.hor;
@@ -763,6 +862,12 @@ function pageHor() {
   </div>`;
 }
 /* ===== MAPA DE CALOR / OCUPACIÓN DE HORARIOS ===== */
+/**
+ * Concentración de grupos activos elegibles por franja de una hora.
+ * Cada grupo se cuenta una sola vez por franja aunque comparta componentes.
+ * No mide estudiantes matriculados, salones ocupados ni cupos ofertados.
+ * Los filtros de vista no deben cambiar los datos ni generar choques nuevos.
+ */
 function pageHeat() {
   const off = ui.heat.off;
   const names = new PlanCurricular(S).seleccionarPorComponentes(S.asg, ui.componentes).sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
@@ -925,6 +1030,11 @@ function drawEdges() {
 
 /* ===== RENDER ===== */
 const PAGES = { inicio: pageInicio, inter: pageInter, asig: pageAsig, grupos: pageGrupos, hor: pageHor, heat: pageHeat, malla: pageMalla };
+/**
+ * Redibuja la vista activa a partir de resultados existentes y preserva,
+ * cuando es posible, desplazamiento y foco de interacción. La selección
+ * pertenece a `ui`; las modificaciones académicas simuladas pertenecen a S.
+ */
 function render() {
   const ae = document.activeElement, fid = ae && ae.id, ss = ae && ae.selectionStart, se = ae && ae.selectionEnd;
   const keep = {}; ['canvas', 'mxwrap'].forEach(k => { const el = $(k === 'canvas' ? '#canvas' : '.mxwrap'); if (el) keep[k] = [el.scrollLeft, el.scrollTop]; });
@@ -947,6 +1057,12 @@ function findGroup(a, g) { return S.grupos.find(x => x.a === a && x.g === g); }
 function compsGone(a, c) { return !S.grupos.some(g => g.a === a && (g.c1 === c || g.c2 === c)); }
 function download(name, text, type) { const u = URL.createObjectURL(new Blob([text], { type })); const a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 1000); }
 
+/**
+ * Acciones delegadas desde `data-act`. Las ediciones ordinarias de S
+ * pasan por commit; `reset` tiene su ruta propia para limpiar el almacenamiento.
+ * Navegación y filtros solo redibujan. No leer archivos originales de oferta,
+ * malla o catálogo desde eventos de interfaz.
+ */
 function onAct(act, d, el, ev) {
   const f = ui.inter;
   switch (act) {
@@ -1031,6 +1147,11 @@ function onAct(act, d, el, ev) {
     case 'import': return $('#file-in').click();
   }
 }
+/**
+ * Cambios de formularios (`data-chg`) y archivo de escenario personal.
+ * Al importar se reconstruye y valida un escenario ANTES de asignarlo a S;
+ * cargar cambios personales NO equivale a cargar otra entrada académica.
+ */
 function onChange(k, el) {
   const f = ui.inter;
   switch (k) {

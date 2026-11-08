@@ -1,3 +1,8 @@
+/* Estilos de la aplicación estática ARQ-01.
+ * El tema visual depende de variables CSS; el contrato académico y las
+ * decisiones de elegibilidad pertenecen a JavaScript, nunca a colores.
+ * Las reglas no deben asumir una cantidad universal de días en el calendario.
+ */
 :root{
   --bg:#f5f3ee; --surface:#ffffff; --surface2:#efece4; --ink:#1c1a15; --ink2:#5b574c; --ink3:#8b867a;
   --line:#e0dccf; --line2:#cfc9b9;
@@ -254,6 +259,10 @@ table.mx{border-collapse:separate;border-spacing:2px;margin:0 auto}
 .sidelist button{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:left;border:0;background:transparent;padding:6px 8px;border-radius:8px;font-size:13px}
 .sidelist button:hover{background:var(--surface2)} .sidelist button[aria-current="true"]{background:var(--ink);color:var(--bg)}
 .hdot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--heat)}
+/* Cuadrícula temporal compartida por Horarios y Mapa de calor.
+ * `--numero-dias` procede del CalendarioAcademico, no de un valor fijo CSS.
+ * El color indica un resultado de consulta; no cambia el estado académico.
+ */
 .weekgrid{display:grid;grid-template-columns:38px repeat(var(--numero-dias,6),minmax(0,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);user-select:none}
 .weekgrid .dh{padding:8px 0;text-align:center;font-weight:650;color:var(--ink2);background:var(--surface2);border-left:1px solid var(--line)}
 .weekgrid .hrs div{height:34px;border-top:1px solid var(--line);font:11px var(--mono);color:var(--ink3);text-align:right;padding:2px 5px 0 0}
@@ -385,6 +394,9 @@ a{color:var(--accent)}
 .mcol h4 .semcr b{font:650 15px var(--serif);color:var(--ink);letter-spacing:0}
 .mcol h4 .semcr .delta{font-size:11px;text-transform:none;letter-spacing:0}
 /* ---------- Mapa de calor ---------- */
+/* Mapa de calor: representación de grupos por hora, NO estudiantes ni salones.
+ * Las asignaturas visibles se filtran en la lógica sin borrar sus datos.
+ */
 .hm-sidelist{padding:10px;display:grid;gap:8px}
 .hm-tools{display:grid;gap:7px;padding:4px 5px 9px;border-bottom:1px solid var(--line);margin-bottom:2px}
 .hm-tools .row{gap:5px}

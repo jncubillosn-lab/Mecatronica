@@ -5,7 +5,7 @@ Aplicación web **no oficial** para consultar la malla curricular, examinar grup
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Documentación de referencia:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial](docs/MIGRACION-ARQ01.md) · [Guía de desarrollo](AGENTS.md)
 
-## Arquitectura vigente — v0.5.1
+## Arquitectura vigente — v0.5.2
 
 **La aplicación tiene una única entrada académica estandarizada: [datos/academico.json](datos/academico.json).**
 
@@ -31,7 +31,7 @@ La malla, el catálogo institucional y la oferta de grupos se transforman **fuer
 
 Desde v0.5.0 la interfaz histórica utiliza una representación interna llamada `RAW`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
 
-**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
+**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. En v0.5.2 se documentan las responsabilidades y reglas directamente dentro de los archivos de código, sin modificar el comportamiento previsto. La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
 
 ## Qué contiene el contrato
 
@@ -108,6 +108,21 @@ css/pie.css
 ~~~
 
 Los archivos `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fuentes.js` se conservan como **referencias históricas del repositorio**. No se cargan en `index.html` ni son rutas de entrada de producción. Convertir nuevas fuentes originales a `academico.json` es un trabajo **externo** a esta aplicación.
+
+## Documentación integrada al código
+
+Además de ARQ-01 y DEC-01, las decisiones técnicas se explican junto a sus implementaciones:
+
+| Archivo | Qué se documenta internamente |
+|---|---|
+| `js/entrada.js` | Contrato normalizado, formato de la proyección interna, referencias estables y agrupaciones informativas. |
+| `js/modelo.js` | Responsabilidades POO, evaluación de créditos desconocidos y calendario configurable. |
+| `js/escenarios.js` | Diferencias personales, aplicación de cambios, validación básica y migración histórica. |
+| `js/app.js` | Estructura del escenario, cálculo de choques, filtros, persistencia, vistas y eventos. |
+| `js/iniciar.js` e `index.html` | Orden de arranque, entrada académica única y sincronización del indicador de versión. |
+| `css/estilos.css` | Tema visual, número variable de días y semántica del mapa de calor. |
+
+Los comentarios explican **contratos, invariantes y razones no evidentes**; no suponen necesidades académicas nuevas ni sustituyen las pruebas. Al modificar una función, revisar sus comentarios para que no queden obsoletos.
 
 ## Pruebas
 

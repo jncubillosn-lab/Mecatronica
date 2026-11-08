@@ -6,14 +6,23 @@
  */
 class EscenarioPersonal {
   static copia(x) { return JSON.parse(JSON.stringify(x)); }
+  // Priorizar `ref` estable del contrato; el nombre visible es respaldo legado.
   static claveGrupo(g) { return g.ref ? 'r:' + g.ref : g.a + '\u0001' + g.g; }
   static clavePre(p) { return p.r + '\u0001' + p.t; }
+  // El ID numérico legado solo identifica bloques sin `ref` normalizada.
   static claveBloque(b) { return b.ref ? 'r:' + b.ref : 'i:' + b.id; }
   static propiedadesBloque(b) {
     return { a:b.a, c:b.c, d:b.d, s:b.s, e:b.e, o:b.o || '' };
   }
 
-  /** Extrae solamente diferencias voluntarias; no copia la referencia académica. */
+  /**
+   * Devuelve exclusivamente operaciones personales sobre la referencia.
+   * Un cambio institucional en el contrato NO debe aparecer como edición
+   * voluntaria; el resultado puede aplicarse a futuras referencias.
+   * @param {object} base Escenario de referencia vigente, sin mutaciones.
+   * @param {object} actual Escenario personalizado de la sesión.
+   * @returns {object} Operaciones de agregar, quitar y modificar.
+   */
   static diferencias(base, actual) {
     const out = {
       params: {}, malla: [],
@@ -70,6 +79,13 @@ class EscenarioPersonal {
     return out;
   }
 
+  /**
+   * Reconstruye un estado NUEVO sin mutar `base`: primero clona la referencia
+   * y después aplica las operaciones. Una edición de `on`, `c1` o `c2` no
+   * puede convertir una agrupación de referencia informativa en analizable.
+   * Las incorporaciones académicas nuevas no deben reponer grupos que la
+   * persona quitó deliberadamente.
+   */
   static aplicar(base, cambios) {
     const s=EscenarioPersonal.copia(base);
     if (!cambios || typeof cambios!=='object') return s;
@@ -119,7 +135,12 @@ class EscenarioPersonal {
     return s;
   }
 
-  /** Validación técnica mínima: no exige completitud académica. */
+  /**
+   * Valida únicamente integridad técnica antes de aceptar un escenario.
+   * No exige horarios, docentes, créditos completos ni grupos para todas
+   * las asignaturas. Rechazar un intervalo imposible es distinto de alertar
+   * por un horario ausente (véase DEC-01).
+   */
   static validarEstado(estado, calendario) {
     if (!estado || typeof estado !== 'object' || !estado.params ||
         !Array.isArray(estado.params.dists) ||
@@ -147,6 +168,11 @@ class EscenarioPersonal {
     return estado;
   }
 
+  /**
+   * Formato de exportación `{tipo:'escenario-personal',version:1,cambios}`.
+   * `version:1` es la versión del FORMATO de escenario, independiente de
+   * `versionEsquema` y de la versión visible del sitio (p. ej. 0.5.2).
+   */
   static empaquetar(base, actual) {
     return { tipo:'escenario-personal', version:1, cambios:EscenarioPersonal.diferencias(base,actual) };
   }
@@ -155,6 +181,9 @@ class EscenarioPersonal {
    * Transición de archivos {S} antiguos. La fuente académica sigue siendo una:
    * se usa la identidad histórica DECLARADA EN EL MISMO CONTRATO NORMALIZADO.
    */
+  // `introducidoEn` dentro de las agrupaciones indica su procedencia
+  // histórica. No constituye la versión de contrato ni de archivo exportado.
+  // Esta compatibilidad usa el MISMO contrato: no abre fuentes originales.
   static migrarAnterior(baseVigente, snapshot, contrato, construirEstado, LectorAcademico) {
     const aplicado = Array.isArray(snapshot.incorporacionesOferta) && snapshot.incorporacionesOferta.length > 0;
     const anteriores = contrato.agrupaciones.filter(g =>
