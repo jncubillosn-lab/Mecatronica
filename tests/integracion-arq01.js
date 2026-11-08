@@ -70,13 +70,15 @@ async function main() {
     assert(d.querySelector('.malla-proyeccion-aviso'));
     assert.equal(d.querySelectorAll('#top [data-comp="L"]').length,0,
       'Libre elección no se incorpora al filtro global de ocho secciones');
-    const libreEquilibrada=d.querySelector('.mcard-libre[data-n="Libre elección (II)"]');
-    assert(libreEquilibrada && libreEquilibrada.closest('[data-sem]').dataset.sem!=='2',
-      'La proyección por defecto distribuye posiciones originalmente concentradas');
+    // El plan vigente de Mecatrónica ya estaba igual de equilibrado;
+    // evitar cambiar arbitrariamente sus semestres en la proyección inicial.
+    assert.equal(d.querySelector('.mcard-libre[data-n="Libre elección (II)"]')
+      ?.closest('[data-sem]').dataset.sem,'2');
     d.querySelector('[data-act="m-equilibrar"]').click();
+    assert(d.querySelector('[data-act="m-equilibrar"]').textContent.includes('Semestres registrados'));
     assert.equal(d.querySelector('.mcard-libre[data-n="Libre elección (II)"]')
       ?.closest('[data-sem]').dataset.sem,'2',
-      'Es posible recuperar la ubicación registrada del plan');
+      'El cambio de modo no mueve los créditos registrados');
     d.querySelector('[data-act="m-equilibrar"]').click();
     d.querySelector('[data-act="m-libres"]').click();
     assert.equal(d.querySelectorAll('#mcols .mcard-libre').length,0,
