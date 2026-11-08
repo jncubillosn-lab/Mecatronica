@@ -17,6 +17,7 @@ probar('Una entrada con estructura y versión conocidas', () => {
   assert(html.includes('js/iniciar.js'));
   assert(html.includes('js/analisis.js'),'El motor debe cargarse antes de iniciar');
   assert(html.includes('js/vistas.js'),'Las vistas deben cargarse antes de iniciar');
+  assert(html.includes('js/demanda.js'),'El módulo de demanda debe cargarse antes de iniciar');
   const inicio=fs.readFileSync(path.join(__dirname,'../js/iniciar.js'),'utf8');
   assert(!inicio.includes('window.RAW ='),'No se debe publicar RAW como contexto global');
   assert(inicio.includes('window.CONTEXTO_ACADEMICO'),'Se requiere el escenario base explícito');
