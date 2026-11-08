@@ -1,5 +1,10 @@
 # Condiciones base de la entrada de datos
 
+> **Documento histórico, no contrato de ejecución.** Describe un procedimiento externo anterior de tratamiento de fuentes institucionales. Desde ARQ-01, la aplicación web **solo consume** [`datos/academico.json`](../datos/academico.json), ya normalizado; la transcripción, comparación y conversión de malla, catálogo y oferta son procesos externos y **no deben reintroducirse como módulos ni rutas de producción**. Véanse [ARQ-01](ARQUITECTURA.md), [DEC-01](DECISIONES-Y-ALCANCE.md) y [EST-01](ESTADO-Y-PUBLICACION.md).
+
+> **Precisión documental:** los apartados siguientes se conservan para rastrear decisiones pasadas y no deben interpretarse como especificaciones vigentes del esquema, del generador ni de la privacidad del sitio. Por ejemplo, la indicación histórica de que «no se guardan nombres de docentes» no describe íntegramente los archivos públicos heredados. Esta diferencia se documenta sin alterar ni eliminar datos, y cualquier política nueva debe decidirse expresamente.
+
+
 ## Contexto
 La herramienta se limita a la Facultad de Ingeniería de la Universidad Nacional. No hay API: los datos se **copian y pegan** de las páginas del SIA (oferta de asignaturas) o se transcriben de archivos gráficos (la malla en PDF). Estas fuentes no son limpias, así que la entrada define sus propias condiciones. La estructura del SIA casi nunca cambia entre semestres, y eso permite que estas condiciones sean estables.
 
