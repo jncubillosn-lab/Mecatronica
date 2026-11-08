@@ -6,7 +6,11 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {EntradaAcademica}=require('../js/entrada.js');
 const {EscenarioPersonal}=require('../js/escenarios.js');
-const {fromRaw}=require('../js/analisis.js');
+const {fromRaw}=new Function(
+  fs.readFileSync(path.join(__dirname,'../js/modelo.js'),'utf8')+'\n'+
+  fs.readFileSync(path.join(__dirname,'../js/entrada.js'),'utf8')+'\n'+
+  fs.readFileSync(path.join(__dirname,'../js/analisis.js'),'utf8')+'\nreturn {fromRaw};'
+)();
 const fuente=JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/academico.json'),'utf8'));
 const vigente=fromRaw(new EntradaAcademica(fuente).generarEscenarioBase());
 const copiar=EscenarioPersonal.copia;
