@@ -5,16 +5,16 @@
 ## Antes de cualquier cambio
 
 - Leer ARQ-01 y verificar qué capa del sistema se verá afectada.
-- **Desde la migración integrada v0.5.0, la única entrada académica es FuentesAcadémicas, representada por `datos/academico.json`.** La interfaz puede usar una proyección interna `RAW` generada desde ese contrato, nunca otra entrada.
+- **Desde v0.5.0 la única entrada académica es FuentesAcadémicas (`datos/academico.json`).** Desde v0.5.3 el arranque entrega un contexto académico explícito, no `window.RAW`. La proyección posicional del lector queda solo como adaptador interno histórico, nunca otra entrada.
 - La extracción y conversión desde catálogo, oferta de horarios y malla sucede **íntegramente fuera del sistema**. No incorporar lectores, conversores, cargadores ni conexiones paralelas desde esos archivos a la aplicación.
 - El sistema consume el contrato común, no el formato de las fuentes ni archivos históricos `js/catalogo.js`, `js/oferta-fuente.js` o `js/datos.js`. Se conservan en el repositorio como **archivos de referencia heredados**, pero la aplicación migrada no los carga.
-- Los nombres, créditos, requisitos, tipologías, componentes, calendarios y vínculos académicos son **datos**, no constantes universales programadas.
+- Los nombres, créditos, requisitos, tipologías, componentes, calendarios y vínculos académicos son **datos**, no constantes universales programadas. Las relaciones de prerrequisitos y los mínimos de créditos deben referenciar IDs válidos; una referencia rota es un error técnico, no un valor académico faltante.
 - Aceptar información incompleta sin inventar valores ni generar avisos de alerta por su ausencia. Distinguir un vacío académico válido de un error técnico del contrato; el dato ausente no bloquea ni crea falsos choques.
 - Los grupos de actividad no se combinan salvo relación explícita del contrato.
 - Los grupos de otras sedes se conservan; `agrupaciones[].analizable === false` los excluye de cálculos sin borrarlos. No inferir esa propiedad por prefijos dentro del programa.
 - Mantener separadas las modificaciones personales del escenario y los datos de referencia académica. No modificar nombres, horas, grupos, créditos o referencias académicas sin evidencia y sin justificar cualquier diferencia.
 - Todas las vistas, cuadros de detalle, cálculos y exportaciones deben respetar la misma selección activa de información.
-- Preservar funcionamiento estático y compatibilidad con los escenarios anteriores. Mantener las siete secciones, filtros, edición, mapa de calor, CSV, exportación/importación y restablecimiento.
+- Preservar funcionamiento estático y compatibilidad con los escenarios anteriores. Mantener las siete secciones, filtros, edición, mapa de calor, CSV, exportación/importación y restablecimiento. El motor puro está en `js/analisis.js`, las vistas en `js/vistas.js` y el estado/eventos en `js/app.js`.
 
 ## Ejecución y revisión
 
