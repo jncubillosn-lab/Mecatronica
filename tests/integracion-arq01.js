@@ -88,6 +88,34 @@ async function main() {
       'La simulación presenta casos masivos de más grupos');
     assert(panel.querySelectorAll('.dem-caso').length>0,
       'Se presentan las asignaturas más concentradas en tarjetas legibles');
+    // DEM-03: al seleccionar un punto debe aparecer su ASIGNATURA al lado
+    // del gráfico, no exclusivamente en el detalle estadístico inferior.
+    assert(d.querySelector('.dem-seleccion-ayuda'),
+      'Antes de seleccionar aparece una indicación junto a la gráfica');
+    const puntosAntes=[...d.querySelectorAll('g.dem-marca[data-pos]')];
+    assert(puntosAntes.length>=2,'Se necesitan al menos dos puntos para comprobar la selección');
+    const primero=puntosAntes[0],segundo=puntosAntes.find(x=>x.dataset.pos!==primero.dataset.pos);
+    const id1=primero.dataset.pos,id2=segundo.dataset.pos;
+    const etiqueta1=primero.querySelector('title').textContent.split(' · ')[0];
+    primero.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));
+    assert.equal(d.querySelector('.dem-seleccion-nombre')?.textContent,etiqueta1,
+      'El clic identifica por nombre la asignatura junto a la gráfica');
+    assert(d.querySelector('g.dem-marca[aria-pressed="true"][data-pos="'+id1+'"]'),
+      'El punto elegido queda resaltado');
+    assert(d.querySelector('.dem-etiqueta .dem-etiqueta-nombre')?.textContent,
+      'Se muestra una etiqueta dentro de la propia gráfica');
+    const otro=d.querySelector('g.dem-marca[data-pos="'+id2+'"]');
+    const etiqueta2=otro.querySelector('title').textContent.split(' · ')[0];
+    otro.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));
+    assert.equal(d.querySelector('.dem-seleccion-nombre')?.textContent,etiqueta2,
+      'Al hacer clic en otro punto se actualiza el nombre sin ambigüedad');
+    assert(d.querySelector('g.dem-marca[aria-pressed="true"][data-pos="'+id2+'"]'),
+      'El resaltado acompaña la segunda selección');
+    const teclado=d.querySelector('g.dem-marca[data-pos="'+id1+'"]');
+    teclado.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+    assert.equal(d.querySelector('.dem-seleccion-nombre')?.textContent,etiqueta1,
+      'La selección mediante Enter muestra la misma asignatura');
+
     assert(panel.querySelector('.dem-edicion > summary'),
       'La edición de cantidades permanece disponible en el detalle');
     assert(d.querySelector('#top').textContent.includes('Datos de referencia del programa'), 'La vista previa no produce modificaciones');

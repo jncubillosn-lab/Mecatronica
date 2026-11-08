@@ -67,3 +67,11 @@ Para mejorar la separación de puntos bajos frente a asignaturas con decenas de 
 La **demostración** sigue contando con 240 respuestas ficticias, pero distribuye intencionalmente casos contrastantes (altas solicitudes/pocos grupos, demanda masiva/muchos grupos y grupos de demanda menor). Los ID curriculares y los números de grupos proceden de la malla y de las agrupaciones disponibles; las solicitudes son **completamente simuladas** y no afirman que una asignatura particular tenga un problema real. No se guardan automáticamente al abrir la vista previa, ni reemplazan encuestas reales sin acción explícita.
 
 Cuando no haya información suficiente para un cuadrante o indicador, se conservará el estado desconocido y se mostrarán las señales disponibles; no se fabricarán grupos ni cupos.
+
+## DEM-03 — Identificación de asignaturas en la gráfica (v0.5.9)
+
+Cada punto del mapa de solicitudes frente a grupos está vinculado a un `posicionId` curricular. Al **hacer clic en un punto**, la interfaz muestra inmediatamente el **nombre de la asignatura** en una etiqueta dentro de la gráfica y, justo debajo, en una tarjeta de lectura con semestre, solicitudes observadas, agrupaciones analizables y solicitudes por grupo. No es necesario bajar hasta el detalle estadístico para conocer a cuál corresponde.
+
+La selección destaca visualmente el punto con un anillo y actualiza el detalle estadístico existente. Si se selecciona otro punto, ambas identificaciones cambian. Los puntos son navegables por teclado: **Enter o espacio** produce el mismo resultado y se conserva el foco al redibujar. El nombre completo se muestra en la tarjeta incluso si se acorta en la etiqueta flotante de SVG.
+
+Esta interacción solo cambia el **estado de consulta** `ui.demanda.seleccion` / `ui.demanda.puntoActivo`. No escribe solicitudes, no inventa datos ni afecta la exportación/importación del escenario. Si un filtro oculta la asignatura seleccionada, la tarjeta deja de atribuir datos a una asignatura no visible; una nueva selección vuelve a identificar correctamente el punto.

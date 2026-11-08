@@ -159,3 +159,6 @@ La octava página **Demanda** permite importar o editar un JSON mínimo de solic
 
 
 **Desde v0.5.8:** la sección Demanda comienza con una gráfica de cuatro cuadrantes por medianas, colores de mayor contraste, etiquetas y casos señalados. La simulación ilustra expresamente concentraciones elevadas de solicitudes frente al número de agrupaciones, sin pretender que exista escasez real de cupos. Orden: gráfica, comparación por semestre, detalle, recomendaciones, tabla y demanda conjunta.
+
+
+**Desde v0.5.9:** al seleccionar un punto de la gráfica de Demanda se identifica inmediatamente su asignatura, con nombre y solicitudes, grupos y solicitudes/grupo, tanto dentro de la gráfica como en una tarjeta justo debajo. Se puede usar el ratón, Enter o espacio. La selección no altera las solicitudes.
