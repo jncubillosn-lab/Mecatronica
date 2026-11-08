@@ -149,4 +149,19 @@ probar('Grupos informativos sobreviven migración y ediciones sin entrar a los c
   );
 });
 
+
+probar('Validación básica rechaza horarios imposibles sin rechazar créditos desconocidos',()=>{
+  const calendario={
+    ids:()=>raw.calendario.dias.map(d=>d[0]),
+    inicio:raw.calendario.inicio,
+    fin:raw.calendario.fin
+  };
+  const incompleto=copiar(base);
+  incompleto.malla[0].cr=null;
+  assert.equal(EscenarioPersonal.validarEstado(incompleto,calendario),incompleto);
+  const invalido=copiar(base);
+  invalido.bloques[0].e=invalido.bloques[0].s;
+  assert.throws(()=>EscenarioPersonal.validarEstado(invalido,calendario),/Bloque horario inválido/);
+});
+
 console.log('Persistencia y compatibilidad: comprobaciones finalizadas.');
