@@ -126,4 +126,27 @@ probar('Grupo académico nuevo coincide con grupo personal sin duplicarlo',()=>{
   assert.equal(existentes[0].on,false);
 });
 
+
+probar('Grupos informativos sobreviven migración y ediciones sin entrar a los cálculos',()=>{
+  const especial=base.grupos.find(g=>g.analizable===false);
+  assert(especial);
+  const antiguo=anterior('0.4.3');
+  const migrado=EscenarioPersonal.migrarAnterior(base,antiguo,contrato,modulo.fromRaw,EntradaAcademica);
+  const persistente=migrado.grupos.find(g=>g.ref===especial.ref);
+  assert(persistente);
+  assert.equal(persistente.analizable,false);
+  const anteriorMetricas=modulo.compute(migrado);
+  const editado=copiar(migrado);
+  const registro=editado.grupos.find(g=>g.ref===especial.ref);
+  registro.on=!registro.on;
+  const personal=EscenarioPersonal.empaquetar(migrado,editado);
+  const recuperado=EscenarioPersonal.aplicar(migrado,personal.cambios);
+  assert.equal(recuperado.grupos.find(g=>g.ref===especial.ref).analizable,false);
+  const posteriorMetricas=modulo.compute(recuperado);
+  assert.deepEqual(
+    [anteriorMetricas.totalPairs,anteriorMetricas.totalClash,anteriorMetricas.totalCombos],
+    [posteriorMetricas.totalPairs,posteriorMetricas.totalClash,posteriorMetricas.totalCombos]
+  );
+});
+
 console.log('Persistencia y compatibilidad: comprobaciones finalizadas.');
