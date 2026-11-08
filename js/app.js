@@ -164,7 +164,7 @@ const ui = {
   grp: { sel: null },
   hor: { a: S.asg.includes(OPCIONES.asignaturaInicial) ? OPCIONES.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
-  demanda: { orden:'porGrupo', semestre:'', seleccion:'', sinDato:false, confirmarEjemplo:false, confirmarBorrar:false },
+  demanda: { orden:'porGrupo', semestre:'', seleccion:'', sinDato:false, vistaEjemplo:false, metricaMalla:'porGrupo', confirmarEjemplo:false, confirmarBorrar:false },
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
 };
@@ -394,12 +394,15 @@ function onAct(act, d, el, ev) {
   switch (act) {
     case 'nav': ev.preventDefault(); return go(d.p);
     case 'dem-sel': ui.demanda.seleccion=d.pos; return render();
+    case 'dem-vista': ui.demanda.vistaEjemplo=!ui.demanda.vistaEjemplo;
+      ui.demanda.confirmarEjemplo=false;ui.demanda.seleccion='';return render();
     case 'dem-plantilla': return download('plantilla-demanda.json',JSON.stringify({tipo:'demanda-preinscripcion',version:1,solicitudes:[]},null,2),'application/json');
     case 'dem-export': if(S.demanda)return download('demanda-preinscripcion.json',JSON.stringify(S.demanda,null,2),'application/json');return;
     case 'dem-import': return $('#demanda-file')?.click();
     case 'dem-ejemplo': {
       if(S.demanda&&!ui.demanda.confirmarEjemplo){ui.demanda.confirmarEjemplo=true;return render();}
       ui.demanda.confirmarEjemplo=false;
+      ui.demanda.vistaEjemplo=false;
       S.demanda=DemandaEstadistica.ejemplo(S.malla,S.grupos);
       ui.demanda.seleccion='';
       return commit('Datos simulados cargados y claramente identificados.');
@@ -412,12 +415,16 @@ function onAct(act, d, el, ev) {
     }
     case 'dem-guardar': {
       const pos=ui.demanda.seleccion, entrada=$('#dem-cantidad');
-      if(!pos||!entrada)return;
-      if(S.demanda?.respuestasAnonimas)return toast('Con respuestas anónimas, importa un archivo actualizado para mantener los conteos consistentes.');
+      if(!pos||!entrada||!S.demanda||ui.demanda.vistaEjemplo)return;
+      if(S.demanda.respuestasAnonimas&&!S.demanda.simulado)
+        return toast('Con respuestas anónimas reales, importa un archivo actualizado para mantener los conteos consistentes.');
       const texto=entrada.value.trim();
       if(!/^\d+$/.test(texto)||!Number.isSafeInteger(Number(texto)))return toast('Escribe un entero no negativo. Para dato desconocido usa «Marcar desconocido».');
       try{
-        const o=DemandaEstadistica.normalizar(S.demanda||{solicitudes:[]});
+        const o=DemandaEstadistica.normalizar(S.demanda);
+        // Editar cantidades ficticias las convierte en agregados, pues una
+        // muestra anónima anterior ya no respaldaría los nuevos conteos.
+        if(o.simulado&&o.respuestasAnonimas)o.respuestasAnonimas=null;
         o.solicitudes=o.solicitudes.filter(x=>x.posicionId!==pos);
         o.solicitudes.push({posicionId:pos,cantidad:Number(texto)});
         S.demanda=DemandaEstadistica.normalizar(o);
@@ -425,9 +432,11 @@ function onAct(act, d, el, ev) {
       }catch(e){return toast(e.message);}
     }
     case 'dem-quitar': {
-      const pos=ui.demanda.seleccion;if(!pos||!S.demanda)return;
-      if(S.demanda.respuestasAnonimas)return toast('Con respuestas anónimas, carga un archivo actualizado para cambiar las solicitudes.');
-      S.demanda=DemandaEstadistica.normalizar({...S.demanda,solicitudes:S.demanda.solicitudes.filter(x=>x.posicionId!==pos)});
+      const pos=ui.demanda.seleccion;if(!pos||!S.demanda||ui.demanda.vistaEjemplo)return;
+      if(S.demanda.respuestasAnonimas&&!S.demanda.simulado)
+        return toast('Con respuestas anónimas reales, carga un archivo actualizado para cambiar las solicitudes.');
+      S.demanda=DemandaEstadistica.normalizar({...S.demanda,
+        respuestasAnonimas:null,solicitudes:S.demanda.solicitudes.filter(x=>x.posicionId!==pos)});
       return commit('La cantidad quedó desconocida, no en cero.');
     }
     case 'filtro-reset': {
@@ -526,6 +535,7 @@ function onChange(k, el) {
   switch (k) {
     case 'unidad-filtro': ui.unidad=el.value; actualizarVistaComponentes(); return render();
     case 'dem-orden': ui.demanda.orden=el.value;return render();
+    case 'dem-mapa': ui.demanda.metricaMalla=el.value;return render();
     case 'dem-semestre': ui.demanda.semestre=el.value;ui.demanda.seleccion='';return render();
     case 'dem-elegir': ui.demanda.seleccion=el.value;return render();
     case 'dem-sindato': ui.demanda.sinDato=el.checked;return render();
@@ -535,7 +545,7 @@ function onChange(k, el) {
       lector.onload=()=>{
         try{
           const datos=DemandaEstadistica.normalizar(JSON.parse(lector.result));
-          S.demanda=datos;ui.demanda.seleccion='';ui.demanda.confirmarEjemplo=false;
+          S.demanda=datos;ui.demanda.seleccion='';ui.demanda.confirmarEjemplo=false;ui.demanda.vistaEjemplo=false;
           commit('Encuesta importada: '+datos.solicitudes.length+' asignaturas.');
         }catch(e){toast('No se pudo cargar la demanda: '+e.message);}
       };

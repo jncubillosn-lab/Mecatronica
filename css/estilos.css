@@ -504,3 +504,9 @@ main{padding-bottom:40px}
 .dem-par small{grid-column:1/-1;color:var(--ink3)}
 @media(max-width:800px){.dem-metricas{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.dem-metricas strong{font-size:20px}.dem-campos label{min-width:100%}.dem-grafico{min-height:180px}}
+
+/* Recomendaciones DEM-01 calculadas desde la encuesta, sin inferir cupos. */
+.dem-recomendaciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.dem-consejo{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface2);display:grid;gap:5px;align-content:start}
+.dem-consejo strong{font:650 13px/1.4 var(--sans);color:var(--ink)}
+.dem-consejo p{margin:0;color:var(--ink2);font:12px/1.55 var(--sans);overflow-wrap:anywhere}

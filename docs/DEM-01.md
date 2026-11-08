@@ -27,7 +27,7 @@ Opcionalmente:
 - `respuestasAnonimas`: listas de IDs curriculares por encuestado, por ejemplo `[["ID-1","ID-2"],["ID-2"]]`, sin identificadores de personas, para calcular co-solicitudes. Cuando se proporciona, genera los conteos; si también se adjuntan conteos, deben concordar.
 - `simulado`: marca booleana que diferencia explícitamente la demostración de los datos reales.
 
-El botón **Usar datos simulados** genera valores de prueba con IDs del escenario académico actual y exige confirmar si se sustituye una encuesta existente. Nunca se cargan automáticamente al entrar a la página. El estado se conserva en la exportación/importación del escenario personal y también puede exportarse como archivo de demanda independiente.
+Desde v0.5.7, **al no existir encuesta se presenta automáticamente una vista previa simulada**, con IDs de la malla real y 240 respuestas **completamente ficticias** para probar ranking, comparación por semestre y co-solicitudes. La vista previa no se escribe en el almacenamiento ni se exporta con el escenario. **Guardar ejemplo en escenario** lo incorpora explícitamente, y solicita confirmación antes de reemplazar una encuesta existente. Si existe demanda real, se muestra por defecto; el botón **Ver ejemplo simulado** permite alternar sin reemplazarla. Los ejemplos quedan identificados y la carga/exportación de un JSON real sigue disponible.
 
 ## Cálculos y limitaciones
 
@@ -36,6 +36,7 @@ El botón **Usar datos simulados** genera valores de prueba con IDs del escenari
 - `I_i = D_i / G_i`: solicitudes observadas por agrupación analizable. Solo si `G_i>0`.
 - `M_s`: mediana de `I_i` de asignaturas **con dato conocido** del mismo semestre, calculada antes de aplicar filtros de pantalla. Se exige mínimo tres asignaturas y mediana mayor que cero.
 - `R_i = I_i/M_s`: índice relativo semestral.
+- `percentilSemestral`: rango percentilar mediante empates promediados, calculado con al menos tres comparables del mismo semestre; no se presenta como anomalía por sí solo.
 - `Z_robusto = (I_i-M_s)/(1.4826 * MAD_s)`: descriptivo si hay al menos cinco comparables y `MAD_s>0`.
 - `F_i=D_i/respuestasTotales`: solo con total informado y positivo.
 - `E_i=D_i/tasaParticipacion`: extrapolación proporcional solo con tasa informada. Es especialmente vulnerable al sesgo de autoselección.
@@ -48,3 +49,9 @@ Los índices no muestran escasez, ocupación, cantidad de cupos faltantes ni mat
 `datos/academico.json` permanece como **única entrada académica normalizada**. Las intenciones son anotaciones de encuesta dentro de `EscenarioPersonal` (`S.demanda`), cargadas manualmente desde un JSON ya estructurado. El sistema no convierte formularios, PDF ni datos institucionales de origen. El filtrado por tipología y departamento/facultad usa el estado de consulta y no muta la encuesta. Los IDs que no coinciden con una posición curricular se preservan y se informan sin reasignaciones automáticas.
 
 **Archivos:** `js/demanda.js` calcula y dibuja; `js/app.js` controla edición, filtros y archivos; `js/escenarios.js` persiste y valida; `tests/demanda.js` comprueba casos mínimos. Se conservaron las siete vistas anteriores y se añadió Demanda como octava.
+
+## Lectura y recomendaciones automáticas (v0.5.7)
+
+La vista incluye tarjetas calculadas con las asignaturas **visibles**: mayor demanda observada, mayor concentración por grupo, índice relativo destacado (más de 1,5 veces la mediana), posible valor atípico robusto (desviación robusta superior a 3,5 con al menos cinco comparables y dispersión positiva), co-solicitudes con cruces de horarios cuando hay respuestas anónimas y mensajes de insuficiencia de información. También incorpora percentil por semestre y selector del indicador para la visualización curricular. Ninguna de estas señales implica conocer los cupos ofertados o faltantes. La mediana base se mantiene fija frente a los filtros de consulta.
+
+Las cantidades ficticias pueden modificarse una vez guardado el ejemplo; al editar cantidades de la demostración, se retiran las respuestas anónimas sintéticas para evitar contradicción con el agregado y deja de ser calculable la demanda conjunta hasta importar nuevas respuestas. Los datos reales con respuestas anónimas solo se cambian importando datos consistentes.
