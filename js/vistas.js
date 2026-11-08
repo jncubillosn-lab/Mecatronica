@@ -379,7 +379,7 @@ function pageHor() {
         <button class="btn sm" data-act="h-ov-clash" ${choques.length ? '' : 'disabled'} title="Superpone las asignaturas con las que choca">Las que chocan (${choques.length})</button></div>
       ${editorUnidad(A)}
       ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}">${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
-      <div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div>
+      <div class="weekgrid-scroll" role="region" tabindex="0" aria-label="Horario semanal desplazable"><div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div></div>
       <div class="legend" style="margin-top:8px"><span>Cada bloque lleva el nombre del grupo (o grupos) que lo usan; bloques lado a lado son grupos alternativos a la misma hora.</span>${hasOv ? '<span><i class="sw" style="background:color-mix(in srgb,var(--heat) 22%,transparent)"></i>horas donde se pisan con lo superpuesto</span>' : ''}</div>
     </div>
     <div class="right" style="display:grid;gap:12px">${impact}
@@ -458,7 +458,7 @@ function pageHeat() {
     </aside>
     <div class="hm-main">
       <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Vista semanal</span><div class="hint">${selected.length} asignaturas seleccionadas · ${scheduledGroups.size} grupos activos con horario</div></div><span class="sem">${H_MIN}:00–${H_MAX}:00</span></div>
-      <div class="weekgrid hm-grid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${Array.from({ length: H_MAX - H_MIN }, (_, i) => `<div>${H_MIN + i}</div>`).join('')}</div>${columns}</div>
+      <div class="weekgrid-scroll" role="region" tabindex="0" aria-label="Mapa de calor semanal desplazable"><div class="weekgrid hm-grid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${Array.from({ length: H_MAX - H_MIN }, (_, i) => `<div>${H_MIN + i}</div>`).join('')}</div>${columns}</div></div>
       <div class="hm-legend"><span>Grupos programados por franja de una hora:</span><span class="hm-scale"><i style="--v:14%"></i><i style="--v:32%"></i><i style="--v:50%"></i><i style="--v:68%"></i><i style="--v:86%"></i></span><span>menor → mayor concentración</span><span class="faint">El número en cada celda es la cantidad de grupos.</span></div>
     </div>
     <div class="right" style="display:grid;gap:12px;align-content:start">
