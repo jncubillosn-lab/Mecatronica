@@ -597,3 +597,41 @@ main{padding-bottom:40px}
 .dem-edicion[open]{display:grid;gap:12px}
 .dem-edicion[open] summary{margin-bottom:5px}
 .dem-edicion .dem-campos{margin-top:5px}
+
+
+/* DEM-03: identificación persistente e inmediata del punto elegido. */
+.dem-grafico .dem-etiqueta{pointer-events:none}
+.dem-grafico .dem-etiqueta rect{
+  fill:var(--surface);stroke:var(--dem-texto);stroke-width:1.4;
+}
+.dem-grafico text.dem-etiqueta-sub{
+  fill:var(--ink2);font:750 11px var(--sans);letter-spacing:.03em;
+}
+.dem-grafico text.dem-etiqueta-nombre{
+  fill:var(--ink);font:800 16px var(--sans);
+}
+.dem-grafico text.dem-etiqueta-valor{
+  fill:var(--ink2);font:650 12px var(--sans);
+}
+.dem-seleccion{
+  display:grid;gap:5px;border:2px solid var(--dem-masiva);
+  border-radius:10px;background:var(--surface2);padding:13px 16px;
+  color:var(--ink);
+}
+.dem-seleccion-rotulo{
+  font:750 11px var(--sans);color:var(--ink2);text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.dem-seleccion-nombre{
+  color:var(--ink);font:750 18px/1.4 var(--sans);
+  overflow-wrap:anywhere;
+}
+.dem-seleccion-meta{
+  font:13px/1.6 var(--sans);color:var(--ink2);
+}
+.dem-seleccion-meta b{font-weight:750;color:var(--ink)}
+.dem-seleccion-ayuda{
+  margin:0;padding:12px 15px;border:1px dashed var(--line2);
+  border-radius:9px;background:var(--surface2);
+  color:var(--ink2);font:600 13px/1.5 var(--sans);
+}
