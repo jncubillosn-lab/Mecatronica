@@ -215,14 +215,101 @@ function pageDemanda() {
   const metricaMalla=estado.metricaMalla||'porGrupo';
   const opcionesSem=[...new Set(base.filas.map(x=>x.semestre).filter(x=>x!=null))].sort((a,b)=>a-b);
   const puntos=visibles.filter(x=>x.solicitudes!=null&&x.grupos>0);
-  const maxX=Math.max(1,...puntos.map(x=>x.grupos));
-  const maxY=Math.max(1,...puntos.map(x=>x.solicitudes));
-  const puntosSvg=puntos.map(x=>{
-    const cx=52+(x.grupos/maxX)*595, cy=225-(x.solicitudes/maxY)*183;
-    const id=esc(x.posicionId);
-    return '<circle cx="'+cx+'" cy="'+cy+'" r="7" class="dem-punto" tabindex="0" role="button" data-act="dem-sel" data-pos="'+id+'" aria-label="'+esc(x.nombre)+' · '+x.solicitudes+' solicitudes, '+x.grupos+' grupos"><title>'+esc(x.nombre)+' · '+x.solicitudes+' solicitudes / '+x.grupos+' grupos</title></circle>';
+  // Los cuadrantes se dividen por medianas de los datos visibles, no por
+  // cortes arbitrarios ni supuestas capacidades. Se comunica la transformación
+  // sqrt en ambos ejes para no ocultar asignaturas con pocos grupos.
+  const corteGrupos=DemandaEstadistica.mediana(puntos.map(x=>x.grupos))??0;
+  const corteSolicitudes=DemandaEstadistica.mediana(puntos.map(x=>x.solicitudes))??0;
+  const maxGrupos=Math.max(1,...puntos.map(x=>x.grupos));
+  const maxSolicitudes=Math.max(10,Math.ceil(Math.max(1,...puntos.map(x=>x.solicitudes))*1.10/10)*10);
+  const area={izq:82,der:878,arriba:68,abajo:444};
+  const ancho=area.der-area.izq,alto=area.abajo-area.arriba;
+  const xPos=n=>area.izq+Math.sqrt(Math.max(0,n)/maxGrupos)*ancho;
+  const yPos=n=>area.abajo-Math.sqrt(Math.max(0,n)/maxSolicitudes)*alto;
+  const xMed=xPos(corteGrupos),yMed=yPos(corteSolicitudes);
+  const mejores=[...puntos].sort((a,b)=>b.porGrupo-a.porGrupo||
+    b.solicitudes-a.solicitudes).slice(0,3);
+  const puestos=new Map(mejores.map((x,i)=>[x.posicionId,i+1]));
+  const rejillaX=[0,1,2,4,8,16,32,maxGrupos]
+    .filter((v,i,a)=>v<=maxGrupos&&a.indexOf(v)===i)
+    .map(v=>'<line class="dem-rejilla" x1="'+xPos(v)+'" y1="'+area.arriba+
+      '" x2="'+xPos(v)+'" y2="'+area.abajo+'"/><text class="dem-tick" x="'+xPos(v)+
+      '" y="469" text-anchor="middle">'+v+'</text>').join('');
+  const rejillaY=[0,.25,.5,.75,1].map(t=>{
+    const v=Math.round(maxSolicitudes*t);
+    return '<line class="dem-rejilla" x1="'+area.izq+'" y1="'+yPos(v)+
+      '" x2="'+area.der+'" y2="'+yPos(v)+'"/><text class="dem-tick" x="69" y="'+
+      (yPos(v)+4)+'" text-anchor="end">'+v+'</text>';
   }).join('');
-  const svg='<svg class="dem-grafico" viewBox="0 0 690 265" role="img" aria-label="Dispersión de solicitudes frente a número de grupos"><line x1="52" y1="25" x2="52" y2="225" class="dem-eje"/><line x1="52" y1="225" x2="656" y2="225" class="dem-eje"/><text x="55" y="18">Solicitudes ↑</text><text x="650" y="255" text-anchor="end">Grupos ofertados →</text><text x="42" y="226" text-anchor="end">0</text><text x="42" y="45" text-anchor="end">'+maxY+'</text><text x="650" y="243" text-anchor="end">'+maxX+'</text>'+puntosSvg+'</svg>';
+  const zona=(clase,x,y,w,h,titulo,sub)=>
+    '<rect class="'+clase+'" x="'+x+'" y="'+y+'" width="'+Math.max(0,w)+
+      '" height="'+Math.max(0,h)+'"/>'+
+    '<text class="dem-zona-titulo '+clase+'" x="'+(x+Math.max(0,w)/2)+'" y="'+
+      (y+Math.min(41,Math.max(21,h*.25)))+'" text-anchor="middle">'+esc(titulo)+'</text>'+
+    '<text class="dem-zona-sub '+clase+'" x="'+(x+Math.max(0,w)/2)+'" y="'+
+      (y+Math.min(62,Math.max(42,h*.25+21)))+'" text-anchor="middle">'+esc(sub)+'</text>';
+  const cuadrantes=
+    zona('dem-zona-alerta',area.izq,area.arriba,xMed-area.izq,yMed-area.arriba,
+      'Demanda elevada','Pocos grupos')+
+    zona('dem-zona-masiva',xMed,area.arriba,area.der-xMed,yMed-area.arriba,
+      'Demanda masiva','Más grupos')+
+    zona('dem-zona-baja',area.izq,yMed,xMed-area.izq,area.abajo-yMed,
+      'Baja demanda','Pocos grupos')+
+    zona('dem-zona-amplia',xMed,yMed,area.der-xMed,area.abajo-yMed,
+      'Baja demanda','Más grupos');
+  const puntosSvg=puntos.map(p=>{
+    const x=xPos(p.grupos),y=yPos(p.solicitudes),id=esc(p.posicionId);
+    const principal=puestos.get(p.posicionId);
+    const categoria=p.solicitudes>=corteSolicitudes
+      ?(p.grupos<=corteGrupos?'dem-punto-alerta':'dem-punto-masiva')
+      :(p.grupos<=corteGrupos?'dem-punto-baja':'dem-punto-amplia');
+    return '<g role="button" tabindex="0" class="dem-marca '+(principal?'dem-destacada ':'')+
+      categoria+'" data-act="dem-sel" data-pos="'+id+'" aria-label="'+
+      esc(p.nombre+' · '+p.solicitudes+' solicitudes · '+p.grupos+
+        ' grupos · '+f(p.porGrupo)+' solicitudes por grupo')+'">'+
+      '<title>'+esc(p.nombre)+' · '+p.solicitudes+' solicitudes, '+p.grupos+
+      ' grupos, '+f(p.porGrupo)+' por grupo</title>'+
+      (p.posicionId===estado.seleccion?'<circle class="dem-aro" cx="'+x+
+        '" cy="'+y+'" r="19"/>':'')+
+      '<circle class="dem-punto" cx="'+x+'" cy="'+y+'" r="'+(principal?12:8)+'"/>'+
+      (principal?'<text class="dem-num" x="'+x+'" y="'+(y+4.5)+
+        '" text-anchor="middle">'+principal+'</text>':'')+'</g>';
+  }).join('');
+  const grafico=puntos.length
+    ?'<div class="dem-grafico-wrap"><svg class="dem-grafico" viewBox="0 0 950 515" '+
+      'role="group" aria-label="Gráfico de solicitudes contra número de agrupaciones; '+puntos.length+
+      ' asignaturas, cortes según medianas de la selección">'+
+      '<rect class="dem-marco" x="'+area.izq+'" y="'+area.arriba+'" width="'+ancho+
+      '" height="'+alto+'"/>'+cuadrantes+rejillaX+rejillaY+
+      '<line class="dem-corte" x1="'+xMed+'" y1="'+area.arriba+
+      '" x2="'+xMed+'" y2="'+area.abajo+'"/>'+
+      '<line class="dem-corte" x1="'+area.izq+'" y1="'+yMed+
+      '" x2="'+area.der+'" y2="'+yMed+'"/>'+
+      '<text class="dem-eje-titulo" x="83" y="31">Solicitudes observadas ↑</text>'+
+      '<text class="dem-eje-titulo" x="875" y="504" text-anchor="end">Grupos ofertados →</text>'+
+      '<text class="dem-corte-leyenda" x="'+(xMed+8)+'" y="56">Mediana: '+
+      f(corteGrupos)+' grupos</text>'+
+      '<text class="dem-corte-leyenda" x="86" y="'+(yMed-9)+'">Mediana: '+
+      f(corteSolicitudes)+' solicitudes</text>'+
+      puntosSvg+'</svg></div>'
+    :'<p class="hint">No hay asignaturas que tengan a la vez solicitudes registradas y grupos analizables.</p>';
+  const clavesGrafico=mejores.length
+    ?'<div class="dem-casos">'+mejores.map((p,i)=>
+       '<button class="dem-caso" data-act="dem-sel" data-pos="'+esc(p.posicionId)+'">'+
+         '<b class="dem-caso-n">'+(i+1)+'</b><span><strong>'+esc(p.nombre)+'</strong>'+
+         '<small>'+f(p.solicitudes)+' solicitudes · '+f(p.grupos)+
+         ' grupos · '+f(p.porGrupo)+' solicitudes/grupo</small></span></button>'
+      ).join('')+'</div>':'';
+  const svg=grafico+
+    '<div class="dem-leyenda"><span><i class="dem-bolita alerta"></i>Alta demanda / pocos grupos</span>'+
+    '<span><i class="dem-bolita masiva"></i>Demanda masiva / más grupos</span>'+
+    '<span><i class="dem-bolita baja"></i>Menos solicitudes</span></div>'+
+    '<p class="hint">Los cuadrantes se separan por las medianas de las asignaturas visibles ('+
+    f(corteSolicitudes)+' solicitudes y '+f(corteGrupos)+' grupos). Los ejes usan una '+
+    'transformación de raíz cuadrada para distinguir los valores pequeños; sus números '+
+    'representan cantidades reales. Una posición destacada no demuestra falta de cupos.</p>'+
+    (clavesGrafico?'<h3 class="dem-casos-titulo">Mayor concentración de solicitudes por grupo</h3>'+
+      clavesGrafico:'');
   const gruposSem=new Map();
   filas.filter(x=>x.solicitudes!=null).forEach(x=>{
     if(!gruposSem.has(x.semestre))gruposSem.set(x.semestre,[]);
