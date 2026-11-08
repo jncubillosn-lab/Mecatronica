@@ -148,3 +148,8 @@ Las pruebas activas usan el JSON normalizado para contrato, cobertura, horas, re
 **No se establece una hoja de ruta implícita.** Las funciones que el proyecto no ha solicitado no se incorporan como «pendientes» ni como deficiencias de la versión actual. Cualquier ampliación debe partir de una necesidad aprobada y respetar ARQ-01, la entrada única y las decisiones de [DEC-01](docs/DECISIONES-Y-ALCANCE.md).
 
 Para proponer cambios, comprobar primero [EST-01](docs/ESTADO-Y-PUBLICACION.md) y la [guía de desarrollo](AGENTS.md), conservar todas las funcionalidades y revisar el control de versiones antes de fusionar una PR.
+
+
+## Demanda de preinscripción (DEM-01)
+
+La octava página **Demanda** permite importar o editar un JSON mínimo de solicitudes por ID curricular, explorar solicitudes absolutas, solicitudes por agrupación y comparaciones con la mediana del semestre. No necesita cupos ofertados ni históricos; si faltan datos, los indicadores asociados se muestran como no calculables. Hay un ejemplo **explícitamente simulado**, exportación de la encuesta y conservación en la descarga del escenario personal. La frecuencia y la extrapolación solo se muestran con metadatos de participación informados; las co-solicitudes requieren listas de respuestas anónimas. Contrato y límites: [DEM-01](docs/DEM-01.md).
