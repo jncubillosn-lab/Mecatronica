@@ -16,7 +16,7 @@ Este archivo es una **fotografía verificable de implementación**, no una hoja 
 | ARQ-01, PR #7 | Arquitectura de una entrada académica adoptada en `docs/ARQUITECTURA.md`. |
 | v0.5.0, [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8) | Fusionada en `main`, commit `7e3739c2fe3eea0ab7e36c280910c65c90fbca12`. Entrada única, lector, cambios personales, conservación de grupos especiales y pruebas. |
 | v0.5.1, [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) | Fusionada en `main`, commit `9220474b27ecd2226fcec3fca4a46a312bd423a5`. Corrección del indicador público y parámetros de caché, más guardas automáticas de versión. |
-| v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
+| v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | **Fusionada en `main`**, commit `a398cfb068ce3747fee289adc9b151505107a570`. Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
 
 La PR #8 superó GitHub Actions (ejecución `42434980198`). La PR #9 superó la ejecución `42435837261`, incluida la comparación de versión. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
 
