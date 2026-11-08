@@ -90,6 +90,9 @@ class EscenarioPersonal {
     }
     for(const key of bb.keys())if(!ab.has(key))out.bloques.quitar.push(key);
     if(JSON.stringify(base.tipos)!==JSON.stringify(actual.tipos))out.tipos=EscenarioPersonal.copia(actual.tipos);
+    // DEM-01: encuesta agregada/anonimizada como anotación personal; no es fuente académica.
+    if(JSON.stringify(base.demanda??null)!==JSON.stringify(actual.demanda??null))
+      out.demanda=EscenarioPersonal.copia(actual.demanda??null);
     // La identidad añadida en v0.5.3 no convierte un escenario histórico
     // idéntico en una edición personal de requisitos.
     const sinIds = lista => (lista || []).map(r => [r.n, r.min, r.componentes]);
@@ -161,6 +164,8 @@ class EscenarioPersonal {
       if(!s.bloques.some(x=>EscenarioPersonal.claveBloque(x)===EscenarioPersonal.claveBloque(b)))s.bloques.push(b);
     }
     if(cambios.tipos)s.tipos=EscenarioPersonal.copia(cambios.tipos);
+    if(Object.prototype.hasOwnProperty.call(cambios,'demanda'))
+      s.demanda=EscenarioPersonal.copia(cambios.demanda);
     if(cambios.reqCred)s.reqCred=EscenarioPersonal.copia(cambios.reqCred)
       .map(r=>({...r,posicionId:r.posicionId||indicePos.get(r.n)||null}));
     return s;
@@ -194,6 +199,30 @@ class EscenarioPersonal {
     for(const m of estado.malla){
       if(m?.unidad!=null && (typeof m.unidad!=='string' || m.unidad.length>180))
         throw new Error('Unidad académica inválida en el escenario');
+    }
+    // La ausencia de demanda en un escenario anterior es válida.
+    if(estado.demanda!=null){
+      const d=estado.demanda;
+      if(!d||d.tipo!=='demanda-preinscripcion'||d.version!==1||
+          !Array.isArray(d.solicitudes)||d.solicitudes.length>20000)
+        throw new Error('Datos de demanda inválidos');
+      const idsDemanda=new Set();
+      for(const r of d.solicitudes){
+        if(!r||typeof r.posicionId!=='string'||!r.posicionId.trim()||
+            r.posicionId.length>150||!Number.isSafeInteger(r.cantidad)||
+            r.cantidad<0||idsDemanda.has(r.posicionId))
+          throw new Error('Solicitud de demanda inválida o duplicada');
+        idsDemanda.add(r.posicionId);
+      }
+      if(d.respuestasTotales!=null&&(!Number.isSafeInteger(d.respuestasTotales)||
+          d.respuestasTotales<0||d.solicitudes.some(r=>r.cantidad>d.respuestasTotales)))
+        throw new Error('Total de encuestados incompatible');
+      if(d.tasaParticipacion!=null&&(!Number.isFinite(d.tasaParticipacion)||
+          d.tasaParticipacion<=0||d.tasaParticipacion>1))
+        throw new Error('Tasa de participación inválida');
+      // Cuando está disponible el motor DEM-01, comprobar además las respuestas
+      // individuales sin aceptar contradicciones entre sus conteos y el agregado.
+      if(typeof DemandaEstadistica!=='undefined')DemandaEstadistica.normalizar(d);
     }
     for(const regla of estado.reqCred||[]){
       if(!regla || !Number.isFinite(regla.min)){
