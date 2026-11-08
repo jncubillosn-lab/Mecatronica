@@ -595,7 +595,7 @@ function onAct(act, d, el, ev) {
     case 'req-vigente': case 'req-conservar': {
       const pendiente=pendientesRequisitos.find(p=>p.key===d.key);
       if(!pendiente)return;
-      if(a==='req-vigente'){
+      if(act==='req-vigente'){
         const ids=EscenarioPersonal.indicePosiciones(S0);
         const key=r=>EscenarioPersonal.claveReq(r,ids);
         const idx=S.reqCred.findIndex(r=>key(r)===d.key);
@@ -605,7 +605,7 @@ function onAct(act, d, el, ev) {
         }else if(idx>=0)S.reqCred.splice(idx,1);
       }
       pendientesRequisitos=pendientesRequisitos.filter(p=>p.key!==d.key);
-      return commit((a==='req-vigente'?'Referencia vigente aplicada: ':'Requisito anterior confirmado: ')+pendiente.nombre);
+      return commit((act==='req-vigente'?'Referencia vigente aplicada: ':'Requisito anterior confirmado: ')+pendiente.nombre);
     }
     case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; pendientesRequisitos = []; ui.malla.libresFijas.clear(); R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
     case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
