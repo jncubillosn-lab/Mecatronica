@@ -31,6 +31,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 | D-12 | **Seguridad y validación proporcionadas al producto estático.** | Comprobar la integridad técnica de JSON y escenarios importados sin crear cuentas, servidor o nuevas dependencias ajenas al alcance. Los datos académicos incompletos no son errores técnicos. |
 | D-13 | **Una versión pública verificable en cada cambio productivo.** | El número del pie, el `meta` HTML, los parámetros `?v=` de recursos y la versión de despliegue deben concordar. Una PR que cambie recursos de producción debe incrementar la versión. Los cambios exclusivamente documentales no requieren avance de versión. |
 | D-14 | **La documentación también vive en el código.** | Usar JSDoc y comentarios próximos a las clases, contratos internos, reglas no obvias y transiciones históricas. Explicar responsabilidades, datos de entrada/salida, invariantes y motivos; no comentar línea por línea ni presentar conjeturas como reglas. Actualizar el comentario cuando cambie el comportamiento. |
+| D-15 | **Filtros globales y unidad académica voluntaria.** | Los componentes de la malla y la unidad responsable filtran **las siete consultas**, sin borrar registros. El departamento (Ingeniería) o facultad (otras áreas) es una atribución opcional del escenario personal por asignatura, independiente del docente, desconocida por defecto y exportable/importable. No se introduce como campo obligatorio de `FuentesAcadémicas` ni se deduce automáticamente. |
 
 ## 3. Distinciones que no pueden perderse
 
@@ -40,7 +41,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 - **Tipología institucional** no equivale necesariamente a **componente curricular**: por ejemplo, Inglés puede conservar tipología institucional `E` mientras pertenece al componente `N` del plan.
 - **Selección de componentes para consulta** no equivale a **modificación del escenario**. Los filtros no alteran ni eliminan datos.
 - **Mapa de calor de grupos** no equivale a aulas ocupadas, estudiantes matriculados ni disponibilidad real de salones.
-- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública de la aplicación** (`0.5.3`) son números independientes.
+- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública de la aplicación** (`0.5.4`) son números independientes.
 
 ## 4. Qué constituye un problema y qué no
 
