@@ -1,7 +1,7 @@
 # DEC-01 — Decisiones, alcance y criterios de conservación
 
 **Estado:** acuerdos adoptados para el desarrollo de Gestor de horarios · Mecatrónica.  
-**Revisión:** 7 de noviembre de 2026, después de integrar v0.5.1.  
+**Revisión:** 7 de noviembre de 2026, con la incorporación de documentación interna de v0.5.2.  
 **Documento superior:** [ARQ-01](ARQUITECTURA.md).  
 **Estado del código y publicación:** [ESTADO-Y-PUBLICACION.md](ESTADO-Y-PUBLICACION.md).
 
@@ -30,6 +30,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 | D-11 | **Escenario personal separado de referencia académica.** | Los cambios voluntarios se guardan como diferencias y se aplican sobre la referencia vigente. Preservar eliminaciones, horarios editados y compatibilidad con archivos `{S}` históricos. «Restablecer» regresa a la referencia vigente. |
 | D-12 | **Seguridad y validación proporcionadas al producto estático.** | Comprobar la integridad técnica de JSON y escenarios importados sin crear cuentas, servidor o nuevas dependencias ajenas al alcance. Los datos académicos incompletos no son errores técnicos. |
 | D-13 | **Una versión pública verificable en cada cambio productivo.** | El número del pie, el `meta` HTML, los parámetros `?v=` de recursos y la versión de despliegue deben concordar. Una PR que cambie recursos de producción debe incrementar la versión. Los cambios exclusivamente documentales no requieren avance de versión. |
+| D-14 | **La documentación también vive en el código.** | Usar JSDoc y comentarios próximos a las clases, contratos internos, reglas no obvias y transiciones históricas. Explicar responsabilidades, datos de entrada/salida, invariantes y motivos; no comentar línea por línea ni presentar conjeturas como reglas. Actualizar el comentario cuando cambie el comportamiento. |
 
 ## 3. Distinciones que no pueden perderse
 
@@ -39,7 +40,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 - **Tipología institucional** no equivale necesariamente a **componente curricular**: por ejemplo, Inglés puede conservar tipología institucional `E` mientras pertenece al componente `N` del plan.
 - **Selección de componentes para consulta** no equivale a **modificación del escenario**. Los filtros no alteran ni eliminan datos.
 - **Mapa de calor de grupos** no equivale a aulas ocupadas, estudiantes matriculados ni disponibilidad real de salones.
-- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública de la aplicación** (`0.5.1`) son números independientes.
+- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública de la aplicación** (`0.5.2`) son números independientes.
 
 ## 4. Qué constituye un problema y qué no
 
@@ -51,7 +52,7 @@ La presencia histórica de nombres de docentes en archivos del repositorio se de
 
 ## 5. Cómo aplicar estas decisiones
 
-Ante una solicitud, primero identificar la capa afectada en ARQ-01 y el comportamiento que debe conservarse. Antes de editar código o datos, comprobar si el cambio está respaldado por el contrato o una decisión expresa. Ante datos contradictorios, **no resolver por conjetura**. Ejecutar pruebas relevantes, revisar la versión pública cuando cambie un recurso productivo y registrar las decisiones nuevas con su motivo.
+Ante una solicitud, primero identificar la capa afectada en ARQ-01 y el comportamiento que debe conservarse. Antes de editar código o datos, comprobar si el cambio está respaldado por el contrato o una decisión expresa. Mantener los comentarios cercanos al código afectados por la modificación, sin separar su explicación técnica de su implementación. Ante datos contradictorios, **no resolver por conjetura**. Ejecutar pruebas relevantes, revisar la versión pública cuando cambie un recurso productivo y registrar las decisiones nuevas con su motivo.
 
 **Precedencia:** ARQ-01 gobierna la arquitectura; este registro precisa los acuerdos de alcance; [ESTADO-Y-PUBLICACION.md](ESTADO-Y-PUBLICACION.md) describe lo realmente implementado. Una diferencia entre diseño y estado actual se documenta como transición, nunca se oculta cambiando el relato.
 
