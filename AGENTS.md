@@ -5,7 +5,7 @@
 ## Antes de cualquier cambio
 
 - Leer ARQ-01 y verificar qué capa del sistema se verá afectada.
-- **Desde v0.5.0 la única entrada académica es FuentesAcadémicas (`datos/academico.json`).** Desde v0.5.3 el arranque entrega un contexto académico explícito, no `window.RAW`. La proyección posicional del lector queda solo como adaptador interno histórico, nunca otra entrada.
+- **Desde v0.5.0 la única entrada académica es FuentesAcadémicas (`datos/academico.json`).** Desde v0.5.3 el arranque entrega un contexto académico explícito, no `window.RAW`. La proyección posicional del lector solo sirve como adaptador interno de construcción de S0 y compatibilidad histórica; nunca como otra entrada.
 - La extracción y conversión desde catálogo, oferta de horarios y malla sucede **íntegramente fuera del sistema**. No incorporar lectores, conversores, cargadores ni conexiones paralelas desde esos archivos a la aplicación.
 - El sistema consume el contrato común, no el formato de las fuentes ni archivos históricos `js/catalogo.js`, `js/oferta-fuente.js` o `js/datos.js`. Se conservan en el repositorio como **archivos de referencia heredados**, pero la aplicación migrada no los carga.
 - Los nombres, créditos, requisitos, tipologías, componentes, calendarios y vínculos académicos son **datos**, no constantes universales programadas. Las relaciones de prerrequisitos y los mínimos de créditos deben referenciar IDs válidos; una referencia rota es un error técnico, no un valor académico faltante.
