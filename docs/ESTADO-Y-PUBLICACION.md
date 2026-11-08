@@ -1,7 +1,7 @@
 # EST-01 — Estado real, historial y publicación
 
 **Corte documentado:** 7 de noviembre de 2026.  
-**Versión pública de la actualización PR #13:** `0.5.3` (tras la integración verificada en `main`).  
+**Versión pública de la actualización PR #14:** `0.5.4` (comprobar CI y despliegue después de fusionar).  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Acuerdos de alcance:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Registro histórico de migración:** [MIG-ARQ01](MIGRACION-ARQ01.md).
@@ -18,6 +18,7 @@ Este archivo es una **fotografía verificable de implementación**, no una hoja 
 | v0.5.1, [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) | Fusionada en `main`, commit `9220474b27ecd2226fcec3fca4a46a312bd423a5`. Corrección del indicador público y parámetros de caché, más guardas automáticas de versión. |
 | v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | **Fusionada en `main`**, commit `a398cfb068ce3747fee289adc9b151505107a570`. Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
 | v0.5.3, [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13) | Corrección de referencias académicas inválidas, extracción del motor y de las vistas, contexto de arranque sin `window.RAW` y claves de prerrequisitos por ID con compatibilidad histórica. La entrada académica y las fórmulas de cálculo no se modifican. |
+| v0.5.4, [PR #14](https://github.com/jncubillosn-lab/Mecatronica/pull/14) | Filtros de tipología y unidad en las siete páginas, editores de unidad responsable opcional por asignatura en Asignaturas/Horarios/Prerrequisitos, y conservación del dato en escenarios personales exportados/importados. La única entrada académica permanece intacta. |
 
 La PR #8 superó GitHub Actions (ejecución `42434980198`), la PR #9 superó la ejecución `42435837261` y la PR #11 superó la ejecución `42437245624`, todas sobre sus commits correspondientes. La PR #10 consolidó únicamente documentación, sin requerir una nueva versión pública. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
 
@@ -77,16 +78,16 @@ Los bloques declarados dentro de componentes de distintas agrupaciones pueden re
 | **Asignaturas** | Estadísticas de cruces por asignatura. |
 | **Grupos** | Consultar, activar/desactivar, añadir y quitar grupos; identificar otras sedes como informativas. |
 | **Horarios** | Consultar, editar, mover y superponer bloques de horario. |
-| **Mapa de calor** | Grupos programados por franja horaria; filtros de componentes y asignaturas. No inferir salones ni matrículas. |
+| **Mapa de calor** | Grupos programados por franja horaria; filtros globales de tipología/unidad y selección individual de asignaturas. No inferir salones ni matrículas. |
 | **Prerrequisitos** | Consulta y edición de malla, créditos, semestres y relaciones. |
 
-Además: persistencia local, descarga/carga de escenarios, restablecimiento de referencia, compatibilidad con escenarios antiguos y ejecución estática sin cuentas. Los filtros de componentes actúan sobre **resultados**, no sobre la referencia ni las modificaciones personales.
+Además: persistencia local, descarga/carga de escenarios, restablecimiento de referencia, compatibilidad con escenarios antiguos y ejecución estática sin cuentas. Desde v0.5.4 los filtros de tipología/componente y unidad actúan en **las siete consultas**, no sobre la referencia ni las modificaciones personales. La unidad responsable es una **anotación manual opcional por posición curricular**: departamento dentro de Ingeniería o facultad fuera de ella. No se deduce del docente, se admite desconocida y viaja con los cambios personales.
 
 ## 5. Contratos y versiones: tres números diferentes
 
 | Identificador | En esta versión | ¿Qué expresa? |
 |---|---|---|
-| Versión del sitio | `0.5.3` | Release visible y parámetros de caché de recursos estáticos. |
+| Versión del sitio | `0.5.4` | Release visible y parámetros de caché de recursos estáticos. |
 | `versionEsquema` | `1` | Estructura de la entrada académica. **No** se incrementa por cualquier publicación. |
 | `escenario-personal.version` | `1` | Formato de exportaciones y cambios personales. **No** es la versión del sitio. |
 
