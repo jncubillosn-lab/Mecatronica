@@ -227,6 +227,9 @@ function pageDemanda() {
   const xPos=n=>area.izq+Math.sqrt(Math.max(0,n)/maxGrupos)*ancho;
   const yPos=n=>area.abajo-Math.sqrt(Math.max(0,n)/maxSolicitudes)*alto;
   const xMed=xPos(corteGrupos),yMed=yPos(corteSolicitudes);
+  // Una selección por clic se identifica junto a la gráfica, sin obligar a
+  // desplazarse al bloque posterior de detalle estadístico.
+  const puntoActivo=puntos.find(p=>p.posicionId===estado.puntoActivo)||null;
   const mejores=[...puntos].sort((a,b)=>b.porGrupo-a.porGrupo||
     b.solicitudes-a.solicitudes).slice(0,3);
   const puestos=new Map(mejores.map((x,i)=>[x.posicionId,i+1]));
@@ -264,17 +267,50 @@ function pageDemanda() {
       ?(p.grupos<=corteGrupos?'dem-punto-alerta':'dem-punto-masiva')
       :(p.grupos<=corteGrupos?'dem-punto-baja':'dem-punto-amplia');
     return '<g role="button" tabindex="0" class="dem-marca '+(principal?'dem-destacada ':'')+
-      categoria+'" data-act="dem-sel" data-pos="'+id+'" aria-label="'+
+      categoria+'" data-act="dem-sel" data-pos="'+id+'" aria-pressed="'+
+      (p.posicionId===estado.puntoActivo)+'" aria-label="'+
       esc(p.nombre+' · '+p.solicitudes+' solicitudes · '+p.grupos+
         ' grupos · '+f(p.porGrupo)+' solicitudes por grupo')+'">'+
       '<title>'+esc(p.nombre)+' · '+p.solicitudes+' solicitudes, '+p.grupos+
       ' grupos, '+f(p.porGrupo)+' por grupo</title>'+
-      (p.posicionId===estado.seleccion?'<circle class="dem-aro" cx="'+x+
+      (p.posicionId===estado.puntoActivo?'<circle class="dem-aro" cx="'+x+
         '" cy="'+y+'" r="19"/>':'')+
       '<circle class="dem-punto" cx="'+x+'" cy="'+y+'" r="'+(principal?12:8)+'"/>'+
       (principal?'<text class="dem-num" x="'+x+'" y="'+(y+4.5)+
         '" text-anchor="middle">'+principal+'</text>':'')+'</g>';
   }).join('');
+  // Etiqueta sobre la gráfica para identificar visualmente el punto elegido.
+  // El nombre completo y sus cifras se presentan también en la tarjeta HTML.
+  const etiquetaPunto=(()=>{
+    if(!puntoActivo)return '';
+    const x=xPos(puntoActivo.grupos),y=yPos(puntoActivo.solicitudes);
+    const anchoEtiqueta=365,altoEtiqueta=88;
+    const ex=Math.max(area.izq+7,Math.min(area.der-anchoEtiqueta-7,
+      x+anchoEtiqueta+24<area.der?x+21:x-anchoEtiqueta-21));
+    const ey=Math.max(area.arriba+6,Math.min(area.abajo-altoEtiqueta-6,
+      y<area.arriba+110?y+20:y-altoEtiqueta-20));
+    const nombre=puntoActivo.nombre;
+    const corto=nombre.length>41?nombre.slice(0,38)+'…':nombre;
+    return '<g class="dem-etiqueta" aria-hidden="true">'+
+      '<rect x="'+ex+'" y="'+ey+'" width="'+anchoEtiqueta+
+      '" height="'+altoEtiqueta+'" rx="10"/>'+
+      '<text class="dem-etiqueta-sub" x="'+(ex+12)+'" y="'+(ey+20)+'">ASIGNATURA SELECCIONADA</text>'+
+      '<text class="dem-etiqueta-nombre" x="'+(ex+12)+'" y="'+(ey+44)+'">'+
+      esc(corto)+'</text>'+
+      '<text class="dem-etiqueta-valor" x="'+(ex+12)+'" y="'+(ey+69)+'">'+
+      f(puntoActivo.solicitudes)+' solicitudes · '+f(puntoActivo.grupos)+
+      ' grupos · '+f(puntoActivo.porGrupo)+' por grupo</text></g>';
+  })();
+  const tarjetaPunto=puntoActivo
+    ?'<div class="dem-seleccion" role="status" aria-live="polite" aria-atomic="true">'+
+      '<div class="dem-seleccion-rotulo">Punto seleccionado</div>'+
+      '<strong class="dem-seleccion-nombre">'+esc(puntoActivo.nombre)+'</strong>'+
+      '<span class="dem-seleccion-meta">Semestre '+esc(puntoActivo.semestre??'sin información')+
+      ' · '+f(puntoActivo.solicitudes)+' solicitudes · '+f(puntoActivo.grupos)+
+      ' grupos ofertados · <b>'+f(puntoActivo.porGrupo)+
+      ' solicitudes/grupo</b></span></div>'
+    :'<p class="dem-seleccion-ayuda" role="status">Haz clic en un punto de la gráfica '+
+      'para ver el nombre de la asignatura y sus valores.</p>';
   const grafico=puntos.length
     ?'<div class="dem-grafico-wrap"><svg class="dem-grafico" viewBox="0 0 950 515" '+
       'role="group" aria-label="Gráfico de solicitudes contra número de agrupaciones; '+puntos.length+
@@ -291,7 +327,7 @@ function pageDemanda() {
       f(corteGrupos)+' grupos</text>'+
       '<text class="dem-corte-leyenda" x="86" y="'+(yMed-9)+'">Mediana: '+
       f(corteSolicitudes)+' solicitudes</text>'+
-      puntosSvg+'</svg></div>'
+      puntosSvg+etiquetaPunto+'</svg></div>'
     :'<p class="hint">No hay asignaturas que tengan a la vez solicitudes registradas y grupos analizables.</p>';
   const clavesGrafico=mejores.length
     ?'<div class="dem-casos">'+mejores.map((p,i)=>
@@ -300,7 +336,7 @@ function pageDemanda() {
          '<small>'+f(p.solicitudes)+' solicitudes · '+f(p.grupos)+
          ' grupos · '+f(p.porGrupo)+' solicitudes/grupo</small></span></button>'
       ).join('')+'</div>':'';
-  const svg=grafico+
+  const svg=grafico+tarjetaPunto+
     '<div class="dem-leyenda"><span><i class="dem-bolita alerta"></i>Alta demanda / pocos grupos</span>'+
     '<span><i class="dem-bolita masiva"></i>Demanda masiva / más grupos</span>'+
     '<span><i class="dem-bolita baja"></i>Menos solicitudes</span></div>'+
