@@ -165,7 +165,7 @@ const ui = {
   hor: { a: S.asg.includes(OPCIONES.asignaturaInicial) ? OPCIONES.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
   demanda: { orden:'porGrupo', semestre:'', seleccion:'', puntoActivo:'', sinDato:false, vistaEjemplo:false, metricaMalla:'porGrupo', confirmarEjemplo:false, confirmarBorrar:false },
-  malla: { sel: null, edges: 'all', soloHor: false },
+  malla: { sel: null, edges: 'all', soloHor: false, zoom: 1, ampliado: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
 };
 
@@ -363,13 +363,22 @@ const PAGES = { inicio: pageInicio, inter: pageInter, asig: pageAsig, grupos: pa
  */
 function render() {
   const ae = document.activeElement, fid = ae && ae.id, ss = ae && ae.selectionStart, se = ae && ae.selectionEnd;
-  const keep = {}; ['canvas', 'mxwrap'].forEach(k => { const el = $(k === 'canvas' ? '#canvas' : '.mxwrap'); if (el) keep[k] = [el.scrollLeft, el.scrollTop]; });
+  // Preservar la posición de lectura al filtrar o seleccionar una asignatura.
+  // También se mantiene el desplazamiento de gráficos y horarios en móvil.
+  const desplazables = ['#canvas', '.mxwrap', '.weekgrid-scroll', '.dem-grafico-wrap'];
+  const keep = desplazables.map(selector => {
+    const el = $(selector);
+    return el ? { selector, x:el.scrollLeft, y:el.scrollTop } : null;
+  }).filter(Boolean);
   const sideEl = $('.sidelist'), sideTop = sideEl ? sideEl.scrollTop : 0;
   $('#top').innerHTML = renderTop();
   $('#view').innerHTML = PAGES[ui.page]();
   renderDrawer();
-  if (keep.canvas && $('#canvas')) { $('#canvas').scrollLeft = keep.canvas[0]; $('#canvas').scrollTop = keep.canvas[1]; }
-  if (keep.mxwrap && $('.mxwrap')) { $('.mxwrap').scrollLeft = keep.mxwrap[0]; $('.mxwrap').scrollTop = keep.mxwrap[1]; }
+  keep.forEach(({ selector, x, y }) => {
+    const el = $(selector);
+    if (el) { el.scrollLeft = x; el.scrollTop = y; }
+  });
+  document.body.classList.toggle('mapa-ampliado', ui.page === 'malla' && ui.malla.ampliado);
   if ($('.sidelist')) $('.sidelist').scrollTop = sideTop;
   const cur = $('.nav [aria-current]'); if (cur) cur.parentElement.scrollLeft = cur.offsetLeft - 24;
   if (ui.page === 'malla') drawEdges();
@@ -377,7 +386,27 @@ function render() {
 }
 
 /* ===== ACCIONES ===== */
-function go(p) { ui.page = p; ui.drawer = null; window.scrollTo(0, 0); try { history.replaceState(null, '', '#' + p); } catch (e) { } render(); }
+function go(p) { ui.page = p; ui.drawer = null; ui.malla.ampliado = false; window.scrollTo(0, 0); try { history.replaceState(null, '', '#' + p); } catch (e) { } render(); }
+/**
+ * Zoom local de presentación de la malla (60–160 %).
+ * Mantiene el centro visible sin alterar posiciones ni créditos académicos.
+ */
+function ajustarZoomMapa(nuevo) {
+  const anterior = ui.malla.zoom;
+  const escala = Math.max(.6, Math.min(1.6, Math.round(nuevo*10)/10));
+  if (escala === anterior) return;
+  const antes = $('#canvas');
+  const centroX = antes ? (antes.scrollLeft + antes.clientWidth/2)/anterior : 0;
+  const centroY = antes ? (antes.scrollTop + antes.clientHeight/2)/anterior : 0;
+  ui.malla.zoom = escala;
+  render();
+  const despues = $('#canvas');
+  if (despues) {
+    despues.scrollLeft = Math.max(0, centroX*escala - despues.clientWidth/2);
+    despues.scrollTop = Math.max(0, centroY*escala - despues.clientHeight/2);
+  }
+  drawEdges();
+}
 function findGroup(a, g) { return S.grupos.find(x => x.a === a && x.g === g); }
 /* tras borrar un grupo, un componente queda huérfano si ningún grupo lo usa */
 function compsGone(a, c) { return !S.grupos.some(g => g.a === a && (g.c1 === c || g.c2 === c)); }
@@ -523,7 +552,10 @@ function onAct(act, d, el, ev) {
     case 'hm-toggle': { if (ui.heat.off.has(d.n)) ui.heat.off.delete(d.n); else ui.heat.off.add(d.n); return render(); }
     case 'hm-all': ui.heat.off.clear(); return render();
     case 'hm-none': S.asg.forEach(n => ui.heat.off.add(n)); return render();
-    /* malla */
+    /* malla: los controles de escala y ampliación son solo estado de interfaz */
+    case 'm-zoom': return ajustarZoomMapa(ui.malla.zoom + Number(d.dx));
+    case 'm-zoom-reset': return ajustarZoomMapa(1);
+    case 'm-ampliar': ui.malla.ampliado = !ui.malla.ampliado; return render();
     case 'm-sel': ui.malla.sel = ui.malla.sel === d.n ? null : d.n; return render();
     case 'm-edges': ui.malla.edges = d.v; return render();
     case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
@@ -620,6 +652,10 @@ document.addEventListener('input', e => { const el = e.target.closest('[data-inp
 document.addEventListener('toggle', e => { if (e.target.classList && e.target.classList.contains('filters')) ui.fopen = e.target.open; }, true);
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && ui.drawer) { ui.drawer = null; return render(); }
+  if (e.key === 'Escape' && ui.page === 'malla' && ui.malla.ampliado) {
+    ui.malla.ampliado = false;
+    return render();
+  }
   // Los puntos SVG de demanda deben poder seleccionarse con teclado.
   if ((e.key === 'Enter' || e.key === ' ') &&
       e.target?.classList?.contains('dem-marca')) {
