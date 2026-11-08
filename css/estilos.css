@@ -591,3 +591,9 @@ main{padding-bottom:40px}
  .dem-grafico{min-width:720px}
  .dem-grafico-wrap{scrollbar-width:thin}
 }
+
+.dem-edicion{border:1px solid var(--line2);border-radius:10px;background:var(--surface2);padding:11px 13px}
+.dem-edicion summary{font:700 13px var(--sans);color:var(--ink);cursor:pointer}
+.dem-edicion[open]{display:grid;gap:12px}
+.dem-edicion[open] summary{margin-bottom:5px}
+.dem-edicion .dem-campos{margin-top:5px}
