@@ -13,7 +13,8 @@
 - Los grupos de actividad no se combinan salvo relación explícita del contrato.
 - Los grupos de otras sedes se conservan; `agrupaciones[].analizable === false` los excluye de cálculos sin borrarlos. No inferir esa propiedad por prefijos dentro del programa.
 - Mantener separadas las modificaciones personales del escenario y los datos de referencia académica. No modificar nombres, horas, grupos, créditos o referencias académicas sin evidencia y sin justificar cualquier diferencia.
-- Todas las vistas, cuadros de detalle, cálculos y exportaciones deben respetar la misma selección activa de información.
+- La **unidad académica responsable** es una anotación **opcional y manual** por asignatura dentro del escenario personal (`malla[].unidad`). No deducirla a partir del profesor ni de una contratación temporal; no introducirla como requisito de la única entrada JSON. Debe recuperarse al cargar un escenario exportado.
+- Los filtros de tipología/componente y unidad académica aparecen en las **siete** vistas y cambian los resultados visibles, **sin mutar** la malla, grupos, bloques, relaciones ni datos personales. Todas las vistas, cuadros de detalle, cálculos y exportaciones analíticas respetan la misma selección activa; la descarga del escenario personal conserva las modificaciones completas, no solo la consulta.
 - Preservar funcionamiento estático y compatibilidad con los escenarios anteriores. Mantener las siete secciones, filtros, edición, mapa de calor, CSV, exportación/importación y restablecimiento. El motor puro está en `js/analisis.js`, las vistas en `js/vistas.js` y el estado/eventos en `js/app.js`.
 
 ## Ejecución y revisión

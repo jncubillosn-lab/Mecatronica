@@ -195,4 +195,39 @@ probar('Escenarios históricos sin IDs no generan cambios falsos en requisitos',
   assert.equal(Object.hasOwn(cambios,'reqCred'),false);
 });
 
+
+probar('Unidad responsable opcional se exporta e importa ligada al ID curricular',()=>{
+  const nombre=base.malla[0].n, id=base.malla[0].idPos;
+  const modificado=copiar(base);
+  const valor='Departamento de Ingeniería Mecánica y Mecatrónica · Facultad de Ingeniería';
+  assert.equal(modificado.malla[0].unidad,'');
+  modificado.malla[0].unidad=valor;
+  const exportado=EscenarioPersonal.empaquetar(base,modificado);
+  const cambio=exportado.cambios.malla.find(x=>x.posicionId===id);
+  assert(cambio);
+  assert.equal(cambio.valores.unidad,valor);
+  const importado=EscenarioPersonal.aplicar(base,JSON.parse(JSON.stringify(exportado)).cambios);
+  assert.equal(importado.malla.find(x=>x.idPos===id).unidad,valor);
+  assert.equal(base.malla[0].unidad,'');
+  importado.malla[0].unidad='';
+  assert.equal(EscenarioPersonal.diferencias(base,importado).malla.length,0,
+    'Borrar la unidad devuelve a desconocido, no inventa un valor');
+});
+
+probar('Escenarios anteriores sin unidad no se interpretan como ediciones',()=>{
+  const sinCampo=copiar(base);
+  for(const m of sinCampo.malla)delete m.unidad;
+  const cambios=EscenarioPersonal.diferencias(base,sinCampo);
+  assert.equal(cambios.malla.some(r=>r.valores?.unidad!==undefined),false);
+  const importado=EscenarioPersonal.aplicar(base,cambios);
+  assert(importado.malla.every(m=>m.unidad===''));
+  assert.throws(()=>{
+    importado.malla[0].unidad={nombre:'No válido'};
+    EscenarioPersonal.validarEstado(importado,{
+      ids:()=>raw.calendario.dias.map(x=>x[0]),
+      inicio:raw.calendario.inicio,fin:raw.calendario.fin
+    });
+  },/Unidad académica inválida/);
+});
+
 console.log('Persistencia y compatibilidad: comprobaciones finalizadas.');

@@ -18,6 +18,22 @@ const H_MIN = CALENDARIO.inicio, H_MAX = CALENDARIO.fin;
 
 /* ===== APLICACIÓN: estado, utilidades, cabecera, Inicio, Interferencias, panel lateral ===== */
 const KEY = CONTEXTO.almacenamiento.clave;
+// Autocompletado para ediciones PERSONALES, no asignaciones institucionales.
+// Opción libre: algunas materias pueden tener unidades fuera de estas sugerencias.
+const UNIDADES_SUGERIDAS=[
+  'Departamento de Ingeniería Civil y Agrícola · Facultad de Ingeniería',
+  'Departamento de Ingeniería Eléctrica y Electrónica · Facultad de Ingeniería',
+  'Departamento de Ingeniería de Sistemas e Industrial · Facultad de Ingeniería',
+  'Departamento de Ingeniería Mecánica y Mecatrónica · Facultad de Ingeniería',
+  'Departamento de Ingeniería Química y Ambiental · Facultad de Ingeniería',
+  'Facultad de Artes','Facultad de Ciencias','Facultad de Ciencias Agrarias',
+  'Facultad de Ciencias Económicas','Facultad de Ciencias Humanas',
+  'Facultad de Derecho, Ciencias Políticas y Sociales','Facultad de Enfermería',
+  'Facultad de Medicina','Facultad de Medicina Veterinaria y de Zootecnia',
+  'Facultad de Odontología'
+];
+const SIN_UNIDAD='__sin_unidad__';
+
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
 // S0 = referencia reconstruida desde el contrato; S = copia editable personal.
@@ -142,6 +158,7 @@ let R = compute(S), R0 = compute(S0);
 const ui = {
   page: 'inicio',
   componentes: new Set(OPCIONES.componentesComparables || []),
+  unidad: '', // filtro de vista, nunca edición del contrato
   inter: { view: 'lista', dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
@@ -158,12 +175,24 @@ let RV, RV0;
  * Se aplica a copias superficiales con `asg` filtrada; no se borran grupos,
  * ni bloques, ni ediciones personales de S o S0.
  */
+/**
+ * Los filtros globales limitan CONSULTAS, nunca modifican el escenario.
+ * Unidad desconocida permanece vacía: no se infiere desde el profesor.
+ */
+function pasaFiltros(m) {
+  return !!m && ui.componentes.has(m.comp) &&
+    (!ui.unidad || (ui.unidad===SIN_UNIDAD ? !m.unidad : m.unidad===ui.unidad));
+}
+function nombresVisibles(estado, candidatos=estado.asg) {
+  const indice=new Map(estado.malla.map(m=>[m.n,m]));
+  return candidatos.filter(n=>pasaFiltros(indice.get(n)));
+}
 function actualizarVistaComponentes() {
-  const nombres = (estado) => new PlanCurricular(estado).seleccionarPorComponentes(
-    estado.asg, ui.componentes
-  );
-  RV = compute({ ...S, asg: nombres(S) });
-  RV0 = compute({ ...S0, asg: nombres(S0) });
+  const nombres=nombresVisibles(S),seleccion=new Set(nombres);
+  RV=compute({...S,asg:nombres});
+  // Misma selección de asignaturas contra la referencia, aunque la unidad
+  // solo se haya registrado como modificación personal en S.
+  RV0=compute({...S0,asg:S0.asg.filter(n=>seleccion.has(n))});
 }
 actualizarVistaComponentes();
 
@@ -172,6 +201,15 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const pct = (x, d = 0) => (x * 100).toFixed(d) + '%';
+
+// Editor de unidad responsable. No supone relación permanente con un docente;
+// admite datos incompletos y una opción fuera del autocompletado.
+function editorUnidad(nombre) {
+  const m=S.malla.find(x=>x.n===nombre);
+  if(!m)return '';
+  return `<div class="unidad-editor"><label>Departamento / facultad responsable</label><input type="text" list="unidades-academicas" data-chg="unidad-asig" data-n="${esc(nombre)}" value="${esc(m.unidad||'')}" placeholder="Sin información · elegir o escribir" maxlength="180" aria-label="Unidad responsable de ${esc(nombre)}"><span class="hint">Dato opcional del escenario; no se deduce del docente.</span></div>`;
+}
+
 const planActual = () => new PlanCurricular(S);
 const compName = id => planActual().nombreComponente(id);
 const carName = id => planActual().nombreCaracter(id);
@@ -241,7 +279,7 @@ function changes() {
   const out = [];
   if (S.params.dists.join() !== S0.params.dists.join()) out.push(['Parámetro', `Distancia entre semestres: ${distNames(S0.params.dists)} → ${distNames(S.params.dists)}`]);
   if (S.params.indirect !== S0.params.indirect) out.push(['Parámetro', `Excluir prerrequisitos indirectos: ${S0.params.indirect ? 'sí' : 'no'} → ${S.params.indirect ? 'sí' : 'no'}`]);
-  S.malla.forEach(m => { const o = S0.malla.find(x => x.n === m.n); if (!o) out.push(['Malla', `Asignatura nueva: ${m.n} (sem ${m.s})`]); else { if (o.s !== m.s) out.push(['Semestre', `${m.n}: semestre ${o.s} → ${m.s}`]); if (o.cr !== m.cr) out.push(['Créditos', `${m.n}: ${o.cr} → ${m.cr} créditos`]); if (o.comp !== m.comp) out.push(['Tipología', `${m.n}: ${compName(o.comp)} → ${compName(m.comp)}`]); if (o.car !== m.car) out.push(['Tipología', `${m.n}: ${carName(o.car) || '—'} → ${carName(m.car) || '—'}`]); } });
+  S.malla.forEach(m => { const o = S0.malla.find(x => x.n === m.n); if (!o) out.push(['Malla', `Asignatura nueva: ${m.n} (sem ${m.s})`]); else { if (o.s !== m.s) out.push(['Semestre', `${m.n}: semestre ${o.s} → ${m.s}`]); if (o.cr !== m.cr) out.push(['Créditos', `${m.n}: ${o.cr} → ${m.cr} créditos`]); if (o.comp !== m.comp) out.push(['Tipología', `${m.n}: ${compName(o.comp)} → ${compName(m.comp)}`]); if (o.car !== m.car) out.push(['Tipología', `${m.n}: ${carName(o.car) || '—'} → ${carName(m.car) || '—'}`]); if ((o.unidad||'') !== (m.unidad||'')) out.push(['Unidad', `${m.n}: ${o.unidad||'Sin información'} → ${m.unidad||'Sin información'}`]); } });
   const pk = p => p.r + ' → ' + p.t;
   const a0 = new Set(S0.pre.map(pk)), a1 = new Set(S.pre.map(pk));
   a1.forEach(k => { if (!a0.has(k)) out.push(['Prerrequisito', `Agregado: ${k}`]); });
@@ -275,8 +313,7 @@ function resetLabel(long) { return ui.confirmReset ? '¿Seguro? Clic otra vez' :
 function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
-  const filtroAnalisis = ['inicio', 'inter', 'asig', 'heat'].includes(ui.page);
-  const resultadoVisible = filtroAnalisis ? RV : R, anteriorVisible = filtroAnalisis ? RV0 : R0;
+  const resultadoVisible = RV, anteriorVisible = RV0;
   const componentes = (OPCIONES.componentesComparables || []).map(id => {
     const tipo = new PlanCurricular(S).componente(id);
     const nombre = tipo?.nombre || id;
@@ -295,7 +332,18 @@ function renderTop() {
       <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
       <button class="btn sm" data-act="import" title="Cargar un escenario guardado">Cargar</button>
       <input type="file" id="file-in" accept=".json,application/json" class="sr" tabindex="-1">
-      ${filtroAnalisis ? `<div class="componentes-bar" role="group" aria-label="Componentes incluidos en los análisis"><span class="componentes-label">Incluir:</span>${componentes}</div>` : ''}
+       <div class="componentes-bar" role="group" aria-label="Filtros globales de tipología y unidad académica">
+         <span class="componentes-label">Tipología:</span>${componentes}
+         <label class="unidad-filtro" for="filtro-unidad">Departamento / facultad
+           <select id="filtro-unidad" data-chg="unidad-filtro" aria-label="Filtrar por departamento o facultad">
+             <option value="">Todas las unidades</option>
+             <option value="${SIN_UNIDAD}" ${ui.unidad===SIN_UNIDAD?'selected':''}>Sin información</option>
+             ${[...new Set(S.malla.map(m=>m.unidad).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')).map(u=>`<option value="${esc(u)}" ${ui.unidad===u?'selected':''}>${esc(u)}</option>`).join('')}
+           </select>
+         </label>
+         <button class="btn sm ghost" data-act="filtro-reset" title="Mostrar todos los componentes y unidades">Todos</button>
+         <datalist id="unidades-academicas">${UNIDADES_SUGERIDAS.map(u=>`<option value="${esc(u)}"></option>`).join('')}</datalist>
+       </div>
     </div>
   </div>`;
 }
@@ -341,6 +389,12 @@ function onAct(act, d, el, ev) {
   const f = ui.inter;
   switch (act) {
     case 'nav': ev.preventDefault(); return go(d.p);
+    case 'filtro-reset': {
+      ui.componentes=new Set(OPCIONES.componentesComparables||[]);
+      ui.unidad='';
+      actualizarVistaComponentes();
+      return render();
+    }
     case 'comp-toggle': {
       if (!(OPCIONES.componentesComparables || []).includes(d.comp)) return;
       if (ui.componentes.has(d.comp)) ui.componentes.delete(d.comp);
@@ -396,7 +450,7 @@ function onAct(act, d, el, ev) {
     case 'h-comp': ui.hor.comp = ui.hor.comp === d.c ? null : d.c; render(); { const c = $$('.compcard').find(x => x.dataset.comp === d.c); if (c && ui.hor.comp) c.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } return;
     case 'h-ov-del': ui.hor.ov = ui.hor.ov.filter(x => x !== d.n); return render();
     case 'h-ov-none': ui.hor.ov = []; return render();
-    case 'h-ov-clash': ui.hor.ov = R.pairs.filter(p => p.enRango && p.clash && (p.A === ui.hor.a || p.B === ui.hor.a)).map(p => p.A === ui.hor.a ? p.B : p.A); return render();
+    case 'h-ov-clash': ui.hor.ov = RV.pairs.filter(p => p.enRango && p.clash && (p.A === ui.hor.a || p.B === ui.hor.a)).map(p => p.A === ui.hor.a ? p.B : p.A); return render();
     case 'h-addb': S.bloques.push({ id: nextId(), a: ui.hor.a, c: d.c, d: 'L', s: 7, e: 9, o: '' }); ui.hor.comp = d.c; return commit();
     case 'h-delb': S.bloques = S.bloques.filter(b => b.id !== +d.id); return commit();
     case 'h-delc': S.bloques = S.bloques.filter(b => !(b.a === ui.hor.a && b.c === d.c)); return commit();
@@ -416,7 +470,7 @@ function onAct(act, d, el, ev) {
     case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
     case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
-    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
+    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
     case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
@@ -429,6 +483,20 @@ function onAct(act, d, el, ev) {
 function onChange(k, el) {
   const f = ui.inter;
   switch (k) {
+    case 'unidad-filtro': ui.unidad=el.value; actualizarVistaComponentes(); return render();
+    case 'unidad-asig': {
+      const m=S.malla.find(x=>x.n===el.dataset.n);
+      if(!m)return;
+      const valor=el.value.trim();
+      if(valor.length>180)return toast('Unidad académica demasiado extensa.');
+      if((m.unidad||'')===valor)return;
+      m.unidad=valor;
+      // Una unidad ya no registrada no debe quedar seleccionada invisible
+      // mientras el desplegable aparenta mostrar «Todas».
+      if(ui.unidad && ui.unidad!==SIN_UNIDAD &&
+        !S.malla.some(x=>x.unidad===ui.unidad))ui.unidad='';
+      return commit(m.n+': unidad '+(valor||'sin información'));
+    }
     case 'indirect': S.params.indirect = el.checked ? 1 : 0; return commit();
     case 'i-asig': f.asig = el.value; return render();
     case 'i-sort': f.sort = el.value; return render();

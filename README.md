@@ -5,7 +5,7 @@ Aplicación web **no oficial** para consultar la malla curricular, examinar grup
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Documentación de referencia:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial](docs/MIGRACION-ARQ01.md) · [Guía de desarrollo](AGENTS.md)
 
-## Arquitectura vigente — v0.5.3
+## Arquitectura vigente — v0.5.4
 
 **La aplicación tiene una única entrada académica estandarizada: [datos/academico.json](datos/academico.json).**
 
@@ -31,7 +31,7 @@ La malla, el catálogo institucional y la oferta de grupos se transforman **fuer
 
 En v0.5.3 el arranque ya no expone `window.RAW` ni hace que la interfaz dependa de esa estructura: `js/iniciar.js` entrega un **contexto explícito** con escenario de referencia, calendario, configuración y procedencia. `EntradaAcademica` mantiene una proyección posicional **local y transitoria** para construir el escenario inicial y recuperar escenarios históricos, sin abrir una segunda entrada académica. El motor de cálculos está en `js/analisis.js` y las siete vistas en `js/vistas.js`.
 
-**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. La [PR #10](https://github.com/jncubillosn-lab/Mecatronica/pull/10) consolidó los acuerdos generales y la [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) documentó las responsabilidades y reglas directamente dentro del código, sin cambiar los algoritmos (v0.5.2). La [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13) separa motor/vistas, fortalece las referencias de requisitos y elimina `RAW` del contexto global (v0.5.3). La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
+**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. La [PR #10](https://github.com/jncubillosn-lab/Mecatronica/pull/10) consolidó los acuerdos generales y la [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) documentó las responsabilidades y reglas directamente dentro del código, sin cambiar los algoritmos (v0.5.2). La [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13) separa motor/vistas, fortalece las referencias de requisitos y elimina `RAW` del contexto global (v0.5.3). La [PR #14](https://github.com/jncubillosn-lab/Mecatronica/pull/14) introduce filtros globales y unidad opcional por asignatura (v0.5.4). La fusión y las pruebas CI de las versiones anteriores están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
 
 ## Qué contiene el contrato
 
@@ -79,7 +79,9 @@ El sistema conserva lo que sabe y calcula solo con los datos utilizables. No des
 | Mapa de calor | Concentración de horarios de grupos, **no** ocupación de aulas ni matrícula |
 | Prerrequisitos | Malla, requisitos, tipologías y créditos previos |
 
-Las selecciones de Fundamentación, Disciplinar y Nivelación son **independientes y no excluyentes**. No modifican los datos del plan ni los grupos guardados; solo cambian las consultas y los resultados.
+Las selecciones de Fundamentación, Disciplinar y Nivelación son **independientes y no excluyentes**. Desde v0.5.4, estos filtros aparecen y actúan sobre los elementos visibles **en las siete páginas**, incluidas Grupos, Horarios y Prerrequisitos. Un filtro nunca elimina asignaturas, grupos, bloques o relaciones del escenario; al restablecerlo vuelven a verse.
+
+**Unidad académica responsable (dato opcional del escenario):** en las fichas de Asignaturas, Horarios y Prerrequisitos se puede seleccionar o escribir un **departamento de Ingeniería** o una **facultad fuera de Ingeniería**, o dejarlo **sin información**. No se infiere del profesor ni supone una vinculación laboral permanente. Se guarda ligado al ID curricular como un cambio personal `malla[].unidad`, se conserva en la exportación/importación y permite filtrar por unidad (o por las asignaturas sin dato). Este campo **no es obligatorio ni forma parte de `datos/academico.json`**. Las opciones sugeridas orientan la captura, no asignan valores automáticamente.
 
 ## Escenarios personales
 

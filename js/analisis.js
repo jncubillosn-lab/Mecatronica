@@ -34,7 +34,7 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
 function fromRaw(D) {
   return {
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
-    malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null })),
+    malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null, unidad: '' })),
     pre: D.pre.map(([r, t, m, rId, tId]) => ({ r, t, m: m || '', rId: rId || null, tId: tId || null })), // IDs del contrato, nombres solo para UI/legado
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2, ref, analizable]) => ({ a, g, c1, c2: c2 || '', on: true, ref: ref || null, analizable: analizable !== false })),

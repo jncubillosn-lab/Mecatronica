@@ -61,7 +61,8 @@ assert.deepEqual(restaurado.pairs.map(p=>p.key),todas.pairs.map(p=>p.key));
 
 // Los filtros de informes no limitan la edición de la malla, grupos ni horarios.
 seleccionar([]);
-assert(tester.pageGrupos().includes('Dibujo básico'));
+assert(!tester.pageGrupos().includes('data-aname="Dibujo básico"'),
+  'El filtro debe aplicarse también a Grupos');
 assert(tester.pageHor().includes('Horarios'));
 assert(tester.pageMalla().includes('Prerrequisitos'));
 assert(tester.renderTop().includes('data-comp="N"'));

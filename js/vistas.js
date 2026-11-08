@@ -206,7 +206,7 @@ function drawerPair(dw) {
 }
 function drawerCambios() {
   const ch = changes(), pd = pairDeltas();
-  const reporte = ['inicio','inter','asig','heat'].includes(ui.page) ? [RV,RV0] : [R,R0];
+  const reporte=[RV,RV0];
   const [resultado, anterior] = reporte;
   return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. datos de referencia</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
@@ -250,7 +250,8 @@ function pageAsig() {
       <span class="met"><span class="l"><span>Combinaciones que chocan</span><b class="num">${pct(x.idxG)}</b></span><span class="bar"><i style="width:${x.idxG / maxIdx * 100}%"></i></span><span class="l"><span>${worst && worst.p.clash ? `peor cruce: ${esc(worst.o)} (${pct(worst.p.idx)})` : 'sin choques'}</span>${dlt(x.idxG, (R0.st[x.n] || x).idxG, 1)}</span></span>
       <span class="chev">›</span></button>
       ${open ? `<div class="body"><div class="row" style="justify-content:space-between;padding:10px 0 4px"><span class="lab">Se cruza con ${mine.length} asignaturas</span><span class="row"><button class="btn sm" data-act="grp-go" data-n="${esc(x.n)}">Ver grupos</button><button class="btn sm" data-act="hor-go" data-n="${esc(x.n)}">Ver horarios</button></span></div>
-      ${[...mine].sort((a, b) => b.p.idx - a.p.idx).map(m => `<button class="prt" data-act="pair-open" data-k="${esc(m.p.key)}"><span class="lvl ${sev(m.p)[0]}" style="min-width:0">${sev(m.p)[1]}</span><span>${esc(m.o)} <span class="sem">S${m.os}</span><br><span class="hint">${m.p.clash} de ${m.p.total} combinaciones de grupos chocan</span></span><span class="bar"><i style="width:${m.p.idx * 100}%"></i></span><b class="num">${pct(m.p.idx)}</b></button>`).join('')}</div>` : ''}</div>`;
+      ${editorUnidad(x.n)}
+       ${[...mine].sort((a, b) => b.p.idx - a.p.idx).map(m => `<button class="prt" data-act="pair-open" data-k="${esc(m.p.key)}"><span class="lvl ${sev(m.p)[0]}" style="min-width:0">${sev(m.p)[1]}</span><span>${esc(m.o)} <span class="sem">S${m.os}</span><br><span class="hint">${m.p.clash} de ${m.p.total} combinaciones de grupos chocan</span></span><span class="bar"><i style="width:${m.p.idx * 100}%"></i></span><b class="num">${pct(m.p.idx)}</b></button>`).join('')}</div>` : ''}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Asignaturas</h1><p>Cada asignatura se cruza con las que podría cursar a la vez (${distSummary()}; sin contar las que son prerrequisito suyo). Aquí ves con cuántas de ellas tiene conflicto y qué porcentaje de sus combinaciones de grupos choca. El semestre se cambia en <a href="#malla" data-act="nav" data-p="malla">Prerrequisitos</a>.</p></div>
     <div class="row" style="gap:20px;align-items:flex-end"><div class="field"><label>Distancia entre semestres</label><div class="chips">${distChips(false)}</div></div><div class="field"><label>Ordenar por</label><div class="seg"><button data-act="a-sort" data-s="idx" aria-pressed="${f.sort === 'idx'}">Mayor % de choque</button><button data-act="a-sort" data-s="pares" aria-pressed="${f.sort === 'pares'}">Más asignaturas en conflicto</button><button data-act="a-sort" data-s="sem" aria-pressed="${f.sort === 'sem'}">Semestre</button></div></div></div></div>
@@ -269,6 +270,7 @@ function compText(a, c) {
   return bs.length ? bs.map(fmtB).join(' · ') : 'sin bloques';
 }
 function groupDetail(a, g) {
+  const R=RV;
   const cl = R.groupClash.get(a + '\u0001' + g.g) || [];
   const by = {}; cl.forEach(x => { (by[x.a] = by[x.a] || []).push(gl(x.a, x.g)); });
   const parts = [g.c1, g.c2].filter(Boolean).map(c => {
@@ -286,9 +288,10 @@ function groupDetail(a, g) {
  * ocultar estos grupos equivaldría a descartar información del contrato.
  */
 function pageGrupos() {
-  const sel = ui.grp.sel;
-  const avail = S.malla.filter(m => !S.asg.includes(m.n)).sort((a, b) => a.s - b.s || a.n.localeCompare(b.n));
-  const cards = R.names.map(n => {
+  const R=RV,sel=ui.grp.sel;
+  const avail=S.malla.filter(m=>pasaFiltros(m) && !S.asg.includes(m.n))
+    .sort((a,b)=>a.s-b.s||a.n.localeCompare(b.n));
+  const cards=R.names.map(n=>{
     const gs = R.allGroupsOf[n], st = R.st[n];
     const selG = sel && sel.a === n ? gs.find(g => g.g === sel.g) : null;
     return `<section class="card gcard" data-aname="${esc(n)}">
@@ -303,7 +306,7 @@ function pageGrupos() {
   }).join('');
   return `<div class="page-title"><div><h1>Grupos</h1><p>Los grupos que se ofertan de cada asignatura. Desactiva uno para simular que no se abre, o agrega uno nuevo y ajusta su horario en <a href="#hor" data-act="nav" data-p="hor">Horarios</a>.</p></div>
     <div class="row"><select id="asg-new" aria-label="Asignatura a agregar"><option value="">Agregar asignatura de la malla…</option>${avail.map(m => `<option value="${esc(m.n)}">${esc(m.n)} (sem ${m.s})</option>`).join('')}</select><button class="btn" data-act="asg-add">Agregar</button></div></div>
-    <div class="gcards">${cards}</div>`;
+    <div class="gcards">${cards||'<div class="empty-state">No hay asignaturas de la tipología o unidad seleccionada.</div>'}</div>`;
 }
 
 /* ===== HORARIOS ===== */
@@ -330,11 +333,12 @@ function lanes(blocks) {
  * el resaltado de cruces entre superposiciones consulta elegibilidad.
  */
 function pageHor() {
-  if (!S.asg.length) return `<div class="page-title"><div><h1>Horarios</h1><p>No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</p></div></div>`;
-  const h = ui.hor;
-  if (!S.asg.includes(h.a)) h.a = S.asg[0];
+  const R=RV,R0=RV0;
+  if(!R.names.length)return `<div class="page-title"><div><h1>Horarios</h1><p>${S.asg.length?'Ninguna asignatura coincide con los filtros de tipología y departamento/facultad.':'No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde Grupos.'}</p></div></div>`;
+  const h=ui.hor;
+  if(!R.names.includes(h.a))h.a=R.names[0];
   const A = h.a, comps = compsOf(A), mine = S.bloques.filter(b => b.a === A);
-  h.ov = h.ov.filter(n => S.asg.includes(n) && n !== A);
+  h.ov = h.ov.filter(n => R.names.includes(n) && n !== A);
   const ovBlocks = S.bloques.filter(b => h.ov.includes(b.a));
   const hasOv = ovBlocks.length > 0, ZW = hasOv ? 62 : 100;
   const lm = lanes(mine), lo = lanes(ovBlocks);
@@ -373,6 +377,7 @@ function pageHor() {
       <div class="row" style="margin-bottom:10px"><h2 style="font:650 20px var(--serif)">${esc(A)}</h2><span class="sem">S${R.st[A].s}</span><span style="flex:1"></span>
         <select data-chg="h-ov-add" aria-label="Superponer asignatura"><option value="">Superponer otra asignatura…</option>${R.names.filter(n => n !== A && !h.ov.includes(n)).map(n => `<option>${esc(n)}</option>`).join('')}</select>
         <button class="btn sm" data-act="h-ov-clash" ${choques.length ? '' : 'disabled'} title="Superpone las asignaturas con las que choca">Las que chocan (${choques.length})</button></div>
+      ${editorUnidad(A)}
       ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}">${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
       <div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div>
       <div class="legend" style="margin-top:8px"><span>Cada bloque lleva el nombre del grupo (o grupos) que lo usan; bloques lado a lado son grupos alternativos a la misma hora.</span>${hasOv ? '<span><i class="sw" style="background:color-mix(in srgb,var(--heat) 22%,transparent)"></i>horas donde se pisan con lo superpuesto</span>' : ''}</div>
@@ -391,7 +396,7 @@ function pageHor() {
  */
 function pageHeat() {
   const off = ui.heat.off;
-  const names = new PlanCurricular(S).seleccionarPorComponentes(S.asg, ui.componentes).sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
+  const names=[...RV.names].sort((a,b)=>semOf(S,a)-semOf(S,b)||a.localeCompare(b,'es'));
   const selected = names.filter(n => !off.has(n));
   const selectedSet = new Set(selected);
   const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on && g.analizable !== false);
@@ -468,18 +473,20 @@ function pageHeat() {
 }
 /* ===== MALLA / PRERREQUISITOS ===== */
 function semHead(s) {
-  const c = semCred(s, S.malla);
+  const c = semCred(s, S.malla.filter(m=>pasaFiltros(m) && (!ui.malla.soloHor || S.asg.includes(m.n))));
   return `<span class="semcr" title="${c.incompleto ? 'Créditos registrados (hay asignaturas sin créditos definidos): ' : ''}${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
 }
 function pageMalla() {
-  const M = ui.malla, sel = M.sel;
-  if (sel && !S.malla.find(m => m.n === sel)) M.sel = null;
-  const L = M.sel ? lineage(S, M.sel) : null;
+  const M=ui.malla;
+  if(M.sel && !S.malla.find(m=>m.n===M.sel))M.sel=null;
+  const visibles=new Set(nombresVisibles(S,S.malla.map(m=>m.n)));
+  const sel=visibles.has(M.sel)?M.sel:null;
+  const L=sel?lineage(S,sel):null;
   const maxSem = maxSemester(S);
   const cols = Array.from({ length: maxSem }, (_, i) => i + 1).map(s => {
-    const cs = S.malla.filter(m => m.s === s && (!M.soloHor || S.asg.includes(m.n)));
+    const cs = S.malla.filter(m=>m.s===s && visibles.has(m.n) && (!M.soloHor||S.asg.includes(m.n)));
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s)}</h4>${cs.map(m => {
-      const sc = R.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
+      const sc = RV.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
       let cls = sc ? '' : 'nosched';
       if (L) cls += m.n === M.sel ? ' sel' : L.up.has(m.n) ? ' up' : L.down.has(m.n) ? ' down' : ' dim';
       return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr == null ? '—' : m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car ? ' · ' + esc(carName(m.car)) : ''}</span></small>${check && check.low ? `<small><span class="tag heat">Faltan ${req.min - check.total} cr. previos</span></small>` : ''}${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${!req && m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
@@ -492,9 +499,9 @@ function pageMalla() {
   <div class="legend" style="margin-top:10px"><span><i class="sw" style="background:var(--surface);border:1px solid var(--line2)"></i>con horario (barra = % de combinaciones que chocan)</span><span><i class="sw" style="border:1px dashed var(--line2)"></i>sin horario (no entra al análisis)</span><span><i class="sw" style="background:var(--ca-soft);border:1px solid var(--ca)"></i>requisitos</span><span><i class="sw" style="background:var(--ok-soft);border:1px solid var(--ok)"></i>la requieren</span><span style="color:var(--heat)">⟲ flecha roja punteada = requisito en el mismo semestre o posterior</span></div>`;
 }
 function mallaSide(L) {
-  const n = ui.malla.sel;
+  const n = ui.malla.sel && pasaFiltros(S.malla.find(m=>m.n===ui.malla.sel)) ? ui.malla.sel : null;
   if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p></aside>`;
-  const m = S.malla.find(x => x.n === n), sc = R.st[n];
+  const m = S.malla.find(x => x.n === n), sc = RV.st[n];
   const dirIn = S.pre.filter(p => p.t === n), dirOut = S.pre.filter(p => p.r === n);
   const indUp = [...L.up.keys()].filter(x => !dirIn.some(p => p.r === x)), indDown = [...L.down.keys()].filter(x => !dirOut.some(p => p.t === x));
   const optsReq = S.malla.filter(c => c.n !== n && !dirIn.some(p => p.r === c.n) && !wouldCycle(S, c.n, n)).sort((a, b) => a.s - b.s || a.n.localeCompare(b.n));
@@ -505,6 +512,7 @@ function mallaSide(L) {
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr == null ? '—' : m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
+    ${editorUnidad(n)}
     <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= maxSemester(S) ? 'disabled' : ''}>+</button></span></div>
     ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
     ${creditRequirementNote(m)}
@@ -518,7 +526,7 @@ function mallaSide(L) {
 }
 function drawEdges() {
   const cv = $('#canvas'), svg = $('#edges'), cols = $('#mcols'); if (!cv || !svg) return;
-  const M = ui.malla, L = M.sel ? lineage(S, M.sel) : null;
+  const M = ui.malla, L = M.sel && pasaFiltros(S.malla.find(m=>m.n===M.sel)) ? lineage(S,M.sel) : null;
   const cr = cv.getBoundingClientRect(), pos = new Map();
   $$('.mcard', cv).forEach(c => { const r = c.getBoundingClientRect(); pos.set(c.dataset.n, { l: r.left - cr.left + cv.scrollLeft, r: r.right - cr.left + cv.scrollLeft, y: r.top - cr.top + cv.scrollTop + r.height / 2 }); });
   const W = Math.max(cv.scrollWidth, cols.scrollWidth + 30), H = Math.max(cv.scrollHeight, cols.scrollHeight + 30);
