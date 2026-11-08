@@ -39,6 +39,9 @@ const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig',
 // S0 = referencia reconstruida desde el contrato; S = copia editable personal.
 // Mantener separadas estas identidades al importar, guardar y restablecer.
 let S0 = clone(CONTEXTO.estadoBase), S = clone(S0), restored = false, datosGuardados = null;
+ // Ambigüedades reales de snapshots antiguos de requisitos: se conservan
+ // hasta que la persona elige por regla, sin perder los demás cambios.
+ let pendientesRequisitos = [];
 try {
   const texto = localStorage.getItem(KEY);
   if (texto) {
@@ -141,10 +144,12 @@ function recuperarEscenarioGuardado(o) {
 if (datosGuardados) {
   try {
     S = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(datosGuardados), CALENDARIO);
+    pendientesRequisitos = EscenarioPersonal.requisitosAmbiguos(S0, datosGuardados, S);
     restored = true;
   } catch (e) {
     console.error('No se pudo reconstruir el escenario anterior:', e);
     S = clone(S0);
+    pendientesRequisitos = [];
   }
 }
 // R: resultados sin filtro de componentes de la sesión; R0: referencia.
@@ -255,7 +260,10 @@ function toast(msg) {
  * EscenarioPersonal.empaquetar(S0,S), no otra fuente académica ni un S0 nuevo.
  * No depende del servidor ni altera el archivo normalizado.
  */
-function save() { try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); } catch (e) { } }
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S, pendientesRequisitos))); }
+  catch (e) { /* El escenario funciona sin almacenamiento. */ }
+}
 
 /**
  * Consolida una acción VOLUNTARIA de edición en S: recalcula R y RV,
@@ -356,7 +364,20 @@ function renderTop() {
          <datalist id="unidades-academicas">${UNIDADES_SUGERIDAS.map(u=>`<option value="${esc(u)}"></option>`).join('')}</datalist>
        </div>
     </div>
-  </div>`;
+  </div>
+  ${pendientesRequisitos.length?`<section class="revision-req" aria-label="Revisión de requisitos de un escenario antiguo">
+    <p><b>Revisa ${pendientesRequisitos.length} requisito${pendientesRequisitos.length===1?'':'s'} de tu escenario anterior.</b> Los valores guardados difieren de la referencia académica vigente. No se han descartado ni reemplazado automáticamente.</p>
+    <details><summary>Comparar y resolver por asignatura</summary>
+      <div class="revision-req-list">${pendientesRequisitos.map(p=>`<div class="revision-req-item">
+        <b>${esc(p.nombre)}</b>
+        <span>Guardado: ${esc(p.guardado?p.guardado.min+' cr · '+p.guardado.componentes.map(compName).join(' + '):'sin requisito')}</span>
+        <span>Referencia: ${esc(p.vigente?p.vigente.min+' cr · '+p.vigente.componentes.map(compName).join(' + '):'sin requisito')}</span>
+        <div class="row">
+          <button class="btn sm" type="button" data-act="req-vigente" data-key="${esc(p.key)}">Usar referencia vigente</button>
+          <button class="btn sm" type="button" data-act="req-conservar" data-key="${esc(p.key)}">Conservar guardado</button>
+        </div>
+      </div>`).join('')}</div>
+    </details></section>`:''}`;
 }
 
 /* Las siete vistas previas siguen en js/vistas.js; DEM-01 está en js/demanda.js. */
@@ -571,7 +592,22 @@ function onAct(act, d, el, ev) {
     case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
     case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); if (m.comp === idComponenteLibre(S.tipos)) ui.malla.libresFijas.add(m.n); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
-    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; ui.malla.libresFijas.clear(); R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
+    case 'req-vigente': case 'req-conservar': {
+      const pendiente=pendientesRequisitos.find(p=>p.key===d.key);
+      if(!pendiente)return;
+      if(a==='req-vigente'){
+        const ids=EscenarioPersonal.indicePosiciones(S0);
+        const key=r=>EscenarioPersonal.claveReq(r,ids);
+        const idx=S.reqCred.findIndex(r=>key(r)===d.key);
+        if(pendiente.vigente){
+          if(idx>=0)S.reqCred[idx]=clone(pendiente.vigente);
+          else S.reqCred.push(clone(pendiente.vigente));
+        }else if(idx>=0)S.reqCred.splice(idx,1);
+      }
+      pendientesRequisitos=pendientesRequisitos.filter(p=>p.key!==d.key);
+      return commit((a==='req-vigente'?'Referencia vigente aplicada: ':'Requisito anterior confirmado: ')+pendiente.nombre);
+    }
+    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; pendientesRequisitos = []; ui.malla.libresFijas.clear(); R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
     case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
@@ -648,7 +684,8 @@ function onChange(k, el) {
           if (!o || !((o.tipo === 'escenario-personal' && o.version === 1 && o.cambios) ||
             (o.S && o.S.params && Array.isArray(o.S.bloques) && Array.isArray(o.S.grupos)))) throw new Error('formato');
           const recuperado = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(o), CALENDARIO);
-          S = recuperado; ui.drawer = null; commit('Escenario cargado.');
+          const pendientes=EscenarioPersonal.requisitosAmbiguos(S0,o,recuperado);
+          S = recuperado; pendientesRequisitos = pendientes; ui.drawer = null; commit('Escenario cargado.');
         } catch (e) { toast('Ese archivo no es un escenario válido.'); }
       };
       rd.readAsText(file); el.value = ''; return;
