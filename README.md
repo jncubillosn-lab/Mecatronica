@@ -44,14 +44,16 @@ En v0.5.0 la interfaz histórica sigue utilizando una estructura interna denomin
 | `malla` | Posiciones por semestre, código relacionado cuando exista, componente y carácter |
 | `requisitos` | Prerrequisitos y condiciones numéricas por componente |
 | `oferta` | Actividades, grupos, cupos y horarios cuando constan |
-| `agrupaciones` | Opciones analizables con relaciones expresas entre actividades |
+| `agrupaciones` | Relaciones explícitas de grupos y elegibilidad para análisis (`analizable`) |
 | `exclusionesAgrupacion` | Posiciones cuya oferta no permite determinar aún opciones analizables |
 | `configuracion` | Calendario, filtros y opciones de consulta |
 | `procedencia` | Metadatos de procedencia disponibles, sin nuevas rutas de lectura |
 
 Las posiciones genéricas de optativas y Libre Elección no se vinculan artificialmente con una asignatura específica. Inglés I–IV se clasifica en **Nivelación**. El catálogo conserva su tipología institucional, que no tiene por qué coincidir con el componente del plan.
 
-El archivo actual incluye el catálogo completo de referencia y los grupos de la oferta; **no supone que todas las actividades puedan agruparse entre sí**. Las opciones ya existentes se conservan y los grupos de actividad única vinculados al plan pueden incorporarse directamente. Las combinaciones sin una relación verificable permanecen en la oferta y no se inventan para los cálculos.
+El archivo actual incluye el catálogo completo de referencia y los grupos de la oferta; **no supone que todas las actividades puedan agruparse entre sí**.
+
+**Grupos especiales:** los de otras sedes se conservan, pero no participan en cálculos por falta de validaciones de alcance. Hay 79 agrupaciones informativas y 374 analizables, declaradas en la única entrada mediante `analizable: false` para las primeras. La sección Grupos las muestra como información de consulta. La ausencia de horario no produce conflictos ni alarmas. Las opciones ya existentes se conservan y los grupos de actividad única vinculados al plan pueden incorporarse directamente. Las combinaciones sin una relación verificable permanecen en la oferta y no se inventan para los cálculos.
 
 ### Información incompleta
 
