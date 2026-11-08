@@ -28,7 +28,6 @@ class EntradaAcademica {
     }
   }
 
-  /** El hash identifica bloques de referencia de forma independiente del orden. */
   /**
    * Genera el identificador numérico que usa la interfaz para cada referencia.
    * Es determinista para la misma clave, NO identifica un bloque por su horario;
