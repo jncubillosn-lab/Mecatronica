@@ -3,7 +3,7 @@
 > **Estado:** criterio arquitectónico adoptado para el desarrollo posterior.  
 > **Fecha:** 7 de noviembre de 2026.  
 > **Alcance:** sistema web de planeación curricular de Mecatrónica, extensible a otros programas.  
-> **Arquitectura normativa:** la descrita en este documento. **Vigente en `main` desde v0.5.0 y mantenida en v0.5.1.** El sistema adopta entrada única, escenario derivado y cambios personales; conserva una proyección interna transitoria para la interfaz existente.
+> **Arquitectura normativa:** la descrita en este documento. **Integrada en `main` desde v0.5.0.** El sistema adopta entrada única, escenario derivado y cambios personales; conserva una proyección interna transitoria para la interfaz existente. Las versiones posteriores y su estado se registran en [EST-01](ESTADO-Y-PUBLICACION.md), sin requerir que esta norma cambie con cada versión.
 >
 > **Documentos complementarios:** [DEC-01 — decisiones y alcance](DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial de migración](MIGRACION-ARQ01.md).
 
