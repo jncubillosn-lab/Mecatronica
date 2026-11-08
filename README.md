@@ -1,173 +1,127 @@
 # Planeación curricular · Ingeniería Mecatrónica
 
-Herramienta **no oficial** de la representación estudiantil para examinar la malla curricular, los grupos ofertados y las interferencias de horario. Publicación: https://jncubillosn-lab.github.io/Mecatronica/
+Aplicación web **no oficial** para consultar la malla curricular, examinar grupos ofertados y sus interferencias de horario, evaluar escenarios y explorar una semana mediante un mapa de calor.
 
-## Arquitectura de referencia — ARQ-01
+**Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
+**Arquitectura obligatoria:** [ARQ-01](docs/ARQUITECTURA.md) · [Guía de desarrollo](AGENTS.md)
 
-**[Leer el mapa maestro y contrato de entrada académica](docs/ARQUITECTURA.md)** · **[Guía para futuras intervenciones](AGENTS.md)**
+## Arquitectura y migración v0.5.0
 
-**Decisión arquitectónica:** el sistema objetivo recibe **una única entrada normalizada, FuentesAcadémicas** (contrato de `datos/academico.json`). La malla, el catálogo y la oferta original —y cualquier conversión necesaria para unificar esas fuentes— son **externos al sistema web**. No existen rutas académicas paralelas al cálculo ni módulos de conversión dentro de la aplicación.
+**La aplicación tiene una única entrada académica estandarizada: [datos/academico.json](datos/academico.json).**
 
-**Estado:** ARQ-01 ya es la referencia de diseño; la aplicación publicada en v0.4.3 conserva archivos y mecanismos anteriores. **Este cambio documental no implementa la migración ni modifica resultados.** Las descripciones de `RAW` y de las tres fuentes en el resto del README explican la versión heredada, no un modelo autorizado para nuevas funciones.
+La malla, el catálogo institucional y la oferta de grupos se transforman **fuera del sistema** a ese formato. El sitio **no importa ni convierte** los documentos originales, ni mantiene conexiones paralelas hacia ellos.
 
-## Secciones actuales
+~~~text
+        ENTRADA ÚNICA: datos/academico.json
+                          │
+                 js/entrada.js
+                 modelo académico
+                          │
+                escenario de referencia
+                          │
+                 js/escenarios.js
+              cambios personales opcionales
+                          │
+                   escenario efectivo
+                          │
+             análisis de grupos y horarios
+                          │
+                filtros y visualizaciones
+~~~
 
-| Sección | Función |
+En v0.5.0 la interfaz histórica sigue utilizando una estructura interna denominada `RAW`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
+
+**Estado del proyecto:** la migración se prepara en una rama y debe validarse antes de publicarse en `main`. ARQ-01 distingue el diseño establecido de lo que sigue siendo transitorio.
+
+## Qué contiene el contrato
+
+| Sección | Información |
 |---|---|
-| Inicio | Resumen de interferencias entre asignaturas |
-| Interferencias | Comparación de combinaciones de grupos, en lista o matriz; filtros y CSV |
-| Asignaturas | Indicadores de interferencias por asignatura |
-| Grupos | Activar, desactivar, agregar y quitar grupos de un escenario |
-| Horarios | Consultar, mover, editar y superponer bloques horarios |
-| Mapa de calor | Concentración de grupos programados por franja y día; no mide matrícula ni ocupación de aulas |
-| Prerrequisitos | Malla por semestres, relaciones entre asignaturas, tipologías y comprobación de créditos mínimos |
+| `versionEsquema` | Identificación de la estructura de entrada |
+| `programa` | Programa y versión del plan |
+| `componentes` y `caracteres` | Clasificaciones curriculares configurables |
+| `catalogo` | Asignaturas, códigos institucionales, créditos, tipologías y descripciones disponibles |
+| `malla` | Posiciones por semestre, código relacionado cuando exista, componente y carácter |
+| `requisitos` | Prerrequisitos y condiciones numéricas por componente |
+| `oferta` | Actividades, grupos, cupos y horarios cuando constan |
+| `agrupaciones` | Relaciones explícitas de grupos y elegibilidad para análisis (`analizable`) |
+| `exclusionesAgrupacion` | Posiciones cuya oferta no permite determinar aún opciones analizables |
+| `configuracion` | Calendario, filtros y opciones de consulta |
+| `procedencia` | Metadatos de procedencia disponibles, sin nuevas rutas de lectura |
 
-## Filtros de componentes (v0.4.3)
+Las posiciones genéricas de optativas y Libre Elección no se vinculan artificialmente con una asignatura específica. Inglés I–IV se clasifica en **Nivelación**. El catálogo conserva su tipología institucional, que no tiene por qué coincidir con el componente del plan.
 
-En la cabecera de las vistas **Inicio**, **Interferencias**, **Asignaturas** y **Mapa de calor** hay tres botones independientes: **Disciplinar**, **Fundamentación** y **Nivelación**. Pueden mantenerse activos simultáneamente, desactivarse individualmente o dejarse los tres apagados. Por defecto están activos todos.
+El archivo actual incluye el catálogo completo de referencia y los grupos de la oferta; **no supone que todas las actividades puedan agruparse entre sí**.
 
-- La configuración de botones disponibles está en `RAW.opciones.componentesComparables` de `js/datos.js`. **No hay componentes fijados en el algoritmo.**
-- La selección de botones solo cambia la **representación y los cálculos de los informes**; no elimina grupos ni horarios, no modifica la malla y no se registra como una edición del escenario.
-- Grupos, Horarios y Prerrequisitos continúan mostrando la información completa, incluso de componentes temporalmente excluidos de los informes.
-- El Mapa de calor permite refinar la selección individual de asignaturas dentro de los componentes marcados.
-- **Libre Elección** se mantiene como orientación en la malla, sin botón de análisis. **Inglés I–IV se clasifica como Nivelación**, según el catálogo aportado, y se representa con ese botón cuando existan grupos incorporados al análisis.
-- Al incorporar grupos reales de asignaturas de un componente, sus cruces aparecerán automáticamente al marcarlo; no hay que cambiar los cálculos.
+**Grupos especiales:** los de otras sedes se conservan, pero no participan en cálculos por falta de validaciones de alcance. Hay 79 agrupaciones informativas y 374 analizables, declaradas en la única entrada mediante `analizable: false` para las primeras. La sección Grupos las muestra como información de consulta. La ausencia de horario no produce conflictos ni alarmas. Las opciones ya existentes se conservan y los grupos de actividad única vinculados al plan pueden incorporarse directamente. Las combinaciones sin una relación verificable permanecen en la oferta y no se inventan para los cálculos.
 
-El escenario inicial incluye asignaturas con horarios de los tres componentes. Las asignaturas sin grupos en la oferta siguen sin crear choques; los filtros no inventan bloques horarios.
+### Información incompleta
 
-Para verificar los filtros ejecutar `node tests/filtros.js`, además de `node tests/verificar.js`.
+**Ausencia de información no equivale a cero ni a error.** Por ejemplo:
 
-## Alcance de los datos
+- Un curso puede figurar en catálogo pero no en la malla u oferta.
+- Una posición de la malla puede no tener código concreto.
+- Un grupo puede existir sin horarios informados.
+- Una categoría académica puede estar disponible aunque no tenga grupos incorporados.
+- Una asignatura con varias actividades puede carecer de agrupación verificable.
 
-La aplicación trabaja **con lo que está registrado**. No exige datos completos ni interpreta la ausencia de un horario como conflicto.
+El sistema conserva lo que sabe y calcula solo con los datos utilizables. No despliega alertas por vacíos normales de las fuentes. Los errores técnicos de estructura del JSON sí se comprueban durante el desarrollo.
 
-- **Malla de referencia:** Ingeniería Mecatrónica, Acuerdo 6 de 2022; plano curricular versión 28 de julio de 2022.
-- **Horarios:** conjunto incorporado a los datos del programa; puede ampliarse sin cambiar las funciones de cálculo. La fecha exacta de actualización de la oferta no está registrada.
-- **Tipologías:** el catálogo conserva los tipos institucionales B, O, C, T, E y P. El plan usa componentes B: fundamentación, C: disciplinar, L: libre elección y N: nivelación. **Inglés I–IV pertenece a Nivelación (E en el catálogo)**. Cada asignatura mantiene además su carácter obligatorio u optativo cuando consta en la fuente.
-- Los totales por componente son **resultados de sumar los registros de la malla**, no constantes del cálculo. Los 12 créditos de Inglés I–IV figuran como Nivelación y no forman parte de los créditos propios del programa.
-- Los campos de componente y carácter pueden ajustarse en la ficha de una asignatura. Los cambios se guardan **solo en el escenario del navegador** y se distinguen de los datos iniciales.
+## Funciones actuales
 
-### Interpretación de las interferencias
+| Página | Función |
+|---|---|
+| Inicio | Resumen de interferencias para la selección de componentes |
+| Interferencias | Lista y matriz de combinaciones de grupos, filtros y CSV |
+| Asignaturas | Estadísticas por asignatura |
+| Grupos | Activar, desactivar, añadir o quitar grupos del escenario |
+| Horarios | Consultar y editar bloques; explorar superposiciones |
+| Mapa de calor | Concentración de horarios de grupos, **no** ocupación de aulas ni matrícula |
+| Prerrequisitos | Malla, requisitos, tipologías y créditos previos |
 
-1. Se escoge una pareja de asignaturas que el filtro curricular permite comparar.
-2. Se prueba cada combinación de grupos activos entre ambas.
-3. Dos grupos chocan si se traslapa al menos un bloque horario de sus componentes. Los bloques 9–11 y 11–13 no chocan.
-4. El índice es la proporción de combinaciones de grupos con choque. Una asignatura sin grupos o sin horarios no genera conflictos; no se inventan horarios faltantes.
-5. Se pueden configurar distancias entre semestres y la exclusión de relaciones directas o indirectas de prerrequisitos.
-
-### Comprobación de créditos mínimos en la malla
-
-Es un **indicador de consistencia de la distribución por semestres**: suma exclusivamente los créditos de asignaturas situadas en semestres anteriores al de la asignatura seleccionada **y cuyo componente esté incluido en la regla**. No equivale a créditos aprobados por un estudiante.
-
-Las reglas se expresan **solo como datos**, dentro de `js/datos.js`, con la forma:
-
-```js
-// [asignatura, créditos mínimos, componentes que cuentan]
-["Taller de Proyectos Interdisciplinarios", 52, ["C"]]
-```
-
-Esta es la configuración de ejemplo del plan actual: exige créditos disciplinares. Cualquier cambio en la cantidad exigida o los componentes que cuentan requiere editar el dato, **no la función de cálculo**. Del mismo modo, otras asignaturas pueden contabilizar diferentes conjuntos de componentes.
-
-Los catálogos `componentes` y `caracteres`, los campos de `malla`, las reglas `reqCred` y las fechas `metadatos` se encuentran en `RAW`. El pie de la página lee las fechas de `metadatos` automáticamente.
-
-Las advertencias no bloquean el uso, no modifican automáticamente los semestres y solo se muestran cuando la suma de créditos anteriores de los componentes indicados queda por debajo del mínimo. Si hubiera componentes sin clasificar, no se genera una falsa advertencia de insuficiencia.
-
-El plano curricular aportado contiene indicaciones «52 C», «65 C» y «69 C». La interpretación de «52 C» como créditos exclusivamente disciplinares **es el criterio de análisis indicado para esta herramienta**, no una interpretación institucional de dicha abreviatura que hayamos confirmado.
-
-## Datos de la versión actual: tres archivos de referencia heredados
-
-En **v0.4.3** se conservan estos tres conjuntos de información, **sin asumir que uno contiene todo lo de los otros**. Según ARQ-01, no serán entradas independientes a la aplicación cuando se implemente el contrato normalizado:
-
-| Fuente | Información disponible | Archivo estructurado |
-|---|---|---|
-| Catálogo de asignaturas | Código, nombre, créditos, tipología original y descripción, cuando exista | `js/catalogo.js` |
-| Oferta académica detallada | Código, actividades, grupos, docentes, horarios, fechas, cupos disponibles y texto original de horario, cuando se informe | `js/oferta-fuente.js` |
-| Malla curricular | Posición por semestre, componentes que cuentan en el plan y prerrequisitos | `js/datos.js` |
-
-**El catálogo institucional utiliza B, O, C, T, E y P.** Son categorías originales de esa fuente; no se reescriben para hacerlas coincidir artificialmente con los componentes B, C, L y N del plan. Ejemplo: **Trabajo de Grado** tiene categoría institucional P, mientras que sus créditos se ubican en el componente disciplinar de la malla. **Inglés** tiene categoría institucional E y componente de Nivelación N en la malla.
-
-`RAW.vinculosCatalogo` mantiene correspondencias explícitas entre nombres de posiciones en la malla y códigos del catálogo. Los espacios genéricos de optativas o libre elección se dejan sin código específico: no representan una asignatura única.
-
-La clase `FuentesAcademicas` permite consultar por código y recuperar la malla, el catálogo y la oferta **sin exigir que existan las tres coincidencias**. Devuelve `null` o colecciones vacías cuando no haya registro: no completa datos con suposiciones ni produce alertas por falta de cobertura.
-
-Los grupos permanecen agrupados por su **actividad original** en `js/oferta-fuente.js`. Para los horarios activados en Fundamentación y Nivelación, las distintas actividades de un mismo identificador de grupo se consolidan; no se emparejan identificadores diferentes. No se confunde `cuposDisponibles: 0` con un grupo ausente, ni se interpreta como capacidad total. Un grupo sin horarios explícitos se conserva con `horarios: []`.
-
-**La aplicación utiliza los horarios disponibles de Fundamentación y Nivelación en los informes y en el mapa de calor**, además de los grupos disciplinares que ya estaban incorporados. Las optativas genéricas no se asocian por conjetura a una asignatura concreta.
-
-Para cursos de Fundamentación con varias actividades, se agrupan bloques únicamente cuando **el identificador de grupo es exactamente el mismo en las distintas actividades** de la oferta. Así, un grupo puede tener teoría, taller y laboratorio en su horario sin unir arbitrariamente grupos distintos. La incorporación no es una reconstrucción completa de la oferta disciplinar: los grupos nuevos de ese componente se conservan todavía en la fuente de referencia hasta comprobar sus relaciones.
-
-Al recuperar escenarios anteriores se añaden una sola vez las asignaturas y grupos que no existían en esa versión. La migración **no reincorpora grupos antiguos eliminados ni modifica bloques que el estudiante haya editado**. Si se desea volver completamente a la oferta de referencia, puede usarse Restablecer.
-
-Los ficheros de referencia no se cargan automáticamente al abrir `index.html`, para mantener ligero el sitio estático. Están disponibles para futuros importadores y pantallas de consulta. Para inspeccionarlos localmente, pueden evaluarse junto con `js/fuentes.js`.
-
-### Regla para datos incompletos
-
-- Lo que no está informado permanece ausente (`null` o `[]`), **no se convierte en cero**.
-- Las funciones existentes trabajan con lo disponible. Ninguna ausencia de grupo u horario se convierte en conflicto.
-- Las comprobaciones numéricas de créditos no emiten advertencias si falta información indispensable para calcularlas.
-- La aplicación solo conserva las comprobaciones de consistencia que sí son calculables con la malla disponible.
-- Los cambios al escenario siguen siendo locales; las fuentes no reemplazan las decisiones del usuario.
-
-Ejecutar `node tests/fuentes.js` para verificar la integridad de las fuentes y `node tests/oferta-activa.js` para verificar que los horarios de Fundamentación y Nivelación se incorporan sin romper escenarios.
+Las selecciones de Fundamentación, Disciplinar y Nivelación son **independientes y no excluyentes**. No modifican los datos del plan ni los grupos guardados; solo cambian las consultas y los resultados.
 
 ## Escenarios personales
 
-- Los cambios se guardan automáticamente mediante `localStorage` del navegador.
-- **Guardar** descarga un archivo JSON del escenario; **Cargar** permite recuperarlo.
-- Los archivos de escenarios anteriores pueden seguir cargándose: las nuevas tipologías y reglas de créditos se completan a partir de la base, sin sustituir los cambios personales existentes.
-- **Restablecer** vuelve a los datos iniciales incorporados a la aplicación.
-- La aplicación no tiene cuentas de usuario ni almacena información personal en un servidor.
+Los datos académicos de referencia **no se modifican** al experimentar con horarios o la malla.
 
-## Estructura actual
+- Los cambios se guardan localmente como **diferencias respecto al escenario de referencia**; no se guarda otra copia autoritativa de las fuentes.
+- «Guardar» descarga un archivo JSON con las modificaciones; «Cargar» permite reconstruirlas.
+- Se aceptan archivos de escenario de versiones anteriores con estructura `{S}`; la migración conserva las ediciones del estudiante cuando se pueden identificar mediante las referencias históricas del mismo contrato.
+- Al actualizar `academico.json`, los grupos nuevos se incorporan desde la referencia; los grupos eliminados deliberadamente por una persona siguen eliminados en su escenario.
+- «Restablecer» recupera la referencia académica vigente.
 
-```text
-index.html          Entrada de la aplicación, versión y pie informativo
-css/estilos.css     Estilos principales
-css/pie.css         Pie de página
-js/datos.js         Malla y escenario inicial de grupos/horarios, vínculos y metadatos de fuentes
-js/catalogo.js      Catálogo completo: códigos, nombres, tipologías, créditos, descripciones
-js/oferta-fuente.js Oferta textual: actividades, grupos y franjas informadas
-js/fuentes.js       Objeto FuentesAcademicas para relacionar fuentes sin exigir completitud
-js/modelo.js        Objetos de dominio: PlanCurricular y CalendarioAcademico
-js/app.js           Cálculos de interferencias, escenarios, navegación e interfaz
-tests/verificar.js  Pruebas de cálculo con datos variables
-tests/filtros.js    Pruebas de selección de componentes
-tests/fuentes.js    Pruebas de tres fuentes y ausencia de datos
-tests/oferta-activa.js Pruebas de incorporación B/N, bloques y migración local
-```
+No se requieren cuentas, servidor ni servicios externos. La aplicación funciona sobre GitHub Pages.
 
-Para uso local, clonar este repositorio y abrir `index.html`. Para ejecutar las pruebas, usar `node tests/verificar.js` (Node.js instalado).
+## Archivos de ejecución
 
-## Criterios de diseño y mantenimiento
+~~~text
+index.html
+datos/academico.json     ÚNICA entrada académica estandarizada
+js/modelo.js             PlanCurricular y CalendarioAcademico
+js/entrada.js            Lector del contrato y escenario de referencia
+js/escenarios.js         Modificaciones personales y migración histórica
+js/iniciar.js            Carga del JSON y arranque
+js/app.js                Interfaz y motor heredados (proyección interna RAW)
+css/estilos.css
+css/pie.css
+~~~
 
-La organización sigue **POO como filosofía de responsabilidades**, no la creación obligatoria de una clase por registro:
+Los archivos `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fuentes.js` se conservan como **referencias históricas del repositorio**. No se cargan en `index.html` ni son rutas de entrada de producción. Convertir nuevas fuentes originales a `academico.json` es un trabajo **externo** a esta aplicación.
 
-- **`PlanCurricular`** recibe el escenario y concentra la interpretación de tipologías, suma de créditos, reglas numéricas, semestres y operaciones de edición curricular. No genera HTML ni conoce Mecatrónica.
-- **`CalendarioAcademico`** encapsula los días y horas de la semana configurados en los datos. Las rejillas utilizan el número de días configurado.
-- **`js/app.js`** mantiene las vistas y eventos, y delega las reglas del plan en el objeto de dominio. El cálculo de interferencias continúa separado de esas reglas y no usa las tipologías para deducir horarios.
-- **`js/datos.js`** contiene el plan, las relaciones entre sus fuentes y el escenario inicial de grupos y horarios. **`js/catalogo.js`** y **`js/oferta-fuente.js`** conservan las otras dos fuentes. Cambiar datos académicos no exige editar el algoritmo.
+## Pruebas
 
-### Dónde están los datos en la versión heredada (v0.4.3)
+La batería completa se ejecuta con Node.js y las dependencias de desarrollo declaradas:
 
-| Registro de `RAW` | Contenido |
-|---|---|
-| `programa` | Identificador y nombre del programa |
-| `malla` | Registros `[nombre, semestre, nota, créditos, componente, carácter]` |
-| `componentes` | Catálogo `[id, nombre, enPlan]`: `enPlan` determina si cuenta en el total de créditos del programa |
-| `caracteres` | Catálogo de obligatoria/optativa u otras categorías |
-| `reqCred` | Reglas `[asignatura, créditos mínimos, [componentes que cuentan]]` |
-| `asg`, `gr`, `bl`, `pre` | Asignaturas incorporadas, grupos, bloques y relaciones entre asignaturas |
-| `calendario` | Días de la semana y horario visible de inicio/fin |
-| `opciones` | Distancias permitidas e iniciales, exclusión de prerrequisitos indirectos, asignatura inicial |
-| `metadatos` | Fechas de las fuentes presentadas en el pie |
-| `almacenamiento` | Clave local de escenarios; no cambiarla inadvertidamente si se desea conservar la compatibilidad existente |
+~~~sh
+npm ci
+npm test
+~~~
 
-Los datos no tienen por qué estar completos: un grupo sin bloques no genera conflictos ni impide usar la aplicación. Si en el futuro se incorpora otra carrera, tendrá sus propias asignaturas, tipologías, requisitos y oferta; la lógica compartida no debe recibir excepciones por nombre.
+Incluye pruebas del contrato, oferta, escenarios y vistas, las pruebas heredadas y una prueba de integración de las siete secciones con `jsdom`. GitHub Actions aplica esta batería a la PR antes de publicar; el resultado de la ejecución remota debe comprobarse antes de fusionar.
 
-**Compatibilidad:** los escenarios se almacenan como JSON; las clases no se serializan. Al recuperarlos se completan los campos introducidos en versiones posteriores. Las correcciones históricas de escenarios antiguos, por su propia naturaleza, pueden conservar nombres de registros de versiones pasadas. Los cambios voluntarios de prerrequisitos deben mantenerse después de guardar y cargar.
+Las pruebas nuevas usan solamente el JSON normalizado y verifican estructura, cobertura, horas exactas, escenarios personales y coherencia de las vistas. `tests/verificar.js`, `tests/filtros.js` y `tests/fuentes.js` se mantienen como verificaciones del comportamiento anterior y de los archivos históricos, no como entradas alternativas de producción.
 
-**Limitación a considerar al incorporar otros programas:** actualmente las relaciones entre asignaturas se identifican principalmente mediante sus nombres dentro de una malla. Al compartir asignaturas entre varios planes, convendrá asociar códigos estables cuando estén disponibles, sin imponer ese cambio antes de necesitarlo.
+## Evolución futura
 
-## Evolución prevista, no implementada
-
-El proyecto podrá crecer hacia otras carreras, consulta de materiales, comparación de contenidos y estimación de demanda. Estas funciones no forman parte de la versión actual y **no se consideran defectos por estar ausentes**.
+Consulta de materiales mediante enlaces externos, comparación de programas de asignatura, estimación de demanda y soporte para otros programas. Estas funciones no forman parte de la versión actual y **no son defectos por estar ausentes**. Cuando requieran nuevos campos académicos, deberán incorporarse al **mismo contrato normalizado**, sin abrir conexiones paralelas.

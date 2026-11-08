@@ -14,11 +14,11 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
 function fromRaw(D) {
   return {
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
-    malla: D.malla.map(([n, s, nota, cr, comp, car]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '' })),
+    malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null })),
     pre: D.pre.map(([r, t, m]) => ({ r, t, m: m || '' })),
     asg: D.asg.map(a => a[0]),
-    grupos: D.gr.map(([a, g, c1, c2]) => ({ a, g, c1, c2: c2 || '', on: true })),
-    bloques: D.bl.map(([a, c, d, s, e, o], i) => ({ id: i + 1, a, c, d, s, e, o: o || '' })),
+    grupos: D.gr.map(([a, g, c1, c2, ref, analizable]) => ({ a, g, c1, c2: c2 || '', on: true, ref: ref || null, analizable: analizable !== false })),
+    bloques: D.bl.map(([a, c, d, s, e, o, ref, idAnterior], i) => ({ id: ref ? EntradaAcademica.idNumerico(ref) : i + 1, a, c, d, s, e, o: o || '', ref: ref || null, idAnterior: idAnterior ?? null })),
     reqCred: (D.reqCred || []).map(([n, min, componentes]) => ({ n, min, componentes: [...componentes] })),
     tipos: { componentes: (D.componentes || []).map(([id, nombre, enPlan]) => ({ id, nombre, enPlan })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
   };
@@ -62,7 +62,7 @@ function compute(S) {
 
   const names = S.asg.map((n, i) => ({ n, i, s: semOf(S, n) })).sort((x, y) => x.s - y.s || x.i - y.i).map(x => x.n);
   const groupsOf = {}, allGroupsOf = {};
-  names.forEach(n => { allGroupsOf[n] = S.grupos.filter(g => g.a === n).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y)) || glabel(x).localeCompare(glabel(y))); groupsOf[n] = allGroupsOf[n].filter(g => g.on); });
+  names.forEach(n => { allGroupsOf[n] = S.grupos.filter(g => g.a === n).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y)) || glabel(x).localeCompare(glabel(y))); groupsOf[n] = allGroupsOf[n].filter(g => g.on && g.analizable !== false); });
 
   const pairs = [];
   const groupClash = new Map();
@@ -157,11 +157,15 @@ if (typeof module !== 'undefined') module.exports = { glabel, fromRaw, compute, 
 const KEY = RAW.almacenamiento.clave;
 const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig', 'Asignaturas'], ['grupos', 'Grupos'], ['hor', 'Horarios'], ['heat', 'Mapa de calor'], ['malla', 'Prerrequisitos']];
 
-let S = fromRaw(RAW), S0 = clone(S), restored = false;
+let S0 = fromRaw(RAW), S = clone(S0), restored = false, datosGuardados = null;
 try {
-  const t = localStorage.getItem(KEY);
-  if (t) { const o = JSON.parse(t); if (o && o.S && Array.isArray(o.S.bloques) && o.S.params) { S = o.S; restored = true; } }
-} catch (e) { /* sin almacenamiento: la herramienta funciona igual */ }
+  const texto = localStorage.getItem(KEY);
+  if (texto) {
+    const o = JSON.parse(texto);
+    if (o?.tipo === 'escenario-personal' && o.version === 1 && o.cambios) datosGuardados = o;
+    else if (o?.S && Array.isArray(o.S.bloques) && o.S.params) datosGuardados = o;
+  }
+} catch (e) { /* la herramienta funciona sin almacenamiento */ }
 /* Completa escenarios guardados con asignaturas nuevas de la malla (Inglés, libre elección, proyecto, trabajo de grado…). */
 function fixMalla(s) {
   const base = fromRaw(RAW);
@@ -234,8 +238,25 @@ function fixParams(s) {
   }
   return s;
 }
-fixParams(S); fixMalla(S);
 fixParams(S0); fixMalla(S0);
+S = clone(S0);
+function recuperarEscenarioGuardado(o) {
+  if (o.tipo === 'escenario-personal' && o.version === 1) {
+    return EscenarioPersonal.aplicar(S0, o.cambios);
+  }
+  const anterior = clone(o.S);
+  fixParams(anterior); fixMalla(anterior);
+  return EscenarioPersonal.migrarAnterior(S0, anterior, window.fuentesAcademicas.datos, fromRaw, EntradaAcademica);
+}
+if (datosGuardados) {
+  try {
+    S = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(datosGuardados), CALENDARIO);
+    restored = true;
+  } catch (e) {
+    console.error('No se pudo reconstruir el escenario anterior:', e);
+    S = clone(S0);
+  }
+}
 let R = compute(S), R0 = compute(S0);
 
 const ui = {
@@ -304,7 +325,7 @@ function toast(msg) {
   const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; document.body.appendChild(t);
   setTimeout(() => t.remove(), 4200);
 }
-function save() { try { localStorage.setItem(KEY, JSON.stringify({ S })); } catch (e) { } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); } catch (e) { } }
 
 /* Aplica un cambio de datos: recalcula, avisa si algún par entra o sale del análisis, repinta. */
 function commit(extraMsg) {
@@ -339,8 +360,8 @@ function changes() {
 }
 function pairDeltas() {
   const out = [];
-  R.pairs.forEach(p => {
-    const q = R0.pairs.find(x => x.key === p.key);
+  RV.pairs.forEach(p => {
+    const q = RV0.pairs.find(x => x.key === p.key);
     const before = q && q.enRango ? q : null, now = p.enRango ? p : null;
     const bi = before ? before.idx : 0, ni = now ? now.idx : 0;
     const bc = before ? before.clash : 0, nc = now ? now.clash : 0;
@@ -356,6 +377,7 @@ function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
   const filtroAnalisis = ['inicio', 'inter', 'asig', 'heat'].includes(ui.page);
+  const resultadoVisible = filtroAnalisis ? RV : R, anteriorVisible = filtroAnalisis ? RV0 : R0;
   const componentes = (RAW.opciones.componentesComparables || []).map(id => {
     const tipo = new PlanCurricular(S).componente(id);
     const nombre = tipo?.nombre || id;
@@ -368,7 +390,7 @@ function renderTop() {
     <nav class="nav" aria-label="Secciones">${PAGES_ORDER.map(([k, l]) => `<button data-act="nav" data-p="${k}" ${ui.page === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
-        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${R0.totalPairs} → ${R.totalPairs}</b> ${dlt(R.totalPairs, R0.totalPairs)}` : 'Datos de referencia del programa'}</span>
+        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${anteriorVisible.totalPairs} → ${resultadoVisible.totalPairs}</b> ${dlt(resultadoVisible.totalPairs, anteriorVisible.totalPairs)}` : 'Datos de referencia del programa'}</span>
         ${dirty ? `<button class="btn sm" data-act="drawer-cambios">Ver cambios</button><button class="btn sm danger" data-act="reset">${resetLabel()}</button>` : ''}
       </div>
       <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
@@ -526,9 +548,11 @@ function miniWeek(bA, bB, ov) {
   return `<div class="wk" style="--numero-dias:${DAYS.length}"><div></div>${DAYS.map(d => `<div class="dh">${DAY_SHORT[d]}</div>`).join('')}<div>${Array.from({ length: rows }, (_, i) => `<div class="hr" style="height:${RH}px">${lo + i}</div>`).join('')}</div>${DAYS.map(col).join('')}</div>`;
 }
 function drawerPair(dw) {
+  const R = RV;
   const p = R.pairs.find(x => x.key === dw.key);
   if (!p) return null;
-  const GA = R.allGroupsOf[p.A], GB = R.allGroupsOf[p.B];
+  const GA = R.allGroupsOf[p.A].filter(g => g.analizable !== false);
+  const GB = R.allGroupsOf[p.B].filter(g => g.analizable !== false);
   const actA = GA.filter(g => g.on), actB = GB.filter(g => g.on);
   if (!dw.ga || !actA.find(g => g.g === dw.ga) || !dw.gb || !actB.find(g => g.g === dw.gb)) {
     let found = false;
@@ -572,9 +596,11 @@ function drawerPair(dw) {
 }
 function drawerCambios() {
   const ch = changes(), pd = pairDeltas();
+  const reporte = ['inicio','inter','asig','heat'].includes(ui.page) ? [RV,RV0] : [R,R0];
+  const [resultado, anterior] = reporte;
   return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. datos de referencia</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
-    <div class="kv"><div><div class="k">Pares con choque</div><div class="v num">${R0.totalPairs} → ${R.totalPairs}</div></div><div><div class="k">Parejas en choque</div><div class="v num">${R0.totalClash} → ${R.totalClash}</div></div><div><div class="k">Índice global</div><div class="v num">${pct(R0.totalCombos ? R0.totalClash / R0.totalCombos : 0, 1)} → ${pct(R.totalCombos ? R.totalClash / R.totalCombos : 0, 1)}</div></div></div>
+    <div class="kv"><div><div class="k">Pares con choque</div><div class="v num">${anterior.totalPairs} → ${resultado.totalPairs}</div></div><div><div class="k">Parejas en choque</div><div class="v num">${anterior.totalClash} → ${resultado.totalClash}</div></div><div><div class="k">Índice global</div><div class="v num">${pct(anterior.totalCombos ? anterior.totalClash / anterior.totalCombos : 0, 1)} → ${pct(resultado.totalCombos ? resultado.totalClash / resultado.totalCombos : 0, 1)}</div></div></div>
     <section><div class="lab" style="margin-bottom:6px">Qué cambiaste</div>${ch.length ? ch.map(([k, t]) => `<div class="chg-item"><span class="tag">${k}</span><span>${esc(t)}</span></div>`).join('') : '<div class="hint">Nada: estás viendo los datos originales.</div>'}</section>
     <section><div class="lab" style="margin-bottom:6px">Pares afectados</div>${pd.length ? pd.slice(0, 40).map(x => { const up = x.ni > x.bi + 1e-9, dn = x.ni < x.bi - 1e-9; return `<button class="prt" style="grid-template-columns:minmax(0,1fr) auto" data-act="pair-open" data-k="${esc(x.p.key)}"><span>${esc(x.p.A)} <span class="faint">⇄</span> ${esc(x.p.B)}</span><span class="num"><span class="faint">${pct(x.bi)}</span> → <b class="delta ${up ? 'up' : dn ? 'down' : 'zero'}">${pct(x.ni)}</b></span></button>`; }).join('') : '<div class="hint">Ningún par cambió todavía.</div>'}</section>
     <div class="row"><button class="btn danger" data-act="reset">${resetLabel(true)}</button></div>
@@ -639,10 +665,10 @@ function groupDetail(a, g) {
     const sh = S.grupos.filter(o => o.a === a && o.g !== g.g && (o.c1 === c || o.c2 === c));
     return `<div>${esc(compText(a, c))}${sh.length ? ` <span class="hint">(clase compartida con ${sh.map(o => esc(glabel(o))).join(', ')})</span>` : ''}</div>`;
   }).join('');
-  return `<div class="gdet"><div><b>${esc(glabel(g))}</b> <span class="faint">${g.on ? '' : '(no se oferta en esta simulación)'}</span></div>
+  return `<div class="gdet"><div><b>${esc(glabel(g))}</b> <span class="faint">${g.analizable === false ? '(grupo de otra sede: solo consulta)' : (g.on ? '' : '(no se oferta en esta simulación)')}</span></div>
     ${parts}
-    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}">${esc(n)}</button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
-    <div class="row"><button class="btn sm" data-act="g-toggle" data-a="${esc(a)}" data-g="${esc(g.g)}">${g.on ? 'Dejar de ofertar' : 'Volver a ofertar'}</button><button class="btn sm" data-act="hor-go" data-n="${esc(a)}" data-c="${esc(g.c1)}">Editar horario</button><button class="btn sm danger" data-act="g-del" data-a="${esc(a)}" data-g="${esc(g.g)}">Eliminar</button></div></div>`;
+    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.analizable === false ? '<span class="hint">Registrado para consulta; no participa en los cálculos.</span>' : g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}">${esc(n)}</button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
+    <div class="row">${g.analizable === false ? '' : `<button class="btn sm" data-act="g-toggle" data-a="${esc(a)}" data-g="${esc(g.g)}">${g.on ? 'Dejar de ofertar' : 'Volver a ofertar'}</button>`}<button class="btn sm" data-act="hor-go" data-n="${esc(a)}" data-c="${esc(g.c1)}">Editar horario</button><button class="btn sm danger" data-act="g-del" data-a="${esc(a)}" data-g="${esc(g.g)}">Eliminar</button></div></div>`;
 }
 function pageGrupos() {
   const sel = ui.grp.sel;
@@ -651,10 +677,10 @@ function pageGrupos() {
     const gs = R.allGroupsOf[n], st = R.st[n];
     const selG = sel && sel.a === n ? gs.find(g => g.g === sel.g) : null;
     return `<section class="card gcard" data-aname="${esc(n)}">
-      <div class="hd"><div><h3>${esc(n)} <span class="sem">S${st.s}</span></h3><span class="hint">${st.grupos} de ${gs.length} grupos ofertados</span></div><button class="btn sm ghost" data-act="asg-del" data-n="${esc(n)}" title="Quitar del análisis">Quitar</button></div>
+      <div class="hd"><div><h3>${esc(n)} <span class="sem">S${st.s}</span></h3><span class="hint">${st.grupos} en el análisis · ${gs.length} registrados</span></div><button class="btn sm ghost" data-act="asg-del" data-n="${esc(n)}" title="Quitar del análisis">Quitar</button></div>
       <div class="gchips">${gs.map(g => {
         const c = (R.groupClash.get(n + '\u0001' + g.g) || []).length;
-        return `<button class="gchip ${g.on ? '' : 'off'} ${selG && selG.g === g.g ? 'sel' : ''}" data-act="g-sel" data-a="${esc(n)}" data-g="${esc(g.g)}">${esc(glabel(g))}${g.on ? `<span class="b ${c ? 'h' : 'o'}">${c ? c : '✓'}</span>` : ''}</button>`;
+        return `<button class="gchip ${g.on ? '' : 'off'} ${selG && selG.g === g.g ? 'sel' : ''}" data-act="g-sel" data-a="${esc(n)}" data-g="${esc(g.g)}">${esc(glabel(g))}${g.analizable === false ? '<span class="faint"> · otra sede</span>' : g.on ? `<span class="b ${c ? 'h' : 'o'}">${c ? c : '✓'}</span>` : ''}</button>`;
       }).join('') || '<span class="hint">Sin grupos todavía.</span>'}</div>
       ${selG ? groupDetail(n, selG) : '<div class="hint">Clic en un grupo para ver su horario y con qué choca. El número rojo es la cantidad de grupos de otras asignaturas con los que choca.</div>'}
       <div class="addrow" data-a="${esc(n)}"><input type="text" class="ng-n" placeholder="Nuevo grupo (ej. G7)" aria-label="Nombre del nuevo grupo"><button class="btn sm" data-act="g-add">Agregar</button></div>
@@ -693,7 +719,9 @@ function pageHor() {
   const hasOv = ovBlocks.length > 0, ZW = hasOv ? 62 : 100;
   const lm = lanes(mine), lo = lanes(ovBlocks);
   const hot = new Set(), hitSet = new Set();
-  ovBlocks.forEach(o => mine.forEach(m => { if (overlap(o, m)) { hitSet.add(o); for (let x = Math.max(o.s, m.s); x < Math.min(o.e, m.e); x++) hot.add(o.d + ':' + x); } }));
+  const clavesAnalizables = new Set(S.grupos.filter(g => g.on && g.analizable !== false).flatMap(g =>
+    [g.c1, g.c2].filter(Boolean).map(c => g.a + '\u0001' + c)));
+  ovBlocks.forEach(o => mine.forEach(m => { if (clavesAnalizables.has(o.a + '\u0001' + o.c) && clavesAnalizables.has(m.a + '\u0001' + m.c) && overlap(o, m)) { hitSet.add(o); for (let x = Math.max(o.s, m.s); x < Math.min(o.e, m.e); x++) hot.add(o.d + ':' + x); } }));
   const hours = Array.from({ length: H_MAX - H_MIN }, (_, i) => H_MIN + i);
   const cols = DAYS.map(d => `<div class="dcol" data-d="${d}">${hours.map(hr => `<div class="hc ${hot.has(d + ':' + hr) ? 'hot' : ''}" data-d="${d}" data-h="${hr}"></div>`).join('')}
     ${mine.filter(b => b.d === d).map(b => { const l = lm.get(b), w = ZW / l.n, ci = comps.indexOf(b.c), lb = compLabel(A, b.c); return `<div class="hb ${h.comp === b.c ? 'sel' : ''}" draggable="true" data-bid="${b.id}" data-act="h-comp" data-c="${esc(b.c)}" style="top:${(b.s - H_MIN) * 34}px;height:${(b.e - b.s) * 34 - 1}px;left:calc(${l.lane * w}% + 1px);width:calc(${w}% - 2px);${compColor(ci)}" title="${esc(lb)} · ${DAY_NAMES[b.d]} ${b.s}–${b.e} (arrastra para mover)">${esc(lb)}<small>${b.s}–${b.e}</small></div>`; }).join('')}
@@ -740,7 +768,7 @@ function pageHeat() {
   const names = new PlanCurricular(S).seleccionarPorComponentes(S.asg, ui.componentes).sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
   const selected = names.filter(n => !off.has(n));
   const selectedSet = new Set(selected);
-  const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on);
+  const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on && g.analizable !== false);
   const slots = {};
   DAYS.forEach(d => { slots[d] = Array.from({ length: H_MAX - H_MIN }, () => ({ groups: new Set(), subjects: new Set() })); });
   const scheduledGroups = new Set();
@@ -999,7 +1027,7 @@ function onAct(act, d, el, ev) {
     case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
     case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
-    case 'export': return download('escenario-horarios.json', JSON.stringify({ app: 'interferencias-horarios', v: 1, S }, null, 1), 'application/json');
+    case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
 }
@@ -1035,9 +1063,11 @@ function onChange(k, el) {
       const rd = new FileReader();
       rd.onload = () => {
         try {
-          const o = JSON.parse(rd.result); const n = o && o.S;
-          if (!n || !n.params || !Array.isArray(n.bloques) || !Array.isArray(n.grupos) || !Array.isArray(n.malla) || !Array.isArray(n.pre) || !Array.isArray(n.asg)) throw new Error('formato');
-          S = fixMalla(fixParams(n)); ui.drawer = null; commit('Escenario cargado.');
+          const o = JSON.parse(rd.result);
+          if (!o || !((o.tipo === 'escenario-personal' && o.version === 1 && o.cambios) ||
+            (o.S && o.S.params && Array.isArray(o.S.bloques) && Array.isArray(o.S.grupos)))) throw new Error('formato');
+          const recuperado = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(o), CALENDARIO);
+          S = recuperado; ui.drawer = null; commit('Escenario cargado.');
         } catch (e) { toast('Ese archivo no es un escenario válido.'); }
       };
       rd.readAsText(file); el.value = ''; return;
