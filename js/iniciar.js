@@ -10,7 +10,7 @@
   try {
     // ÚNICA petición de información académica: el sitio no carga las tres
     // fuentes originales ni genera datos institucionales faltantes.
-    const respuesta = await fetch('datos/academico.json?v=0.5.9');
+    const respuesta = await fetch('datos/academico.json?v=0.6.0');
     if (!respuesta.ok) throw new Error('No se pudo consultar el contrato académico');
     const contrato = await respuesta.json();
     const lector = new EntradaAcademica(contrato);
@@ -18,6 +18,8 @@
     // proyección posicional es transitoria y NO se expone como entrada global.
     // fromRaw construye S0 y permite conservar compatibilidad de escenarios.
     const proyeccion = lector.generarEscenarioBase();
+    // El tema procede del ID del programa ya normalizado; no introduce otra entrada.
+    window.IdentidadUniversitaria.aplicarTema(proyeccion.programa);
     window.CONTEXTO_ACADEMICO = {
       programa: proyeccion.programa,
       calendario: proyeccion.calendario,
@@ -34,7 +36,7 @@
     // La interfaz se carga DESPUÉS del contrato y recibe CONTEXTO_ACADEMICO.
     // Las versiones ?v= de esta ruta, del JSON y de `index.html` deben
     // coincidir con el número público; lo comprueba `tests/versionado.js`.
-    script.src = 'js/app.js?v=0.5.9';
+    script.src = 'js/app.js?v=0.6.0';
     script.onerror = () => {
       if (contenedor) contenedor.textContent = 'No se pudo cargar la interfaz de planeación.';
     };
