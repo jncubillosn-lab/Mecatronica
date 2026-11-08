@@ -28,6 +28,10 @@ El motor `PlanCurricular` ya interpreta los componentes de cada requisito como d
 
 **«Haber aprobado» no equivale a estar ubicado en un semestre anterior**. Esta aplicación, que no recibe expedientes individuales de aprobación, no puede certificar si una persona cumple el requisito administrativo de inscripción. La vista de Prerrequisitos representa la regla de aprobación y ofrece solo una comprobación hipotética de distribución curricular. No debe mostrarse como verificación de créditos aprobados por un estudiante real.
 
+## Compatibilidad posterior (REG-01, v0.7.4)
+
+Si un escenario antiguo almacena **toda** la colección de requisitos, la referencia puede diferir de sus valores guardados. La corrección general de escenarios [REG-01](REG-01.md) evita que una edición distinta congele PAI en futuros archivos y presenta las reglas ambiguas de archivos anteriores para que el usuario elija por asignatura entre «Usar referencia vigente» y «Conservar guardado», sin perder otros cambios personales. No se agregan excepciones en el motor por PAI.
+
 ## Compatibilidad y pruebas
 
 - `tests/requisitos-tpi-pai.js`: verifica identidad SIA, créditos, texto, umbral y componente en la única entrada; el adaptador de lectura; que B/L/N no sustituyan C al evaluar escenarios de prueba, y que Trabajo de Grado quede intacto.
