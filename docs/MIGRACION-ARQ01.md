@@ -43,18 +43,9 @@ Los bloques horarios compartidos entre varias opciones se mantienen como una ún
 
 ## Pruebas y comprobaciones
 
-Los archivos actuales de pruebas incluyen:
+La batería de ocho conjuntos se ejecuta con `npm ci && npm test`. Comprueba contrato, oferta, escenarios, vistas, reglas históricas, filtros, fuentes heredadas y navegación estática mediante `jsdom`. La rama incluye el workflow `.github/workflows/verificacion-arq01.yml` para verificarla en la PR. Su estado remoto debe comprobarse antes de la fusión.
 
-```sh
-node tests/contrato-arq01.js
-node tests/oferta-activa.js
-node tests/escenarios-arq01.js
-node tests/vistas-arq01.js
-```
-
-Además se conservan las tres pruebas históricas (`verificar.js`, `filtros.js`, `fuentes.js`).
-
-Se verificaron **40 casos** mediante ejecución aislada del código JavaScript: contrato y referencias, exactitud de día/hora de los bloques, agrupaciones, escenarios anteriores, modificaciones personales, filtros y generación de siete vistas.
+En esta revisión se ejecutaron **siete conjuntos JavaScript en entorno aislado**, además de verificaciones específicas de datos y criterios de elegibilidad. La nueva prueba de integración basada en `jsdom` requiere ejecución en Node.js con dependencias instaladas; no se considera superada hasta contar con ese resultado.
 
 La referencia v0.4.3 contenía 386 grupos y 797 bloques, incluidos grupos especiales que contribuían a los resultados (4.044 combinaciones con choque bajo la selección antigua). En la nueva versión los registros se conservan pero los grupos de otras sedes quedan excluidos de los cálculos, por lo que **no se exige igualdad de totales globales entre selecciones diferentes**. La fidelidad se comprueba mediante equivalencia de registros, días, horarios, agrupaciones y resultados para exactamente la misma selección de grupos. La fórmula de solapamiento no cambia.
 
