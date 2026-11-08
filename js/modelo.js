@@ -6,6 +6,11 @@
  * Se crea una instancia con el estado vigente; no se almacena estado global aquí.
  */
 class PlanCurricular {
+  /**
+   * @param {object} estado Escenario efectivo, no el JSON académico original.
+   * Las operaciones de edición actúan sobre este objeto recibido; el llamador
+   * decide cuándo guardar las diferencias respecto a la referencia.
+   */
   constructor(estado) { this.estado = estado; }
 
   asignatura(nombre) { return this.estado.malla.find(a => a.n === nombre); }
@@ -31,6 +36,12 @@ class PlanCurricular {
    * La regla declara qué componentes suman. Ningún nombre ni cifra académica
    * interviene en el algoritmo; se consideran solo semestres anteriores.
    */
+  /**
+   * Un total parcial puede calcularse, pero `unknown` impide concluir que
+   * faltan créditos cuando alguno es desconocido. `low` solo es cierto si
+   * toda la información contable necesaria está disponible.
+   * @returns {{total:number, unknown:boolean, low:boolean}}
+   */
   evaluarCreditos(asignatura, regla) {
     const previas = this.estado.malla.filter(a => a.s < asignatura.s);
     const catalogo = new Set(this.componentes().map(c => c.id));
@@ -44,6 +55,11 @@ class PlanCurricular {
   }
 
   /** Diferencia créditos del plan de otros créditos según metadatos del componente. */
+  /**
+   * La suma numérica no implica que la información sea completa: `incompleto`
+   * permanece verdadero si alguna asignatura carece de créditos conocidos.
+   * `enPlan` es un atributo del contrato, no una lista fija en el motor.
+   */
   resumenSemestre(semestre) {
     const asignaturas = this.estado.malla.filter(a => a.s === semestre);
     const total = asignaturas.reduce((sum, a) => sum + (Number.isFinite(a.cr) ? a.cr : 0), 0);
@@ -66,6 +82,11 @@ class PlanCurricular {
     return a;
   }
 
+  /**
+   * Edición voluntaria del escenario: si el crédito era desconocido se toma
+   * cero como punto de partida SOLO para aplicar la acción explícita.
+   * No se altera el valor nulo de la fuente académica.
+   */
   ajustarCreditos(nombre, diferencia) {
     const a = this.asignatura(nombre);
     if (!a) return null;
@@ -73,6 +94,10 @@ class PlanCurricular {
     return a;
   }
 
+  /**
+   * Cambia una posición curricular dentro del rango del escenario actual.
+   * No cambia la malla normalizada ni significa que se haya matriculado.
+   */
   moverSemestre(nombre, destino) {
     const a = this.asignatura(nombre);
     if (!a) return null;
@@ -82,6 +107,11 @@ class PlanCurricular {
 }
 
 /** Calendario de la oferta. Días y franja horaria se leen de la fuente. */
+/**
+ * Interpreta los días y límites horarios aportados por `configuracion.calendario`.
+ * El motor usa intervalos [inicio, fin); no asume un calendario universal.
+ * @see docs/ARQUITECTURA.md
+ */
 class CalendarioAcademico {
   constructor(datos) {
     this.dias = (datos.dias || []).map(([id, nombre, corto]) => ({ id, nombre, corto }));
