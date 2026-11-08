@@ -64,12 +64,13 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 |---|---|---|
 | `versionEsquema` | Identifica la forma del contrato | Entero, distinto de la versión de la página y de la fecha de las fuentes |
 | `programa` | Identifica programa y plan | Los identificadores se definen en los datos; no en funciones |
-| `componentes` | Catálogo de componentes del plan y su inclusión en créditos | Configurable; no se fijan B/C/N o valores numéricos en el motor |
+| `componentes` y `caracteres` | Componentes del plan, inclusión en créditos y caracteres curriculares | Configurables; no se fijan B/C/N ni otros valores institucionales en el motor |
 | `catalogo` | Asignaturas institucionales, código, nombre, créditos, tipología y texto cuando exista | No depende de que el curso aparezca en la malla u oferta |
 | `malla` | Posiciones curriculares, semestre, componente y carácter | Una posición puede representar una optativa genérica y no tener código de asignatura |
 | `requisitos` | Relaciones y mínimos de créditos definidos para un plan | No se copian automáticamente a otros planes; se expresa qué componentes cuentan |
 | `oferta` | Oferta por periodo, actividades, grupos y bloques horarios | Se preservan los grupos aunque no tengan bloques |
 | `agrupaciones` | Relaciones de grupos por actividad y su elegibilidad para el análisis | `analizable: false` conserva la agrupación como información sin incorporarla a cálculos; ausente equivale a `true` |
+| `exclusionesAgrupacion` | Posiciones cuya oferta tiene actividades, pero no hay agrupaciones verificadas | Se conserva el motivo sin fabricar combinaciones ni perder los grupos de `oferta` |
 | `configuracion` | Calendario, filtros disponibles y reglas de comparación | Sin constantes propias de una carrera en el algoritmo |
 | `procedencia` | Identificación/fecha de la información si consta | Metadatos opcionales; nunca instrucciones para leer otras fuentes |
 
