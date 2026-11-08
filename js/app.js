@@ -415,7 +415,7 @@ function onAct(act, d, el, ev) {
       if(!pos||!entrada)return;
       if(S.demanda?.respuestasAnonimas)return toast('Con respuestas anónimas, importa un archivo actualizado para mantener los conteos consistentes.');
       const texto=entrada.value.trim();
-      if(!/^\\d+$/.test(texto)||!Number.isSafeInteger(Number(texto)))return toast('Escribe un entero no negativo. Para dato desconocido usa «Marcar desconocido».');
+      if(!/^\d+$/.test(texto)||!Number.isSafeInteger(Number(texto)))return toast('Escribe un entero no negativo. Para dato desconocido usa «Marcar desconocido».');
       try{
         const o=DemandaEstadistica.normalizar(S.demanda||{solicitudes:[]});
         o.solicitudes=o.solicitudes.filter(x=>x.posicionId!==pos);
