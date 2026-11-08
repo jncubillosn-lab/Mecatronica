@@ -53,7 +53,7 @@ assert.match(css, /--programa-borde/);
 for (const varSemantica of ['--heat', '--ok', '--warn', '--ca', '--cb']) {
   assert(css.includes(varSemantica), 'Debe conservarse el color analítico ' + varSemantica);
 }
-assert(html.indexOf('js/identidad.js') < html.indexOf('js/iniciar.js'),
+assert(html.indexOf('<script src="js/identidad.js') < html.indexOf('<script src="js/iniciar.js'),
   'El tema visual se carga antes de resolver el programa normalizado');
 assert.match(iniciar, /IdentidadUniversitaria\.aplicarTema\(proyeccion\.programa\)/);
 assert.match(html, /Sitio no oficial/);
