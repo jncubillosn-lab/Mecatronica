@@ -81,8 +81,9 @@ El sistema conserva lo que sabe y calcula solo con los datos utilizables. No des
 | Horarios | Consultar y editar bloques; explorar superposiciones |
 | Mapa de calor | Concentración de horarios de grupos, **no** ocupación de aulas ni matrícula |
 | Prerrequisitos | Malla, requisitos, tipologías y créditos previos |
+| Demanda | Solicitudes de encuesta personal y comparación descriptiva, con simulación identificada |
 
-Las selecciones de Fundamentación, Disciplinar y Nivelación son **independientes y no excluyentes**. Desde v0.5.4, estos filtros aparecen y actúan sobre los elementos visibles **en las ocho páginas**, incluidas Grupos, Horarios y Prerrequisitos. Un filtro nunca elimina asignaturas, grupos, bloques o relaciones del escenario; al restablecerlo vuelven a verse.
+Las selecciones de Fundamentación, Disciplinar y Nivelación son **independientes y no excluyentes**. En v0.7.5, estos filtros aparecen y actúan sobre los elementos visibles **en las ocho páginas**, incluidas Grupos, Horarios y Prerrequisitos. Un filtro nunca elimina asignaturas, grupos, bloques o relaciones del escenario; al restablecerlo vuelven a verse.
 
 **Unidad académica responsable (dato opcional del escenario):** en las fichas de Asignaturas, Horarios y Prerrequisitos se puede seleccionar o escribir un **departamento de Ingeniería** o una **facultad fuera de Ingeniería**, o dejarlo **sin información**. No se infiere del profesor ni supone una vinculación laboral permanente. Se guarda ligado al ID curricular como un cambio personal `malla[].unidad`, se conserva en la exportación/importación y permite filtrar por unidad (o por las asignaturas sin dato). Este campo **no es obligatorio ni forma parte de `datos/academico.json`**. Las opciones sugeridas orientan la captura, no asignan valores automáticamente.
 
