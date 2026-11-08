@@ -17,7 +17,7 @@ function fromRaw(D) {
     malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null })),
     pre: D.pre.map(([r, t, m]) => ({ r, t, m: m || '' })),
     asg: D.asg.map(a => a[0]),
-    grupos: D.gr.map(([a, g, c1, c2, ref]) => ({ a, g, c1, c2: c2 || '', on: true, ref: ref || null })),
+    grupos: D.gr.map(([a, g, c1, c2, ref, analizable]) => ({ a, g, c1, c2: c2 || '', on: true, ref: ref || null, analizable: analizable !== false })),
     bloques: D.bl.map(([a, c, d, s, e, o, ref, idAnterior], i) => ({ id: ref ? EntradaAcademica.idNumerico(ref) : i + 1, a, c, d, s, e, o: o || '', ref: ref || null, idAnterior: idAnterior ?? null })),
     reqCred: (D.reqCred || []).map(([n, min, componentes]) => ({ n, min, componentes: [...componentes] })),
     tipos: { componentes: (D.componentes || []).map(([id, nombre, enPlan]) => ({ id, nombre, enPlan })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
@@ -62,7 +62,7 @@ function compute(S) {
 
   const names = S.asg.map((n, i) => ({ n, i, s: semOf(S, n) })).sort((x, y) => x.s - y.s || x.i - y.i).map(x => x.n);
   const groupsOf = {}, allGroupsOf = {};
-  names.forEach(n => { allGroupsOf[n] = S.grupos.filter(g => g.a === n).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y)) || glabel(x).localeCompare(glabel(y))); groupsOf[n] = allGroupsOf[n].filter(g => g.on); });
+  names.forEach(n => { allGroupsOf[n] = S.grupos.filter(g => g.a === n).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y)) || glabel(x).localeCompare(glabel(y))); groupsOf[n] = allGroupsOf[n].filter(g => g.on && g.analizable !== false); });
 
   const pairs = [];
   const groupClash = new Map();
@@ -664,10 +664,10 @@ function groupDetail(a, g) {
     const sh = S.grupos.filter(o => o.a === a && o.g !== g.g && (o.c1 === c || o.c2 === c));
     return `<div>${esc(compText(a, c))}${sh.length ? ` <span class="hint">(clase compartida con ${sh.map(o => esc(glabel(o))).join(', ')})</span>` : ''}</div>`;
   }).join('');
-  return `<div class="gdet"><div><b>${esc(glabel(g))}</b> <span class="faint">${g.on ? '' : '(no se oferta en esta simulación)'}</span></div>
+  return `<div class="gdet"><div><b>${esc(glabel(g))}</b> <span class="faint">${g.analizable === false ? '(grupo de otra sede: solo consulta)' : (g.on ? '' : '(no se oferta en esta simulación)')}</span></div>
     ${parts}
-    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}">${esc(n)}</button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
-    <div class="row"><button class="btn sm" data-act="g-toggle" data-a="${esc(a)}" data-g="${esc(g.g)}">${g.on ? 'Dejar de ofertar' : 'Volver a ofertar'}</button><button class="btn sm" data-act="hor-go" data-n="${esc(a)}" data-c="${esc(g.c1)}">Editar horario</button><button class="btn sm danger" data-act="g-del" data-a="${esc(a)}" data-g="${esc(g.g)}">Eliminar</button></div></div>`;
+    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.analizable === false ? '<span class="hint">Registrado para consulta; no participa en los cálculos.</span>' : g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}">${esc(n)}</button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
+    <div class="row">${g.analizable === false ? '' : `<button class="btn sm" data-act="g-toggle" data-a="${esc(a)}" data-g="${esc(g.g)}">${g.on ? 'Dejar de ofertar' : 'Volver a ofertar'}</button>`}<button class="btn sm" data-act="hor-go" data-n="${esc(a)}" data-c="${esc(g.c1)}">Editar horario</button><button class="btn sm danger" data-act="g-del" data-a="${esc(a)}" data-g="${esc(g.g)}">Eliminar</button></div></div>`;
 }
 function pageGrupos() {
   const sel = ui.grp.sel;
@@ -676,10 +676,10 @@ function pageGrupos() {
     const gs = R.allGroupsOf[n], st = R.st[n];
     const selG = sel && sel.a === n ? gs.find(g => g.g === sel.g) : null;
     return `<section class="card gcard" data-aname="${esc(n)}">
-      <div class="hd"><div><h3>${esc(n)} <span class="sem">S${st.s}</span></h3><span class="hint">${st.grupos} de ${gs.length} grupos ofertados</span></div><button class="btn sm ghost" data-act="asg-del" data-n="${esc(n)}" title="Quitar del análisis">Quitar</button></div>
+      <div class="hd"><div><h3>${esc(n)} <span class="sem">S${st.s}</span></h3><span class="hint">${st.grupos} en el análisis · ${gs.length} registrados</span></div><button class="btn sm ghost" data-act="asg-del" data-n="${esc(n)}" title="Quitar del análisis">Quitar</button></div>
       <div class="gchips">${gs.map(g => {
         const c = (R.groupClash.get(n + '\u0001' + g.g) || []).length;
-        return `<button class="gchip ${g.on ? '' : 'off'} ${selG && selG.g === g.g ? 'sel' : ''}" data-act="g-sel" data-a="${esc(n)}" data-g="${esc(g.g)}">${esc(glabel(g))}${g.on ? `<span class="b ${c ? 'h' : 'o'}">${c ? c : '✓'}</span>` : ''}</button>`;
+        return `<button class="gchip ${g.on ? '' : 'off'} ${selG && selG.g === g.g ? 'sel' : ''}" data-act="g-sel" data-a="${esc(n)}" data-g="${esc(g.g)}">${esc(glabel(g))}${g.analizable === false ? '<span class="faint"> · otra sede</span>' : g.on ? `<span class="b ${c ? 'h' : 'o'}">${c ? c : '✓'}</span>` : ''}</button>`;
       }).join('') || '<span class="hint">Sin grupos todavía.</span>'}</div>
       ${selG ? groupDetail(n, selG) : '<div class="hint">Clic en un grupo para ver su horario y con qué choca. El número rojo es la cantidad de grupos de otras asignaturas con los que choca.</div>'}
       <div class="addrow" data-a="${esc(n)}"><input type="text" class="ng-n" placeholder="Nuevo grupo (ej. G7)" aria-label="Nombre del nuevo grupo"><button class="btn sm" data-act="g-add">Agregar</button></div>
@@ -718,7 +718,9 @@ function pageHor() {
   const hasOv = ovBlocks.length > 0, ZW = hasOv ? 62 : 100;
   const lm = lanes(mine), lo = lanes(ovBlocks);
   const hot = new Set(), hitSet = new Set();
-  ovBlocks.forEach(o => mine.forEach(m => { if (overlap(o, m)) { hitSet.add(o); for (let x = Math.max(o.s, m.s); x < Math.min(o.e, m.e); x++) hot.add(o.d + ':' + x); } }));
+  const clavesAnalizables = new Set(S.grupos.filter(g => g.on && g.analizable !== false).flatMap(g =>
+    [g.c1, g.c2].filter(Boolean).map(c => g.a + '\u0001' + c)));
+  ovBlocks.forEach(o => mine.forEach(m => { if (clavesAnalizables.has(o.a + '\u0001' + o.c) && clavesAnalizables.has(m.a + '\u0001' + m.c) && overlap(o, m)) { hitSet.add(o); for (let x = Math.max(o.s, m.s); x < Math.min(o.e, m.e); x++) hot.add(o.d + ':' + x); } }));
   const hours = Array.from({ length: H_MAX - H_MIN }, (_, i) => H_MIN + i);
   const cols = DAYS.map(d => `<div class="dcol" data-d="${d}">${hours.map(hr => `<div class="hc ${hot.has(d + ':' + hr) ? 'hot' : ''}" data-d="${d}" data-h="${hr}"></div>`).join('')}
     ${mine.filter(b => b.d === d).map(b => { const l = lm.get(b), w = ZW / l.n, ci = comps.indexOf(b.c), lb = compLabel(A, b.c); return `<div class="hb ${h.comp === b.c ? 'sel' : ''}" draggable="true" data-bid="${b.id}" data-act="h-comp" data-c="${esc(b.c)}" style="top:${(b.s - H_MIN) * 34}px;height:${(b.e - b.s) * 34 - 1}px;left:calc(${l.lane * w}% + 1px);width:calc(${w}% - 2px);${compColor(ci)}" title="${esc(lb)} · ${DAY_NAMES[b.d]} ${b.s}–${b.e} (arrastra para mover)">${esc(lb)}<small>${b.s}–${b.e}</small></div>`; }).join('')}
@@ -765,7 +767,7 @@ function pageHeat() {
   const names = new PlanCurricular(S).seleccionarPorComponentes(S.asg, ui.componentes).sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
   const selected = names.filter(n => !off.has(n));
   const selectedSet = new Set(selected);
-  const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on);
+  const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on && g.analizable !== false);
   const slots = {};
   DAYS.forEach(d => { slots[d] = Array.from({ length: H_MAX - H_MIN }, () => ({ groups: new Set(), subjects: new Set() })); });
   const scheduledGroups = new Set();
