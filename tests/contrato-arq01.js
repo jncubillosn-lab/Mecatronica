@@ -15,6 +15,11 @@ probar('Una entrada con estructura y versión conocidas', () => {
   assert(datos.programa.id);
   const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
   assert(html.includes('js/iniciar.js'));
+  assert(html.includes('js/analisis.js'),'El motor debe cargarse antes de iniciar');
+  assert(html.includes('js/vistas.js'),'Las vistas deben cargarse antes de iniciar');
+  const inicio=fs.readFileSync(path.join(__dirname,'../js/iniciar.js'),'utf8');
+  assert(!inicio.includes('window.RAW ='),'No se debe publicar RAW como contexto global');
+  assert(inicio.includes('window.CONTEXTO_ACADEMICO'),'Se requiere el escenario base explícito');
   assert(!html.includes('src="js/datos.js'));
   assert(!html.includes('src="js/catalogo.js'));
   assert(!html.includes('src="js/oferta-fuente.js'));
@@ -152,6 +157,20 @@ probar('No se pierden requisitos académicos ante referencias rotas', () => {
   copia.requisitos.prerrequisitos[0].hasta=datos.requisitos.prerrequisitos[0].hasta;
   copia.requisitos.minimosCreditos[0].destino='posicion-inexistente';
   assert.throws(()=>lector.generarEscenarioBase(),/Referencia de requisito académico inválida/);
+});
+
+
+probar('Las referencias de requisitos llegan al escenario junto con sus IDs',()=>{
+  const base=new EntradaAcademica(datos).generarEscenarioBase();
+  assert.equal(base.pre.length,datos.requisitos.prerrequisitos.length);
+  assert.equal(base.reqCred.length,datos.requisitos.minimosCreditos.length);
+  for(let i=0;i<base.pre.length;i++){
+    assert.equal(base.pre[i][3],datos.requisitos.prerrequisitos[i].desde);
+    assert.equal(base.pre[i][4],datos.requisitos.prerrequisitos[i].hasta);
+  }
+  for(let i=0;i<base.reqCred.length;i++){
+    assert.equal(base.reqCred[i][3],datos.requisitos.minimosCreditos[i].destino);
+  }
 });
 
 console.log('Contrato de entrada académica: comprobaciones finalizadas.');
