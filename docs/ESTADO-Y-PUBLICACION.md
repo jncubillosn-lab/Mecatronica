@@ -1,7 +1,7 @@
 # EST-01 — Estado real, historial y publicación
 
 **Corte documentado:** 7 de noviembre de 2026.  
-**Versión de la propuesta actual:** `0.5.5` (comprobar CI, fusión y despliegue).  
+**Versión pública objetivo de PR #15:** `0.5.5` (CI verificada; comprobar fusión y despliegue).  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Acuerdos de alcance:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Registro histórico de migración:** [MIG-ARQ01](MIGRACION-ARQ01.md).
@@ -19,7 +19,7 @@ Este archivo es una **fotografía verificable de implementación**, no una hoja 
 | v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | **Fusionada en `main`**, commit `a398cfb068ce3747fee289adc9b151505107a570`. Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
 | v0.5.3, [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13) | Corrección de referencias académicas inválidas, extracción del motor y de las vistas, contexto de arranque sin `window.RAW` y claves de prerrequisitos por ID con compatibilidad histórica. La entrada académica y las fórmulas de cálculo no se modifican. |
 | v0.5.4, [PR #14](https://github.com/jncubillosn-lab/Mecatronica/pull/14) | Filtros de tipología y unidad en las siete páginas, editores de unidad responsable opcional por asignatura en Asignaturas/Horarios/Prerrequisitos, y conservación del dato en escenarios personales exportados/importados. La única entrada académica permanece intacta. |
-| v0.5.5 (cambio propuesto) | Simplificación deliberada de TPI: conservar solo G1 lunes y miércoles 14:00–16:00 en la oferta y en las agrupaciones; 21 alternativas retiradas de esta referencia para evitar ruido en el análisis. Las restantes asignaturas no se modifican. |
+| v0.5.5, [PR #15](https://github.com/jncubillosn-lab/Mecatronica/pull/15) | Simplificación deliberada de TPI: conservar solo G1 lunes y miércoles 14:00–16:00 en la oferta y en las agrupaciones; 21 alternativas retiradas de esta referencia para evitar ruido en el análisis. Las restantes asignaturas no se modifican. |
 
 La PR #8 superó GitHub Actions (ejecución `42434980198`), la PR #9 superó la ejecución `42435837261` y la PR #11 superó la ejecución `42437245624`, todas sobre sus commits correspondientes. La PR #10 consolidó únicamente documentación, sin requerir una nueva versión pública. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
 
