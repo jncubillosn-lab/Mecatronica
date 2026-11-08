@@ -15,8 +15,8 @@
     const contrato = await respuesta.json();
     const lector = new EntradaAcademica(contrato);
     // Se construye una sola vez un escenario base desde el contrato. La
-    // proyección histórica es transitoria y NO se expone como entrada global.
-    // Su traductor fromRaw existe solo para compatibilidad de formatos.
+    // proyección posicional es transitoria y NO se expone como entrada global.
+    // fromRaw construye S0 y permite conservar compatibilidad de escenarios.
     const proyeccion = lector.generarEscenarioBase();
     window.CONTEXTO_ACADEMICO = {
       programa: proyeccion.programa,
