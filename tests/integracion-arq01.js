@@ -62,6 +62,29 @@ async function main() {
       assert(d.querySelector('#view h1')?.textContent.includes(heading),
         'No se presentó ' + heading);
     }
+    // RESP-01: el mapa permite explorar una malla extensa sin tocar el escenario.
+    const mapa=d.querySelector('#malla-panel');
+    assert(mapa && d.querySelector('#malla-stage') && d.querySelector('#canvas'),
+      'La malla contiene un visor independiente con desplazamiento');
+    assert(!mapa.querySelector('.sidecard'),
+      'El panel de edición no forma parte de la vista ampliada del mapa');
+    const estadoAntes=d.querySelector('.pill-stat')?.textContent;
+    d.querySelector('[data-act="m-zoom"][data-dx="0.1"]').click();
+    assert.equal(d.querySelector('.malla-zoom-etiqueta')?.textContent.trim(),'110 %');
+    assert.equal(d.querySelector('#malla-stage')?.style.zoom,'1.1',
+      'El zoom escala solo la presentación del mapa');
+    d.querySelector('[data-act="m-zoom-reset"]').click();
+    assert.equal(d.querySelector('.malla-zoom-etiqueta')?.textContent.trim(),'100 %');
+    d.querySelector('[data-act="m-ampliar"]').click();
+    assert(d.querySelector('#malla-panel.malla-panel--ampliado'));
+    assert(d.body.classList.contains('mapa-ampliado'));
+    assert.equal(d.querySelector('[data-act="m-ampliar"]')?.textContent,
+      'Salir de pantalla completa');
+    d.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+    assert(!d.body.classList.contains('mapa-ampliado'),'Escape cierra la vista ampliada');
+    assert.equal(d.querySelector('.pill-stat')?.textContent,estadoAntes,
+      'Zoom y ampliación no introducen cambios en el escenario');
+
     // DEM-01: sin encuesta, los resultados simulados se ven desde el primer
     // acceso sin almacenarse ni alterar el escenario personal.
     d.querySelector('[data-act="nav"][data-p="demanda"]').click();
