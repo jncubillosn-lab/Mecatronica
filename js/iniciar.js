@@ -13,7 +13,6 @@
     if (!respuesta.ok) throw new Error('No se pudo consultar el contrato académico');
     const contrato = await respuesta.json();
     const lector = new EntradaAcademica(contrato);
-    // Proyección transitoria hacia las funciones existentes. NO es otra fuente.
     // `RAW` es solo la proyección de compatibilidad en memoria; la referencia
     // académica y su procedencia siguen estando únicamente en el contrato.
     window.RAW = lector.generarEscenarioBase();
