@@ -26,4 +26,14 @@ assert.match(vistas,/id="malla-stage"/);
 assert.match(demanda,/role="region" tabindex="0" aria-label="Gráfica de demanda desplazable"/);
 assert.match(app,/ui\.malla\.ampliado = false/);
 assert.match(app,/centroX\*escala/);
-console.log('OK: base responsive, visor de malla y gráfica legible con scroll local.');
+// MALLA-ALTURA-01: el flujo normal no debe recortar la columna más larga.
+const regla=/\.malla-panel:not\(\.malla-panel--ampliado\) \.canvas\{([^}]+)\}/;
+const normal=css.match(regla);
+assert(normal,'El visor normal declara sus dimensiones independientes del viewport');
+assert.match(normal[1],/height:max-content/,'La altura depende del contenido');
+assert.match(normal[1],/max-height:none/,'No se impone altura máxima por vh/dvh');
+assert.match(css,/\.malla-panel:not\(\.malla-panel--ampliado\) \.malla-stage\{[^}]*height:max-content/,
+  'La etapa crece con la columna semestral de mayor altura');
+assert.match(css,/\.malla-panel--ampliado \.canvas\{[^}]*overflow:auto/,
+  'Pantalla completa preserva el desplazamiento del contenido');
+console.log('OK: base responsive y altura de malla sin recortes ni límite fijo.');
