@@ -451,3 +451,11 @@ main{padding-bottom:40px}
 :root[data-theme="dark"] .cta-bar{--cta:#ff8a3d;--cta-ink:#1c1208}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cta-bar{--cta:#ff8a3d;--cta-ink:#1c1208}}
 .cta-b{background:var(--cta-ink);color:var(--cta)}
+
+/* Unidad académica: anotación voluntaria de asignatura, nunca inferida. */
+.unidad-filtro{display:flex;align-items:center;gap:7px;margin-left:8px;font:600 11px var(--sans);color:var(--ink3)}
+.unidad-filtro select{max-width:min(300px,65vw);min-width:150px;font-size:12px;padding:6px 9px}
+.unidad-editor{display:grid;gap:6px;max-width:560px;padding:10px 0}
+.unidad-editor label{font-size:11px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3)}
+.unidad-editor input{width:100%;min-width:0}
+@media(max-width:720px){.unidad-filtro{margin-left:0;width:100%;justify-content:space-between}.unidad-filtro select{min-width:0;max-width:55vw}.unidad-editor{max-width:100%}}
