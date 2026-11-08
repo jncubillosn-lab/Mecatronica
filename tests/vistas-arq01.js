@@ -56,4 +56,21 @@ verificar('La oferta nueva no inventa horarios ausentes',()=>{
  assert(sinHorario.every(g=>g.a&&g.g));
 });
 
+
+verificar('Las otras sedes están disponibles para consulta pero no afectan mapa ni matrices',()=>{
+  const externo=api.S.grupos.find(g=>g.analizable===false);
+  assert(externo);
+  assert(api.pageGrupos().includes('otra sede'));
+  const antes=api.pageHeat();
+  const horarios=api.S.bloques.filter(b=>b.a===externo.a&&[externo.c1,externo.c2].includes(b.c));
+  const previos=horarios.map(b=>({b,s:b.s,e:b.e}));
+  horarios.forEach(b=>{b.s+=1;b.e+=1;});
+  assert.equal(api.pageHeat(),antes,'Los horarios informativos no deben afectar el mapa');
+  previos.forEach(({b,s,e})=>{b.s=s;b.e=e;});
+  const par=api.R.pairs.find(p=>p.enRango&&
+    [p.A,p.B].some(n=>api.R.allGroupsOf[n].some(g=>g.analizable===false)));
+  assert(par);
+  assert(api.drawerPair({type:'pair',key:par.key}));
+});
+
 console.log('Vistas y selección: comprobaciones finalizadas.');
