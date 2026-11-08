@@ -7,7 +7,7 @@ const root = path.join(__dirname, '..');
 const data = fs.readFileSync(path.join(root, 'js/datos.js'), 'utf8');
 const modelo = fs.readFileSync(path.join(root, 'js/modelo.js'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
-const core = app.slice(0, app.indexOf('/* ===== APLICACIÓN'));
+const core = fs.readFileSync(path.join(root, 'js/analisis.js'), 'utf8') + '\n' + app.slice(0, app.indexOf('/* ===== APLICACIÓN'));
 const helpers = app.slice(app.indexOf('const planActual'), app.indexOf('const norm ='));
 const migration = app.match(/function fixMalla\(s\) \{[\s\S]*?\n\}/)?.[0];
 assert(core.includes('function compute(S)'));
