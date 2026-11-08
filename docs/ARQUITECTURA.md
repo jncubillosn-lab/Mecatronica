@@ -3,7 +3,9 @@
 > **Estado:** criterio arquitectónico adoptado para el desarrollo posterior.  
 > **Fecha:** 7 de noviembre de 2026.  
 > **Alcance:** sistema web de planeación curricular de Mecatrónica, extensible a otros programas.  
-> **Arquitectura normativa:** la descrita en este documento. **La migración v0.5.0 adopta la entrada única, el escenario derivado y los cambios personales; conserva una proyección interna transitoria para la interfaz existente.**
+> **Arquitectura normativa:** la descrita en este documento. **Vigente en `main` desde v0.5.0 y mantenida en v0.5.1.** El sistema adopta entrada única, escenario derivado y cambios personales; conserva una proyección interna transitoria para la interfaz existente.
+>
+> **Documentos complementarios:** [DEC-01 — decisiones y alcance](DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial de migración](MIGRACION-ARQ01.md).
 
 ## 0. Regla principal, no negociable
 
@@ -218,7 +220,7 @@ Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora fin
 
 La v0.4.3 todavía utilizaba `js/datos.js` como entrada principal de ejecución, con grupos preparados manualmente, y guardaba copias completas del escenario.
 
-**En la rama de migración v0.5.0:**
+**Implementado desde la fusión de la PR #8 a `main` (v0.5.0):**
 - **Entrada única:** `index.html` ya no carga `js/datos.js`, `js/catalogo.js` ni `js/oferta-fuente.js`. `js/iniciar.js` solicita exclusivamente `datos/academico.json`.
 - **Modelo/escenario:** `js/entrada.js` interpreta el contrato y genera el escenario base. El motor y la interfaz heredados continúan usando temporalmente una proyección de ese contrato llamada `RAW`; **esta proyección no es otra entrada ni lee otras fuentes**.
 - **Personalización:** `js/escenarios.js` conserva las diferencias del usuario respecto a la referencia actual y reconstruye el escenario efectivo. Puede reconocer archivos antiguos `{S}` usando las identidades históricas incluidas en la **misma entrada académica**.
@@ -229,7 +231,7 @@ Las estructuras `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fue
 
 **Alcance restante de la transición:** la interfaz y las funciones existentes aún reciben la proyección `RAW` en lugar de operar sobre objetos del dominio de extremo a extremo. Esto es deuda de implementación localizada y no autoriza rutas paralelas de información. Tampoco se han definido agrupaciones no verificadas para cursos con varias actividades; sus registros permanecen disponibles en `oferta`.
 
-**Verificación y puesta en producción:** la migración debe probarse antes de integrarse a `main`. El comportamiento actual publicado permanece hasta esa integración. El contrato no obliga a completar datos faltantes ni a generar alertas por su ausencia.
+**Verificación y puesta en producción:** la migración fue integrada en `main` mediante la PR #8, con pruebas CI satisfactorias. La PR #9 llevó el indicador y los recursos versionados a v0.5.1, e incorporó validación automática de versiones. La presencia de código en `main` y el resultado de CI no constituyen por sí solos una inspección pública del sitio servido por Pages; comprobar por separado según [EST-01](ESTADO-Y-PUBLICACION.md). El contrato no obliga a completar datos faltantes ni a generar alertas por su ausencia.
 
 ### Orden invariable de implementación
 
@@ -241,11 +243,13 @@ Las estructuras `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fue
 
 **Ninguna fase habilita a reintroducir una segunda entrada académica.**
 
-## 6. Aplicación a nuevas funciones
+## 6. Cambios de alcance expresamente aprobados
 
-El proyecto puede crecer hacia consulta de descripciones y materiales, comparación temática, preinscripciones voluntarias, estimaciones de demanda o nuevos programas. Esas funciones **no deben crear entradas académicas paralelas**.
+**Este documento no establece una hoja de ruta ni autoriza funciones futuras por anticipado.** Solo cuando una necesidad sea solicitada y aprobada se examina su efecto arquitectónico. La falta de una característica no requerida no es un problema del sistema.
 
-Si un módulo futuro necesita información académica adicional, se estudia la ampliación compatible del contrato `FuentesAcadémicas` y se suministra **en ese único archivo normalizado**. El módulo lee el modelo común, no la fuente de origen. Datos personales o de interacción de un usuario, cuando sean necesarios, se mantienen diferenciados de la referencia académica.
+Si una función autorizada necesita nuevos datos académicos, primero se justifica si cabe ampliar de forma compatible el contrato `FuentesAcadémicas`; de ser así, esos datos se proporcionan mediante **el mismo archivo normalizado**. Un componente no lee fuentes originales. Los datos personales o de interacción permanecen diferenciados de la referencia académica.
+
+Véase [DEC-01](DECISIONES-Y-ALCANCE.md) para la regla de no atribuir objetivos al proyecto.
 
 El sistema sigue siendo compatible con publicación estática (GitHub Pages). La arquitectura no exige servidor, cuentas ni servicios externos.
 
@@ -253,13 +257,13 @@ El sistema sigue siendo compatible con publicación estática (GitHub Pages). La
 
 Antes de modificar la aplicación o sus datos:
 
-1. Leer **`docs/ARQUITECTURA.md`** y tratar su diagrama de **una sola entrada** como referencia.
+1. Leer **`docs/ARQUITECTURA.md`**, [DEC-01](DECISIONES-Y-ALCANCE.md) y [EST-01](ESTADO-Y-PUBLICACION.md); tratar el diagrama de **una sola entrada** como referencia.
 2. Indicar qué responsabilidad/capa se cambia y qué información del contrato utiliza.
 3. Comprobar si la petición puede resolverse **solo modificando el archivo académico normalizado**, sin tocar algoritmos.
 4. No proponer conversores de las tres fuentes como parte del sistema web ni reintroducir conexiones desde archivos originales al cálculo.
 5. No introducir constantes institucionales en las funciones cuando son datos del plan o de la oferta.
 6. No generar alarmas para compensar vacíos legítimos de información.
-7. Realizar pruebas de cobertura, resultados, compatibilidad de escenarios y ausencia de rutas paralelas.
+7. Realizar pruebas de cobertura, resultados, compatibilidad de escenarios y ausencia de rutas paralelas; en una PR con cambios a recursos productivos, **incrementar y verificar la versión pública** conforme a EST-01.
 8. Si una nueva necesidad obliga a alterar esta arquitectura, **proponer y justificar primero el cambio al documento**. No establecer silenciosamente una excepción en el código.
 
-**La prioridad arquitectónica es la simplicidad: una entrada académica, un modelo común, un escenario efectivo y resultados coherentes.** No se requieren capas ni validaciones adicionales por costumbre.
+**La prioridad arquitectónica es la simplicidad: una entrada académica, un modelo común, un escenario efectivo y resultados coherentes.** No se requieren capas, validaciones ni objetivos adicionales por costumbre. Para distinguir decisiones normativas de características implementadas consultar DEC-01 y EST-01.
