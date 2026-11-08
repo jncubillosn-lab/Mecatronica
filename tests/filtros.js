@@ -11,9 +11,10 @@ const antesEventos = app.slice(0, app.indexOf("document.addEventListener('click'
 
 const analisis = fs.readFileSync(path.join(root, 'js/analisis.js'), 'utf8');
 const vistas = fs.readFileSync(path.join(root, 'js/vistas.js'), 'utf8');
+const demanda = fs.readFileSync(path.join(root, 'js/demanda.js'), 'utf8');
 const codigo = modelo + '\n' + datos + '\n' + analisis + '\n' +
   'window.CONTEXTO_ACADEMICO = { estadoBase: fromRaw(RAW), opciones: RAW.opciones, programa: RAW.programa, calendario: RAW.calendario, almacenamiento: RAW.almacenamiento, metadatos: RAW.metadatos, incrementosOferta: RAW.incrementosOferta };\n' +
-  vistas + '\n' + antesEventos + '\n' +
+  demanda + '\n' + vistas + '\n' + antesEventos + '\n' +
   "render = () => {}; return { S, R, ui, getRV: () => RV, getRV0: () => RV0, pageInicio, pageInter, pageAsig, pageHeat, pageGrupos, pageHor, pageMalla, renderTop, changes, onAct };";
 const tester = new Function('window','document',codigo)({ innerWidth:1200 }, {});
 const { S, R, ui } = tester;
