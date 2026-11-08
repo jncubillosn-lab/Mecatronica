@@ -133,6 +133,15 @@ verificar('Un requisito legado puede revisarse individualmente sin restablecer e
  assert.equal(api.getPendientes().length,0);
  assert(!api.renderTop().includes('data-act="req-vigente"'),
    'El aviso desaparece cuando se resuelve la ambigüedad');
+ // La segunda elección permite conservar una regla histórica deliberadamente.
+ const actual=api.S.reqCred.find(x=>x.posicionId===id);
+ actual.componentes=['B','C','L'];
+ api.setPendientes([{key:'id:'+id,nombre:actual.n,
+   guardado:JSON.parse(JSON.stringify(actual)),vigente:JSON.parse(JSON.stringify(base))}]);
+ api.onAct('req-conservar',{key:'id:'+id},{},{preventDefault(){}});
+ assert.deepEqual(actual.componentes,['B','C','L']);
+ assert.equal(api.getPendientes().length,0);
+
 });
 
 console.log('Vistas y selección: comprobaciones finalizadas.');
