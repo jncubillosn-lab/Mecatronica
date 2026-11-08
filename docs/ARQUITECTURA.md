@@ -7,6 +7,8 @@
 >
 > **Documentos complementarios:** [DEC-01 — decisiones y alcance](DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial de migración](MIGRACION-ARQ01.md).
 
+**Presentación multicarrera (UNI-UI-01):** el catálogo cromático de `js/identidad.js` es configuración puramente visual que resuelve el ID de un programa ya presente en `FuentesAcadémicas`. No representa una segunda fuente académica ni habilita carreras sin contrato. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
+
 ## 0. Regla principal, no negociable
 
 **El sistema recibe una sola entrada académica estandarizada: `FuentesAcadémicas`.**
