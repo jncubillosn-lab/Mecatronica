@@ -8,7 +8,15 @@ class EscenarioPersonal {
   static copia(x) { return JSON.parse(JSON.stringify(x)); }
   // Priorizar `ref` estable del contrato; el nombre visible es respaldo legado.
   static claveGrupo(g) { return g.ref ? 'r:' + g.ref : g.a + '\u0001' + g.g; }
-  static clavePre(p) { return p.r + '\u0001' + p.t; }
+  /** Referencias estables cuando el contrato las conoce; nombres como legado. */
+  static clavePre(p, idsPorNombre) {
+    const rId = p.rId || idsPorNombre?.get(p.r);
+    const tId = p.tId || idsPorNombre?.get(p.t);
+    return rId && tId ? 'id:' + rId + '\u0001' + tId : p.r + '\u0001' + p.t;
+  }
+  static indicePosiciones(estado) {
+    return new Map((estado.malla || []).filter(m => m.idPos).map(m => [m.n, m.idPos]));
+  }
   // El ID numérico legado solo identifica bloques sin `ref` normalizada.
   static claveBloque(b) { return b.ref ? 'r:' + b.ref : 'i:' + b.id; }
   static propiedadesBloque(b) {
@@ -44,8 +52,9 @@ class EscenarioPersonal {
       for(const k of ['s','cr','comp','car','nota'])if(JSON.stringify(m[k])!==JSON.stringify(b[k]))valores[k]=m[k];
       if(Object.keys(valores).length)out.malla.push({nombre:m.n,posicionId:m.idPos||null,valores});
     }
-    const ap=new Map(actual.pre.map(p=>[EscenarioPersonal.clavePre(p),p]));
-    const bp=new Map(base.pre.map(p=>[EscenarioPersonal.clavePre(p),p]));
+    const idsPorNombre=new Map([...EscenarioPersonal.indicePosiciones(base), ...EscenarioPersonal.indicePosiciones(actual)]);
+    const ap=new Map(actual.pre.map(p=>[EscenarioPersonal.clavePre(p, idsPorNombre),p]));
+    const bp=new Map(base.pre.map(p=>[EscenarioPersonal.clavePre(p, idsPorNombre),p]));
     for(const [key,p]of ap)if(!bp.has(key))out.pre.agregar.push(EscenarioPersonal.copia(p));
     for(const key of bp.keys())if(!ap.has(key))out.pre.quitar.push(key);
     const as=new Set(actual.asg),bs=new Set(base.asg);
@@ -75,7 +84,12 @@ class EscenarioPersonal {
     }
     for(const key of bb.keys())if(!ab.has(key))out.bloques.quitar.push(key);
     if(JSON.stringify(base.tipos)!==JSON.stringify(actual.tipos))out.tipos=EscenarioPersonal.copia(actual.tipos);
-    if(JSON.stringify(base.reqCred)!==JSON.stringify(actual.reqCred))out.reqCred=EscenarioPersonal.copia(actual.reqCred);
+    // La identidad añadida en v0.5.3 no convierte un escenario histórico
+    // idéntico en una edición personal de requisitos.
+    const sinIds = lista => (lista || []).map(r => [r.n, r.min, r.componentes]);
+    if(JSON.stringify(sinIds(base.reqCred))!==JSON.stringify(sinIds(actual.reqCred)))
+      out.reqCred=EscenarioPersonal.copia(actual.reqCred).map(r=>({...r,
+        posicionId:r.posicionId||idsPorNombre.get(r.n)||null}));
     return out;
   }
 
@@ -96,9 +110,16 @@ class EscenarioPersonal {
       else if(r.nueva)s.malla.push(EscenarioPersonal.copia(r.nueva));
     }
     const pre=cambios.pre || {};
-    const quitarPre=new Set(pre.quitar||[]);
-    s.pre=s.pre.filter(p=>!quitarPre.has(EscenarioPersonal.clavePre(p)));
-    for(const p of pre.agregar||[])if(!s.pre.some(x=>EscenarioPersonal.clavePre(x)===EscenarioPersonal.clavePre(p)))s.pre.push(EscenarioPersonal.copia(p));
+    const indicePos=EscenarioPersonal.indicePosiciones(s), quitarPre=new Set(pre.quitar||[]);
+    // Aceptar tanto claves estables nuevas como claves por nombre de exportaciones
+    // personales antiguas; nunca reponer una relación retirada por el usuario.
+    s.pre=s.pre.filter(p=>!quitarPre.has(EscenarioPersonal.clavePre(p, indicePos)) &&
+      !quitarPre.has(p.r+'\u0001'+p.t));
+    for(const p of pre.agregar||[]){
+      const normalizado={...p, rId:p.rId||indicePos.get(p.r)||null, tId:p.tId||indicePos.get(p.t)||null};
+      if(!s.pre.some(x=>EscenarioPersonal.clavePre(x,indicePos)===EscenarioPersonal.clavePre(normalizado,indicePos)))
+        s.pre.push(EscenarioPersonal.copia(normalizado));
+    }
 
     const asg=cambios.asg||{},quitarAsg=new Set(asg.quitar||[]);
     s.asg=s.asg.filter(n=>!quitarAsg.has(n));
@@ -131,7 +152,8 @@ class EscenarioPersonal {
       if(!s.bloques.some(x=>EscenarioPersonal.claveBloque(x)===EscenarioPersonal.claveBloque(b)))s.bloques.push(b);
     }
     if(cambios.tipos)s.tipos=EscenarioPersonal.copia(cambios.tipos);
-    if(cambios.reqCred)s.reqCred=EscenarioPersonal.copia(cambios.reqCred);
+    if(cambios.reqCred)s.reqCred=EscenarioPersonal.copia(cambios.reqCred)
+      .map(r=>({...r,posicionId:r.posicionId||indicePos.get(r.n)||null}));
     return s;
   }
 

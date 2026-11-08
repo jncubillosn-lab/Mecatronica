@@ -43,7 +43,7 @@ class EntradaAcademica {
   }
 
   /**
-   * @returns {object} Proyección posicional para la interfaz heredada.
+   * @returns {object} Proyección posicional transitoria para construir S0.
    * `gr`: [asignatura, etiqueta, componente1, componente2, ref, analizable]
    * `bl`: [asignatura, componente, día, inicio, fin, nota, ref, idAnterior]
    * La oferta académica puede contener más grupos que las agrupaciones
@@ -52,6 +52,13 @@ class EntradaAcademica {
    */
   generarEscenarioBase() {
     const d = this.datos, nombreDe = id => this.posiciones.get(id)?.nombre || null;
+    // Una relación presente pero mal referenciada es un error de integridad,
+    // NO un dato académico ausente. Nunca omitirla silenciosamente.
+    const nombreRequisito = (id, descripcion) => {
+      const nombre = nombreDe(id);
+      if (!nombre) throw new Error('Referencia de requisito académico inválida (' + descripcion + '): ' + String(id));
+      return nombre;
+    };
     const disponibles = new Set();
     const grupos = [], bloques = [], vistos = new Set(), bloquesPorReferencia = new Map();
     for (const grupo of d.agrupaciones) {
@@ -109,13 +116,15 @@ class EntradaAcademica {
       malla: d.malla.map(p => [p.nombre, p.semestre, p.nota || '', p.creditos ?? null, p.componente || '', p.caracter || '', p.id]),
       componentes: (d.componentes || []).map(c => [c.id, c.nombre, c.enPlan]),
       caracteres: (d.caracteres || []).map(c => [c.id, c.nombre]),
-      reqCred: (req.minimosCreditos || []).flatMap(r => {
-        const n = nombreDe(r.destino); return n ? [[n, r.minimo, [...(r.componentes || [])]]] : [];
-      }),
-      pre: (req.prerrequisitos || []).flatMap(r => {
-        const desde = nombreDe(r.desde), hasta = nombreDe(r.hasta);
-        return desde && hasta ? [[desde, hasta, r.metodo || '']] : [];
-      }),
+      reqCred: (req.minimosCreditos || []).map(r => [
+        nombreRequisito(r?.destino, 'mínimo de créditos: destino'),
+        r.minimo, [...(r.componentes || [])], r.destino
+      ]),
+      pre: (req.prerrequisitos || []).map(r => [
+        nombreRequisito(r?.desde, 'prerrequisito: origen'),
+        nombreRequisito(r?.hasta, 'prerrequisito: destino'),
+        r.metodo || '', r.desde, r.hasta
+      ]),
       asg: d.malla.filter(p => disponibles.has(p.id)).map(p => [p.nombre, p.semestre]),
       gr: grupos,
       bl: bloques,

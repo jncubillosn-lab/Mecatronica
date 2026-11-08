@@ -1,7 +1,7 @@
 # DEC-01 — Decisiones, alcance y criterios de conservación
 
 **Estado:** acuerdos adoptados para el desarrollo de Gestor de horarios · Mecatrónica.  
-**Revisión:** 7 de noviembre de 2026, con la incorporación de documentación interna de v0.5.2.  
+**Revisión:** 7 de noviembre de 2026, con las correcciones técnicas implementadas en v0.5.3.  
 **Documento superior:** [ARQ-01](ARQUITECTURA.md).  
 **Estado del código y publicación:** [ESTADO-Y-PUBLICACION.md](ESTADO-Y-PUBLICACION.md).
 
@@ -40,7 +40,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 - **Tipología institucional** no equivale necesariamente a **componente curricular**: por ejemplo, Inglés puede conservar tipología institucional `E` mientras pertenece al componente `N` del plan.
 - **Selección de componentes para consulta** no equivale a **modificación del escenario**. Los filtros no alteran ni eliminan datos.
 - **Mapa de calor de grupos** no equivale a aulas ocupadas, estudiantes matriculados ni disponibilidad real de salones.
-- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública de la aplicación** (`0.5.2`) son números independientes.
+- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública de la aplicación** (`0.5.3`) son números independientes.
 
 ## 4. Qué constituye un problema y qué no
 

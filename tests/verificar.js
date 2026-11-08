@@ -7,7 +7,7 @@ const root = path.join(__dirname, '..');
 const data = fs.readFileSync(path.join(root, 'js/datos.js'), 'utf8');
 const modelo = fs.readFileSync(path.join(root, 'js/modelo.js'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
-const core = app.slice(0, app.indexOf('/* ===== APLICACIÓN'));
+const core = fs.readFileSync(path.join(root, 'js/analisis.js'), 'utf8');
 const helpers = app.slice(app.indexOf('const planActual'), app.indexOf('const norm ='));
 const migration = app.match(/function fixMalla\(s\) \{[\s\S]*?\n\}/)?.[0];
 assert(core.includes('function compute(S)'));
@@ -16,7 +16,8 @@ assert(migration);
 
 const api = new Function(
   modelo + '\n' + data + '\n' + core +
-  '\nlet S = fromRaw(RAW); const esc = x => String(x);\n' +
+  '\nconst CONTEXTO = { estadoBase: fromRaw(RAW), opciones: RAW.opciones, incrementosOferta: RAW.incrementosOferta };' +
+  '\nconst OPCIONES = CONTEXTO.opciones; let S = fromRaw(RAW); const esc = x => String(x);\n' +
   helpers + '\n' + migration +
   '\nreturn { RAW, fromRaw, compute, clone, overlap, maxSemester, fixMalla, creditRuleFor, creditStatus, PlanCurricular, CalendarioAcademico, setState: x => S=x };'
 )();

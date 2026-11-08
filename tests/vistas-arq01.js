@@ -8,6 +8,8 @@ const contrato=JSON.parse(read('datos/academico.json'));
 const {EntradaAcademica}=require('../js/entrada.js');
 const raw=new EntradaAcademica(contrato).generarEscenarioBase();
 const appCode=read('js/modelo.js')+'\n'+read('js/entrada.js')+'\n'+read('js/escenarios.js')+'\n'+
+ read('js/analisis.js')+'\n'+read('js/vistas.js')+'\n'+
+ 'window.CONTEXTO_ACADEMICO = { estadoBase: fromRaw(RAW), opciones: RAW.opciones, programa: RAW.programa, calendario: RAW.calendario, almacenamiento: RAW.almacenamiento, metadatos: RAW.metadatos, incrementosOferta: RAW.incrementosOferta };\n'+
  read('js/app.js').split("document.addEventListener('click'")[0];
 const api=new Function('RAW','localStorage','window','document',appCode+
   '\nrender=()=>{};return {S,S0,R,ui,changes,onAct,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageMalla,renderTop,drawerPair,getVista:()=>RV};')(

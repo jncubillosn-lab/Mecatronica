@@ -5,7 +5,7 @@
 **Decisiones no negociables:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Estado y pasos de publicación actuales:** [EST-01](ESTADO-Y-PUBLICACION.md).
 
-Este documento conserva el **registro de lo que ya ocurrió**, no describe una rama pendiente ni define tareas futuras obligatorias.
+Este documento conserva el **registro de lo que ya ocurrió** en las PR #8 y #9, no describe una rama pendiente ni define tareas futuras obligatorias. **Nota de continuidad:** la PR #13 (v0.5.3) retiró el contexto global `RAW`, separó motor y vistas y preservó IDs en relaciones de requisitos; por tanto, las menciones a `RAW` dentro del historial de v0.5.0 describen **esa versión histórica**, no la interfaz actual. El estado técnico vigente está en [EST-01](ESTADO-Y-PUBLICACION.md).
 
 ## 1. Ejecución en el orden de ARQ-01
 

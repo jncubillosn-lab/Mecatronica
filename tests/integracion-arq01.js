@@ -36,6 +36,14 @@ async function main() {
       await new Promise(resolve => setTimeout(resolve, 25));
     }
     assert(d.querySelector('#view h1'), 'La aplicación no inició después de leer el JSON');
+    const contexto=dom.window.CONTEXTO_ACADEMICO;
+    assert(contexto?.estadoBase,'El arranque no entregó el escenario académico base');
+    assert.equal(Object.hasOwn(dom.window,'RAW'),false,
+      'La proyección histórica no debe quedar como variable global');
+    const fuente=JSON.parse(fs.readFileSync(path.join(root,'datos/academico.json'),'utf8'));
+    assert.equal(contexto.estadoBase.grupos.length,fuente.agrupaciones.length);
+    assert.equal(contexto.estadoBase.pre.length,fuente.requisitos.prerrequisitos.length);
+    assert.equal(contexto.estadoBase.reqCred.length,fuente.requisitos.minimosCreditos.length);
     assert.equal(d.querySelectorAll('[data-act="nav"]').length >= 7, true);
     const titles = [
       ['inicio', 'Resumen de cruces'],
