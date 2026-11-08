@@ -1,7 +1,7 @@
 # EST-01 — Estado real, historial y publicación
 
 **Corte documentado:** 7 de noviembre de 2026.  
-**Código principal tras la integración de la PR #11:** `main`, versión pública `0.5.2`.  
+**Versión de la actualización de mantenimiento PR #13:** `0.5.3` (integrar en `main` solo después de CI).  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Acuerdos de alcance:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Registro histórico de migración:** [MIG-ARQ01](MIGRACION-ARQ01.md).
@@ -17,6 +17,7 @@ Este archivo es una **fotografía verificable de implementación**, no una hoja 
 | v0.5.0, [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8) | Fusionada en `main`, commit `7e3739c2fe3eea0ab7e36c280910c65c90fbca12`. Entrada única, lector, cambios personales, conservación de grupos especiales y pruebas. |
 | v0.5.1, [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) | Fusionada en `main`, commit `9220474b27ecd2226fcec3fca4a46a312bd423a5`. Corrección del indicador público y parámetros de caché, más guardas automáticas de versión. |
 | v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | **Fusionada en `main`**, commit `a398cfb068ce3747fee289adc9b151505107a570`. Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
+| v0.5.3, [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13) | Corrección de referencias académicas inválidas, extracción del motor y de las vistas, contexto de arranque sin `window.RAW` y claves de prerrequisitos por ID con compatibilidad histórica. La entrada académica y las fórmulas de cálculo no se modifican. |
 
 La PR #8 superó GitHub Actions (ejecución `42434980198`), la PR #9 superó la ejecución `42435837261` y la PR #11 superó la ejecución `42437245624`, todas sobre sus commits correspondientes. La PR #10 consolidó únicamente documentación, sin requerir una nueva versión pública. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
 
@@ -26,12 +27,12 @@ La PR #8 superó GitHub Actions (ejecución `42434980198`), la PR #9 superó la 
 ÚNICA ENTRADA ACADÉMICA (datos/academico.json)
     -> js/iniciar.js: carga JSON
     -> EntradaAcademica (js/entrada.js): valida contrato y prepara referencia
-    -> proyección interna RAW: compatibilidad de interfaz, NO segunda entrada
-    -> fromRaw / escenario base S0
+    -> proyección posicional LOCAL en el lector (solo adaptador heredado)
+    -> js/iniciar.js: contexto explícito con S0, calendario y configuración
     -> EscenarioPersonal: aplica diferencias personales, produce S
-    -> compute(S): análisis horario y curricular
-    -> selección de componentes y filtros -> resultados de consulta
-    -> siete vistas, detalles, mapa de calor, exportación CSV
+    -> js/analisis.js: cálculo puro compute(S), cierre curricular y cruces
+    -> js/app.js: filtros, estado de interfaz y acciones
+    -> js/vistas.js: siete vistas, detalles, mapa de calor y CSV
     -> cambios voluntarios -> localStorage / importar-exportar escenario
 ```
 
@@ -40,12 +41,14 @@ La PR #8 superó GitHub Actions (ejecución `42434980198`), la PR #9 superó la 
 - `EntradaAcademica`: lee el **único contrato** y conserva agrupaciones, bloques e identidades de referencia. No hace OCR ni conversión de fuentes.
 - `PlanCurricular` y `CalendarioAcademico`, en `js/modelo.js`: comportamiento curricular y estructura temporal.
 - `EscenarioPersonal`: extrae, aplica, valida y migra diferencias personales; incluye lectura de escenarios `{S}` antiguos.
-- `js/app.js`: contiene `fromRaw`, `compute`, estado de consulta y siete vistas; sigue siendo un módulo amplio heredado.
+- `js/analisis.js`: contiene `compute`, cierre de requisitos, cruces y `fromRaw` como adaptador histórico. Las fórmulas no dependen de DOM.
+- `js/vistas.js`: contiene siete vistas y paneles; no lee archivos académicos.
+- `js/app.js`: conserva escenario personal, filtros, persistencia, navegación y acciones de edición (aproximadamente 522 líneas desde v0.5.3).
 - `js/iniciar.js`: inicia desde `datos/academico.json` y carga la interfaz. No consulta `js/datos.js`, `js/catalogo.js` ni `js/oferta-fuente.js`.
 
 **Documentación interna de v0.5.2:** las clases y funciones importantes tienen JSDoc/comentarios próximos a su implementación. Identifican entradas y salidas, invariantes del escenario, diferencia entre `on` y `analizable`, semántica de los vacíos, separación entre filtros y estado, conservación de referencias históricas y responsabilidades POO. También se documenta la carga de scripts y el significado de los estilos del mapa de calor. Estos comentarios **no cambian los cálculos** ni reemplazan ARQ-01, las pruebas o las fuentes normalizadas.
 
-La proyección `RAW` **solo existe en memoria**, derivada del JSON. La decisión de eliminarla internamente en otro momento **no está aprobada como requisito funcional inmediato** y exige regresiones antes de cambiar su forma.
+En v0.5.3 **no existe `window.RAW`** ni dependencia de `RAW` en las vistas y el estado de la aplicación. La proyección posicional continúa **solo dentro del lector, de manera transitoria**, para construir el escenario inicial y sostener pruebas/compatibilidades históricas. No representa una fuente académica paralela. Los vínculos institucionales de prerrequisitos y mínimos de créditos se conservan mediante IDs de posiciones, mientras sus nombres siguen disponibles para mostrar información y recuperar archivos antiguos.
 
 ## 3. Cobertura de datos normalizados en esta referencia
 
@@ -83,7 +86,7 @@ Además: persistencia local, descarga/carga de escenarios, restablecimiento de r
 
 | Identificador | En esta versión | ¿Qué expresa? |
 |---|---|---|
-| Versión del sitio | `0.5.2` | Release visible y parámetros de caché de recursos estáticos. |
+| Versión del sitio | `0.5.3` | Release visible y parámetros de caché de recursos estáticos. |
 | `versionEsquema` | `1` | Estructura de la entrada académica. **No** se incrementa por cualquier publicación. |
 | `escenario-personal.version` | `1` | Formato de exportaciones y cambios personales. **No** es la versión del sitio. |
 
@@ -106,14 +109,14 @@ La fecha al lado del número del pie es una **fecha editorial**, no un mecanismo
 
 | Tema | Estado documentado | Decisión prudente |
 |---|---|---|
-| `RAW` en el motor y en las vistas | Proyección **interna transitoria**, derivada de la única entrada normalizada. | No llamarla segunda entrada ni retirarla sin conservar funciones. |
-| Funciones extensas de `js/app.js` | Herencia funcional de v0.4.3. | Solo refactorizar con propósito y pruebas de equivalencia. |
-| Referencias antiguas por nombre | Parte de las relaciones y vistas heredadas usan nombres, aunque existen IDs en el contrato. | Preservar identidades y migraciones sin sustituciones silenciosas. |
+| Proyección posicional transitoria | El lector mantiene un adaptador local para construir el contexto y recuperar estados antiguos; **no existe `window.RAW`** en la ejecución. | Mantener esta compatibilidad mientras existan archivos personales históricos. No crear entradas alternativas. |
+| Separación de responsabilidades | `js/analisis.js` y `js/vistas.js` están separados del controlador `js/app.js`. | Mantener equivalencia entre resultados y preservar las siete vistas al editar módulos. |
+| Identidades antiguas por nombre | Los requisitos académicos y claves nuevas priorizan IDs; la interfaz y algunas operaciones antiguas aún utilizan nombres. | No romper exportaciones previas ni atribuir identidad institucional a un texto visible. |
 | Agrupaciones no verificadas | Tres posiciones con actividades múltiples sin relación suficientemente validada. | Conservar oferta; no inventar emparejamientos. |
 | Grupos de otras sedes | Solo informativos en cálculos del alcance actual. | No incluirlos sin decisión y respaldo académico. |
 | Archivos y scripts históricos | Permanecen en el árbol, no son entradas de producción. | No volverlos rutas activas por comodidad. |
 | Comparador original `pruebas/compare.js` y mutaciones | Son herramientas históricas: el comparador puede informar diferencias aun con código de salida 0; la mutación utiliza `js/datos.js`, que no es la entrada productiva vigente. | No usar estos resultados como verificación obligatoria de ARQ-01; consultar [pruebas/LEEME.md](../pruebas/LEEME.md) y la batería `npm test`. |
-| GitHub Pages y visualización real | La fusión y CI de v0.5.1 están confirmadas. La documentación interna de v0.5.2 no sustituye la comprobación visual pública posterior a su integración. | No declarar despliegue o aspecto visual comprobados sin evidencia directa. |
+| GitHub Pages y visualización real | La fusión y CI de v0.5.2 están confirmadas. La verificación de PR #13 y el despliegue posterior de v0.5.3 deben documentarse por separado. | No declarar despliegue o aspecto visual comprobados sin evidencia directa. |
 
 **Nota de higiene documental:** `docs/entrada-datos.md` describe un procedimiento **histórico y externo** de tratamiento de fuentes. No es la especificación de ejecución de ARQ-01. Su afirmación histórica sobre ausencia de nombres de docentes no coincide con todos los archivos públicos heredados; no se debe interpretar como una garantía técnica vigente ni corregir archivos académicos sin una decisión separada.
 
