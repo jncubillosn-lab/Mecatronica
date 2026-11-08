@@ -4,7 +4,7 @@
   "scripts": {
     "comparar": "node pruebas/compare.js pruebas/referencia .",
     "mutar": "bash pruebas/mutar.sh",
-    "test": "node tests/versionado.js && node tests/identidad-visual.js && node tests/responsividad.js && node tests/libres-malla.js && node tests/contrato-arq01.js && node tests/oferta-activa.js && node tests/escenarios-arq01.js && node tests/demanda.js && node tests/vistas-arq01.js && node tests/verificar.js && node tests/filtros.js && node tests/fuentes.js && node tests/integracion-arq01.js"
+    "test": "node tests/versionado.js && node tests/identidad-visual.js && node tests/tema-visual.js && node tests/responsividad.js && node tests/libres-malla.js && node tests/contrato-arq01.js && node tests/oferta-activa.js && node tests/escenarios-arq01.js && node tests/demanda.js && node tests/vistas-arq01.js && node tests/verificar.js && node tests/filtros.js && node tests/fuentes.js && node tests/integracion-arq01.js"
   },
   "devDependencies": {
     "jsdom": "^31.0.0"
