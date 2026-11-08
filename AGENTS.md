@@ -11,6 +11,7 @@
 - Los nombres, créditos, requisitos, tipologías, componentes, calendarios y vínculos académicos son **datos**, no constantes universales programadas.
 - Aceptar información incompleta sin inventar valores ni generar avisos de alerta por su ausencia.
 - Los grupos de actividad no se combinan salvo relación explícita del contrato.
+- Los grupos de otras sedes se conservan; `agrupaciones[].analizable === false` los excluye de cálculos sin borrarlos. No inferir esa propiedad por prefijos dentro del programa.
 - Mantener separadas las modificaciones personales del escenario y los datos de referencia académica.
 - Todas las vistas, cuadros de detalle, cálculos y exportaciones deben respetar la misma selección activa de información.
 - Preservar funcionamiento estático y compatibilidad con los escenarios anteriores.
