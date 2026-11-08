@@ -116,9 +116,9 @@ probar('Un plan pequeño y parcialmente vacío también se puede abrir', () => {
 probar('Grupos de otras sedes: se conservan sin ser analizables', () => {
   const especiales=datos.agrupaciones.filter(g=>g.analizable===false);
   const calculables=datos.agrupaciones.filter(g=>g.analizable!==false);
-  assert.equal(datos.agrupaciones.length,453);
+  assert.equal(datos.agrupaciones.length,432);
   assert.equal(especiales.length,79);
-  assert.equal(calculables.length,374);
+  assert.equal(calculables.length,353);
   const catalogo=new Map(datos.malla.map(p=>[p.id,p]));
   const oferta=new Map(datos.oferta.map(o=>[o.codigoAsignatura,o]));
   for(const g of especiales){
@@ -129,9 +129,21 @@ probar('Grupos de otras sedes: se conservan sin ser analizables', () => {
       'Grupo informativo sin registro de oferta: '+g.id);
   }
   const base=new EntradaAcademica(datos).generarEscenarioBase();
-  assert.equal(base.gr.length,453);
+  assert.equal(base.gr.length,432);
   assert.equal(base.gr.filter(g=>g[5]===false).length,79);
-  assert.equal(base.bl.length,904);
+  assert.equal(base.bl.length,864);
+});
+
+probar('TPI conserva una única referencia académica de lunes y miércoles de 14 a 16', () => {
+  const pos=datos.malla.find(p=>p.codigoAsignatura==='2024045');
+  const oferta=datos.oferta.find(o=>o.codigoAsignatura==='2024045');
+  const grupos=oferta.actividades.flatMap(a=>a.grupos);
+  const agrupaciones=datos.agrupaciones.filter(a=>a.posicionId===pos.id);
+  const esperado=[{dia:'L',inicio:'14:00',fin:'16:00'},{dia:'X',inicio:'14:00',fin:'16:00'}];
+  assert.deepEqual(grupos.map(g=>g.id),['1']);
+  assert.deepEqual(grupos[0].horarios,esperado);
+  assert.deepEqual(agrupaciones.map(a=>a.etiqueta),['G1']);
+  assert.deepEqual(agrupaciones[0].componentes.flatMap(c=>c.bloques).map(b=>({dia:b.dia,inicio:b.inicio,fin:b.fin})),esperado);
 });
 
 probar('Horarios técnicamente inválidos no se descartan silenciosamente', () => {
