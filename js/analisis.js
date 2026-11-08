@@ -4,8 +4,9 @@
  * Motor de análisis académico y adaptador de compatibilidad.
  * No accede a DOM, red ni almacenamiento; recibe escenarios explícitos.
  *
- * La función `fromRaw` se mantiene únicamente para transiciones históricas
- * y pruebas del formato anterior, no como entrada académica productiva.
+ * La función `fromRaw` adapta la proyección transitoria del lector al escenario
+ * base y también permite recuperar formatos históricos. No abre fuentes externas
+ * ni constituye una segunda entrada académica.
  * Contrato único: datos/academico.json -> EntradaAcademica.
  */
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
