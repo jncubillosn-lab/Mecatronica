@@ -45,6 +45,21 @@ async function main() {
     assert.equal(contexto.estadoBase.pre.length,fuente.requisitos.prerrequisitos.length);
     assert.equal(contexto.estadoBase.reqCred.length,fuente.requisitos.minimosCreditos.length);
     assert.equal(d.querySelectorAll('[data-act="nav"]').length >= 8, true);
+    // TEMA-01: oscuro predeterminado y selector disponible en todo el portal.
+    assert.equal(d.documentElement.dataset.theme,'dark');
+    assert.equal(d.querySelector('[data-act="tema-cambiar"]')?.getAttribute('aria-pressed'),'false');
+    const escenaAntesTema=d.querySelector('.pill-stat')?.textContent;
+    d.querySelector('[data-act="tema-cambiar"]').click();
+    assert.equal(d.documentElement.dataset.theme,'light');
+    assert.equal(d.querySelector('[data-act="tema-cambiar"]')?.getAttribute('aria-pressed'),'true');
+    assert.equal(d.querySelector('.pill-stat')?.textContent,escenaAntesTema,
+      'El tema visual no modifica el escenario académico');
+    d.querySelector('[data-act="nav"][data-p="inter"]').click();
+    assert.equal(d.documentElement.dataset.theme,'light',
+      'La navegación preserva la preferencia de tema');
+    d.querySelector('[data-act="tema-cambiar"]').click();
+    assert.equal(d.documentElement.dataset.theme,'dark',
+      'El tema puede regresarse a oscuro sin recargar');
     const titles = [
       ['inicio', 'Resumen de cruces'],
       ['inter', 'Interferencias'],
