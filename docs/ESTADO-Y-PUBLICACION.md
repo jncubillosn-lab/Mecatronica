@@ -1,6 +1,6 @@
 # EST-01 — Estado real, historial y publicación
 
-**Corte documentado:** 7 de noviembre de 2026.  
+**Corte documentado:** 7 de noviembre de 2026 (histórico; cambios visuales posteriores documentados aparte en [UNI-UI-01](ESTILO-UNIVERSITARIO.md) y [RESP-01](RESP-01.md)).  
 **Versión pública objetivo de PR #15:** `0.5.5` (CI verificada; comprobar fusión y despliegue).  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Acuerdos de alcance:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
