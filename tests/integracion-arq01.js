@@ -68,6 +68,28 @@ async function main() {
     assert(d.querySelector('#view').textContent.includes('VISTA PREVIA · DATOS SIMULADOS'));
     assert(d.querySelector('#view').textContent.includes('Lectura y recomendaciones basadas en los datos'));
     assert(d.querySelectorAll('.dem-tabla tbody tr').length>0);
+    const panel=d.querySelector('#view');
+    const titulos=[...panel.querySelectorAll('h2')].map(h=>h.textContent.trim());
+    assert.deepEqual(titulos,[
+      'Mapa de demanda: solicitudes y grupos',
+      'Comparación curricular por semestre',
+      'Detalle estadístico',
+      'Lectura y recomendaciones basadas en los datos',
+      'Tabla estadística · ranking completo',
+      'Demanda conjunta'
+    ],'La gráfica y la lectura preceden la tabla, con demanda conjunta al final');
+    assert.equal(panel.querySelectorAll('rect.dem-zona-alerta,rect.dem-zona-masiva,rect.dem-zona-baja,rect.dem-zona-amplia').length,4,
+      'El gráfico incluye cuatro cuadrantes distinguibles');
+    assert(panel.querySelectorAll('g.dem-marca').length>5,
+      'La muestra contiene puntos seleccionables en el gráfico');
+    assert(panel.querySelectorAll('g.dem-punto-alerta').length>0,
+      'La simulación presenta casos en el cuadrante de alta demanda y pocos grupos');
+    assert(panel.querySelectorAll('g.dem-punto-masiva').length>0,
+      'La simulación presenta casos masivos de más grupos');
+    assert(panel.querySelectorAll('.dem-caso').length>0,
+      'Se presentan las asignaturas más concentradas en tarjetas legibles');
+    assert(panel.querySelector('.dem-edicion > summary'),
+      'La edición de cantidades permanece disponible en el detalle');
     assert(d.querySelector('#top').textContent.includes('Datos de referencia del programa'), 'La vista previa no produce modificaciones');
     d.querySelector('[data-act="dem-ejemplo"]').click();
     assert(d.querySelector('#view').textContent.includes('DATOS SIMULADOS GUARDADOS'));
