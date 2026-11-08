@@ -250,7 +250,7 @@ function recuperarEscenarioGuardado(o) {
 }
 if (datosGuardados) {
   try {
-    S = recuperarEscenarioGuardado(datosGuardados);
+    S = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(datosGuardados), CALENDARIO);
     restored = true;
   } catch (e) {
     console.error('No se pudo reconstruir el escenario anterior:', e);
@@ -1066,7 +1066,8 @@ function onChange(k, el) {
           const o = JSON.parse(rd.result);
           if (!o || !((o.tipo === 'escenario-personal' && o.version === 1 && o.cambios) ||
             (o.S && o.S.params && Array.isArray(o.S.bloques) && Array.isArray(o.S.grupos)))) throw new Error('formato');
-          S = recuperarEscenarioGuardado(o); ui.drawer = null; commit('Escenario cargado.');
+          const recuperado = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(o), CALENDARIO);
+          S = recuperado; ui.drawer = null; commit('Escenario cargado.');
         } catch (e) { toast('Ese archivo no es un escenario válido.'); }
       };
       rd.readAsText(file); el.value = ''; return;
