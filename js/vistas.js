@@ -494,7 +494,7 @@ function mallaVisible(m) {
  * @param {object} referencia Escenario académico base, para respetar traslados personales.
  * @param {Set<string>} fijadas Posiciones movidas explícitamente en la sesión.
  * @param {boolean} equilibrar Si false conserva los semestres registrados.
- * @returns {{posiciones:object[], creditos:number, cargas:number[]}}
+ * @returns {{posiciones:object[], creditos:number, incompleto:boolean, cargas:number[]}}
  *
  * Las posiciones L con más de 3 créditos se desglosan SOLO visualmente en
  * tramos de 3 y un posible residuo. Los tramos virtuales nunca son asignaturas
@@ -548,7 +548,9 @@ function proyeccionLibresMalla(estado, referencia, fijadas = new Set(), equilibr
     m.s=mejor;
     cargas[mejor]+=m.cr;
   }
-  return { posiciones:libres, creditos, cargas:cargas.slice(1) };
+  return { posiciones:libres, creditos,
+    incompleto:estado.malla.some(m => m.comp === libre && !Number.isFinite(m.cr)),
+    cargas:cargas.slice(1) };
 }
 function semHead(s, visibles) {
   const c = semCred(s, visibles);
@@ -588,7 +590,7 @@ function pageMalla() {
   }).join('');
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
     <div class="row"><div class="seg"><button data-act="m-edges" data-v="all" aria-pressed="${M.edges==='all'}">Todas las flechas</button><button data-act="m-edges" data-v="sel" aria-pressed="${M.edges==='sel'}">Solo la selección</button></div>
-    <button class="btn sm malla-libre-toggle" data-act="m-libres" aria-pressed="${!!M.libres}">Libre elección · ${libres.creditos} cr</button>
+    <button class="btn sm malla-libre-toggle" data-act="m-libres" aria-pressed="${!!M.libres}" ${!libres.posiciones.length?'disabled':''}>Libre elección · ${!libres.posiciones.length?'sin posiciones':libres.incompleto?'≥'+libres.creditos+' cr informados':libres.creditos+' cr'}</button>
     <button class="btn sm" data-act="m-equilibrar" aria-pressed="${!!M.equilibrar}" ${!M.libres?'disabled':''}>${M.equilibrar?'Carga equilibrada':'Semestres registrados'}</button>
     <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor?'checked':''}><i></i>Solo con horario</label></div></div>
   ${M.libres && M.equilibrar?'<p class="hint malla-proyeccion-aviso">Distribución visual sugerida para equilibrar créditos del plan, excluyendo Nivelación. No cambia el semestre registrado ni certifica requisitos de avance. Para guardarlo como cambio personal, mueve una posición.</p>':''}
