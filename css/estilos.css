@@ -697,3 +697,118 @@ body{letter-spacing:.002em}
   .pill-stat{max-width:100%}
   .cta-in{justify-content:flex-start;text-align:left}
 }
+
+/* RESP-01 — Reglas generales de adaptabilidad (v0.7.0)
+ * La página no debe desbordar horizontalmente. Solo los artefactos de datos
+ * que necesitan una escala legible (matrices, horarios, mallas, SVG) desplazan
+ * su contenido dentro de un contenedor propio, operable con teclado/tacto.
+ * Las dimensiones de las fuentes académicas NO se alteran.
+ */
+html{scroll-padding-top:12px}
+body{min-width:0;max-width:100%;overflow-x:clip}
+.top{position:static} /* Evita que la cabecera tape títulos y ejes al desplazarse. */
+main{width:100%;max-width:1600px;padding:clamp(12px,1.7vw,24px);padding-bottom:50px}
+#view,.page-title,.card,.grid2,.kpis,.hor,.mallawrap,.hm-main,.dem-panel,
+.grid2>*,.hor>*,.mallawrap>*,.gcard,.arow,.prow,.dem-panel>*,.card-b{
+  min-width:0
+}
+.page-title>*{min-width:0}
+.page-title{align-items:flex-start}
+.page-title p{max-width:85ch;overflow-wrap:break-word}
+.card-h,.row,.legend,.chips{max-width:100%}
+select,input{max-width:100%}
+button,select,input,textarea{touch-action:manipulation}
+.gcards{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.dem-sems,.dem-recomendaciones,.dem-casos{min-width:0}
+.dem-caso,.dem-sem,.dem-consejo,.gcard{overflow-wrap:anywhere}
+.mxwrap,.dem-tabla-wrap{max-width:100%;min-width:0;overscroll-behavior-x:contain}
+.nav{scrollbar-width:thin;scroll-snap-type:x proximity}
+.nav button{scroll-snap-align:start}
+.sidelist,.sidecard{top:16px;max-height:calc(100dvh - 32px)}
+
+/* Horarios y mapa de calor: ancho mínimo legible y desplazamiento local.
+ * No estrechar los días hasta que los textos resulten ilegibles.
+ */
+.weekgrid-scroll{max-width:100%;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;
+  overscroll-behavior-x:contain;border-radius:12px;scrollbar-width:thin}
+.weekgrid-scroll .weekgrid{min-width:max(100%,560px)}
+.weekgrid-scroll:focus-visible,.canvas:focus-visible,.dem-grafico-wrap:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px
+}
+
+/* Demanda: el SVG tiene proporciones fijas y conserva siempre los cuatro
+ * márgenes de ejes del viewBox 950×515. No se estira a más de 950 px.
+ * En móviles la gráfica se desplaza horizontalmente, nunca se recorta.
+ */
+.dem-grafico-wrap{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;
+  overscroll-behavior-x:contain;scrollbar-width:thin}
+.dem-grafico{display:block;width:100%;max-width:950px;min-width:730px;height:auto;
+  max-height:none;margin-inline:auto;overflow:visible}
+.dem-desplaza{display:none;margin:6px 0 0;color:var(--ink2);font-size:12px}
+
+/* Visor de prerrequisitos. La etapa interna se amplía con CSS zoom;
+ * las flechas se calculan en coordenadas locales sin depender del viewport.
+ * La barra permanece dentro del visor también en modo pantalla completa.
+ */
+.mallawrap{grid-template-columns:minmax(0,1fr) minmax(280px,320px);align-items:start}
+.malla-panel{min-width:0;display:flex;flex-direction:column;gap:8px}
+.malla-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;
+  flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;
+  background:var(--surface);padding:8px 12px}
+.malla-toolbar-titulo{display:flex;flex-direction:column;gap:2px;min-width:0}
+.malla-toolbar-titulo strong{font-size:13px;line-height:1.3}
+.malla-toolbar-titulo span{color:var(--ink2);font-size:11.5px}
+.malla-controles{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.malla-controles .btn{min-width:34px;min-height:34px;justify-content:center}
+.malla-zoom-etiqueta{min-width:48px;font-size:12px;font-weight:650;text-align:center;font-variant-numeric:tabular-nums}
+.malla-panel .canvas{min-width:0;width:100%;padding:0;overflow:auto;
+  max-height:clamp(340px,65dvh,850px);min-height:min(58dvh,560px);
+  overscroll-behavior:contain;scrollbar-width:thin;touch-action:pan-x pan-y}
+.malla-stage{position:relative;display:block;width:max-content;padding:14px}
+.malla-stage .edges{left:0;top:0;z-index:0}
+.malla-stage .mcols{z-index:1}
+body.mapa-ampliado{overflow:hidden}
+.malla-panel--ampliado{position:fixed;inset:0;z-index:120;display:flex;
+  width:100vw;height:100vh;height:100dvh;background:var(--bg);
+  padding:clamp(8px,1.4vw,18px);gap:8px}
+.malla-panel--ampliado .malla-toolbar{flex:none}
+.malla-panel--ampliado .canvas{flex:1;min-height:0;max-height:none;height:auto}
+.malla-panel--ampliado .malla-toolbar-titulo span{display:none}
+
+@media(max-width:1100px){
+  .mallawrap{grid-template-columns:minmax(0,1fr)}
+  .sidecard{position:static;max-height:none}
+}
+@media(max-width:720px){
+  main{padding:12px 12px 38px}
+  .top-in{padding:8px 12px}
+  .nav{overflow-x:auto;scrollbar-width:thin}
+  .nav button{flex:none}
+  .pill-stat{border-radius:8px;white-space:normal}
+  .componentes-bar{align-items:flex-start;gap:6px}
+  .unidad-filtro{flex-wrap:wrap}
+  .unidad-filtro select{max-width:100%;width:auto}
+  .malla-toolbar{padding:8px;gap:9px}
+  .malla-toolbar-titulo{flex-basis:100%}
+  .malla-controles{width:100%;justify-content:flex-start}
+  .malla-controles .btn{min-height:38px}
+  .malla-panel .canvas{min-height:clamp(300px,56dvh,620px);max-height:70dvh}
+  .malla-panel--ampliado .canvas{min-height:0;max-height:none}
+  .dem-desplaza{display:block}
+  .dem-grafico{min-width:730px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .how{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:430px){
+  .brand-wrap{gap:7px}
+  .programa-actual{max-width:100%}
+  .componentes-bar{padding-top:4px}
+  .component-toggle{padding:7px 9px}
+  .kpis,.how,.dem-metricas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .malla-toolbar-titulo span{font-size:11px}
+  .malla-ampliar{flex:1 1 auto}
+}
+@media(hover:none),(pointer:coarse){
+  .nav button,.btn,.component-toggle,.chip{min-height:38px}
+  .malla-controles .btn{min-height:42px}
+}
