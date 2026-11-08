@@ -12,8 +12,7 @@ const appCode=read('js/modelo.js')+'\n'+read('js/entrada.js')+'\n'+read('js/esce
  'window.CONTEXTO_ACADEMICO = { estadoBase: fromRaw(RAW), opciones: RAW.opciones, programa: RAW.programa, calendario: RAW.calendario, almacenamiento: RAW.almacenamiento, metadatos: RAW.metadatos, incrementosOferta: RAW.incrementosOferta };\n'+
  read('js/app.js').split("document.addEventListener('click'")[0];
 const api=new Function('RAW','localStorage','window','document',appCode+
-  '\nrender=()=>{};toast=()=>{};return {S,S0,R,ui,changes,onAct,onChange,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageDemanda,pageMalla,renderTop,drawerPair,getVista:()=>RV,
-  setPendientes:(list)=>{pendientesRequisitos=list;},getPendientes:()=>pendientesRequisitos};')(
+  '\nrender=()=>{};toast=()=>{};return {S,S0,R,ui,changes,onAct,onChange,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageDemanda,pageMalla,renderTop,drawerPair,getVista:()=>RV,setPendientes:(list)=>{pendientesRequisitos=list;},getPendientes:()=>pendientesRequisitos};')(
   raw,{getItem:()=>null,setItem(){},removeItem(){}},
   {innerWidth:1200,fuentesAcademicas:{datos:contrato}},{}
 );
