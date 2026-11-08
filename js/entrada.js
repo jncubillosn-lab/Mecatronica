@@ -43,7 +43,7 @@ class EntradaAcademica {
   }
 
   /**
-   * @returns {object} Proyección posicional para la interfaz heredada.
+   * @returns {object} Proyección posicional transitoria para construir S0.
    * `gr`: [asignatura, etiqueta, componente1, componente2, ref, analizable]
    * `bl`: [asignatura, componente, día, inicio, fin, nota, ref, idAnterior]
    * La oferta académica puede contener más grupos que las agrupaciones
