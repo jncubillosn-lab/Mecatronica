@@ -44,7 +44,7 @@ async function main() {
     assert.equal(contexto.estadoBase.grupos.length,fuente.agrupaciones.length);
     assert.equal(contexto.estadoBase.pre.length,fuente.requisitos.prerrequisitos.length);
     assert.equal(contexto.estadoBase.reqCred.length,fuente.requisitos.minimosCreditos.length);
-    assert.equal(d.querySelectorAll('[data-act="nav"]').length >= 7, true);
+    assert.equal(d.querySelectorAll('[data-act="nav"]').length >= 8, true);
     const titles = [
       ['inicio', 'Resumen de cruces'],
       ['inter', 'Interferencias'],
@@ -52,6 +52,7 @@ async function main() {
       ['grupos', 'Grupos'],
       ['hor', 'Horarios'],
       ['heat', 'Mapa de calor'],
+      ['demanda', 'Demanda de preinscripción'],
       ['malla', 'Prerrequisitos']
     ];
     for (const [page, heading] of titles) {
@@ -64,7 +65,7 @@ async function main() {
     assert(d.querySelector('#view h1'), 'La vista final está vacía');
     const scriptErrors = errors.filter(msg => /Uncaught|Could not load script/i.test(msg));
     assert.deepEqual(scriptErrors, [], 'Error en scripts de la aplicación: ' + scriptErrors.join(' | '));
-    console.log('OK: carga normalizada y navegación de siete vistas en navegador simulado.');
+    console.log('OK: carga normalizada y navegación de ocho vistas en navegador simulado.');
   } finally {
     dom.window.close();
   }
