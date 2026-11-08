@@ -4,31 +4,31 @@
  * Las reglas no deben asumir una cantidad universal de días en el calendario.
  */
 :root{
-  --bg:#f5f3ee; --surface:#ffffff; --surface2:#efece4; --ink:#1c1a15; --ink2:#5b574c; --ink3:#8b867a;
-  --line:#e0dccf; --line2:#cfc9b9;
-  --accent:#1e5a96; --accent-soft:#dfeaf6;
+  --bg:#f7f8fa; --surface:#ffffff; --surface2:#f0f3f6; --ink:#172338; --ink2:#455363; --ink3:#5b6979;
+  --line:#e0e5ec; --line2:#c6d0da;
+  --accent:#245781; --accent-soft:#e2edf7;
   --ca:#2b6cb0; --ca-soft:#d9e7f5; --cb:#8a4fbf; --cb-soft:#eadff6;
   --heat:#d4412a; --heat-soft:#fbe3dc; --ok:#2c8a63; --ok-soft:#dcf0e6; --warn:#b7791f; --warn-soft:#fbefd5;
-  --shadow:0 1px 2px rgba(40,30,10,.06),0 4px 14px rgba(40,30,10,.06);
+  --shadow:0 1px 4px rgba(20,39,62,.055);
   --radius:12px;
   --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
   --serif:Charter,"Iowan Old Style","Palatino Linotype",Georgia,serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
 }
 :root[data-theme="dark"]{
-  --bg:#15140f; --surface:#1e1c16; --surface2:#27241d; --ink:#f1eee5; --ink2:#b4afa1; --ink3:#857f70;
-  --line:#34312a; --line2:#4a463b; --accent:#6fb0ee; --accent-soft:#1e3347;
+  --bg:#131a23; --surface:#1b2530; --surface2:#263240; --ink:#eef3f9; --ink2:#b8c6d4; --ink3:#a5b4c4;
+  --line:#334354; --line2:#4b5d6f; --accent:#8ab8e3; --accent-soft:#233d54;
   --ca:#6fb0ee; --ca-soft:#1e3347; --cb:#c297f0; --cb-soft:#33274a;
   --heat:#ff7a5c; --heat-soft:#4a241c; --ok:#58c79a; --ok-soft:#173a2c; --warn:#e2b04a; --warn-soft:#3f3217;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+  --shadow:0 1px 5px rgba(0,0,0,.22);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#15140f; --surface:#1e1c16; --surface2:#27241d; --ink:#f1eee5; --ink2:#b4afa1; --ink3:#857f70;
-    --line:#34312a; --line2:#4a463b; --accent:#6fb0ee; --accent-soft:#1e3347;
+    --bg:#131a23; --surface:#1b2530; --surface2:#263240; --ink:#eef3f9; --ink2:#b8c6d4; --ink3:#a5b4c4;
+    --line:#334354; --line2:#4b5d6f; --accent:#8ab8e3; --accent-soft:#233d54;
     --ca:#6fb0ee; --ca-soft:#1e3347; --cb:#c297f0; --cb-soft:#33274a;
     --heat:#ff7a5c; --heat-soft:#4a241c; --ok:#58c79a; --ok-soft:#173a2c; --warn:#e2b04a; --warn-soft:#3f3217;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+    --shadow:0 1px 5px rgba(0,0,0,.22);
   }
 }
 *{box-sizing:border-box}
@@ -634,4 +634,66 @@ main{padding-bottom:40px}
   margin:0;padding:12px 15px;border:1px dashed var(--line2);
   border-radius:9px;background:var(--surface2);
   color:var(--ink2);font:600 13px/1.5 var(--sans);
+}
+
+
+/* UNI-UI-01: identidad universitaria común y acento de programa.
+ * El acento NO participa en cálculos ni sustituye colores semánticos
+ * (--heat, --ok, --warn, --ca, --cb). js/identidad.js lo resuelve a partir
+ * del ID explícito recibido en el contrato normalizado.
+ */
+:root{
+  --programa-acento:#5d7081;
+  --programa-borde:#5d7081;
+}
+body{letter-spacing:.002em}
+.top{background:color-mix(in srgb,var(--surface) 96%,transparent);border-bottom:1px solid var(--line)}
+.top-in{gap:9px 16px;padding-top:11px;padding-bottom:9px}
+.brand-wrap{display:flex;align-items:center;gap:19px;flex:0 1 auto;min-width:0}
+.brand{gap:3px}
+.brand b{font:650 18px/1.1 var(--serif);letter-spacing:-.02em}
+.brand span{font-size:10.5px;letter-spacing:.035em;text-transform:none;color:var(--ink3)}
+.programa-actual{display:flex;align-items:center;gap:9px;min-width:0;border-left:1px solid var(--line);padding-left:15px}
+.programa-senal{display:block;width:5px;height:31px;flex:none;border-radius:3px;background:var(--programa-acento);box-shadow:inset 0 0 0 1px var(--programa-borde)}
+.programa-etiqueta{display:grid;gap:2px;min-width:0}
+.programa-etiqueta small{font-size:10px;line-height:1.15;color:var(--ink3);letter-spacing:.055em;text-transform:uppercase;font-weight:600}
+.programa-etiqueta strong{font-size:12.5px;line-height:1.25;font-weight:650;color:var(--ink);overflow-wrap:anywhere}
+.nav{gap:3px;flex:1 1 510px}
+.nav button{padding:8px 10px;border-radius:6px;font-weight:600;font-size:12.5px}
+.nav button[aria-current="page"]{background:var(--surface2);color:var(--ink);box-shadow:inset 0 -3px 0 var(--programa-borde)}
+.nav button:hover{background:var(--surface2)}
+.chg{width:100%;justify-content:space-between;gap:7px 12px;border-top:1px solid var(--line);padding-top:8px}
+.pill-stat{background:var(--surface2);border-color:var(--line);font-size:12px;padding:4px 7px 4px 11px}
+.componentes-bar{margin-left:auto;padding-left:10px}
+.component-toggle,.chip{border-radius:7px}
+.card{box-shadow:var(--shadow)}
+.card-h h2{line-height:1.35}
+.btn{transition:background-color .12s,border-color .12s}
+.btn:focus-visible,.nav button:focus-visible,.component-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cta-bar{background:var(--surface2);color:var(--ink2);border-bottom:1px solid var(--line);font-size:11.5px}
+.cta-bar:hover{background:var(--surface2);filter:none;color:var(--ink)}
+.cta-in{padding-top:5px;padding-bottom:5px;gap:5px 9px}
+.cta-t b{color:var(--ink);font-weight:650}
+.cta-b{background:transparent;color:var(--accent);padding:0 4px;border-radius:0;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+:root[data-theme="dark"] .cta-bar{background:var(--surface2);color:var(--ink2)}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .cta-bar{background:var(--surface2);color:var(--ink2)}
+}
+@media(max-width:960px){
+  .brand-wrap{flex:1 1 100%}
+  .nav{order:2;flex-basis:100%;padding-top:6px;border-top:1px solid var(--line)}
+  .chg{order:3}
+}
+@media(max-width:720px){
+  .top{position:static}
+  .top-in{padding:9px 14px;gap:8px}
+  .brand-wrap{width:100%;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .programa-actual{padding-left:10px}
+  .programa-etiqueta strong{font-size:12px}
+  .nav{flex-basis:100%;gap:2px}
+  .nav button{padding:8px 11px}
+  .chg{gap:6px;align-items:center}
+  .componentes-bar{padding-left:0;margin-left:0;width:100%}
+  .pill-stat{max-width:100%}
+  .cta-in{justify-content:flex-start;text-align:left}
 }
