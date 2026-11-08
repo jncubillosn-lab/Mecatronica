@@ -1,7 +1,7 @@
 # EST-01 — Estado real, historial y publicación
 
 **Corte documentado:** 7 de noviembre de 2026.  
-**Versión de la actualización de mantenimiento PR #13:** `0.5.3` (integrar en `main` solo después de CI).  
+**Versión pública de la actualización PR #13:** `0.5.3` (tras la integración verificada en `main`).  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Acuerdos de alcance:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Registro histórico de migración:** [MIG-ARQ01](MIGRACION-ARQ01.md).
