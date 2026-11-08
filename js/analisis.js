@@ -194,8 +194,11 @@ function lineage(S, n) {
       frontier = nxt;
     }
   };
-  walk(n, up, x => S.pre.filter(p => p.t === x).map(p => p.r));
-  walk(n, down, x => S.pre.filter(p => p.r === x).map(p => p.t));
+  const porId=new Map(S.malla.filter(m=>m.idPos).map(m=>[m.idPos,m.n]));
+  const nombre=(id, anterior)=>id&&porId.has(id)?porId.get(id):anterior;
+  const relaciones=S.pre.map(p=>({r:nombre(p.rId,p.r),t:nombre(p.tId,p.t)}));
+  walk(n, up, x => relaciones.filter(p => p.t === x).map(p => p.r));
+  walk(n, down, x => relaciones.filter(p => p.r === x).map(p => p.t));
   return { up, down };
 }
 
