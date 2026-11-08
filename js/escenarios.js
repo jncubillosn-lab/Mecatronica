@@ -15,7 +15,6 @@ class EscenarioPersonal {
     return { a:b.a, c:b.c, d:b.d, s:b.s, e:b.e, o:b.o || '' };
   }
 
-  /** Extrae solamente diferencias voluntarias; no copia la referencia académica. */
   /**
    * Devuelve exclusivamente operaciones personales sobre la referencia.
    * Un cambio institucional en el contrato NO debe aparecer como edición
@@ -136,7 +135,6 @@ class EscenarioPersonal {
     return s;
   }
 
-  /** Validación técnica mínima: no exige completitud académica. */
   /**
    * Valida únicamente integridad técnica antes de aceptar un escenario.
    * No exige horarios, docentes, créditos completos ni grupos para todas
