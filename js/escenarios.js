@@ -14,6 +14,11 @@ class EscenarioPersonal {
     const tId = p.tId || idsPorNombre?.get(p.t);
     return rId && tId ? 'id:' + rId + '\u0001' + tId : p.r + '\u0001' + p.t;
   }
+  /** Identidad estable del requisito; compatibilidad por nombre en exportaciones antiguas. */
+  static claveReq(r, idsPorNombre) {
+    const id=r?.posicionId || idsPorNombre?.get(r?.n);
+    return id ? 'id:'+id : 'n:'+String(r?.n||'');
+  }
   static indicePosiciones(estado) {
     return new Map((estado.malla || []).filter(m => m.idPos).map(m => [m.n, m.idPos]));
   }
@@ -93,12 +98,30 @@ class EscenarioPersonal {
     // DEM-01: encuesta agregada/anonimizada como anotación personal; no es fuente académica.
     if(JSON.stringify(base.demanda??null)!==JSON.stringify(actual.demanda??null))
       out.demanda=EscenarioPersonal.copia(actual.demanda??null);
-    // La identidad añadida en v0.5.3 no convierte un escenario histórico
-    // idéntico en una edición personal de requisitos.
-    const sinIds = lista => (lista || []).map(r => [r.n, r.min, r.componentes]);
-    if(JSON.stringify(sinIds(base.reqCred))!==JSON.stringify(sinIds(actual.reqCred)))
-      out.reqCred=EscenarioPersonal.copia(actual.reqCred).map(r=>({...r,
-        posicionId:r.posicionId||idsPorNombre.get(r.n)||null}));
+    // Cambios de requisitos por ID, NO snapshots completos del plan.
+    // Cada regla no tocada queda siempre bajo la referencia académica vigente.
+    // El formato v1 admite esta propiedad opcional sin romper los archivos v1
+    // anteriores que guardaban una colección reqCred completa.
+    const bk=new Map((base.reqCred||[]).map(r=>[EscenarioPersonal.claveReq(r,idsPorNombre),r]));
+    const ak=new Map((actual.reqCred||[]).map(r=>[EscenarioPersonal.claveReq(r,idsPorNombre),r]));
+    const reqCambios={agregar:[],quitar:[],modificar:[]};
+    for(const [key,r] of ak){
+      const anterior=bk.get(key);
+      if(!anterior) {
+        reqCambios.agregar.push(EscenarioPersonal.copia({...r,
+          posicionId:r.posicionId||idsPorNombre.get(r.n)||null}));
+        continue;
+      }
+      const valores={};
+      for(const campo of ['min','componentes']){
+        if(JSON.stringify(anterior[campo])!==JSON.stringify(r[campo]))
+          valores[campo]=EscenarioPersonal.copia(r[campo]);
+      }
+      if(Object.keys(valores).length)reqCambios.modificar.push({key,valores});
+    }
+    for(const key of bk.keys())if(!ak.has(key))reqCambios.quitar.push(key);
+    if(reqCambios.agregar.length||reqCambios.modificar.length||reqCambios.quitar.length)
+      out.reqCredCambios=reqCambios;
     return out;
   }
 
@@ -166,8 +189,31 @@ class EscenarioPersonal {
     if(cambios.tipos)s.tipos=EscenarioPersonal.copia(cambios.tipos);
     if(Object.prototype.hasOwnProperty.call(cambios,'demanda'))
       s.demanda=EscenarioPersonal.copia(cambios.demanda);
-    if(cambios.reqCred)s.reqCred=EscenarioPersonal.copia(cambios.reqCred)
-      .map(r=>({...r,posicionId:r.posicionId||indicePos.get(r.n)||null}));
+    // Lectura conservadora de snapshots v1 anteriores: NO perder una regla
+    // potencialmente editada. El llamador identifica las diferencias ambiguas
+    // y solicita revisión, en lugar de tratarlas automáticamente como oficiales.
+    if(Array.isArray(cambios.reqCred))
+      s.reqCred=EscenarioPersonal.copia(cambios.reqCred)
+        .map(r=>({...r,posicionId:r.posicionId||indicePos.get(r.n)||null}));
+    // Escritor actual: aplica SOLO operaciones sobre requisitos modificados.
+    // Nunca reemplaza la lista institucional completa por editar un solo campo.
+    if(cambios.reqCredCambios){
+      const rc=cambios.reqCredCambios;
+      const clave=r=>EscenarioPersonal.claveReq(r,indicePos);
+      const quitar=new Set(rc.quitar||[]);
+      s.reqCred=s.reqCred.filter(r=>!quitar.has(clave(r)));
+      for(const item of rc.modificar||[]){
+        const actual=s.reqCred.find(r=>clave(r)===item.key);
+        if(actual) for(const campo of ['min','componentes'])
+          if(Object.hasOwn(item.valores||{},campo))
+            actual[campo]=EscenarioPersonal.copia(item.valores[campo]);
+      }
+      for(const r of rc.agregar||[]){
+        const normalizado={...r,posicionId:r.posicionId||indicePos.get(r.n)||null};
+        if(!s.reqCred.some(x=>clave(x)===clave(normalizado)))
+          s.reqCred.push(EscenarioPersonal.copia(normalizado));
+      }
+    }
     return s;
   }
 
@@ -237,8 +283,40 @@ class EscenarioPersonal {
    * `version:1` es la versión del FORMATO de escenario, independiente de
    * `versionEsquema` y de la versión visible del sitio (p. ej. 0.5.2).
    */
-  static empaquetar(base, actual) {
-    return { tipo:'escenario-personal', version:1, cambios:EscenarioPersonal.diferencias(base,actual) };
+  static empaquetar(base, actual, pendientes = []) {
+    const cambios=EscenarioPersonal.diferencias(base,actual);
+    // Identificadores ambiguos de archivos previos permanecen revisables
+    // incluso si el usuario guarda otros cambios antes de resolverlos.
+    if(pendientes.length)cambios.reqCredAmbiguos=pendientes.map(x=>x.key);
+    return { tipo:'escenario-personal', version:1, cambios };
+  }
+
+  /**
+   * Una colección reqCred de un escenario antiguo no conserva su referencia
+   * de origen: no permite distinguir una regla editada de otra desactualizada.
+   * Retornar las diferencias para revisión explícita y conservar sus valores.
+   * No contiene excepciones por carrera, asignatura o versión institucional.
+   */
+  static requisitosAmbiguos(base, archivo, efectivo) {
+    const cambios=archivo?.cambios;
+    const esLegacy=Array.isArray(cambios?.reqCred) || !!archivo?.S;
+    const ids=EscenarioPersonal.indicePosiciones(base);
+    const clave=r=>EscenarioPersonal.claveReq(r,ids);
+    const bb=new Map((base.reqCred||[]).map(r=>[clave(r),r]));
+    const aa=new Map((efectivo.reqCred||[]).map(r=>[clave(r),r]));
+    const marcadas=Array.isArray(cambios?.reqCredAmbiguos)?
+      new Set(cambios.reqCredAmbiguos):
+      esLegacy?new Set([...bb.keys(),...aa.keys()]):new Set();
+    const pendientes=[];
+    for(const key of marcadas){
+      const origen=aa.get(key), vigente=bb.get(key);
+      const valor=r=>r?[r.min,r.componentes]:null;
+      if(JSON.stringify(valor(origen))===JSON.stringify(valor(vigente)))continue;
+      pendientes.push({key, nombre:origen?.n||vigente?.n||key,
+        guardado:origen?EscenarioPersonal.copia(origen):null,
+        vigente:vigente?EscenarioPersonal.copia(vigente):null});
+    }
+    return pendientes;
   }
 
   /**
