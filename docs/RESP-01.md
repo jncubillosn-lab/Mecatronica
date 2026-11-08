@@ -49,7 +49,11 @@ El SVG de cuadrantes conserva su marco y margen de ejes, con dimensiones lógica
 
 La regla responsive limita el gráfico a 950 píxeles de ancho como máximo y exige un mínimo legible de 730 píxeles, **sin forzar una altura fija ni recortar** sus textos. En pantallas más estrechas se explora lateralmente dentro de `.dem-grafico-wrap` con foco de teclado, y se muestra una indicación breve en móvil. No deben desaparecer los títulos y las marcas por el hecho de no caber de una sola vez.
 
-## 5. Invariantes y validación
+## 5. Ajuste posterior de marco curricular
+
+El visor normal de Prerrequisitos deja de tener un límite de altura basado en `dvh`. Su tamaño es intrínseco y lo determina la columna semestral de mayor altura (incluido el zoom). Únicamente la pantalla completa conserva un alto limitado al viewport y desplazamiento vertical local. El tema oscuro es predeterminado y el claro opcional, según [TEMA-ALTURA-01](TEMA-ALTURA-01.md).
+
+## 6. Invariantes y validación
 
 - Conserva las ocho secciones, filtros, cálculos, selección y edición de asignaturas, flujo de importar/exportar, mapas y gráficos.
 - No cambia la escala matemática de Demanda: sigue expresando solicitudes y grupos con transformación de raíz cuadrada; solo adapta la presentación.

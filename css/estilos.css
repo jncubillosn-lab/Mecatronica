@@ -827,3 +827,57 @@ body.mapa-ampliado{overflow:hidden}
   .page-title>.row{width:100%;align-items:center;gap:7px}
   .malla-libre-toggle{min-height:38px}
 }
+
+/* TEMA-01: modo oscuro por defecto; modo claro únicamente por elección.
+ * Esta capa conserva todas las variables semánticas de UNI-UI-01:
+ * no se utilizan colores de carrera para expresar resultados analíticos.
+ */
+:root{
+  color-scheme:dark;
+  --bg:#131a23;--surface:#1b2530;--surface2:#263240;
+  --ink:#eef3f9;--ink2:#b8c6d4;--ink3:#a5b4c4;
+  --line:#334354;--line2:#4b5d6f;--accent:#8ab8e3;--accent-soft:#233d54;
+  --ca:#6fb0ee;--ca-soft:#1e3347;--cb:#c297f0;--cb-soft:#33274a;
+  --heat:#ff7a5c;--heat-soft:#4a241c;--ok:#58c79a;--ok-soft:#173a2c;
+  --warn:#e2b04a;--warn-soft:#3f3217;--shadow:0 1px 5px rgba(0,0,0,.22);
+  --dem-fondo:#222730;--dem-texto:#f1f5fa;--dem-linea:#9daabd;
+  --dem-alerta-fondo:#44301f;--dem-masiva-fondo:#243b51;
+  --dem-baja-fondo:#292c30;--dem-amplia-fondo:#293540;
+  --dem-alerta:#ed9a45;--dem-masiva:#72b6fa;--dem-baja:#d0d7df;--dem-amplia:#92c4df;
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f7f8fa;--surface:#ffffff;--surface2:#f0f3f6;
+  --ink:#172338;--ink2:#455363;--ink3:#5b6979;
+  --line:#e0e5ec;--line2:#c6d0da;--accent:#245781;--accent-soft:#e2edf7;
+  --ca:#2b6cb0;--ca-soft:#d9e7f5;--cb:#8a4fbf;--cb-soft:#eadff6;
+  --heat:#d4412a;--heat-soft:#fbe3dc;--ok:#2c8a63;--ok-soft:#dcf0e6;
+  --warn:#b7791f;--warn-soft:#fbefd5;--shadow:0 1px 4px rgba(20,39,62,.055);
+  --dem-fondo:#f7f9fc;--dem-texto:#25394d;--dem-linea:#7f8c9e;
+  --dem-alerta-fondo:#fff0db;--dem-masiva-fondo:#e6f1fe;
+  --dem-baja-fondo:#f1f1ec;--dem-amplia-fondo:#edf2f7;
+  --dem-alerta:#a14d0a;--dem-masiva:#135ea4;--dem-baja:#54606b;--dem-amplia:#3a677f;
+}
+.tema-toggle{margin-left:auto;flex:none;white-space:nowrap}
+.tema-toggle[aria-pressed="true"]{border-color:var(--line2);background:var(--surface2)}
+.tema-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:960px){
+  .tema-toggle{order:1;margin-left:0}
+}
+@media(max-width:720px){
+  .tema-toggle{margin-left:auto;min-height:38px}
+}
+/* MALLA-ALTURA-01: el alto intrínseco viene de la columna más larga y
+ * crece con sus tarjetas, créditos flexibles, fuentes y zoom.
+ * Únicamente el modo ampliado limita la altura al viewport y usa scroll.
+ */
+.malla-panel:not(.malla-panel--ampliado) .canvas{
+  height:max-content;min-height:0;max-height:none;
+  overflow-x:auto;overflow-y:auto;
+}
+.malla-panel:not(.malla-panel--ampliado) .malla-stage{
+  height:max-content;min-height:max-content;
+}
+.malla-panel--ampliado .canvas{
+  min-height:0;max-height:none;height:auto;overflow:auto;
+}
