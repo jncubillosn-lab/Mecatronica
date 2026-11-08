@@ -20,13 +20,13 @@
 - El archivo `datos/academico.json` es la **única entrada académica de ejecución**.
 - Contiene 59 posiciones curriculares, 64 registros de catálogo, 64 cursos en oferta y los 716 registros de grupo aportados por la fuente.
 - Las 42 posiciones vinculadas al catálogo conservan sus códigos. Las 17 posiciones genéricas o sin coincidencia concreta permanecen sin vínculo.
-- La entrada registra **453 agrupaciones analizables**: 386 de la referencia ya utilizada y 67 agrupaciones nuevas de cursos con una sola actividad claramente identificada.
+- La entrada registra **453 agrupaciones**: 386 de la referencia anterior y 67 nuevas de cursos con una sola actividad claramente identificada. De ellas, **374 son analizables y 79 se conservan solo como información de otras sedes**, sin borrarse ni contribuir a interferencias, matrices o mapa de calor. La distinción está declarada en `agrupaciones[].analizable` dentro del contrato.
 - Hay **3 posiciones cuya oferta tiene varias actividades sin una agrupación verificable**: Electrónica Análoga I, Electrónica Digital I y Proyecto Aplicado de Ingeniería. Sus actividades y grupos se conservan en `oferta` pero **no se crean combinaciones supuestas**.
 - Catálogo, oferta y malla originales NO se cargan en la página. La conversión a JSON es externa al sistema.
 
 ## Escenario base
 
-El lector del JSON genera **39 asignaturas analizables, 453 agrupaciones y 904 bloques** para la base de referencia de esta rama. Incluye los 386 grupos/797 bloques de la versión anterior y agrega datos de actividad única que antes se omitían.
+El lector del JSON genera **39 asignaturas registradas, 453 agrupaciones y 904 bloques** para el escenario de referencia. Conserva los 386 grupos/797 bloques de la versión anterior y los nuevos datos de actividad única. Solo los **374 grupos elegibles** participan en los cálculos; los 79 restantes siguen disponibles para consulta. No se elimina ningún bloque por esta selección.
 
 Los bloques horarios compartidos entre varias opciones se mantienen como una única unidad. Los grupos sin horario permanecen válidos y no producen choques inventados.
 
@@ -56,7 +56,7 @@ Además se conservan las tres pruebas históricas (`verificar.js`, `filtros.js`,
 
 Se verificaron **40 casos** mediante ejecución aislada del código JavaScript: contrato y referencias, exactitud de día/hora de los bloques, agrupaciones, escenarios anteriores, modificaciones personales, filtros y generación de siete vistas.
 
-La prueba específica con la referencia anterior recuperó las mismas cantidades de 386 grupos, 797 bloques y 4.044 combinaciones con choque al limitarse al conjunto antiguo. Las estadísticas ampliadas cambian por **nuevos grupos incorporados**, no porque se haya alterado el criterio matemático de solapamiento.
+La referencia v0.4.3 contenía 386 grupos y 797 bloques, incluidos grupos especiales que contribuían a los resultados (4.044 combinaciones con choque bajo la selección antigua). En la nueva versión los registros se conservan pero los grupos de otras sedes quedan excluidos de los cálculos, por lo que **no se exige igualdad de totales globales entre selecciones diferentes**. La fidelidad se comprueba mediante equivalencia de registros, días, horarios, agrupaciones y resultados para exactamente la misma selección de grupos. La fórmula de solapamiento no cambia.
 
 ## Deuda de transición y límite de esta entrega
 
