@@ -495,7 +495,23 @@ function pageMalla() {
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
     <div class="row"><div class="seg"><button data-act="m-edges" data-v="all" aria-pressed="${M.edges === 'all'}">Todas las flechas</button><button data-act="m-edges" data-v="sel" aria-pressed="${M.edges === 'sel'}">Solo la selección</button></div>
     <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor ? 'checked' : ''}><i></i>Solo con horario</label></div></div>
-  <div class="mallawrap"><div class="card canvas" id="canvas"><svg class="edges" id="edges" aria-hidden="true"></svg><div class="mcols" id="mcols">${cols}</div></div>${mallaSide(L)}</div>
+  <div class="mallawrap"><section class="malla-panel ${M.ampliado ? 'malla-panel--ampliado' : ''}" id="malla-panel" aria-label="Mapa de prerrequisitos">
+     <div class="malla-toolbar">
+       <div class="malla-toolbar-titulo"><strong>Mapa curricular</strong><span>Desplaza para explorar los semestres</span></div>
+       <div class="malla-controles" role="group" aria-label="Escala y tamaño del mapa">
+         <button class="btn sm" type="button" data-act="m-zoom" data-dx="-0.1" aria-label="Alejar mapa" ${M.zoom <= .6 ? 'disabled' : ''}>−</button>
+         <output class="malla-zoom-etiqueta" aria-live="polite">${Math.round(M.zoom*100)} %</output>
+         <button class="btn sm" type="button" data-act="m-zoom" data-dx="0.1" aria-label="Acercar mapa" ${M.zoom >= 1.6 ? 'disabled' : ''}>+</button>
+         <button class="btn sm" type="button" data-act="m-zoom-reset" aria-label="Restablecer escala al 100 por ciento">100 %</button>
+         <button class="btn sm malla-ampliar" type="button" data-act="m-ampliar" aria-pressed="${!!M.ampliado}">${M.ampliado ? 'Salir de pantalla completa' : 'Pantalla completa'}</button>
+       </div>
+     </div>
+     <div class="card canvas" id="canvas" role="region" tabindex="0" aria-label="Mapa de prerrequisitos con desplazamiento horizontal y vertical">
+       <div class="malla-stage" id="malla-stage" style="zoom:${M.zoom}">
+         <svg class="edges" id="edges" aria-hidden="true"></svg><div class="mcols" id="mcols">${cols}</div>
+       </div>
+     </div>
+   </section>${mallaSide(L)}</div>
   <div class="legend" style="margin-top:10px"><span><i class="sw" style="background:var(--surface);border:1px solid var(--line2)"></i>con horario (barra = % de combinaciones que chocan)</span><span><i class="sw" style="border:1px dashed var(--line2)"></i>sin horario (no entra al análisis)</span><span><i class="sw" style="background:var(--ca-soft);border:1px solid var(--ca)"></i>requisitos</span><span><i class="sw" style="background:var(--ok-soft);border:1px solid var(--ok)"></i>la requieren</span><span style="color:var(--heat)">⟲ flecha roja punteada = requisito en el mismo semestre o posterior</span></div>`;
 }
 function mallaSide(L) {
@@ -525,11 +541,25 @@ function mallaSide(L) {
     <button class="btn sm ghost" data-act="m-sel" data-n="${esc(n)}">Quitar selección</button></aside>`;
 }
 function drawEdges() {
-  const cv = $('#canvas'), svg = $('#edges'), cols = $('#mcols'); if (!cv || !svg) return;
+  const cv = $('#canvas'), svg = $('#edges'), cols = $('#mcols'), stage = $('#malla-stage');
+  if (!cv || !svg || !cols || !stage) return;
   const M = ui.malla, L = M.sel && pasaFiltros(S.malla.find(m=>m.n===M.sel)) ? lineage(S,M.sel) : null;
-  const cr = cv.getBoundingClientRect(), pos = new Map();
-  $$('.mcard', cv).forEach(c => { const r = c.getBoundingClientRect(); pos.set(c.dataset.n, { l: r.left - cr.left + cv.scrollLeft, r: r.right - cr.left + cv.scrollLeft, y: r.top - cr.top + cv.scrollTop + r.height / 2 }); });
-  const W = Math.max(cv.scrollWidth, cols.scrollWidth + 30), H = Math.max(cv.scrollHeight, cols.scrollHeight + 30);
+  // Coordenadas de diseño, NO coordenadas de ventana: el zoom del mapa
+  // cambia la escala visual sin desalinear las flechas al desplazarlo.
+  const posicionEnMapa = elemento => {
+    let x = 0, y = 0, nodo = elemento;
+    while (nodo && nodo !== stage) {
+      x += nodo.offsetLeft || 0; y += nodo.offsetTop || 0;
+      nodo = nodo.offsetParent;
+    }
+    return { x, y };
+  };
+  const pos = new Map();
+  $('.mcard', stage).forEach(c => {
+    const {x,y} = posicionEnMapa(c);
+    pos.set(c.dataset.n, { l:x, r:x+c.offsetWidth, y:y+c.offsetHeight/2 });
+  });
+  const W = cols.scrollWidth + 28, H = cols.scrollHeight + 28;
   svg.setAttribute('width', W); svg.setAttribute('height', H);
   const semOf2 = n => (S.malla.find(m => m.n === n) || {}).s;
   let out = `<defs>${[['n', 'var(--ink3)'], ['u', 'var(--ca)'], ['d', 'var(--ok)'], ['w', 'var(--heat)']].map(([k, c]) => `<marker id="ar-${k}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L8 4L0 8z" fill="${c}"/></marker>`).join('')}</defs>`;
