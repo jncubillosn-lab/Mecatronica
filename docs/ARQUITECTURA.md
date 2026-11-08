@@ -182,7 +182,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 - Los filtros de Fundamentación, Disciplinar y Nivelación son **selecciones de consulta**, no operaciones de eliminación de información.
 - Una agrupación con `analizable: false` puede consultarse; los cambios personales no pueden convertirla por sí solos en una agrupación calculable.
 - Inicio, Interferencias, Asignaturas, exportaciones, paneles y mapa de calor deben interpretar **la misma selección activa**; no debe persistir una vía de resultados no filtrados en un panel cuando su filtro está desmarcado.
-- Grupos, Horarios y Prerrequisitos pueden ofrecer edición/consulta completa del escenario sin ocultar datos por un filtro estadístico.
+- Desde v0.5.4, los filtros de componente y unidad académica se muestran **en las siete páginas**, incluso Grupos, Horarios y Prerrequisitos. Reducen solo la **vista** y sus resultados; el escenario conserva todos los registros, y la selección puede restablecerse para volver a consultarlos.
 - Un grupo con varias actividades conserva todos sus bloques **según las agrupaciones explícitas del contrato**.
 - No se confunde el número de grupos disponibles con número de estudiantes, capacidad de aulas u ocupación efectiva.
 - Los créditos mínimos se comprueban por los componentes y criterios registrados en el plan, no por totales fijos del código.
@@ -190,6 +190,8 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 ## 3. Estado de referencia y modificaciones personales
 
 El estado académico normalizado es una **referencia**. Un estudiante puede desactivar grupos, editar horarios, mover asignaturas, cambiar relaciones o construir un escenario hipotético. Estas decisiones no modifican la referencia.
+
+**Unidad responsable opcional:** el usuario puede registrar para una posición curricular un departamento o facultad en su **escenario personal**, incluso si no hay profesor informado. Ese valor comienza vacío, no se deduce por reglas ni se convierte en campo académico obligatorio; viaja con los cambios personales exportados. Filtrar por esa unidad es una selección de consulta, no una edición de los datos académicos normalizados.
 
 La arquitectura objetivo conserva **operaciones o diferencias personales** vinculadas a identificadores estables. Al cargar una versión posterior de `FuentesAcadémicas` se reconstruye el escenario utilizando la nueva referencia y las modificaciones de la persona.
 
