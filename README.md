@@ -153,3 +153,6 @@ Para proponer cambios, comprobar primero [EST-01](docs/ESTADO-Y-PUBLICACION.md) 
 ## Demanda de preinscripción (DEM-01)
 
 La octava página **Demanda** permite importar o editar un JSON mínimo de solicitudes por ID curricular, explorar solicitudes absolutas, solicitudes por agrupación y comparaciones con la mediana del semestre. No necesita cupos ofertados ni históricos; si faltan datos, los indicadores asociados se muestran como no calculables. Hay un ejemplo **explícitamente simulado**, exportación de la encuesta y conservación en la descarga del escenario personal. La frecuencia y la extrapolación solo se muestran con metadatos de participación informados; las co-solicitudes requieren listas de respuestas anónimas. Contrato y límites: [DEM-01](docs/DEM-01.md).
+
+
+**Desde v0.5.7:** si no has importado una encuesta, la pestaña Demanda muestra de inmediato una **vista previa simulada, no guardada**. El tablero incluye recomendaciones estadísticas calculadas y percentiles por semestre. Pulsa **Guardar ejemplo en escenario** solo si deseas conservar los datos ficticios; nunca se sustituyen datos reales sin confirmación.
