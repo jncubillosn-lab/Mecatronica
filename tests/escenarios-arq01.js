@@ -193,6 +193,8 @@ probar('Escenarios históricos sin IDs no generan cambios falsos en requisitos',
   assert.deepEqual(cambios.pre.agregar,[]);
   assert.deepEqual(cambios.pre.quitar,[]);
   assert.equal(Object.hasOwn(cambios,'reqCred'),false);
+  assert.equal(Object.hasOwn(cambios,'reqCredCambios'),false,
+    'Un escenario histórico equivalente no inventa ediciones de requisitos');
 });
 
 
