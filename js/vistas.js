@@ -472,18 +472,20 @@ function pageHeat() {
 }
 /* ===== MALLA / PRERREQUISITOS ===== */
 function semHead(s) {
-  const c = semCred(s, S.malla);
+  const c = semCred(s, S.malla.filter(m=>pasaFiltros(m) && (!ui.malla.soloHor || S.asg.includes(m.n))));
   return `<span class="semcr" title="${c.incompleto ? 'Créditos registrados (hay asignaturas sin créditos definidos): ' : ''}${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
 }
 function pageMalla() {
-  const M = ui.malla, sel = M.sel;
-  if (sel && !S.malla.find(m => m.n === sel)) M.sel = null;
-  const L = M.sel ? lineage(S, M.sel) : null;
+  const M=ui.malla;
+  if(M.sel && !S.malla.find(m=>m.n===M.sel))M.sel=null;
+  const visibles=new Set(nombresVisibles(S,S.malla.map(m=>m.n)));
+  const sel=visibles.has(M.sel)?M.sel:null;
+  const L=sel?lineage(S,sel):null;
   const maxSem = maxSemester(S);
   const cols = Array.from({ length: maxSem }, (_, i) => i + 1).map(s => {
-    const cs = S.malla.filter(m => m.s === s && (!M.soloHor || S.asg.includes(m.n)));
+    const cs = S.malla.filter(m=>m.s===s && visibles.has(m.n) && (!M.soloHor||S.asg.includes(m.n)));
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s)}</h4>${cs.map(m => {
-      const sc = R.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
+      const sc = RV.st[m.n], req = creditRuleFor(m.n), check = req ? creditStatus(m, req) : null;
       let cls = sc ? '' : 'nosched';
       if (L) cls += m.n === M.sel ? ' sel' : L.up.has(m.n) ? ' up' : L.down.has(m.n) ? ' down' : ' dim';
       return `<button class="mcard ${cls}" draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n === M.sel}" title="Arrastra a otra columna para cambiarla de semestre"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr == null ? '—' : m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car ? ' · ' + esc(carName(m.car)) : ''}</span></small>${check && check.low ? `<small><span class="tag heat">Faltan ${req.min - check.total} cr. previos</span></small>` : ''}${sc ? `<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100, sc.idxG * 200)}%"></i></span>` : `<small><span>sin horario</span></small>${!req && m.nota ? `<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ', '').replace(' de los créditos del plan', ' de créditos'))}</span></small>` : ''}`}</button>`;
@@ -496,9 +498,9 @@ function pageMalla() {
   <div class="legend" style="margin-top:10px"><span><i class="sw" style="background:var(--surface);border:1px solid var(--line2)"></i>con horario (barra = % de combinaciones que chocan)</span><span><i class="sw" style="border:1px dashed var(--line2)"></i>sin horario (no entra al análisis)</span><span><i class="sw" style="background:var(--ca-soft);border:1px solid var(--ca)"></i>requisitos</span><span><i class="sw" style="background:var(--ok-soft);border:1px solid var(--ok)"></i>la requieren</span><span style="color:var(--heat)">⟲ flecha roja punteada = requisito en el mismo semestre o posterior</span></div>`;
 }
 function mallaSide(L) {
-  const n = ui.malla.sel;
+  const n = ui.malla.sel && pasaFiltros(S.malla.find(m=>m.n===ui.malla.sel)) ? ui.malla.sel : null;
   if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p></aside>`;
-  const m = S.malla.find(x => x.n === n), sc = R.st[n];
+  const m = S.malla.find(x => x.n === n), sc = RV.st[n];
   const dirIn = S.pre.filter(p => p.t === n), dirOut = S.pre.filter(p => p.r === n);
   const indUp = [...L.up.keys()].filter(x => !dirIn.some(p => p.r === x)), indDown = [...L.down.keys()].filter(x => !dirOut.some(p => p.t === x));
   const optsReq = S.malla.filter(c => c.n !== n && !dirIn.some(p => p.r === c.n) && !wouldCycle(S, c.n, n)).sort((a, b) => a.s - b.s || a.n.localeCompare(b.n));
@@ -509,6 +511,7 @@ function mallaSide(L) {
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr == null ? '—' : m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
+    ${editorUnidad(n)}
     <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= maxSemester(S) ? 'disabled' : ''}>+</button></span></div>
     ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
     ${creditRequirementNote(m)}
@@ -522,7 +525,7 @@ function mallaSide(L) {
 }
 function drawEdges() {
   const cv = $('#canvas'), svg = $('#edges'), cols = $('#mcols'); if (!cv || !svg) return;
-  const M = ui.malla, L = M.sel ? lineage(S, M.sel) : null;
+  const M = ui.malla, L = M.sel && pasaFiltros(S.malla.find(m=>m.n===M.sel)) ? lineage(S,M.sel) : null;
   const cr = cv.getBoundingClientRect(), pos = new Map();
   $$('.mcard', cv).forEach(c => { const r = c.getBoundingClientRect(); pos.set(c.dataset.n, { l: r.left - cr.left + cv.scrollLeft, r: r.right - cr.left + cv.scrollLeft, y: r.top - cr.top + cv.scrollTop + r.height / 2 }); });
   const W = Math.max(cv.scrollWidth, cols.scrollWidth + 30), H = Math.max(cv.scrollHeight, cols.scrollHeight + 30);
