@@ -836,7 +836,7 @@ body.mapa-ampliado{overflow:hidden}
   color-scheme:dark;
   --bg:#131a23;--surface:#1b2530;--surface2:#263240;
   --ink:#eef3f9;--ink2:#b8c6d4;--ink3:#a5b4c4;
-  --line:#334354;--line2:#4b5d6f;--accent:#8ab8e3;--accent-soft:#233d54;
+  --line:#44566a;--line2:#637588;--accent:#8ab8e3;--accent-soft:#233d54;
   --ca:#6fb0ee;--ca-soft:#1e3347;--cb:#c297f0;--cb-soft:#33274a;
   --heat:#ff7a5c;--heat-soft:#4a241c;--ok:#58c79a;--ok-soft:#173a2c;
   --warn:#e2b04a;--warn-soft:#3f3217;--shadow:0 1px 5px rgba(0,0,0,.22);
@@ -849,7 +849,7 @@ body.mapa-ampliado{overflow:hidden}
   color-scheme:light;
   --bg:#f7f8fa;--surface:#ffffff;--surface2:#f0f3f6;
   --ink:#172338;--ink2:#455363;--ink3:#5b6979;
-  --line:#e0e5ec;--line2:#c6d0da;--accent:#245781;--accent-soft:#e2edf7;
+  --line:#ccd6e0;--line2:#adbccc;--accent:#245781;--accent-soft:#e2edf7;
   --ca:#2b6cb0;--ca-soft:#d9e7f5;--cb:#8a4fbf;--cb-soft:#eadff6;
   --heat:#d4412a;--heat-soft:#fbe3dc;--ok:#2c8a63;--ok-soft:#dcf0e6;
   --warn:#b7791f;--warn-soft:#fbefd5;--shadow:0 1px 4px rgba(20,39,62,.055);
@@ -901,4 +901,66 @@ body.mapa-ampliado{overflow:hidden}
   .revision-req{width:calc(100% - 16px);padding:9px}
   .revision-req-item>.row{margin-left:0;width:100%}
   .revision-req-item .btn{flex:1 1 160px}
+}
+
+
+/* TONO-01 — Tipologías como ayudas de lectura, no estados académicos.
+ * Se reutilizan azul/violeta/verde; Nivelación es gris azulado neutro.
+ * Ningún token de tipología altera --heat, --warn, --dem-*, --programa-*.
+ * El matiz acompaña a la asignatura: las escalas y los choques no se tiñen.
+ */
+[data-tipologia="B"]{--tipo-acento:var(--ca)}
+[data-tipologia="C"]{--tipo-acento:var(--cb)}
+[data-tipologia="L"]{--tipo-acento:var(--ok)}
+[data-tipologia="N"]{--tipo-acento:var(--ink3)}
+/* La señal siempre deja el nombre intacto; el tipo se ve también por texto. */
+.asig-etiqueta[data-tipologia]{
+  display:inline;box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  border-radius:3px;padding:1px 3px 1px 6px;
+  background:color-mix(in srgb,var(--tipo-acento) 8%,var(--surface));
+  box-shadow:inset 2px 0 0 var(--tipo-acento);
+}
+.prow .names :is(.a,.b)[data-tipologia]{
+  border-radius:5px;padding:2px 5px 2px 6px;
+  background:color-mix(in srgb,var(--tipo-acento) 7%,var(--surface));
+  box-shadow:inset 2px 0 0 var(--tipo-acento);
+  color:var(--ink);
+}
+/* Contenedores de una sola asignatura: tinte de fondo de intensidad mínima. */
+.arow[data-tipologia],.gcard[data-tipologia]{
+  background:color-mix(in srgb,var(--tipo-acento) 5%,var(--surface));
+  border-left:3px solid var(--tipo-acento);
+}
+.mcard[data-tipologia]:not(.up):not(.down):not(.sel){
+  background:color-mix(in srgb,var(--tipo-acento) 8%,var(--surface));
+  border-left:3px solid var(--tipo-acento);
+}
+/* No ocultar los estados seleccionada / requisito / dependiente del grafo. */
+.mcard[data-tipologia]:is(.up,.down,.sel){
+  border-left:3px solid var(--tipo-acento);
+}
+.mcard[data-tipologia].nosched{border-style:dashed}
+/* Filtrados globales: punto de referencia cromática, sin recolorear botones. */
+.component-toggle[data-tipologia]::before{
+  content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
+  margin-right:5px;vertical-align:1px;flex:none;background:var(--tipo-acento);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--tipo-acento) 25%,transparent);
+}
+/* Listados y selecciones: acento interno para no alterar bordes de estado. */
+.sidelist button[data-tipologia],.hm-asg[data-tipologia],
+.chip[data-tipologia],.dem-mini[data-tipologia],.dem-caso[data-tipologia]{
+  box-shadow:inset 3px 0 0 var(--tipo-acento);
+}
+.sidelist button[data-tipologia]:not([aria-current="true"]):not([aria-pressed="false"]){
+  background:color-mix(in srgb,var(--tipo-acento) 6%,var(--surface));
+}
+.dem-mini[data-tipologia],.dem-caso[data-tipologia]{
+  background:color-mix(in srgb,var(--tipo-acento) 6%,var(--surface2));
+}
+.dem-enlace[data-tipologia],.dem-seleccion-nombre[data-tipologia]{
+  border-left:2px solid var(--tipo-acento);padding-left:6px;
+}
+.dem-enlace[data-tipologia]{
+  background:color-mix(in srgb,var(--tipo-acento) 7%,var(--surface));
+  border-radius:3px;
 }
