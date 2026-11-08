@@ -67,7 +67,7 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 | `malla` | Posiciones curriculares, semestre, componente y carácter | Una posición puede representar una optativa genérica y no tener código de asignatura |
 | `requisitos` | Relaciones y mínimos de créditos definidos para un plan | No se copian automáticamente a otros planes; se expresa qué componentes cuentan |
 | `oferta` | Oferta por periodo, actividades, grupos y bloques horarios | Se preservan los grupos aunque no tengan bloques |
-| `agrupaciones` | Opciones de grupo analizables que relacionan actividades | Solo relaciones explícitas y sustentadas en el dato normalizado |
+| `agrupaciones` | Relaciones de grupos por actividad y su elegibilidad para el análisis | `analizable: false` conserva la agrupación como información sin incorporarla a cálculos; ausente equivale a `true` |
 | `configuracion` | Calendario, filtros disponibles y reglas de comparación | Sin constantes propias de una carrera en el algoritmo |
 | `procedencia` | Identificación/fecha de la información si consta | Metadatos opcionales; nunca instrucciones para leer otras fuentes |
 
@@ -154,7 +154,8 @@ Los identificadores de ejemplo ilustran el contrato: no implican que toda posici
 - **Posición curricular:** ID propio dentro de un plan. No es sinónimo de asignatura.
 - **Oferta:** vinculada a un código de asignatura y, cuando exista, a un periodo académico.
 - **Grupo de actividad:** identidad contextualizada por oferta, actividad e ID de grupo, no solo por el texto “G1”.
-- **Agrupación analizable:** relaciona los grupos de actividad que la fuente normalizada declara compatibles como una opción. No se hacen productos cartesianos entre teorías y laboratorios ni se supone universalmente que dos IDs iguales deban combinarse.
+- **Agrupación registrada:** relaciona los grupos de actividad que la fuente normalizada declara compatibles como una opción. No se hacen productos cartesianos entre teorías y laboratorios ni se supone universalmente que dos IDs iguales deban combinarse.
+- **Elegibilidad:** `analizable: false` conserva una agrupación para consulta, pero la excluye de interferencias, matrices, mapa de calor e indicadores horarios. Si no se informa, equivale a `true`. El contrato declara esta propiedad; no se deduce de nombres o prefijos dentro del motor. Los grupos de otras sedes se conservan sin participar en cálculos hasta que exista validación de su alcance.
 - **Requisitos:** se expresan respecto del plan y sus posiciones; los mínimos numéricos y componentes que cuentan son **datos**, no condiciones incrustadas en funciones.
 
 El sistema **consume** esas relaciones ya representadas en la entrada normalizada. No reconstruye la procedencia ni convierte los formatos originales para resolverlas.
@@ -176,6 +177,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 ### Cálculo y visualización
 
 - Los filtros de Fundamentación, Disciplinar y Nivelación son **selecciones de consulta**, no operaciones de eliminación de información.
+- Una agrupación con `analizable: false` puede consultarse; los cambios personales no pueden convertirla por sí solos en una agrupación calculable.
 - Inicio, Interferencias, Asignaturas, exportaciones, paneles y mapa de calor deben interpretar **la misma selección activa**; no debe persistir una vía de resultados no filtrados en un panel cuando su filtro está desmarcado.
 - Grupos, Horarios y Prerrequisitos pueden ofrecer edición/consulta completa del escenario sin ocultar datos por un filtro estadístico.
 - Un grupo con varias actividades conserva todos sus bloques **según las agrupaciones explícitas del contrato**.
