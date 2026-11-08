@@ -312,7 +312,8 @@ function pageDemanda() {
     :'<p class="dem-seleccion-ayuda" role="status">Haz clic en un punto de la gráfica '+
       'para ver el nombre de la asignatura y sus valores.</p>';
   const grafico=puntos.length
-    ?'<div class="dem-grafico-wrap"><svg class="dem-grafico" viewBox="0 0 950 515" '+
+    ?'<p class="dem-desplaza">Desliza horizontalmente para explorar la gráfica completa.</p>'+
+       '<div class="dem-grafico-wrap" role="region" tabindex="0" aria-label="Gráfica de demanda desplazable"><svg class="dem-grafico" viewBox="0 0 950 515" '+
       'role="group" aria-label="Gráfico de solicitudes contra número de agrupaciones; '+puntos.length+
       ' asignaturas, cortes según medianas de la selección">'+
       '<rect class="dem-marco" x="'+area.izq+'" y="'+area.arriba+'" width="'+ancho+
