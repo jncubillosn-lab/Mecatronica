@@ -66,7 +66,11 @@ Los colores se utilizan en marcas pequeñas y con contorno cuando hace falta, pa
 4. Diseñar una selección real de programa **solo cuando existan contratos académicos utilizables**, definiendo antes el mecanismo de cambio de contexto y aislamiento de escenarios personales.
 5. Revisar visualmente navegación, matrices, horarios, Demanda y Prerrequisitos en escritorio/móvil y temas claro/oscuro.
 
-## 6. Pruebas y control de versión
+## 6. Adaptación de pantallas
+
+La política de geometría y adaptación de las ocho vistas se concreta en [RESP-01](RESP-01.md): contenedores fluidos, desplazamiento local de tablas y cuadrículas, SVG proporcionado de Demanda y mapa de prerrequisitos con zoom y expansión sin alterar datos.
+
+## 7. Pruebas y control de versión
 
 La suite `tests/identidad-visual.js` verifica nueve temas, color de Mecatrónica, borde de Química, fallback y separación de variables. Se ejecuta desde `npm test`, además de las pruebas académicas existentes. `tests/versionado.js` exige sincronizar HTML, CSS y JS con el número público.
 
