@@ -5,7 +5,7 @@ Aplicación web **no oficial** para consultar la malla curricular, examinar grup
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Documentación de referencia:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial](docs/MIGRACION-ARQ01.md) · [Guía de desarrollo](AGENTS.md)
 
-## Arquitectura vigente — v0.5.2
+## Arquitectura vigente — v0.5.3
 
 **La aplicación tiene una única entrada académica estandarizada: [datos/academico.json](datos/academico.json).**
 
@@ -29,9 +29,9 @@ La malla, el catálogo institucional y la oferta de grupos se transforman **fuer
                 filtros y visualizaciones
 ~~~
 
-Desde v0.5.0 la interfaz histórica utiliza una representación interna llamada `RAW`, **generada exclusivamente desde el JSON normalizado**. No es una segunda fuente ni un archivo académico que deba editarse.
+En v0.5.3 el arranque ya no expone `window.RAW` ni hace que la interfaz dependa de esa estructura: `js/iniciar.js` entrega un **contexto explícito** con escenario de referencia, calendario, configuración y procedencia. `EntradaAcademica` mantiene una proyección posicional **local y transitoria** para adaptadores y pruebas históricas, sin abrir una segunda entrada académica. El motor de cálculos está en `js/analisis.js` y las siete vistas en `js/vistas.js`.
 
-**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. La [PR #10](https://github.com/jncubillosn-lab/Mecatronica/pull/10) consolidó los acuerdos generales y la [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) documentó las responsabilidades y reglas directamente dentro del código, sin cambiar los algoritmos (v0.5.2). La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
+**Estado del proyecto:** la migración ARQ-01 ya fue fusionada en `main` mediante la [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); la [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) publicó el versionado verificable v0.5.1. La [PR #10](https://github.com/jncubillosn-lab/Mecatronica/pull/10) consolidó los acuerdos generales y la [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) documentó las responsabilidades y reglas directamente dentro del código, sin cambiar los algoritmos (v0.5.2). La [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13) separa motor/vistas, fortalece las referencias de requisitos y elimina `RAW` del contexto global (v0.5.3). La fusión y las pruebas CI están confirmadas; la comprobación del contenido realmente servido por GitHub Pages es un paso aparte. Véase [EST-01](docs/ESTADO-Y-PUBLICACION.md).
 
 ## Qué contiene el contrato
 
@@ -101,8 +101,10 @@ datos/academico.json     ÚNICA entrada académica estandarizada
 js/modelo.js             PlanCurricular y CalendarioAcademico
 js/entrada.js            Lector del contrato y escenario de referencia
 js/escenarios.js         Modificaciones personales y migración histórica
-js/iniciar.js            Carga del JSON y arranque
-js/app.js                Interfaz y motor heredados (proyección interna RAW)
+js/analisis.js           Motor puro, prerrequisitos y adaptador posicional legado
+js/vistas.js             Siete vistas y paneles de consulta
+js/iniciar.js            Entrada única, contexto académico y arranque
+js/app.js                Estado de la sesión, navegación y eventos
 css/estilos.css
 css/pie.css
 ~~~
@@ -118,7 +120,9 @@ Además de ARQ-01 y DEC-01, las decisiones técnicas se explican junto a sus imp
 | `js/entrada.js` | Contrato normalizado, formato de la proyección interna, referencias estables y agrupaciones informativas. |
 | `js/modelo.js` | Responsabilidades POO, evaluación de créditos desconocidos y calendario configurable. |
 | `js/escenarios.js` | Diferencias personales, aplicación de cambios, validación básica y migración histórica. |
-| `js/app.js` | Estructura del escenario, cálculo de choques, filtros, persistencia, vistas y eventos. |
+| `js/analisis.js` | Motor de cruces, cálculo de requisitos con IDs estables y adaptador histórico sin DOM. |
+| `js/vistas.js` | Siete páginas, detalles y mapas, sin convertirse en fuente de datos ni motor. |
+| `js/app.js` | Estado personal, filtros, persistencia, navegación y acciones de edición. |
 | `js/iniciar.js` e `index.html` | Orden de arranque, entrada académica única y sincronización del indicador de versión. |
 | `css/estilos.css` | Tema visual, número variable de días y semántica del mapa de calor. |
 
@@ -135,7 +139,7 @@ npm test
 
 Incluye **nueve conjuntos de pruebas**: versión pública, contrato, oferta, escenarios, vistas, pruebas heredadas e integración simulada de las siete secciones con `jsdom`. GitHub Actions aplica esta batería a cada PR y además exige incrementar el número visible de versión cuando cambian los archivos HTML, JS, CSS o JSON de producción. Los cambios solo documentales no exigen incrementar versión.
 
-Las pruebas nuevas usan solamente el JSON normalizado y verifican estructura, cobertura, horas exactas, escenarios personales y coherencia de las vistas. `tests/verificar.js`, `tests/filtros.js` y `tests/fuentes.js` se mantienen como verificaciones del comportamiento anterior y de los archivos históricos, no como entradas alternativas de producción.
+Las pruebas activas usan el JSON normalizado para contrato, cobertura, horas, requisitos y vistas; los tests de compatibilidad histórica mantienen sus fixtures sin cargarlos en producción. En v0.5.3 se compara el motor anterior con el extraído sobre una misma entrada y se comprueba el arranque sin `window.RAW`. `tests/verificar.js`, `tests/filtros.js` y `tests/fuentes.js` se mantienen como verificaciones del comportamiento anterior y de los archivos históricos, no como entradas alternativas de producción.
 
 ## Alcance y continuidad
 
