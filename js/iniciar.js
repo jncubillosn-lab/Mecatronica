@@ -7,7 +7,7 @@
 (async function iniciar() {
   const contenedor = document.getElementById('view');
   try {
-    const respuesta = await fetch('datos/academico.json?v=0.5.0');
+    const respuesta = await fetch('datos/academico.json?v=0.5.1');
     if (!respuesta.ok) throw new Error('No se pudo consultar el contrato académico');
     const contrato = await respuesta.json();
     const lector = new EntradaAcademica(contrato);
@@ -15,7 +15,7 @@
     window.RAW = lector.generarEscenarioBase();
     window.fuentesAcademicas = lector;
     const script = document.createElement('script');
-    script.src = 'js/app.js?v=0.5.0';
+    script.src = 'js/app.js?v=0.5.1';
     script.onerror = () => {
       if (contenedor) contenedor.textContent = 'No se pudo cargar la interfaz de planeación.';
     };

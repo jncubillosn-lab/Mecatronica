@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Obtener código
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Preparar Node.js
         uses: actions/setup-node@v4
         with:
@@ -25,3 +27,6 @@ jobs:
         run: npm ci
       - name: Contrato, escenarios, cálculo e integración
         run: npm test
+      - name: Exigir nueva versión para cambios del sitio
+        if: github.event_name == 'pull_request'
+        run: node tests/versionado.js --compare-main
