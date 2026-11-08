@@ -4,6 +4,7 @@ La **versión pública de la aplicación** se consulta en el pie de página y en
 
 ## Versiones integradas
 
+- **0.5.4** (7 nov 2026, [PR #14](https://github.com/jncubillosn-lab/Mecatronica/pull/14)): filtro de tipología visible y operativo en las siete páginas; filtro adicional por unidad académica responsable. Cada asignatura puede registrar voluntariamente un departamento de Ingeniería o facultad, incluso sin docente, y conservarlo al exportar/importar escenarios. La entrada `datos/academico.json` y el formato de escenario versión 1 no cambian.
 - **0.5.3** (7 nov 2026, [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13)): lectura estricta de referencias académicas; extracción del motor a `js/analisis.js` y de las siete vistas a `js/vistas.js`; contexto de ejecución sin `window.RAW`; claves de prerrequisitos por ID con respaldo para escenarios personales antiguos. Sin modificación de la única fuente académica ni de las fórmulas de interferencia.
 - **0.5.2** (7 nov 2026, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11)): documentación técnica junto al código —responsabilidades POO, entrada académica, estado y filtros, migración de escenarios, cálculo y vistas— sin cambiar algoritmos ni datos; actualización coherente del número público y de los parámetros de caché.
 - **0.5.1** (7 nov 2026, [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9)): corrección del indicador de versión y caché de recursos, incluida `css/pie.css`; verificación automática para impedir publicar cambios productivos sin incrementar versión.
