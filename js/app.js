@@ -164,7 +164,7 @@ const ui = {
   grp: { sel: null },
   hor: { a: S.asg.includes(OPCIONES.asignaturaInicial) ? OPCIONES.asignaturaInicial : S.asg[0], comp: null, ov: [] },
   heat: { off: new Set() }, // asignaturas excluidas del mapa; por defecto entran todas
-  demanda: { orden:'porGrupo', semestre:'', seleccion:'', sinDato:false, vistaEjemplo:false, metricaMalla:'porGrupo', confirmarEjemplo:false, confirmarBorrar:false },
+  demanda: { orden:'porGrupo', semestre:'', seleccion:'', puntoActivo:'', sinDato:false, vistaEjemplo:false, metricaMalla:'porGrupo', confirmarEjemplo:false, confirmarBorrar:false },
   malla: { sel: null, edges: 'all', soloHor: false },
   drawer: null, // {type:'pair', key, ga, gb} | {type:'cambios'}
 };
@@ -393,9 +393,18 @@ function onAct(act, d, el, ev) {
   const f = ui.inter;
   switch (act) {
     case 'nav': ev.preventDefault(); return go(d.p);
-    case 'dem-sel': ui.demanda.seleccion=d.pos; return render();
+    case 'dem-sel': {
+      // Sincronizar el detalle con la identificación junto a la gráfica.
+      ui.demanda.seleccion=d.pos;
+      ui.demanda.puntoActivo=d.pos;
+      render();
+      // Al seleccionar con teclado, conservar el foco después del redibujado.
+      if(ev?.type==='keydown'&&el?.classList?.contains('dem-marca'))
+        $('.dem-marca').find(x=>x.dataset.pos===d.pos)?.focus();
+      return;
+    }
     case 'dem-vista': ui.demanda.vistaEjemplo=!ui.demanda.vistaEjemplo;
-      ui.demanda.confirmarEjemplo=false;ui.demanda.seleccion='';return render();
+      ui.demanda.confirmarEjemplo=false;ui.demanda.seleccion='';ui.demanda.puntoActivo='';return render();
     case 'dem-plantilla': return download('plantilla-demanda.json',JSON.stringify({tipo:'demanda-preinscripcion',version:1,solicitudes:[]},null,2),'application/json');
     case 'dem-export': if(S.demanda)return download('demanda-preinscripcion.json',JSON.stringify(S.demanda,null,2),'application/json');return;
     case 'dem-import': return $('#demanda-file')?.click();
@@ -404,13 +413,13 @@ function onAct(act, d, el, ev) {
       ui.demanda.confirmarEjemplo=false;
       ui.demanda.vistaEjemplo=false;
       S.demanda=DemandaEstadistica.ejemplo(S.malla,S.grupos);
-      ui.demanda.seleccion='';
+      ui.demanda.seleccion='';ui.demanda.puntoActivo='';
       return commit('Datos simulados cargados y claramente identificados.');
     }
     case 'dem-borrar': {
       if(!S.demanda)return;
       if(!ui.demanda.confirmarBorrar){ui.demanda.confirmarBorrar=true;return render();}
-      ui.demanda.confirmarBorrar=false; S.demanda=null;ui.demanda.seleccion='';
+      ui.demanda.confirmarBorrar=false; S.demanda=null;ui.demanda.seleccion='';ui.demanda.puntoActivo='';
       return commit('Se retiraron los datos de demanda del escenario.');
     }
     case 'dem-guardar': {
@@ -536,7 +545,7 @@ function onChange(k, el) {
     case 'unidad-filtro': ui.unidad=el.value; actualizarVistaComponentes(); return render();
     case 'dem-orden': ui.demanda.orden=el.value;return render();
     case 'dem-mapa': ui.demanda.metricaMalla=el.value;return render();
-    case 'dem-semestre': ui.demanda.semestre=el.value;ui.demanda.seleccion='';return render();
+    case 'dem-semestre': ui.demanda.semestre=el.value;ui.demanda.seleccion='';ui.demanda.puntoActivo='';return render();
     case 'dem-elegir': ui.demanda.seleccion=el.value;return render();
     case 'dem-sindato': ui.demanda.sinDato=el.checked;return render();
     case 'dem-import-file': {
@@ -545,7 +554,7 @@ function onChange(k, el) {
       lector.onload=()=>{
         try{
           const datos=DemandaEstadistica.normalizar(JSON.parse(lector.result));
-          S.demanda=datos;ui.demanda.seleccion='';ui.demanda.confirmarEjemplo=false;ui.demanda.vistaEjemplo=false;
+          S.demanda=datos;ui.demanda.seleccion='';ui.demanda.puntoActivo='';ui.demanda.confirmarEjemplo=false;ui.demanda.vistaEjemplo=false;
           commit('Encuesta importada: '+datos.solicitudes.length+' asignaturas.');
         }catch(e){toast('No se pudo cargar la demanda: '+e.message);}
       };
