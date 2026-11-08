@@ -76,12 +76,32 @@ async function main() {
       btn.click();
       assert(d.querySelector('#view h1')?.textContent.includes(heading),
         'No se presentó ' + heading);
+      // TONO-01: el indicador curricular acompaña asignaturas reales en las
+      // ocho páginas, no solo a los filtros globales.
+      const objetivo={
+        inicio:'.toprow .asig-etiqueta[data-tipologia]',
+        inter:'.prow .names [data-tipologia]',
+        asig:'.arow[data-tipologia]',
+        grupos:'.gcard[data-tipologia]',
+        hor:'.sidelist button[data-tipologia]',
+        heat:'.hm-asg[data-tipologia]',
+        demanda:'.dem-tabla .dem-enlace[data-tipologia]',
+        malla:'#mcols .mcard[data-tipologia]'
+      }[page];
+      assert(d.querySelector(objetivo),'Falta señal de tipología en '+page);
+      assert(d.querySelector('#top .component-toggle[data-tipologia]'),
+        'Los filtros muestran la leyenda tipológica en '+page);
     }
     // LIB-01: mostrar Libre elección exclusivamente en el grafo curricular.
     const beforeLibre=d.querySelector('.pill-stat')?.textContent;
     assert(d.querySelector('[data-act="m-libres"]')?.textContent.includes('36 cr'));
     assert.equal(d.querySelectorAll('#mcols .mcard-libre').length,12,
       'Las doce posiciones L de Mecatrónica vuelven a aparecer en Prerrequisitos');
+    assert.equal(d.querySelectorAll('#mcols .mcard[data-tipologia="L"]').length,12,
+      'Libre elección conserva su identidad visual aunque no sea filtro global');
+    assert(d.querySelector('#mcols .mcard[data-tipologia="B"]'));
+    assert(d.querySelector('#mcols .mcard[data-tipologia="C"]'));
+
     assert(d.querySelector('.malla-proyeccion-aviso'));
     assert.equal(d.querySelectorAll('#top [data-comp="L"]').length,0,
       'Libre elección no se incorpora al filtro global de ocho secciones');
