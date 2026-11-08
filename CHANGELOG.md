@@ -2,7 +2,13 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
-## Versiones integradas
+## Corte vigente: 0.7.5
+
+Verificado en `main`, commit `2985499d25319c13d686e3ac117080afdb250b5f` (8 nov 2026): metadato, pie y rutas de recursos declaran 0.7.5. Incluye TONO-01 y conserva los cambios documentados en DEM-01, UNI-UI-01, RESP-01, LIB-01, TEMA-ALTURA-01, REQ-C-01 y REG-01. Las entradas de 0.5.x que siguen son históricas; no representan el estado vigente.
+
+Mantenimiento de auditoría: documentación actualizada, retirada de caché Python versionada y CI orientada a `main`, sin cambiar recursos productivos ni elevar 0.7.5. Véase [AUD-075](docs/AUDITORIA-0.7.5.md).
+
+## Versiones integradas — historial
 
 - **0.5.5** (7 nov 2026, [PR #15](https://github.com/jncubillosn-lab/Mecatronica/pull/15)): referencia académica de TPI simplificada voluntariamente a un único grupo G1, lunes y miércoles de 14:00 a 16:00. Se retiran 21 alternativas de la oferta normalizada y las agrupaciones, sin modificar otras asignaturas ni el motor. Se actualizan pruebas y versión pública.
 
