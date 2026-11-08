@@ -156,3 +156,6 @@ La octava página **Demanda** permite importar o editar un JSON mínimo de solic
 
 
 **Desde v0.5.7:** si no has importado una encuesta, la pestaña Demanda muestra de inmediato una **vista previa simulada, no guardada**. El tablero incluye recomendaciones estadísticas calculadas y percentiles por semestre. Pulsa **Guardar ejemplo en escenario** solo si deseas conservar los datos ficticios; nunca se sustituyen datos reales sin confirmación.
+
+
+**Desde v0.5.8:** la sección Demanda comienza con una gráfica de cuatro cuadrantes por medianas, colores de mayor contraste, etiquetas y casos señalados. La simulación ilustra expresamente concentraciones elevadas de solicitudes frente al número de agrupaciones, sin pretender que exista escasez real de cupos. Orden: gráfica, comparación por semestre, detalle, recomendaciones, tabla y demanda conjunta.
