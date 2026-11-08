@@ -119,6 +119,34 @@ class EscenarioPersonal {
     return s;
   }
 
+  /** Validación técnica mínima: no exige completitud académica. */
+  static validarEstado(estado, calendario) {
+    if (!estado || typeof estado !== 'object' || !estado.params ||
+        !Array.isArray(estado.params.dists) ||
+        !Array.isArray(estado.malla) || !Array.isArray(estado.pre) ||
+        !Array.isArray(estado.asg) || !Array.isArray(estado.grupos) ||
+        !Array.isArray(estado.bloques)) {
+      throw new Error('Estructura de escenario no reconocida');
+    }
+    const dias=new Set(calendario.ids());
+    const ids=new Set();
+    for(const b of estado.bloques){
+      if(!b || typeof b.a!=='string' || typeof b.c!=='string' ||
+          !dias.has(b.d) || !Number.isFinite(b.s) || !Number.isFinite(b.e) ||
+          b.s<calendario.inicio || b.e>calendario.fin || b.s>=b.e ||
+          !Number.isFinite(b.id) || ids.has(b.id)){
+        throw new Error('Bloque horario inválido en el escenario');
+      }
+      ids.add(b.id);
+    }
+    for(const regla of estado.reqCred||[]){
+      if(!regla || !Number.isFinite(regla.min)){
+        throw new Error('Requisito de créditos inválido en el escenario');
+      }
+    }
+    return estado;
+  }
+
   static empaquetar(base, actual) {
     return { tipo:'escenario-personal', version:1, cambios:EscenarioPersonal.diferencias(base,actual) };
   }
