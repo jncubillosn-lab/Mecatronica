@@ -39,9 +39,9 @@ class EntradaAcademica {
     const grupos = [], bloques = [], vistos = new Set(), bloquesPorReferencia = new Map();
     for (const grupo of d.agrupaciones) {
       const asignatura = nombreDe(grupo.posicionId);
-      if (!asignatura) continue; // Relación incompleta: no se inventa una asignatura
+      if (!asignatura) throw new Error('Agrupación sin posición de malla: ' + grupo.id);
       const partes = Array.isArray(grupo.componentes) ? grupo.componentes : [];
-      if (!partes.length) continue;
+      if (!partes.length) throw new Error('Agrupación sin componentes: ' + grupo.id);
       const etiqueta = grupo.etiqueta;
       const identidad = grupo.posicionId + '\u0001' + etiqueta;
       if (vistos.has(identidad)) throw new Error('Grupo normalizado duplicado: ' + identidad);
@@ -53,7 +53,7 @@ class EntradaAcademica {
       // sola unidad; el detalle de actividades sigue en el contrato académico.
       const compactar = partes.length > 2;
       const nombres = compactar ? [etiqueta] : partes.map(c => c.id);
-      grupos.push([asignatura, etiqueta, nombres[0], nombres[1] || null, grupo.id]);
+      grupos.push([asignatura, etiqueta, nombres[0], nombres[1] || null, grupo.id, grupo.analizable !== false]);
 
       for (const parte of partes) {
         (parte.bloques || []).forEach((b, i) => {
@@ -61,8 +61,8 @@ class EntradaAcademica {
           const clave = compactar ? etiqueta : parte.id;
           const desde = this.hora(b.inicio), hasta = this.hora(b.fin);
           if (!Number.isFinite(desde) || !Number.isFinite(hasta) || desde >= hasta) {
-            // Horario no interpretable: no fabricar un bloque válido.
-            return;
+            // Error técnico del contrato; no omitir información de forma silenciosa.
+            throw new Error('Bloque horario inválido en agrupación ' + grupo.id);
           }
           const bloque = [asignatura, clave, b.dia, desde, hasta, b.nota || null, original, b.idAnterior ?? null];
           const anterior = bloquesPorReferencia.get(original);
