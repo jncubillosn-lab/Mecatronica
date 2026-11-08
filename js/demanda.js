@@ -142,30 +142,52 @@ class DemandaEstadistica {
    * enteramente ficticias. Nunca se almacena automáticamente al entrar.
    */
   static ejemplo(malla,grupos) {
-    const disponibles=new Set(grupos.filter(g=>g.analizable!==false&&g.on!==false).map(g=>g.a));
-    const semestres=new Map();
-    for(const m of malla.filter(x=>x.idPos)){
-      if(!semestres.has(m.s))semestres.set(m.s,[]);
-      semestres.get(m.s).push(m);
+    // Población ficticia de 240 respuestas; se eligen asignaturas REALES
+    // solo como etiquetas para las situaciones hipotéticas. No se deducen
+    // necesidades, capacidad ni dificultades de inscripción verdaderas.
+    const conteo=new Map();
+    for(const g of grupos.filter(g=>g.on!==false&&g.analizable!==false)){
+      if(!conteo.has(g.a))conteo.set(g.a,new Set());
+      conteo.get(g.a).add(g.ref||g.a+'\u0001'+g.g);
     }
-    const cohortes=[...semestres.values()].map(lista=>lista.sort((a,b)=>
-      Number(disponibles.has(b.n))-Number(disponibles.has(a.n))||
-      a.n.localeCompare(b.n,'es')).slice(0,6).map(m=>m.idPos)).filter(x=>x.length);
-    if(!cohortes.length)return DemandaEstadistica.normalizar({solicitudes:[],simulado:true});
-    const respuestasAnonimas=Array.from({length:240},(_,i)=>{
-      const sem=cohortes[i%cohortes.length], sig=cohortes[(i+1)%cohortes.length], r=[];
-      if(sem[0]&&i%5!==0)r.push(sem[0]);
-      if(sem[1]&&i%3!==0)r.push(sem[1]);
-      if(sem[2]&&i%4!==0)r.push(sem[2]);
-      if(sem[3]&&i%3===0)r.push(sem[3]);
-      if(sem[4]&&i%7===0)r.push(sem[4]);
-      if(sem[5]&&i%11===0)r.push(sem[5]);
-      if(sig[0]&&i%9===0)r.push(sig[0]);
-      return [...new Set(r)];
-    });
+    const disponibles=malla.filter(m=>m.idPos&&conteo.has(m.n))
+      .map(m=>({...m,gruposDemo:conteo.get(m.n).size}));
+    const porSem=new Map();
+    for(const m of disponibles){
+      if(!porSem.has(m.s))porSem.set(m.s,[]);
+      porSem.get(m.s).push(m);
+    }
+    const elegidos=new Map();
+    // Distintos contextos curriculares; hasta cuatro clases por semestre,
+    // privilegiando cantidades de agrupaciones contrastantes.
+    for(const xs of porSem.values()){
+      const lista=[...xs].sort((a,b)=>a.gruposDemo-b.gruposDemo||a.n.localeCompare(b.n,'es'));
+      const indices=[0,lista.length-1,Math.floor(lista.length/2),1];
+      for(const k of indices){const m=lista[k];if(m)elegidos.set(m.idPos,m);}
+    }
+    const cursos=[...elegidos.values()];
+    if(!cursos.length)return DemandaEstadistica.normalizar({solicitudes:[],simulado:true});
+    const escasos=[...cursos].filter(m=>m.gruposDemo<=3).sort((a,b)=>
+      a.gruposDemo-b.gruposDemo||b.s-a.s).slice(0,3).map(m=>m.idPos);
+    const masivos=[...cursos].filter(m=>m.gruposDemo>=10).sort((a,b)=>
+      b.gruposDemo-a.gruposDemo).slice(0,2).map(m=>m.idPos);
+    const metas=new Map(cursos.map((m,i)=>{
+      let meta=m.gruposDemo<=3?12+(i*7)%22:
+        m.gruposDemo>=10?35+(i*13)%30:20+(i*11)%24;
+      const indiceEscaso=escasos.indexOf(m.idPos);
+      const indiceMasivo=masivos.indexOf(m.idPos);
+      if(indiceEscaso>=0)meta=[175,155,135][indiceEscaso];
+      if(indiceMasivo>=0)meta=[195,185][indiceMasivo];
+      return [m.idPos,meta];
+    }));
+    const respuestasAnonimas=Array.from({length:240},(_,i)=>
+      cursos.filter((m,k)=>((i*73+k*47)%241)<metas.get(m.idPos)).map(m=>m.idPos)
+    );
     return DemandaEstadistica.normalizar({
-      respuestasAnonimas,simulado:true,fechaEncuesta:'Ejemplo ficticio, sin datos reales'
+      respuestasAnonimas,simulado:true,
+      fechaEncuesta:'Simulación ficticia de concentraciones contrastantes'
     });
+
   }
 }
 if(typeof module!=='undefined')module.exports={DemandaEstadistica};
@@ -193,14 +215,101 @@ function pageDemanda() {
   const metricaMalla=estado.metricaMalla||'porGrupo';
   const opcionesSem=[...new Set(base.filas.map(x=>x.semestre).filter(x=>x!=null))].sort((a,b)=>a-b);
   const puntos=visibles.filter(x=>x.solicitudes!=null&&x.grupos>0);
-  const maxX=Math.max(1,...puntos.map(x=>x.grupos));
-  const maxY=Math.max(1,...puntos.map(x=>x.solicitudes));
-  const puntosSvg=puntos.map(x=>{
-    const cx=52+(x.grupos/maxX)*595, cy=225-(x.solicitudes/maxY)*183;
-    const id=esc(x.posicionId);
-    return '<circle cx="'+cx+'" cy="'+cy+'" r="7" class="dem-punto" tabindex="0" role="button" data-act="dem-sel" data-pos="'+id+'" aria-label="'+esc(x.nombre)+' · '+x.solicitudes+' solicitudes, '+x.grupos+' grupos"><title>'+esc(x.nombre)+' · '+x.solicitudes+' solicitudes / '+x.grupos+' grupos</title></circle>';
+  // Los cuadrantes se dividen por medianas de los datos visibles, no por
+  // cortes arbitrarios ni supuestas capacidades. Se comunica la transformación
+  // sqrt en ambos ejes para no ocultar asignaturas con pocos grupos.
+  const corteGrupos=DemandaEstadistica.mediana(puntos.map(x=>x.grupos))??0;
+  const corteSolicitudes=DemandaEstadistica.mediana(puntos.map(x=>x.solicitudes))??0;
+  const maxGrupos=Math.max(1,...puntos.map(x=>x.grupos));
+  const maxSolicitudes=Math.max(10,Math.ceil(Math.max(1,...puntos.map(x=>x.solicitudes))*1.10/10)*10);
+  const area={izq:82,der:878,arriba:68,abajo:444};
+  const ancho=area.der-area.izq,alto=area.abajo-area.arriba;
+  const xPos=n=>area.izq+Math.sqrt(Math.max(0,n)/maxGrupos)*ancho;
+  const yPos=n=>area.abajo-Math.sqrt(Math.max(0,n)/maxSolicitudes)*alto;
+  const xMed=xPos(corteGrupos),yMed=yPos(corteSolicitudes);
+  const mejores=[...puntos].sort((a,b)=>b.porGrupo-a.porGrupo||
+    b.solicitudes-a.solicitudes).slice(0,3);
+  const puestos=new Map(mejores.map((x,i)=>[x.posicionId,i+1]));
+  const rejillaX=[0,1,2,4,8,16,32,maxGrupos]
+    .filter((v,i,a)=>v<=maxGrupos&&a.indexOf(v)===i)
+    .map(v=>'<line class="dem-rejilla" x1="'+xPos(v)+'" y1="'+area.arriba+
+      '" x2="'+xPos(v)+'" y2="'+area.abajo+'"/><text class="dem-tick" x="'+xPos(v)+
+      '" y="469" text-anchor="middle">'+v+'</text>').join('');
+  const rejillaY=[0,.25,.5,.75,1].map(t=>{
+    const v=Math.round(maxSolicitudes*t);
+    return '<line class="dem-rejilla" x1="'+area.izq+'" y1="'+yPos(v)+
+      '" x2="'+area.der+'" y2="'+yPos(v)+'"/><text class="dem-tick" x="69" y="'+
+      (yPos(v)+4)+'" text-anchor="end">'+v+'</text>';
   }).join('');
-  const svg='<svg class="dem-grafico" viewBox="0 0 690 265" role="img" aria-label="Dispersión de solicitudes frente a número de grupos"><line x1="52" y1="25" x2="52" y2="225" class="dem-eje"/><line x1="52" y1="225" x2="656" y2="225" class="dem-eje"/><text x="55" y="18">Solicitudes ↑</text><text x="650" y="255" text-anchor="end">Grupos ofertados →</text><text x="42" y="226" text-anchor="end">0</text><text x="42" y="45" text-anchor="end">'+maxY+'</text><text x="650" y="243" text-anchor="end">'+maxX+'</text>'+puntosSvg+'</svg>';
+  const zona=(clase,x,y,w,h,titulo,sub)=>
+    '<rect class="'+clase+'" x="'+x+'" y="'+y+'" width="'+Math.max(0,w)+
+      '" height="'+Math.max(0,h)+'"/>'+
+    '<text class="dem-zona-titulo '+clase+'" x="'+(x+Math.max(0,w)/2)+'" y="'+
+      (y+Math.min(41,Math.max(21,h*.25)))+'" text-anchor="middle">'+esc(titulo)+'</text>'+
+    '<text class="dem-zona-sub '+clase+'" x="'+(x+Math.max(0,w)/2)+'" y="'+
+      (y+Math.min(62,Math.max(42,h*.25+21)))+'" text-anchor="middle">'+esc(sub)+'</text>';
+  const cuadrantes=
+    zona('dem-zona-alerta',area.izq,area.arriba,xMed-area.izq,yMed-area.arriba,
+      'Demanda elevada','Pocos grupos')+
+    zona('dem-zona-masiva',xMed,area.arriba,area.der-xMed,yMed-area.arriba,
+      'Demanda masiva','Más grupos')+
+    zona('dem-zona-baja',area.izq,yMed,xMed-area.izq,area.abajo-yMed,
+      'Baja demanda','Pocos grupos')+
+    zona('dem-zona-amplia',xMed,yMed,area.der-xMed,area.abajo-yMed,
+      'Baja demanda','Más grupos');
+  const puntosSvg=puntos.map(p=>{
+    const x=xPos(p.grupos),y=yPos(p.solicitudes),id=esc(p.posicionId);
+    const principal=puestos.get(p.posicionId);
+    const categoria=p.solicitudes>=corteSolicitudes
+      ?(p.grupos<=corteGrupos?'dem-punto-alerta':'dem-punto-masiva')
+      :(p.grupos<=corteGrupos?'dem-punto-baja':'dem-punto-amplia');
+    return '<g role="button" tabindex="0" class="dem-marca '+(principal?'dem-destacada ':'')+
+      categoria+'" data-act="dem-sel" data-pos="'+id+'" aria-label="'+
+      esc(p.nombre+' · '+p.solicitudes+' solicitudes · '+p.grupos+
+        ' grupos · '+f(p.porGrupo)+' solicitudes por grupo')+'">'+
+      '<title>'+esc(p.nombre)+' · '+p.solicitudes+' solicitudes, '+p.grupos+
+      ' grupos, '+f(p.porGrupo)+' por grupo</title>'+
+      (p.posicionId===estado.seleccion?'<circle class="dem-aro" cx="'+x+
+        '" cy="'+y+'" r="19"/>':'')+
+      '<circle class="dem-punto" cx="'+x+'" cy="'+y+'" r="'+(principal?12:8)+'"/>'+
+      (principal?'<text class="dem-num" x="'+x+'" y="'+(y+4.5)+
+        '" text-anchor="middle">'+principal+'</text>':'')+'</g>';
+  }).join('');
+  const grafico=puntos.length
+    ?'<div class="dem-grafico-wrap"><svg class="dem-grafico" viewBox="0 0 950 515" '+
+      'role="group" aria-label="Gráfico de solicitudes contra número de agrupaciones; '+puntos.length+
+      ' asignaturas, cortes según medianas de la selección">'+
+      '<rect class="dem-marco" x="'+area.izq+'" y="'+area.arriba+'" width="'+ancho+
+      '" height="'+alto+'"/>'+cuadrantes+rejillaX+rejillaY+
+      '<line class="dem-corte" x1="'+xMed+'" y1="'+area.arriba+
+      '" x2="'+xMed+'" y2="'+area.abajo+'"/>'+
+      '<line class="dem-corte" x1="'+area.izq+'" y1="'+yMed+
+      '" x2="'+area.der+'" y2="'+yMed+'"/>'+
+      '<text class="dem-eje-titulo" x="83" y="31">Solicitudes observadas ↑</text>'+
+      '<text class="dem-eje-titulo" x="875" y="504" text-anchor="end">Grupos ofertados →</text>'+
+      '<text class="dem-corte-leyenda" x="'+(xMed+8)+'" y="56">Mediana: '+
+      f(corteGrupos)+' grupos</text>'+
+      '<text class="dem-corte-leyenda" x="86" y="'+(yMed-9)+'">Mediana: '+
+      f(corteSolicitudes)+' solicitudes</text>'+
+      puntosSvg+'</svg></div>'
+    :'<p class="hint">No hay asignaturas que tengan a la vez solicitudes registradas y grupos analizables.</p>';
+  const clavesGrafico=mejores.length
+    ?'<div class="dem-casos">'+mejores.map((p,i)=>
+       '<button class="dem-caso" data-act="dem-sel" data-pos="'+esc(p.posicionId)+'">'+
+         '<b class="dem-caso-n">'+(i+1)+'</b><span><strong>'+esc(p.nombre)+'</strong>'+
+         '<small>'+f(p.solicitudes)+' solicitudes · '+f(p.grupos)+
+         ' grupos · '+f(p.porGrupo)+' solicitudes/grupo</small></span></button>'
+      ).join('')+'</div>':'';
+  const svg=grafico+
+    '<div class="dem-leyenda"><span><i class="dem-bolita alerta"></i>Alta demanda / pocos grupos</span>'+
+    '<span><i class="dem-bolita masiva"></i>Demanda masiva / más grupos</span>'+
+    '<span><i class="dem-bolita baja"></i>Menos solicitudes</span></div>'+
+    '<p class="hint">Los cuadrantes se separan por las medianas de las asignaturas visibles ('+
+    f(corteSolicitudes)+' solicitudes y '+f(corteGrupos)+' grupos). Los ejes usan una '+
+    'transformación de raíz cuadrada para distinguir los valores pequeños; sus números '+
+    'representan cantidades reales. Una posición destacada no demuestra falta de cupos.</p>'+
+    (clavesGrafico?'<h3 class="dem-casos-titulo">Mayor concentración de solicitudes por grupo</h3>'+
+      clavesGrafico:'');
   const gruposSem=new Map();
   filas.filter(x=>x.solicitudes!=null).forEach(x=>{
     if(!gruposSem.has(x.semestre))gruposSem.set(x.semestre,[]);
@@ -267,18 +376,19 @@ function pageDemanda() {
    '<p class="hint">Una fila mínima contiene posicionId y cantidad. Los totales de encuestados y la tasa de participación son opcionales. Los cambios se incluyen también al pulsar «Guardar» el escenario general.</p>'+
    (base.noVinculadas.length?'<div class="note">Hay '+base.noVinculadas.length+' identificadores de solicitud que no coinciden con la malla actual: '+base.noVinculadas.slice(0,5).map(x=>esc(x.posicionId)).join(', ')+'. Se conservan en el archivo, pero no se atribuyen a otras asignaturas.</div>':'')+
    separador+
-   '<h2>Registrar o corregir una solicitud</h2>'+(vistaEjemplo?'<p class="hint">Esta es una vista previa. Para editar, guarda el ejemplo o importa una encuesta.</p>':'')+'<div class="dem-campos"><label>Asignatura<select data-chg="dem-elegir">'+seleccionadas.map(x=>opc(x.posicionId,x.nombre+' (S'+x.semestre+')',x.posicionId===estado.seleccion)).join('')+'</select></label><label>Solicitudes observadas<input id="dem-cantidad" type="number" min="0" step="1" inputmode="numeric" placeholder="Sin información" value="'+(actual?.solicitudes??'')+'"></label><button class="btn" data-act="dem-guardar" '+(!actual||vistaEjemplo||!!S.demanda?.respuestasAnonimas&&!S.demanda?.simulado?'disabled':'')+'>Guardar cantidad</button><button class="btn sm ghost" data-act="dem-quitar" '+(!actual||vistaEjemplo||actual.solicitudes==null||!!S.demanda?.respuestasAnonimas&&!S.demanda?.simulado?'disabled':'')+'>Marcar desconocido</button></div>'+
-   '<p class="hint">El valor 0 significa que se confirmó ninguna solicitud; dejarlo sin información significa dato desconocido.</p>'+
-   separador+
    '<div class="dem-campos"><label>Ordenar por<select data-chg="dem-orden">'+[['porGrupo','Solicitudes por grupo'],['solicitudes','Demanda absoluta'],['relativo','Índice relativo semestral'],['frecuencia','Frecuencia entre encuestados']].map(([k,v])=>opc(k,v,k===estado.orden)).join('')+'</select></label><label>Semestre<select data-chg="dem-semestre">'+opc('','Todos',!estado.semestre)+opcionesSem.map(s=>opc(s,'Semestre '+s,String(s)===estado.semestre)).join('')+'</select></label><label class="dem-check"><input type="checkbox" data-chg="dem-sindato" '+(estado.sinDato?'checked':'')+'> Mostrar sin encuesta</label></div>'+
-   '<h2>Ranking de demanda</h2><div class="dem-tabla-wrap"><table class="dem-tabla"><thead><tr><th>Asignatura</th><th>Solicitudes</th><th>Grupos</th><th>Sol./grupo</th><th>Rel. sem.</th><th>Percentil sem.</th><th>Frecuencia</th></tr></thead><tbody>'+filas.map(x=>'<tr><td><button class="dem-enlace" data-act="dem-sel" data-pos="'+esc(x.posicionId||'')+'">'+esc(x.nombre)+'</button><small>S'+esc(x.semestre??'—')+'</small></td><td>'+f(x.solicitudes)+'</td><td>'+f(x.grupos)+'</td><td>'+f(x.porGrupo)+'</td><td>'+f(x.relativo)+(x.relativo==null?'':'×')+'</td><td>'+pct(x.percentilSemestral==null?null:x.percentilSemestral/100)+'</td><td>'+pct(x.frecuencia)+'</td></tr>').join('')+'</tbody></table></div>'+
-   (!filas.length?'<p class="hint">No hay solicitudes registradas para los filtros actuales. Carga un JSON o activa el ejemplo.</p>':'')+
-   '<p class="hint">«Rel. sem.» divide solicitudes por grupo entre la mediana del mismo semestre (mínimo tres asignaturas con datos y mediana positiva). No equivale a escasez o cupos insuficientes.</p>'+
-   separador+'<h2>Solicitudes y alternativas ofertadas</h2>'+svg+
-   '<p class="hint">Cada punto corresponde a una asignatura con solicitudes y grupos analizables registrados. Pulsa un punto para seleccionarla. No se representan cupos.</p>'+
+   separador+'<h2>Mapa de demanda: solicitudes y grupos</h2>'+svg+
+   '<p class="hint">Cada punto representa una asignatura con solicitudes y grupos analizables. Selecciona un punto para abrir su detalle. El tamaño y la posición no representan cupos disponibles.</p>'+
    separador+'<div class="dem-campos"><h2 style="flex:1">Comparación curricular por semestre</h2><label>Intensidad según<select data-chg="dem-mapa">'+[['porGrupo','Solicitudes por grupo'],['solicitudes','Solicitudes observadas'],['relativo','Índice relativo'],['percentilSemestral','Percentil del semestre']].map(([k,v])=>opc(k,v,k===metricaMalla)).join('')+'</select></label></div><div class="dem-sems">'+(semHtml||'<p class="hint">Sin asignaturas para comparar.</p>')+'</div>'+
    separador+'<h2>Detalle estadístico</h2>'+(actual?'<div class="dem-detalle"><strong>'+esc(actual.nombre)+'</strong><p>Solicitudes: '+f(actual.solicitudes)+' · grupos analizables: '+f(actual.grupos)+' · solicitudes por grupo: '+f(actual.porGrupo)+'</p><p>Referencia semestral: '+f(base.referencia.get(actual.semestre)?.mediana)+' · comparables: '+actual.comparables+' · índice relativo: '+f(actual.relativo)+(actual.relativo!=null?'×':'')+' · percentil semestral: '+pct(actual.percentilSemestral==null?null:actual.percentilSemestral/100)+'</p><p>Frecuencia: '+pct(actual.frecuencia)+' · extrapolación condicionada: '+f(actual.proyeccion)+' · desviación robusta: '+f(actual.desviacionRobusta)+'</p><small>La extrapolación solo aparece con tasa de participación declarada; la desviación robusta requiere al menos cinco comparables y dispersión no nula. Ninguna demuestra déficit de cupos.</small></div>':'<p class="hint">Selecciona una asignatura para consultar sus cálculos.</p>')+
+   separador+
+   '<details class="dem-edicion"><summary>Editar cantidades de la encuesta</summary>'+(vistaEjemplo?'<p class="hint">Esta es una vista previa. Para editar, guarda el ejemplo o importa una encuesta.</p>':'')+'<div class="dem-campos"><label>Asignatura<select data-chg="dem-elegir">'+seleccionadas.map(x=>opc(x.posicionId,x.nombre+' (S'+x.semestre+')',x.posicionId===estado.seleccion)).join('')+'</select></label><label>Solicitudes observadas<input id="dem-cantidad" type="number" min="0" step="1" inputmode="numeric" placeholder="Sin información" value="'+(actual?.solicitudes??'')+'"></label><button class="btn" data-act="dem-guardar" '+(!actual||vistaEjemplo||!!S.demanda?.respuestasAnonimas&&!S.demanda?.simulado?'disabled':'')+'>Guardar cantidad</button><button class="btn sm ghost" data-act="dem-quitar" '+(!actual||vistaEjemplo||actual.solicitudes==null||!!S.demanda?.respuestasAnonimas&&!S.demanda?.simulado?'disabled':'')+'>Marcar desconocido</button></div>'+
+   '<p class="hint">El valor 0 significa que se confirmó ninguna solicitud; dejarlo sin información significa dato desconocido.</p></details>'+
    separador+'<h2>Lectura y recomendaciones basadas en los datos</h2><p class="hint">Son señales descriptivas, no diagnósticos de cupos faltantes. Respetan los filtros vigentes.</p>'+recomendaciones+
+   separador+
+   '<h2>Tabla estadística · ranking completo</h2><div class="dem-tabla-wrap"><table class="dem-tabla"><thead><tr><th>Asignatura</th><th>Solicitudes</th><th>Grupos</th><th>Sol./grupo</th><th>Rel. sem.</th><th>Percentil sem.</th><th>Frecuencia</th></tr></thead><tbody>'+filas.map(x=>'<tr><td><button class="dem-enlace" data-act="dem-sel" data-pos="'+esc(x.posicionId||'')+'">'+esc(x.nombre)+'</button><small>S'+esc(x.semestre??'—')+'</small></td><td>'+f(x.solicitudes)+'</td><td>'+f(x.grupos)+'</td><td>'+f(x.porGrupo)+'</td><td>'+f(x.relativo)+(x.relativo==null?'':'×')+'</td><td>'+pct(x.percentilSemestral==null?null:x.percentilSemestral/100)+'</td><td>'+pct(x.frecuencia)+'</td></tr>').join('')+'</tbody></table></div>'+
+   (!filas.length?'<p class="hint">No hay solicitudes registradas para los filtros actuales. Carga un JSON o activa el ejemplo.</p>':'')+
+   '<p class="hint">«Rel. sem.» divide solicitudes por grupo entre la mediana del mismo semestre (mínimo tres asignaturas con datos y mediana positiva). No equivale a escasez o cupos insuficientes.</p>'+
    separador+'<h2>Demanda conjunta</h2>'+(d.respuestasAnonimas?'<p class="hint">Las parejas se construyen desde listas anónimas de asignaturas solicitadas. «Sin cruce detectado» solo describe los grupos analizables disponibles.</p>'+tablaParejas:'<p class="hint">No calculable con totales agregados. Si existen respuestas anónimas por estudiante, pueden cargarse como listas de identificadores en el mismo JSON.</p>')+
    '</section>';
 }

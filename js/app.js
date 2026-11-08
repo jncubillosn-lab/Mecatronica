@@ -609,7 +609,15 @@ document.addEventListener('click', e => { const el = e.target.closest('[data-act
 document.addEventListener('change', e => { const el = e.target.closest('[data-chg]'); if (el) onChange(el.dataset.chg, el); else if (e.target.id === 'file-in') onChange('import-file', e.target); else if(e.target.id === 'demanda-file') onChange('dem-import-file',e.target); });
 document.addEventListener('input', e => { const el = e.target.closest('[data-inp]'); if (el && el.dataset.inp === 'i-q') { ui.inter.q = el.value; render(); } });
 document.addEventListener('toggle', e => { if (e.target.classList && e.target.classList.contains('filters')) ui.fopen = e.target.open; }, true);
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && ui.drawer) { ui.drawer = null; render(); } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && ui.drawer) { ui.drawer = null; return render(); }
+  // Los puntos SVG de demanda deben poder seleccionarse con teclado.
+  if ((e.key === 'Enter' || e.key === ' ') &&
+      e.target?.classList?.contains('dem-marca')) {
+    e.preventDefault();
+    if (e.target.dataset.pos) return onAct('dem-sel',{pos:e.target.dataset.pos},e.target,e);
+  }
+});
 window.addEventListener('resize', () => { if (ui.page === 'malla') drawEdges(); });
 document.addEventListener('scroll', e => { }, true);
 

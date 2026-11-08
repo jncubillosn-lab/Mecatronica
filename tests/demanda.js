@@ -71,4 +71,29 @@ const demo=D.ejemplo(malla,grupos);
 assert(demo.simulado&&demo.solicitudes.length>0,'Los datos de demostración siempre están etiquetados');
 assert(demo.respuestasAnonimas.length>0,'La demostración permite examinar co-solicitudes');
 assert(D.analizar(demo,malla,grupos).parejas.length>=0,'Analizar la demostración incompleta no falla');
+// DEM-02: la simulación ilustra contrastes hipotéticos en ambas dimensiones.
+const cursosDemo=Array.from({length:16},(_,i)=>({
+  n:'Materia '+i,idPos:'demo-'+i,s:1+Math.floor(i/4),comp:'B'
+}));
+const gruposDemo=[];
+for(let i=0;i<cursosDemo.length;i++){
+ const g=[1,2,12,20][i%4];
+ for(let k=0;k<g;k++)gruposDemo.push({a:cursosDemo[i].n,g:'G'+k,
+   ref:'demo-'+i+'-G'+k,on:true,analizable:true});
+}
+const simulacion=D.ejemplo(cursosDemo,gruposDemo);
+const resultados=D.analizar(simulacion,cursosDemo,gruposDemo).filas
+  .filter(x=>x.porGrupo!=null);
+assert.equal(simulacion.respuestasTotales,240);
+assert.equal(simulacion.simulado,true);
+assert(resultados.filter(x=>x.grupos<=3&&x.solicitudes>=130).length>=2,
+  'Debe haber cuellos de botella ficticios: alto volumen y pocos grupos');
+assert(resultados.filter(x=>x.grupos>=10&&x.solicitudes>=170).length>=2,
+  'Debe haber asignaturas masivas ficticias con varios grupos');
+assert(resultados.some(x=>x.grupos<=3&&x.solicitudes<60),
+  'La demostración necesita también baja demanda y pocos grupos');
+assert(resultados.some(x=>x.grupos>=10&&x.solicitudes<80),
+  'La demostración necesita baja demanda y más grupos');
+assert(simulacion.respuestasAnonimas.every(r=>new Set(r).size===r.length));
+assert(simulacion.respuestasAnonimas.every(r=>r.length<=60));
 console.log('OK: DEM-01, estadística y persistencia con ausencias y respuestas anónimas.');
