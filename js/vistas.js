@@ -538,6 +538,11 @@ function proyeccionLibresMalla(estado, referencia, fijadas = new Set(), equilibr
   const porUbicar = libres.filter(m => !fijasAhora.includes(m));
   for (const m of fijasAhora) if (Number.isFinite(m.cr) && m.s>=1 && m.s<=maxSem)
     cargas[m.s] += m.cr;
+  // Comparador de estabilidad: no se cambia una ubicación registrada por una
+  // propuesta distinta cuando la referencia ya está igual de equilibrada.
+  const cargasRegistradas = cargas.slice();
+  for (const m of porUbicar) if (Number.isFinite(m.cr) && m.s>=1 && m.s<=maxSem)
+    cargasRegistradas[m.s] += m.cr;
   // Empates por semestre más temprano y nombre estable; es una proyección
   // matemática de carga, no la certificación de un prerrequisito de avance.
   porUbicar.sort((a,b) => b.cr-a.cr ||
@@ -547,6 +552,14 @@ function proyeccionLibresMalla(estado, referencia, fijadas = new Set(), equilibr
     for (let s=2; s<=maxSem; s++) if (cargas[s] < cargas[mejor]) mejor=s;
     m.s=mejor;
     cargas[mejor]+=m.cr;
+  }
+  const dispersion = arr => {
+    const promedio=arr.slice(1).reduce((a,n)=>a+n,0)/maxSem;
+    return arr.slice(1).reduce((a,n)=>a+(n-promedio)**2,0);
+  };
+  if (equilibrar && dispersion(cargasRegistradas) <= dispersion(cargas) + 1e-9) {
+    porUbicar.forEach(m => { m.s=m._libreReferencia; });
+    cargas.splice(0,cargas.length,...cargasRegistradas);
   }
   return { posiciones:libres, creditos,
     incompleto:estado.malla.some(m => m.comp === libre && !Number.isFinite(m.cr)),
