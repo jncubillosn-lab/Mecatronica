@@ -304,7 +304,7 @@ function pageDemanda() {
   const tarjetaPunto=puntoActivo
     ?'<div class="dem-seleccion" role="status" aria-live="polite" aria-atomic="true">'+
       '<div class="dem-seleccion-rotulo">Punto seleccionado</div>'+
-      '<strong class="dem-seleccion-nombre">'+esc(puntoActivo.nombre)+'</strong>'+
+      '<strong class="dem-seleccion-nombre"'+atributoComponente(puntoActivo.componente)+'>'+esc(puntoActivo.nombre)+'</strong>'+
       '<span class="dem-seleccion-meta">Semestre '+esc(puntoActivo.semestre??'sin información')+
       ' · '+f(puntoActivo.solicitudes)+' solicitudes · '+f(puntoActivo.grupos)+
       ' grupos ofertados · <b>'+f(puntoActivo.porGrupo)+
@@ -332,7 +332,7 @@ function pageDemanda() {
     :'<p class="hint">No hay asignaturas que tengan a la vez solicitudes registradas y grupos analizables.</p>';
   const clavesGrafico=mejores.length
     ?'<div class="dem-casos">'+mejores.map((p,i)=>
-       '<button class="dem-caso" data-act="dem-sel" data-pos="'+esc(p.posicionId)+'">'+
+       '<button class="dem-caso"'+atributoComponente(p.componente)+' data-act="dem-sel" data-pos="'+esc(p.posicionId)+'">'+
          '<b class="dem-caso-n">'+(i+1)+'</b><span><strong>'+esc(p.nombre)+'</strong>'+
          '<small>'+f(p.solicitudes)+' solicitudes · '+f(p.grupos)+
          ' grupos · '+f(p.porGrupo)+' solicitudes/grupo</small></span></button>'
@@ -356,7 +356,7 @@ function pageDemanda() {
     const max=Math.max(1,...xs.map(x=>x[metricaMalla]??0));
     return '<section class="dem-sem"><h3>Semestre '+esc(s??'Sin semestre')+'</h3>'+xs.map(x=>{
       const valor=x[metricaMalla],ancho=valor==null?0:Math.max(0,valor/max*100);
-      return '<button class="dem-mini" data-act="dem-sel" data-pos="'+esc(x.posicionId)+'"><span>'+esc(x.nombre)+'</span><b>'+(valor==null?'—':f(valor)+(metricaMalla==='percentilSemestral'?' %':metricaMalla==='relativo'?'×':''))+'</b><i style="width:'+ancho.toFixed(1)+'%"></i></button>';
+      return '<button class="dem-mini"'+atributoComponente(x.componente)+' data-act="dem-sel" data-pos="'+esc(x.posicionId)+'"><span>'+esc(x.nombre)+'</span><b>'+(valor==null?'—':f(valor)+(metricaMalla==='percentilSemestral'?' %':metricaMalla==='relativo'?'×':''))+'</b><i style="width:'+ancho.toFixed(1)+'%"></i></button>';
     }).join('')+'</section>';
   }).join('');
   const mapa=new Map(base.filas.map(x=>[x.posicionId,x]));
@@ -365,7 +365,7 @@ function pageDemanda() {
     const a=mapa.get(x.a),b=mapa.get(x.b);
     const par=RV.pairs.find(p=>(p.A===a.nombre&&p.B===b.nombre)||(p.A===b.nombre&&p.B===a.nombre));
     const estadoPar=par?.enRango?(par.clash?'Cruces de horario detectados':'Sin cruce detectado'):'Sin comparación de horarios';
-    return '<div class="dem-par"><span>'+esc(a.nombre)+' + '+esc(b.nombre)+'</span><b>'+x.cantidad+' estudiantes</b><small>'+estadoPar+'</small></div>';
+    return '<div class="dem-par"><span><span class="asig-etiqueta"'+atributoComponente(a.componente)+'>'+esc(a.nombre)+'</span> + <span class="asig-etiqueta"'+atributoComponente(b.componente)+'>'+esc(b.nombre)+'</span></span><b>'+x.cantidad+' estudiantes</b><small>'+estadoPar+'</small></div>';
   }).join('')+'</div>':'<p class="hint">No hay parejas identificables con los filtros actuales.</p>';
   // Señales derivadas exclusivamente de la encuesta visible; jamás
   // inferencias sobre cupos faltantes, que no conocemos.
@@ -417,13 +417,13 @@ function pageDemanda() {
    separador+'<h2>Mapa de demanda: solicitudes y grupos</h2>'+svg+
    '<p class="hint">Cada punto representa una asignatura con solicitudes y grupos analizables. Selecciona un punto para abrir su detalle. El tamaño y la posición no representan cupos disponibles.</p>'+
    separador+'<div class="dem-campos"><h2 style="flex:1">Comparación curricular por semestre</h2><label>Intensidad según<select data-chg="dem-mapa">'+[['porGrupo','Solicitudes por grupo'],['solicitudes','Solicitudes observadas'],['relativo','Índice relativo'],['percentilSemestral','Percentil del semestre']].map(([k,v])=>opc(k,v,k===metricaMalla)).join('')+'</select></label></div><div class="dem-sems">'+(semHtml||'<p class="hint">Sin asignaturas para comparar.</p>')+'</div>'+
-   separador+'<h2>Detalle estadístico</h2>'+(actual?'<div class="dem-detalle"><strong>'+esc(actual.nombre)+'</strong><p>Solicitudes: '+f(actual.solicitudes)+' · grupos analizables: '+f(actual.grupos)+' · solicitudes por grupo: '+f(actual.porGrupo)+'</p><p>Referencia semestral: '+f(base.referencia.get(actual.semestre)?.mediana)+' · comparables: '+actual.comparables+' · índice relativo: '+f(actual.relativo)+(actual.relativo!=null?'×':'')+' · percentil semestral: '+pct(actual.percentilSemestral==null?null:actual.percentilSemestral/100)+'</p><p>Frecuencia: '+pct(actual.frecuencia)+' · extrapolación condicionada: '+f(actual.proyeccion)+' · desviación robusta: '+f(actual.desviacionRobusta)+'</p><small>La extrapolación solo aparece con tasa de participación declarada; la desviación robusta requiere al menos cinco comparables y dispersión no nula. Ninguna demuestra déficit de cupos.</small></div>':'<p class="hint">Selecciona una asignatura para consultar sus cálculos.</p>')+
+   separador+'<h2>Detalle estadístico</h2>'+(actual?'<div class="dem-detalle"><strong class="asig-etiqueta"'+atributoComponente(actual.componente)+'>'+esc(actual.nombre)+'</strong><p>Solicitudes: '+f(actual.solicitudes)+' · grupos analizables: '+f(actual.grupos)+' · solicitudes por grupo: '+f(actual.porGrupo)+'</p><p>Referencia semestral: '+f(base.referencia.get(actual.semestre)?.mediana)+' · comparables: '+actual.comparables+' · índice relativo: '+f(actual.relativo)+(actual.relativo!=null?'×':'')+' · percentil semestral: '+pct(actual.percentilSemestral==null?null:actual.percentilSemestral/100)+'</p><p>Frecuencia: '+pct(actual.frecuencia)+' · extrapolación condicionada: '+f(actual.proyeccion)+' · desviación robusta: '+f(actual.desviacionRobusta)+'</p><small>La extrapolación solo aparece con tasa de participación declarada; la desviación robusta requiere al menos cinco comparables y dispersión no nula. Ninguna demuestra déficit de cupos.</small></div>':'<p class="hint">Selecciona una asignatura para consultar sus cálculos.</p>')+
    separador+
    '<details class="dem-edicion"><summary>Editar cantidades de la encuesta</summary>'+(vistaEjemplo?'<p class="hint">Esta es una vista previa. Para editar, guarda el ejemplo o importa una encuesta.</p>':'')+'<div class="dem-campos"><label>Asignatura<select data-chg="dem-elegir">'+seleccionadas.map(x=>opc(x.posicionId,x.nombre+' (S'+x.semestre+')',x.posicionId===estado.seleccion)).join('')+'</select></label><label>Solicitudes observadas<input id="dem-cantidad" type="number" min="0" step="1" inputmode="numeric" placeholder="Sin información" value="'+(actual?.solicitudes??'')+'"></label><button class="btn" data-act="dem-guardar" '+(!actual||vistaEjemplo||!!S.demanda?.respuestasAnonimas&&!S.demanda?.simulado?'disabled':'')+'>Guardar cantidad</button><button class="btn sm ghost" data-act="dem-quitar" '+(!actual||vistaEjemplo||actual.solicitudes==null||!!S.demanda?.respuestasAnonimas&&!S.demanda?.simulado?'disabled':'')+'>Marcar desconocido</button></div>'+
    '<p class="hint">El valor 0 significa que se confirmó ninguna solicitud; dejarlo sin información significa dato desconocido.</p></details>'+
    separador+'<h2>Lectura y recomendaciones basadas en los datos</h2><p class="hint">Son señales descriptivas, no diagnósticos de cupos faltantes. Respetan los filtros vigentes.</p>'+recomendaciones+
    separador+
-   '<h2>Tabla estadística · ranking completo</h2><div class="dem-tabla-wrap"><table class="dem-tabla"><thead><tr><th>Asignatura</th><th>Solicitudes</th><th>Grupos</th><th>Sol./grupo</th><th>Rel. sem.</th><th>Percentil sem.</th><th>Frecuencia</th></tr></thead><tbody>'+filas.map(x=>'<tr><td><button class="dem-enlace" data-act="dem-sel" data-pos="'+esc(x.posicionId||'')+'">'+esc(x.nombre)+'</button><small>S'+esc(x.semestre??'—')+'</small></td><td>'+f(x.solicitudes)+'</td><td>'+f(x.grupos)+'</td><td>'+f(x.porGrupo)+'</td><td>'+f(x.relativo)+(x.relativo==null?'':'×')+'</td><td>'+pct(x.percentilSemestral==null?null:x.percentilSemestral/100)+'</td><td>'+pct(x.frecuencia)+'</td></tr>').join('')+'</tbody></table></div>'+
+   '<h2>Tabla estadística · ranking completo</h2><div class="dem-tabla-wrap"><table class="dem-tabla"><thead><tr><th>Asignatura</th><th>Solicitudes</th><th>Grupos</th><th>Sol./grupo</th><th>Rel. sem.</th><th>Percentil sem.</th><th>Frecuencia</th></tr></thead><tbody>'+filas.map(x=>'<tr><td><button class="dem-enlace"'+atributoComponente(x.componente)+' data-act="dem-sel" data-pos="'+esc(x.posicionId||'')+'">'+esc(x.nombre)+'</button><small>S'+esc(x.semestre??'—')+'</small></td><td>'+f(x.solicitudes)+'</td><td>'+f(x.grupos)+'</td><td>'+f(x.porGrupo)+'</td><td>'+f(x.relativo)+(x.relativo==null?'':'×')+'</td><td>'+pct(x.percentilSemestral==null?null:x.percentilSemestral/100)+'</td><td>'+pct(x.frecuencia)+'</td></tr>').join('')+'</tbody></table></div>'+
    (!filas.length?'<p class="hint">No hay solicitudes registradas para los filtros actuales. Carga un JSON o activa el ejemplo.</p>':'')+
    '<p class="hint">«Rel. sem.» divide solicitudes por grupo entre la mediana del mismo semestre (mínimo tres asignaturas con datos y mediana positiva). No equivale a escasez o cupos insuficientes.</p>'+
    separador+'<h2>Demanda conjunta</h2>'+(d.respuestasAnonimas?'<p class="hint">Las parejas se construyen desde listas anónimas de asignaturas solicitadas. «Sin cruce detectado» solo describe los grupos analizables disponibles.</p>'+tablaParejas:'<p class="hint">No calculable con totales agregados. Si existen respuestas anónimas por estudiante, pueden cargarse como listas de identificadores en el mismo JSON.</p>')+

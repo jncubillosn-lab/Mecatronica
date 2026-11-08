@@ -144,4 +144,20 @@ verificar('Un requisito legado puede revisarse individualmente sin restablecer e
 
 });
 
+verificar('El tono de la asignatura sigue al escenario, sin cambiar estadísticas',()=>{
+  const nombre=api.R.names.find(n=>api.S.malla.some(m=>m.n===n&&m.comp==='B'));
+  assert(nombre,'Se necesita al menos una asignatura B visible');
+  const materia=api.S.malla.find(m=>m.n===nombre);
+  const snapshot=JSON.stringify(api.S);
+  const antes=api.pageAsig();
+  assert(antes.includes('data-tipologia="B" data-aname="'+nombre+'"'));
+  materia.comp='C';
+  const despues=api.pageAsig();
+  assert(despues.includes('data-tipologia="C" data-aname="'+nombre+'"'),
+    'La tipología no puede deducirse de un nombre fijo');
+  materia.comp='B';
+  assert.equal(JSON.stringify(api.S),snapshot);
+  assert.equal(api.pageAsig(),antes,'La presentación es reversible al restaurar el dato');
+});
+
 console.log('Vistas y selección: comprobaciones finalizadas.');
