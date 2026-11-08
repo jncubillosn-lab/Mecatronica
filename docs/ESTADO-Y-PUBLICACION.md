@@ -1,7 +1,7 @@
 # EST-01 — Estado real, historial y publicación
 
 **Corte documentado:** 7 de noviembre de 2026.  
-**Versión pública de la actualización PR #14:** `0.5.4` (comprobar CI y despliegue después de fusionar).  
+**Versión pública objetivo de PR #15:** `0.5.5` (CI verificada; comprobar fusión y despliegue).  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Acuerdos de alcance:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Registro histórico de migración:** [MIG-ARQ01](MIGRACION-ARQ01.md).
@@ -19,6 +19,7 @@ Este archivo es una **fotografía verificable de implementación**, no una hoja 
 | v0.5.2, [PR #11](https://github.com/jncubillosn-lab/Mecatronica/pull/11) | **Fusionada en `main`**, commit `a398cfb068ce3747fee289adc9b151505107a570`. Documentación técnica **junto al código**: responsabilidades POO, contrato, deltas personales, cálculo, filtros, siete vistas y arranque. No modifica el contrato académico ni la lógica funcional; eleva la versión por actualizar recursos JS/CSS/HTML. |
 | v0.5.3, [PR #13](https://github.com/jncubillosn-lab/Mecatronica/pull/13) | Corrección de referencias académicas inválidas, extracción del motor y de las vistas, contexto de arranque sin `window.RAW` y claves de prerrequisitos por ID con compatibilidad histórica. La entrada académica y las fórmulas de cálculo no se modifican. |
 | v0.5.4, [PR #14](https://github.com/jncubillosn-lab/Mecatronica/pull/14) | Filtros de tipología y unidad en las siete páginas, editores de unidad responsable opcional por asignatura en Asignaturas/Horarios/Prerrequisitos, y conservación del dato en escenarios personales exportados/importados. La única entrada académica permanece intacta. |
+| v0.5.5, [PR #15](https://github.com/jncubillosn-lab/Mecatronica/pull/15) | Simplificación deliberada de TPI: conservar solo G1 lunes y miércoles 14:00–16:00 en la oferta y en las agrupaciones; 21 alternativas retiradas de esta referencia para evitar ruido en el análisis. Las restantes asignaturas no se modifican. |
 
 La PR #8 superó GitHub Actions (ejecución `42434980198`), la PR #9 superó la ejecución `42435837261` y la PR #11 superó la ejecución `42437245624`, todas sobre sus commits correspondientes. La PR #10 consolidó únicamente documentación, sin requerir una nueva versión pública. **Estas pruebas confirman las ramas examinadas y su integración en `main`; no prueban por sí solas cuándo GitHub Pages sirvió el HTML actualizado.**
 
@@ -58,11 +59,11 @@ En v0.5.3 **no existe `window.RAW`** ni dependencia de `RAW` en las vistas y el 
 | Posiciones curriculares (`malla`) | 59 | No todas poseen un código de asignatura concreto. |
 | Entradas de `catalogo` | 64 | Catálogo académico disponible. |
 | Cursos de `oferta` | 64 | Referencia de oferta disponible. |
-| Registros de grupo en `oferta` | 716 | **Registros fuente conservados**, no 716 agrupaciones calculables. |
-| Agrupaciones explícitas | 453 | 386 históricas y 67 incorporadas en la migración. |
-| Agrupaciones analizables | 374 | Sin `analizable: false`. |
+| Registros de grupo en `oferta` | 695 | **Registros de la referencia normalizada**, con TPI simplificada intencionalmente, no 716 agrupaciones calculables. |
+| Agrupaciones explícitas | 432 | 453 anteriores menos 21 alternativas de TPI, simplificadas deliberadamente. |
+| Agrupaciones analizables | 353 | Sin `analizable: false`; 21 agrupaciones de TPI retiradas. |
 | Agrupaciones de otras sedes informativas | 79 | Registradas con `analizable: false`, sin participar en los cálculos. |
-| Bloques del escenario base `S0` | 904 | Los bloques compartidos entre agrupaciones se proyectan una sola vez. |
+| Bloques del escenario base `S0` | 864 | Los bloques compartidos entre agrupaciones se proyectan una sola vez. |
 | Posiciones con agrupaciones aún no verificadas | 3 | Electrónica Análoga I, Electrónica Digital I y Proyecto Aplicado de Ingeniería. No se inventan combinaciones. |
 
 Los bloques declarados dentro de componentes de distintas agrupaciones pueden referirse a una misma sesión compartida; por ello una cantidad de apariciones en el JSON no debe confundirse con los **904 bloques únicos del escenario base**. Las **52 relaciones de prerrequisito** y **3 mínimos de créditos** de esta referencia apuntan a posiciones identificadas de la malla: no se detectaron referencias huérfanas en la revisión documental. La comprobación de fidelidad compara días, horas, asociaciones y referencias, no solo totales.

@@ -5,9 +5,9 @@ Aplicación web **no oficial** para consultar la malla curricular, examinar grup
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Documentación de referencia:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial](docs/MIGRACION-ARQ01.md) · [Guía de desarrollo](AGENTS.md)
 
-## Arquitectura vigente — v0.5.4
+## Arquitectura vigente — v0.5.5
 
-**La aplicación tiene una única entrada académica estandarizada: [datos/academico.json](datos/academico.json).**
+**La aplicación tiene una única entrada académica estandarizada: [datos/academico.json](datos/academico.json).** La versión 0.5.5 simplifica TPI a un solo grupo representativo (G1, lunes y miércoles de 14:00 a 16:00); esto no equivale a la oferta oficial completa.
 
 La malla, el catálogo institucional y la oferta de grupos se transforman **fuera del sistema** a ese formato. El sitio **no importa ni convierte** los documentos originales, ni mantiene conexiones paralelas hacia ellos.
 
