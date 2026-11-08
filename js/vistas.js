@@ -206,7 +206,7 @@ function drawerPair(dw) {
 }
 function drawerCambios() {
   const ch = changes(), pd = pairDeltas();
-  const reporte = ['inicio','inter','asig','heat'].includes(ui.page) ? [RV,RV0] : [R,R0];
+  const reporte=[RV,RV0];
   const [resultado, anterior] = reporte;
   return `<div class="dr-h"><div><span class="eyebrow">Escenario vs. datos de referencia</span><h2>${ch.length} cambio${ch.length === 1 ? '' : 's'}</h2></div><button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
@@ -269,6 +269,7 @@ function compText(a, c) {
   return bs.length ? bs.map(fmtB).join(' · ') : 'sin bloques';
 }
 function groupDetail(a, g) {
+  const R=RV;
   const cl = R.groupClash.get(a + '\u0001' + g.g) || [];
   const by = {}; cl.forEach(x => { (by[x.a] = by[x.a] || []).push(gl(x.a, x.g)); });
   const parts = [g.c1, g.c2].filter(Boolean).map(c => {
@@ -286,9 +287,10 @@ function groupDetail(a, g) {
  * ocultar estos grupos equivaldría a descartar información del contrato.
  */
 function pageGrupos() {
-  const sel = ui.grp.sel;
-  const avail = S.malla.filter(m => !S.asg.includes(m.n)).sort((a, b) => a.s - b.s || a.n.localeCompare(b.n));
-  const cards = R.names.map(n => {
+  const R=RV,sel=ui.grp.sel;
+  const avail=S.malla.filter(m=>pasaFiltros(m) && !S.asg.includes(m.n))
+    .sort((a,b)=>a.s-b.s||a.n.localeCompare(b.n));
+  const cards=R.names.map(n=>{
     const gs = R.allGroupsOf[n], st = R.st[n];
     const selG = sel && sel.a === n ? gs.find(g => g.g === sel.g) : null;
     return `<section class="card gcard" data-aname="${esc(n)}">
@@ -303,7 +305,7 @@ function pageGrupos() {
   }).join('');
   return `<div class="page-title"><div><h1>Grupos</h1><p>Los grupos que se ofertan de cada asignatura. Desactiva uno para simular que no se abre, o agrega uno nuevo y ajusta su horario en <a href="#hor" data-act="nav" data-p="hor">Horarios</a>.</p></div>
     <div class="row"><select id="asg-new" aria-label="Asignatura a agregar"><option value="">Agregar asignatura de la malla…</option>${avail.map(m => `<option value="${esc(m.n)}">${esc(m.n)} (sem ${m.s})</option>`).join('')}</select><button class="btn" data-act="asg-add">Agregar</button></div></div>
-    <div class="gcards">${cards}</div>`;
+    <div class="gcards">${cards||'<div class="empty-state">No hay asignaturas de la tipología o unidad seleccionada.</div>'}</div>`;
 }
 
 /* ===== HORARIOS ===== */
@@ -391,7 +393,7 @@ function pageHor() {
  */
 function pageHeat() {
   const off = ui.heat.off;
-  const names = new PlanCurricular(S).seleccionarPorComponentes(S.asg, ui.componentes).sort((a, b) => semOf(S, a) - semOf(S, b) || a.localeCompare(b, 'es'));
+  const names=[...RV.names].sort((a,b)=>semOf(S,a)-semOf(S,b)||a.localeCompare(b,'es'));
   const selected = names.filter(n => !off.has(n));
   const selectedSet = new Set(selected);
   const groups = S.grupos.filter(g => selectedSet.has(g.a) && g.on && g.analizable !== false);
