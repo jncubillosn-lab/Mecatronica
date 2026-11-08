@@ -332,11 +332,12 @@ function lanes(blocks) {
  * el resaltado de cruces entre superposiciones consulta elegibilidad.
  */
 function pageHor() {
-  if (!S.asg.length) return `<div class="page-title"><div><h1>Horarios</h1><p>No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</p></div></div>`;
-  const h = ui.hor;
-  if (!S.asg.includes(h.a)) h.a = S.asg[0];
+  const R=RV,R0=RV0;
+  if(!R.names.length)return `<div class="page-title"><div><h1>Horarios</h1><p>${S.asg.length?'Ninguna asignatura coincide con los filtros de tipología y departamento/facultad.':'No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde Grupos.'}</p></div></div>`;
+  const h=ui.hor;
+  if(!R.names.includes(h.a))h.a=R.names[0];
   const A = h.a, comps = compsOf(A), mine = S.bloques.filter(b => b.a === A);
-  h.ov = h.ov.filter(n => S.asg.includes(n) && n !== A);
+  h.ov = h.ov.filter(n => R.names.includes(n) && n !== A);
   const ovBlocks = S.bloques.filter(b => h.ov.includes(b.a));
   const hasOv = ovBlocks.length > 0, ZW = hasOv ? 62 : 100;
   const lm = lanes(mine), lo = lanes(ovBlocks);
@@ -375,6 +376,7 @@ function pageHor() {
       <div class="row" style="margin-bottom:10px"><h2 style="font:650 20px var(--serif)">${esc(A)}</h2><span class="sem">S${R.st[A].s}</span><span style="flex:1"></span>
         <select data-chg="h-ov-add" aria-label="Superponer asignatura"><option value="">Superponer otra asignatura…</option>${R.names.filter(n => n !== A && !h.ov.includes(n)).map(n => `<option>${esc(n)}</option>`).join('')}</select>
         <button class="btn sm" data-act="h-ov-clash" ${choques.length ? '' : 'disabled'} title="Superpone las asignaturas con las que choca">Las que chocan (${choques.length})</button></div>
+      ${editorUnidad(A)}
       ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}">${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
       <div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div>
       <div class="legend" style="margin-top:8px"><span>Cada bloque lleva el nombre del grupo (o grupos) que lo usan; bloques lado a lado son grupos alternativos a la misma hora.</span>${hasOv ? '<span><i class="sw" style="background:color-mix(in srgb,var(--heat) 22%,transparent)"></i>horas donde se pisan con lo superpuesto</span>' : ''}</div>
