@@ -193,6 +193,8 @@ El estado académico normalizado es una **referencia**. Un estudiante puede desa
 
 **Unidad responsable opcional:** el usuario puede registrar para una posición curricular un departamento o facultad en su **escenario personal**, incluso si no hay profesor informado. Ese valor comienza vacío, no se deduce por reglas ni se convierte en campo académico obligatorio; viaja con los cambios personales exportados. Filtrar por esa unidad es una selección de consulta, no una edición de los datos académicos normalizados.
 
+**DEM-01 — demanda de preinscripción:** una encuesta agregada es una anotación de escenario personal por ID curricular, no una entrada académica institucional ni una ampliación obligatoria de `FuentesAcadémicas`. Se carga como JSON de solicitudes ya estructuradas; la conversión desde formularios queda fuera del sistema. Sus indicadores de solicitudes por agrupación usan solamente las agrupaciones explícitas del escenario, sin inferir capacidades. Los filtros solo modifican consultas y las ausencias siguen siendo valores desconocidos. Véase [DEM-01](DEM-01.md).
+
 La arquitectura objetivo conserva **operaciones o diferencias personales** vinculadas a identificadores estables. Al cargar una versión posterior de `FuentesAcadémicas` se reconstruye el escenario utilizando la nueva referencia y las modificaciones de la persona.
 
 **Invariantes:**
