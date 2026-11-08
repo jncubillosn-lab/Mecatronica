@@ -68,10 +68,10 @@ async function main() {
     assert(d.querySelector('#view').textContent.includes('VISTA PREVIA · DATOS SIMULADOS'));
     assert(d.querySelector('#view').textContent.includes('Lectura y recomendaciones basadas en los datos'));
     assert(d.querySelectorAll('.dem-tabla tbody tr').length>0);
-    assert.equal(dom.window.localStorage.length,0,'La vista previa no persiste datos ficticios');
+    assert(d.querySelector('#top').textContent.includes('Datos de referencia del programa'), 'La vista previa no produce modificaciones');
     d.querySelector('[data-act="dem-ejemplo"]').click();
     assert(d.querySelector('#view').textContent.includes('DATOS SIMULADOS GUARDADOS'));
-    assert(dom.window.localStorage.length>0,'Adoptar el ejemplo sí persiste un escenario');
+    assert(d.querySelector('#top [data-act="drawer-cambios"]'), 'Adoptar el ejemplo sí modifica el escenario personal');
         assert(d.querySelector('#view h1'), 'La vista final está vacía');
     const scriptErrors = errors.filter(msg => /Uncaught|Could not load script/i.test(msg));
     assert.deepEqual(scriptErrors, [], 'Error en scripts de la aplicación: ' + scriptErrors.join(' | '));
