@@ -2,7 +2,8 @@
 
 /**
  * ARQ-01: un solo punto de entrada de información académica.
- * La carga no conoce ni consulta catálogo/oferta/malla en sus formatos anteriores.
+ * La carga consume exclusivamente el JSON normalizado y no convierte
+ * formatos externos por sí misma.
  * El motor puro (analisis.js) debe haberse cargado antes de este arranque.
  */
 (async function iniciar() {
@@ -16,8 +17,6 @@
     const lector = new EntradaAcademica(contrato);
     // Se construye una sola vez un escenario base desde el contrato. La
     // proyección posicional es transitoria y NO se expone como entrada global.
-    // fromRaw construye S0 desde el contrato vigente; el lector histórico
-    // de archivos personales no altera esta construcción.
     const proyeccion = lector.generarEscenarioBase();
     // El tema procede del ID del programa ya normalizado; no introduce otra entrada.
     window.IdentidadUniversitaria.aplicarTema(proyeccion.programa);
@@ -27,12 +26,8 @@
       opciones: proyeccion.opciones,
       almacenamiento: proyeccion.almacenamiento,
       metadatos: proyeccion.metadatos,
-      incrementosOferta: proyeccion.incrementosOferta,
       estadoBase: fromRaw(proyeccion)
     };
-    // El lector permanece disponible para recuperar archivos personales {S}
-    // anteriores; la migración ARQ-01 está cerrada y no hay segunda entrada.
-    window.fuentesAcademicas = lector;
     const script = document.createElement('script');
     // La interfaz se carga DESPUÉS del contrato y recibe CONTEXTO_ACADEMICO.
     // Las versiones ?v= de esta ruta, del JSON y de `index.html` deben
