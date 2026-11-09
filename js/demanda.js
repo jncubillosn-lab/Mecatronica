@@ -206,16 +206,16 @@ if(typeof module!=='undefined')module.exports={DemandaEstadistica};
 function pageDemanda() {
   const estado=ui.demanda;
   // Previsualizar sin persistir cuando no existe una encuesta real.
-  const vistaEjemplo=!S.demanda||estado.vistaEjemplo===true;
+  const vistaEjemplo=!SIN_DATOS&&(!S.demanda||estado.vistaEjemplo===true);
   const base=DemandaEstadistica.analizar(
-    vistaEjemplo?DemandaEstadistica.ejemplo(S.malla,S.grupos):S.demanda,S.malla,S.grupos);
+    SIN_DATOS?DemandaEstadistica.vacia():vistaEjemplo?DemandaEstadistica.ejemplo(S.malla,S.grupos):S.demanda,S.malla,S.grupos);
   const d=base.datos;
   const filtroSem=x=>!estado.semestre||String(x.semestre)===estado.semestre;
   const visibles=base.filas.filter(x=>pasaFiltros(S.malla.find(m=>m.idPos===x.posicionId))&&filtroSem(x));
   const filas=(estado.sinDato?visibles:visibles.filter(x=>x.solicitudes!=null))
     .sort((a,b)=>(b[estado.orden]??-Infinity)-(a[estado.orden]??-Infinity)||a.nombre.localeCompare(b.nombre,'es'));
-  const f=n=>n==null||!Number.isFinite(n)?'—':Number(n).toLocaleString('es-CO',{maximumFractionDigits:2});
-  const pct=n=>n==null?'—':(n*100).toLocaleString('es-CO',{maximumFractionDigits:1})+' %';
+  const f=n=>SIN_DATOS||n==null||!Number.isFinite(n)?'—':Number(n).toLocaleString('es-CO',{maximumFractionDigits:2});
+  const pct=n=>SIN_DATOS||n==null?'—':(n*100).toLocaleString('es-CO',{maximumFractionDigits:1})+' %';
   const opc=(v,label,activo)=>'<option value="'+esc(v)+'"'+(activo?' selected':'')+'>'+esc(label)+'</option>';
   const seleccionadas=visibles.filter(x=>x.posicionId);
   if(!seleccionadas.some(x=>x.posicionId===estado.seleccion))estado.seleccion=seleccionadas[0]?.posicionId||'';
@@ -339,7 +339,16 @@ function pageDemanda() {
       '<text class="dem-corte-leyenda" x="86" y="'+(yMed-9)+'">Mediana: '+
       f(corteSolicitudes)+' solicitudes</text>'+
       puntosSvg+etiquetaPunto+'</svg></div>'
-    :'<p class="hint">No hay asignaturas que tengan a la vez solicitudes registradas y grupos analizables.</p>';
+    :SIN_DATOS?
+      '<div class="dem-grafico-wrap" role="region" tabindex="0" aria-label="Marco vacío de la gráfica de demanda">'+
+      '<svg class="dem-grafico" viewBox="0 0 950 515" role="group" aria-label="Gráfica sin datos académicos">'+
+      '<rect class="dem-marco" x="'+area.izq+'" y="'+area.arriba+
+      '" width="'+ancho+'" height="'+alto+'"/>'+
+      '<text class="dem-eje-titulo" x="83" y="31">Solicitudes observadas ↑</text>'+
+      '<text class="dem-eje-titulo" x="875" y="504" text-anchor="end">Grupos ofertados →</text>'+
+      '<text x="480" y="255" text-anchor="middle" fill="currentColor">'+
+        'Sin información académica para representar puntos</text></svg></div>'
+      :'<p class="hint">No hay asignaturas que tengan a la vez solicitudes registradas y grupos analizables.</p>';
   const clavesGrafico=mejores.length
     ?'<div class="dem-casos">'+mejores.map((p,i)=>
        '<button class="dem-caso"'+atributoComponente(p.componente)+' data-act="dem-sel" data-pos="'+esc(p.posicionId)+'">'+
@@ -407,7 +416,7 @@ function pageDemanda() {
   if(conChoque)consejos.push(['Co-solicitudes con cruces de horario',
     conChoque.a.nombre+' y '+conChoque.b.nombre+': '+conChoque.cantidad+
     ' estudiantes las solicitaron juntas y se detectaron cruces de horario.']);
-  if(d.tasaParticipacion==null)consejos.push(['No extrapolar todavía',
+  if(!SIN_DATOS && d.tasaParticipacion==null)consejos.push(['No extrapolar todavía',
     'Sin porcentaje de participación no se estima la demanda de quienes no respondieron.']);
   const pendientes=visibles.filter(x=>x.solicitudes==null).length;
   if(pendientes)consejos.push(['Cobertura incompleta',
