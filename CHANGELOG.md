@@ -2,6 +2,13 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 0.8.0 — Cierre definitivo de migración ARQ-01
+
+- **[PR #34](https://github.com/jncubillosn-lab/Mecatronica/pull/34), 8 nov 2026:** la migración a la única entrada académica se declara **finalizada**, con acta de cierre en [MIG-ARQ01](docs/MIGRACION-ARQ01.md). `S0` no depende de transformaciones históricas; `fixMalla` y `migrarAnterior` son soporte de archivos personales antiguos, no tareas de migración pendientes.
+- Se retiró el disparador de la rama histórica `arquitectura/migracion-arq01-entrada-unica`; las PR hacia `main` comprueban tanto `npm test` como `npm run test:historico`.
+- Las herramientas de comparación inicial `compare.js` y `mutar.sh` se mantienen archivadas, pero `npm run comparar` y `npm run mutar` dejan de anunciarse como comandos activos del proyecto.
+- ARQ-01, EST-01, DEC-01, README, AGENTS y MIG-ARQ01 distinguen explícitamente **proceso completado**, **soporte histórico** y **trabajo general restante hacia 1.0.0**. No se modificó `datos/academico.json`, requisitos, grupos o cálculos.
+
 ## Preparación técnica 1.0.0 (sin declarar versión estable)
 
 - **0.7.8 — [PR #33](https://github.com/jncubillosn-lab/Mecatronica/pull/33)**: prueba roja reprodujo la pérdida de la marca de revisión pendiente al exportar un escenario antiguo. La exportación recibe ahora el mismo contexto de revisión que el guardado local; sin nueva arquitectura ni casos específicos. **La publicación debe comprobarse después de fusionar.**
