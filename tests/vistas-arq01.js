@@ -6,6 +6,7 @@ const path=require('node:path');
 const root=path.join(__dirname,'..'), read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const contrato=JSON.parse(read('datos/academico.json'));
 const {EntradaAcademica}=require('../js/entrada.js');
+const programas=require('../js/programas.js');
 const raw=new EntradaAcademica(contrato).generarEscenarioBase();
 const appCode=read('js/modelo.js')+'\n'+read('js/entrada.js')+'\n'+read('js/escenarios.js')+'\n'+
  read('js/analisis.js')+'\n'+read('js/demanda.js')+'\n'+read('js/vistas.js')+'\n'+
@@ -14,7 +15,7 @@ const appCode=read('js/modelo.js')+'\n'+read('js/entrada.js')+'\n'+read('js/esce
 const api=new Function('RAW','localStorage','window','document',appCode+
   '\nrender=()=>{};toast=()=>{};return {S,S0,R,ui,changes,onAct,onChange,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageDemanda,pageMalla,renderTop,drawerPair,getVista:()=>RV};')(
   raw,{getItem:()=>null,setItem(){},removeItem(){}},
-  {innerWidth:1200},{}
+  {innerWidth:1200,ProgramasUniversitarios:programas},{}
 );
 function verificar(nombre,trabajo){trabajo();console.log('OK '+nombre);}
 
