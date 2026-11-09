@@ -1,13 +1,13 @@
 # Guía de trabajo para agentes y colaboradores
 
-**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), revisada contra la implementación v0.7.5. Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
+**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), actualizada para el cierre ARQ-01 v0.8.0. Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
 
 ## Antes de cualquier cambio
 
 - Leer ARQ-01 y verificar qué capa del sistema se verá afectada.
-- **Desde v0.5.0 la única entrada académica es FuentesAcadémicas (`datos/academico.json`).** Desde v0.5.3 el arranque entrega un contexto académico explícito, no `window.RAW`. La proyección posicional del lector solo sirve como adaptador interno de construcción de S0 y compatibilidad histórica; nunca como otra entrada.
+- **ARQ-01 está cerrada desde 0.8.0:** la única entrada académica es FuentesAcadémicas (`datos/academico.json`). El arranque construye `S0` sin aplicar actualizaciones históricas; `fromRaw` es un adaptador interno y no crea una segunda entrada. La lectura de archivos `{S}` anteriores es compatibilidad permanente, no una fase de migración pendiente.
 - La extracción y conversión desde catálogo, oferta de horarios y malla sucede **íntegramente fuera del sistema**. No incorporar lectores, conversores, cargadores ni conexiones paralelas desde esos archivos a la aplicación.
-- El sistema consume el contrato común, no el formato de las fuentes ni archivos históricos archivados en `pruebas/historico/js/`. Se preservan, desde 0.7.7, en `pruebas/historico/js/` como **referencias heredadas**, fuera de `js/`; las pruebas antiguas se ejecutan con `npm run test:historico`, no como parte de la validación del contrato vigente.
+- Los archivos académicos antiguos permanecen archivados en `pruebas/historico/js/`, fuera de `js/`, sin conexión con la aplicación. `npm run test:historico` comprueba la compatibilidad en CI de forma separada de `npm test`. Las antiguas herramientas `compare.js`/`mutar.sh` se conservan para consulta histórica, pero no forman parte de los comandos npm activos.
 - Los nombres, créditos, requisitos, tipologías, componentes, calendarios y vínculos académicos son **datos**, no constantes universales programadas. Las relaciones de prerrequisitos y los mínimos de créditos deben referenciar IDs válidos; una referencia rota es un error técnico, no un valor académico faltante.
 - Aceptar información incompleta sin inventar valores ni generar avisos de alerta por su ausencia. Distinguir un vacío académico válido de un error técnico del contrato; el dato ausente no bloquea ni crea falsos choques.
 - Los grupos de actividad no se combinan salvo relación explícita del contrato.
@@ -27,7 +27,7 @@
 
 ## Ejecución y revisión
 
-1. Distinguir **estado actual** de **arquitectura objetivo** antes de proponer implementaciones.
+1. Partir del **estado actual documentado en ARQ-01**, no de una supuesta migración aún en curso. Un nuevo cambio de arquitectura requiere necesidad explícita, no reabrir fases ya cerradas.
 2. Preferir actualizar únicamente los datos normalizados cuando cambie información académica.
 3. Justificar cualquier cambio del contrato o de la frontera arquitectónica **antes de implementarlo** y actualizar ARQ-01.
 4. Verificar integridad de cobertura fuente normalizada → escenario → resultados y comparar días/horas, no solo números de registros.
@@ -37,5 +37,7 @@
 8. **Incrementar y sincronizar la versión pública** si cambian recursos HTML, JS, CSS o JSON; comprobar el pie de página, el `<meta name="version">` y los parámetros `?v=` del HTML y de `js/iniciar.js`. La CI incluye `tests/versionado.js`; los cambios solo documentales no requieren incremento.
 9. Tras fusionar, distinguir resultado de CI, contenido de `main` y despliegue realmente servido por GitHub Pages; no afirmar lo último sin comprobarlo.
 10. **Documentar en el propio código** las responsabilidades de clases y métodos importantes, formatos de entrada/salida, decisiones de cálculo, manejo de datos ausentes, compatibilidad histórica y límites de las vistas. Usar JSDoc para interfaces relevantes y comentarios próximos a reglas no obvias. No duplicar documentación evidente ni dejar comentarios desactualizados al modificar funciones.
+11. **Comprobar los tres niveles de coherencia:** guías (ARQ-01, DEC-01, EST-01, REG-01 y acta histórica), comentarios del código y pruebas de la conducta real. Una afirmación normativa necesita evidencia; una función antigua no convierte sus datos auxiliares en campos obligatorios de FuentesAcadémicas. `introducidoEn` y `idAnterior` son opcionales para la operación actual; `tests/compatibilidad-opcional.js` protege esa frontera.
+12. **Comentar las unidades lógicas sin ruido:** en cada método crítico describir propósito, entrada/salida, efecto sobre S/S0 y criterios de ausencia. En las ramas particulares explicar el porqué. No añadir un comentario por cada asignación trivial; mantener comentarios con suficiente información para entender el código y actualizarlos junto a la implementación.
 
 Si hay contradicción entre README o código heredado y ARQ-01, **ARQ-01 gobierna la arquitectura**. DEC-01 registra decisiones de alcance y EST-01 refleja el estado real; ninguna propuesta futura se considera aprobada por aparecer en un ejemplo. El funcionamiento existente solo puede reemplazarse mediante una modificación consciente, justificada y probada.

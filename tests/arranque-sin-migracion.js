@@ -32,4 +32,21 @@ assert(app.includes('fixMalla(anterior);'),
   'La compatibilidad {S} debe mantenerse explícitamente en el importador');
 assert(app.includes('EscenarioPersonal.migrarAnterior(S0, anterior,'),
   'No se pierde la restauración histórica por IDs de bloque y agrupación');
+// El cierre no depende de acuerdos verbales: el arranque y el workflow
+// deben permanecer separados de la rama académica de migración ya concluida.
+const inicio=read('js/iniciar.js');
+const workflow=read('.github/workflows/verificacion-arq01.yml');
+const packageJson=JSON.parse(read('package.json'));
+assert(!inicio.includes('window.RAW ='),'No reintroducir una segunda fuente académica');
+assert(inicio.includes("fetch('datos/academico.json?v="),
+  'La única entrada académica debe ser el contrato normalizado');
+assert(!workflow.includes('arquitectura/migracion-arq01-entrada-unica'),
+  'No mantener activa la rama histórica de migración');
+assert(workflow.includes('run: npm test')&&
+       workflow.includes('run: npm run test:historico'),
+  'Verificar por separado comportamiento vigente y archivos personales históricos');
+assert(!packageJson.scripts.comparar && !packageJson.scripts.mutar,
+  'No anunciar como comandos activos herramientas de comparación de v0.4.x');
+assert(packageJson.scripts['test:historico'],
+  'Se conserva soporte verificable para los archivos antiguos');
 console.log('OK: S0 deriva del contrato sin migraciones; {S} conserva su ruta compatible.');

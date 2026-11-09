@@ -10,13 +10,14 @@
   try {
     // ÚNICA petición de información académica: el sitio no carga las tres
     // fuentes originales ni genera datos institucionales faltantes.
-    const respuesta = await fetch('datos/academico.json?v=0.7.8');
+    const respuesta = await fetch('datos/academico.json?v=0.8.0');
     if (!respuesta.ok) throw new Error('No se pudo consultar el contrato académico');
     const contrato = await respuesta.json();
     const lector = new EntradaAcademica(contrato);
     // Se construye una sola vez un escenario base desde el contrato. La
     // proyección posicional es transitoria y NO se expone como entrada global.
-    // fromRaw construye S0 y permite conservar compatibilidad de escenarios.
+    // fromRaw construye S0 desde el contrato vigente; el lector histórico
+    // de archivos personales no altera esta construcción.
     const proyeccion = lector.generarEscenarioBase();
     // El tema procede del ID del programa ya normalizado; no introduce otra entrada.
     window.IdentidadUniversitaria.aplicarTema(proyeccion.programa);
@@ -29,14 +30,14 @@
       incrementosOferta: proyeccion.incrementosOferta,
       estadoBase: fromRaw(proyeccion)
     };
-    // Este lector solo se conserva para migrar escenarios personales antiguos;
-    // no vuelve a leer fuentes académicas ni incorpora otra ruta de entrada.
+    // El lector permanece disponible para recuperar archivos personales {S}
+    // anteriores; la migración ARQ-01 está cerrada y no hay segunda entrada.
     window.fuentesAcademicas = lector;
     const script = document.createElement('script');
     // La interfaz se carga DESPUÉS del contrato y recibe CONTEXTO_ACADEMICO.
     // Las versiones ?v= de esta ruta, del JSON y de `index.html` deben
     // coincidir con el número público; lo comprueba `tests/versionado.js`.
-    script.src = 'js/app.js?v=0.7.8';
+    script.src = 'js/app.js?v=0.8.0';
     script.onerror = () => {
       if (contenedor) contenedor.textContent = 'No se pudo cargar la interfaz de planeación.';
     };

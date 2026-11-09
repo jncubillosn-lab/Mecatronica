@@ -51,12 +51,21 @@ try {
   }
 } catch (e) { /* la herramienta funciona sin almacenamiento */ }
 /**
- * Transición de escenarios históricos, NO conversión de fuentes académicas.
- * Conserva la semántica v0.4.x y resuelve compatibilidad de datos guardados.
+ * Lector de compatibilidad de escenarios {S} anteriores, formato cerrado.
+ * Conserva la semántica v0.4.x sin participar en la carga académica actual.
  * No usarla para editar `datos/academico.json` ni inventar datos del plan.
+ * Este lector recibe exclusivamente la COPIA de un archivo personal antiguo
+ * `{S}`: nunca se invoca en el arranque de `S0` ni exige nuevos campos de
+ * FuentesAcadémicas. Los indicadores `mig1..mig4` pertenecen al snapshot;
+ * no son versiones de esquema ni requisitos académicos actuales.
+ * @param {object} s Estado completo de un escenario histórico, mutable.
+ * @returns {object} Ese escenario ajustado para comparar con la referencia.
  */
 function fixMalla(s) {
   const base = clone(CONTEXTO.estadoBase);
+  // Catálogos y mínimos no informados en el snapshot se completan desde
+  // la referencia ACTUAL solo para interpretar el archivo antiguo. No se
+  // escriben datos nuevos en el contrato institucional.
   if (!s.tipos) s.tipos = clone(base.tipos);
   else for (const tipo of ['componentes', 'caracteres']) {
     if (!Array.isArray(s.tipos[tipo])) s.tipos[tipo] = [];
@@ -75,11 +84,21 @@ function fixMalla(s) {
     });
     base.reqCred.forEach(r => { if (!s.reqCred.some(x => x.n === r.n)) s.reqCred.push(clone(r)); });
   }
+  // Completar las posiciones que existan en la referencia, conservando
+  // créditos, semestre, carácter y notas personales cuando estén presentes.
   base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; if (!x.comp) x.comp = m.comp; if (x.car == null) x.car = m.car; } });
+  // Correcciones históricas UNA SOLA VEZ sobre la copia antigua:
+  // mig3 retira dos posiciones L eliminadas de la referencia anterior;
+  // mig2 limita sus antiguos créditos L; mig1 retira una relación superada;
+  // mig4 reconstituye relaciones de referencia y preserva las agregadas
+  // personalmente. No son reglas para nuevos contratos ni nuevos programas.
   if (!s.mig3) { s.mig3 = 1; s.malla = s.malla.filter(m => !['Libre elección (X-5)', 'Libre elección (X-6)'].includes(m.n)); }
   if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
   if (!s.mig1) { s.mig1 = 1; s.pre = s.pre.filter(p => !(p.r === 'Proyecto Aplicado de Ingeniería' && p.t === 'Trabajo de Grado')); }
   if (!s.mig4) { s.mig4 = 1; s.pre = base.pre.map(p => ({ ...p })).concat(s.pre.filter(p => p.m === 'agregado' && !base.pre.some(q => q.r === p.r && q.t === p.t))); s.malla.forEach(m => { const o = base.malla.find(y => y.n === m.n); if (o && /créditos del plan|% de los créditos/.test(m.nota || '')) m.nota = o.nota; }); }
+  // Correspondencia de clasificación conocida en el archivo anterior:
+  // solo LE -> N cuando la posición ACTUAL confirma N. No inferir carreras,
+  // componentes o asignaturas desconocidas por semejanza del nombre.
   // Transición histórica: Inglés dejó de tener código de componente LE separado
   // porque el catálogo institucional lo clasifica como Nivelación (E).
   // Solo se cambia el registro antiguo cuando el nuevo plan confirma la equivalencia.
@@ -90,6 +109,10 @@ function fixMalla(s) {
   if (Array.isArray(s.tipos?.componentes) && !s.malla.some(m => m.comp === 'LE')) {
     s.tipos.componentes = s.tipos.componentes.filter(c => c.id !== 'LE');
   }
+  // Rama de compatibilidad OPCIONAL con un incremento histórico concreto:
+  // si no se suministró `incrementosOferta` en el contexto, no se ejecuta.
+  // No exige `incrementosOferta`, `introducidoEn` ni `idAnterior` en la
+  // entrada académica vigente. No crear grupos por deducción.
   // Incorporación única de los grupos nuevos de la oferta, sin restablecer
   // grupos antiguos eliminados por el usuario ni sobrescribir horarios editados.
   const inc = CONTEXTO.incrementosOferta;
@@ -117,6 +140,11 @@ function fixMalla(s) {
   // No restaurar aquí requisitos que el usuario retiró deliberadamente de su escenario.
   return s;
 }
+/**
+ * Adecua exclusivamente la selección de distancias de un escenario.
+ * Se ejecuta también sobre S0 para completar parámetros de UI; NO realiza
+ * migraciones académicas ni modifica asignaturas, créditos o agrupaciones.
+ */
 function fixParams(s) {
   if (!Array.isArray(s.params.dists)) {
     const d = OPCIONES.distanciasDisponibles;
@@ -126,19 +154,27 @@ function fixParams(s) {
   }
   return s;
 }
-// La referencia S0 sale completa del contrato: no ejecutar migraciones
-// históricas sobre ella. fixMalla se reserva para importar snapshots {S}.
+// La referencia S0 sale completa del contrato. La compatibilidad de
+// snapshots {S} se aplica únicamente al importar un archivo antiguo.
 fixParams(S0);
 S = clone(S0);
 /**
- * Distingue el formato actual de diferencias personales (v1) del antiguo
+ * Distingue el formato de diferencias personales (v1) del archivo antiguo
  * `{S}` completo. Ambos se reconstruyen sobre S0; después se validan los
  * intervalos técnicos antes de reemplazar el escenario efectivo de la UI.
+ */
+/**
+ * Router de importación: el formato v1 aplica deltas sobre S0; el único
+ * formato antiguo soportado aquí es `{S}`, que pasa por el lector legado.
+ * Importar un archivo personal nunca alimenta `EntradaAcademica` con una
+ * segunda fuente institucional ni reescribe `datos/academico.json`.
  */
 function recuperarEscenarioGuardado(o) {
   if (o.tipo === 'escenario-personal' && o.version === 1) {
     return EscenarioPersonal.aplicar(S0, o.cambios);
   }
+  // El historial se procesa sobre una copia privada del snapshot; S0 ya
+  // está construido y es la referencia inmutable para las diferencias.
   const anterior = clone(o.S);
   fixParams(anterior); fixMalla(anterior);
   return EscenarioPersonal.migrarAnterior(S0, anterior, window.fuentesAcademicas.datos, fromRaw, EntradaAcademica);
@@ -154,7 +190,9 @@ if (datosGuardados) {
     pendientesRequisitos = [];
   }
 }
-// R: resultados sin filtro de componentes de la sesión; R0: referencia.
+// R: resultados completos del escenario S; R0: referencia S0.
+ // RV/RV0 son proyecciones filtradas de esos resultados, nunca nuevas
+ // fuentes ni ediciones persistentes. La vista puede mostrar menos que S.
 // RV/RV0 son consultas filtradas y NUNCA reemplazan al escenario S/S0.
 let R = compute(S), R0 = compute(S0);
 
@@ -448,6 +486,13 @@ function download(name, text, type) { const u = URL.createObjectURL(new Blob([te
  * Navegación y filtros solo redibujan. No leer archivos originales de oferta,
  * malla o catálogo desde eventos de interfaz.
  */
+/**
+ * Despachador de acciones de usuario identificadas por `data-act`.
+ * Modifica S solo mediante acciones explícitas y commit/save; los filtros,
+ * la navegación y la vista previa de demanda solo cambian la consulta o UI.
+ * Las ramas de importación conservan sus validaciones y no exigen que un
+ * escenario personal sea una fuente académica.
+ */
 function onAct(act, d, el, ev) {
   const f = ui.inter;
   switch (act) {
@@ -618,6 +663,11 @@ function onAct(act, d, el, ev) {
  * Cambios de formularios (`data-chg`) y archivo de escenario personal.
  * Al importar se reconstruye y valida un escenario ANTES de asignarlo a S;
  * cargar cambios personales NO equivale a cargar otra entrada académica.
+ */
+/**
+ * Cambios de formularios `data-chg`. Distingue edición personal de controles
+ * de presentación, protege el escenario base S0 y evita convertir ausencia
+ * académica en datos completados por el programa.
  */
 function onChange(k, el) {
   const f = ui.inter;

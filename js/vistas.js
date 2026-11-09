@@ -1,10 +1,13 @@
 'use strict';
 
 /**
- * Presentación de las siete secciones y paneles.
+ * Presentación de las OCHO vistas académicas y sus paneles.
  * Solo lee el estado y los resultados creados por js/app.js y js/analisis.js.
  * No convierte fuentes académicas, no calcula referencias y no persiste
  * modificaciones personales. Se carga antes del arranque de la aplicación.
+ * Usa S como escenario, R/RV como resultados completos/filtrados y UI como
+ * selección transitoria. Una vista jamás convierte un dato incompleto en
+ * conflicto académico, cupo institucional ni edición persistida.
  */
 /* ---------- INICIO ---------- */
 /**
@@ -29,6 +32,7 @@ function distText(p) { return p.dist === 0 ? 'Mismo semestre' : p.dist === 1 ? '
 function compGroups(A, c) { return S.grupos.filter(g => g.a === A && (g.c1 === c || g.c2 === c)).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y))); }
 function compLabel(A, c) { const gs = compGroups(A, c); return gs.length ? gs.map(glabel).join(' · ') : 'Sin grupo'; }
 
+/** Inicio: resumen de cruces del escenario actual ya filtrado; no calcula datos nuevos. */
 function pageInicio() {
   const R = RV, R0 = RV0;
   const P = S.params;
@@ -73,6 +77,7 @@ function pageInicio() {
 }
 
 /* ---------- INTERFERENCIAS ---------- */
+/** Determina si una pareja cumple los criterios locales de la vista. */
 function pairMatches(p) {
   const f = ui.inter;
   if (!p.enRango) return false;
@@ -106,6 +111,7 @@ function prow(p) {
     <span class="sub"><span class="lvl ${c}">${t}</span><span>${distText(p)}</span><span>· ${p.nA} y ${p.nB} grupos ofertados</span></span>
     <span class="idxcol"><span class="big"><b class="num">${pct(p.idx)}</b><span class="num">${p.clash} de ${p.total} combinaciones</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span></span></button>`;
 }
+/** Matriz sobre pares elegibles del resultado filtrado, sin regenerar combinaciones. */
 function matrixView() {
   const R = RV;
   const N = R.names, f = ui.inter;
@@ -124,6 +130,7 @@ function matrixView() {
   return `<div class="card"><div class="mxwrap"><table class="mx"><thead><tr><th></th>${N.map((b, j) => `<th class="colh ${j && R.st[b].s !== R.st[N[j - 1]].s ? 'semgap' : ''}" scope="col"><div><span class="asig-etiqueta"${atributoTipologia(b)}>${esc(b)}</span> · S${R.st[b].s}</div></th>`).join('')}</tr></thead><tbody>${cells}</tbody></table></div>
   <div class="legend" style="padding:0 16px 14px"><span>Cada celda = índice de solape (%)</span><span><i class="sw" style="background:var(--surface2)"></i>0<i class="heatscale"></i>100</span><span><i class="sw" style="background:var(--ok-soft)"></i>sin choque</span><span><i class="sw" style="background:repeating-linear-gradient(135deg,transparent 0 3px,var(--line2) 3px 4px);border:1px solid var(--line)"></i>no se compara (prerrequisito o distancia no elegida)</span><span class="faint">Las celdas atenuadas no cumplen los filtros.</span></div></div>`;
 }
+/** Interferencias: lista, matriz y filtros de parejas del mismo conjunto RV. */
 function pageInter() {
   const R = RV;
   const f = ui.inter;
@@ -166,6 +173,7 @@ function miniWeek(bA, bB, ov) {
  * `allGroupsOf` conserve también opciones de otras sedes para consulta en
  * la sección Grupos. Las celdas deben conservar el mismo orden que `matrix`.
  */
+/** Detalle de una pareja y grupos concretos; sin inventar horarios faltantes. */
 function drawerPair(dw) {
   const R = RV;
   const p = R.pairs.find(x => x.key === dw.key);
@@ -213,6 +221,7 @@ function drawerPair(dw) {
     <div class="row"><button class="btn" data-act="hor-go" data-n="${esc(p.A)}">Editar horarios de ${esc(p.A)}</button><button class="btn" data-act="hor-go" data-n="${esc(p.B)}">Editar horarios de ${esc(p.B)}</button></div>
   </div>`;
 }
+/** Resumen visual de diferencias personales entre S0 y S. */
 function drawerCambios() {
   const ch = changes(), pd = pairDeltas();
   const reporte=[RV,RV0];
@@ -238,6 +247,7 @@ function renderDrawer() {
 }
 
 /* ===== ASIGNATURAS ===== */
+/** Asignaturas: indicadores derivados del análisis, distinguiendo clases sin grupo. */
 function pageAsig() {
   const R = RV, R0 = RV0;
   const f = ui.asig;
@@ -296,6 +306,7 @@ function groupDetail(a, g) {
  * conserva información visible de otras sedes sin activarla en el cálculo;
  * ocultar estos grupos equivaldría a descartar información del contrato.
  */
+/** Grupos: alternativas declaradas, incluidos los informativos no analizables. */
 function pageGrupos() {
   const R=RV,sel=ui.grp.sel;
   const avail=S.malla.filter(m=>pasaFiltros(m) && !S.asg.includes(m.n))
@@ -324,6 +335,7 @@ function compColor(i) {
   return `background:color-mix(in srgb,hsl(${h} 68% 52%) 24%,var(--surface));border-color:hsl(${h} 55% 48%);color:color-mix(in srgb,hsl(${h} 65% 42%) 70%,var(--ink))`;
 }
 function swatchColor(i) { return `hsl(${(i * 53 + 205) % 360} 55% 48%)`; }
+/** Disposición visual en columnas de bloques concurrentes; no modifica sus horas. */
 function lanes(blocks) {
   const res = new Map(), byDay = {};
   blocks.forEach(b => (byDay[b.d] = byDay[b.d] || []).push(b));
@@ -341,6 +353,7 @@ function lanes(blocks) {
  * Mostrar un bloque informativo no implica incluirlo en estadísticas;
  * el resaltado de cruces entre superposiciones consulta elegibilidad.
  */
+/** Horarios: cuadrícula editable desde S; el render no escribe en el escenario. */
 function pageHor() {
   const R=RV,R0=RV0;
   if(!R.names.length)return `<div class="page-title"><div><h1>Horarios</h1><p>${S.asg.length?'Ninguna asignatura coincide con los filtros de tipología y departamento/facultad.':'No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde Grupos.'}</p></div></div>`;
@@ -403,6 +416,7 @@ function pageHor() {
  * No mide estudiantes matriculados, salones ocupados ni cupos ofertados.
  * Los filtros de vista no deben cambiar los datos ni generar choques nuevos.
  */
+/** Mapa de calor: cuenta franjas programadas, no aulas ni matrículas reales. */
 function pageHeat() {
   const off = ui.heat.off;
   const names=[...RV.names].sort((a,b)=>semOf(S,a)-semOf(S,b)||a.localeCompare(b,'es'));
@@ -510,6 +524,7 @@ function mallaVisible(m) {
  * ni tienen acciones de edición individual. Los 36 créditos de Mecatrónica
  * se obtienen de las posiciones L de su fuente, no de una constante.
  */
+/** Distribución VISUAL opcional de posiciones L: no mueve posiciones reales en S. */
 function proyeccionLibresMalla(estado, referencia, fijadas = new Set(), equilibrar = true) {
   const libre = idComponenteLibre(estado.tipos);
   const maxSem = Math.max(1, ...estado.malla.map(m => m.s));
@@ -578,6 +593,7 @@ function semHead(s, visibles) {
   const c = semCred(s, visibles);
   return `<span class="semcr" title="${c.incompleto ? 'Créditos registrados (hay asignaturas sin créditos definidos): ' : ''}${c.total} créditos en total${c.adicionales ? ` (${c.plan} del plan + ${c.adicionales} adicionales)` : ''}"><b class="num">${c.plan}${c.adicionales ? '+' + c.adicionales : ''}</b></span>`;
 }
+/** Prerrequisitos: relaciones declaradas y posiciones L, sin inferir inscripción. */
 function pageMalla() {
   const M=ui.malla;
   if(M.sel && !S.malla.find(m=>m.n===M.sel)) M.sel=null;
@@ -662,6 +678,7 @@ function mallaSide(L) {
       ${indDown.length ? `<div class="hint" style="margin-top:6px">Indirectos: ${indDown.map(esc).join(', ')}</div>` : ''}</div>
     <button class="btn sm ghost" data-act="m-sel" data-n="${esc(n)}">Quitar selección</button></aside>`;
 }
+/** Dibujar conectores del grafo; solo coordenadas DOM, ninguna regla académica. */
 function drawEdges() {
   const cv = $('#canvas'), svg = $('#edges'), cols = $('#mcols'), stage = $('#malla-stage');
   if (!cv || !svg || !cols || !stage) return;

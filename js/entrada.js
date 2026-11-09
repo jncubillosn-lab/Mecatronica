@@ -46,6 +46,11 @@ class EntradaAcademica {
    * @returns {object} Proyección posicional transitoria para construir S0.
    * `gr`: [asignatura, etiqueta, componente1, componente2, ref, analizable]
    * `bl`: [asignatura, componente, día, inicio, fin, nota, ref, idAnterior]
+   * `ref` es una identidad estable construida con posicionId, actividad e
+   * índice de bloque. `idAnterior` es OPCIONAL y solo permite reconciliar
+   * los IDs de archivos personales viejos: ausente se proyecta como `null`.
+   * `agrupaciones[].introducidoEn` también es OPCIONAL; este lector no
+   * necesita ni consulta metadatos de versiones anteriores.
    * La oferta académica puede contener más grupos que las agrupaciones
    * explícitas. Aquí NO se infieren combinaciones de actividades.
    * La proyección `RAW` se deriva del contrato; NO es una segunda fuente.
@@ -59,6 +64,9 @@ class EntradaAcademica {
       if (!nombre) throw new Error('Referencia de requisito académico inválida (' + descripcion + '): ' + String(id));
       return nombre;
     };
+    // `disponibles` reúne posiciones ofertadas sin duplicarlas;
+    // `bloquesPorReferencia` evita contar dos veces una sesión compartida.
+    // No se forman combinaciones implícitas de teoría y laboratorio.
     const disponibles = new Set();
     const grupos = [], bloques = [], vistos = new Set(), bloquesPorReferencia = new Map();
     for (const grupo of d.agrupaciones) {
@@ -84,8 +92,9 @@ class EntradaAcademica {
       for (const parte of partes) {
         (parte.bloques || []).forEach((b, i) => {
           // `i` identifica la posición del bloque dentro de esta actividad.
-          // Reordenar bloques en la fuente cambia referencias históricas:
-          // comprobar migraciones y escenarios antes de hacerlo.
+          // Reordenar bloques en la fuente cambia IDs persistidos en
+          // escenarios personales (actuales y antiguos). Conservar el orden
+          // o efectuar un cambio de identidad explícito y probado.
           const original = grupo.posicionId + '\u0001' + (compactar ? etiqueta + '\u0001' + parte.id : parte.id) + '\u0001' + i;
           const clave = compactar ? etiqueta : parte.id;
           const desde = this.hora(b.inicio), hasta = this.hora(b.fin);
@@ -108,8 +117,10 @@ class EntradaAcademica {
     }
     const opciones = d.configuracion?.opciones || {};
     const calendario = d.configuracion?.calendario || {};
+    // Reglas y mínimos proceden solo del contrato vigente. Si faltan
+    // colecciones admitidas, se conservan vacías, sin inventar relaciones.
     const req = d.requisitos || {};
-    // Adaptación interna al formato posicional de v0.4.x; no se escribe a
+    // Adaptación interna posicional del contrato vigente; no se escribe a
     // disco ni se consulta como una fuente académica independiente.
     const raw = {
       programa: { ...d.programa },

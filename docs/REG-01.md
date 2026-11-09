@@ -46,6 +46,35 @@ La ruta de guardado local ya preservaba `reqCredAmbiguos` mediante `EscenarioPer
 
 **Invariante reforzado:** toda exportación conserva tanto los cambios como su información de revisión pendiente. Cuando el usuario resuelve una discrepancia, ese identificador deja de exportarse como pendiente.
 
+### Responsabilidades estables después del cierre ARQ-01 (0.8.0)
+
+La compatibilidad de lectura del archivo personal antiguo `{S}` es una función
+del **gestor de escenarios**, no una condición de `FuentesAcadémicas`. La
+entrada académica vigente no debe incorporar metadatos solo para satisfacer un
+archivo personal de versiones anteriores.
+
+- Los identificadores `malla[].id`, `agrupaciones[].id` y `posicionId`
+  pertenecen al contrato académico actual y son la base de sus asociaciones.
+- Los campos `agrupaciones[].introducidoEn` y
+  `agrupaciones[].componentes[].bloques[].idAnterior` son **opcionales** y
+  solamente aportan pruebas de correspondencia con versiones anteriores.
+  Si faltan, la entrada actual sigue siendo válida; en la restauración de un
+  archivo antiguo puede faltar evidencia para algunas asociaciones.
+- Las marcas `mig1`–`mig4` e `incorporacionesOferta` solo pertenecen a
+  snapshots personales viejos. No son campos exigibles a `datos/academico.json`
+  ni se ejecutan para construir `S0`.
+- La discrepancia `reqCredAmbiguos` pertenece exclusivamente a un archivo
+  personal importado o exportado. Nunca se interpreta como dato de referencia.
+- Solo la rama de lectura `{S}` utiliza `fixMalla(anterior)` y
+  `EscenarioPersonal.migrarAnterior`. El formato v1 usa
+  `EscenarioPersonal.aplicar` sobre la referencia vigente.
+
+**Prueba de la frontera:** `tests/compatibilidad-opcional.js` retira los
+metadatos históricos de una copia del contrato y verifica que el escenario
+vigente y las interferencias sean los mismos. La documentación normativa
+detallada se mantiene en [ARQ-01](ARQUITECTURA.md), sección 1, y el historial
+cerrado en [MIG-ARQ01](MIGRACION-ARQ01.md).
+
 ## 4. Alcance y no objetivos
 
 - No se cambia `datos/academico.json`, `js/modelo.js`, `js/analisis.js`, `js/entrada.js` ni `js/vistas.js`.
