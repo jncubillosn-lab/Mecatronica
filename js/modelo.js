@@ -13,6 +13,7 @@ class PlanCurricular {
    */
   constructor(estado) { this.estado = estado; }
 
+  /** Buscar una posición por nombre en el escenario recibido, no en catálogos externos. */
   asignatura(nombre) { return this.estado.malla.find(a => a.n === nombre); }
   maxSemestre() { return Math.max(1, ...this.estado.malla.map(a => a.s)); }
   componentes() { return this.estado.tipos?.componentes || []; }
@@ -30,6 +31,7 @@ class PlanCurricular {
     return nombres.filter(nombre => permitidos.has(indice.get(nombre)));
   }
 
+  /** Identificar el mínimo por posicionId cuando existe; nombre solo de respaldo. */
   requisitoCreditos(nombre) {
     const posicion=this.asignatura(nombre);
     // La identidad contractual prevalece cuando está informada. El nombre se
@@ -39,10 +41,8 @@ class PlanCurricular {
   }
 
   /**
-   * La regla declara qué componentes suman. Ningún nombre ni cifra académica
-   * interviene en el algoritmo; se consideran solo semestres anteriores.
-   */
-  /**
+   * Sumar exclusivamente componentes declarados, en semestres anteriores;
+   * la regla no se deduce de una carrera ni de un snapshot histórico.
    * Un total parcial puede calcularse, pero `unknown` impide concluir que
    * faltan créditos cuando alguno es desconocido. `low` solo es cierto si
    * toda la información contable necesaria está disponible.
@@ -73,6 +73,7 @@ class PlanCurricular {
     return { total, plan: total - adicionales, adicionales, n: asignaturas.length, incompleto: asignaturas.some(a => !Number.isFinite(a.cr)) };
   }
 
+  /** Edición personal: verificar que exista el componente antes de modificar S. */
   cambiarComponente(nombre, id) {
     const a = this.asignatura(nombre);
     if (!a || !this.componente(id)) return null;
@@ -80,6 +81,7 @@ class PlanCurricular {
     return a;
   }
 
+  /** Edición personal: el carácter vacío es válido; otro ID debe existir. */
   cambiarCaracter(nombre, id) {
     const a = this.asignatura(nombre);
     if (!a || (id && !this.caracter(id))) return null;
