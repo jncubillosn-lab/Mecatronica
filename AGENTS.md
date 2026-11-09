@@ -42,3 +42,7 @@
 12. **Comentar las unidades lógicas sin ruido:** en cada método crítico describir propósito, entrada/salida, efecto sobre S/S0 y criterios de ausencia. En las ramas particulares explicar el porqué. No añadir un comentario por cada asignación trivial; mantener comentarios con suficiente información para entender el código y actualizarlos junto a la implementación.
 
 Si hay contradicción entre README o código heredado y ARQ-01, **ARQ-01 gobierna la arquitectura**. DEC-01 registra decisiones de alcance y EST-01 refleja el estado real; ninguna propuesta futura se considera aprobada por aparecer en un ejemplo. El funcionamiento existente solo puede reemplazarse mediante una modificación consciente, justificada y probada.
+
+## Controles que ejecuta el propio repositorio
+
+Antes de afirmar que una limpieza está completa, consultar el reporte generado por `npm run mantenimiento:auditar` y la ejecución correspondiente de [MNT-01](docs/MANTENIMIENTO-CONTINUO.md). No sustituir el inventario y las pruebas por una inspección de texto propia, ni interpretar "archivos clasificados" como "código sin errores". Los avisos necesitan una decisión con evidencia; el auditor no elimina código automáticamente. Si CI falla, no fusionar la PR.

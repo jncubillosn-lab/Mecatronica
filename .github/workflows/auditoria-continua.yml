@@ -1,0 +1,61 @@
+name: Auditoría continua y seguimiento
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 14 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: auditoria-continua
+  cancel-in-progress: false
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Obtener código vigente
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Ejecutar regresiones
+        run: npm test
+      - name: Validar normalizador externo
+        run: python3 -m unittest discover -s pruebas -p 'test_*.py' -v
+      - name: Generar auditoría estructural sin borrar archivos
+        if: always()
+        run: npm run mantenimiento:auditar
+      - name: Revisar ramas y protección; actualizar seguimiento en Issues
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (!fs.existsSync('.auditoria/reporte.json')) {
+              core.setFailed('No se generó el informe de auditoría.');
+            } else {
+              const { ejecutar } = require('./scripts/mantenimiento-github.js');
+              await ejecutar({github, context, core});
+            }
+      - name: Archivar evidencia reproducible
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-periodica
+          path: .auditoria/
+          if-no-files-found: warn
+          retention-days: 90
