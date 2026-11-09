@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.0 · **Estado:** nueve carreras seleccionables, Mecatrónica con datos · **Rama publicada:** `main`
+**Versión pública:** 1.1.1 · **Estado:** nueve carreras seleccionables, Mecatrónica con datos · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -10,9 +10,9 @@ Aplicación web estudiantil **no oficial** de la Facultad de Ingeniería de la U
 
 ## Selector multicarrera
 
-En la esquina superior izquierda puede elegirse entre **nueve carreras**, con el nombre y el color ya establecidos en `js/identidad.js`. Por ahora **únicamente Mecatrónica tiene datos académicos**; las otras ocho muestran expresamente «Información académica no disponible» y permiten navegar por sus ocho secciones sin crear horarios o estadísticas ficticias.
+En la esquina superior izquierda puede elegirse entre **nueve carreras**, con el nombre y el color ya establecidos en `js/identidad.js`. Por ahora **únicamente Mecatrónica tiene datos académicos**; las otras ocho **conservan exactamente las mismas ocho vistas, controles, paneles, marcos y herramientas visuales**, pero su contenido académico permanece vacío y se etiqueta como «sin información». No se crean horarios o estadísticas ficticias.
 
-La selección se refleja en la URL (`?programa=civil`, `?programa=mecatronica`). `js/programas.js` registra solamente rutas de contratos disponibles, y `js/iniciar.js` carga un contrato normalizado por sesión y valida la identidad antes de iniciar el motor. Un error técnico no se disfraza de ausencia de datos. El escenario personal de Mecatrónica conserva su clave histórica; futuros programas tienen claves propias.
+La selección se refleja en la URL (`?programa=civil`, `?programa=mecatronica`). `js/programas.js` registra solamente rutas de contratos disponibles, y `js/iniciar.js` carga un contrato normalizado por sesión y valida la identidad antes de iniciar el motor. Un error técnico no se disfraza de ausencia de datos. En un programa sin contrato, `js/app.js` se carga igualmente y reutiliza las mismas vistas con un **contexto de presentación sin datos**, que no es una entrada académica ni genera cálculos. Los botones de edición/importación se muestran deshabilitados. La cuadrícula de horario es únicamente visual, no un calendario confirmado. El escenario personal de Mecatrónica conserva su clave histórica; futuros programas tienen claves propias.
 
 ## Qué ofrece
 
