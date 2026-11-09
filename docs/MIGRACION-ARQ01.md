@@ -1,11 +1,11 @@
 # MIG-ARQ01 — Registro histórico de la migración secuencial
 
-**Estado:** migración v0.4.3 → v0.5.0 **integrada en `main`** mediante [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8); corrección de versión pública v0.5.1 integrada mediante [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9).  
+**Estado definitivo: MIGRACIÓN ARQ-01 CERRADA — versión 0.8.0.** La transición se implantó en v0.5.0 ([PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8)) y sus ajustes posteriores quedaron saneados y verificados hasta 0.8.0 ([PR #34](https://github.com/jncubillosn-lab/Mecatronica/pull/34)). **No hay fases ni deudas de migración pendientes.**  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones no negociables:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Estado y pasos de publicación actuales:** [EST-01](ESTADO-Y-PUBLICACION.md).
 
-Este documento conserva el **registro de lo que ya ocurrió** en las PR #8 y #9, no describe una rama pendiente ni define tareas futuras obligatorias. **Nota de continuidad:** la PR #13 (v0.5.3) retiró el contexto global `RAW`, separó motor y vistas y preservó IDs en relaciones de requisitos; por tanto, las menciones a `RAW` dentro del historial de v0.5.0 describen **esa versión histórica**, no la interfaz actual. El estado técnico vigente está en [EST-01](ESTADO-Y-PUBLICACION.md).
+Este documento conserva el **registro de lo que ya ocurrió** en las PR #8 y #9 y el acta final de cierre 0.8.0. No describe una rama activa ni una hoja de ruta. Las referencias numéricas de sus secciones 1–5 corresponden a las versiones originales, no a los datos actuales. **Nota de continuidad:** la PR #13 (v0.5.3) retiró el contexto global `RAW`, separó motor y vistas y preservó IDs en relaciones de requisitos; por tanto, las menciones a `RAW` dentro del historial de v0.5.0 describen **esa versión histórica**, no la interfaz actual. El estado técnico vigente está en [EST-01](ESTADO-Y-PUBLICACION.md).
 
 ## 1. Ejecución en el orden de ARQ-01
 
@@ -29,7 +29,7 @@ El principio de conservación es **ninguna pérdida silenciosa**. Los registros 
 
 ## 3. Compatibilidad y POO
 
-Las clases `EntradaAcademica`, `PlanCurricular`, `CalendarioAcademico` y `EscenarioPersonal` delimitan responsabilidades. El motor `compute` y las vistas aún se alojan en `js/app.js`. La forma `RAW` que recibe la interfaz es una **proyección temporal en memoria de la entrada normalizada**, no otra fuente académica.
+Las clases `EntradaAcademica`, `PlanCurricular`, `CalendarioAcademico` y `EscenarioPersonal` delimitan responsabilidades. En la versión inicial v0.5.0, `compute` y las vistas todavía compartían `js/app.js`; desde v0.5.3 están separados en `js/analisis.js` y `js/vistas.js`. `RAW` fue una **proyección temporal en memoria de la entrada normalizada**, nunca otra fuente académica; desde v0.5.3 no existe `window.RAW` como entrada global.
 
 Las modificaciones del usuario se persisten como diferencias, no como copia editable de las fuentes institucionales. Se conserva la posibilidad de migrar escenarios antiguos, mantener ediciones, introducir nuevos grupos de referencia sin sobrescribir eliminaciones personales y restablecer la referencia normalizada actual.
 
@@ -51,10 +51,21 @@ La versión v0.4.3 incluía grupos especiales en sus estadísticas históricas (
 - **PR #9 — v0.5.1:** integrada en `main` mediante commit `9220474b27ecd2226fcec3fca4a46a312bd423a5`. CI exitosa (ejecución `42435837261`). Se versionan los recursos CSS, JS y JSON y se obliga a avanzar versión pública en cambios de producción.
 - **Publicación externa:** la integración a GitHub es verificable. Este registro **no afirma haber inspeccionado en un navegador real** la versión servida por GitHub Pages después de la fusión. La comprobación posterior se describe en EST-01.
 
-## 6. Estado remanente: transiciones, no defectos inventados
+## 6. Acta de cierre definitivo — 0.8.0
 
-La aplicación aún utiliza nombres de asignatura en partes de la interfaz y `RAW` como representación intermedia. Los archivos y scripts históricos siguen versionados, pero no participan en la ejecución del sitio. Las agrupaciones no verificadas siguen sin inventarse y los datos académicos ausentes siguen admitiéndose.
+La migración ARQ-01 está **terminada**, no solo integrada. Las cinco verificaciones de saneamiento posteriores a la consolidación del contrato cerraron las deudas técnicas y documentales detectadas:
 
-Ninguno de estos hechos autoriza retirar funcionalidades, restaurar entradas paralelas ni declarar como pendientes características que el proyecto no ha solicitado.
+| Condición de cierre | Resultado |
+|---|---|
+| Entrada única | `datos/academico.json` es la única entrada académica solicitada por `js/iniciar.js`; no existe una carga paralela de `js/datos.js`, catálogo u oferta originales |
+| Referencia sin parches históricos | Desde 0.7.6, `S0` se construye sin llamar a `fixMalla(S0)`; prueba `tests/arranque-sin-migracion.js` |
+| Material de la aplicación anterior | Desde 0.7.7, los cuatro archivos JS originales están íntegros en `pruebas/historico/js/`, fuera de la ruta productiva; prueba `tests/rutas-produccion.js` |
+| Reglas y personalización | En 0.7.8, `save()` y `export` conservan el contexto de revisión `reqCredAmbiguos`; prueba `tests/exportacion-ambiguos.js` |
+| Compatibilidad `{S}` | Se mantiene el lector del formato anterior y su traducción de IDs. **Es una función de compatibilidad terminada**, no un paso de migración académica pendiente |
+| Pruebas antiguas | Los tres ensayos conservados en `npm run test:historico` aprobaron GitHub Actions durante el cierre de 0.8.0. Se ejecutan separadamente de la suite académica actual `npm test` |
+| Herramientas de comparación inicial | `pruebas/compare.js` y `pruebas/mutar.sh` se conservan como evidencia de la etapa original. Se retiraron los comandos npm `comparar` y `mutar`, que no verificaban el sistema vigente |
+| Automatización | El workflow dejó de escuchar la rama histórica de migración y verifica PR hacia `main`, la suite vigente y las pruebas de compatibilidad histórica |
 
-**Regla de continuidad:** actualizar la información institucional **solo en el contrato normalizado**; mantener la frontera de entrada, preservar los escenarios personales, respetar la semántica de vacíos y realizar pruebas antes de publicar.
+**Regla de cierre:** no se volverá a presentar ARQ-01 como una migración en desarrollo. El código de lectura de escenarios anteriores se mantiene mientras el formato esté soportado: su existencia no es una deuda. Cualquier defecto futuro debe reproducirse contra un requisito vigente y tramitarse como mantenimiento ordinario, sin crear una nueva fase de «migración» por inercia.
+
+**Historial y procedencia:** [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8), [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) y [PR #28–34](https://github.com/jncubillosn-lab/Mecatronica/pulls?q=is%3Apr+is%3Amerged) documentan las decisiones, pruebas y cambios posteriores. La referencia de funcionamiento es [ARQ-01](ARQUITECTURA.md), no los datos históricos de este registro.
