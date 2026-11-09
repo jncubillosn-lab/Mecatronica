@@ -5,3 +5,6 @@ ultimo_informe.json
 # Artefactos generados de Python, ajenos al código fuente
 __pycache__/
 *.py[cod]
+
+# Informes generados por auditoría, publicados en Actions y no en el sitio
+.auditoria/
