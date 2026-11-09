@@ -84,8 +84,9 @@ class EntradaAcademica {
       for (const parte of partes) {
         (parte.bloques || []).forEach((b, i) => {
           // `i` identifica la posición del bloque dentro de esta actividad.
-          // Reordenar bloques en la fuente cambia referencias históricas:
-          // comprobar migraciones y escenarios antes de hacerlo.
+          // Reordenar bloques en la fuente cambia IDs persistidos en
+          // escenarios personales (actuales y antiguos). Conservar el orden
+          // o efectuar un cambio de identidad explícito y probado.
           const original = grupo.posicionId + '\u0001' + (compactar ? etiqueta + '\u0001' + parte.id : parte.id) + '\u0001' + i;
           const clave = compactar ? etiqueta : parte.id;
           const desde = this.hora(b.inicio), hasta = this.hora(b.fin);
@@ -109,7 +110,7 @@ class EntradaAcademica {
     const opciones = d.configuracion?.opciones || {};
     const calendario = d.configuracion?.calendario || {};
     const req = d.requisitos || {};
-    // Adaptación interna al formato posicional de v0.4.x; no se escribe a
+    // Adaptación interna posicional del contrato vigente; no se escribe a
     // disco ni se consulta como una fuente académica independiente.
     const raw = {
       programa: { ...d.programa },
