@@ -29,6 +29,16 @@ jobs:
         run: npm test
       - name: Probar herramienta externa de normalización del SIA
         run: python3 -m unittest pruebas/test_normalizador.py -v
+      - name: Auditar inventario, dependencias y residuos
+        if: always()
+        run: npm run mantenimiento:auditar
+      - name: Conservar informe independiente del resultado
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-estructural
+          path: .auditoria/
+          if-no-files-found: warn
       - name: Exigir nueva versión para cambios del sitio
         if: github.event_name == 'pull_request'
         run: node tests/versionado.js --compare-main
