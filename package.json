@@ -2,7 +2,7 @@
   "name": "mecatronica-interferencias",
   "private": true,
   "scripts": {
-    "test": "node tests/versionado.js && node tests/identidad-visual.js && node tests/tonos-tipologia.js && node tests/tema-visual.js && node tests/responsividad.js && node tests/libres-malla.js && node tests/rutas-produccion.js && node tests/contrato-arq01.js && node tests/modelo-vigente.js && node tests/requisitos-tpi-pai.js && node tests/oferta-activa.js && node tests/arranque-sin-migracion.js && node tests/escenarios-arq01.js && node tests/escenarios-actualizacion-requisitos.js && node tests/exportacion-ambiguos.js && node tests/demanda.js && node tests/vistas-arq01.js && node tests/integracion-arq01.js",
+    "test": "node tests/versionado.js && node tests/identidad-visual.js && node tests/tonos-tipologia.js && node tests/tema-visual.js && node tests/responsividad.js && node tests/libres-malla.js && node tests/rutas-produccion.js && node tests/contrato-arq01.js && node tests/compatibilidad-opcional.js && node tests/modelo-vigente.js && node tests/requisitos-tpi-pai.js && node tests/oferta-activa.js && node tests/arranque-sin-migracion.js && node tests/escenarios-arq01.js && node tests/escenarios-actualizacion-requisitos.js && node tests/exportacion-ambiguos.js && node tests/demanda.js && node tests/vistas-arq01.js && node tests/integracion-arq01.js",
     "test:historico": "node tests/verificar.js && node tests/filtros.js && node tests/fuentes.js"
   },
   "devDependencies": {
