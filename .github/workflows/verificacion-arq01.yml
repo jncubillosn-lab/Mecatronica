@@ -38,7 +38,8 @@ jobs:
         with:
           name: auditoria-estructural
           path: .auditoria/
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true
       - name: Exigir nueva versión para cambios del sitio
         if: github.event_name == 'pull_request'
         run: node tests/versionado.js --compare-main

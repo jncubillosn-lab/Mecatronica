@@ -49,7 +49,7 @@ npm run mantenimiento:auditar
 
 El último comando crea dos archivos ignorados por Git:
 `.auditoria/reporte.json` y `.auditoria/resumen.md`.
-Se publican como artefactos de la ejecución correspondiente en Actions.
+Se publican como artefactos de la ejecución correspondiente en Actions. La configuración obliga a incluir archivos ocultos (`include-hidden-files: true`) y a fallar si no aparece el artefacto (`if-no-files-found: error`); una advertencia de carga no certifica conservación de evidencia.
 
 El reporte identifica el commit, todos los archivos rastreados y su
 clasificación por responsabilidad, controles ejecutados, hallazgos y
