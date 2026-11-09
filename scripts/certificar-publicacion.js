@@ -29,11 +29,10 @@ function planDeVersion() {
   const recursos = [...html.matchAll(/<(?:script|link)\b[^>]*(?:src|href)="([^"]+)"/g)]
     .map(m => m[1]).filter(u => /^(?:js\/.*\.js|css\/.*\.css)\?v=/.test(u));
   assert(recursos.length >= 6, 'No se detectan los recursos enlazados del sitio');
-  for (const p of ['datos/academico.json', 'js/app.js']) {
-    const url = p + '?v=' + version;
-    assert(arranque.includes("'" + url + "'"), 'El arranque no referencia ' + url);
-    recursos.push(url);
-  }
+  const programas=require('../js/programas.js');
+  assert(arranque.includes("fetch(rutaAcademica + '?v="+version+"')"));
+  assert(arranque.includes("'js/app.js?v="+version+"'"));
+  for(const p of [...Object.values(programas.fuentes),'js/app.js']) recursos.push(p+'?v='+version);
   const referencias = [...new Set(recursos)];
   for (const url of referencias) {
     const u = new URL(url, predeterminada);

@@ -1,48 +1,57 @@
 'use strict';
 
 /**
- * ARQ-01: un solo punto de entrada de información académica.
- * La carga consume exclusivamente el JSON normalizado y no convierte
- * formatos externos por sí misma.
- * El motor puro (analisis.js) debe haberse cargado antes de este arranque.
+ * ARQ-01: una única entrada FuentesAcadémicas normalizada por contexto.
+ * Seleccionar carrera resuelve la ruta del contrato externo; no transforma
+ * documentos institucionales ni crea una oferta académica vacía ficticia.
  */
 (async function iniciar() {
-  const contenedor = document.getElementById('view');
+  const programas = window.ProgramasUniversitarios;
+  const seleccionado = programas.desdeBusqueda(window.location.search);
+  const rutaAcademica = programas.fuentePara(seleccionado);
+
+  window.IdentidadUniversitaria.aplicarTema(seleccionado);
+  if (!rutaAcademica) {
+    // No hay archivo para esta carrera, NO equivalen a cero las asignaturas.
+    const mostrar = () => programas.mostrarEstado(seleccionado, 'sin-datos');
+    window.addEventListener('hashchange', mostrar);
+    mostrar();
+    return;
+  }
+
   try {
-    // ÚNICA petición de información académica: el sitio no carga las tres
-    // fuentes originales ni genera datos institucionales faltantes.
-    const respuesta = await fetch('datos/academico.json?v=1.0.0');
-    if (!respuesta.ok) throw new Error('No se pudo consultar el contrato académico');
+    // Una sola consulta a la ruta declarada. La herramienta externa del SIA
+    // no se carga en el navegador y nunca se usa otra carrera como respaldo.
+    const respuesta = await fetch(rutaAcademica + '?v=1.1.0');
+    if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
     const contrato = await respuesta.json();
+    if (contrato?.programa?.id !== seleccionado)
+      throw new Error('El contrato no corresponde al programa seleccionado');
     const lector = new EntradaAcademica(contrato);
-    // Se construye una sola vez un escenario base desde el contrato. La
-    // proyección posicional es transitoria y NO se expone como entrada global.
     const proyeccion = lector.generarEscenarioBase();
-    // El tema procede del ID del programa ya normalizado; no introduce otra entrada.
     window.IdentidadUniversitaria.aplicarTema(proyeccion.programa);
     window.CONTEXTO_ACADEMICO = {
       programa: proyeccion.programa,
       calendario: proyeccion.calendario,
       opciones: proyeccion.opciones,
-      almacenamiento: proyeccion.almacenamiento,
+      almacenamiento: {
+        clave: programas.claveEscenario(seleccionado, proyeccion.almacenamiento.clave)
+      },
       metadatos: proyeccion.metadatos,
       estadoBase: fromRaw(proyeccion)
     };
+    // El núcleo y sus ocho vistas arrancan SOLO si existe contrato validado.
     const script = document.createElement('script');
-    // La interfaz se carga DESPUÉS del contrato y recibe CONTEXTO_ACADEMICO.
-    // Las versiones ?v= de esta ruta, del JSON y de `index.html` deben
-    // coincidir con el número público; lo comprueba `tests/versionado.js`.
-    script.src = 'js/app.js?v=1.0.0';
+    script.src = 'js/app.js?v=1.1.0';
     script.onerror = () => {
-      if (contenedor) contenedor.textContent = 'No se pudo cargar la interfaz de planeación.';
+      console.error('No se pudo cargar la interfaz académica');
+      programas.mostrarEstado(seleccionado, 'error');
     };
     document.body.appendChild(script);
   } catch (error) {
-    // Error técnico de carga o lectura; no es un aviso por datos académicos
-    // legítimamente incompletos. No sustituir el contrato por el JS histórico.
-    if (contenedor) {
-      contenedor.textContent = 'No fue posible abrir los datos académicos de esta versión. Comprueba la conexión y vuelve a cargar la página.';
-    }
     console.error('Error técnico al leer la entrada académica normalizada:', error);
+    const mostrar = () => programas.mostrarEstado(seleccionado, 'error', true);
+    window.addEventListener('hashchange', mostrar);
+    mostrar();
   }
 })();

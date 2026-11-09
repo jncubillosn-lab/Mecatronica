@@ -49,12 +49,14 @@ function inventarioGit(directorio = raiz) {
 function encontrarReferencias(archivos, leer) {
   const html = leer('index.html');
   const inicio = leer('js/iniciar.js');
+  const registros = leer('js/programas.js');
   const delHtml = [...html.matchAll(/<(?:script|link)\b[^>]*\b(?:src|href)="([^"]+)"/g)]
     .map(m => m[1].split('?')[0])
     .filter(p => /^(?:js|css)\/[\w./-]+\.(?:js|css)$/.test(p));
   const delInicio = [...inicio.matchAll(/\b(?:js|datos)\/[\w./-]+\.(?:js|json)\?v=\d+\.\d+\.\d+/g)]
     .map(m => m[0].split('?')[0]);
-  const programados = new Set([...delHtml, ...delInicio]);
+  const contratos = [...registros.matchAll(/['"](datos\/[\w./-]+\.json)['"]/g)].map(m=>m[1]);
+  const programados = new Set([...delHtml,...delInicio,...contratos]);
   const textosEjecutables = archivos.filter(p =>
     p === 'package.json' ||
     p.startsWith('.github/workflows/') ||

@@ -19,7 +19,10 @@ for(const p of ['datos/academico.json','js/entrada.js','js/analisis.js','js/esce
   'scripts/normalizar_oferta.py','pruebas/test_normalizador.py','pruebas/fixtures/oferta_mini.txt'])
   assert(exists(p),'Falta módulo vigente o herramienta externa útil: '+p);
 const html=read('index.html'),inicio=read('js/iniciar.js');
-assert(inicio.includes("fetch('datos/academico.json?v="));
+const programas=require('../js/programas.js');
+assert.equal(programas.fuentePara('mecatronica'),'datos/academico.json');
+assert.equal(programas.fuentePara('civil'),null);
+assert(inicio.includes("fetch(rutaAcademica + '?v="));
 assert(!inicio.includes('window.fuentesAcademicas'));
 for(const p of obsoletos)assert(!html.includes(p)&&!inicio.includes(p),
   'No deben reaparecer rutas obsoletas en el navegador: '+p);

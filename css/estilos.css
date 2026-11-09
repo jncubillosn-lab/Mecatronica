@@ -49,9 +49,9 @@ h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.01em}
 .brand b{font:650 17px var(--serif)} .brand span{font-size:11.5px;color:var(--ink2);letter-spacing:.04em;text-transform:uppercase}
 .nav{display:flex;gap:2px;overflow-x:auto;flex:1 1 auto;min-width:0;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav button{border:0;background:transparent;padding:8px 13px;border-radius:9px;color:var(--ink2);white-space:nowrap;font-weight:550}
-.nav button:hover{background:var(--surface2);color:var(--ink)}
-.nav button[aria-current="page"]{background:var(--ink);color:var(--bg)}
+.nav button,.nav a{border:0;background:transparent;padding:8px 13px;border-radius:9px;color:var(--ink2);white-space:nowrap;font-weight:550;text-decoration:none;display:inline-flex;align-items:center}
+.nav button:hover,.nav a:hover{background:var(--surface2);color:var(--ink)}
+.nav button[aria-current="page"],.nav a[aria-current="page"]{background:var(--ink);color:var(--bg)}
 .chg{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 /* Filtros no excluyentes de componentes (afectan solo a las vistas analíticas). */
 .componentes-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-left:6px;padding-left:12px;border-left:1px solid var(--line2)}
@@ -657,7 +657,12 @@ body{letter-spacing:.002em}
 .programa-senal{display:block;width:5px;height:31px;flex:none;border-radius:3px;background:var(--programa-acento);box-shadow:inset 0 0 0 1px var(--programa-borde)}
 .programa-etiqueta{display:grid;gap:2px;min-width:0}
 .programa-etiqueta small{font-size:10px;line-height:1.15;color:var(--ink3);letter-spacing:.055em;text-transform:uppercase;font-weight:600}
-.programa-etiqueta strong{font-size:12.5px;line-height:1.25;font-weight:650;color:var(--ink);overflow-wrap:anywhere}
+.programa-etiqueta select{font-size:12.5px;line-height:1.3;font-weight:650;color:var(--ink);background:var(--surface);border:1px solid var(--line2);border-radius:7px;padding:6px 25px 6px 8px;max-width:min(320px,75vw);width:100%;cursor:pointer}
+.programa-etiqueta select:focus-visible{outline:2px solid var(--programa-borde);outline-offset:2px}
+.programa-sin-datos{max-width:680px;margin:28px auto;padding:34px;display:grid;gap:14px}
+.programa-sin-datos h1{font:650 27px/1.2 var(--serif)}
+.programa-sin-datos p{margin:0;color:var(--ink2);max-width:65ch}
+.programa-sin-datos .eyebrow{color:var(--ink3)}
 .nav{gap:3px;flex:1 1 510px}
 .nav button{padding:8px 10px;border-radius:6px;font-weight:600;font-size:12.5px}
 .nav button[aria-current="page"]{background:var(--surface2);color:var(--ink);box-shadow:inset 0 -3px 0 var(--programa-borde)}

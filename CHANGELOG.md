@@ -2,6 +2,14 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.0 — Selector de carreras (9 nov 2026)
+
+- Selector superior izquierdo de nueve carreras con los colores existentes en `js/identidad.js`, acceso directo por `?programa=ID` y navegación por ocho secciones.
+- Mecatrónica conserva `datos/academico.json`, escenarios previos y el mismo núcleo. Las ocho restantes muestran ausencia de datos sin inventar asignaturas, horarios, créditos ni análisis.
+- Registro mínimo de rutas reales en `js/programas.js`, carga única en `js/iniciar.js` y rechazo de contratos con ID distinto del elegido.
+- Pruebas del selector, aislamiento, versión, certificación de publicación y auditoría continua adaptadas a la nueva carga.
+- No se crean archivos académicos ni carpetas vacías; la normalización del SIA permanece externa al sitio.
+
 ## 1.0.0 — Cierre de estabilidad de Mecatrónica (9 nov 2026)
 
 - Retiradas exclusivamente rutas de eventos sin control (`i-dist`, `h-addc`, `h-rename`), su filtro oculto, `levelDesc`, `cntD` y un oyente sin efecto. El control visible de distancias `dist` continúa.

@@ -2,7 +2,7 @@
 
 /**
  * Pruebas del sistema visual: los temas son presentación, no nuevas entradas
- * académicas ni un selector ficticio de programas aún no incorporados.
+ * académicas. El selector multicarrera permite programas sin datos.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');

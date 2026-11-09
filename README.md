@@ -1,12 +1,18 @@
-# Gestor de horarios · Ingeniería Mecatrónica
+# Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.0.0 · **Estado:** estable para el alcance actual de Mecatrónica · **Rama publicada:** `main`
+**Versión pública:** 1.1.0 · **Estado:** nueve carreras seleccionables, Mecatrónica con datos · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
-Aplicación web estudiantil **no oficial** de la Universidad Nacional de Colombia, sede Bogotá. Permite consultar el plan curricular y grupos ofertados, analizar interferencias de horarios y construir escenarios personales. No sustituye los sistemas institucionales, ni confirma matrículas o cupos.
+Aplicación web estudiantil **no oficial** de la Facultad de Ingeniería de la Universidad Nacional de Colombia, sede Bogotá. Permite consultar el plan curricular y grupos ofertados, analizar interferencias de horarios y construir escenarios personales. No sustituye los sistemas institucionales, ni confirma matrículas o cupos.
 
 > **Importante sobre GitHub:** la aplicación se publica desde la rama **`main`**. Las versiones antiguas se consultan en el historial de Git, no en ramas de trabajo. Un README abierto desde un enlace de una rama histórica no describe la versión publicada.
+
+## Selector multicarrera
+
+En la esquina superior izquierda puede elegirse entre **nueve carreras**, con el nombre y el color ya establecidos en `js/identidad.js`. Por ahora **únicamente Mecatrónica tiene datos académicos**; las otras ocho muestran expresamente «Información académica no disponible» y permiten navegar por sus ocho secciones sin crear horarios o estadísticas ficticias.
+
+La selección se refleja en la URL (`?programa=civil`, `?programa=mecatronica`). `js/programas.js` registra solamente rutas de contratos disponibles, y `js/iniciar.js` carga un contrato normalizado por sesión y valida la identidad antes de iniciar el motor. Un error técnico no se disfraza de ausencia de datos. El escenario personal de Mecatrónica conserva su clave histórica; futuros programas tienen claves propias.
 
 ## Qué ofrece
 
@@ -38,7 +44,7 @@ La entrada admite datos faltantes: desconocer un horario, profesor o crédito no
 
 Los escenarios personales se guardan como diferencias sobre la referencia vigente; se pueden importar, exportar y restablecer. El formato actual es `escenario-personal/version:1`, sin lectores de archivos de desarrollo anteriores.
 
-**Multicarrera:** el motor preserva su independencia respecto de una carrera particular, pero la selección y gestión de varios programas es una función **aprobada para el futuro**, no incluida en la 1.0.0. Actualmente solo está habilitada Mecatrónica.
+**Multicarrera:** la selección de nueve carreras funciona desde la 1.1.0. Solo existe el contrato operativo de Mecatrónica; las demás no tienen archivos académicos y no generan cálculos hasta que haya datos normalizados reales.
 
 ## Verificación y publicación
 

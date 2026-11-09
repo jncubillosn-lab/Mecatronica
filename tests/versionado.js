@@ -52,15 +52,20 @@ const jsProductivos = fs.readdirSync(path.join(raiz, 'js'))
 assert.deepEqual([...jsReferenciados].sort(), jsProductivos.sort(),
   'Los módulos JS del sitio no corresponden a los realmente versionados');
 
-for (const recurso of ['datos/academico.json', 'js/app.js']) {
-  const escapado = recurso.replace(/[.*+?^$()|[\]\\]/g, '\\$&');
-  const patron = new RegExp(escapado + '\\?v=(\\d+\\.\\d+\\.\\d+)', 'g');
-  const encontrados = [...inicio.matchAll(patron)];
-  assert.equal(encontrados.length, 1,
-    'El recurso dinámico debe tener exactamente un parámetro de versión: ' + recurso);
-  assert.equal(encontrados[0][1], version,
-    'El recurso dinámico tiene versión diferente: ' + recurso);
+const programas=require('../js/programas.js');
+const rutas=Object.values(programas.fuentes);
+assert(rutas.length>=1,'Al menos un contrato académico debe estar disponible');
+assert.equal(new Set(rutas).size,rutas.length,'Una ruta académica por programa');
+for(const ruta of rutas) {
+  assert(/^datos\/[\w/-]+\.json$/.test(ruta),'Ruta académica no permitida: '+ruta);
+  assert(fs.existsSync(path.join(raiz,ruta)),'No existe contrato académico: '+ruta);
 }
+assert(inicio.includes("fetch(rutaAcademica + '?v="+version+"')"),
+  'El contrato dinámico no tiene versión de caché correcta');
+assert(inicio.includes("'js/app.js?v="+version+"'"),
+  'El módulo dinámico no tiene versión de caché correcta');
+assert(inicio.includes('contrato?.programa?.id !== seleccionado'),
+  'Identidad de programa no validada antes de ejecutar el motor');
 
 if (process.argv.includes('--compare-main')) {
   const base = process.env.GITHUB_BASE_REF || 'main';
