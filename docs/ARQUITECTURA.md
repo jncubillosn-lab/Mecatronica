@@ -205,7 +205,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 
 **No confundir las capas:** `S0` = referencia construida desde el contrato; `S` = escenario con modificaciones; `R0/R` = cálculos sobre referencia/escenario; `RV0/RV` = **consultas** filtradas; `ui` = selección/zoom/navegación transitorios. Guardar `ui` o un resultado calculado como verdad académica crearía una segunda autoridad y rompería la arquitectura.
 
-**Detalle transitorio observado:** en v0.7.5 `js/app.js` aún ejecuta `fixParams(S0); fixMalla(S0)` durante el arranque. `fixMalla` reúne compatibilidad histórica (`mig1`–`mig4`, identificaciones anteriores y oferta incrementada). **Esta mezcla es un punto de auditoría para mantenimiento**, no un comportamiento que debamos ocultar ni una autorización para eliminarla sin equivalencia probada.
+**Saneamiento verificado en v0.7.6:** la prueba `tests/arranque-sin-migracion.js` reprodujo que aplicar `fixMalla(S0)` al estado vigente solo añadía marcas `mig1`–`mig4`, sin cambiar posiciones, requisitos, grupos, bloques ni cálculos. Se retiró **únicamente esa invocación**: `S0` procede ahora directamente del contrato y `fixParams(S0)`. `fixMalla(anterior)` y `EscenarioPersonal.migrarAnterior` **permanecen** para importar escenarios históricos `{S}`; no se da por terminada la revisión de su posible aislamiento futuro.
 
 ### Cálculo y visualización
 
