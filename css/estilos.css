@@ -948,3 +948,23 @@ body.mapa-ampliado{overflow:hidden}
   background:color-mix(in srgb,var(--tipo-acento) 7%,var(--surface));
   border-radius:3px;
 }
+
+
+/* 1.1.1: la estructura visual subsiste sin contrato académico. */
+.sin-datos-banner{
+ max-width:1360px;margin:0 0 18px;padding:12px 16px;
+ background:var(--surface);border:1px solid var(--line);
+ border-left:4px solid var(--programa-acento,var(--line2));
+ border-radius:9px;color:var(--ink2);font-size:13px
+}
+.sin-datos-banner b{color:var(--ink)}
+.mapa-sin-datos{
+ min-width:300px;min-height:260px;width:100%;padding:32px;
+ display:flex;justify-content:center;align-items:center;
+ color:var(--ink2);font-size:14px;text-align:center;
+ border:1px dashed var(--line2);border-radius:10px;background:var(--surface2)
+}
+body[data-sin-datos="true"] .component-toggle:disabled,
+body[data-sin-datos="true"] .chip:disabled{opacity:.65;cursor:not-allowed}
+body[data-sin-datos="true"] .weekgrid-scroll{min-height:280px}
+body[data-sin-datos="true"] .dem-grafico{min-width:600px}
