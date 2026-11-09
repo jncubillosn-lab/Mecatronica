@@ -1,6 +1,6 @@
 # UNI-UI-01 — Identidad visual universitaria y temas por programa
 
-**Estado:** implementado en la rama de transición visual v0.6.0 (8 de noviembre de 2026).  
+**Estado:** temas de v0.6.0 y selector multicarrera implementado en v1.1.0 (9 de noviembre de 2026).  
 **Alcance:** presentación y navegación del sitio estático; no modifica la entrada académica, el modelo, los cálculos ni los escenarios.  
 **Normas superiores:** [ARQ-01](ARQUITECTURA.md) y [DEC-01](DECISIONES-Y-ALCANCE.md).
 
@@ -54,16 +54,16 @@ Los colores se utilizan en marcas pequeñas y con contorno cuando hace falta, pa
 - El catálogo de colores no define mallas, grupos, sedes, planes, docentes ni disponibilidad de programas.
 - Un ID desconocido recibe el acento neutro `#5D7081`; no se adivina su carrera por nombre, profesor o asignaturas.
 - El alias de presentación `sistemas-y-computacion` se resuelve a `sistemas`.
-- **No existe aún un selector funcional entre carreras**: solo Mecatrónica cuenta con un contrato académico completo y operativo en esta publicación.
+- **Selector funcional entre nueve carreras:** solo Mecatrónica tiene hoy un contrato académico; las demás muestran una ausencia explícita de datos, sin estadísticas inventadas.
 - Un contrato futuro con otro `programa.id` podrá activar su color al cargarlo, sin crear una nueva entrada académica ni cambiar las fórmulas; su incorporación deberá validar referencias, oferta, escenarios y procedencia por separado.
-- La identidad no se almacena como modificación del escenario personal y no altera `localStorage`.
+- La identidad visual no modifica escenarios. La selección usa `?programa=ID`, conserva la clave anterior de Mecatrónica y aísla los escenarios futuros por carrera.
 
 ## 5. Incorporación posterior de otra carrera
 
 1. Preparar **externamente** la nueva fuente estandarizada conforme a ARQ-01, sin activar lectores de documentos originales dentro de la aplicación.
 2. Validar el programa/plan, los IDs, el calendario, las agrupaciones y los datos ausentes con pruebas de contrato y escenarios.
 3. Asociar únicamente el `programa.id` a una entrada de `js/identidad.js` si hace falta; si no existe una identidad, usar el fallback neutro.
-4. Diseñar una selección real de programa **solo cuando existan contratos académicos utilizables**, definiendo antes el mecanismo de cambio de contexto y aislamiento de escenarios personales.
+4. Registrar la ruta de otra carrera en `js/programas.js` únicamente cuando exista un contrato utilizable; el selector y los estados sin datos ya existen.
 5. Revisar visualmente navegación, matrices, horarios, Demanda y Prerrequisitos en escritorio/móvil y temas claro/oscuro.
 
 ## 6. Ajustes cromáticos de lectura (TONO-01)

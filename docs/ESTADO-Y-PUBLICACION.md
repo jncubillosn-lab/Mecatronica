@@ -1,7 +1,7 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.0.0, primera versión funcional estable de Mecatrónica.  
-**Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. La gestión de varios programas sigue planificada.  
+**Corte de evaluación:** 1.1.0, selector multicarrera sobre la base estable de Mecatrónica.  
+**Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras ya son seleccionables; ocho no tienen contrato disponible.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Historia anterior:** [CHANGELOG](../CHANGELOG.md) y
@@ -13,14 +13,14 @@ El sitio es estático, no oficial y ofrece **ocho páginas**: Inicio,
 Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y
 Prerrequisitos.
 
-La entrada académica única es `datos/academico.json`. `EntradaAcademica`
+La entrada normalizada única por sesión se selecciona mediante `js/programas.js`. Actualmente solo Mecatrónica dispone de `datos/academico.json`. `EntradaAcademica`
 y `fromRaw` proyectan el estado de referencia `S0`; `EscenarioPersonal`
 aplica cambios identificados sobre `S0` para construir `S`. El motor
 calcula resultados completos y los filtros producen consultas `RV/RV0`.
 La presentación y sus filtros no constituyen fuentes académicas.
 
 La versión del esquema académico (`versionEsquema:1`), la del formato
-personal (`version:1`) y la de la página (`1.0.0` en esta intervención)
+personal (`version:1`) y la de la página (`1.1.0` en esta intervención)
 son independientes.
 
 ## 2. Retirada comprobada de responsabilidades sin usuarios
@@ -112,3 +112,7 @@ las defensas y sus límites descritos en ARQ-01.
 ## 6. Control recurrente del mantenimiento
 
 El procedimiento ejecutable de [MNT-01](MANTENIMIENTO-CONTINUO.md) genera evidencia de inventario, conexión de pruebas y recursos, residuos y configuración remota en Actions. Su informe se limita a las comprobaciones declaradas; no reemplaza las pruebas funcionales, la verificación académica o la revisión visual.
+
+## 7. Selector multicarrera (1.1.0)
+
+`IdentidadUniversitaria.catalogo` define nueve nombres y acentos; `js/programas.js` solamente registra las rutas de contratos disponibles. Las ocho carreras restantes muestran sus páginas sin estadísticas ni horarios inventados. `js/iniciar.js` carga un único contrato por sesión, comprueba el ID elegido y reutiliza el motor existente. La clave local de Mecatrónica se conserva; otras carreras tendrán claves aisladas. `tests/multicarrera.js` verifica estos límites.
