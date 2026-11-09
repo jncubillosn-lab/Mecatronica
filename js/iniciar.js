@@ -16,7 +16,8 @@
     const lector = new EntradaAcademica(contrato);
     // Se construye una sola vez un escenario base desde el contrato. La
     // proyección posicional es transitoria y NO se expone como entrada global.
-    // fromRaw construye S0 y permite conservar compatibilidad de escenarios.
+    // fromRaw construye S0 desde el contrato vigente; el lector histórico
+    // de archivos personales no altera esta construcción.
     const proyeccion = lector.generarEscenarioBase();
     // El tema procede del ID del programa ya normalizado; no introduce otra entrada.
     window.IdentidadUniversitaria.aplicarTema(proyeccion.programa);
@@ -29,8 +30,8 @@
       incrementosOferta: proyeccion.incrementosOferta,
       estadoBase: fromRaw(proyeccion)
     };
-    // Este lector solo se conserva para migrar escenarios personales antiguos;
-    // no vuelve a leer fuentes académicas ni incorpora otra ruta de entrada.
+    // El lector permanece disponible para recuperar archivos personales {S}
+    // anteriores; la migración ARQ-01 está cerrada y no hay segunda entrada.
     window.fuentesAcademicas = lector;
     const script = document.createElement('script');
     // La interfaz se carga DESPUÉS del contrato y recibe CONTEXTO_ACADEMICO.
