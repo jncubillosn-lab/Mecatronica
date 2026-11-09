@@ -1,11 +1,11 @@
 'use strict';
 
 /**
- * Motor de análisis académico y adaptador de compatibilidad.
+ * Motor de análisis académico y adaptación posicional interna.
  * No accede a DOM, red ni almacenamiento; recibe escenarios explícitos.
  *
  * La función `fromRaw` adapta la proyección transitoria del lector al escenario
- * base y también permite recuperar formatos históricos. No abre fuentes externas
+ * base, además de apoyar la compatibilidad de formatos personales antiguos. No abre fuentes externas
  * ni constituye una segunda entrada académica.
  * Contrato único: datos/academico.json -> EntradaAcademica.
  */
