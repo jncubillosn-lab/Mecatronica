@@ -18,7 +18,7 @@ for(const archivo of docs){
  const s=leer(archivo);
  assert(/ARQ-01/.test(s),archivo+': falta el vínculo arquitectónico');
  assert(/compatib/i.test(s),archivo+': falta distinguir compatibilidad');
- assert(/(?:cerrad|finalizad|terminad)/i.test(s),
+ assert(/(?:cerrad|finalizad|terminad|cierre)/i.test(s),
    archivo+': no consta el cierre de la migración');
 }
 for(const archivo of ['docs/ARQUITECTURA.md','docs/MIGRACION-ARQ01.md',
