@@ -66,6 +66,14 @@ La migración ARQ-01 está **terminada**, no solo integrada. Las cinco verificac
 | Herramientas de comparación inicial | `pruebas/compare.js` y `pruebas/mutar.sh` se conservan como evidencia de la etapa original. Se retiraron los comandos npm `comparar` y `mutar`, que no verificaban el sistema vigente |
 | Automatización | El workflow dejó de escuchar la rama histórica de migración y verifica PR hacia `main`, la suite vigente y las pruebas de compatibilidad histórica |
 
+**Límite del soporte histórico, sin nuevas obligaciones:** las referencias
+`introducidoEn` e `idAnterior` conservadas en el contrato existente son
+metadatos **opcionales** para cotejar escenarios `{S}` de v0.4.x. No debe
+exigirse a nuevos planes que conozcan cómo se representaban sus grupos en
+versiones anteriores. Si no existe evidencia, no puede presumirse una
+identidad histórica exacta; esto no afecta al escenario base ni a la lectura
+del formato personal actual. Ver `tests/compatibilidad-opcional.js`.
+
 **Regla de cierre:** no se volverá a presentar ARQ-01 como una migración en desarrollo. El código de lectura de escenarios anteriores se mantiene mientras el formato esté soportado: su existencia no es una deuda. Cualquier defecto futuro debe reproducirse contra un requisito vigente y tramitarse como mantenimiento ordinario, sin crear una nueva fase de «migración» por inercia.
 
 **Historial y procedencia:** [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8), [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) y [PR #28–34](https://github.com/jncubillosn-lab/Mecatronica/pulls?q=is%3Apr+is%3Amerged) documentan las decisiones, pruebas y cambios posteriores. La referencia de funcionamiento es [ARQ-01](ARQUITECTURA.md), no los datos históricos de este registro.
