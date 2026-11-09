@@ -115,15 +115,15 @@ function evaluar({ archivos, leer, sha = null }) {
   }
   const workflows = archivos.filter(p => p.startsWith('.github/workflows/'));
   if (!workflows.length) agregar('SIN_CI','error','.github/workflows/','No existe un workflow de verificación');
-  if (!archivos.includes('pruebas/test_normalizador.py'))
-    agregar('SIN_TEST_NORMALIZADOR','error','pruebas/test_normalizador.py',
-      'No se localiza la prueba del normalizador externo');
-  else {
-    const ci = workflows.map(entrada).join('\n');
-    if (!ci.includes('pruebas/test_normalizador.py'))
-      agregar('NORMALIZADOR_SIN_CI','error','pruebas/test_normalizador.py',
-        'La prueba Python externa no está enlazada desde GitHub Actions');
-  }
+  const pruebasPython=archivos.filter(p=>/^pruebas\/test_[^/]+\.py$/.test(p));
+  if (!pruebasPython.length)
+    agregar('SIN_PRUEBAS_PYTHON','error','pruebas/',
+      'No hay pruebas para las herramientas externas');
+  const ci = workflows.map(entrada).join('\n');
+  if (!ci.includes("unittest discover -s pruebas -p 'test_*.py'"))
+    agregar('PRUEBAS_PYTHON_SIN_DESCUBRIMIENTO','error','.github/workflows/',
+      'GitHub Actions debe descubrir automáticamente todos los test_*.py de pruebas/');
+
   controles.push({id:'PRUEBAS',detalle:'Pruebas JS registradas en npm test y normalizador Python conectado con CI'});
 
   for (const archivo of archivos.filter(p => /^scripts\/[^/]+\.(?:js|py)$/.test(p))) {

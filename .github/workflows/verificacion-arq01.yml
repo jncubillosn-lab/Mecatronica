@@ -28,7 +28,7 @@ jobs:
       - name: Contrato, escenarios, cálculo e integración
         run: npm test
       - name: Probar herramienta externa de normalización del SIA
-        run: python3 -m unittest pruebas/test_normalizador.py -v
+        run: python3 -m unittest discover -s pruebas -p 'test_*.py' -v
       - name: Auditar inventario, dependencias y residuos
         if: always()
         run: npm run mantenimiento:auditar

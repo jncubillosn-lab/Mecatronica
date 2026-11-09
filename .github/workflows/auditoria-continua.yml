@@ -1,6 +1,8 @@
 name: Auditoría continua y seguimiento
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: '17 14 * * 1'
   workflow_dispatch:
@@ -33,7 +35,7 @@ jobs:
       - name: Ejecutar regresiones
         run: npm test
       - name: Validar normalizador externo
-        run: python3 -m unittest pruebas/test_normalizador.py -v
+        run: python3 -m unittest discover -s pruebas -p 'test_*.py' -v
       - name: Generar auditoría estructural sin borrar archivos
         if: always()
         run: npm run mantenimiento:auditar

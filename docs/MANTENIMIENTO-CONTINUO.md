@@ -23,9 +23,9 @@ El mantenimiento no cambia ni completa datos académicos faltantes.
   ejecuta pruebas, auditoría estructural y adjunta un informe.
   Las infracciones objetivas provocan fallo de CI; se conserva el artefacto
   incluso si otras pruebas fallan.
-- **Cada lunes y por ejecución manual:** el workflow
+- **Cada push a main, cada lunes y por ejecución manual:** el workflow
   [Auditoría continua](../.github/workflows/auditoria-continua.yml)
-  repite las pruebas, lee las ramas de GitHub, registra si main tiene
+  repite todas las pruebas (incluye automáticamente los nuevos `test_*.py`), lee las ramas de GitHub, registra si main tiene
   protección y actualiza un único Issue de mantenimiento con los
   hallazgos pendientes. No realiza borrado ni reescritura de código.
 - **Publicación:** [Certificar versión publicada](../.github/workflows/certificar-publicacion.yml)
