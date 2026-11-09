@@ -82,7 +82,6 @@ function pairMatches(p) {
   const f = ui.inter;
   if (!p.enRango) return false;
   if (f.soloChoque && p.clash === 0) return false;
-  if (f.dists.size && !f.dists.has(p.dist)) return false;
   if (f.grav.size && !f.grav.has({ ok: 'ok', a: 'siempre', b: 'aveces' }[sev(p)[0]])) return false;
   if (f.sems.size && !(f.sems.has(p.sA) || f.sems.has(p.sB))) return false;
   if (f.asig && p.A !== f.asig && p.B !== f.asig) return false;
@@ -136,7 +135,7 @@ function pageInter() {
   const f = ui.inter;
   const sems = [...new Set(R.names.map(n => R.st[n].s))].sort((a, b) => a - b);
   const list = sortPairs(R.pairs.filter(p => pairMatches(p)));
-  const active = f.dists.size || f.grav.size || f.sems.size || f.asig || f.q || !f.soloChoque;
+  const active = f.grav.size || f.sems.size || f.asig || f.q || !f.soloChoque;
   const cntD = d => R.pairs.filter(p => p.enRango && p.dist === d && (!f.soloChoque || p.clash)).length;
   return `
   <div class="page-title"><div><h1>Interferencias</h1><p>Cada fila es una pareja de asignaturas que se podrían cursar a la vez (${distSummary()}; sin ser prerrequisito una de otra). Ábrela para ver qué grupos chocan y cuándo.</p></div>
