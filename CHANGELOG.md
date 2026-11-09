@@ -4,6 +4,8 @@ La **versión pública de la aplicación** se consulta en el pie de página y en
 
 ## Preparación técnica 1.0.0 (sin declarar versión estable)
 
+- **0.7.8 — [PR #33](https://github.com/jncubillosn-lab/Mecatronica/pull/33)**: prueba roja reprodujo la pérdida de la marca de revisión pendiente al exportar un escenario antiguo. La exportación recibe ahora el mismo contexto de revisión que el guardado local; sin nueva arquitectura ni casos específicos. **La publicación debe comprobarse después de fusionar.**
+
 - **0.7.7 — [PR #32](https://github.com/jncubillosn-lab/Mecatronica/pull/32)**: los cuatro módulos de datos/lectura `RAW` antiguos se trasladaron íntegros a `pruebas/historico/js/`; se actualizaron las pruebas históricas, se eliminó un `__pycache__` generado y se añadieron barreras para evitar su vuelta a producción. **La publicación debe verificarse tras la fusión.**
 
 - **0.7.6 — [PR #31](https://github.com/jncubillosn-lab/Mecatronica/pull/31)**: se retiró la llamada `fixMalla(S0)` del arranque después de comparar el escenario normalizado antes/después. La única diferencia comprobada eran las marcas históricas `mig1`–`mig4`. Se preservan `fixMalla(anterior)` y la ruta `{S}` para escenarios heredados. Esta entrada registra el cambio propuesto en la PR; **su despliegue se verifica después de fusionar**.
