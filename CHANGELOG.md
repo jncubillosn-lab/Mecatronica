@@ -2,6 +2,24 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## Cambios posteriores al corte 0.5.5 (integrados y documentados)
+
+Las fechas y números se verificaron contra las PR fusionadas. **Estas notas describen hitos pasados**, no una nueva versión pública.
+
+- **0.7.5** — [PR #26](https://github.com/jncubillosn-lab/Mecatronica/pull/26), 8 nov 2026: tonos discretos B/C/L/N por asignatura en ocho páginas, bordes ligeramente más contrastados y pruebas visuales de estructura.
+- **0.7.4** — [PR #25](https://github.com/jncubillosn-lab/Mecatronica/pull/25), 8 nov 2026: persistencia de requisitos por cambios de ID y propiedad; escenarios antiguos ambiguos con revisión individual, sin excepciones por materia.
+- **0.7.3** — [PR #24](https://github.com/jncubillosn-lab/Mecatronica/pull/24), 8 nov 2026: TPI (SIA 2024045) 52 créditos C y PAI (SIA 2017275) 65 créditos C; códigos, créditos de materia y Trabajo de Grado intactos.
+- **0.7.2** — [PR #23](https://github.com/jncubillosn-lab/Mecatronica/pull/23), 8 nov 2026: oscuro predeterminado, modo claro opcional y altura intrínseca de la malla.
+- **0.7.1** — [PR #22](https://github.com/jncubillosn-lab/Mecatronica/pull/22), 8 nov 2026: representación de posiciones L en Prerrequisitos y reparto visual equilibrado, sin alterar datos.
+- **0.7.0** — [PR #21](https://github.com/jncubillosn-lab/Mecatronica/pull/21), 8 nov 2026: diseño adaptable, ampliación/zoom de prerrequisitos y mejoras de lectura de Demanda.
+- **0.6.0** — [PR #20](https://github.com/jncubillosn-lab/Mecatronica/pull/20), 8 nov 2026: identidad visual compartida y acentos configurados por programa; sin incorporar programas nuevos.
+- **0.5.9** — [PR #19](https://github.com/jncubillosn-lab/Mecatronica/pull/19), 8 nov 2026: identificar asignatura al seleccionar punto de Demanda.
+- **0.5.8** — [PR #18](https://github.com/jncubillosn-lab/Mecatronica/pull/18), 8 nov 2026: cuadrantes y lectura reforzada de Demanda.
+- **0.5.7** — [PR #17](https://github.com/jncubillosn-lab/Mecatronica/pull/17), 8 nov 2026: demostración simulada de demanda y recomendaciones descriptivas.
+- **0.5.6** — [PR #16](https://github.com/jncubillosn-lab/Mecatronica/pull/16), 8 nov 2026: octava página Demanda de preinscripción, sin requerir cupos ni datos históricos.
+
+**Preparación del corte 1.0 (solo documentación):** [PR #28](https://github.com/jncubillosn-lab/Mecatronica/pull/28) integra principios, RF/RC y límites a ARQ-01, sin modificar la aplicación ni declarar 1.0.0.
+
 ## Versiones integradas
 
 - **0.5.5** (7 nov 2026, [PR #15](https://github.com/jncubillosn-lab/Mecatronica/pull/15)): referencia académica de TPI simplificada voluntariamente a un único grupo G1, lunes y miércoles de 14:00 a 16:00. Se retiran 21 alternativas de la oferta normalizada y las agrupaciones, sin modificar otras asignaturas ni el motor. Se actualizan pruebas y versión pública.
