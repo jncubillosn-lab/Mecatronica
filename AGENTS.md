@@ -1,11 +1,11 @@
 # Guía de trabajo para agentes y colaboradores
 
-**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para el cierre 1.0.0 (ARQ-01 ya estaba terminada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
+**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para la versión 1.1.0 (ARQ-01 permanece cerrada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
 
 ## Antes de cualquier cambio
 
 - Leer ARQ-01 y verificar qué capa del sistema se verá afectada.
-- **ARQ-01 está cerrada:** FuentesAcadémicas (`datos/academico.json`) es la única entrada académica. `fromRaw` es el adaptador interno de S0. En 0.8.1 se retiraron los lectores de versiones antiguas sin usuarios; no reincorporarlos por precaución.
+- **ARQ-01 está cerrada:** FuentesAcadémicas sigue siendo la única entrada académica **por sesión**. La única fuente actualmente disponible es `datos/academico.json` para Mecatrónica; `js/programas.js` registra rutas, no fuentes institucionales adicionales. `fromRaw` es el adaptador interno de S0. En 0.8.1 se retiraron los lectores de versiones antiguas sin usuarios; no reincorporarlos por precaución.
 - La extracción y conversión desde catálogo, oferta de horarios y malla sucede **íntegramente fuera del sistema**. No incorporar lectores, conversores, cargadores ni conexiones paralelas desde esos archivos a la aplicación.
 - Los verificadores, archivos y conversores exclusivos de la aplicación de desarrollo se retiraron en 0.8.1; el historial sigue disponible en Git. **Conservar** la normalización externa del SIA (`scripts/normalizar_oferta.py`), sus datos y sus pruebas porque sirven a la preparación de fuentes actuales.
 - Los nombres, créditos, requisitos, tipologías, componentes, calendarios y vínculos académicos son **datos**, no constantes universales programadas. Las relaciones de prerrequisitos y los mínimos de créditos deben referenciar IDs válidos; una referencia rota es un error técnico, no un valor académico faltante.
@@ -46,3 +46,7 @@ Si hay contradicción entre README o código heredado y ARQ-01, **ARQ-01 gobiern
 ## Controles que ejecuta el propio repositorio
 
 Antes de afirmar que una limpieza está completa, consultar el reporte generado por `npm run mantenimiento:auditar` y la ejecución correspondiente de [MNT-01](docs/MANTENIMIENTO-CONTINUO.md). No sustituir el inventario y las pruebas por una inspección de texto propia, ni interpretar "archivos clasificados" como "código sin errores". Los avisos necesitan una decisión con evidencia; el auditor no elimina código automáticamente. Si CI falla, no fusionar la PR.
+
+## Selector multicarrera (1.1.0)
+
+El selector reutiliza exclusivamente el catálogo de nueve carreras de `js/identidad.js`; la disponibilidad es un registro mínimo de rutas en `js/programas.js`. Programas sin contrato no crean escenarios `S0`, no ejecutan el motor ni muestran resultados inventados. Mecatrónica conserva sus datos y clave local de escenarios. Revisar `tests/multicarrera.js`, la integración original, los controles de versión y la certificación de GitHub Pages antes de publicar cambios de programa.

@@ -107,3 +107,7 @@ semántico, ni ausencia de código muerto o defectos de cálculo.
 El informe debe permitir localizar cada aviso por archivo, y el Issue
 de mantenimiento debe seguir abierto mientras haya pendientes. Una
 eliminación debe aportar evidencia, pruebas y una PR separada.
+
+## 7. Selector multicarrera
+
+`tests/multicarrera.js` verifica las nueve identidades, ocho espacios sin datos, una carga académica para Mecatrónica, contratos con ID incorrecto y almacenamiento personal aislado. Los verificadores de versiones y publicación consultan solo los recursos académicos registrados, sin suponer archivos para todas las carreras.

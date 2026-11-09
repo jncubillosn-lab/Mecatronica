@@ -1,13 +1,13 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el cierre 1.0.0. **La migración ARQ-01 está terminada y cerrada.**  
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.0. **La migración ARQ-01 está terminada y cerrada.**  
 > **Revisión operativa:** 9 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
-> **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la gestión de otras carreras **sí** está aprobada como etapa futura, sin afirmar que ya estén habilitadas.  
+> **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, aunque solo Mecatrónica cuenta con datos académicos operativos.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
-> **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. La versión 1.0.0 cierra el saneamiento general; **no** convierte en funcionalidades disponibles los desarrollos multicarrera posteriores. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
+> **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. La versión 1.0.0 cerró el saneamiento; 1.1.0 incorpora selección multicarrera sin crear fuentes ficticias ni duplicar el núcleo. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
 > **Fuentes de autoridad:** ARQ-01 fija la norma; `datos/academico.json` fija el dato académico vigente; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
 
-**Presentación multicarrera (UNI-UI-01):** el catálogo cromático de `js/identidad.js` es configuración puramente visual que resuelve el ID de un programa ya presente en `FuentesAcadémicas`. No representa una segunda fuente académica ni habilita carreras sin contrato. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
+**Presentación multicarrera (UNI-UI-01):** `js/identidad.js` enumera los nueve nombres y acentos; `js/programas.js` registra solo rutas de contratos disponibles. Los programas sin datos conservan su identidad y navegación, pero no generan escenarios ni cálculos. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
 
 ### Uso rápido de esta guía
 
@@ -410,7 +410,7 @@ degradación concreta y una decisión nueva.
    multicarrera preservados.
 4. Publicación y revisión visual reales, diferenciadas del CI automatizado.
 
-**La versión 1.0.0 describe el alcance estable actual, no certifica calidad de los datos originales, ni funcionalidades multicarrera aún no construidas.** La evidencia de cada despliegue se consulta en CI y en la certificación HTTP de Pages.
+**La versión 1.1.0 incorpora la selección multicarrera, pero no habilita el análisis de programas sin contrato académico normalizado.** La evidencia de cada despliegue se consulta en CI y en la certificación HTTP de Pages.
 
 ## 7. Antecedentes de ARQ-01 (migración finalizada; solo historial)
 
@@ -420,7 +420,7 @@ En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S
 
 ## 8. Cambios de alcance expresamente aprobados
 
-**Este documento no inventa funciones futuras por anticipado.** La gestión multicarrera de D-25 está aprobada como etapa posterior, no publicada en 1.0.0. Solo cuando una necesidad sea solicitada y aprobada se examina su efecto arquitectónico. La falta de una característica no requerida no es un problema del sistema.
+**Este documento no inventa funciones futuras por anticipado.** D-29 introduce el selector; incorporar fuentes de otras carreras sigue sujeto a contratos válidos y pruebas. Solo cuando una necesidad sea solicitada y aprobada se examina su efecto arquitectónico. La falta de una característica no requerida no es un problema del sistema.
 
 Si una función autorizada necesita nuevos datos académicos, primero se justifica si cabe ampliar de forma compatible el contrato `FuentesAcadémicas`; de ser así, esos datos se proporcionan mediante **el mismo archivo normalizado**. Un componente no lee fuentes originales. Los datos personales o de interacción permanecen diferenciados de la referencia académica.
 
@@ -477,3 +477,7 @@ Antes de modificar la aplicación o sus datos:
 9. Antes de eliminar un archivo, script o prueba, revisar dependencias productivas actuales; clasificar el hallazgo y conservar una prueba de regresión. Actualizar documentación desfasada por etapas, no reescribir la historia como si nunca hubiera ocurrido.
 
 **La prioridad arquitectónica es la simplicidad: una entrada académica, un modelo común, un escenario efectivo y resultados coherentes.** No se requieren capas, validaciones ni objetivos adicionales por costumbre. Para distinguir decisiones normativas de características implementadas consultar DEC-01 y EST-01.
+
+## 10. Selección académica sin duplicar el núcleo (1.1.0)
+
+La interfaz reutiliza los nueve nombres y colores de `IdentidadUniversitaria.catalogo`. `ProgramasUniversitarios` separa las rutas de contratos realmente disponibles de la identidad visual y comparte la cabecera/navegación, sin crear nueve motores o archivos ficticios. Por sesión, `js/iniciar.js` consulta **un solo contrato normalizado**, valida que `programa.id` corresponda a la selección y crea `S0`, `S` y los resultados solo entonces. Sin fuente se presentan ocho espacios con estado «sin datos», sin estadísticas en cero; una carga inválida es un error técnico. Mecatrónica mantiene su archivo `datos/academico.json` y su clave local; otros programas usarán claves de escenario diferenciadas. El nuevo límite se verifica en `tests/multicarrera.js`, sin cambiar `EntradaAcademica`, `EscenarioPersonal`, `PlanCurricular` ni el motor de análisis.
