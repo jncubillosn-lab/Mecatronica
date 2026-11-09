@@ -20,7 +20,7 @@ datos/academico.json
   -> resultados filtrados y las ocho vistas (js/app.js, js/vistas.js)
 ```
 
-La proyección interna `fromRaw` y ciertas rutinas de migración aún están en uso por el arranque o por compatibilidad con escenarios anteriores. **No constituyen otra entrada académica**. La relación precisa entre responsabilidades, estados `S0/S/R0/R/RV0/RV/ui` y pruebas está en [ARQ-01](docs/ARQUITECTURA.md).
+La proyección interna `fromRaw` forma parte del arranque actual. **La migración ARQ-01 está finalizada desde la versión 0.8.0**: las rutinas que interpretan archivos personales antiguos `{S}` permanecen únicamente como compatibilidad de lectura, sin alterar el contrato ni la construcción de `S0`. La relación precisa entre responsabilidades, estados `S0/S/R0/R/RV0/RV/ui` y pruebas está en [ARQ-01](docs/ARQUITECTURA.md).
 
 La estructura normalizada contiene `programa`, `componentes`, `caracteres`, `catalogo`, `malla`, `requisitos`, `oferta`, `agrupaciones`, `exclusionesAgrupacion`, `configuracion` y `procedencia`, además de `versionEsquema`. Los IDs institucionales de asignatura y de posición curricular son distintos. Las agrupaciones se analizan **solo si han sido declaradas verificables y elegibles**; una agrupación informativa de otra sede o un grupo sin horario no autoriza inventar choques.
 
@@ -77,7 +77,7 @@ npm test
 
 GitHub Actions comprueba las pruebas de contrato, horarios, escenarios, requisitos, estadísticas, filtros, apariencia, ocho vistas e integración. La versión pública se declara conjuntamente en `index.html`, sus referencias `?v=` y `js/iniciar.js`. **Una prueba con `jsdom` no reemplaza una inspección visual real.**
 
-Los archivos académicos de la aplicación anterior se archivaron íntegros en [`pruebas/historico/js/`](pruebas/historico/js/) durante la estabilización 0.7.7; **ya no existen en `js/`**. Las herramientas `data/`, `scripts/` y `pruebas/` corresponden a preparación externa y diagnósticos históricos, no a entradas productivas. Las pruebas del legado se ejecutan por separado con `npm run test:historico`. No deben usarse para reconstruir automáticamente el JSON académico vigente.
+Los archivos académicos de la aplicación anterior están conservados íntegros en [`pruebas/historico/js/`](pruebas/historico/js/) desde 0.7.7; **ya no existen en `js/`**. Las herramientas `data/`, `scripts/` y `pruebas/` corresponden a preparación externa y diagnósticos históricos, no a entradas productivas. Las pruebas del legado se ejecutan por separado con `npm run test:historico`. No deben usarse para reconstruir automáticamente el JSON académico vigente.
 
 ## Documentación y mantenimiento
 
@@ -90,4 +90,4 @@ Los archivos académicos de la aplicación anterior se archivaron íntegros en [
 - [RESP-01](docs/RESP-01.md), [TEMA-ALTURA-01](docs/TEMA-ALTURA-01.md), [TONO-01](docs/TONO-01.md), [UNI-UI-01](docs/ESTILO-UNIVERSITARIO.md): presentación y accesibilidad.
 - [AGENTS.md](AGENTS.md): procedimiento operativo de colaboradores y agentes.
 
-**La versión 1.0.0 aún no está declarada.** Para llegar a ella, consultar las puertas de verificación de ARQ-01: fidelidad del contrato, continuidad de los escenarios, pruebas de cada vista, clasificación de código heredado y publicación comprobada. No se consideran fallas las funcionalidades que nunca fueron solicitadas.
+**ARQ-01 está cerrada como migración en 0.8.0.** No existe una segunda entrada ni una transición académica pendiente. La compatibilidad con archivos personales anteriores queda bajo pruebas, como una función ordinaria del gestor. **La versión 1.0.0 todavía no está declarada** y exige las restantes comprobaciones generales de estabilidad que establece ARQ-01. No se consideran fallas las funcionalidades que nunca fueron solicitadas.
