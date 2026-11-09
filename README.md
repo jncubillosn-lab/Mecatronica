@@ -2,6 +2,8 @@
 
 Aplicación web estudiantil **no oficial**, con identidad visual universitaria compartida y tema por programa, para consultar la malla curricular, examinar grupos ofertados y sus interferencias de horario, evaluar escenarios y explorar una semana mediante un mapa de calor.
 
+**Documento rector vigente:** [ARQ-01 — funcionamiento real, principios y requisitos de referencia](docs/ARQUITECTURA.md), consolidado sobre el corte público v0.7.5. **Nota:** el detalle histórico de v0.5.x que aparece más abajo aún requiere una actualización editorial independiente; no sustituye a ARQ-01 ni implica que el sitio funcione con esa versión.  
+
 **Página pública:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Guía visual:** [TONO-01 — tipologías y contraste de contornos](docs/TONO-01.md) · [UNI-UI-01 — identidad universitaria y temas por programa](docs/ESTILO-UNIVERSITARIO.md) · [RESP-01 — adaptabilidad y visualizaciones](docs/RESP-01.md) · [LIB-01 — Libre elección en Prerrequisitos](docs/LIB-01.md) · [TEMA-ALTURA-01 — contraste y altura de malla](docs/TEMA-ALTURA-01.md)  
 **Requisitos TPI y PAI:** [REQ-C-01 — mínimos disciplinares por código SIA](docs/REQ-C-01.md)  

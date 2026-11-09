@@ -1,6 +1,6 @@
 # Guía de trabajo para agentes y colaboradores
 
-**Referencias obligatorias antes de trabajar:** [ARQ-01 — arquitectura](docs/ARQUITECTURA.md) · [DEC-01 — decisiones y alcance](docs/DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md). El historial está en [MIG-ARQ01](docs/MIGRACION-ARQ01.md).
+**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), revisada contra la implementación v0.7.5. Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
 
 ## Antes de cualquier cambio
 
