@@ -1,0 +1,29 @@
+name: Certificar versión publicada
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: certificar-publicacion
+  cancel-in-progress: true
+
+jobs:
+  certificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Obtener exactamente la revisión de main
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar manifiesto y referencias de la revisión
+        run: node tests/versionado.js
+      - name: Certificar HTML y recursos realmente publicados en GitHub Pages
+        run: node scripts/certificar-publicacion.js --retry

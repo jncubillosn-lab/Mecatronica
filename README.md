@@ -75,7 +75,18 @@ Para ejecutar las verificaciones:
 ```sh
 npm ci
 npm test
+npm run version:verificar   # versión interna, referencias y paquete
+npm run version:publicada   # certificar sitio servido contra esta revisión
 ```
+
+`package.json` es el número público de referencia; el test exige igualdad
+con `package-lock.json`, metadato, pie, JS, CSS y los parámetros de caché.
+La PR verifica integridad y avance de versión. Tras integrar en `main`, el
+workflow **Certificar versión publicada** comprueba por HTTP el HTML real
+y todos los recursos productivos frente a los bytes de esa revisión; su
+resultado es una certificación **separada** del build de Pages. Un navegador
+que mantenga abierta una pestaña anterior puede seguir mostrando el pie
+antiguo hasta recargar.
 
 GitHub Actions comprueba las pruebas de contrato, horarios, escenarios, requisitos, estadísticas, filtros, apariencia, ocho vistas e integración. La versión pública se declara conjuntamente en `index.html`, sus referencias `?v=` y `js/iniciar.js`. **Una prueba con `jsdom` no reemplaza una inspección visual real.**
 
