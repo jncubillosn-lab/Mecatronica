@@ -167,9 +167,7 @@ Se mantienen como necesidades **vigentes**:
 - Un escenario personal de diferencias `escenario-personal/version:1`,
   aplicable sobre futuras referencias. No se interpretan snapshots `{S}`
   ni listas `reqCred` completas creadas durante desarrollo.
-- **Multicarrera solicitada para el futuro:** motor independiente de
-  Mecatrónica y capacidad de gestionar varios programas, sus identidades y
-  configuraciones sin inventar datos de programas aún no cargados.
+- **Multicarrera:** el motor es independiente de Mecatrónica y el selector permite elegir nueve programas. La incorporación de nuevas fuentes académicas sigue pendiente; no se inventan datos de carreras sin contrato.
 - **Resiliencia solicitada:** validar integridad técnica, permitir información
   incompleta y prevenir riesgos sin eliminar defensas por no haber vivido
   incidentes. Valorar su costo solo si se demuestra degradación real.

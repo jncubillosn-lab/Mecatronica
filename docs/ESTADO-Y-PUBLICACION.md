@@ -43,9 +43,7 @@ porque aportan valor a la preparación del contrato.
 
 ## 3. Necesidades confirmadas que NO se retiran
 
-- **Multicarrera:** el motor ha de operar con datos de diferentes programas
-  sin casos especiales por nombre; en una etapa futura deberá gestionarse
-  también la selección, identidad y configuración de varios programas.
+- **Multicarrera:** el motor es independiente de los nombres de carrera; desde 1.1.0 ya existe selección e identidad para nueve programas. Los otros ocho todavía necesitan un contrato académico real para ejecutar análisis.
 - **Flexibilidad de entrada:** la disponibilidad de grupos, horarios,
   profesores, créditos y demás datos puede ser parcial; un vacío legítimo
   no genera un bloqueo ni un dato inventado.
