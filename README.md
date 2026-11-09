@@ -77,7 +77,7 @@ npm test
 
 GitHub Actions comprueba las pruebas de contrato, horarios, escenarios, requisitos, estadísticas, filtros, apariencia, ocho vistas e integración. La versión pública se declara conjuntamente en `index.html`, sus referencias `?v=` y `js/iniciar.js`. **Una prueba con `jsdom` no reemplaza una inspección visual real.**
 
-Los archivos `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js`, `js/fuentes.js` y las herramientas de `data/`, `scripts/` y `pruebas/` pertenecen a etapas históricas o procesos de preparación **externos**. Se han mantenido para trazabilidad y pruebas de compatibilidad, y **no se cargan como rutas productivas**. Su posible retiro forma parte de la estabilización gradual y debe justificarse por dependencias verificadas.
+Los archivos académicos de la aplicación anterior se archivaron íntegros en [`pruebas/historico/js/`](pruebas/historico/js/) durante la estabilización 0.7.7; **ya no existen en `js/`**. Las herramientas `data/`, `scripts/` y `pruebas/` corresponden a preparación externa y diagnósticos históricos, no a entradas productivas. Las pruebas del legado se ejecutan por separado con `npm run test:historico`. No deben usarse para reconstruir automáticamente el JSON académico vigente.
 
 ## Documentación y mantenimiento
 
