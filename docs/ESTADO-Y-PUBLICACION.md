@@ -108,3 +108,7 @@ comprueba los archivos servidos, no pestañas que ya estaban abiertas.
 La información académica depende de la veracidad de las fuentes externas.
 No existen otras carreras habilitadas en esta versión. Se mantienen
 las defensas y sus límites descritos en ARQ-01.
+
+## 6. Control recurrente del mantenimiento
+
+El procedimiento ejecutable de [MNT-01](MANTENIMIENTO-CONTINUO.md) genera evidencia de inventario, conexión de pruebas y recursos, residuos y configuración remota en Actions. Su informe se limita a las comprobaciones declaradas; no reemplaza las pruebas funcionales, la verificación académica o la revisión visual.

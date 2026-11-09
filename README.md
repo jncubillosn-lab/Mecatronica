@@ -54,6 +54,10 @@ npm run version:publicada
 - `version:publicada` compara por HTTP los archivos realmente servidos por GitHub Pages con los del commit local. GitHub Actions ejecuta también esta certificación tras incorporar cambios en `main`.
 - La revisión visual real en dispositivos es un control adicional; el resultado de GitHub Pages no garantiza la recarga de una pestaña previamente abierta.
 
+## Mantenimiento automático
+
+El repositorio se verifica en cada PR y cada actualización de `main`, además de una auditoría semanal. `npm run mantenimiento:auditar` produce un informe de archivos, rutas, pruebas y avisos. Los errores estructurales bloquean CI; las sospechas permanecen visibles como hallazgos y no eliminan código. [MNT-01 — Controles y limitaciones](docs/MANTENIMIENTO-CONTINUO.md) documenta exactamente qué se comprueba y qué no.
+
 ## Documentación y mantenimiento
 
 El punto de partida es [ARQ-01 — Arquitectura](docs/ARQUITECTURA.md): describe responsabilidades, requisitos y límites. [DEC-01 — Decisiones](docs/DECISIONES-Y-ALCANCE.md) conserva el criterio que justifica cada comportamiento. [EST-01 — Estado y publicación](docs/ESTADO-Y-PUBLICACION.md) distingue capacidades y verificaciones; [AGENTS.md](AGENTS.md) establece el procedimiento de desarrollo.
