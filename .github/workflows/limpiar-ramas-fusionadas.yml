@@ -23,7 +23,7 @@ jobs:
       - name: Verificar política de limpieza
         run: node tests/ramas-fusionadas.js
       - name: Retirar solo ramas de PR fusionadas y sin modificaciones posteriores
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const { ejecutar } = require('./scripts/limpiar-ramas-fusionadas.js');
