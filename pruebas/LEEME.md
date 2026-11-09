@@ -1,6 +1,6 @@
 # Pruebas de fidelidad — utilidades históricas
 
-> **Estado:** herramientas de diagnóstico de la reorganización original, **no** la batería de regresión vigente de ARQ-01. Se conservan para comprender la interfaz histórica; no son una segunda ruta de entrada académica. Las pruebas de producción se ejecutan con `npm ci && npm test` y GitHub Actions; consultar [EST-01](../docs/ESTADO-Y-PUBLICACION.md).
+> **Estado:** herramientas de diagnóstico de la reorganización original, **no** la batería de regresión vigente de ARQ-01. Se conservan para comprender la interfaz histórica; no son una segunda ruta de entrada académica. Las pruebas de producción se ejecutan con `npm ci && npm test` y GitHub Actions. Las comprobaciones antiguas que consumen `js/datos.js`, `js/catalogo.js` y `js/oferta-fuente.js` permanecen disponibles con `npm run test:historico`, **fuera del conjunto productivo**; consultar [EST-01](../docs/ESTADO-Y-PUBLICACION.md).
 
 ## Qué contiene este directorio
 
