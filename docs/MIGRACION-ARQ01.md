@@ -1,6 +1,6 @@
 # MIG-ARQ01 — Registro histórico de la migración secuencial
 
-**Estado definitivo: MIGRACIÓN ARQ-01 CERRADA — versión 0.8.0.** La transición se implantó en v0.5.0 ([PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8)) y sus ajustes posteriores quedaron saneados y verificados hasta 0.8.0 ([PR #34](https://github.com/jncubillosn-lab/Mecatronica/pull/34)). **No hay fases ni deudas de migración pendientes.**  
+**Estado:** migración ARQ-01 cerrada en 0.8.0; soporte de formatos anteriores retirado en 0.8.1. La transición se implantó en v0.5.0 ([PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8)) y sus ajustes posteriores quedaron saneados y verificados hasta 0.8.0 ([PR #34](https://github.com/jncubillosn-lab/Mecatronica/pull/34)). **No hay fases ni deudas de migración pendientes.**  
 **Arquitectura normativa:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones no negociables:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Estado y pasos de publicación actuales:** [EST-01](ESTADO-Y-PUBLICACION.md).
@@ -51,29 +51,29 @@ La versión v0.4.3 incluía grupos especiales en sus estadísticas históricas (
 - **PR #9 — v0.5.1:** integrada en `main` mediante commit `9220474b27ecd2226fcec3fca4a46a312bd423a5`. CI exitosa (ejecución `42435837261`). Se versionan los recursos CSS, JS y JSON y se obliga a avanzar versión pública en cambios de producción.
 - **Publicación externa:** la integración a GitHub es verificable. Este registro **no afirma haber inspeccionado en un navegador real** la versión servida por GitHub Pages después de la fusión. La comprobación posterior se describe en EST-01.
 
-## 6. Acta de cierre definitivo — 0.8.0
+## 6. Actualización de alcance — 0.8.1
 
-La migración ARQ-01 está **terminada**, no solo integrada. Las cinco verificaciones de saneamiento posteriores a la consolidación del contrato cerraron las deudas técnicas y documentales detectadas:
+El cierre académico de ARQ-01 fue efectivo en 0.8.0. En la evaluación
+0.8 → 0.9 se confirmó expresamente que **ningún usuario externo ni el
+desarrollador posee escenarios antiguos que necesiten recuperarse**.
+Por ello dejó de existir una justificación para soportar sus formatos.
 
-| Condición de cierre | Resultado |
-|---|---|
-| Entrada única | `datos/academico.json` es la única entrada académica solicitada por `js/iniciar.js`; no existe una carga paralela de `js/datos.js`, catálogo u oferta originales |
-| Referencia sin parches históricos | Desde 0.7.6, `S0` se construye sin llamar a `fixMalla(S0)`; prueba `tests/arranque-sin-migracion.js` |
-| Material de la aplicación anterior | Desde 0.7.7, los cuatro archivos JS originales están íntegros en `pruebas/historico/js/`, fuera de la ruta productiva; prueba `tests/rutas-produccion.js` |
-| Reglas y personalización | En 0.7.8, `save()` y `export` conservan el contexto de revisión `reqCredAmbiguos`; prueba `tests/exportacion-ambiguos.js` |
-| Compatibilidad `{S}` | Se mantiene el lector del formato anterior y su traducción de IDs. **Es una función de compatibilidad terminada**, no un paso de migración académica pendiente |
-| Pruebas antiguas | Los tres ensayos conservados en `npm run test:historico` aprobaron GitHub Actions durante el cierre de 0.8.0. Se ejecutan separadamente de la suite académica actual `npm test` |
-| Herramientas de comparación inicial | `pruebas/compare.js` y `pruebas/mutar.sh` se conservan como evidencia de la etapa original. Se retiraron los comandos npm `comparar` y `mutar`, que no verificaban el sistema vigente |
-| Automatización | El workflow dejó de escuchar la rama histórica de migración y verifica PR hacia `main`, la suite vigente y las pruebas de compatibilidad histórica |
+La [PR #35](https://github.com/jncubillosn-lab/Mecatronica/pull/35)
+retira del programa actual los lectores de snapshots `{S}`,
+`fixMalla`, `migrarAnterior`, marcas `mig1`–`mig4`,
+`reqCredAmbiguos`, los campos `introducidoEn`/`idAnterior`
+y las pruebas y archivos exclusivos de la versión anterior.
 
-**Límite del soporte histórico, sin nuevas obligaciones:** las referencias
-`introducidoEn` e `idAnterior` conservadas en el contrato existente son
-metadatos **opcionales** para cotejar escenarios `{S}` de v0.4.x. No debe
-exigirse a nuevos planes que conozcan cómo se representaban sus grupos en
-versiones anteriores. Si no existe evidencia, no puede presumirse una
-identidad histórica exacta; esto no afecta al escenario base ni a la lectura
-del formato personal actual. Ver `tests/compatibilidad-opcional.js`.
+No se retiran: el formato de diferencias personales actualmente soportado,
+la adaptación interna `fromRaw`, el normalizador externo del SIA, las
+validaciones de datos incompletos ni la preparación multicarrera.
 
-**Regla de cierre:** no se volverá a presentar ARQ-01 como una migración en desarrollo. El código de lectura de escenarios anteriores se mantiene mientras el formato esté soportado: su existencia no es una deuda. Cualquier defecto futuro debe reproducirse contra un requisito vigente y tramitarse como mantenimiento ordinario, sin crear una nueva fase de «migración» por inercia.
+**Esta es una anotación histórica, no una instrucción de funcionamiento.**
+Las secciones 1–5 conservan hechos y cifras de las versiones iniciales y
+no deben leerse como requisitos vigentes. En particular, sus referencias
+a "compatibilidad" describen una capacidad que existió y fue eliminada,
+no una obligación del programa presente. El historial completo de los
+archivos retirados sigue accesible en Git.
 
-**Historial y procedencia:** [PR #8](https://github.com/jncubillosn-lab/Mecatronica/pull/8), [PR #9](https://github.com/jncubillosn-lab/Mecatronica/pull/9) y [PR #28–34](https://github.com/jncubillosn-lab/Mecatronica/pulls?q=is%3Apr+is%3Amerged) documentan las decisiones, pruebas y cambios posteriores. La referencia de funcionamiento es [ARQ-01](ARQUITECTURA.md), no los datos históricos de este registro.
+**Documentos vigentes:** [ARQ-01](ARQUITECTURA.md),
+[REG-01](REG-01.md) y [EST-01](ESTADO-Y-PUBLICACION.md).

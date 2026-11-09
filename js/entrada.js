@@ -45,12 +45,9 @@ class EntradaAcademica {
   /**
    * @returns {object} Proyección posicional transitoria para construir S0.
    * `gr`: [asignatura, etiqueta, componente1, componente2, ref, analizable]
-   * `bl`: [asignatura, componente, día, inicio, fin, nota, ref, idAnterior]
-   * `ref` es una identidad estable construida con posicionId, actividad e
-   * índice de bloque. `idAnterior` es OPCIONAL y solo permite reconciliar
-   * los IDs de archivos personales viejos: ausente se proyecta como `null`.
-   * `agrupaciones[].introducidoEn` también es OPCIONAL; este lector no
-   * necesita ni consulta metadatos de versiones anteriores.
+   * `bl`: [asignatura, componente, día, inicio, fin, nota, ref]
+   * `ref` es una identidad estable construida desde posicionId, actividad e
+   * índice de bloque; pertenece al contrato actual, no a otra versión.
    * La oferta académica puede contener más grupos que las agrupaciones
    * explícitas. Aquí NO se infieren combinaciones de actividades.
    * La proyección `RAW` se deriva del contrato; NO es una segunda fuente.
@@ -93,7 +90,7 @@ class EntradaAcademica {
         (parte.bloques || []).forEach((b, i) => {
           // `i` identifica la posición del bloque dentro de esta actividad.
           // Reordenar bloques en la fuente cambia IDs persistidos en
-          // escenarios personales (actuales y antiguos). Conservar el orden
+          // escenarios personales actuales. Conservar el orden
           // o efectuar un cambio de identidad explícito y probado.
           const original = grupo.posicionId + '\u0001' + (compactar ? etiqueta + '\u0001' + parte.id : parte.id) + '\u0001' + i;
           const clave = compactar ? etiqueta : parte.id;
@@ -102,7 +99,7 @@ class EntradaAcademica {
             // Error técnico del contrato; no omitir información de forma silenciosa.
             throw new Error('Bloque horario inválido en agrupación ' + grupo.id);
           }
-          const bloque = [asignatura, clave, b.dia, desde, hasta, b.nota || null, original, b.idAnterior ?? null];
+          const bloque = [asignatura, clave, b.dia, desde, hasta, b.nota || null, original];
           const anterior = bloquesPorReferencia.get(original);
           if (anterior) {
             if (JSON.stringify(anterior) !== JSON.stringify(bloque)) {

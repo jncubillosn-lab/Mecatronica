@@ -2,6 +2,15 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 0.8.1 — Eliminar compatibilidad sin necesidad demostrada
+
+- **[PR #35](https://github.com/jncubillosn-lab/Mecatronica/pull/35)**: decisión expresa tras confirmar que no existen usuarios ni archivos de versiones anteriores que recuperar.
+- Se retiraron los lectores de escenarios `{S}`, conciliación de requisitos antiguos y sus controles visuales; el formato personal **vigente** de diferencias se conserva.
+- Se quitaron de `datos/academico.json` 432 campos `introducidoEn` y 811 campos `idAnterior`, sin modificar ninguna otra propiedad académica.
+- Se eliminaron fuentes `RAW`, comparadores, referencia congelada, conversores anteriores y pruebas exclusivas de esos formatos. El historial sigue disponible en Git.
+- **Se conservan** la entrada flexible, controles defensivos, modelo independiente de la carrera, preparación futura multicarrera, normalizador externo del SIA, escenarios personales actuales y las ocho vistas.
+- Se actualizaron ARQ-01, DEC-01, EST-01, REG-01, guía de colaboradores y pruebas actuales. La publicación se comprueba independientemente de CI.
+
 ## 0.8.0 — Cierre definitivo de migración ARQ-01
 
 - **[PR #34](https://github.com/jncubillosn-lab/Mecatronica/pull/34), 8 nov 2026:** la migración a la única entrada académica se declara **finalizada**, con acta de cierre en [MIG-ARQ01](docs/MIGRACION-ARQ01.md). `S0` no depende de transformaciones históricas; `fixMalla` y `migrarAnterior` son soporte de archivos personales antiguos, no tareas de migración pendientes.

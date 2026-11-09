@@ -15,7 +15,7 @@
 |---|---|---|
 | Cambiar información del plan o de la oferta | §0–1: entrada única, contrato, vacíos e IDs | Contrato académico, cobertura y horas, sin tocar conversores internos |
 | Cambiar algoritmos, consultas o una vista | §2–4: módulos, estados y RF aplicable | Resultados de referencia/escenario, filtros, ocho páginas y casos incompletos |
-| Corregir guardado o compatibilidad con archivos anteriores | §3, §4 RF-10/RC-03 y §6: compatibilidad efectiva | Ediciones antiguas y nuevas, sin pérdida silenciosa |
+| Corregir guardado o escenarios vigentes | §3, §4 RF-10/RC-03 y §6 | Importación y exportación actuales sin mutar S0 |
 | Analizar una anomalía o un supuesto pendiente | §4.4: **no requisitos** y clasificación de hallazgos | Reproducción y evidencia antes de convertirla en alarma |
 | Eliminar código o documentar una versión 1.0 | §5–9: verificaciones, legado, puertas de estabilidad y método | Dependencias, CI, versión y publicación; nunca borrar por nombre antiguo |
 
@@ -151,24 +151,34 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 
 Los identificadores del ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. **La estructura real adoptada está en `datos/academico.json` y sus pruebas de contrato**; el fragmento ilustrativo no autoriza crear campos académicos obligatorios ni inventar cardinalidades. Las reglas de identidad y la flexibilidad ante vacíos se mantienen según la información normalizada disponible, sin ampliar la frontera de entrada.
 
-### Contrato actual frente a compatibilidad histórica: obligaciones distintas
+### Contrato vigente sin obligaciones de versiones anteriores
 
-**Regla normativa:** la existencia de un lector de escenarios de versiones anteriores **NO amplía** el contrato `FuentesAcadémicas` ni obliga a conservar metadatos de una versión antigua. El lector vigente debe abrir una entrada sin campos históricos. La prueba `tests/compatibilidad-opcional.js` compara la proyección y los cálculos **con y sin** estos campos: el análisis actual debe permanecer idéntico.
+La única entrada académica del sitio es `FuentesAcadémicas` y la valida
+`EntradaAcademica`. No se leen formatos anteriores ni se requieren
+`introducidoEn`, `idAnterior`, `incrementosOferta` o marcas de migración.
+En 0.8.1 se retiraron 1.243 campos de ese tipo del JSON normalizado sin
+alterar posiciones curriculares, grupos, horarios ni requisitos.
 
-| Campo / marca | Dónde se encuentra | Obligatorio para la entrada actual | Uso exclusivo o secundario |
-|---|---|---|---|
-| `versionEsquema: 1` | Raíz de `FuentesAcadémicas` | **Sí**: identifica el esquema normalizado | No equivale a una marca de migración |
-| `malla[].id` y `agrupaciones[].id / posicionId` | Referencias académicas normalizadas | **Sí** cuando existe cada registro: identidad estable | También permiten relacionar cambios personales por ID |
-| `agrupaciones[].introducidoEn` | Agrupación normalizada, si la procedencia se conserva | **No** | Solo `EscenarioPersonal.migrarAnterior` la usa para reconstruir qué agrupaciones existían en snapshots `{S}` originales |
-| `agrupaciones[].componentes[].bloques[].idAnterior` | Bloques de la entrada normalizada, si existe correspondencia histórica conocida | **No** | Permite cotejar el número de bloque de un snapshot antiguo con `ref` actual. Ausente se proyecta como `null` |
-| `incrementosOferta` | Contexto transitorio del antiguo lector, cuando se conoce | **No** | La rama opcional de `fixMalla` solo interviene al recuperar `{S}` si hay metadatos de incorporación; la lectura actual no requiere este dato |
-| `mig1`–`mig4`, `incorporacionesOferta` | Estado de **un escenario personal antiguo**, no contrato | **No** | Señales internas de cambios ya aplicados en esa copia anterior; no se escriben en `S0` |
-| `version:1`, `reqCredCambios`, `reqCredAmbiguos` | Archivo **personal** `escenario-personal` | **No** | Identifican formato y modificaciones o revisiones del usuario; no se transfieren a `FuentesAcadémicas` |
-| `analizable:false` | Agrupación normalizada | **Opcional, con efecto funcional actual** | Excluye grupos informativos de los cálculos. Su ausencia equivale a analizable; **no es legado** |
+Se mantienen como necesidades **vigentes**:
+- Identidad estable de las posiciones, grupos y bloques, para relacionar el
+  contrato académico y modificaciones personales.
+- `analizable:false` para excluir información no elegible del cálculo sin
+  borrarla; horarios y valores desconocidos siguen siendo admisibles.
+- Un escenario personal de diferencias `escenario-personal/version:1`,
+  aplicable sobre futuras referencias. No se interpretan snapshots `{S}`
+  ni listas `reqCred` completas creadas durante desarrollo.
+- **Multicarrera solicitada para el futuro:** motor independiente de
+  Mecatrónica y capacidad de gestionar varios programas, sus identidades y
+  configuraciones sin inventar datos de programas aún no cargados.
+- **Resiliencia solicitada:** validar integridad técnica, permitir información
+  incompleta y prevenir riesgos sin eliminar defensas por no haber vivido
+  incidentes. Valorar su costo solo si se demuestra degradación real.
+- Normalización del SIA **externa** al sitio, junto con sus datos y pruebas
+  propios. No representa otra entrada académica ejecutable.
 
-**Límite honesto del soporte histórico:** si un archivo anterior y la referencia disponible carecen de correspondencias para ciertas identidades viejas, no existe evidencia para reconstruir todos los vínculos con precisión. Esa incertidumbre se trata **solo en la recuperación histórica**; nunca se exige completar `introducidoEn` o `idAnterior` en una nueva entrada, nunca se inventan relaciones y nunca se considera inválido el contrato actual por su ausencia. Conservar un lector no convierte sus datos auxiliares en requisitos académicos.
-
-**Separación de responsabilidades al leer código:** `EntradaAcademica` valida estructura presente y proyecta; `fromRaw` adapta el estado actual; `EscenarioPersonal.aplicar` restaura diferencias del formato personal v1; únicamente el camino `{S}` llama a `fixMalla(anterior)` y `migrarAnterior`. Los bloques técnicos que documentan el historial no son ejecutados para construir `S0`.
+La falta de un archivo de desarrollo anterior **no es un fallo** ni un
+requisito. El historial de Git proporciona trazabilidad sin obligar al
+software actual a ejecutar su antigua lógica.
 
 ### Semántica de datos ausentes
 
@@ -207,7 +217,7 @@ El sistema **consume** esas relaciones ya representadas en la entrada normalizad
 
 No es necesario crear una clase por entidad ni mantener exactamente estos nombres de clases. La regla vinculante es **una responsabilidad por componente** y dependencias dirigidas desde el contrato hacia los consumidores, nunca en sentido inverso.
 
-### Correspondencia con el programa real (corte v0.7.5)
+### Correspondencia con el programa real (revisada en 0.8.1)
 
 | Etapa | Archivo o estado ejecutado | Responsabilidad vigente y frontera |
 |---|---|---|
@@ -224,7 +234,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 
 **No confundir las capas:** `S0` = referencia construida desde el contrato; `S` = escenario con modificaciones; `R0/R` = cálculos sobre referencia/escenario; `RV0/RV` = **consultas** filtradas; `ui` = selección/zoom/navegación transitorios. Guardar `ui` o un resultado calculado como verdad académica crearía una segunda autoridad y rompería la arquitectura.
 
-**Saneamiento verificado en v0.7.6:** la prueba `tests/arranque-sin-migracion.js` reprodujo que aplicar `fixMalla(S0)` al estado vigente solo añadía marcas `mig1`–`mig4`, sin cambiar posiciones, requisitos, grupos, bloques ni cálculos. Se retiró **únicamente esa invocación**: `S0` procede ahora directamente del contrato y `fixParams(S0)`. `fixMalla(anterior)` y `EscenarioPersonal.migrarAnterior` **permanecen** para importar escenarios históricos `{S}`; no se da por terminada la revisión de su posible aislamiento futuro.
+**Estado vigente:** S0 procede directamente del contrato normalizado y la adaptación interna `fromRaw`. No existe un lector ni una segunda fuente académica de desarrollo.
 
 ### Cálculo y visualización
 
@@ -244,17 +254,17 @@ El estado académico normalizado es una **referencia**. Un estudiante puede desa
 
 **DEM-01 — demanda de preinscripción:** una encuesta agregada es una anotación de escenario personal por ID curricular, no una entrada académica institucional ni una ampliación obligatoria de `FuentesAcadémicas`. Se carga como JSON de solicitudes ya estructuradas; la conversión desde formularios queda fuera del sistema. Sus indicadores de solicitudes por agrupación usan solamente las agrupaciones explícitas del escenario, sin inferir capacidades. Los filtros solo modifican consultas y las ausencias siguen siendo valores desconocidos. Véase [DEM-01](DEM-01.md).
 
-**Comportamiento implementado:** `EscenarioPersonal` conserva **operaciones o diferencias personales** vinculadas preferentemente a identificadores estables; al cargar una versión posterior de `FuentesAcadémicas` recompone sobre `S0` las modificaciones de la persona. Las reglas de mínimos se representan mediante operaciones `reqCredCambios` **por requisito y propiedad**. Un archivo antiguo que guardó la colección completa `reqCred` puede ser ambiguo: las divergencias se presentan para decidir por requisito entre referencia vigente y valor guardado, sin inventar la intención del usuario ([REG-01](REG-01.md)).
+**Comportamiento implementado:** `EscenarioPersonal` conserva **operaciones o diferencias personales** vinculadas preferentemente a identificadores estables; al cargar una versión posterior de `FuentesAcadémicas` recompone sobre `S0` las modificaciones de la persona. Las reglas de mínimos se representan mediante operaciones `reqCredCambios` **por requisito y propiedad**. Las modificaciones de requisitos se guardan exclusivamente por ID y propiedad; nunca reemplazan una lista completa del contrato ([REG-01](REG-01.md)).
 
 **Invariantes:**
 1. La actualización del archivo académico no se atribuye a una edición personal.
 2. Un grupo que la persona eliminó deliberadamente no se restaura por accidente.
 3. Los grupos nuevos pueden incorporarse desde la referencia sin redactar una migración por cada asignatura.
-4. Los escenarios JSON antiguos tienen **compatibilidad de importación implementada y comprobada**; nunca se descartan ni reinterpretan silenciosamente.
+4. Los archivos del formato personal vigente se validan antes de sustituir S; los formatos de desarrollo anteriores no se interpretan como equivalentes.
 5. Exportar y recuperar un escenario no cambia la interpretación de los datos académicos.
 6. `Restablecer` reconstruye desde la referencia normalizada vigente.
 7. Las operaciones sobre el escenario **no son otra fuente académica de entrada**: son personalizaciones de datos ya cargados.
-8. Las revisiones pendientes de archivos históricos no se confunden con modificaciones deliberadas ni se resuelven silenciosamente.
+8. Una actualización del contrato no se considera edición personal si no existe una operación identificada.
 9. Los filtros, el tema, los acentos de carrera y el equilibrado **visual** de Libre elección no modifican los registros de `S0` o `S`.
 10. La simulación de demanda está señalada como ficticia y solo se guarda mediante acción voluntaria; los indicadores ausentes son desconocidos, nunca cero.
 11. Las comprobaciones de créditos por semestres **no certifican créditos realmente aprobados** por una persona ni habilitación oficial para inscribir una asignatura.
@@ -290,7 +300,7 @@ Esta sección define **qué debe hacer el programa y qué no puede presumir**. U
 | RF-07 | **Ocho páginas existentes** | Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos, con navegación y detalles sin pérdidas al filtrar. |
 | RF-08 | **Filtros no destructivos** | Componentes comparables desde el contrato y unidad responsable opcional en las ocho páginas. La selección no borra ni altera escenario, datos o exportación personal. |
 | RF-09 | **Edición de escenarios** | Seleccionar y modificar grupos, bloques, semestre, créditos, componente, carácter y relaciones; separar esas operaciones de `S0` y de `ui`. |
-| RF-10 | **Guardar, importar, exportar y restablecer** | Persistir diferencias personales, aplicarlas sobre la referencia vigente y permitir retorno explícito a `S0`. Importar escenarios históricos sin borrar silenciosamente ediciones. |
+| RF-10 | **Guardar, importar, exportar y restablecer** | Persistir diferencias personales del formato vigente, aplicarlas sobre S0 y permitir retorno explícito a la referencia. No exigir archivos de desarrollo anteriores. |
 | RF-11 | **Requisitos académicos configurables** | Leer relaciones y mínimos por posición/componente del contrato. La simulación por semestres no certifica materias o créditos aprobados de un estudiante real. |
 | RF-12 | **Unidad responsable opcional** | Permitir anotar departamento o facultad por posición y filtrar por ese valor; ausencia por defecto, sin inferir desde nombre del profesor. |
 | RF-13 | **Demanda sin cupos inventados** | Importar solicitudes agregadas ya estructuradas por `posicionId`, permitir vista previa simulada identificada y cálculos descriptivos solo cuando haya datos suficientes. No inferir matrículas/capacidades. |
@@ -307,10 +317,10 @@ Esta sección define **qué debe hacer el programa y qué no puede presumir**. U
 |---|---|---|
 | RC-01 | Validez estructural sin exigir completitud | Detectar JSON inválido, referencias rotas, tipos/horarios imposibles; admitir nulos, listas vacías y grupos sin horario. |
 | RC-02 | Ausencia de mutaciones invisibles | Los filtros y visualizaciones, incluidas simulaciones, no modifican `S0`, `S` ni `datos/academico.json` sin acción expresa. |
-| RC-03 | Compatibilidad y conservación | Probar escenarios actuales, anteriores y divergencias de requisitos; una referencia académica nueva no debe confundirse con edición voluntaria. |
+| RC-03 | Conservación personal | Probar escenarios vigentes y sus diferencias sobre una nueva referencia; un cambio de contrato no debe confundirse con edición voluntaria. |
 | RC-04 | Independencia académica del motor | No codificar reglas por nombres, prefijos, carrera, tamaño de semestre ni cantidades del contrato. |
 | RC-05 | Versionado verificable | Si cambian recursos productivos HTML/CSS/JS/JSON, incrementar y sincronizar versión visible, metadatos y parámetros de caché; ejecutar CI en PR. |
-| RC-06 | Estabilidad funcional antes de mantenimiento | Probar ocho vistas, edición, exportaciones, cálculos, controles y datos faltantes. Cualquier retiro de compatibilidad necesita evidencia y autorización explícita. |
+| RC-06 | Estabilidad funcional antes de mantenimiento | Probar ocho vistas, edición, exportaciones, cálculos, controles y datos incompletos. Retirar requisitos no solicitados solo por decisión expresa y con regresiones. |
 | RC-07 | Accesibilidad visual y límites del navegador | Mantener contraste, foco y texto; distinguir `jsdom` (DOM/comportamiento) de inspección visual real (geometría, zoom y navegadores). |
 | RC-08 | Arquitectura estática | Operación en GitHub Pages, sin cuentas ni servidor exigidos; importar encuesta personal o escenario no crea otra fuente académica. |
 
@@ -326,7 +336,7 @@ Esta sección define **qué debe hacer el programa y qué no puede presumir**. U
 | Una malla con posiciones genéricas L o N | Posiciones curriculares; L en plan, N puede ser adicional | Sustituirlas por asignaturas/códigos inventados o sumar créditos fuera de plan |
 | Requisitos con ambigüedad normativa | Solo se aplica la regla registrada en el contrato, distinguiendo hipótesis | Afirmar inscripción habilitada o completar un porcentaje no modelado |
 | Gráfica de demanda sin encuesta | Vista previa claramente simulada o indicador desconocido | Evidencia real de solicitudes, falta de cupos o población encuestada |
-| Archivo de fuente o prueba antigua en Git | Posible material histórico, de compatibilidad o de diagnóstico | Segunda entrada productiva solo por existir, o código prescindible sin revisión |
+| Historial recuperable desde Git | Referencia de desarrollo anterior, no obligación de ejecución | Que el sistema vigente necesite interpretar un formato antiguo por simple precaución |
 | Función no solicitada | Fuera de alcance hasta decisión expresa | Defecto pendiente u obligación implícita de incorporarla |
 
 **Clasificación para futuras revisiones:** distinguir *fallo reproducido* (contradice un requisito), *deuda confirmada* (responsabilidades mezcladas y demostrablemente costosas), *incertidumbre* (falta evidencia), *historial* (aplicó a otra versión) y *no requisito*. Ninguna categoría distinta de fallo probado autoriza por sí sola corregir datos o borrar código.
@@ -346,43 +356,46 @@ La revisión técnica debe comprobar la **fidelidad al contrato**, no exigir dat
 
 Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora final anterior a la inicial) se distinguen de **vacíos académicos legítimos**. No convertir vacíos de las fuentes en fallos de la interfaz.
 
-## 6. Código vigente y compatibilidad histórica — ARQ-01 cerrada en 0.8.0
+## 6. Inventario funcional actual y retiro del legado (0.8.1)
 
-**El nombre antiguo de un archivo no es prueba de desuso.** La clasificación se hace por dependencia observada: carga real en `index.html/js/iniciar.js`, invocación durante el arranque, dependencias de pruebas y necesidad de leer escenarios existentes.
-
-| Conjunto | Situación en v0.8.0 | Criterio de conservación |
+| Componente | Función vigente | Límite |
 |---|---|---|
-| `datos/academico.json` | Única entrada académica cargada por la página | No sustituir ni regenerar automáticamente a partir de fuentes crudas desde el sistema |
-| `js/modelo.js`, `js/entrada.js`, `js/escenarios.js`, `js/analisis.js`, `js/app.js`, `js/vistas.js`, `js/demanda.js` | Ruta **activa** de ejecución | Conservar y probar responsabilidades antes de cualquier refactorización |
-| `js/tema.js`, `js/identidad.js`, `css/*.css` | Presentación **activa** | Cambios cromáticos exclusivamente visuales, sin tocar contrato ni resultados |
-| `fromRaw` y proyección posicional de `EntradaAcademica` | **Adaptador funcional vigente** del contrato académico único | Conservar como parte de la construcción de `S0`, sin considerarlo un proceso de migración pendiente; `RAW` global no se usa en producción |
-| `fixMalla`, `fixParams` y `EscenarioPersonal.migrarAnterior` | El arranque normal utiliza `fixParams(S0)`; el lector histórico `fixMalla(anterior)` y `migrarAnterior` **solo recuperan archivos personales anteriores** | Compatibilidad soportada, **no deuda pendiente de migración**. Conservar archivos `{S}` y escenarios `version:1` |
-| `pruebas/historico/js/{datos,catalogo,oferta-fuente,fuentes}.js` | Material **legado archivado fuera de `js/` desde 0.7.7**; consumido solo por pruebas históricas separadas | Mantener como evidencia, no conectarlo al arranque y no atribuirle autoridad académica |
-| `data/`, `scripts/`, `pruebas/` | Fuentes normalizables y herramientas **externas o históricas** dentro del repositorio | No incorporar sus conversores al sitio; distinguir utilidades de preparación, fixtures y artefactos generados |
-| `tests/` y `.github/workflows/verificacion-arq01.yml` | Pruebas actuales y tres pruebas archivadas que consumen `RAW` histórico **clasificadas y verificadas en CI** | Ejecutar `npm test` y `npm run test:historico` por separado; el workflow no incluye ninguna rama de migración activa |
+| `datos/academico.json`, `EntradaAcademica`, `fromRaw` | Entrada normalizada única y adaptación interna | No abre ni convierte fuentes originales |
+| `EscenarioPersonal` | Deltas del formato `escenario-personal/version:1`, por ID; también IDs de elementos nuevos creados por la persona | No lee snapshots `{S}` ni listas completas de requisitos de desarrollo |
+| `js/modelo.js`, `js/analisis.js`, `js/demanda.js` | Modelo, interferencias y estadística | No inventar cupos, créditos, clases ni riesgos |
+| `js/app.js`, `js/vistas.js`, temas e identidad | Ocho vistas, filtros, edición y presentación | Preservar operaciones y preparación multicarrera |
+| `scripts/normalizar_oferta.py`, `data/`, `pruebas/test_normalizador.py` | Preparación externa del SIA y sus pruebas | Nunca cargar como fuente académica paralela |
+| `tests/`, GitHub Actions | Regresión del contrato, escenarios vigentes, vistas y normalizador | No exigir equivalencia con una aplicación que ya no se utiliza |
 
-**Cierre completo de ARQ-01 en 0.8.0:** se corrigieron README, EST-01, CHANGELOG y DEC-01; se separaron y ejecutaron las pruebas históricas; 0.7.6 retiró `fixMalla(S0)` tras demostrar equivalencia; 0.7.7 archivó las fuentes anteriores fuera del directorio productivo; 0.7.8 corrigió la exportación de revisiones pendientes; 0.8.0 retiró el disparador CI de la rama de migración y verificó las dos baterías. **La compatibilidad `{S}` se mantiene por diseño. No quedan fases de migración académica abiertas.**
+**Retiro expresamente aprobado:** al confirmarse que no existen usuarios
+externos ni archivos personales antiguos que recuperar, se eliminaron
+`fixMalla`, `migrarAnterior`, las marcas `mig1`–`mig4`,
+`reqCredAmbiguos`, metadatos exclusivos del pasado y las pruebas y
+herramientas que solo sostenían aquella aplicación. Las identidades del
+contrato **actual** y sus ediciones personales permanecen.
 
-**Corrección verificada en v0.7.8:** una prueba de exportación/importación reprodujo que `save()` conservaba `pendientesRequisitos` y la descarga omitía `reqCredAmbiguos`. La acción `export` ahora usa el **mismo** `EscenarioPersonal.empaquetar(S0,S,pendientesRequisitos)` que el guardado local. Las dudas sobre requisitos anteriores sobreviven también al traslado del archivo; sin crear excepciones por asignatura ni cambiar el formato v1.
-
-**Acta de cierre:** [MIG-ARQ01](MIGRACION-ARQ01.md) registra la transición original y su cierre formal 0.8.0. La única entrada académica, el soporte de archivos personales antiguos y las dos suites de verificación tienen propietarios definidos. No corresponde volver a clasificar como «deuda de migración» la simple existencia de un adaptador o de un lector histórico.
+**La protección de información incompleta y la preparación multicarrera son
+requisitos confirmados, NO deudas a eliminar.** Los controles defensivos
+deben documentar qué riesgo reducen; su eliminación requeriría una
+degradación concreta y una decisión nueva.
 
 ### Puertas para declarar una versión estable 1.0.0
 
-1. **Coherencia documental:** ARQ-01, README, decisiones, estado y registro de versiones describen correctamente qué está vigente y qué es historia.
-2. **Una sola ejecución académica:** arranque trazable desde `datos/academico.json`; ninguna importación productiva adicional.
-3. **Responsabilidades justificadas:** compatibilidad y adaptadores conservados o reducidos solo tras demostrar su uso/no uso; ningún retiro a ciegas.
-4. **Conservación personal:** importar/exportar/recuperar escenarios actuales e históricos y preservar ajustes deliberados sin reintroducir reglas superadas.
-5. **Regresiones completas:** pruebas de contrato, datos parciales, oferta, horarios, requisitos, filtros, Demanda y las ocho vistas; verificar también efectos visuales en navegador real.
-6. **Publicación comprobada:** versión pública sincronizada, revisión de PR, CI satisfactoria y despliegue de Pages confirmado separadamente.
+1. Coherencia entre documentos, código y pruebas de una sola entrada y
+   del único formato personal vigente.
+2. Pruebas de guardado, importación, exportación y aplicación de deltas
+   sobre una referencia normalizada futura, sin exigir formatos abandonados.
+3. Ocho vistas, datos incompletos, controles defensivos y preparación
+   multicarrera preservados.
+4. Publicación y revisión visual reales, diferenciadas del CI automatizado.
 
-**ARQ-01 ya no tiene deudas de migración pendientes.** El sello general 1.0.0 conserva sus verificaciones propias de calidad y publicación, independientes del proceso histórico ya cerrado.
+**Retirar requisitos sin necesidad no equivale a declarar la versión 1.0.0.**
 
 ## 7. Antecedentes de ARQ-01 (migración finalizada; solo historial)
 
-En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S}` completos. La migración ARQ-01 (desde v0.5.0) estableció `datos/academico.json` como única entrada; posteriormente v0.5.3 dejó de exponer `window.RAW` y separó motor y vistas. Esta cronología explica por qué aún existen adaptadores, identidades de bloques anteriores, archivos de pruebas antiguos y marcas de migración.
+En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S}` completos. La migración ARQ-01 (desde v0.5.0) estableció `datos/academico.json` como única entrada; posteriormente v0.5.3 dejó de exponer `window.RAW` y separó motor y vistas. Esta cronología explica la procedencia de la arquitectura actual; los ejecutables, identificadores y pruebas exclusivos de aquel formato se retiraron en 0.8.1.
 
-**No usar una descripción histórica como instrucción vigente.** Para conocer la sucesión detallada de PR, cambios y decisiones, consultar [MIG-ARQ01](MIGRACION-ARQ01.md) y el historial de Git; para un comportamiento actual aplicar las secciones 0–6 de este documento y contrastarlo con el código. Los identificadores históricos forman parte del soporte de archivos personales anteriores, no de un plan pendiente de migración.
+**No usar una descripción histórica como instrucción vigente.** Para conocer la sucesión detallada de PR, cambios y decisiones, consultar [MIG-ARQ01](MIGRACION-ARQ01.md) y el historial de Git; para un comportamiento actual aplicar las secciones 0–6 de este documento y contrastarlo con el código. Las referencias originales pueden consultarse en Git; no son campos exigibles al sistema vigente.
 
 ## 8. Cambios de alcance expresamente aprobados
 
@@ -407,17 +420,16 @@ reconstruir cada decisión técnica sin atribuir requisitos falsos al sistema.
 2. **Código legible por unidades funcionales.** Cada módulo declara entradas,
    salidas, fuente de autoridad y límites; cada método con efectos importantes
    explica cuándo se llama y qué no modifica. Las ramas complejas (por ejemplo,
-   `mig1`–`mig4`, identidad de bloques, recuperación `{S}`, estadísticas
-   con datos incompletos) llevan comentarios próximos a la decisión. Evitar
+   identidad de bloques, persistencia por deltas y estadísticas con datos
+   incompletos) llevan comentarios próximos a la decisión. Evitar
    comentar literalmente instrucciones evidentes: el exceso genera
    contradicciones y dificulta la revisión.
 3. **Concordancia verificable.** Cada garantía transversal de los documentos
-   debe tener una prueba o un caso observacional concreto: entrada única
-   (`tests/contrato-arq01.js`), independencia de metadatos antiguos
-   (`tests/compatibilidad-opcional.js`), referencia sin `fixMalla(S0)`
-   (`tests/arranque-sin-migracion.js`), recuperación de archivos anteriores
-   (`tests/escenarios-arq01.js`) y conservación de revisión al exportar
-   (`tests/exportacion-ambiguos.js`). Antes de cambiar un comentario, verificar
+   debe tener una prueba o caso observacional concreto: entrada única
+   (`tests/contrato-arq01.js`), retiro de formatos antiguos
+   (`tests/solo-formatos-vigentes.js`), cambios personales vigentes
+   (`tests/escenarios-arq01.js`) y exportación actual
+   (`tests/exportacion-escenario.js`). Antes de cambiar un comentario, verificar
    que describe lo que el código hace; antes de cambiar código, actualizar
    los límites y pruebas afectados.
 
@@ -425,9 +437,9 @@ reconstruir cada decisión técnica sin atribuir requisitos falsos al sistema.
 `js/analisis.js#fromRaw` construye `S0` → `js/escenarios.js` reconstruye
 modificaciones personales → `js/app.js` coordina la sesión → `js/modelo.js`
 y `js/analisis.js` calculan → `js/vistas.js` y `js/demanda.js` representan.
-`js/tema.js` y `js/identidad.js` solo determinan apariencia. El lector
-histórico `{S}` se encuentra **exclusivamente** en `recuperarEscenarioGuardado`,
-`fixMalla` y `EscenarioPersonal.migrarAnterior`. No ampliarlo por analogía.
+`js/tema.js` y `js/identidad.js` solo determinan apariencia. Los archivos
+personales del formato vigente se recuperan mediante `EscenarioPersonal`; la
+aplicación no admite documentos de desarrollo anteriores.
 
 ## 9. Guía obligatoria para próximas interacciones
 
@@ -441,6 +453,6 @@ Antes de modificar la aplicación o sus datos:
 6. No generar alarmas para compensar vacíos legítimos de información.
 7. Reproducir primero el comportamiento, delimitar el cambio mínimo, probar cobertura/resultados/compatibilidad/ausencia de rutas paralelas; si cambian recursos productivos, **incrementar y verificar la versión pública**. Confirmar CI y Pages por separado.
 8. Si una necesidad exige alterar un requisito o principio, **justificar primero la actualización de ARQ-01 y la decisión correspondiente**. No establecer silenciosamente una excepción en el código.
-9. Antes de eliminar un archivo, script, prueba o lector de compatibilidad, revisar dependencias productivas e históricas de escenarios exportados; clasificar el hallazgo y conservar una prueba de regresión. Actualizar documentación desfasada por etapas, no reescribir la historia como si nunca hubiera ocurrido.
+9. Antes de eliminar un archivo, script o prueba, revisar dependencias productivas actuales; clasificar el hallazgo y conservar una prueba de regresión. Actualizar documentación desfasada por etapas, no reescribir la historia como si nunca hubiera ocurrido.
 
 **La prioridad arquitectónica es la simplicidad: una entrada académica, un modelo común, un escenario efectivo y resultados coherentes.** No se requieren capas, validaciones ni objetivos adicionales por costumbre. Para distinguir decisiones normativas de características implementadas consultar DEC-01 y EST-01.

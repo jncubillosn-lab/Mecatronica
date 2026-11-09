@@ -1,5 +1,5 @@
 'use strict';
-// REG-01: reproducción del defecto de actualización de referencia académica.
+// REG-01: deltas de requisitos vigentes aplicados a referencias académicas cambiantes.
 // Estos ensayos NO dependen del nombre ni del código SIA de PAI.
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -19,7 +19,7 @@ const idReferencia='mecatronica:pos:proyecto-aplicado-de-ingenieria';
 const regla=estado=>estado.reqCred.find(r=>r.posicionId===idReferencia);
 const tpi=estado=>estado.reqCred.find(r=>r.posicionId==='mecatronica:pos:taller-de-proyectos-interdisciplinarios');
 assert.deepEqual(regla(vigente).componentes,['C']);
-// En el contrato anterior, PAI utilizaba B+C+L.
+// Simular que una nueva fuente normalizada cambia los componentes de PAI.
 regla(old).componentes=['B','C','L'];
 
 // A) Una modificación de semestre no debe congelar requisitos institucionales.
@@ -31,7 +31,7 @@ assert.deepEqual(regla(reconstruidoSemestre).componentes,['C']);
 assert.equal(reconstruidoSemestre.malla[0].s,soloSemestre.malla[0].s);
 
 // B) Una modificación voluntaria de OTRO requisito no debe congelar PAI.
-// Actualmente falla: se guarda un snapshot reqCred completo, no un delta.
+// Una edición de otro requisito NO debe congelar reglas no modificadas.
 const modificado=copiar(old);
 tpi(modificado).min=53;
 modificado.malla[1].s++;
@@ -53,40 +53,7 @@ const manual=copiar(old);
 tpi(manual).min=55;
 const patchManual=EscenarioPersonal.empaquetar(old,manual);
 assert.equal(tpi(EscenarioPersonal.aplicar(vigente,patchManual.cambios)).min,55);
-// D) Un formato v1 previo sí almacenaba el listado completo.
-// Como no informa su base de origen, se conserva y presenta su ambigüedad.
-const anteriorGuardado={
-  tipo:'escenario-personal',version:1,
-  cambios:{reqCred:copiar(modificado.reqCred),
-    malla:guardado.cambios.malla}
-};
-const estadoAntiguo=EscenarioPersonal.aplicar(vigente,anteriorGuardado.cambios);
-assert.deepEqual(regla(estadoAntiguo).componentes,['B','C','L'],
-  'La lectura heredada no elimina silenciosamente un posible requisito personal');
-const pendientes=EscenarioPersonal.requisitosAmbiguos(vigente,anteriorGuardado,estadoAntiguo);
-assert.equal(pendientes.length,2,'TPI y PAI requieren decisión explícita');
-assert(pendientes.some(p=>p.key==='id:'+idReferencia));
-assert(pendientes.some(p=>p.key==='id:mecatronica:pos:taller-de-proyectos-interdisciplinarios'));
-const reGuardado=EscenarioPersonal.empaquetar(vigente,estadoAntiguo,pendientes);
-assert.equal(reGuardado.cambios.reqCredAmbiguos.length,2);
-assert(!Object.hasOwn(reGuardado.cambios,'reqCred'));
-const recuperado=EscenarioPersonal.aplicar(vigente,reGuardado.cambios);
-assert.deepEqual(regla(recuperado).componentes,['B','C','L']);
-assert.equal(EscenarioPersonal.requisitosAmbiguos(vigente,reGuardado,recuperado).length,2,
-  'Guardar otros cambios no borra la necesidad de revisar reglas ambiguas');
-// Una decisión puntual de usar la referencia vigente corrige solo PAI.
-const resuelto=copiar(recuperado);
-const idx=resuelto.reqCred.findIndex(r=>r.posicionId===idReferencia);
-resuelto.reqCred[idx]=copiar(regla(vigente));
-assert.deepEqual(regla(resuelto).componentes,['C']);
-assert.equal(tpi(resuelto).min,53,'La edición diferente se mantiene');
-const pendientesRestantes=pendientes.filter(p=>p.key!=='id:'+idReferencia);
-const finalGuardado=EscenarioPersonal.empaquetar(vigente,resuelto,pendientesRestantes);
-assert.equal(EscenarioPersonal.requisitosAmbiguos(vigente,finalGuardado,
-  EscenarioPersonal.aplicar(vigente,finalGuardado.cambios)).length,1,
-  'Resolver PAI no decide por el usuario respecto a TPI');
-
-// E) Operaciones granulares de alta, baja y modificación.
+// D) Operaciones granulares de alta, baja y modificación.
 const sExtra=copiar(vigente);
 sExtra.reqCred=sExtra.reqCred.filter(r=>r.posicionId!==idReferencia);
 sExtra.reqCred.push({n:'Requisito libre del escenario',posicionId:'personal:regla:prueba',min:5,componentes:['C']});

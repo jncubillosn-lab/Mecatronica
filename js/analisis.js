@@ -4,10 +4,8 @@
  * Motor de análisis académico y adaptación posicional interna.
  * No accede a DOM, red ni almacenamiento; recibe escenarios explícitos.
  *
- * La función `fromRaw` adapta la proyección transitoria del lector al escenario
- * base. Puede reutilizarse al leer archivos personales antiguos, pero
- * no inspecciona versiones institucionales ni abre fuentes externas
- * ni constituye una segunda entrada académica.
+ * La función `fromRaw` adapta la proyección transitoria de la entrada única
+ * al escenario base. No inspecciona otras versiones ni abre fuentes externas.
  * Contrato único: datos/academico.json -> EntradaAcademica.
  */
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
@@ -19,16 +17,15 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
  * - pre: relaciones {r,t,m}; asg: nombres incorporados al escenario;
  * - grupos: {a,g,c1,c2,on,ref,analizable}; on = decisión de simulación,
  *   analizable = elegibilidad ACADÉMICA declarada en el contrato;
- * - bloques: {id,a,c,d,s,e,o,ref,idAnterior}, sin horarios inventados;
+ * - bloques: {id,a,c,d,s,e,o,ref}, sin horarios inventados;
  * - reqCred y tipos: reglas/clasificaciones del programa en el escenario.
- * `RAW` es una proyección interna recibida de EntradaAcademica, no una
- * segunda entrada ni una estructura de datos institucional editable.
+ * La proyección posicional proviene de EntradaAcademica, no es un contrato
+ * alternativo ni una estructura institucional editable.
  */
 /**
  * Construye un escenario mutable NUEVO a partir de la referencia proyectada.
  * `idPos` y `ref` identifican posiciones y bloques del contrato actual;
- * `idAnterior` es referencia histórica opcional, no requisito académico,
- * y nunca interviene para determinar interferencias actuales.
+ * no se requieren identificadores de otras versiones.
  * `analizable` NO equivale a `on`: una edición personal no activa una
  * agrupación de otra sede que el contrato declaró solo informativa.
  * @param {object} D Proyección RAW interna, no archivo académico adicional.
@@ -43,7 +40,7 @@ function fromRaw(D) {
     pre: D.pre.map(([r, t, m, rId, tId]) => ({ r, t, m: m || '', rId: rId || null, tId: tId || null })), // IDs del contrato, nombres solo para UI/legado
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2, ref, analizable]) => ({ a, g, c1, c2: c2 || '', on: true, ref: ref || null, analizable: analizable !== false })),
-    bloques: D.bl.map(([a, c, d, s, e, o, ref, idAnterior], i) => ({ id: ref ? EntradaAcademica.idNumerico(ref) : i + 1, a, c, d, s, e, o: o || '', ref: ref || null, idAnterior: idAnterior ?? null })),
+    bloques: D.bl.map(([a, c, d, s, e, o, ref], i) => ({ id: ref ? EntradaAcademica.idNumerico(ref) : i + 1, a, c, d, s, e, o: o || '', ref: ref || null })),
     reqCred: (D.reqCred || []).map(([n, min, componentes, posicionId]) => ({ n, min, componentes: [...componentes], posicionId: posicionId || null })),
     tipos: { componentes: (D.componentes || []).map(([id, nombre, enPlan]) => ({ id, nombre, enPlan })), caracteres: (D.caracteres || []).map(([id, nombre]) => ({ id, nombre })) },
   };

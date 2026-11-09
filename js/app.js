@@ -39,155 +39,29 @@ const PAGES_ORDER = [['inicio', 'Inicio'], ['inter', 'Interferencias'], ['asig',
 // S0 = referencia reconstruida desde el contrato; S = copia editable personal.
 // Mantener separadas estas identidades al importar, guardar y restablecer.
 let S0 = clone(CONTEXTO.estadoBase), S = clone(S0), restored = false, datosGuardados = null;
- // Ambigüedades reales de snapshots antiguos de requisitos: se conservan
- // hasta que la persona elige por regla, sin perder los demás cambios.
- let pendientesRequisitos = [];
 try {
   const texto = localStorage.getItem(KEY);
   if (texto) {
     const o = JSON.parse(texto);
-    if (o?.tipo === 'escenario-personal' && o.version === 1 && o.cambios) datosGuardados = o;
-    else if (o?.S && Array.isArray(o.S.bloques) && o.S.params) datosGuardados = o;
+    if (EscenarioPersonal.esFormatoVigente(o)) datosGuardados = o;
   }
 } catch (e) { /* la herramienta funciona sin almacenamiento */ }
 /**
- * Lector de compatibilidad de escenarios {S} anteriores, formato cerrado.
- * Conserva la semántica v0.4.x sin participar en la carga académica actual.
- * No usarla para editar `datos/academico.json` ni inventar datos del plan.
- * Este lector recibe exclusivamente la COPIA de un archivo personal antiguo
- * `{S}`: nunca se invoca en el arranque de `S0` ni exige nuevos campos de
- * FuentesAcadémicas. Los indicadores `mig1..mig4` pertenecen al snapshot;
- * no son versiones de esquema ni requisitos académicos actuales.
- * @param {object} s Estado completo de un escenario histórico, mutable.
- * @returns {object} Ese escenario ajustado para comparar con la referencia.
+ * El escenario personal vigente contiene diferencias sobre S0. El archivo
+ * no constituye una segunda entrada académica ni modifica la referencia.
  */
-function fixMalla(s) {
-  const base = clone(CONTEXTO.estadoBase);
-  // Catálogos y mínimos no informados en el snapshot se completan desde
-  // la referencia ACTUAL solo para interpretar el archivo antiguo. No se
-  // escriben datos nuevos en el contrato institucional.
-  if (!s.tipos) s.tipos = clone(base.tipos);
-  else for (const tipo of ['componentes', 'caracteres']) {
-    if (!Array.isArray(s.tipos[tipo])) s.tipos[tipo] = [];
-    base.tipos[tipo].forEach(item => {
-      const actual = s.tipos[tipo].find(x => x.id === item.id);
-      if (!actual) s.tipos[tipo].push({ ...item });
-      else if (tipo === 'componentes' && actual.enPlan == null) actual.enPlan = item.enPlan;
-    });
-  }
-  if (!Array.isArray(s.reqCred)) s.reqCred = clone(base.reqCred);
-  else {
-    s.reqCred = s.reqCred.map(r => {
-      if (Array.isArray(r.componentes)) return r;
-      const baseRule = base.reqCred.find(x => x.n === r.n);
-      return { n: r.n, min: r.min, componentes: clone(baseRule ? baseRule.componentes : []) };
-    });
-    base.reqCred.forEach(r => { if (!s.reqCred.some(x => x.n === r.n)) s.reqCred.push(clone(r)); });
-  }
-  // Completar las posiciones que existan en la referencia, conservando
-  // créditos, semestre, carácter y notas personales cuando estén presentes.
-  base.malla.forEach(m => { const x = s.malla.find(y => y.n === m.n); if (!x) s.malla.push({ ...m }); else { if (m.nota && !x.nota) x.nota = m.nota; if (x.cr == null) x.cr = m.cr; if (!x.comp) x.comp = m.comp; if (x.car == null) x.car = m.car; } });
-  // Correcciones históricas UNA SOLA VEZ sobre la copia antigua:
-  // mig3 retira dos posiciones L eliminadas de la referencia anterior;
-  // mig2 limita sus antiguos créditos L; mig1 retira una relación superada;
-  // mig4 reconstituye relaciones de referencia y preserva las agregadas
-  // personalmente. No son reglas para nuevos contratos ni nuevos programas.
-  if (!s.mig3) { s.mig3 = 1; s.malla = s.malla.filter(m => !['Libre elección (X-5)', 'Libre elección (X-6)'].includes(m.n)); }
-  if (!s.mig2) { s.mig2 = 1; s.malla.forEach(m => { if (/^Libre elección \(X-/.test(m.n) && m.cr > 3) m.cr = 3; }); }
-  if (!s.mig1) { s.mig1 = 1; s.pre = s.pre.filter(p => !(p.r === 'Proyecto Aplicado de Ingeniería' && p.t === 'Trabajo de Grado')); }
-  if (!s.mig4) { s.mig4 = 1; s.pre = base.pre.map(p => ({ ...p })).concat(s.pre.filter(p => p.m === 'agregado' && !base.pre.some(q => q.r === p.r && q.t === p.t))); s.malla.forEach(m => { const o = base.malla.find(y => y.n === m.n); if (o && /créditos del plan|% de los créditos/.test(m.nota || '')) m.nota = o.nota; }); }
-  // Correspondencia de clasificación conocida en el archivo anterior:
-  // solo LE -> N cuando la posición ACTUAL confirma N. No inferir carreras,
-  // componentes o asignaturas desconocidas por semejanza del nombre.
-  // Transición histórica: Inglés dejó de tener código de componente LE separado
-  // porque el catálogo institucional lo clasifica como Nivelación (E).
-  // Solo se cambia el registro antiguo cuando el nuevo plan confirma la equivalencia.
-  s.malla.forEach(m => {
-    const actual = base.malla.find(x => x.n === m.n);
-    if (m.comp === 'LE' && actual?.comp === 'N') m.comp = 'N';
-  });
-  if (Array.isArray(s.tipos?.componentes) && !s.malla.some(m => m.comp === 'LE')) {
-    s.tipos.componentes = s.tipos.componentes.filter(c => c.id !== 'LE');
-  }
-  // Rama de compatibilidad OPCIONAL con un incremento histórico concreto:
-  // si no se suministró `incrementosOferta` en el contexto, no se ejecuta.
-  // No exige `incrementosOferta`, `introducidoEn` ni `idAnterior` en la
-  // entrada académica vigente. No crear grupos por deducción.
-  // Incorporación única de los grupos nuevos de la oferta, sin restablecer
-  // grupos antiguos eliminados por el usuario ni sobrescribir horarios editados.
-  const inc = CONTEXTO.incrementosOferta;
-  if (inc && !(s.incorporacionesOferta || []).includes(inc.id)) {
-    const nuevas = new Set(inc.nuevasAsignaturas || []);
-    const extras = new Map((inc.complementarGrupos || []).map(([n, ids]) => [n, new Set(ids)]));
-    nuevas.forEach(n => { if (!s.asg.includes(n) && base.asg.includes(n)) s.asg.push(n); });
-    const porComponente = new Map();
-    base.bloques.forEach(b => {
-      const k = b.a + '\u0001' + b.c;
-      if (!porComponente.has(k)) porComponente.set(k, []);
-      porComponente.get(k).push(b);
-    });
-    let siguiente = s.bloques.reduce((id, b) => Math.max(id, b.id || 0), 0);
-    base.grupos.forEach(g => {
-      const aplicable = nuevas.has(g.a) || extras.get(g.a)?.has(g.g);
-      if (!aplicable || !s.asg.includes(g.a) || s.grupos.some(x => x.a === g.a && x.g === g.g)) return;
-      s.grupos.push({ ...g });
-      const componentes = [g.c1, g.c2].filter(Boolean);
-      componentes.forEach(c => (porComponente.get(g.a + '\u0001' + c) || [])
-        .forEach(b => s.bloques.push({ ...b, id: ++siguiente })));
-    });
-    s.incorporacionesOferta = [...(s.incorporacionesOferta || []), inc.id];
-  }
-  // No restaurar aquí requisitos que el usuario retiró deliberadamente de su escenario.
-  return s;
-}
-/**
- * Adecua exclusivamente la selección de distancias de un escenario.
- * Se ejecuta también sobre S0 para completar parámetros de UI; NO realiza
- * migraciones académicas ni modifica asignaturas, créditos o agrupaciones.
- */
-function fixParams(s) {
-  if (!Array.isArray(s.params.dists)) {
-    const d = OPCIONES.distanciasDisponibles;
-    const max = s.params.maxDist == null ? Math.max(...OPCIONES.distanciasIniciales) : s.params.maxDist;
-    s.params.dists = d.filter(x => x <= max);
-    if (!s.params.dists.length) s.params.dists = [...OPCIONES.distanciasIniciales];
-  }
-  return s;
-}
-// La referencia S0 sale completa del contrato. La compatibilidad de
-// snapshots {S} se aplica únicamente al importar un archivo antiguo.
-fixParams(S0);
-S = clone(S0);
-/**
- * Distingue el formato de diferencias personales (v1) del archivo antiguo
- * `{S}` completo. Ambos se reconstruyen sobre S0; después se validan los
- * intervalos técnicos antes de reemplazar el escenario efectivo de la UI.
- */
-/**
- * Router de importación: el formato v1 aplica deltas sobre S0; el único
- * formato antiguo soportado aquí es `{S}`, que pasa por el lector legado.
- * Importar un archivo personal nunca alimenta `EntradaAcademica` con una
- * segunda fuente institucional ni reescribe `datos/academico.json`.
- */
-function recuperarEscenarioGuardado(o) {
-  if (o.tipo === 'escenario-personal' && o.version === 1) {
-    return EscenarioPersonal.aplicar(S0, o.cambios);
-  }
-  // El historial se procesa sobre una copia privada del snapshot; S0 ya
-  // está construido y es la referencia inmutable para las diferencias.
-  const anterior = clone(o.S);
-  fixParams(anterior); fixMalla(anterior);
-  return EscenarioPersonal.migrarAnterior(S0, anterior, window.fuentesAcademicas.datos, fromRaw, EntradaAcademica);
+function recuperarEscenarioGuardado(archivo) {
+  if (!EscenarioPersonal.esFormatoVigente(archivo))
+    throw new Error('Formato de escenario personal no soportado');
+  return EscenarioPersonal.aplicar(S0, archivo.cambios);
 }
 if (datosGuardados) {
   try {
     S = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(datosGuardados), CALENDARIO);
-    pendientesRequisitos = EscenarioPersonal.requisitosAmbiguos(S0, datosGuardados, S);
     restored = true;
   } catch (e) {
-    console.error('No se pudo reconstruir el escenario anterior:', e);
+    console.error('No se pudo cargar el escenario personal:', e);
     S = clone(S0);
-    pendientesRequisitos = [];
   }
 }
 // R: resultados completos del escenario S; R0: referencia S0.
@@ -301,7 +175,7 @@ function toast(msg) {
  * No depende del servidor ni altera el archivo normalizado.
  */
 function save() {
-  try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S, pendientesRequisitos))); }
+  try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); }
   catch (e) { /* El escenario funciona sin almacenamiento. */ }
 }
 
@@ -405,22 +279,10 @@ function renderTop() {
        </div>
     </div>
   </div>
-  ${pendientesRequisitos.length?`<section class="revision-req" aria-label="Revisión de requisitos de un escenario antiguo">
-    <p><b>Revisa ${pendientesRequisitos.length} requisito${pendientesRequisitos.length===1?'':'s'} de tu escenario anterior.</b> Los valores guardados difieren de la referencia académica vigente. No se han descartado ni reemplazado automáticamente.</p>
-    <details><summary>Comparar y resolver por asignatura</summary>
-      <div class="revision-req-list">${pendientesRequisitos.map(p=>`<div class="revision-req-item">
-        <b>${esc(p.nombre)}</b>
-        <span>Guardado: ${esc(p.guardado?p.guardado.min+' cr · '+p.guardado.componentes.map(compName).join(' + '):'sin requisito')}</span>
-        <span>Referencia: ${esc(p.vigente?p.vigente.min+' cr · '+p.vigente.componentes.map(compName).join(' + '):'sin requisito')}</span>
-        <div class="row">
-          <button class="btn sm" type="button" data-act="req-vigente" data-key="${esc(p.key)}">Usar referencia vigente</button>
-          <button class="btn sm" type="button" data-act="req-conservar" data-key="${esc(p.key)}">Conservar guardado</button>
-        </div>
-      </div>`).join('')}</div>
-    </details></section>`:''}`;
+`;
 }
 
-/* Las siete vistas previas siguen en js/vistas.js; DEM-01 está en js/demanda.js. */
+/* Las ocho vistas se componen desde js/vistas.js y js/demanda.js. */
 
 /* ===== RENDER ===== */
 const PAGES = { inicio: pageInicio, inter: pageInter, asig: pageAsig, grupos: pageGrupos, hor: pageHor, heat: pageHeat, demanda: pageDemanda, malla: pageMalla };
@@ -639,23 +501,8 @@ function onAct(act, d, el, ev) {
     case 'm-cr': { if (!planActual().ajustarCreditos(ui.malla.sel, +d.dx)) return; return commit(); }
     case 'm-sem': { const m = planActual().asignatura(ui.malla.sel); if (!m) return; const o = m.s; planActual().moverSemestre(m.n, m.s + +d.dx); if (m.comp === idComponenteLibre(S.tipos)) ui.malla.libresFijas.add(m.n); return commit(`${m.n}: semestre ${o} → ${m.s}`); }
     case 'm-del': S.pre = S.pre.filter(p => !(p.r === d.r && p.t === d.t)); return commit(`Quitado: ${d.r} → ${d.t}`);
-    case 'req-vigente': case 'req-conservar': {
-      const pendiente=pendientesRequisitos.find(p=>p.key===d.key);
-      if(!pendiente)return;
-      if(act==='req-vigente'){
-        const ids=EscenarioPersonal.indicePosiciones(S0);
-        const key=r=>EscenarioPersonal.claveReq(r,ids);
-        const idx=S.reqCred.findIndex(r=>key(r)===d.key);
-        if(pendiente.vigente){
-          if(idx>=0)S.reqCred[idx]=clone(pendiente.vigente);
-          else S.reqCred.push(clone(pendiente.vigente));
-        }else if(idx>=0)S.reqCred.splice(idx,1);
-      }
-      pendientesRequisitos=pendientesRequisitos.filter(p=>p.key!==d.key);
-      return commit((act==='req-vigente'?'Referencia vigente aplicada: ':'Requisito anterior confirmado: ')+pendiente.nombre);
-    }
-    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; pendientesRequisitos = []; ui.malla.libresFijas.clear(); R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
-    case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S, pendientesRequisitos), null, 1), 'application/json');
+    case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; ui.malla.libresFijas.clear(); R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
+    case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
 }
@@ -733,11 +580,9 @@ function onChange(k, el) {
       rd.onload = () => {
         try {
           const o = JSON.parse(rd.result);
-          if (!o || !((o.tipo === 'escenario-personal' && o.version === 1 && o.cambios) ||
-            (o.S && o.S.params && Array.isArray(o.S.bloques) && Array.isArray(o.S.grupos)))) throw new Error('formato');
+          if (!EscenarioPersonal.esFormatoVigente(o)) throw new Error('formato');
           const recuperado = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(o), CALENDARIO);
-          const pendientes=EscenarioPersonal.requisitosAmbiguos(S0,o,recuperado);
-          S = recuperado; pendientesRequisitos = pendientes; ui.drawer = null; commit('Escenario cargado.');
+          S = recuperado; ui.drawer = null; commit('Escenario cargado.');
         } catch (e) { toast('Ese archivo no es un escenario válido.'); }
       };
       rd.readAsText(file); el.value = ''; return;

@@ -25,8 +25,8 @@ jobs:
         run: npm ci
       - name: Contrato, escenarios, cálculo e integración
         run: npm test
-      - name: Verificar compatibilidad con formatos anteriores (archivo histórico)
-        run: npm run test:historico
+      - name: Probar herramienta externa de normalización del SIA
+        run: python3 -m unittest pruebas/test_normalizador.py -v
       - name: Exigir nueva versión para cambios del sitio
         if: github.event_name == 'pull_request'
         run: node tests/versionado.js --compare-main

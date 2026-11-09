@@ -1,50 +1,28 @@
 'use strict';
 /**
- * Control editorial de tres niveles: documentos normativos, comentarios
- * técnicos y comportamiento protegido por regresiones.
- * No interpreta Markdown como una segunda autoridad académica.
+ * Regresión de los tres niveles documentales del sistema vigente:
+ * ARQ-01 define el alcance, los módulos delimitan responsabilidades y
+ * las pruebas verifican la única entrada y los escenarios actuales.
  */
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const path=require('node:path');
-const raiz=path.join(__dirname,'..');
-const leer=p=>fs.readFileSync(path.join(raiz,p),'utf8');
-
-const docs=[
- 'docs/ARQUITECTURA.md','docs/ESTADO-Y-PUBLICACION.md',
- 'docs/MIGRACION-ARQ01.md','docs/REG-01.md','AGENTS.md','README.md'
-];
-for(const archivo of docs){
- const s=leer(archivo);
- assert(/ARQ-01/.test(s),archivo+': falta el vínculo arquitectónico');
- assert(/compatib/i.test(s),archivo+': falta distinguir compatibilidad');
- assert(/(?:cerrad|finalizad|terminad|cierre)/i.test(s),
-   archivo+': no consta el cierre de la migración');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.join(__dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const arq=read('docs/ARQUITECTURA.md');
+const agentes=read('AGENTS.md');
+const readme=read('README.md');
+assert(arq.includes('FuentesAcadémicas')&&arq.includes('datos/academico.json'));
+assert(arq.includes('multicarrera')||arq.includes('múltiples programas'));
+assert(/datos incompletos|información incompleta/i.test(arq));
+assert(agentes.includes('ARQ-01'));
+assert(readme.includes('ocho')||readme.includes('Ocho'));
+assert(arq.includes('formatos personales actuales')||arq.includes('formato personal vigente'));
+const entrada=read('js/entrada.js'),esc=read('js/escenarios.js'),app=read('js/app.js');
+assert(entrada.includes('ÚNICA entrada académica normalizada'));
+assert(esc.includes('esFormatoVigente'));
+assert(app.includes('esFormatoVigente'));
+for(const code of [entrada,read('js/analisis.js'),esc,app,read('js/iniciar.js')]){
+  assert(!code.includes('fixMalla('));
+  assert(!code.includes('migrarAnterior('));
 }
-for(const archivo of ['docs/ARQUITECTURA.md','docs/MIGRACION-ARQ01.md',
-                       'docs/REG-01.md','README.md']){
- const s=leer(archivo);
- assert(s.includes('introducidoEn')&&s.includes('idAnterior'),
-   archivo+': faltan pistas históricas opcionales');
- assert(/opcional/i.test(s),archivo+': esas pistas no deben volverse requisitos');
-}
-const entradas=leer('js/entrada.js'),modelo=leer('js/analisis.js');
-const escenarios=leer('js/escenarios.js'),app=leer('js/app.js');
-assert(entradas.includes('OPCIONAL')&&entradas.includes('idAnterior ?? null'));
-assert(escenarios.includes('OPCIONALES')&&
-       escenarios.includes('migrarAnterior(baseVigente'));
-assert(app.includes('fixMalla(anterior);')&&!app.includes('fixMalla(S0);'));
-assert(modelo.includes('referencia histórica opcional'));
-assert(!leer('docs/ESTADO-Y-PUBLICACION.md').includes('Transiciones aún bajo evaluación'));
-assert(!leer('js/vistas.js').includes('Presentación de las siete secciones'));
-const modulos=[
- 'js/iniciar.js','js/entrada.js','js/analisis.js','js/modelo.js',
- 'js/escenarios.js','js/app.js','js/vistas.js','js/demanda.js',
- 'js/identidad.js','js/tema.js'
-];
-for(const archivo of modulos){
- const comienzo=leer(archivo).split('\n').slice(0,15).join('\n');
- assert(comienzo.includes('/**'),
-   archivo+': falta descripción introductoria de responsabilidad y límites');
-}
-console.log('OK: guías, comentarios y contrato opcional mantienen una frontera coherente.');
+assert(read('tests/solo-formatos-vigentes.js').includes('esFormatoVigente'));
+console.log('OK: guías y código describen la arquitectura vigente y sus pruebas.');
