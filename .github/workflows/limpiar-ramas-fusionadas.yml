@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Obtener código vigente
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Verificar política de limpieza
         run: node tests/ramas-fusionadas.js
       - name: Retirar solo ramas de PR fusionadas y sin modificaciones posteriores
