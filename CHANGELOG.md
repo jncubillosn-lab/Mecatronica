@@ -2,6 +2,13 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 0.8.2 — Certificar la versión efectivamente publicada
+
+- `package.json` queda como referencia única de versión pública; `tests/versionado.js` comprueba metadato, pie, lockfile, recursos y rutas dinámicas.
+- Un verificador HTTP compara la página principal y sus JS, CSS y JSON contra los bytes locales, incluyendo SHA-256, y rechaza HTML o módulos desfasados.
+- Un workflow independiente de GitHub Actions comprueba la publicación tras cada incorporación a `main`, reintentando por la latencia del despliegue. El resultado y su evidencia se muestran por ejecución. No se confunde build de Pages con contenido publicado ni con pestañas viejas en caché.
+- Se añaden regresiones negativas para página vieja, JS desactualizado y recursos faltantes, sin cambiar los datos académicos ni el motor.
+
 ## 0.8.1 — Eliminar compatibilidad sin necesidad demostrada
 
 - **[PR #35](https://github.com/jncubillosn-lab/Mecatronica/pull/35)**: decisión expresa tras confirmar que no existen usuarios ni archivos de versiones anteriores que recuperar.

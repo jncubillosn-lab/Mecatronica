@@ -18,6 +18,11 @@ function extraerVersion(texto) {
 }
 
 const version = extraerVersion(html);
+const paquete = JSON.parse(fs.readFileSync(path.join(raiz, 'package.json'), 'utf8'));
+const bloqueo = JSON.parse(fs.readFileSync(path.join(raiz, 'package-lock.json'), 'utf8'));
+assert.equal(paquete.version, version, 'package.json y HTML deben declarar la misma versión');
+assert.equal(bloqueo.version, version, 'El lockfile no coincide con la versión del sitio');
+assert.equal(bloqueo.packages[''].version, version, 'La raíz del lockfile no coincide');
 const visibles = [...html.matchAll(/<span class="pie-version"[^>]*>Versión (\d+\.\d+\.\d+)\b/g)];
 assert.equal(visibles.length, 1, 'Debe existir un único indicador de versión en el pie');
 assert.equal(visibles[0][1], version, 'La versión visible no coincide con la del HTML');
@@ -28,7 +33,16 @@ assert(assets.length >= 6, 'Se esperaba encontrar los recursos JavaScript y CSS 
 for (const url of assets) {
   assert.equal(url.split('?v=')[1], version,
     'Recurso sin versión de caché correcta: ' + url);
+  assert(fs.existsSync(path.join(raiz, url.split('?')[0])),
+    'Recurso versionado inexistente: ' + url);
 }
+// Un módulo JS olvidado en el HTML o en el arranque es una publicación incompleta.
+const jsReferenciados = new Set([...assets.map(u => u.split('?')[0]), 'js/app.js']
+  .filter(u => u.startsWith('js/')));
+const jsProductivos = fs.readdirSync(path.join(raiz, 'js'))
+  .filter(n => n.endsWith('.js')).map(n => 'js/' + n);
+assert.deepEqual([...jsReferenciados].sort(), jsProductivos.sort(),
+  'Los módulos JS del sitio no corresponden a los realmente versionados');
 
 for (const recurso of ['datos/academico.json', 'js/app.js']) {
   const escapado = recurso.replace(/[.*+?^$()|[\]\\]/g, '\\$&');

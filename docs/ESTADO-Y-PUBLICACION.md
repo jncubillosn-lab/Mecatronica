@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 0.8.1, durante la transición de 0.8 hacia 0.9.  
+**Corte de evaluación:** 0.8.2, durante la transición de 0.8 hacia 0.9.  
 **Estado:** retirada de compatibilidad sin usuarios; la versión general 1.0.0
 no ha sido declarada. Confirmar CI, fusión y Pages por separado.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
@@ -21,7 +21,7 @@ calcula resultados completos y los filtros producen consultas `RV/RV0`.
 La presentación y sus filtros no constituyen fuentes académicas.
 
 La versión del esquema académico (`versionEsquema:1`), la del formato
-personal (`version:1`) y la de la página (`0.8.1` en esta intervención)
+personal (`version:1`) y la de la página (`0.8.2` en esta intervención)
 son independientes.
 
 ## 2. Retirada comprobada de responsabilidades sin usuarios
@@ -71,9 +71,18 @@ diferencias y exportación.
 
 Cuando cambie un recurso productivo, actualizar y sincronizar los
 metadatos, el pie y `?v=` de `index.html` y `js/iniciar.js`.
-Con CI satisfactorio, revisar cambios y fusionar; **después** confirmar
-GitHub Pages. Una prueba con `jsdom` no sustituye la inspección visual
-real en dispositivos.
+La versión pública se declara en `package.json` y se contrasta con el
+lockfile, el metadato HTML, el pie y cada ruta versionada mediante
+`npm run version:verificar`. El comando `npm run version:publicada` contrasta
+la respuesta real de GitHub Pages (raíz, index y recursos) contra los bytes
+del repositorio; una diferencia produce salida no certificada.
+
+La PR debe superar CI antes de fusionarse. **Después de integrar en `main`**,
+el flujo `certificar-publicacion.yml` verifica la publicación real y escribe
+un resumen consultable por commit. Puede reintentarse manualmente. Un build
+exitoso de Pages no sustituye la certificación HTTP, y ésta no demuestra que
+una pestaña antigua del navegador haya recargado. La revisión visual real
+en dispositivos sigue siendo un control distinto.
 
 ## 5. Criterio para 1.0.0
 
