@@ -13,6 +13,6 @@
 1. **No se exige igualdad textual con la versión original.** Desde v0.5.0, la selección de agrupaciones elegibles se modificó deliberadamente y la interfaz incorpora una entrada normalizada. Diferencias de resultados entre poblaciones distintas **no prueban un error**. Para evaluar la equivalencia del algoritmo hay que utilizar exactamente los mismos grupos elegibles.
 2. **`compare.js` imprime diferencias, pero termina mediante `process.exit(0)` incluso cuando las encuentra.** Por ello no es una puerta de CI ni debe considerarse una prueba aprobada basándose en su código de salida.
 3. **`mutar.sh` altera datos generados en el formato heredado `js/datos.js`.** La aplicación actual no carga ese archivo; la prueba de mutación histórica no verifica por sí sola la entrada única `datos/academico.json` ni el comportamiento de producción.
-4. Las pruebas vigentes del contrato, grupos, escenarios personales, cálculo, filtros y siete vistas están bajo `tests/`. La integración con `jsdom` comprueba navegación simulada, **no una inspección visual real**.
+4. Las pruebas vigentes del contrato, grupos, escenarios personales, cálculo, filtros y las **ocho vistas actuales** están bajo `tests/`. La integración con `jsdom` comprueba navegación simulada, **no una inspección visual real**.
 
 **Principio de continuidad:** conservar pruebas históricas como evidencia de su época, sin reactivarlas como mecanismo de generación o verificación normativa del sistema actual. No crear agrupaciones, horarios ni datos de sustitución para forzar una comparación idéntica.
