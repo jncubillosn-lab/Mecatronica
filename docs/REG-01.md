@@ -40,6 +40,12 @@ Los archivos v1 antiguos guardaban `cambios.reqCred` como **lista completa**. No
 
 **No** se incorporó un esquema v2, dependencia nueva ni sistema global de resolución de conflictos. Las entradas nuevas con deltas claros no generan un aviso. Las reglas institucionales actualizadas tienen precedencia respecto a **todos los requisitos no modificados**.
 
+### Corrección de exportación posterior (0.7.8)
+
+La ruta de guardado local ya preservaba `reqCredAmbiguos` mediante `EscenarioPersonal.empaquetar(S0,S,pendientesRequisitos)`; la exportación invocaba `empaquetar(S0,S)` sin el tercer argumento. La prueba `tests/exportacion-ambiguos.js` reprodujo que el archivo resultante perdía la **necesidad de revisión**, pese a preservar los valores modificados. Se unificaron los argumentos sin alterar el modelo, el contrato, el formato v1 ni las decisiones personales.
+
+**Invariante reforzado:** toda exportación conserva tanto los cambios como su información de revisión pendiente. Cuando el usuario resuelve una discrepancia, ese identificador deja de exportarse como pendiente.
+
 ## 4. Alcance y no objetivos
 
 - No se cambia `datos/academico.json`, `js/modelo.js`, `js/analisis.js`, `js/entrada.js` ni `js/vistas.js`.
