@@ -71,6 +71,38 @@
     const pagina = String(hash || '').replace(/^#/, '');
     return paginas.some(([id]) => id === pagina) ? pagina : 'inicio';
   }
+
+  /** Contexto SOLO visual. No es FuentesAcadémicas ni oferta de cero grupos. */
+  function contextoSinDatos(id) {
+    const elegido=resolver(id);
+    const componentes=[
+      {id:'C',nombre:'Disciplinar'},
+      {id:'B',nombre:'Fundamentación'},
+      {id:'N',nombre:'Nivelación'}
+    ];
+    return {
+      sinDatos:true,
+      programa:{id:elegido,nombre:identidad.catalogo[elegido].nombre},
+      calendario:{
+        dias:[['L','Lunes','L'],['M','Martes','M'],['X','Miércoles','M'],
+          ['J','Jueves','J'],['V','Viernes','V'],['S','Sábado','S']],
+        inicio:7,fin:21
+      },
+      opciones:{
+        componentesComparables:componentes.map(c=>c.id),
+        distanciasDisponibles:[0,1,2],
+        asignaturaInicial:null
+      },
+      almacenamiento:{clave:null},
+      metadatos:{},
+      estadoBase:{
+        asg:[],malla:[],grupos:[],bloques:[],pre:[],reqCred:[],
+        params:{dists:[0,1],indirect:false},
+        tipos:{componentes,caracteres:[]},demanda:null
+      }
+    };
+  }
+
   function mostrarEstado(id, clase, detalle) {
     if (!global.document) return;
     const d = global.document;
@@ -118,7 +150,7 @@
 
   const api = Object.freeze({
     fuentes, paginas, ids, resolver, desdeBusqueda, fuentePara,
-    urlPara, claveEscenario, cabecera, paginaActual, mostrarEstado
+    urlPara, claveEscenario, cabecera, paginaActual, contextoSinDatos, mostrarEstado
   });
   global.ProgramasUniversitarios = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
