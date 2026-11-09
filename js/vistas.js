@@ -352,7 +352,46 @@ function lanes(blocks) {
  * el resaltado de cruces entre superposiciones consulta elegibilidad.
  */
 /** Horarios: cuadrícula editable desde S; el render no escribe en el escenario. */
+
+/** Un solo componente de cuadrícula semanal: se usa con bloques y sin ellos. */
+function cuadriculaSemanal(cols,hours) {
+  return '<div class="weekgrid-scroll" role="region" tabindex="0" '+
+    'aria-label="Horario semanal desplazable"><div class="weekgrid" '+
+    'style="--numero-dias:'+DAYS.length+'"><div class="dh" style="border-left:0"></div>'+
+    DAYS.map(d=>'<div class="dh"><span class="full">'+DAY_NAMES[d]+
+      '</span><span class="short">'+DAY_SHORT[d]+'</span></div>').join('')+
+    '<div class="hrs">'+hours.map(x=>'<div>'+x+'</div>').join('')+'</div>'+
+    cols+'</div></div>';
+}
+/** Misma estructura semanal con celdas vacías, sin asignaturas simuladas. */
+function pageHorSinDatos() {
+  const hours=Array.from({length:H_MAX-H_MIN},(_,i)=>H_MIN+i);
+  const cols=DAYS.map(d=>'<div class="dcol" data-d="'+d+'">'+
+    hours.map(h=>'<div class="hc" data-d="'+d+'" data-h="'+h+'"></div>').join('')+
+    '</div>').join('');
+  return '<div class="page-title"><div><h1>Horarios</h1>'+
+    '<p>Consulta la semana de las asignaturas y superpone grupos para comparar bloques. '+
+    'La cuadrícula es una referencia visual, no un horario académico confirmado.</p></div></div>'+
+    '<div class="hor">'+
+      '<aside class="card sidelist" aria-label="Asignaturas"><div class="empty-state">'+
+        'Sin asignaturas disponibles para seleccionar.</div></aside>'+
+      '<div><div class="row" style="margin-bottom:10px">'+
+        '<select disabled aria-label="Asignatura"><option>Seleccionar asignatura…</option></select>'+
+        '<select disabled aria-label="Superponer asignatura"><option>Superponer otra asignatura…</option></select>'+
+        '<button class="btn sm" disabled>Las que chocan (—)</button></div>'+
+        cuadriculaSemanal(cols,hours)+
+        '<div class="legend"><span>Los bloques aparecerán aquí al cargar horarios.</span></div></div>'+
+      '<div class="right" style="display:grid;gap:12px;align-content:start">'+
+        '<section class="card impact"><div class="lab">Impacto en la asignatura</div>'+
+          '<p class="hint">Sin información para calcular cruces.</p>'+
+          '<div class="imp-row"><span>Combinaciones que chocan</span><b>—</b></div></section>'+
+        '<section class="card impact"><div class="lab">Horario por grupo</div>'+
+          '<p class="hint">Selecciona una asignatura cuando haya datos disponibles.</p></section>'+
+      '</div></div>';
+}
+
 function pageHor() {
+  if(SIN_DATOS)return pageHorSinDatos();
   const R=RV,R0=RV0;
   if(!R.names.length)return `<div class="page-title"><div><h1>Horarios</h1><p>${S.asg.length?'Ninguna asignatura coincide con los filtros de tipología y departamento/facultad.':'No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde Grupos.'}</p></div></div>`;
   const h=ui.hor;
@@ -399,7 +438,7 @@ function pageHor() {
         <button class="btn sm" data-act="h-ov-clash" ${choques.length ? '' : 'disabled'} title="Superpone las asignaturas con las que choca">Las que chocan (${choques.length})</button></div>
       ${editorUnidad(A)}
       ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}"${atributoTipologia(n)}>${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
-      <div class="weekgrid-scroll" role="region" tabindex="0" aria-label="Horario semanal desplazable"><div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div></div>
+      ${cuadriculaSemanal(cols,hours)}
       <div class="legend" style="margin-top:8px"><span>Cada bloque lleva el nombre del grupo (o grupos) que lo usan; bloques lado a lado son grupos alternativos a la misma hora.</span>${hasOv ? '<span><i class="sw" style="background:color-mix(in srgb,var(--heat) 22%,transparent)"></i>horas donde se pisan con lo superpuesto</span>' : ''}</div>
     </div>
     <div class="right" style="display:grid;gap:12px">${impact}
