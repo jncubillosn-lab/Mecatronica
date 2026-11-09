@@ -251,7 +251,7 @@ function renderTop() {
     const tipo = new PlanCurricular(S).componente(id);
     const nombre = tipo?.nombre || id;
     const total = new PlanCurricular(S).seleccionarPorComponentes(S.asg, [id]).length;
-    return `<button type="button" class="component-toggle" data-tipologia="${esc(id)}" data-act="comp-toggle" data-comp="${esc(id)}" aria-pressed="${ui.componentes.has(id)}" title="${total} asignaturas de ${esc(nombre)} incorporadas al análisis">${esc(nombre)}</button>`;
+    return `<button type="button" class="component-toggle" data-tipologia="${esc(id)}" data-act="comp-toggle" data-comp="${esc(id)}" aria-pressed="${ui.componentes.has(id)}" ${SIN_DATOS?'disabled':''} title="${SIN_DATOS?'Filtro pendiente de datos académicos':total+' asignaturas de '+nombre+' incorporadas al análisis'}">${esc(nombre)}</button>`;
   }).join('');
   return `<a class="cta-bar" href="https://www.instagram.com/repremecatronicaun/" target="_blank" rel="noopener noreferrer"><span class="cta-in"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="cta-t"><b>Queremos tu opinión.</b> ¿Encontraste un error o tienes una idea para optimizar esta herramienta?</span><span class="cta-b">Escríbenos en Instagram · @repremecatronicaun →</span></span></a>
   <div class="top-in">
@@ -263,22 +263,22 @@ function renderTop() {
       title="Tema visual; no modifica datos ni escenarios">${!modoClaro?'☀ Modo claro':'☾ Modo oscuro'}</button>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
-        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${anteriorVisible.totalPairs} → ${resultadoVisible.totalPairs}</b> ${dlt(resultadoVisible.totalPairs, anteriorVisible.totalPairs)}` : 'Datos de referencia del programa'}</span>
+        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${anteriorVisible.totalPairs} → ${resultadoVisible.totalPairs}</b> ${dlt(resultadoVisible.totalPairs, anteriorVisible.totalPairs)}` : SIN_DATOS ? 'Datos académicos no disponibles' : 'Datos de referencia del programa'}</span>
         ${dirty ? `<button class="btn sm" data-act="drawer-cambios">Ver cambios</button><button class="btn sm danger" data-act="reset">${resetLabel()}</button>` : ''}
       </div>
-      <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
-      <button class="btn sm" data-act="import" title="Cargar un escenario guardado">Cargar</button>
+      <button class="btn sm" data-act="export" ${SIN_DATOS?'disabled':''} title="Descargar tu escenario como archivo">Guardar</button>
+      <button class="btn sm" data-act="import" ${SIN_DATOS?'disabled':''} title="Cargar un escenario guardado">Cargar</button>
       <input type="file" id="file-in" accept=".json,application/json" class="sr" tabindex="-1">
        <div class="componentes-bar" role="group" aria-label="Filtros globales de tipología y unidad académica">
          <span class="componentes-label">Tipología:</span>${componentes}
          <label class="unidad-filtro" for="filtro-unidad">Departamento / facultad
-           <select id="filtro-unidad" data-chg="unidad-filtro" aria-label="Filtrar por departamento o facultad">
+           <select id="filtro-unidad" data-chg="unidad-filtro" ${SIN_DATOS?'disabled':''} aria-label="Filtrar por departamento o facultad">
              <option value="">Todas las unidades</option>
              <option value="${SIN_UNIDAD}" ${ui.unidad===SIN_UNIDAD?'selected':''}>Sin información</option>
              ${[...new Set(S.malla.map(m=>m.unidad).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')).map(u=>`<option value="${esc(u)}" ${ui.unidad===u?'selected':''}>${esc(u)}</option>`).join('')}
            </select>
          </label>
-         <button class="btn sm ghost" data-act="filtro-reset" title="Mostrar todos los componentes y unidades">Todos</button>
+         <button class="btn sm ghost" data-act="filtro-reset" ${SIN_DATOS?'disabled':''} title="Mostrar todos los componentes y unidades">Todos</button>
          <datalist id="unidades-academicas">${UNIDADES_SUGERIDAS.map(u=>`<option value="${esc(u)}"></option>`).join('')}</datalist>
        </div>
     </div>
