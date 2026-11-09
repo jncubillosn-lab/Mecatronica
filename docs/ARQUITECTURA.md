@@ -1,10 +1,10 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes**, contrastados con la implementación publicada v0.7.5.  
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes**, contrastados hasta la versión 0.8.0. **La migración ARQ-01 está terminada y cerrada.**  
 > **Revisión operativa:** 8 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, pero esto **no** significa que se hayan habilitado otros programas ni que sea requisito implementarlos.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
-> **Lectura de versiones:** v0.7.5 describe el corte inspeccionado, **no** una obligación de actualizar este documento ante cada parche. No se declara aquí v1.0.0 ni se da por completada la limpieza. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
+> **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. Cerrar la migración **no** declara todavía la versión general 1.0.0. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
 > **Fuentes de autoridad:** ARQ-01 fija la norma; `datos/academico.json` fija el dato académico vigente; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
 
 **Presentación multicarrera (UNI-UI-01):** el catálogo cromático de `js/identidad.js` es configuración puramente visual que resuelve el ID de un programa ya presente en `FuentesAcadémicas`. No representa una segunda fuente académica ni habilita carreras sin contrato. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
@@ -15,7 +15,7 @@
 |---|---|---|
 | Cambiar información del plan o de la oferta | §0–1: entrada única, contrato, vacíos e IDs | Contrato académico, cobertura y horas, sin tocar conversores internos |
 | Cambiar algoritmos, consultas o una vista | §2–4: módulos, estados y RF aplicable | Resultados de referencia/escenario, filtros, ocho páginas y casos incompletos |
-| Corregir guardado, importación o una migración | §3, §4 RF-10/RC-03 y §6: compatibilidad efectiva | Ediciones antiguas y nuevas, sin pérdida silenciosa |
+| Corregir guardado o compatibilidad con archivos anteriores | §3, §4 RF-10/RC-03 y §6: compatibilidad efectiva | Ediciones antiguas y nuevas, sin pérdida silenciosa |
 | Analizar una anomalía o un supuesto pendiente | §4.4: **no requisitos** y clasificación de hallazgos | Reproducción y evidencia antes de convertirla en alarma |
 | Eliminar código o documentar una versión 1.0 | §5–9: verificaciones, legado, puertas de estabilidad y método | Dependencias, CI, versión y publicación; nunca borrar por nombre antiguo |
 
@@ -231,7 +231,7 @@ El estado académico normalizado es una **referencia**. Un estudiante puede desa
 1. La actualización del archivo académico no se atribuye a una edición personal.
 2. Un grupo que la persona eliminó deliberadamente no se restaura por accidente.
 3. Los grupos nuevos pueden incorporarse desde la referencia sin redactar una migración por cada asignatura.
-4. Los escenarios JSON antiguos merecen una transición explícita y comprobada, no se descartan silenciosamente.
+4. Los escenarios JSON antiguos tienen **compatibilidad de importación implementada y comprobada**; nunca se descartan ni reinterpretan silenciosamente.
 5. Exportar y recuperar un escenario no cambia la interpretación de los datos académicos.
 6. `Restablecer` reconstruye desde la referencia normalizada vigente.
 7. Las operaciones sobre el escenario **no son otra fuente académica de entrada**: son personalizaciones de datos ya cargados.
@@ -327,24 +327,26 @@ La revisión técnica debe comprobar la **fidelidad al contrato**, no exigir dat
 
 Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora final anterior a la inicial) se distinguen de **vacíos académicos legítimos**. No convertir vacíos de las fuentes en fallos de la interfaz.
 
-## 6. Código vigente, compatibilidad heredada y preparación del corte 1.0
+## 6. Código vigente y compatibilidad histórica — ARQ-01 cerrada en 0.8.0
 
 **El nombre antiguo de un archivo no es prueba de desuso.** La clasificación se hace por dependencia observada: carga real en `index.html/js/iniciar.js`, invocación durante el arranque, dependencias de pruebas y necesidad de leer escenarios existentes.
 
-| Conjunto | Situación en v0.7.5 | Criterio de mantenimiento |
+| Conjunto | Situación en v0.8.0 | Criterio de conservación |
 |---|---|---|
 | `datos/academico.json` | Única entrada académica cargada por la página | No sustituir ni regenerar automáticamente a partir de fuentes crudas desde el sistema |
 | `js/modelo.js`, `js/entrada.js`, `js/escenarios.js`, `js/analisis.js`, `js/app.js`, `js/vistas.js`, `js/demanda.js` | Ruta **activa** de ejecución | Conservar y probar responsabilidades antes de cualquier refactorización |
 | `js/tema.js`, `js/identidad.js`, `css/*.css` | Presentación **activa** | Cambios cromáticos exclusivamente visuales, sin tocar contrato ni resultados |
-| `fromRaw` y proyección posicional de `EntradaAcademica` | Adaptación **utilizada en el arranque** y compatibilidad | No afirmar que `RAW` global está en producción; tampoco eliminar esta adaptación sin reemplazo validado |
-| `fixMalla`, `fixParams` y `EscenarioPersonal.migrarAnterior` | Compatibilidad/transiciones **ejecutables**; en v0.7.6 `fixMalla` solo se aplica a snapshots históricos `{S}`, **no a S0** | Conservar los formatos `{S}` y `version:1`; retirar el resto solo con pruebas |
+| `fromRaw` y proyección posicional de `EntradaAcademica` | **Adaptador funcional vigente** del contrato académico único | Conservar como parte de la construcción de `S0`, sin considerarlo un proceso de migración pendiente; `RAW` global no se usa en producción |
+| `fixMalla`, `fixParams` y `EscenarioPersonal.migrarAnterior` | El arranque normal utiliza `fixParams(S0)`; el lector histórico `fixMalla(anterior)` y `migrarAnterior` **solo recuperan archivos personales anteriores** | Compatibilidad soportada, **no deuda pendiente de migración**. Conservar archivos `{S}` y escenarios `version:1` |
 | `pruebas/historico/js/{datos,catalogo,oferta-fuente,fuentes}.js` | Material **legado archivado fuera de `js/` desde 0.7.7**; consumido solo por pruebas históricas separadas | Mantener como evidencia, no conectarlo al arranque y no atribuirle autoridad académica |
 | `data/`, `scripts/`, `pruebas/` | Fuentes normalizables y herramientas **externas o históricas** dentro del repositorio | No incorporar sus conversores al sitio; distinguir utilidades de preparación, fixtures y artefactos generados |
-| `tests/` y `.github/workflows/verificacion-arq01.yml` | Verificaciones actuales y algunas históricas (por ejemplo `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` siguen utilizando `RAW` heredado) | Conservar cobertura efectiva; migrar o clasificar pruebas antes de retirar fuentes auxiliares |
+| `tests/` y `.github/workflows/verificacion-arq01.yml` | Pruebas actuales y tres pruebas archivadas que consumen `RAW` histórico **clasificadas y verificadas en CI** | Ejecutar `npm test` y `npm run test:historico` por separado; el workflow no incluye ninguna rama de migración activa |
 
-**Evolución de la estabilización:** la fase documental corrigió README, EST-01, CHANGELOG y DEC-01; la fase de pruebas separó los ensayos `RAW` del contrato vigente; la fase 0.7.6 retiró `fixMalla(S0)` tras verificar equivalencia; la fase 0.7.7 archivó los cuatro JavaScript antiguos fuera del directorio productivo y retiró un bytecode Python generado. **La compatibilidad `{S}` sigue activa**; no se declara concluida la limpieza ni aprobada 1.0.
+**Cierre completo de ARQ-01 en 0.8.0:** se corrigieron README, EST-01, CHANGELOG y DEC-01; se separaron y ejecutaron las pruebas históricas; 0.7.6 retiró `fixMalla(S0)` tras demostrar equivalencia; 0.7.7 archivó las fuentes anteriores fuera del directorio productivo; 0.7.8 corrigió la exportación de revisiones pendientes; 0.8.0 retiró el disparador CI de la rama de migración y verificó las dos baterías. **La compatibilidad `{S}` se mantiene por diseño. No quedan fases de migración académica abiertas.**
 
 **Corrección verificada en v0.7.8:** una prueba de exportación/importación reprodujo que `save()` conservaba `pendientesRequisitos` y la descarga omitía `reqCredAmbiguos`. La acción `export` ahora usa el **mismo** `EscenarioPersonal.empaquetar(S0,S,pendientesRequisitos)` que el guardado local. Las dudas sobre requisitos anteriores sobreviven también al traslado del archivo; sin crear excepciones por asignatura ni cambiar el formato v1.
+
+**Acta de cierre:** [MIG-ARQ01](MIGRACION-ARQ01.md) registra la transición original y su cierre formal 0.8.0. La única entrada académica, el soporte de archivos personales antiguos y las dos suites de verificación tienen propietarios definidos. No corresponde volver a clasificar como «deuda de migración» la simple existencia de un adaptador o de un lector histórico.
 
 ### Puertas para declarar una versión estable 1.0.0
 
@@ -355,13 +357,13 @@ Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora fin
 5. **Regresiones completas:** pruebas de contrato, datos parciales, oferta, horarios, requisitos, filtros, Demanda y las ocho vistas; verificar también efectos visuales en navegador real.
 6. **Publicación comprobada:** versión pública sincronizada, revisión de PR, CI satisfactoria y despliegue de Pages confirmado separadamente.
 
-**Este documento no concede el sello 1.0.0.** Define cómo demostrarlo sin convertir tareas de limpieza en una modificación funcional encubierta.
+**ARQ-01 ya no tiene deudas de migración pendientes.** El sello general 1.0.0 conserva sus verificaciones propias de calidad y publicación, independientes del proceso histórico ya cerrado.
 
-## 7. Antecedentes de migración (historial, no flujo obligatorio)
+## 7. Antecedentes de ARQ-01 (migración finalizada; solo historial)
 
 En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S}` completos. La migración ARQ-01 (desde v0.5.0) estableció `datos/academico.json` como única entrada; posteriormente v0.5.3 dejó de exponer `window.RAW` y separó motor y vistas. Esta cronología explica por qué aún existen adaptadores, identidades de bloques anteriores, archivos de pruebas antiguos y marcas de migración.
 
-**No usar una descripción histórica como instrucción vigente.** Para conocer la sucesión detallada de PR, cambios y decisiones, consultar [MIG-ARQ01](MIGRACION-ARQ01.md) y el historial de Git; para un comportamiento actual aplicar las secciones 0–6 de este documento y contrastarlo con el código. Conservar identificadores históricos mientras sean necesarios para leer escenarios personales.
+**No usar una descripción histórica como instrucción vigente.** Para conocer la sucesión detallada de PR, cambios y decisiones, consultar [MIG-ARQ01](MIGRACION-ARQ01.md) y el historial de Git; para un comportamiento actual aplicar las secciones 0–6 de este documento y contrastarlo con el código. Los identificadores históricos forman parte del soporte de archivos personales anteriores, no de un plan pendiente de migración.
 
 ## 8. Cambios de alcance expresamente aprobados
 
@@ -385,6 +387,6 @@ Antes de modificar la aplicación o sus datos:
 6. No generar alarmas para compensar vacíos legítimos de información.
 7. Reproducir primero el comportamiento, delimitar el cambio mínimo, probar cobertura/resultados/compatibilidad/ausencia de rutas paralelas; si cambian recursos productivos, **incrementar y verificar la versión pública**. Confirmar CI y Pages por separado.
 8. Si una necesidad exige alterar un requisito o principio, **justificar primero la actualización de ARQ-01 y la decisión correspondiente**. No establecer silenciosamente una excepción en el código.
-9. Antes de eliminar un archivo, script, prueba o migración, revisar dependencias productivas, históricas y de escenarios exportados; clasificar el hallazgo y conservar una prueba de regresión. Actualizar documentación desfasada por etapas, no reescribir la historia como si nunca hubiera ocurrido.
+9. Antes de eliminar un archivo, script, prueba o lector de compatibilidad, revisar dependencias productivas e históricas de escenarios exportados; clasificar el hallazgo y conservar una prueba de regresión. Actualizar documentación desfasada por etapas, no reescribir la historia como si nunca hubiera ocurrido.
 
 **La prioridad arquitectónica es la simplicidad: una entrada académica, un modelo común, un escenario efectivo y resultados coherentes.** No se requieren capas, validaciones ni objetivos adicionales por costumbre. Para distinguir decisiones normativas de características implementadas consultar DEC-01 y EST-01.
