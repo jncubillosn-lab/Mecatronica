@@ -228,7 +228,79 @@ El estado académico normalizado es una **referencia**. Un estudiante puede desa
 10. La simulación de demanda está señalada como ficticia y solo se guarda mediante acción voluntaria; los indicadores ausentes son desconocidos, nunca cero.
 11. Las comprobaciones de créditos por semestres **no certifican créditos realmente aprobados** por una persona ni habilitación oficial para inscribir una asignatura.
 
-## 4. Verificaciones: antes de presentar información
+## 4. Principios y requerimientos del sistema
+
+Esta sección define **qué debe hacer el programa y qué no puede presumir**. Una ausencia solo es defecto si viola un requisito vigente o una decisión aprobada. Un comportamiento heredado no se elimina simplemente porque su nombre sea antiguo; primero debe comprobarse si protege un escenario, una prueba o una identidad persistida.
+
+### 4.1 Principios que gobiernan cualquier intervención
+
+1. **Una entrada académica, no tres fuentes:** el programa recibe solamente `FuentesAcadémicas`; la preparación, corrección y conversión de fuentes originales es externa.
+2. **Fidelidad antes que completitud:** registrar lo conocido, conservar desconocidos y vacíos válidos, no interpolar, alucinar ni completar datos institucionales.
+3. **Identidad antes que semejanza:** relacionar posiciones, cursos, agrupaciones y requisitos por IDs declarados; los nombres visibles no autorizan uniones implícitas.
+4. **Referencia antes que personalización:** distinguir datos normalizados, escenario derivado, diferencias personales, filtros de consulta y presentación.
+5. **Ausencia de evidencia no equivale a conflicto:** no inventar choques, docentes, cupos, fechas académicamente relevantes, combinaciones de teoría/laboratorio o requisitos.
+6. **Resultados explicables y proporcionados:** una medida de simulación o aproximación debe declarar sus supuestos; un valor no calculable no se convierte en cero ni alarma.
+7. **Una sola responsabilidad por capa:** no corregir un fallo de persistencia con un caso especial en una vista, ni introducir lógica de una carrera en el motor.
+8. **Conservar lo que funciona:** cualquier mantenimiento empieza con reproducción, delimitación de la causa, pruebas antes/después y un cambio aislable y reversible. Limpiar no equivale a reescribir.
+9. **Diseño sobrio y legible:** minimalismo informativo con bordes distinguibles, temas claro/oscuro, etiquetas legibles, accesibilidad y escalas de resultados independientes de la tipología académica.
+10. **Versiones y fuentes diferenciadas:** versión del contrato, del escenario personal y del sitio no son intercambiables. El historial no reemplaza el funcionamiento presente.
+11. **Sin objetivos implícitos:** no crear alertas, obligaciones, nuevas páginas, sistemas externos o características por ausencia de algo que nunca fue requerido.
+
+### 4.2 Requerimientos funcionales vigentes
+
+| ID | Requerimiento exigible | Comportamiento esperado y límite |
+|---|---|---|
+| RF-01 | **Entrada académica única** | El sitio carga `datos/academico.json` a través de `EntradaAcademica`; ninguna ruta productiva consulta `js/datos.js` ni PDF, TXT, Excel u oferta original. |
+| RF-02 | **Catálogo, plan, oferta y requisitos** | Conservar separadas asignaturas institucionales, posiciones curriculares, grupos, actividades y bloques; no obligar a que todas las colecciones tengan igual cobertura. |
+| RF-03 | **Horarios reales normalizados** | Mostrar y calcular solamente bloques informados, con días/horas configurados. Grupos vacíos de horario siguen existiendo; no se fabrican sesiones. |
+| RF-04 | **Agrupaciones de grupos explícitas** | Analizar solo alternativas declaradas y elegibles; no formar combinaciones cartesianas por número o nombre de grupo. |
+| RF-05 | **Ofertas especiales fuera del análisis** | Conservar información de otras sedes/PEAMA/PAET u otras agrupaciones con `analizable:false`; no sumarlas a choques o demanda analizable. La exclusión se recibe en datos, no se deduce por prefijo en la app. |
+| RF-06 | **Interferencias y proximidad curricular** | Comparar grupos y bloques reales, distinguir requisitos directos/indirectos y filtros de distancia; ofrecer resultados, matriz, detalle y CSV coherentes con la misma consulta. |
+| RF-07 | **Ocho páginas existentes** | Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos, con navegación y detalles sin pérdidas al filtrar. |
+| RF-08 | **Filtros no destructivos** | Componentes comparables desde el contrato y unidad responsable opcional en las ocho páginas. La selección no borra ni altera escenario, datos o exportación personal. |
+| RF-09 | **Edición de escenarios** | Seleccionar y modificar grupos, bloques, semestre, créditos, componente, carácter y relaciones; separar esas operaciones de `S0` y de `ui`. |
+| RF-10 | **Guardar, importar, exportar y restablecer** | Persistir diferencias personales, aplicarlas sobre la referencia vigente y permitir retorno explícito a `S0`. Importar escenarios históricos sin borrar silenciosamente ediciones. |
+| RF-11 | **Requisitos académicos configurables** | Leer relaciones y mínimos por posición/componente del contrato. La simulación por semestres no certifica materias o créditos aprobados de un estudiante real. |
+| RF-12 | **Unidad responsable opcional** | Permitir anotar departamento o facultad por posición y filtrar por ese valor; ausencia por defecto, sin inferir desde nombre del profesor. |
+| RF-13 | **Demanda sin cupos inventados** | Importar solicitudes agregadas ya estructuradas por `posicionId`, permitir vista previa simulada identificada y cálculos descriptivos solo cuando haya datos suficientes. No inferir matrículas/capacidades. |
+| RF-14 | **Libre elección en la malla** | Representar posiciones L con control **local** de Prerrequisitos; equilibrado exclusivamente visual, sin crear asignaturas, cambiar `S` ni demostrar requisitos oficiales. |
+| RF-15 | **Presentación adaptativa** | Interfaz legible en pantallas estrechas; desplazamiento local en mapas/gráficas. La malla normal crece con la columna semestral más larga; pantalla completa conserva desplazamiento. |
+| RF-16 | **Identidad y temas** | Oscuro predeterminado, claro optativo persistido separadamente; acentos por programa, tonos suaves por componente y contraste de bordes sin reinterpretar colores de choques y estadísticas. |
+| RF-17 | **Información pública honesta** | Identificar la herramienta como **no oficial**; no atribuir certificados, cupos, datos personales, asistencia ni decisiones administrativas a simples simulaciones. |
+
+**Precisión de plan:** en la referencia de Mecatrónica actualmente se registran TPI (`2024045`, 3 cr) con **52 créditos C**, PAI (`2017275`, 4 cr) con **65 créditos C**, y Trabajo de Grado con **69 créditos y componentes B+C+L**. Son **valores del contrato normalizado**, no requisitos universales codificados en el motor. El `70 % Prog.` mencionado en una malla de referencia **no está implementado** como regla adicional; eso no autoriza inventarla. Véase [REQ-C-01](REQ-C-01.md).
+
+### 4.3 Requisitos de calidad, seguridad de datos y mantenimiento
+
+| ID | Condición de calidad | Criterio verificable |
+|---|---|---|
+| RC-01 | Validez estructural sin exigir completitud | Detectar JSON inválido, referencias rotas, tipos/horarios imposibles; admitir nulos, listas vacías y grupos sin horario. |
+| RC-02 | Ausencia de mutaciones invisibles | Los filtros y visualizaciones, incluidas simulaciones, no modifican `S0`, `S` ni `datos/academico.json` sin acción expresa. |
+| RC-03 | Compatibilidad y conservación | Probar escenarios actuales, anteriores y divergencias de requisitos; una referencia académica nueva no debe confundirse con edición voluntaria. |
+| RC-04 | Independencia académica del motor | No codificar reglas por nombres, prefijos, carrera, tamaño de semestre ni cantidades del contrato. |
+| RC-05 | Versionado verificable | Si cambian recursos productivos HTML/CSS/JS/JSON, incrementar y sincronizar versión visible, metadatos y parámetros de caché; ejecutar CI en PR. |
+| RC-06 | Estabilidad funcional antes de mantenimiento | Probar ocho vistas, edición, exportaciones, cálculos, controles y datos faltantes. Cualquier retiro de compatibilidad necesita evidencia y autorización explícita. |
+| RC-07 | Accesibilidad visual y límites del navegador | Mantener contraste, foco y texto; distinguir `jsdom` (DOM/comportamiento) de inspección visual real (geometría, zoom y navegadores). |
+| RC-08 | Arquitectura estática | Operación en GitHub Pages, sin cuentas ni servidor exigidos; importar encuesta personal o escenario no crea otra fuente académica. |
+
+### 4.4 No requisitos y criterios para evitar falsas alarmas
+
+| Hecho observado | Interpretación permitida | **No** concluir |
+|---|---|---|
+| Asignatura sin grupo, o grupo sin horario | Registro legítimo o información incompleta | Error, choque inventado, falta de oferta institucional demostrada |
+| Cupos `0` o `null`, o ausencia de histórico | Dato conocido igual a cero / dato desconocido, según campo | Capacidad total, agotamiento real de cupos o demanda satisfecha |
+| Docente desconocido, ocasional o sin departamento | Falta de vínculo estable comprobable | Asignación automática de dependencia académica |
+| Varias actividades sin agrupación verificada | Oferta se conserva sin fabricar grupo elegible | Combinar por correlación de ID o producto cartesiano |
+| Grupos de otras sedes o especiales | Presentes para consulta, excluidos del análisis por dato explícito | Borrarlos para reducir ruido o volverlos elegibles automáticamente |
+| Una malla con posiciones genéricas L o N | Posiciones curriculares; L en plan, N puede ser adicional | Sustituirlas por asignaturas/códigos inventados o sumar créditos fuera de plan |
+| Requisitos con ambigüedad normativa | Solo se aplica la regla registrada en el contrato, distinguiendo hipótesis | Afirmar inscripción habilitada o completar un porcentaje no modelado |
+| Gráfica de demanda sin encuesta | Vista previa claramente simulada o indicador desconocido | Evidencia real de solicitudes, falta de cupos o población encuestada |
+| Archivo de fuente o prueba antigua en Git | Posible material histórico, de compatibilidad o de diagnóstico | Segunda entrada productiva solo por existir, o código prescindible sin revisión |
+| Función no solicitada | Fuera de alcance hasta decisión expresa | Defecto pendiente u obligación implícita de incorporarla |
+
+**Clasificación para futuras revisiones:** distinguir *fallo reproducido* (contradice un requisito), *deuda confirmada* (responsabilidades mezcladas y demostrablemente costosas), *incertidumbre* (falta evidencia), *historial* (aplicó a otra versión) y *no requisito*. Ninguna categoría distinta de fallo probado autoriza por sí sola corregir datos o borrar código.
+
+## 5. Verificaciones: antes de presentar información
 
 La revisión técnica debe comprobar la **fidelidad al contrato**, no exigir datos que no existen.
 
@@ -243,38 +315,43 @@ La revisión técnica debe comprobar la **fidelidad al contrato**, no exigir dat
 
 Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora final anterior a la inicial) se distinguen de **vacíos académicos legítimos**. No convertir vacíos de las fuentes en fallos de la interfaz.
 
-## 5. Migración de v0.4.3 a v0.5.0 — implementación de ARQ-01
+## 6. Código vigente, compatibilidad heredada y preparación del corte 1.0
 
-La v0.4.3 todavía utilizaba `js/datos.js` como entrada principal de ejecución, con grupos preparados manualmente, y guardaba copias completas del escenario.
+**El nombre antiguo de un archivo no es prueba de desuso.** La clasificación se hace por dependencia observada: carga real en `index.html/js/iniciar.js`, invocación durante el arranque, dependencias de pruebas y necesidad de leer escenarios existentes.
 
-**Implementado desde la fusión de la PR #8 a `main` (v0.5.0):**
-- **Entrada única:** `index.html` ya no carga `js/datos.js`, `js/catalogo.js` ni `js/oferta-fuente.js`. `js/iniciar.js` solicita exclusivamente `datos/academico.json`.
-- **Modelo/escenario:** `js/entrada.js` interpreta el contrato y genera el escenario base. El motor y la interfaz heredados continúan usando temporalmente una proyección de ese contrato llamada `RAW`; **esta proyección no es otra entrada ni lee otras fuentes**.
-- **Personalización:** `js/escenarios.js` conserva las diferencias del usuario respecto a la referencia actual y reconstruye el escenario efectivo. Puede reconocer archivos antiguos `{S}` usando las identidades históricas incluidas en la **misma entrada académica**.
-- **Análisis y vistas:** el cálculo se ejecuta sobre el escenario efectivo y los indicadores, paneles analíticos y exportaciones toman la selección de componentes. Las páginas de edición conservan los datos completos.
-- **Pruebas:** verificaciones de integridad del contrato, cobertura de agrupaciones, igualdad exacta de horarios, escenarios viejos y nuevos y siete vistas. No se inventan relaciones entre actividades incompletas.
+| Conjunto | Situación en v0.7.5 | Criterio de mantenimiento |
+|---|---|---|
+| `datos/academico.json` | Única entrada académica cargada por la página | No sustituir ni regenerar automáticamente a partir de fuentes crudas desde el sistema |
+| `js/modelo.js`, `js/entrada.js`, `js/escenarios.js`, `js/analisis.js`, `js/app.js`, `js/vistas.js`, `js/demanda.js` | Ruta **activa** de ejecución | Conservar y probar responsabilidades antes de cualquier refactorización |
+| `js/tema.js`, `js/identidad.js`, `css/*.css` | Presentación **activa** | Cambios cromáticos exclusivamente visuales, sin tocar contrato ni resultados |
+| `fromRaw` y proyección posicional de `EntradaAcademica` | Adaptación **utilizada en el arranque** y compatibilidad | No afirmar que `RAW` global está en producción; tampoco eliminar esta adaptación sin reemplazo validado |
+| `fixMalla`, `fixParams` y `EscenarioPersonal.migrarAnterior` | Compatibilidad/transiciones **ejecutables**; `fixMalla(S0)` se llama en arranque | Separar construcción normal y migración solo si se demuestra equivalencia; preservar formatos `{S}` y `version:1` |
+| `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js`, `js/fuentes.js` | Material **legado no cargado en producción**, pero usado por pruebas históricas | No tratarlo como segunda entrada; no borrarlo mientras haya pruebas o contratos de compatibilidad dependientes |
+| `data/`, `scripts/`, `pruebas/` | Fuentes normalizables y herramientas **externas o históricas** dentro del repositorio | No incorporar sus conversores al sitio; distinguir utilidades de preparación, fixtures y artefactos generados |
+| `tests/` y `.github/workflows/verificacion-arq01.yml` | Verificaciones actuales y algunas históricas (por ejemplo `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` siguen utilizando `RAW` heredado) | Conservar cobertura efectiva; migrar o clasificar pruebas antes de retirar fuentes auxiliares |
 
-Las estructuras `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js` y `js/fuentes.js` se conservan **únicamente como archivos históricos fuera de la ruta de ejecución**. No son entradas alternativas. Su conversión ya ocurrió **fuera del sistema**: no hay módulo interno para interpretar TXT, HTML, Excel o PDF.
+**Observaciones verificadas, no órdenes de cambio:** README, EST-01 y el CHANGELOG todavía contienen varios párrafos escritos para v0.5.x; ciertas decisiones anteriores en DEC-01 no muestran la actualización posterior de TPI/PAI; el registro de mig1–mig4 convive con S0. Esos textos no modifican la arquitectura vigente. Esta revisión de ARQ-01 fija el criterio para corregirlos **después**, por etapas y con evidencia.
 
-**Actualización de mantenimiento v0.5.3 (PR #13):** la interfaz **ya no recibe una variable global `RAW`**: `js/iniciar.js` entrega un contexto explícito con `estadoBase`, calendario y opciones. El lector conserva su proyección posicional **solo como adaptador transitorio local** para construir S0 y recuperar escenarios anteriores. El cálculo puro está en `js/analisis.js`; las siete vistas y paneles en `js/vistas.js`; `js/app.js` conserva la sesión y sus acciones. El contrato académico sigue siendo uno.
+**Punto de comprobación adicional:** `save()` incluye `pendientesRequisitos` al empaquetar escenarios, mientras que la acción `export` invoca `empaquetar(S0,S)` sin esa lista explícita. No dar por probada pérdida de datos personales: verificar la diferencia mediante una prueba antes de calificarla como fallo y corregirla.
 
-Los prerrequisitos y mínimos de créditos normalizados conservan los **IDs de posición** al convertirse en escenario; las claves de cambios personales dan preferencia a esos IDs y siguen aceptando nombres históricos. Los nombres continúan sirviendo de etiquetas e identificación de la interfaz heredada, por lo que **no se afirma una migración absoluta a IDs en todas las vistas**. Las relaciones técnicamente rotas ahora se rechazan y no se descartan por `flatMap`.
+### Puertas para declarar una versión estable 1.0.0
 
-**Transiciones todavía acotadas:** la proyección posicional del lector puede seguir existiendo como compatibilidad interna; no es una entrada paralela. No se han definido agrupaciones no verificadas para cursos con varias actividades; sus registros permanecen en `oferta`.
+1. **Coherencia documental:** ARQ-01, README, decisiones, estado y registro de versiones describen correctamente qué está vigente y qué es historia.
+2. **Una sola ejecución académica:** arranque trazable desde `datos/academico.json`; ninguna importación productiva adicional.
+3. **Responsabilidades justificadas:** compatibilidad y adaptadores conservados o reducidos solo tras demostrar su uso/no uso; ningún retiro a ciegas.
+4. **Conservación personal:** importar/exportar/recuperar escenarios actuales e históricos y preservar ajustes deliberados sin reintroducir reglas superadas.
+5. **Regresiones completas:** pruebas de contrato, datos parciales, oferta, horarios, requisitos, filtros, Demanda y las ocho vistas; verificar también efectos visuales en navegador real.
+6. **Publicación comprobada:** versión pública sincronizada, revisión de PR, CI satisfactoria y despliegue de Pages confirmado separadamente.
 
-**Verificación y puesta en producción:** la migración fue integrada en `main` mediante la PR #8, con pruebas CI satisfactorias. La PR #9 llevó el indicador y los recursos versionados a v0.5.1, e incorporó validación automática de versiones. La presencia de código en `main` y el resultado de CI no constituyen por sí solos una inspección pública del sitio servido por Pages; comprobar por separado según [EST-01](ESTADO-Y-PUBLICACION.md). El contrato no obliga a completar datos faltantes ni a generar alertas por su ausencia.
+**Este documento no concede el sello 1.0.0.** Define cómo demostrarlo sin convertir tareas de limpieza en una modificación funcional encubierta.
 
-### Orden invariable de implementación
+## 7. Antecedentes de migración (historial, no flujo obligatorio)
 
-1. Entrada única normalizada, producida fuera del sistema.
-2. Lector y escenario base generados desde esa entrada.
-3. Diferencias personales y compatibilidad de escenarios anteriores.
-4. Análisis, filtros y presentación coherentes.
-5. Pruebas técnicas, regresión y publicación controlada.
+En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S}` completos. La migración ARQ-01 (desde v0.5.0) estableció `datos/academico.json` como única entrada; posteriormente v0.5.3 dejó de exponer `window.RAW` y separó motor y vistas. Esta cronología explica por qué aún existen adaptadores, identidades de bloques anteriores, archivos de pruebas antiguos y marcas de migración.
 
-**Ninguna fase habilita a reintroducir una segunda entrada académica.**
+**No usar una descripción histórica como instrucción vigente.** Para conocer la sucesión detallada de PR, cambios y decisiones, consultar [MIG-ARQ01](MIGRACION-ARQ01.md) y el historial de Git; para un comportamiento actual aplicar las secciones 0–6 de este documento y contrastarlo con el código. Conservar identificadores históricos mientras sean necesarios para leer escenarios personales.
 
-## 6. Cambios de alcance expresamente aprobados
+## 8. Cambios de alcance expresamente aprobados
 
 **Este documento no establece una hoja de ruta ni autoriza funciones futuras por anticipado.** Solo cuando una necesidad sea solicitada y aprobada se examina su efecto arquitectónico. La falta de una característica no requerida no es un problema del sistema.
 
@@ -284,17 +361,18 @@ Véase [DEC-01](DECISIONES-Y-ALCANCE.md) para la regla de no atribuir objetivos 
 
 El sistema sigue siendo compatible con publicación estática (GitHub Pages). La arquitectura no exige servidor, cuentas ni servicios externos.
 
-## 7. Guía obligatoria para próximas interacciones
+## 9. Guía obligatoria para próximas interacciones
 
 Antes de modificar la aplicación o sus datos:
 
-1. Leer **`docs/ARQUITECTURA.md`**, [DEC-01](DECISIONES-Y-ALCANCE.md) y [EST-01](ESTADO-Y-PUBLICACION.md); tratar el diagrama de **una sola entrada** como referencia.
-2. Indicar qué responsabilidad/capa se cambia y qué información del contrato utiliza.
+1. Leer **este documento completo** (principios, requisitos, límites y mapa operativo) antes de consultar [DEC-01](DECISIONES-Y-ALCANCE.md) o [EST-01](ESTADO-Y-PUBLICACION.md) como historial/contexto complementario; tratar el diagrama de **una sola entrada** como referencia.
+2. Indicar el **RF/RC** al que responde la solicitud o la decisión expresa que lo habilita; señalar capa, entrada y salida afectadas. **No** llamar defecto a un dato ausente permitido o una función fuera de alcance.
 3. Comprobar si la petición puede resolverse **solo modificando el archivo académico normalizado**, sin tocar algoritmos.
 4. No proponer conversores de las tres fuentes como parte del sistema web ni reintroducir conexiones desde archivos originales al cálculo.
 5. No introducir constantes institucionales en las funciones cuando son datos del plan o de la oferta.
 6. No generar alarmas para compensar vacíos legítimos de información.
-7. Realizar pruebas de cobertura, resultados, compatibilidad de escenarios y ausencia de rutas paralelas; en una PR con cambios a recursos productivos, **incrementar y verificar la versión pública** conforme a EST-01.
-8. Si una nueva necesidad obliga a alterar esta arquitectura, **proponer y justificar primero el cambio al documento**. No establecer silenciosamente una excepción en el código.
+7. Reproducir primero el comportamiento, delimitar el cambio mínimo, probar cobertura/resultados/compatibilidad/ausencia de rutas paralelas; si cambian recursos productivos, **incrementar y verificar la versión pública**. Confirmar CI y Pages por separado.
+8. Si una necesidad exige alterar un requisito o principio, **justificar primero la actualización de ARQ-01 y la decisión correspondiente**. No establecer silenciosamente una excepción en el código.
+9. Antes de eliminar un archivo, script, prueba o migración, revisar dependencias productivas, históricas y de escenarios exportados; clasificar el hallazgo y conservar una prueba de regresión. Actualizar documentación desfasada por etapas, no reescribir la historia como si nunca hubiera ocurrido.
 
 **La prioridad arquitectónica es la simplicidad: una entrada académica, un modelo común, un escenario efectivo y resultados coherentes.** No se requieren capas, validaciones ni objetivos adicionales por costumbre. Para distinguir decisiones normativas de características implementadas consultar DEC-01 y EST-01.
