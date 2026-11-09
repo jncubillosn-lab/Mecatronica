@@ -503,28 +503,28 @@ function pageHeat() {
     const intensity = peak && count ? Math.round(14 + (count / peak) * 72) : 0;
     const subjectNames = [...cell.subjects].sort((a, b) => a.localeCompare(b, 'es'));
     const groupNames = [...cell.groups].map(k => k.split('\u0001').join(' · ')).sort((a, b) => a.localeCompare(b, 'es'));
-    const title = `${DAY_NAMES[d]} ${h}:00–${h + 1}:00\n${count} grupos · ${subjectCount} asignaturas\n${groupNames.join('; ') || 'Sin grupos programados'}\nAsignaturas: ${subjectNames.join(', ') || '—'}`;
+    const title = SIN_DATOS ? `${DAY_NAMES[d]} · cuadrícula visual, sin datos académicos` : `${DAY_NAMES[d]} ${h}:00–${h + 1}:00\n${count} grupos · ${subjectCount} asignaturas\n${groupNames.join('; ') || 'Sin grupos programados'}\nAsignaturas: ${subjectNames.join(', ') || '—'}`;
     return `<div class="hc ${count ? 'has-groups' : ''}" ${count ? `style="background:color-mix(in srgb,var(--heat) ${intensity}%,var(--surface2))"` : ''} title="${esc(title)}">${count || ''}</div>`;
   }).join('')}</div>`).join('');
-  const dayRows = dayLoad.map(x => `<div class="hm-day"><span>${DAY_SHORT[x.d]}</span><div class="bar"><i style="width:${x.n / maxDay * 100}%"></i></div><strong>${x.n}</strong></div>`).join('');
-  const topText = top ? `${DAY_NAMES[top.d]} · ${top.h}:00–${top.h + 1}:00` : 'Sin horarios seleccionados';
-  const topDetail = top ? `${top.groups.size} grupos de ${top.subjects.size} asignaturas en esa franja` : 'Selecciona asignaturas que tengan grupos y horarios.';
+  const dayRows = dayLoad.map(x => `<div class="hm-day"><span>${DAY_SHORT[x.d]}</span><div class="bar"><i style="width:${x.n / maxDay * 100}%"></i></div><strong>${SIN_DATOS?'—':x.n}</strong></div>`).join('');
+  const topText = SIN_DATOS?'Sin información académica':top ? `${DAY_NAMES[top.d]} · ${top.h}:00–${top.h + 1}:00` : 'Sin horarios seleccionados';
+  const topDetail = SIN_DATOS?'Los grupos y su concentración se mostrarán aquí cuando existan datos.':top ? `${top.groups.size} grupos de ${top.subjects.size} asignaturas en esa franja` : 'Selecciona asignaturas que tengan grupos y horarios.';
 
   return `<div class="page-title"><div><h1>Mapa de calor de horarios</h1><p>Concentra los grupos ofertados en una sola semana. Se muestran los componentes marcados arriba y puedes excluir o incorporar asignaturas individualmente.</p></div></div>
   <div class="hor">
     <aside class="card sidelist hm-sidelist" aria-label="Asignaturas incluidas en el mapa">
-      <div class="hm-tools"><div class="lab">Asignaturas <span class="faint">${selected.length}/${names.length}</span></div><div class="row"><button class="btn sm" data-act="hm-all">Todas</button><button class="btn sm" data-act="hm-none">Ninguna</button></div><span class="hint">Activa o desactiva materias para recalcular el mapa.</span></div>
+      <div class="hm-tools"><div class="lab">Asignaturas <span class="faint">${SIN_DATOS?'—':selected.length+'/'+names.length}</span></div><div class="row"><button class="btn sm" data-act="hm-all">Todas</button><button class="btn sm" data-act="hm-none">Ninguna</button></div><span class="hint">Activa o desactiva materias para recalcular el mapa.</span></div>
       ${sidebar || '<div class="hint">No hay asignaturas incorporadas al análisis.</div>'}
     </aside>
     <div class="hm-main">
-      <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Vista semanal</span><div class="hint">${selected.length} asignaturas seleccionadas · ${scheduledGroups.size} grupos activos con horario</div></div><span class="sem">${H_MIN}:00–${H_MAX}:00</span></div>
+      <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Vista semanal</span><div class="hint">${SIN_DATOS?'Sin información sobre asignaturas y grupos':selected.length+' asignaturas seleccionadas · '+scheduledGroups.size+' grupos activos con horario'}</div></div><span class="sem">${H_MIN}:00–${H_MAX}:00</span></div>
       <div class="weekgrid-scroll" role="region" tabindex="0" aria-label="Mapa de calor semanal desplazable"><div class="weekgrid hm-grid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${Array.from({ length: H_MAX - H_MIN }, (_, i) => `<div>${H_MIN + i}</div>`).join('')}</div>${columns}</div></div>
       <div class="hm-legend"><span>Grupos programados por franja de una hora:</span><span class="hm-scale"><i style="--v:14%"></i><i style="--v:32%"></i><i style="--v:50%"></i><i style="--v:68%"></i><i style="--v:86%"></i></span><span>menor → mayor concentración</span><span class="faint">El número en cada celda es la cantidad de grupos.</span></div>
     </div>
     <div class="right" style="display:grid;gap:12px;align-content:start">
       <section class="card impact"><div class="lab">Resumen de selección</div>
-        <div class="hm-kpis"><div class="hm-kpi"><span>Asignaturas incluidas</span><b class="num">${selected.length}/${names.length}</b></div><div class="hm-kpi"><span>Grupos con horario</span><b class="num">${scheduledGroups.size}</b></div><div class="hm-kpi"><span>Mayor concentración</span><b class="num">${peak}</b></div><div class="hm-kpi"><span>Franjas vacías</span><b class="num">${empty}/${flat.length}</b></div></div>
-        <div class="hint">${occupied} de ${flat.length} franjas tienen al menos un grupo (${pct(occupied / flat.length, 1)} de la semana visible).</div>
+        <div class="hm-kpis"><div class="hm-kpi"><span>Asignaturas incluidas</span><b class="num">${SIN_DATOS?'—':selected.length+'/'+names.length}</b></div><div class="hm-kpi"><span>Grupos con horario</span><b class="num">${SIN_DATOS?'—':scheduledGroups.size}</b></div><div class="hm-kpi"><span>Mayor concentración</span><b class="num">${SIN_DATOS?'—':peak}</b></div><div class="hm-kpi"><span>Franjas vacías</span><b class="num">${SIN_DATOS?'—':empty+'/'+flat.length}</b></div></div>
+        <div class="hint">${SIN_DATOS?'No hay mediciones académicas para esta carrera.':occupied+' de '+flat.length+' franjas tienen al menos un grupo ('+pct(occupied / flat.length, 1)+' de la semana visible).'}</div>
       </section>
       <section class="card impact"><div class="lab">Franja de mayor concentración</div><div class="hm-top"><b>${esc(topText)}</b><span>${esc(topDetail)}</span></div><div class="lab" style="margin-top:5px">Carga por día · grupos-hora</div>${dayRows}<div class="hint">Suma los grupos presentes en cada hora del día. No representa estudiantes matriculados ni salones ocupados.</div></section>
       <section class="card impact"><div class="lab">Cómo leer el mapa</div><div class="hint">Cada celda corresponde a una hora. Se cuenta cada grupo activo una sola vez por franja, aunque tenga más de un componente horario. Los grupos alternativos sí se cuentan por separado.</div><div class="hint">Una celda vacía indica que ninguna de las asignaturas seleccionadas tiene un grupo programado allí. La intensidad del color se escala respecto al máximo de la selección actual.</div></section>
