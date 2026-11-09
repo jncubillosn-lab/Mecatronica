@@ -51,8 +51,8 @@ try {
   }
 } catch (e) { /* la herramienta funciona sin almacenamiento */ }
 /**
- * Transición de escenarios históricos, NO conversión de fuentes académicas.
- * Conserva la semántica v0.4.x y resuelve compatibilidad de datos guardados.
+ * Lector de compatibilidad de escenarios {S} anteriores, formato cerrado.
+ * Conserva la semántica v0.4.x sin participar en la carga académica actual.
  * No usarla para editar `datos/academico.json` ni inventar datos del plan.
  */
 function fixMalla(s) {
@@ -126,12 +126,12 @@ function fixParams(s) {
   }
   return s;
 }
-// La referencia S0 sale completa del contrato: no ejecutar migraciones
-// históricas sobre ella. fixMalla se reserva para importar snapshots {S}.
+// La referencia S0 sale completa del contrato. La compatibilidad de
+// snapshots {S} se aplica únicamente al importar un archivo antiguo.
 fixParams(S0);
 S = clone(S0);
 /**
- * Distingue el formato actual de diferencias personales (v1) del antiguo
+ * Distingue el formato de diferencias personales (v1) del archivo antiguo
  * `{S}` completo. Ambos se reconstruyen sobre S0; después se validan los
  * intervalos técnicos antes de reemplazar el escenario efectivo de la UI.
  */
