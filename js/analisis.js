@@ -5,7 +5,8 @@
  * No accede a DOM, red ni almacenamiento; recibe escenarios explícitos.
  *
  * La función `fromRaw` adapta la proyección transitoria del lector al escenario
- * base, además de apoyar la compatibilidad de formatos personales antiguos. No abre fuentes externas
+ * base. Puede reutilizarse al leer archivos personales antiguos, pero
+ * no inspecciona versiones institucionales ni abre fuentes externas
  * ni constituye una segunda entrada académica.
  * Contrato único: datos/academico.json -> EntradaAcademica.
  */
@@ -25,13 +26,17 @@ function clone(o) { return JSON.parse(JSON.stringify(o)); }
  */
 /**
  * Construye un escenario mutable NUEVO a partir de la referencia proyectada.
- * `idPos`, `ref` e `idAnterior` preservan vínculos/migraciones; 
+ * `idPos` y `ref` identifican posiciones y bloques del contrato actual;
+ * `idAnterior` es referencia histórica opcional, no requisito académico,
+ * y nunca interviene para determinar interferencias actuales.
  * `analizable` NO equivale a `on`: una edición personal no activa una
  * agrupación de otra sede que el contrato declaró solo informativa.
  * @param {object} D Proyección RAW interna, no archivo académico adicional.
  * @returns {object} Escenario inicial de análisis y edición.
  */
 function fromRaw(D) {
+  // Cada arreglo posicional produce un objeto nuevo. No se modifica la
+  // fuente original ni se exige correspondencia con IDs de otro periodo.
   return {
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
     malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null, unidad: '' })),
