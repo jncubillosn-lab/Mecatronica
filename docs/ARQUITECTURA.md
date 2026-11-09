@@ -1,10 +1,10 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes**, contrastados hasta la versión 0.8.0. **La migración ARQ-01 está terminada y cerrada.**  
-> **Revisión operativa:** 8 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
-> **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, pero esto **no** significa que se hayan habilitado otros programas ni que sea requisito implementarlos.  
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el cierre 1.0.0. **La migración ARQ-01 está terminada y cerrada.**  
+> **Revisión operativa:** 9 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
+> **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la gestión de otras carreras **sí** está aprobada como etapa futura, sin afirmar que ya estén habilitadas.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
-> **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. Cerrar la migración **no** declara todavía la versión general 1.0.0. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
+> **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. La versión 1.0.0 cierra el saneamiento general; **no** convierte en funcionalidades disponibles los desarrollos multicarrera posteriores. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
 > **Fuentes de autoridad:** ARQ-01 fija la norma; `datos/academico.json` fija el dato académico vigente; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
 
 **Presentación multicarrera (UNI-UI-01):** el catálogo cromático de `js/identidad.js` es configuración puramente visual que resuelve el ID de un programa ya presente en `FuentesAcadémicas`. No representa una segunda fuente académica ni habilita carreras sin contrato. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
@@ -217,7 +217,7 @@ El sistema **consume** esas relaciones ya representadas en la entrada normalizad
 
 No es necesario crear una clase por entidad ni mantener exactamente estos nombres de clases. La regla vinculante es **una responsabilidad por componente** y dependencias dirigidas desde el contrato hacia los consumidores, nunca en sentido inverso.
 
-### Correspondencia con el programa real (revisada en 0.8.1)
+### Correspondencia con el programa real
 
 | Etapa | Archivo o estado ejecutado | Responsabilidad vigente y frontera |
 |---|---|---|
@@ -324,6 +324,27 @@ Esta sección define **qué debe hacer el programa y qué no puede presumir**. U
 | RC-07 | Accesibilidad visual y límites del navegador | Mantener contraste, foco y texto; distinguir `jsdom` (DOM/comportamiento) de inspección visual real (geometría, zoom y navegadores). |
 | RC-08 | Arquitectura estática | Operación en GitHub Pages, sin cuentas ni servidor exigidos; importar encuesta personal o escenario no crea otra fuente académica. |
 
+### Riesgos, controles y garantías reales de GitHub
+
+Estos controles responden a riesgos técnicos concretos. **No** deben
+eliminarse porque no haya sucedido todavía un incidente.
+
+| Riesgo | Control propio y verificación | Qué aporta GitHub y qué NO garantiza |
+|---|---|---|
+| Entrada académica rota, referencia inexistente o duplicada | `EntradaAcademica`, contrato único, `tests/contrato-arq01.js` | Git conserva versiones y cambios; Pages no comprueba veracidad institucional |
+| Horas técnicamente imposibles o bloques contradictorios | Validación de intervalos, escenario e IDs; pruebas de contrato y escenarios | CI detecta casos cubiertos por pruebas, no garantiza que toda oferta sea exacta |
+| Docente, grupo, crédito o horario desconocido | Valores ausentes sin inventar clases o choques; `tests/solo-formatos-vigentes.js`, `tests/vistas-arq01.js` | Ni Pages ni Actions rellenan datos académicos ausentes |
+| Importación personal inválida o duplicación de bloques | `EscenarioPersonal.validarEstado`; `tests/escenarios-arq01.js` y exportación | Sitio estático sin servidor de usuarios; GitHub no protege archivos que alguien cargue en su propio navegador |
+| Función accesible sin controlador, o ruta sin interfaz | `tests/rutas-ui.js`, integración de ocho páginas | CI corre en PR y también en `main`; no reemplaza pruebas visuales reales |
+| Página antigua o mezcla de JS/JSON en caché | `tests/versionado.js`; `certificar-publicacion.yml` compara bytes HTTP con el commit | Pages despliega; un build exitoso no prueba por sí solo lo servido ni actualiza pestañas abiertas |
+
+**Límite operativo:** el repositorio no debe considerarse protegido contra
+fusiones o pushes no autorizados por el simple hecho de tener CI. Las reglas de
+protección de `main` y los permisos de colaboradores se administran por
+separado en GitHub. El sistema no recopila identidades de visitantes y sus
+escenarios personales permanecen en el navegador o en los archivos que
+exporten voluntariamente.
+
 ### 4.4 No requisitos y criterios para evitar falsas alarmas
 
 | Hecho observado | Interpretación permitida | **No** concluir |
@@ -356,7 +377,7 @@ La revisión técnica debe comprobar la **fidelidad al contrato**, no exigir dat
 
 Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora final anterior a la inicial) se distinguen de **vacíos académicos legítimos**. No convertir vacíos de las fuentes en fallos de la interfaz.
 
-## 6. Inventario funcional actual y retiro del legado (0.8.1)
+## 6. Inventario funcional vigente y retiro del legado
 
 | Componente | Función vigente | Límite |
 |---|---|---|
@@ -379,7 +400,7 @@ requisitos confirmados, NO deudas a eliminar.** Los controles defensivos
 deben documentar qué riesgo reducen; su eliminación requeriría una
 degradación concreta y una decisión nueva.
 
-### Puertas para declarar una versión estable 1.0.0
+### Controles permanentes para la serie 1.x
 
 1. Coherencia entre documentos, código y pruebas de una sola entrada y
    del único formato personal vigente.
@@ -389,7 +410,7 @@ degradación concreta y una decisión nueva.
    multicarrera preservados.
 4. Publicación y revisión visual reales, diferenciadas del CI automatizado.
 
-**Retirar requisitos sin necesidad no equivale a declarar la versión 1.0.0.**
+**La versión 1.0.0 describe el alcance estable actual, no certifica calidad de los datos originales, ni funcionalidades multicarrera aún no construidas.** La evidencia de cada despliegue se consulta en CI y en la certificación HTTP de Pages.
 
 ## 7. Antecedentes de ARQ-01 (migración finalizada; solo historial)
 
@@ -399,7 +420,7 @@ En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S
 
 ## 8. Cambios de alcance expresamente aprobados
 
-**Este documento no establece una hoja de ruta ni autoriza funciones futuras por anticipado.** Solo cuando una necesidad sea solicitada y aprobada se examina su efecto arquitectónico. La falta de una característica no requerida no es un problema del sistema.
+**Este documento no inventa funciones futuras por anticipado.** La gestión multicarrera de D-25 está aprobada como etapa posterior, no publicada en 1.0.0. Solo cuando una necesidad sea solicitada y aprobada se examina su efecto arquitectónico. La falta de una característica no requerida no es un problema del sistema.
 
 Si una función autorizada necesita nuevos datos académicos, primero se justifica si cabe ampliar de forma compatible el contrato `FuentesAcadémicas`; de ser así, esos datos se proporcionan mediante **el mismo archivo normalizado**. Un componente no lee fuentes originales. Los datos personales o de interacción permanecen diferenciados de la referencia académica.
 

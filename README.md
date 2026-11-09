@@ -2,7 +2,7 @@
 
 Herramienta web estudiantil **no oficial** para analizar interferencias de horarios, explorar asignaturas y grupos, consultar el plan curricular y comparar escenarios personales de la Universidad Nacional de Colombia, sede Bogotá.
 
-**Versión pública vigente:** se consulta en el pie del sitio y en el metadato de [\`index.html\`](index.html), que debe coincidir con los recursos versionados. Este README no mantiene otro número independiente que pudiera quedar desactualizado; la versión 1.0 aún no se ha declarado.  
+**Versión pública vigente:** se consulta en el pie del sitio y en el metadato de [\`index.html\`](index.html), que debe coincidir con los recursos versionados. Este README no mantiene otro número independiente que pudiera quedar desactualizado; el control de versión y publicación se documenta en EST-01.  
 **Sitio:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Documento rector:** [ARQ-01 — arquitectura, requisitos, principios y límites](docs/ARQUITECTURA.md). Antes de cualquier modificación, limpieza o diagnóstico se consulta esta guía.
 
@@ -88,7 +88,7 @@ resultado es una certificación **separada** del build de Pages. Un navegador
 que mantenga abierta una pestaña anterior puede seguir mostrando el pie
 antiguo hasta recargar.
 
-GitHub Actions comprueba las pruebas de contrato, horarios, escenarios, requisitos, estadísticas, filtros, apariencia, ocho vistas e integración. La versión pública se declara conjuntamente en `index.html`, sus referencias `?v=` y `js/iniciar.js`. **Una prueba con `jsdom` no reemplaza una inspección visual real.**
+GitHub Actions ejecuta las pruebas al abrir una PR y al cambiar `main`; comprueba las pruebas de contrato, horarios, escenarios, requisitos, estadísticas, filtros, apariencia, ocho vistas e integración. La versión pública se declara conjuntamente en `index.html`, sus referencias `?v=` y `js/iniciar.js`. **Una prueba con `jsdom` no reemplaza una inspección visual real.**
 
 Los archivos, scripts y pruebas exclusivos de la antigua aplicación se retiraron en 0.8.1; su historia puede consultarse en Git. **Se conservan** `scripts/normalizar_oferta.py`, sus pruebas y los recursos de `data/` usados para preparar información del SIA fuera del sitio. No forman parte de la única entrada académica cargada por el navegador.
 
@@ -103,4 +103,4 @@ Los archivos, scripts y pruebas exclusivos de la antigua aplicación se retiraro
 - [RESP-01](docs/RESP-01.md), [TEMA-ALTURA-01](docs/TEMA-ALTURA-01.md), [TONO-01](docs/TONO-01.md), [UNI-UI-01](docs/ESTILO-UNIVERSITARIO.md): presentación y accesibilidad.
 - [AGENTS.md](AGENTS.md): procedimiento operativo de colaboradores y agentes.
 
-**ARQ-01 permanece cerrada.** En la evaluación 0.8 → 0.9 se retiró la compatibilidad anterior sin usuarios; la resiliencia frente a datos incompletos, la preparación multicarrera y los escenarios personales vigentes continúan en alcance. **La versión 1.0.0 todavía no está declarada.**
+**ARQ-01 permanece cerrada.** En la evaluación 0.8 → 0.9 se retiró la compatibilidad anterior sin usuarios; la resiliencia frente a datos incompletos, la preparación multicarrera y los escenarios personales vigentes continúan en alcance. **La 1.0.0 estabiliza el alcance actual de Mecatrónica; la gestión multicarrera aprobada permanece como trabajo futuro.**

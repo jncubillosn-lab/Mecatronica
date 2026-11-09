@@ -1,8 +1,7 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 0.8.2, durante la transición de 0.8 hacia 0.9.  
-**Estado:** retirada de compatibilidad sin usuarios; la versión general 1.0.0
-no ha sido declarada. Confirmar CI, fusión y Pages por separado.  
+**Corte de evaluación:** 1.0.0, primera versión funcional estable de Mecatrónica.  
+**Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. La gestión de varios programas sigue planificada.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Historia anterior:** [CHANGELOG](../CHANGELOG.md) y
@@ -21,7 +20,7 @@ calcula resultados completos y los filtros producen consultas `RV/RV0`.
 La presentación y sus filtros no constituyen fuentes académicas.
 
 La versión del esquema académico (`versionEsquema:1`), la del formato
-personal (`version:1`) y la de la página (`0.8.2` en esta intervención)
+personal (`version:1`) y la de la página (`1.0.0` en esta intervención)
 son independientes.
 
 ## 2. Retirada comprobada de responsabilidades sin usuarios
@@ -84,10 +83,28 @@ exitoso de Pages no sustituye la certificación HTTP, y ésta no demuestra que
 una pestaña antigua del navegador haya recargado. La revisión visual real
 en dispositivos sigue siendo un control distinto.
 
-## 5. Criterio para 1.0.0
+## 5. Acta de cierre 1.0.0 y límites
 
-La reducción de archivos o líneas no constituye por sí sola estabilidad:
-documentar impacto medible en código activo, rutas eliminadas, datos y
-pruebas. Verificar además resiliencia, seguridad y los requisitos aprobados
-de expansión futura. Los pendientes de la evaluación 0.8 → 0.9 se evalúan
-como dudas concretas, no como deudas históricas por defecto.
+El alcance técnico estable se refiere a las ocho páginas de Mecatrónica,
+no a la futura plataforma multicarrera. La entrada única, los escenarios
+por diferencias y el tratamiento de vacíos quedan intactos. No se alteraron
+horarios, grupos, créditos, requisitos ni el normalizador externo del SIA.
+
+Se retiraron acciones de interfaz sin control invocador (`i-dist`,
+`h-addc`, `h-rename`), su estado sin uso, la función `levelDesc` y
+un oyente de desplazamiento vacío. Se agregó `tests/rutas-ui.js` para
+detectar rutas sin consumidor; el filtro de distancia accesible `dist`
+se preservó. Esta limpieza no equivale a retirar funcionalidades visibles.
+
+**Criterios de certificación por revisión:** (1) CI de contrato, ocho
+vistas, escenarios y normalizador satisfactoria, en PR y en `main`;
+(2) versión única, metadato, pie y recursos consistentes; (3) build de
+Pages satisfactorio; (4) certificación HTTP de los recursos servidos contra
+el commit correcto. Las evidencias están en la pestaña Actions.
+
+**Limitaciones conocidas:** `jsdom` no certifica el resultado visual en
+todos los navegadores, tamaños y dispositivos. El verificador de Pages
+comprueba los archivos servidos, no pestañas que ya estaban abiertas.
+La información académica depende de la veracidad de las fuentes externas.
+No existen otras carreras habilitadas en esta versión. Se mantienen
+las defensas y sus límites descritos en ARQ-01.
