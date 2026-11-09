@@ -1,6 +1,6 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.0. **La migración ARQ-01 está terminada y cerrada.**  
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.1. **La migración ARQ-01 está terminada y cerrada.**  
 > **Revisión operativa:** 9 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, aunque solo Mecatrónica cuenta con datos académicos operativos.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
@@ -408,7 +408,7 @@ degradación concreta y una decisión nueva.
    multicarrera preservados.
 4. Publicación y revisión visual reales, diferenciadas del CI automatizado.
 
-**La versión 1.1.0 incorpora la selección multicarrera, pero no habilita el análisis de programas sin contrato académico normalizado.** La evidencia de cada despliegue se consulta en CI y en la certificación HTTP de Pages.
+**La versión 1.1.1 mantiene las mismas ocho vistas también en programas sin contrato, pero sin generar resultados académicos.** La evidencia de cada despliegue se consulta en CI y en la certificación HTTP de Pages.
 
 ## 7. Antecedentes de ARQ-01 (migración finalizada; solo historial)
 
@@ -479,3 +479,11 @@ Antes de modificar la aplicación o sus datos:
 ## 10. Selección académica sin duplicar el núcleo (1.1.0)
 
 La interfaz reutiliza los nueve nombres y colores de `IdentidadUniversitaria.catalogo`. `ProgramasUniversitarios` separa las rutas de contratos realmente disponibles de la identidad visual y comparte la cabecera/navegación, sin crear nueve motores o archivos ficticios. Por sesión, `js/iniciar.js` consulta **un solo contrato normalizado**, valida que `programa.id` corresponda a la selección y crea `S0`, `S` y los resultados solo entonces. Sin fuente se presentan ocho espacios con estado «sin datos», sin estadísticas en cero; una carga inválida es un error técnico. Mecatrónica mantiene su archivo `datos/academico.json` y su clave local; otros programas usarán claves de escenario diferenciadas. El nuevo límite se verifica en `tests/multicarrera.js`, sin cambiar `EntradaAcademica`, `EscenarioPersonal`, `PlanCurricular` ni el motor de análisis.
+
+## 11. Estructura de consulta independiente de los datos (1.1.1)
+
+La interfaz y el dominio no son equivalentes: una carrera sin datos académicos debe conservar las **ocho vistas completas**, sus filtros visibles, instrucciones, marcos gráficos, paneles y controles propios. `ProgramasUniversitarios.contextoSinDatos` crea exclusivamente un contexto transitorio de **presentación** con colecciones estructurales vacías y `sinDatos:true`: **no es FuentesAcadémicas**, ni prueba que esa carrera no tenga asignaturas, grupos, requisitos o clases. La cuadrícula semanal genérica (lunes a sábado, 7–21) representa el diseño disponible, **no un horario institucional confirmado**; lo mismo aplica a las etiquetas de los filtros de tipología que permanecen visibles pero sin fuentes.
+
+En dicho modo se carga `js/app.js` y se reutilizan las mismas funciones de vista de `js/vistas.js` y `js/demanda.js`; no se consulta otro programa como respaldo, no se invoca el motor de interferencias, no se crea un escenario personal persistente y se deshabilitan los controles de edición/importación de datos. Los contadores y análisis que requieren datos muestran **«— / sin información»**, nunca un cero que pueda interpretarse como dato observado. La navegación, el tema visual, el zoom y las estructuras de gráfica siguen disponibles. El modo de error técnico por contrato inválido es distinto del modo sin fuente.
+
+`tests/multicarrera.js` verifica la presencia de marcos y controles en las ocho páginas para todas las carreras sin datos; la integración original de Mecatrónica sigue comprobando sus valores y comportamientos. Este patrón es obligatorio cuando se incorporen nuevas páginas: la existencia del contenedor de la vista no puede depender de tener registros académicos.

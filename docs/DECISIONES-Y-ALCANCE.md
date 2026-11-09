@@ -1,7 +1,7 @@
 # DEC-01 — Decisiones, alcance y criterios de conservación
 
 **Estado:** acuerdos adoptados para el desarrollo de Gestor de horarios · Mecatrónica.  
-**Revisión de vigencia:** 9 de noviembre de 2026, selector multicarrera 1.1.0. Los antecedentes siguen identificados por su versión. Las decisiones anteriores se conservan como antecedentes, indicando cuándo fueron complementadas o sustituidas.  
+**Revisión de vigencia:** 9 de noviembre de 2026, corrección multicarrera 1.1.1. Los antecedentes siguen identificados por su versión. Las decisiones anteriores se conservan como antecedentes, indicando cuándo fueron complementadas o sustituidas.  
 **Documento superior:** [ARQ-01](ARQUITECTURA.md).  
 **Estado del código y publicación:** [ESTADO-Y-PUBLICACION.md](ESTADO-Y-PUBLICACION.md).
 
@@ -38,6 +38,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 | D-27 | **Documentar riesgos y coherencia, no perseguir líneas eliminadas.** | Distinguir el problema que previene cada control y lo que protege GitHub (versionado, CI, despliegue), sin atribuir seguridad automática a sus servicios. Evitar duplicación documental mediante fuentes rectoras y referencias cruzadas. |
 | D-28 | **Cierre de estabilidad 1.0.0.** | Retirar únicamente rutas inalcanzables comprobadas y documentar riesgos reales, sin borrar historial ni defensas; mantener la entrada flexible, los escenarios vigentes y la futura gestión multicarrera. El avance de versión exige CI y certificación HTTP posterior al despliegue. |
 | D-29 | **Selector multicarrera 1.1.0.** | Los nueve nombres/colores proceden de `js/identidad.js` y las únicas rutas académicas de `js/programas.js`. No se crean JSON vacíos ni núcleos por carrera; se valida el ID del contrato, se preserva la clave de Mecatrónica y se aísla el almacenamiento futuro. | 
+| D-30 | **Ocho vistas completas sin datos (1.1.1).** | La falta de datos académicos no elimina la estructura de la aplicación: controles, filtros, marcos, paneles e instrucciones subsisten sin estadísticas ficticias. El modo visual vacío no es un contrato `FuentesAcadémicas`, no activa el motor ni permite guardar/importar escenarios sin fuente; los números desconocidos se expresan como «—». |
 | D-23 | **Cierre arquitectónico de ARQ-01 (0.8.0), antecedente.** | Se había conservado temporalmente soporte para archivos anteriores. **Esa parte fue expresamente sustituida por D-24** después de confirmar que no existían usuarios ni archivos antiguos. El flujo de entrada única continúa vigente. |
 | D-22 | **Tonos discretos por tipología y contornos legibles (TONO-01).** | Reutilizar la paleta del diseño para B (azul), C (violeta), L (verde), N (gris azulado), con marcas estrechas y fondos mínimos ligados al componente del escenario; incrementar el contraste de dos tokens neutrales sin alterar información ni escalas estadísticas, selección, choques o identidad por carrera. Ver [TONO-01](TONO-01.md). |
 | D-21 | **Actualización de requisitos por ID (REG-01).** | Guardar y recuperar solo diferencias por ID y propiedad; no reemplazar colecciones institucionales completas. La rama antigua de conciliación quedó retirada por D-24. La corrección no modifica la entrada académica ni los cálculos. Ver [REG-01](REG-01.md). |
@@ -49,7 +50,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 
 ### Lectura temporal de las decisiones
 
-Las filas D-01–D-29 documentan decisiones sucesivas, **no** reglas que permanezcan inalterables cuando una posterior las modifica expresamente. D-19 describe una decisión anterior sobre los créditos TPI/PAI; **D-20 es el criterio actual y prevalece**, mientras que los valores concretos se consultan en `datos/academico.json`. Las reglas de persistencia de D-21 y las señales de tipología de D-22 se suman a las decisiones anteriores sin crear fuentes académicas nuevas. **D-23 documentó el cierre arquitectónico; D-24 retiró la compatibilidad que se había mantenido sin una necesidad real. D-25 a D-27 preservan multicarrera, resiliencia y orden documental; D-28 formaliza el cierre técnico de 1.0.0 sin habilitar otros programas.**
+Las filas D-01–D-30 documentan decisiones sucesivas, **no** reglas que permanezcan inalterables cuando una posterior las modifica expresamente. D-19 describe una decisión anterior sobre los créditos TPI/PAI; **D-20 es el criterio actual y prevalece**, mientras que los valores concretos se consultan en `datos/academico.json`. Las reglas de persistencia de D-21 y las señales de tipología de D-22 se suman a las decisiones anteriores sin crear fuentes académicas nuevas. **D-23 documentó el cierre arquitectónico; D-24 retiró la compatibilidad que se había mantenido sin una necesidad real. D-25 a D-27 preservan multicarrera, resiliencia y orden documental; D-28 formaliza el cierre técnico de 1.0.0 sin habilitar otros programas.**
 
 El registro de decisiones complementa los requisitos RF/RC y la matriz de no-requisitos de [ARQ-01](ARQUITECTURA.md). Para interpretar el comportamiento actual se contrasta siempre con la fuente normalizada y el código ejecutado.
 
