@@ -1,92 +1,83 @@
-# REG-01 — Actualización segura de requisitos en escenarios personales
+# REG-01 — Requisitos mínimos y escenarios personales
 
-**Fecha:** 8 de noviembre de 2026 · **Versión:** 0.7.4.  
-**Ámbito:** representación y recuperación de modificaciones personales de requisitos mínimos. **No cambia** el único contrato académico, el motor de créditos, la malla, las vistas curriculares ni los cálculos de interferencias.  
-**Documentos rectores:** [ARQ-01](ARQUITECTURA.md) · [DEC-01](DECISIONES-Y-ALCANCE.md) · [REQ-C-01](REQ-C-01.md).
+**Vigente desde:** 0.7.4; **alcance actualizado:** 0.8.1.  
+**Referencia superior:** [ARQ-01](ARQUITECTURA.md) · [DEC-01](DECISIONES-Y-ALCANCE.md) · [REQ-C-01](REQ-C-01.md).
 
-## 1. Defecto reproducido antes de modificar producción
+## Regla vigente
 
-`EscenarioPersonal.diferencias(base,actual)` escribía **toda la colección** `reqCred` al modificar una sola regla. `EscenarioPersonal.aplicar(baseVigente,cambios)` sustituía con ella todas las reglas del contrato actualizado.
+La fuente académica normalizada define los mínimos de créditos y sus
+componentes. El usuario puede modificar un requisito en su escenario, pero
+esa acción **no reemplaza toda la colección institucional**.
 
-Reproducción controlada en `tests/escenarios-actualizacion-requisitos.js`:
+`EscenarioPersonal.diferencias(S0,S)` guarda únicamente las operaciones
+`reqCredCambios` por identidad `posicionId`, con `agregar`, `quitar`
+o `modificar`. Cada modificación almacena solo los campos realmente
+editados (`min` y `componentes`).
 
-1. Referencia histórica de prueba con PAI `["B","C","L"]`, frente a referencia vigente con PAI `["C"]`.
-2. Edición personal de **otra regla** (TPI 52→53), más cambio de semestre independiente.
-3. Guardar y aplicar sobre la referencia actual.
-4. En la lógica previa, PAI volvía a `["B","C","L"]` aunque **no había sido editada**.
+`EscenarioPersonal.aplicar(S0,cambios)` usa la referencia normalizada
+vigente y modifica exclusivamente las reglas intervenidas. Las reglas
+no editadas reflejan cambios posteriores de la fuente académica.
 
-La prueba falló con ese resultado en GitHub Actions (ejecución [#57](https://github.com/jncubillosn-lab/Mecatronica/actions/runs/42527395354)). Se corrigió la causa de **reemplazar colecciones completas**, no se agregó ninguna excepción para PAI.
+La identificación por nombre puede utilizarse para reglas **creadas por el
+usuario** que aún no tienen un ID institucional. Esto no significa que se
+admitan archivos de escenarios anteriores.
 
-## 2. Solución mínima dentro de `EscenarioPersonal`
+## Formato de escenario personal
 
-Se **mantiene `tipo:'escenario-personal',version:1`** y se introduce el campo opcional `cambios.reqCredCambios`, siguiendo la misma idea de modificaciones por identidad que ya usan malla, grupos y relaciones.
+```json
+{
+  "tipo": "escenario-personal",
+  "version": 1,
+  "cambios": {
+    "reqCredCambios": {
+      "agregar": [],
+      "quitar": [],
+      "modificar": [
+        {"key": "id:posicion-de-ejemplo", "valores": {"min": 10}}
+      ]
+    }
+  }
+}
+```
 
-`reqCredCambios` almacena operaciones `agregar`, `quitar` y `modificar` por clave estable `id:<posicionId>`, con respaldo por nombre cuando la referencia antigua no tiene ID. En modificaciones se guardan solo las propiedades realmente diferentes: `min` y `componentes`. Cada regla no tocada se toma **siempre** de la nueva referencia académica.
+El ejemplo expresa **la forma de una operación personal**, no un mínimo
+académico real. No es un archivo independiente completo para importar:
+otras diferencias personales se omiten aquí por brevedad.
 
-El sistema de presentación no incorpora constantes de créditos. Los requisitos TPI 52 C y PAI 65 C continúan viviendo únicamente en `datos/academico.json`.
+Solo se importa el formato vigente de diferencias `escenario-personal`
+con `version:1`. Se rechazaron como fuera de alcance los snapshots de
+desarrollo `{S}`, las listas completas `cambios.reqCred` y
+`reqCredAmbiguos`: **no existen usuarios ni archivos de aquellas
+versiones que recuperar**, según la decisión expresa de 0.8.1.
 
-## 3. Archivos históricos y ambigüedad
+Los identificadores actuales de posiciones y grupos siguen siendo
+necesarios para editar, guardar, importar y aplicar diferencias. No debe
+confundirse su función con metadatos de procedencia histórica.
 
-Los archivos v1 antiguos guardaban `cambios.reqCred` como **lista completa**. No informaban qué parte de esa lista representaba una edición personal ni la referencia académica original.
+## Comportamientos que deben conservarse
 
-**No es técnicamente posible reconstruir con certeza esa intención a partir de los valores únicamente.** Por seguridad:
+- El cambio de un requisito no modifica otros.
+- Las referencias académicas nuevas pueden incorporar grupos o reglas sin
+  deshacer una modificación personal por ID.
+- Los datos académicos ausentes siguen siendo válidos cuando el contrato
+  así lo permite; las referencias rotas y horarios imposibles son errores
+  técnicos distintos de la falta de datos.
+- No se codifican mínimos ni nombres propios de Mecatrónica en el motor.
+- Importar un escenario personal no modifica `datos/academico.json`.
+- El cálculo por semestres no certifica créditos realmente aprobados
+  por una persona ni su habilitación para inscribir.
 
-- El lector antiguo continúa funcionando; su contenido se conserva inicialmente sin sobrescribir reglas potencialmente personales.
-- Cuando alguna regla guardada difiere de la referencia actual, se muestra **una revisión por asignatura** con valores anteriores y vigentes, sin reinterpretarlos automáticamente.
-- La persona puede elegir `Usar referencia vigente` o `Conservar guardado` **por cada requisito**; resolver uno no altera los demás ni restaura todo el escenario.
-- Mientras existan dudas, `cambios.reqCredAmbiguos` guarda los identificadores pendientes. Si se modifica otra cosa y se guarda, **el aviso sigue presente**; los valores no se descartan.
-- Una vez confirmada la elección, el escenario vuelve a guardarse mediante `reqCredCambios`, sin snapshots completos.
-- La recuperación de antiguos archivos `{S}` conserva la compatibilidad y también señala divergencias cuando corresponde.
+## Pruebas
 
-**No** se incorporó un esquema v2, dependencia nueva ni sistema global de resolución de conflictos. Las entradas nuevas con deltas claros no generan un aviso. Las reglas institucionales actualizadas tienen precedencia respecto a **todos los requisitos no modificados**.
+- `tests/escenarios-actualizacion-requisitos.js`: deltas de requisitos,
+  nuevas referencias y operaciones de alta/baja, sin lectores anteriores.
+- `tests/solo-formatos-vigentes.js`: exclusión de formatos de desarrollo,
+  conservación del contrato flexible y de la opción multicarrera.
+- `tests/exportacion-escenario.js`: exportación y restauración del
+  escenario vigente.
+- `tests/escenarios-arq01.js`: grupos, horarios, unidad, validación técnica
+  y persistencia de diferencias actuales.
 
-### Corrección de exportación posterior (0.7.8)
-
-La ruta de guardado local ya preservaba `reqCredAmbiguos` mediante `EscenarioPersonal.empaquetar(S0,S,pendientesRequisitos)`; la exportación invocaba `empaquetar(S0,S)` sin el tercer argumento. La prueba `tests/exportacion-ambiguos.js` reprodujo que el archivo resultante perdía la **necesidad de revisión**, pese a preservar los valores modificados. Se unificaron los argumentos sin alterar el modelo, el contrato, el formato v1 ni las decisiones personales.
-
-**Invariante reforzado:** toda exportación conserva tanto los cambios como su información de revisión pendiente. Cuando el usuario resuelve una discrepancia, ese identificador deja de exportarse como pendiente.
-
-### Responsabilidades estables después del cierre ARQ-01 (0.8.0)
-
-La compatibilidad de lectura del archivo personal antiguo `{S}` es una función
-del **gestor de escenarios**, no una condición de `FuentesAcadémicas`. La
-entrada académica vigente no debe incorporar metadatos solo para satisfacer un
-archivo personal de versiones anteriores.
-
-- Los identificadores `malla[].id`, `agrupaciones[].id` y `posicionId`
-  pertenecen al contrato académico actual y son la base de sus asociaciones.
-- Los campos `agrupaciones[].introducidoEn` y
-  `agrupaciones[].componentes[].bloques[].idAnterior` son **opcionales** y
-  solamente aportan pruebas de correspondencia con versiones anteriores.
-  Si faltan, la entrada actual sigue siendo válida; en la restauración de un
-  archivo antiguo puede faltar evidencia para algunas asociaciones.
-- Las marcas `mig1`–`mig4` e `incorporacionesOferta` solo pertenecen a
-  snapshots personales viejos. No son campos exigibles a `datos/academico.json`
-  ni se ejecutan para construir `S0`.
-- La discrepancia `reqCredAmbiguos` pertenece exclusivamente a un archivo
-  personal importado o exportado. Nunca se interpreta como dato de referencia.
-- Solo la rama de lectura `{S}` utiliza `fixMalla(anterior)` y
-  `EscenarioPersonal.migrarAnterior`. El formato v1 usa
-  `EscenarioPersonal.aplicar` sobre la referencia vigente.
-
-**Prueba de la frontera:** `tests/compatibilidad-opcional.js` retira los
-metadatos históricos de una copia del contrato y verifica que el escenario
-vigente y las interferencias sean los mismos. La documentación normativa
-detallada se mantiene en [ARQ-01](ARQUITECTURA.md), sección 1, y el historial
-cerrado en [MIG-ARQ01](MIGRACION-ARQ01.md).
-
-## 4. Alcance y no objetivos
-
-- No se cambia `datos/academico.json`, `js/modelo.js`, `js/analisis.js`, `js/entrada.js` ni `js/vistas.js`.
-- No se deduce un requisito por código SIA, nombre, facultad o semestre.
-- No se borran automáticamente modificaciones personales de créditos, semestres, bloques, grupos, encuestas ni requisitos.
-- No se modifica la forma de calcular créditos **aprobados**: el modelo actual solo compara la distribución curricular simulada por semestres anteriores y **no dispone** del expediente personal de aprobaciones.
-- Las modificaciones textuales antiguas de `malla[].nota` siguen sus propias reglas de persistencia; no se intervienen sin reproducción específica.
-
-## 5. Verificación
-
-- `tests/escenarios-actualizacion-requisitos.js` reproduce la causa original y cubre la representación nueva, lectura antigua, resolución puntual, persistencia de dudas y operaciones de alta/baja.
-- La suite existente cubre escenarios guardados, integridad del contrato, edición, exportación, filtros y las ocho vistas.
-- Revisar manualmente en navegador un escenario **antiguo** con divergencias; no se puede probar desde CI cuál información guarda el navegador real de una persona.
-
-El objetivo es **conservar identidad y procedencia de los cambios**, no aplicar un parche local a PAI.
+El defecto original de 0.7.3–0.7.4 y su solución por deltas se conservan
+en el historial de Git y en las PR #24–25, no como obligaciones de
+compatibilidad presentes.
