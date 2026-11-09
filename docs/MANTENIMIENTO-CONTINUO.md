@@ -28,6 +28,7 @@ El mantenimiento no cambia ni completa datos académicos faltantes.
   repite todas las pruebas (incluye automáticamente los nuevos `test_*.py`), lee las ramas de GitHub, registra si main tiene
   protección y actualiza un único Issue de mantenimiento con los
   hallazgos pendientes. No realiza borrado ni reescritura de código.
+- **Dependencias:** [Dependabot](../.github/dependabot.yml) propone PR semanales para dependencias npm y acciones de GitHub, sin fusionarlas automáticamente; cada PR pasa los controles existentes.
 - **Publicación:** [Certificar versión publicada](../.github/workflows/certificar-publicacion.yml)
   es un control distinto: compara los recursos HTTP servidos con los
   archivos del commit. No certifica calidad de código ni de fuentes.

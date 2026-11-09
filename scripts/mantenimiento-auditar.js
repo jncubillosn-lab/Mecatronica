@@ -30,7 +30,8 @@ const raizPermitida = new Map([
   ['CHANGELOG.md', 'historial'],
   ['package.json', 'configuracion'],
   ['package-lock.json', 'configuracion'],
-  ['.gitignore', 'configuracion']
+  ['.gitignore', 'configuracion'],
+  ['.github/dependabot.yml', 'automatizacion']
 ]);
 
 function clasificar(archivo) {
