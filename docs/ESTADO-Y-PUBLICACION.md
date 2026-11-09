@@ -1,7 +1,7 @@
 # EST-01 — Estado real y publicación
 
-**Corte revisado:** 8 de noviembre de 2026 · **Versión pública objetivo del saneamiento de exportación:** `0.7.8` (verificar el despliegue tras integrar).  
-**Estado de la estabilización:** preparación hacia **1.0.0**; **no publicada ni aprobada todavía**.  
+**Corte revisado:** 8 de noviembre de 2026 · **Versión de cierre de la migración ARQ-01:** `0.8.0`.  
+**Migración ARQ-01: CERRADA** en 0.8.0; su compatibilidad histórica queda soportada y comprobada. **La evaluación general de 1.0.0 sigue siendo independiente** y no se declara publicada.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md), incluidos sus 17 requisitos funcionales, 8 condiciones de calidad y no-requisitos.  
 **Trazabilidad detallada:** [CHANGELOG](../CHANGELOG.md) y [MIG-ARQ01](MIGRACION-ARQ01.md).  
 
@@ -9,11 +9,11 @@ Este archivo explica el **estado operativo** y la ruta de verificación. Las ver
 
 ## 1. Estado publicado y alcance
 
-El código de referencia de esta etapa declara `0.7.8` en `index.html` y en los recursos versionados; la publicación efectiva se verifica tras fusionar. Las ocho páginas son **Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos**. La aplicación es estudiantil, estática y no oficial.
+El código de referencia declara `0.8.0` en `index.html` y en los recursos versionados. GitHub Pages y CI se verifican por separado como parte de la publicación. Las ocho páginas son **Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos**. La aplicación es estudiantil, estática y no oficial.
 
 **Una sola entrada académica:** `datos/academico.json`. `js/iniciar.js` lee el contrato, `EntradaAcademica` construye una proyección interna y `fromRaw` prepara `S0`; `EscenarioPersonal` reconstruye `S` y `compute` calcula resultados. Los filtros construyen consultas `RV/RV0`, sin modificar `S/S0`. La presentación es independiente de la entrada académica.
 
-**Distinguir siempre tres versiones:** `versionEsquema:1` (contrato), `version:1` (archivo personal) y `0.7.8` (versión objetivo de esta etapa). El mismo número no tiene por qué servir a los tres formatos.
+**Distinguir siempre tres versiones:** `versionEsquema:1` (contrato), `version:1` (archivo personal) y `0.8.0` (versión de cierre ARQ-01). El mismo número no tiene por qué servir a los tres formatos.
 
 ### Hitos históricos verificados por PR
 
@@ -25,7 +25,7 @@ El código de referencia de esta etapa declara `0.7.8` en `index.html` y en los 
 | 0.6.0 | Identidad visual y acentos por programa ([PR #20](https://github.com/jncubillosn-lab/Mecatronica/pull/20)) |
 | 0.7.0–0.7.2 | Diseño adaptable, Libre elección y modo claro ([PR #21–23](https://github.com/jncubillosn-lab/Mecatronica/pulls?q=is%3Apr+is%3Amerged)) |
 | 0.7.3–0.7.5 | Requisitos TPI/PAI, escenarios por diferencias, tipologías suaves y contraste ([PR #24–26](https://github.com/jncubillosn-lab/Mecatronica/pulls?q=is%3Apr+is%3Amerged)) |
-| Preparación 1.0 | [PR #28](https://github.com/jncubillosn-lab/Mecatronica/pull/28) consolidó ARQ-01; [PR #29](https://github.com/jncubillosn-lab/Mecatronica/pull/29) corrigió documentos; [PR #30](https://github.com/jncubillosn-lab/Mecatronica/pull/30) separó pruebas; [PR #31](https://github.com/jncubillosn-lab/Mecatronica/pull/31) saneó S0; [PR #32](https://github.com/jncubillosn-lab/Mecatronica/pull/32) archiva fuentes históricas. |
+| Preparación 1.0 | [PR #28](https://github.com/jncubillosn-lab/Mecatronica/pull/28) consolidó ARQ-01; [PR #29](https://github.com/jncubillosn-lab/Mecatronica/pull/29) corrigió documentos; [PR #30](https://github.com/jncubillosn-lab/Mecatronica/pull/30) separó pruebas; [PR #31](https://github.com/jncubillosn-lab/Mecatronica/pull/31) saneó S0; [PR #32](https://github.com/jncubillosn-lab/Mecatronica/pull/32) archivó fuentes históricas; [PR #33](https://github.com/jncubillosn-lab/Mecatronica/pull/33) corrigió exportación; [PR #34](https://github.com/jncubillosn-lab/Mecatronica/pull/34) cierra formalmente la migración ARQ-01 en 0.8.0. |
 
 ## 2. Responsabilidades y límites
 
@@ -42,7 +42,7 @@ Se conservan las diferencias entre **grupo ofrecido**, **agrupación elegible** 
 
 ## 3. Pruebas y publicación
 
-La batería **actual** declarada en `package.json` se ejecuta con `npm ci && npm test`. Los tres ensayos de la antigua estructura `RAW` se mantienen ejecutables por separado mediante `npm run test:historico` y no están en el flujo principal; sus resultados no representan el contrato vigente. El flujo `.github/workflows/verificacion-arq01.yml` corre en PR hacia `main`, verifica contrato, escenarios, cálculos, vistas e integración y exige incrementar la versión de los recursos de producción cuando corresponde. Los cambios **solo documentales no exigen** avance de versión.
+La batería **actual** se ejecuta con `npm ci && npm test`. La batería conservada de los formatos antiguos se ejecuta por separado con `npm run test:historico`; **ambas pasan en GitHub Actions en las PR hacia `main`**, sin confundir los datos `RAW` de la versión original con la única entrada vigente. El workflow verifica contrato, escenarios, cálculos, vistas, compatibilidad histórica e incremento de versión cuando corresponde. Los cambios **solo documentales no exigen** avance de versión.
 
 Para cada publicación:
 
@@ -54,17 +54,19 @@ Para cada publicación:
 
 No confundir CI en la rama, una fusión en `main` y un despliegue completo; son verificaciones distintas.
 
-## 4. Transiciones aún bajo evaluación
+## 4. Inventario definitivo — migración ARQ-01 cerrada
 
-| Caso | Estado comprobado | Criterio para actuar |
+| Elemento | Condición de cierre comprobada | Situación definitiva |
 |---|---|---|
-| `fromRaw` y proyección posicional | Usados para construir S0 desde la única entrada | Mantener hasta demostrar un reemplazo equivalente |
-| `fixMalla` y `mig1`–`mig4` | **Desde 0.7.6**, retirado `fixMalla(S0)` tras prueba de equivalencia; continúa la ruta `fixMalla(anterior)` para archivos `{S}` | Mantener compatibilidad y reevaluar su retiro por separado, solo con pruebas representativas |
-| `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` | **Pruebas históricas, aisladas de `npm test`**; ejecutables por separado con `npm run test:historico` | Mantener como evidencia mientras se revise el archivo de origen; no convertirlas en requisito de producción |
-| `pruebas/historico/js/{datos,catalogo,oferta-fuente,fuentes}.js` | **Archivados desde 0.7.7** fuera del directorio ejecutable; copias verificadas byte a byte respecto a la versión anterior. Pruebas históricas redirigidas | No reactivar en HTML ni en `npm test`; conservar para análisis histórico |
-| Herramientas `data/`, `scripts/`, `pruebas/` | Preparación externa o verificaciones de migraciones anteriores | Mantener claramente separadas de la aplicación estática |
-| `save()` y `export` de `pendientesRequisitos` | **Corregido en 0.7.8**: ambas rutas pasan las revisiones pendientes a `EscenarioPersonal.empaquetar` | Prueba de exportar/importar, conservar duda y resolverla explícitamente |
-| Documentos de versiones antiguas | Historial que debe identificarse explícitamente | Actualizar narrativa vigente sin falsear eventos pasados |
+| `fromRaw` y proyección posicional | Construyen `S0` desde una única entrada normalizada | **Adaptador vigente**, no migración pendiente |
+| `fixMalla` y `mig1`–`mig4` | `S0` no pasa por ellos desde 0.7.6; solo se usan al importar archivos personales completos `{S}` | **Lector de compatibilidad histórica soportado** |
+| `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` | Se ejecutan con `npm run test:historico` y aprobaron CI en 0.8.0 | **Pruebas históricas verificadas**, separadas de `npm test` |
+| `pruebas/historico/js/{datos,catalogo,oferta-fuente,fuentes}.js` | Archivados fuera de `js/` desde 0.7.7; contenido original preservado | **Material histórico conservado**, nunca cargado por el sitio |
+| `data/`, `scripts/`, `pruebas/` | Herramientas externas o de archivo; los comandos npm de comparación original se retiraron en 0.8.0 | **Fuera del programa web**, sin obligaciones de migración pendientes |
+| `save()` / `export` de `pendientesRequisitos` | Corregido en 0.7.8 y cubierto por pruebas de exportación/importación | **Compatibilidad de escenarios protegida** |
+| GitHub Actions | Sin disparador de rama de migración; ejecuta la suite actual e histórica en PR hacia `main` | **Verificación ordinaria**, no flujo de transición |
+
+**Resultado:** **cero actividades de migración ARQ-01 pendientes**. No se considera deuda la presencia de lectores de archivos antiguos, comentarios históricos o fixtures archivados. Los cambios futuros se tramitan por los requisitos vigentes RF/RC, no como continuación de la migración.
 
 **No requisitos:** soporte comercial de matrícula, verificación de créditos realmente aprobados, inferencia de cupos, nuevas universidades u otros programas sin entrada disponible, inventar docentes, crear agrupaciones no registradas o resolver vacíos académicos mediante alarmas.
 
