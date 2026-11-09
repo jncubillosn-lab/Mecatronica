@@ -41,7 +41,7 @@ jobs:
         run: npm run mantenimiento:auditar
       - name: Revisar ramas y protección; actualizar seguimiento en Issues
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
