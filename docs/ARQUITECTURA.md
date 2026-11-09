@@ -344,7 +344,7 @@ Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora fin
 
 **Evolución de la estabilización:** la fase documental corrigió README, EST-01, CHANGELOG y DEC-01; la fase de pruebas separó los ensayos `RAW` del contrato vigente; la fase 0.7.6 retiró `fixMalla(S0)` tras verificar equivalencia; la fase 0.7.7 archivó los cuatro JavaScript antiguos fuera del directorio productivo y retiró un bytecode Python generado. **La compatibilidad `{S}` sigue activa**; no se declara concluida la limpieza ni aprobada 1.0.
 
-**Punto de comprobación adicional:** `save()` incluye `pendientesRequisitos` al empaquetar escenarios, mientras que la acción `export` invoca `empaquetar(S0,S)` sin esa lista explícita. No dar por probada pérdida de datos personales: verificar la diferencia mediante una prueba antes de calificarla como fallo y corregirla.
+**Corrección verificada en v0.7.8:** una prueba de exportación/importación reprodujo que `save()` conservaba `pendientesRequisitos` y la descarga omitía `reqCredAmbiguos`. La acción `export` ahora usa el **mismo** `EscenarioPersonal.empaquetar(S0,S,pendientesRequisitos)` que el guardado local. Las dudas sobre requisitos anteriores sobreviven también al traslado del archivo; sin crear excepciones por asignatura ni cambiar el formato v1.
 
 ### Puertas para declarar una versión estable 1.0.0
 
