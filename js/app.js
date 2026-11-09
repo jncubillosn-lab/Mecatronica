@@ -78,7 +78,7 @@ const ui = {
   page: 'inicio',
   componentes: new Set(OPCIONES.componentesComparables || []),
   unidad: '', // filtro de vista, nunca edición del contrato
-  inter: { view: 'lista', dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
+  inter: { view: 'lista', grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
   grp: { sel: null },
   hor: { a: S.asg.includes(OPCIONES.asignaturaInicial) ? OPCIONES.asignaturaInicial : S.asg[0], comp: null, ov: [] },
@@ -157,11 +157,6 @@ function dlt(now, before, d = 0, lowerBetter = true) {
   if (Math.abs(diff) < 1e-9) return '';
   const good = lowerBetter ? diff < 0 : diff > 0;
   return `<span class="delta ${good ? 'down' : 'up'}" title="Antes: ${d ? pct(before, d) : before}">${d ? (diff > 0 ? '+' : '−') + Math.abs(diff * 100).toFixed(d) + ' pp' : signed(diff)}</span>`;
-}
-function levelDesc(k) {
-  const d = parseInt(k), t = k.slice(-1);
-  const dd = d === 0 ? 'Mismo semestre' : d === 1 ? 'Semestres contiguos' : `A ${d} semestres`;
-  return [dd, t === 'a' ? 'Ninguna pareja de grupos cabe: no se pueden cursar juntas' : 'Solo algunas parejas caben: hay que elegir los grupos'];
 }
 function toast(msg) {
   /* aviso accesible */
@@ -431,12 +426,11 @@ function onAct(act, d, el, ev) {
       return render();
     }
     case 'dist': { const x = +d.d, ds = S.params.dists; if (ds.includes(x)) { if (ds.length === 1) return toast('Deja al menos una distancia elegida.'); S.params.dists = ds.filter(v => v !== x); } else S.params.dists = [...ds, x].sort(); return commit(); }
-        case 'i-view': f.view = d.v; return render();
-    case 'i-dist': { const x = +d.d; f.dists.has(x) ? f.dists.delete(x) : f.dists.add(x); return render(); }
+    case 'i-view': f.view = d.v; return render();
     case 'i-grav': f.grav.has(d.k) ? f.grav.delete(d.k) : f.grav.add(d.k); return render();
     case 'a-go': ui.asig.open = d.n; go('asig'); { const c = $$('.arow').find(x => x.dataset.aname === d.n); if (c) c.scrollIntoView({ block: 'center' }); } return;
     case 'i-sem': { const s = +d.s; f.sems.has(s) ? f.sems.delete(s) : f.sems.add(s); return render(); }
-    case 'i-clear': Object.assign(f, { dists: new Set(), grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '' }); return render();
+    case 'i-clear': Object.assign(f, { grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '' }); return render();
     case 'i-csv': {
       const L = sortPairs(RV.pairs.filter(p => pairMatches(p)));
       const q = v => '"' + String(v).replace(/"/g, '""') + '"';
@@ -480,12 +474,6 @@ function onAct(act, d, el, ev) {
     case 'h-addb': S.bloques.push({ id: nextId(), a: ui.hor.a, c: d.c, d: 'L', s: 7, e: 9, o: '' }); ui.hor.comp = d.c; return commit();
     case 'h-delb': S.bloques = S.bloques.filter(b => b.id !== +d.id); return commit();
     case 'h-delc': S.bloques = S.bloques.filter(b => !(b.a === ui.hor.a && b.c === d.c)); return commit();
-    case 'h-addc': {
-      const v = $('#nc-name').value.trim(), A = ui.hor.a;
-      if (!v) return toast('Escribe el nombre del componente.');
-      if (compsOf(A).includes(v)) return toast('Ya existe un componente con ese nombre.');
-      S.bloques.push({ id: nextId(), a: A, c: v, d: 'L', s: 7, e: 9, o: '' }); ui.hor.comp = v; return commit(`Componente ${v} creado: asígnalo a un grupo en Grupos.`);
-    }
    /* mapa de calor */
     case 'hm-toggle': { if (ui.heat.off.has(d.n)) ui.heat.off.delete(d.n); else ui.heat.off.add(d.n); return render(); }
     case 'hm-all': ui.heat.off.clear(); return render();
@@ -553,7 +541,7 @@ function onChange(k, el) {
     case 'indirect': S.params.indirect = el.checked ? 1 : 0; return commit();
     case 'i-asig': f.asig = el.value; return render();
     case 'i-sort': f.sort = el.value; return render();
-        case 'i-choque': f.soloChoque = !el.checked; return render();
+    case 'i-choque': f.soloChoque = !el.checked; return render();
     case 'm-solo': ui.malla.soloHor = el.checked; return render();
     case 'h-day': case 'h-s': case 'h-e': {
       const b = S.bloques.find(x => x.id === +el.dataset.id); if (!b) return;
@@ -562,14 +550,6 @@ function onChange(k, el) {
     }
     case 'h-pick': ui.hor.a = el.value; ui.hor.comp = null; ui.hor.ov = []; return render();
     case 'h-ov-add': if (el.value) { ui.hor.ov.push(el.value); } return render();
-    case 'h-rename': {
-      const A = ui.hor.a, old = el.dataset.c, nv = el.value.trim();
-      if (!nv || nv === old) return render();
-      if (compsOf(A).includes(nv)) { toast('Ya existe un componente con ese nombre.'); return render(); }
-      S.bloques.forEach(b => { if (b.a === A && b.c === old) b.c = nv; });
-      S.grupos.forEach(g => { if (g.a === A) { if (g.c1 === old) g.c1 = nv; if (g.c2 === old) g.c2 = nv; } });
-      if (ui.hor.comp === old) ui.hor.comp = nv; return commit();
-    }
     case 'm-comp': { const m = planActual().cambiarComponente(ui.malla.sel, el.value); if (!m) return; return commit('Componente de ' + m.n + ': ' + compName(m.comp)); }
     case 'm-car': { const m = planActual().cambiarCaracter(ui.malla.sel, el.value); if (!m) return; return commit('Carácter de ' + m.n + ': ' + (carName(m.car) || 'No aplica')); }
     case 'm-addreq': if (el.value) { S.pre.push({ r: el.value, t: ui.malla.sel, m: 'agregado' }); return commit(`Agregado: ${el.value} → ${ui.malla.sel}`); } return;
@@ -608,7 +588,6 @@ document.addEventListener('keydown', e => {
   }
 });
 window.addEventListener('resize', () => { if (ui.page === 'malla') drawEdges(); });
-document.addEventListener('scroll', e => { }, true);
 
 /* ---- arrastrar y soltar: bloques de horario y asignaturas de la malla ---- */
 let dragData = null;

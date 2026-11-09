@@ -2,6 +2,14 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.0.0 — Cierre de estabilidad de Mecatrónica (9 nov 2026)
+
+- Retiradas exclusivamente rutas de eventos sin control (`i-dist`, `h-addc`, `h-rename`), su filtro oculto, `levelDesc`, `cntD` y un oyente sin efecto. El control visible de distancias `dist` continúa.
+- `tests/rutas-ui.js` exige correspondencia entre acciones y controles; `tests/enlaces-documentales.js` evita referencias locales rotas; la batería vigente sigue cubriendo ocho vistas, datos incompletos y escenarios por diferencias.
+- CI de contrato y regresiones habilitada también en push a `main`, además de las PR; certificación HTTP del sitio mantenida como control independiente.
+- ARQ-01, DEC-01, EST-01, AGENTS y README actualizados: alcance estable de Mecatrónica, inventario de riesgos y protección real de GitHub, futuro multicarrera aprobado pero todavía no disponible.
+- Sin modificaciones académicas ni ampliación del contrato, sin reintroducir formatos antiguos ni inventar información. El éxito del despliegue se registra por ejecución en Actions, separado de la versión del código.
+
 ## 0.8.2 — Certificar la versión efectivamente publicada
 
 - `package.json` queda como referencia única de versión pública; `tests/versionado.js` comprueba metadato, pie, lockfile, recursos y rutas dinámicas.
@@ -25,7 +33,7 @@ La **versión pública de la aplicación** se consulta en el pie de página y en
 - Las herramientas de comparación inicial `compare.js` y `mutar.sh` se mantienen archivadas, pero `npm run comparar` y `npm run mutar` dejan de anunciarse como comandos activos del proyecto.
 - ARQ-01, EST-01, DEC-01, README, AGENTS y MIG-ARQ01 distinguen explícitamente **proceso completado**, **soporte histórico** y **trabajo general restante hacia 1.0.0**. No se modificó `datos/academico.json`, requisitos, grupos o cálculos.
 
-## Preparación técnica 1.0.0 (sin declarar versión estable)
+## Antecedentes técnicos de preparación (versiones 0.7.x)
 
 - **0.7.8 — [PR #33](https://github.com/jncubillosn-lab/Mecatronica/pull/33)**: prueba roja reprodujo la pérdida de la marca de revisión pendiente al exportar un escenario antiguo. La exportación recibe ahora el mismo contexto de revisión que el guardado local; sin nueva arquitectura ni casos específicos. La publicación se verificó después de fusionar la PR.
 

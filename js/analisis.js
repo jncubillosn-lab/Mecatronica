@@ -37,7 +37,7 @@ function fromRaw(D) {
   return {
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
     malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null, unidad: '' })),
-    pre: D.pre.map(([r, t, m, rId, tId]) => ({ r, t, m: m || '', rId: rId || null, tId: tId || null })), // IDs del contrato, nombres solo para UI/legado
+    pre: D.pre.map(([r, t, m, rId, tId]) => ({ r, t, m: m || '', rId: rId || null, tId: tId || null })), // IDs del contrato, nombres para interfaz y ediciones personales sin ID
     asg: D.asg.map(a => a[0]),
     grupos: D.gr.map(([a, g, c1, c2, ref, analizable]) => ({ a, g, c1, c2: c2 || '', on: true, ref: ref || null, analizable: analizable !== false })),
     bloques: D.bl.map(([a, c, d, s, e, o, ref], i) => ({ id: ref ? EntradaAcademica.idNumerico(ref) : i + 1, a, c, d, s, e, o: o || '', ref: ref || null })),
@@ -64,7 +64,7 @@ function maxSemester(S) { return new PlanCurricular(S).maxSemestre(); }
 function closure(S) {
   const adj = new Map();
   S.malla.forEach(m => adj.set(m.n, []));
-  // El contrato utiliza IDs estables; la interfaz y los escenarios antiguos
+  // El contrato utiliza IDs estables; las ediciones personales y la interfaz
   // todavía pueden conservar nombres. Resolver por ID evita depender del
   // texto visible cuando existe una referencia académica inequívoca.
   const nombresPorId = new Map(S.malla.filter(m => m.idPos).map(m => [m.idPos, m.n]));
