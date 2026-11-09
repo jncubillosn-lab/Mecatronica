@@ -23,6 +23,31 @@ verificar('Ocho vistas se generan desde el contrato normalizado',()=>{
  for(const fn of paginas)assert(fn().length>200);
 });
 
+verificar('Combinaciones de filtros desde el contrato sin alterar S ni sus deltas',()=>{
+ const componentes=contrato.configuracion.opciones.componentesComparables;
+ const inicial=JSON.stringify(api.S),inicialCambios=JSON.stringify(api.changes());
+ const seleccionar=ids=>{
+   for(const id of componentes){
+     if(api.ui.componentes.has(id)!==ids.includes(id))
+       api.onAct('comp-toggle',{comp:id},{},{preventDefault(){}});
+   }
+   const nombres=new Set(api.S.malla.filter(m=>ids.includes(m.comp)).map(m=>m.n));
+   assert.deepEqual(api.getVista().names.slice().sort(),
+     api.S.asg.filter(n=>nombres.has(n)).slice().sort());
+   assert.equal(JSON.stringify(api.S),inicial);
+   assert.equal(JSON.stringify(api.changes()),inicialCambios);
+ };
+ seleccionar(componentes);
+ const completos=api.getVista().pairs.map(p=>p.key).sort();
+ for(const id of componentes)seleccionar([id]);
+ for(let i=0;i<componentes.length;i++)for(let j=i+1;j<componentes.length;j++)
+   seleccionar([componentes[i],componentes[j]]);
+ seleccionar([]);
+ assert.equal(api.getVista().pairs.length,0);
+ seleccionar(componentes);
+ assert.deepEqual(api.getVista().pairs.map(p=>p.key).sort(),completos);
+});
+
 verificar('Los filtros solo modifican los resultados de consulta',()=>{
  const antes=JSON.stringify(api.S),cambios=api.changes().length;
  for(const id of [...api.ui.componentes]){
@@ -82,7 +107,7 @@ verificar('Las otras sedes están disponibles para consulta pero no afectan mapa
 });
 
 
-verificar('Tipología y unidad están visibles y actúan en las siete secciones',()=>{
+verificar('Tipología y unidad están visibles y actúan en las ocho secciones',()=>{
  const paginas=['inicio','inter','asig','grupos','hor','heat','demanda','malla'];
  for(const page of paginas){
    api.ui.page=page;
