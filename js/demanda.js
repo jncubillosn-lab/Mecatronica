@@ -7,6 +7,7 @@
  * los grupos son agrupaciones explícitas del escenario, no capacidades.
  */
 class DemandaEstadistica {
+  /** Sin encuesta: estado explícito de información no recibida, no cero solicitudes. */
   static vacia() {
     return {tipo:'demanda-preinscripcion', version:1, solicitudes:[],
       respuestasTotales:null, tasaParticipacion:null, fechaEncuesta:null,
@@ -67,6 +68,7 @@ class DemandaEstadistica {
       respuestasTotales,tasaParticipacion,fechaEncuesta:datos.fechaEncuesta||null,
       respuestasAnonimas,simulado:datos.simulado===true};
   }
+  /** Mediana robusta de valores disponibles; `null` si no hay muestra válida. */
   static mediana(valores) {
     const a=valores.filter(Number.isFinite).sort((x,y)=>x-y);
     if(!a.length)return null;
@@ -83,6 +85,9 @@ class DemandaEstadistica {
     const cantidades=new Map(datos.solicitudes.map(r=>[r.posicionId,r.cantidad]));
     const ids=new Set(malla.map(m=>m.idPos).filter(Boolean));
     const noVinculadas=datos.solicitudes.filter(r=>!ids.has(r.posicionId));
+    // Contar alternativas completas analizables; no sumar subcomponentes
+    // ni extrapolar cupos. `on` es selección personal y `analizable` es
+    // condición académica del contrato.
     const gruposPorNombre=new Map();
     for(const g of grupos){
       if(g.on===false||g.analizable===false)continue;
@@ -103,6 +108,8 @@ class DemandaEstadistica {
         porGrupo,frecuencia,proyeccion,relativo:null,percentilSemestral:null,
         desviacionRobusta:null,comparables:0};
     });
+    // Las referencias estadísticas son por semestre y solo cuando hay
+    // muestra suficiente. Un `null` significa indicador no calculable.
     const referencia=new Map();
     for(const sem of new Set(filas.map(x=>x.semestre))){
       const muestra=filas.filter(x=>x.semestre===sem&&x.porGrupo!=null).map(x=>x.porGrupo);
@@ -125,6 +132,8 @@ class DemandaEstadistica {
         if(r.mad>0)f.desviacionRobusta=(f.porGrupo-r.mediana)/(1.4826*r.mad);
       }
     });
+    // Coincidencias de solicitudes únicamente si llegaron respuestas
+    // anónimas conjuntas; no inferir preferencias a partir de totales.
     const parejas=new Map();
     for(const respuesta of datos.respuestasAnonimas||[]){
       const validas=[...new Set(respuesta.filter(x=>ids.has(x)))].sort();
@@ -193,6 +202,7 @@ class DemandaEstadistica {
 if(typeof module!=='undefined')module.exports={DemandaEstadistica};
 
 /** Página DEM-01. Consume SOLO escenario y selección vigente, sin conversores. */
+/** Vista de demanda: consulta descriptiva con simulación etiquetada, sin guardar por dibujar. */
 function pageDemanda() {
   const estado=ui.demanda;
   // Previsualizar sin persistir cuando no existe una encuesta real.
