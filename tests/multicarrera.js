@@ -53,7 +53,7 @@ async function abrir(id, opciones={}) {
       window.Element.prototype.scrollIntoView=()=>{};
       window.fetch=async url=>{
         consultas.push(String(url));
-        assert.match(String(url),/^datos\/academico\.json\?v=1\.1\.0$/);
+        assert.match(String(url),/^datos\/academico\.json\?v=1\.1\.1$/);
         return {ok:true,json:async()=>opciones.equivocado?equivocado:contrato};
       };
     }
@@ -69,21 +69,53 @@ async function main() {
     const {dom,document,consultas,errores}=await abrir(id);
     try {
       assert.deepEqual(consultas,[],'No cargar datos académicos para '+id);
-      assert(!Object.hasOwn(dom.window,'CONTEXTO_ACADEMICO'),
-        'No construir escenarios para una carrera sin datos');
+      assert.equal(dom.window.CONTEXTO_ACADEMICO?.sinDatos,true,
+        'No hay contrato académico, pero sí un contexto visual explícito');
+      assert.equal(dom.window.CONTEXTO_ACADEMICO.almacenamiento.clave,null);
       assert.equal(document.querySelector('#selector-programa')?.value,id);
       assert.equal(document.querySelectorAll('#selector-programa option').length,9);
-      assert.equal(document.querySelectorAll('#top .nav a').length,8);
-      assert.match(document.querySelector('#view h1')?.textContent||'',/no disponible/i);
-      assert.match(document.querySelector('#view')?.textContent||'',
-        /no significa que no existan asignaturas/);
+      assert.equal(document.querySelectorAll('#top [data-act="nav"]').length,8);
+      assert(document.querySelector('#top .componentes-bar'));
+      assert(document.querySelector('#top #filtro-unidad'));
+      assert(document.querySelector('#top [data-act="export"]')?.disabled);
+      assert(document.querySelector('#top [data-act="import"]')?.disabled);
       assert.equal(document.documentElement.dataset.programa,id);
-      assert(!document.querySelector('.kpi,.prow,.dem-tabla'),
-        'No fabricar estadísticas ni horarios');
-      dom.window.location.hash='#heat';
-      dom.window.dispatchEvent(new dom.window.HashChangeEvent('hashchange'));
-      assert(document.querySelector('#view').textContent.includes('Mapa de calor'),
-        'Cada una de las ocho páginas permite consultar su estado sin datos');
+      assert(document.querySelector('.sin-datos-banner'));
+      const estructura=[
+        ['inicio','.hero','.hero-k','.grid2'],
+        ['inter','.filters','.count-line','.seg'],
+        ['asig','.page-title','.seg'],
+        ['grupos','.gcards','#asg-new'],
+        ['hor','.hor','.sidelist','.weekgrid-scroll','.right'],
+        ['heat','.hm-grid','.hm-sidelist','.hm-kpis','.hm-top'],
+        ['demanda','.dem-panel','.dem-grafico-wrap','.dem-tabla','.dem-acciones'],
+        ['malla','#malla-panel','.malla-toolbar','#canvas','#mcols','.sidecard']
+      ];
+      for(const [pagina,...selectores] of estructura){
+        const nav=document.querySelector('[data-act="nav"][data-p="'+pagina+'"]');
+        assert(nav,'Falta navegación: '+pagina);
+        nav.click();
+        assert.equal(document.querySelector('[data-act="nav"][data-p="'+pagina+'"]')
+          ?.getAttribute('aria-current'),'page');
+        for(const selector of selectores)
+          assert(document.querySelector(selector),id+'/'+pagina+': falta '+selector);
+        assert(document.querySelector('.sin-datos-banner'),'Falta señal de ausencia');
+      }
+      assert(document.querySelector('#mcols .mapa-sin-datos'));
+      assert(!document.querySelector('#mcols .mcard'));
+      assert(document.querySelector('#malla-panel .malla-controles'));
+      document.querySelector('[data-act="m-zoom"][data-dx="0.1"]').click();
+      assert.equal(document.querySelector('.malla-zoom-etiqueta')?.textContent.trim(),
+        '110 %');
+      document.querySelector('[data-act="nav"][data-p="demanda"]').click();
+      assert.equal(document.querySelectorAll('.dem-marca').length,0);
+      assert(!document.querySelector('#view')?.textContent.includes('DATOS SIMULADOS'));
+      assert([...document.querySelectorAll('.dem-metricas strong')]
+        .every(n=>n.textContent.trim()==='—'));
+      assert(document.querySelector('.dem-acciones button')?.disabled);
+      document.querySelector('[data-act="nav"][data-p="heat"]').click();
+      assert([...document.querySelectorAll('.hm-kpi .num')]
+        .every(n=>n.textContent.trim()==='—'));
       assert.deepEqual(errores.filter(e=>/Uncaught|Could not load/i.test(e)),[]);
     } finally { dom.window.close(); }
   }
