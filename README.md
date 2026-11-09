@@ -20,9 +20,9 @@ datos/academico.json
   -> resultados filtrados y las ocho vistas (js/app.js, js/vistas.js)
 ```
 
-La proyección interna `fromRaw` forma parte del arranque actual. **La migración ARQ-01 está finalizada desde la versión 0.8.0**: las rutinas que interpretan archivos personales antiguos `{S}` permanecen únicamente como compatibilidad de lectura, sin alterar el contrato ni la construcción de `S0`.
+La proyección interna `fromRaw` forma parte del arranque vigente. No se cargan formatos académicos de desarrollo ni se exigen sus metadatos. **Solo se admite el formato personal actual `escenario-personal/version:1`**; el soporte de archivos anteriores sin usuarios fue retirado en 0.8.1 por decisión expresa. Véanse [ARQ-01](docs/ARQUITECTURA.md) y [REG-01](docs/REG-01.md).
 
-**La compatibilidad antigua es opcional respecto a la entrada de datos:** campos como `introducidoEn` e `idAnterior` pueden ayudar a interpretar un archivo personal de otra versión, pero no son necesarios para cargar un plan académico vigente. Se verifica en `tests/compatibilidad-opcional.js`; el detalle y los límites se encuentran en [ARQ-01](docs/ARQUITECTURA.md) y [REG-01](docs/REG-01.md). La relación precisa entre responsabilidades, estados `S0/S/R0/R/RV0/RV/ui` y pruebas está en [ARQ-01](docs/ARQUITECTURA.md).
+**Dos requisitos se mantienen:** el sistema debe tolerar información académica incompleta sin inventarla y avanzar hacia **múltiples programas académicos**, tanto en el motor como en la gestión futura de programas e identidades. No hay que confundir esa extensibilidad solicitada con compatibilidad innecesaria con versiones antiguas.
 
 La estructura normalizada contiene `programa`, `componentes`, `caracteres`, `catalogo`, `malla`, `requisitos`, `oferta`, `agrupaciones`, `exclusionesAgrupacion`, `configuracion` y `procedencia`, además de `versionEsquema`. Los IDs institucionales de asignatura y de posición curricular son distintos. Las agrupaciones se analizan **solo si han sido declaradas verificables y elegibles**; una agrupación informativa de otra sede o un grupo sin horario no autoriza inventar choques.
 
@@ -49,7 +49,7 @@ La página Demanda admite una **anotación personal opcional** de solicitudes po
 
 El escenario `S` parte de una referencia `S0`. Los cambios voluntarios en horarios, grupos, semestres, relaciones y anotaciones se guardan en el navegador o en un archivo de escenario personal. Se puede exportar, importar y restablecer la referencia.
 
-Los requisitos mínimos se persisten como modificaciones por identificador y propiedad. Los archivos históricos `{S}` y los escenarios antiguos con listas completas de requisitos tienen una vía de recuperación compatible; las diferencias ambiguas se presentan para revisión por requisito. **No borres el almacenamiento del navegador** para solucionar una divergencia sin inspeccionarla.
+Los requisitos mínimos se guardan como diferencias por identificador y propiedad. La importación valida que el archivo sea del formato **actual** y aplica sus modificaciones sobre la referencia vigente. No se interpreta ningún snapshot completo de desarrollo, pero las diferencias actuales pueden volver a aplicarse al cambiar los datos académicos.
 
 La unidad responsable de una asignatura (departamento de Ingeniería o facultad ajena a Ingeniería) es una **anotación personal opcional** que no se infiere de profesores ni se incorpora automáticamente a la única entrada académica.
 
@@ -63,7 +63,7 @@ El diseño usa **modo oscuro predeterminado**, claro optativo y persistente, ide
 |---|---|
 | `index.html`, `js/iniciar.js` | Carga de módulos, lectura única del contrato y preparación del contexto |
 | `js/entrada.js`, `js/modelo.js` | Lectura normalizada, modelo curricular y calendario |
-| `js/escenarios.js` | Personalizaciones, validación, persistencia y compatibilidad |
+| `js/escenarios.js` | Personalizaciones, validación y persistencia del formato vigente |
 | `js/analisis.js` | Cálculos de choques y dependencias, adaptación posicional interna |
 | `js/app.js`, `js/vistas.js` | Sesión, filtros, ocho vistas, controles y exportaciones |
 | `js/demanda.js` | Análisis y presentación de demanda |
@@ -79,7 +79,7 @@ npm test
 
 GitHub Actions comprueba las pruebas de contrato, horarios, escenarios, requisitos, estadísticas, filtros, apariencia, ocho vistas e integración. La versión pública se declara conjuntamente en `index.html`, sus referencias `?v=` y `js/iniciar.js`. **Una prueba con `jsdom` no reemplaza una inspección visual real.**
 
-Los archivos académicos de la aplicación anterior están conservados íntegros en [`pruebas/historico/js/`](pruebas/historico/js/) desde 0.7.7; **ya no existen en `js/`**. Las herramientas `data/`, `scripts/` y `pruebas/` corresponden a preparación externa y diagnósticos históricos, no a entradas productivas. Las pruebas del legado se ejecutan por separado con `npm run test:historico`. No deben usarse para reconstruir automáticamente el JSON académico vigente.
+Los archivos, scripts y pruebas exclusivos de la antigua aplicación se retiraron en 0.8.1; su historia puede consultarse en Git. **Se conservan** `scripts/normalizar_oferta.py`, sus pruebas y los recursos de `data/` usados para preparar información del SIA fuera del sitio. No forman parte de la única entrada académica cargada por el navegador.
 
 ## Documentación y mantenimiento
 
@@ -92,4 +92,4 @@ Los archivos académicos de la aplicación anterior están conservados íntegros
 - [RESP-01](docs/RESP-01.md), [TEMA-ALTURA-01](docs/TEMA-ALTURA-01.md), [TONO-01](docs/TONO-01.md), [UNI-UI-01](docs/ESTILO-UNIVERSITARIO.md): presentación y accesibilidad.
 - [AGENTS.md](AGENTS.md): procedimiento operativo de colaboradores y agentes.
 
-**ARQ-01 está cerrada como migración en 0.8.0.** No existe una segunda entrada ni una transición académica pendiente. La compatibilidad con archivos personales anteriores queda bajo pruebas, como una función ordinaria del gestor. **La versión 1.0.0 todavía no está declarada** y exige las restantes comprobaciones generales de estabilidad que establece ARQ-01. No se consideran fallas las funcionalidades que nunca fueron solicitadas.
+**ARQ-01 permanece cerrada.** En la evaluación 0.8 → 0.9 se retiró la compatibilidad anterior sin usuarios; la resiliencia frente a datos incompletos, la preparación multicarrera y los escenarios personales vigentes continúan en alcance. **La versión 1.0.0 todavía no está declarada.**
