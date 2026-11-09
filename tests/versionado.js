@@ -23,6 +23,14 @@ const bloqueo = JSON.parse(fs.readFileSync(path.join(raiz, 'package-lock.json'),
 assert.equal(paquete.version, version, 'package.json y HTML deben declarar la misma versión');
 assert.equal(bloqueo.version, version, 'El lockfile no coincide con la versión del sitio');
 assert.equal(bloqueo.packages[''].version, version, 'La raíz del lockfile no coincide');
+const readme = fs.readFileSync(path.join(raiz, 'README.md'), 'utf8');
+const declarado = [...readme.matchAll(/^\*\*Versión pública:\*\* (\d+\.\d+\.\d+)\b/gm)];
+assert.equal(declarado.length, 1,
+  'README debe declarar exactamente una versión pública vigente en su cabecera');
+assert.equal(declarado[0][1], version,
+  'README desactualizado respecto al paquete y el HTML');
+assert(/\*\*Rama publicada:\*\* `main`/.test(readme),
+  'README debe identificar main como fuente publicada');
 const visibles = [...html.matchAll(/<span class="pie-version"[^>]*>Versión (\d+\.\d+\.\d+)\b/g)];
 assert.equal(visibles.length, 1, 'Debe existir un único indicador de versión en el pie');
 assert.equal(visibles[0][1], version, 'La versión visible no coincide con la del HTML');

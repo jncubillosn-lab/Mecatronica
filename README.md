@@ -1,106 +1,63 @@
 # Gestor de horarios · Ingeniería Mecatrónica
 
-Herramienta web estudiantil **no oficial** para analizar interferencias de horarios, explorar asignaturas y grupos, consultar el plan curricular y comparar escenarios personales de la Universidad Nacional de Colombia, sede Bogotá.
+**Versión pública:** 1.0.0 · **Estado:** estable para el alcance actual de Mecatrónica · **Rama publicada:** `main`
 
-**Versión pública vigente:** se consulta en el pie del sitio y en el metadato de [\`index.html\`](index.html), que debe coincidir con los recursos versionados. Este README no mantiene otro número independiente que pudiera quedar desactualizado; el control de versión y publicación se documenta en EST-01.  
-**Sitio:** https://jncubillosn-lab.github.io/Mecatronica/  
-**Documento rector:** [ARQ-01 — arquitectura, requisitos, principios y límites](docs/ARQUITECTURA.md). Antes de cualquier modificación, limpieza o diagnóstico se consulta esta guía.
+[**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
-## Arquitectura en funcionamiento
+Aplicación web estudiantil **no oficial** de la Universidad Nacional de Colombia, sede Bogotá. Permite consultar el plan curricular y grupos ofertados, analizar interferencias de horarios y construir escenarios personales. No sustituye los sistemas institucionales, ni confirma matrículas o cupos.
 
-La aplicación recibe **una sola entrada académica normalizada**, [`datos/academico.json`](datos/academico.json). La recopilación y conversión de malla, catálogo y oferta institucional es **externa al sistema web**.
+> **Importante sobre GitHub:** la aplicación se publica desde la rama **`main`**. Las versiones antiguas se consultan en el historial de Git, no en ramas de trabajo. Un README abierto desde un enlace de una rama histórica no describe la versión publicada.
+
+## Qué ofrece
+
+| Página | Función |
+|---|---|
+| Inicio | Resumen de interferencias del escenario seleccionado |
+| Interferencias | Pares de asignaturas, matriz, detalle de grupos y CSV |
+| Asignaturas | Consulta y estadísticas por asignatura |
+| Grupos | Alternativas de grupos y ediciones voluntarias |
+| Horarios | Semana, bloques editables y superposiciones |
+| Mapa de calor | Concentración de horarios programados, no ocupación real de aulas |
+| Demanda | Estadística descriptiva de preinscripciones cuando hay datos y simulaciones claramente identificadas |
+| Prerrequisitos | Malla, relaciones curriculares, mínimos de créditos y controles visuales de Libre elección |
+
+Los filtros de componente y unidad académica actúan en las ocho páginas sin modificar los datos de referencia. La interfaz ofrece tema oscuro y claro y conserva las ediciones personales.
+
+## Cómo están organizados los datos
+
+La aplicación tiene **una sola entrada académica normalizada**: [`datos/academico.json`](datos/academico.json). La extracción y transformación de las fuentes universitarias se hacen **fuera** del sistema web.
 
 ```text
-datos/academico.json
-  -> EntradaAcademica (js/entrada.js)
-  -> estado académico de referencia S0
-  -> EscenarioPersonal (js/escenarios.js) + cambios voluntarios
-  -> escenario efectivo S
-  -> modelo y análisis (js/modelo.js, js/analisis.js, js/demanda.js)
-  -> resultados filtrados y las ocho vistas (js/app.js, js/vistas.js)
+FuentesAcadémicas (datos/academico.json)
+    → EntradaAcademica → referencia S0
+    → EscenarioPersonal + diferencias voluntarias → escenario S
+    → motor de análisis → consultas filtradas → ocho vistas
 ```
 
-La proyección interna `fromRaw` forma parte del arranque vigente. No se cargan formatos académicos de desarrollo ni se exigen sus metadatos. **Solo se admite el formato personal actual `escenario-personal/version:1`**; el soporte de archivos anteriores sin usuarios fue retirado en 0.8.1 por decisión expresa. Véanse [ARQ-01](docs/ARQUITECTURA.md) y [REG-01](docs/REG-01.md).
+La entrada admite datos faltantes: desconocer un horario, profesor o crédito no autoriza inventarlo ni generar alarmas. Los grupos no se combinan si la fuente normalizada no registra esa relación.
 
-**Dos requisitos se mantienen:** el sistema debe tolerar información académica incompleta sin inventarla y avanzar hacia **múltiples programas académicos**, tanto en el motor como en la gestión futura de programas e identidades. No hay que confundir esa extensibilidad solicitada con compatibilidad innecesaria con versiones antiguas.
+Los escenarios personales se guardan como diferencias sobre la referencia vigente; se pueden importar, exportar y restablecer. El formato actual es `escenario-personal/version:1`, sin lectores de archivos de desarrollo anteriores.
 
-La estructura normalizada contiene `programa`, `componentes`, `caracteres`, `catalogo`, `malla`, `requisitos`, `oferta`, `agrupaciones`, `exclusionesAgrupacion`, `configuracion` y `procedencia`, además de `versionEsquema`. Los IDs institucionales de asignatura y de posición curricular son distintos. Las agrupaciones se analizan **solo si han sido declaradas verificables y elegibles**; una agrupación informativa de otra sede o un grupo sin horario no autoriza inventar choques.
+**Multicarrera:** el motor preserva su independencia respecto de una carrera particular, pero la selección y gestión de varios programas es una función **aprobada para el futuro**, no incluida en la 1.0.0. Actualmente solo está habilitada Mecatrónica.
 
-**Principio de datos faltantes:** `null` es desconocido; una lista vacía significa ausencia de registros informados; `0` es un valor conocido. Ningún vacío legítimo se convierte por sí mismo en error o alarma.
+## Verificación y publicación
 
-## Funciones disponibles
-
-| Página | Funcionalidad |
-|---|---|
-| Inicio | Resumen de cruces según la selección actual |
-| Interferencias | Lista, matriz, comparación de grupos, filtros y CSV |
-| Asignaturas | Indicadores y detalle por materia |
-| Grupos | Consulta y edición de alternativas de grupos |
-| Horarios | Bloques de clases, edición y superposiciones |
-| Mapa de calor | Concentración de clases programadas por franja, **no** ocupación de aulas ni matrícula |
-| Demanda | Análisis descriptivo de solicitudes de preinscripción y vista previa simulada identificada |
-| Prerrequisitos | Malla, relaciones, mínimos de créditos y distribución visual de Libre elección |
-
-Los filtros de componente y unidad académica funcionan en las **ocho páginas** y no alteran datos ni escenarios. La tipología institucional y el componente del plan no son equivalentes por definición. Libre elección dispone de controles locales en Prerrequisitos, pero no se añade a los filtros globales del contrato.
-
-La página Demanda admite una **anotación personal opcional** de solicitudes por ID curricular. Si faltan datos, presenta una simulación declarada como tal; no deduce cupos, capacidad institucional ni matrícula real. En Prerrequisitos, el contraste de créditos por ubicación semestral **no certifica que un estudiante haya aprobado los créditos exigidos**.
-
-## Escenarios personales
-
-El escenario `S` parte de una referencia `S0`. Los cambios voluntarios en horarios, grupos, semestres, relaciones y anotaciones se guardan en el navegador o en un archivo de escenario personal. Se puede exportar, importar y restablecer la referencia.
-
-Los requisitos mínimos se guardan como diferencias por identificador y propiedad. La importación valida que el archivo sea del formato **actual** y aplica sus modificaciones sobre la referencia vigente. No se interpreta ningún snapshot completo de desarrollo, pero las diferencias actuales pueden volver a aplicarse al cambiar los datos académicos.
-
-La unidad responsable de una asignatura (departamento de Ingeniería o facultad ajena a Ingeniería) es una **anotación personal opcional** que no se infiere de profesores ni se incorpora automáticamente a la única entrada académica.
-
-## Presentación
-
-El diseño usa **modo oscuro predeterminado**, claro optativo y persistente, identidad cromática discreta por programa y matices tenues por componente curricular. La malla permite zoom, pantalla ampliada y altura adaptada al semestre más largo; las representaciones anchas conservan desplazamiento propio. Los colores de tipos de asignatura no sustituyen estados de choque, selección o demanda.
-
-## Código ejecutado y verificación
-
-| Ruta | Responsabilidad |
-|---|---|
-| `index.html`, `js/iniciar.js` | Carga de módulos, lectura única del contrato y preparación del contexto |
-| `js/entrada.js`, `js/modelo.js` | Lectura normalizada, modelo curricular y calendario |
-| `js/escenarios.js` | Personalizaciones, validación y persistencia del formato vigente |
-| `js/analisis.js` | Cálculos de choques y dependencias, adaptación posicional interna |
-| `js/app.js`, `js/vistas.js` | Sesión, filtros, ocho vistas, controles y exportaciones |
-| `js/demanda.js` | Análisis y presentación de demanda |
-| `js/tema.js`, `js/identidad.js`, `css/` | Apariencia y estilos, independientes del dato académico |
-| `datos/academico.json` | Única entrada académica normalizada |
-
-Para ejecutar las verificaciones:
-
-```sh
+```bash
 npm ci
 npm test
-npm run version:verificar   # versión interna, referencias y paquete
-npm run version:publicada   # certificar sitio servido contra esta revisión
+npm run version:verificar
+npm run version:publicada
 ```
 
-`package.json` es el número público de referencia; el test exige igualdad
-con `package-lock.json`, metadato, pie, JS, CSS y los parámetros de caché.
-La PR verifica integridad y avance de versión. Tras integrar en `main`, el
-workflow **Certificar versión publicada** comprueba por HTTP el HTML real
-y todos los recursos productivos frente a los bytes de esa revisión; su
-resultado es una certificación **separada** del build de Pages. Un navegador
-que mantenga abierta una pestaña anterior puede seguir mostrando el pie
-antiguo hasta recargar.
-
-GitHub Actions ejecuta las pruebas al abrir una PR y al cambiar `main`; comprueba las pruebas de contrato, horarios, escenarios, requisitos, estadísticas, filtros, apariencia, ocho vistas e integración. La versión pública se declara conjuntamente en `index.html`, sus referencias `?v=` y `js/iniciar.js`. **Una prueba con `jsdom` no reemplaza una inspección visual real.**
-
-Los archivos, scripts y pruebas exclusivos de la antigua aplicación se retiraron en 0.8.1; su historia puede consultarse en Git. **Se conservan** `scripts/normalizar_oferta.py`, sus pruebas y los recursos de `data/` usados para preparar información del SIA fuera del sitio. No forman parte de la única entrada académica cargada por el navegador.
+- `npm test` comprueba contrato, cálculos, ocho vistas, entrada incompleta, escenarios, filtros, rutas de interfaz y documentación.
+- `version:verificar` exige correspondencia entre el número de esta página, `package.json`, `index.html`, el pie y los recursos versionados.
+- `version:publicada` compara por HTTP los archivos realmente servidos por GitHub Pages con los del commit local. GitHub Actions ejecuta también esta certificación tras incorporar cambios en `main`.
+- La revisión visual real en dispositivos es un control adicional; el resultado de GitHub Pages no garantiza la recarga de una pestaña previamente abierta.
 
 ## Documentación y mantenimiento
 
-- [ARQ-01 — documento rector](docs/ARQUITECTURA.md): flujo, requisitos RF/RC, no-requisitos y límites de mantenimiento.
-- [DEC-01 — decisiones](docs/DECISIONES-Y-ALCANCE.md): acuerdos vigentes, cambios que sustituyeron criterios anteriores y alcance.
-- [EST-01 — estado y publicación](docs/ESTADO-Y-PUBLICACION.md): corte verificado, procedimientos y asuntos que requieren pruebas antes de un cambio.
-- [CHANGELOG](CHANGELOG.md): historial de versiones, separado de la descripción de funcionamiento actual.
-- [MIG-ARQ01](docs/MIGRACION-ARQ01.md): antecedentes de la migración y sus causas.
-- [REG-01](docs/REG-01.md), [REQ-C-01](docs/REQ-C-01.md), [DEM-01](docs/DEM-01.md), [LIB-01](docs/LIB-01.md): decisiones especializadas sobre escenarios, requisitos y visualización curricular.
-- [RESP-01](docs/RESP-01.md), [TEMA-ALTURA-01](docs/TEMA-ALTURA-01.md), [TONO-01](docs/TONO-01.md), [UNI-UI-01](docs/ESTILO-UNIVERSITARIO.md): presentación y accesibilidad.
-- [AGENTS.md](AGENTS.md): procedimiento operativo de colaboradores y agentes.
+El punto de partida es [ARQ-01 — Arquitectura](docs/ARQUITECTURA.md): describe responsabilidades, requisitos y límites. [DEC-01 — Decisiones](docs/DECISIONES-Y-ALCANCE.md) conserva el criterio que justifica cada comportamiento. [EST-01 — Estado y publicación](docs/ESTADO-Y-PUBLICACION.md) distingue capacidades y verificaciones; [AGENTS.md](AGENTS.md) establece el procedimiento de desarrollo.
 
-**ARQ-01 permanece cerrada.** En la evaluación 0.8 → 0.9 se retiró la compatibilidad anterior sin usuarios; la resiliencia frente a datos incompletos, la preparación multicarrera y los escenarios personales vigentes continúan en alcance. **La 1.0.0 estabiliza el alcance actual de Mecatrónica; la gestión multicarrera aprobada permanece como trabajo futuro.**
+Las decisiones específicas se encuentran en [REG-01](docs/REG-01.md), [REQ-C-01](docs/REQ-C-01.md), [DEM-01](docs/DEM-01.md), [LIB-01](docs/LIB-01.md), [RESP-01](docs/RESP-01.md), [TEMA-ALTURA-01](docs/TEMA-ALTURA-01.md), [TONO-01](docs/TONO-01.md) y [UNI-UI-01](docs/ESTILO-UNIVERSITARIO.md).
+
+La migración antigua está terminada. Su historia se conserva en [MIG-ARQ01](docs/MIGRACION-ARQ01.md) y [CHANGELOG](CHANGELOG.md), **no como procedimiento pendiente**. La normalización externa del SIA (`scripts/normalizar_oferta.py`) sigue disponible porque forma parte de la preparación de datos, no de la aplicación publicada.
