@@ -30,6 +30,13 @@ assert(conArchivo('pruebas/__pycache__/resto.pyc','x')
   .some(h=>h.id==='ARTEFACTO_RESIDUAL'));
 assert(conArchivo('js/sintaxis-rota.js','function (')
   .some(h=>h.id==='JAVASCRIPT_INVALIDO'));
+const flujo='.github/workflows/auditoria-continua.yml';
+const invisible=evaluar({archivos,
+  leer:p=>p===flujo
+    ?lectura(p).replace('include-hidden-files: true','include-hidden-files: false')
+    :lectura(p),sha:'PRUEBA'});
+assert(invisible.hallazgos.some(h=>h.id==='EVIDENCIA_SIN_PUBLICAR'),
+  'No se debe aceptar un control que deja el informe fuera de los artefactos');
 const cambios=new Set(base.hallazgos.map(h=>h.id));
 assert(!cambios.has('SIN_CLASIFICAR'));
 console.log('OK: auditoría autoejecutable detecta omisiones, código suelto y residuos.');

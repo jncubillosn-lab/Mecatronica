@@ -126,6 +126,21 @@ function evaluar({ archivos, leer, sha = null }) {
       'GitHub Actions debe descubrir automáticamente todos los test_*.py de pruebas/');
 
   controles.push({id:'PRUEBAS',detalle:'Pruebas JS registradas en npm test y normalizador Python conectado con CI'});
+  // Los informes son archivos ocultos (.auditoria); upload-artifact@v4 los
+  // omite por defecto. No declarar éxito sin una salida auditable.
+  for(const workflow of [
+    '.github/workflows/verificacion-arq01.yml',
+    '.github/workflows/auditoria-continua.yml'
+  ]){
+    const config=entrada(workflow);
+    if(!config.includes('include-hidden-files: true') ||
+       !config.includes('if-no-files-found: error') ||
+       !config.includes('path: .auditoria/')) {
+      agregar('EVIDENCIA_SIN_PUBLICAR','error',workflow,
+        'El workflow debe subir .auditoria/ incluyendo ocultos y fallar si faltan informes');
+    }
+  }
+  controles.push({id:'EVIDENCIA',detalle:'Informes como artefactos obligatorios, incluidas carpetas ocultas'});
 
   for (const archivo of archivos.filter(p => /^scripts\/[^/]+\.(?:js|py)$/.test(p))) {
     if (!activos.textosEjecutables.includes(archivo))
