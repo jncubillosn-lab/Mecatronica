@@ -1,6 +1,6 @@
 # EST-01 — Estado real y publicación
 
-**Corte revisado:** 8 de noviembre de 2026 · **Versión pública en `main` al corte:** `0.7.5`.  
+**Corte revisado:** 8 de noviembre de 2026 · **Versión pública al corte de esta etapa:** `0.7.6` (si la PR productiva se integra y publica).  
 **Estado de la estabilización:** preparación hacia **1.0.0**; **no publicada ni aprobada todavía**.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md), incluidos sus 17 requisitos funcionales, 8 condiciones de calidad y no-requisitos.  
 **Trazabilidad detallada:** [CHANGELOG](../CHANGELOG.md) y [MIG-ARQ01](MIGRACION-ARQ01.md).  
@@ -9,11 +9,11 @@ Este archivo explica el **estado operativo** y la ruta de verificación. Las ver
 
 ## 1. Estado publicado y alcance
 
-El código `main` de referencia declara `0.7.5` en `index.html` y en los recursos versionados. Las ocho páginas son **Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos**. La aplicación es estudiantil, estática y no oficial.
+El código de referencia de esta etapa declara `0.7.6` en `index.html` y en los recursos versionados; la publicación efectiva se verifica tras fusionar. Las ocho páginas son **Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos**. La aplicación es estudiantil, estática y no oficial.
 
 **Una sola entrada académica:** `datos/academico.json`. `js/iniciar.js` lee el contrato, `EntradaAcademica` construye una proyección interna y `fromRaw` prepara `S0`; `EscenarioPersonal` reconstruye `S` y `compute` calcula resultados. Los filtros construyen consultas `RV/RV0`, sin modificar `S/S0`. La presentación es independiente de la entrada académica.
 
-**Distinguir siempre tres versiones:** `versionEsquema:1` (contrato), `version:1` (archivo personal) y `0.7.5` (sitio al corte). El mismo número no tiene por qué servir a los tres formatos.
+**Distinguir siempre tres versiones:** `versionEsquema:1` (contrato), `version:1` (archivo personal) y `0.7.6` (versión objetivo de esta etapa). El mismo número no tiene por qué servir a los tres formatos.
 
 ### Hitos históricos verificados por PR
 
@@ -25,7 +25,7 @@ El código `main` de referencia declara `0.7.5` en `index.html` y en los recurso
 | 0.6.0 | Identidad visual y acentos por programa ([PR #20](https://github.com/jncubillosn-lab/Mecatronica/pull/20)) |
 | 0.7.0–0.7.2 | Diseño adaptable, Libre elección y modo claro ([PR #21–23](https://github.com/jncubillosn-lab/Mecatronica/pulls?q=is%3Apr+is%3Amerged)) |
 | 0.7.3–0.7.5 | Requisitos TPI/PAI, escenarios por diferencias, tipologías suaves y contraste ([PR #24–26](https://github.com/jncubillosn-lab/Mecatronica/pulls?q=is%3Apr+is%3Amerged)) |
-| Preparación 1.0 | [PR #28](https://github.com/jncubillosn-lab/Mecatronica/pull/28): se consolidó ARQ-01, **sin modificar la versión pública** |
+| Preparación 1.0 | [PR #28](https://github.com/jncubillosn-lab/Mecatronica/pull/28): se consolidó ARQ-01; [PR #29](https://github.com/jncubillosn-lab/Mecatronica/pull/29) actualizó documentos, y [PR #30](https://github.com/jncubillosn-lab/Mecatronica/pull/30) separó pruebas históricas. La etapa de arranque se realiza en [PR #31](https://github.com/jncubillosn-lab/Mecatronica/pull/31), con versión objetivo 0.7.6. |
 
 ## 2. Responsabilidades y límites
 
@@ -59,7 +59,7 @@ No confundir CI en la rama, una fusión en `main` y un despliegue completo; son 
 | Caso | Estado comprobado | Criterio para actuar |
 |---|---|---|
 | `fromRaw` y proyección posicional | Usados para construir S0 desde la única entrada | Mantener hasta demostrar un reemplazo equivalente |
-| `fixMalla` y `mig1`–`mig4` | `fixMalla(S0)` sigue llamado durante el arranque y además sirve a `{S}` histórico | Reproducir invariantes de S0 y separar migración solo sin modificar estado |
+| `fixMalla` y `mig1`–`mig4` | **Desde 0.7.6**, retirado `fixMalla(S0)` tras prueba de equivalencia; continúa la ruta `fixMalla(anterior)` para archivos `{S}` | Mantener compatibilidad y reevaluar su retiro por separado, solo con pruebas representativas |
 | `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` | **Pruebas históricas, aisladas de `npm test`**; ejecutables por separado con `npm run test:historico` | Mantener como evidencia mientras se revise el archivo de origen; no convertirlas en requisito de producción |
 | `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js`, `js/fuentes.js` | No importados por HTML; utilizados por pruebas históricas | No borrar sin resolver todas las dependencias |
 | Herramientas `data/`, `scripts/`, `pruebas/` | Preparación externa o verificaciones de migraciones anteriores | Mantener claramente separadas de la aplicación estática |

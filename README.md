@@ -2,7 +2,7 @@
 
 Herramienta web estudiantil **no oficial** para analizar interferencias de horarios, explorar asignaturas y grupos, consultar el plan curricular y comparar escenarios personales de la Universidad Nacional de Colombia, sede Bogotá.
 
-**Versión pública verificada en el código:** `0.7.5` (corte anterior a la estabilización 1.0). La versión realmente visible depende de la publicación de GitHub Pages.  
+**Versión pública vigente:** se consulta en el pie del sitio y en el metadato de [\`index.html\`](index.html), que debe coincidir con los recursos versionados. Este README no mantiene otro número independiente que pudiera quedar desactualizado; la versión 1.0 aún no se ha declarado.  
 **Sitio:** https://jncubillosn-lab.github.io/Mecatronica/  
 **Documento rector:** [ARQ-01 — arquitectura, requisitos, principios y límites](docs/ARQUITECTURA.md). Antes de cualquier modificación, limpieza o diagnóstico se consulta esta guía.
 

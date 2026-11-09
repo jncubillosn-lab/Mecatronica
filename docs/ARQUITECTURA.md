@@ -205,7 +205,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 
 **No confundir las capas:** `S0` = referencia construida desde el contrato; `S` = escenario con modificaciones; `R0/R` = cálculos sobre referencia/escenario; `RV0/RV` = **consultas** filtradas; `ui` = selección/zoom/navegación transitorios. Guardar `ui` o un resultado calculado como verdad académica crearía una segunda autoridad y rompería la arquitectura.
 
-**Detalle transitorio observado:** en v0.7.5 `js/app.js` aún ejecuta `fixParams(S0); fixMalla(S0)` durante el arranque. `fixMalla` reúne compatibilidad histórica (`mig1`–`mig4`, identificaciones anteriores y oferta incrementada). **Esta mezcla es un punto de auditoría para mantenimiento**, no un comportamiento que debamos ocultar ni una autorización para eliminarla sin equivalencia probada.
+**Saneamiento verificado en v0.7.6:** la prueba `tests/arranque-sin-migracion.js` reprodujo que aplicar `fixMalla(S0)` al estado vigente solo añadía marcas `mig1`–`mig4`, sin cambiar posiciones, requisitos, grupos, bloques ni cálculos. Se retiró **únicamente esa invocación**: `S0` procede ahora directamente del contrato y `fixParams(S0)`. `fixMalla(anterior)` y `EscenarioPersonal.migrarAnterior` **permanecen** para importar escenarios históricos `{S}`; no se da por terminada la revisión de su posible aislamiento futuro.
 
 ### Cálculo y visualización
 
@@ -337,7 +337,7 @@ Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora fin
 | `js/modelo.js`, `js/entrada.js`, `js/escenarios.js`, `js/analisis.js`, `js/app.js`, `js/vistas.js`, `js/demanda.js` | Ruta **activa** de ejecución | Conservar y probar responsabilidades antes de cualquier refactorización |
 | `js/tema.js`, `js/identidad.js`, `css/*.css` | Presentación **activa** | Cambios cromáticos exclusivamente visuales, sin tocar contrato ni resultados |
 | `fromRaw` y proyección posicional de `EntradaAcademica` | Adaptación **utilizada en el arranque** y compatibilidad | No afirmar que `RAW` global está en producción; tampoco eliminar esta adaptación sin reemplazo validado |
-| `fixMalla`, `fixParams` y `EscenarioPersonal.migrarAnterior` | Compatibilidad/transiciones **ejecutables**; `fixMalla(S0)` se llama en arranque | Separar construcción normal y migración solo si se demuestra equivalencia; preservar formatos `{S}` y `version:1` |
+| `fixMalla`, `fixParams` y `EscenarioPersonal.migrarAnterior` | Compatibilidad/transiciones **ejecutables**; en v0.7.6 `fixMalla` solo se aplica a snapshots históricos `{S}`, **no a S0** | Conservar los formatos `{S}` y `version:1`; retirar el resto solo con pruebas |
 | `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js`, `js/fuentes.js` | Material **legado no cargado en producción**, pero usado por pruebas históricas | No tratarlo como segunda entrada; no borrarlo mientras haya pruebas o contratos de compatibilidad dependientes |
 | `data/`, `scripts/`, `pruebas/` | Fuentes normalizables y herramientas **externas o históricas** dentro del repositorio | No incorporar sus conversores al sitio; distinguir utilidades de preparación, fixtures y artefactos generados |
 | `tests/` y `.github/workflows/verificacion-arq01.yml` | Verificaciones actuales y algunas históricas (por ejemplo `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` siguen utilizando `RAW` heredado) | Conservar cobertura efectiva; migrar o clasificar pruebas antes de retirar fuentes auxiliares |
