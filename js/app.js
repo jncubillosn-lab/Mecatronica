@@ -311,6 +311,15 @@ function render() {
       esc(PROGRAMA.nombre)+'.</b> Se muestra la estructura de consulta, sin resultados académicos.</p>'
     : '') + PAGES[ui.page]();
   renderDrawer();
+  if(SIN_DATOS){
+    document.body.dataset.sinDatos='true';
+    // Los controles aparecen, pero sin datos no permiten guardar ni importar.
+    $('#view .dem-panel button, #view .dem-panel select, #view .dem-panel input')
+      .forEach(el=>{el.disabled=true;});
+    $('#view .dem-metricas strong').forEach(el=>{el.textContent='—';});
+  }else{
+    delete document.body.dataset.sinDatos;
+  }
   keep.forEach(({ selector, x, y }) => {
     const el = $(selector);
     if (el) { el.scrollLeft = x; el.scrollTop = y; }
