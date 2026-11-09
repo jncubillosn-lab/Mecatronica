@@ -3,8 +3,6 @@ name: Verificación ARQ-01
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [arquitectura/migracion-arq01-entrada-unica]
 
 permissions:
   contents: read
@@ -27,6 +25,8 @@ jobs:
         run: npm ci
       - name: Contrato, escenarios, cálculo e integración
         run: npm test
+      - name: Verificar compatibilidad con formatos anteriores (archivo histórico)
+        run: npm run test:historico
       - name: Exigir nueva versión para cambios del sitio
         if: github.event_name == 'pull_request'
         run: node tests/versionado.js --compare-main
