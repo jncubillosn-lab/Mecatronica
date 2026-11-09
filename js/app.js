@@ -610,7 +610,7 @@ function onAct(act, d, el, ev) {
       return commit((act==='req-vigente'?'Referencia vigente aplicada: ':'Requisito anterior confirmado: ')+pendiente.nombre);
     }
     case 'reset': if (!ui.confirmReset) { ui.confirmReset = true; render(); setTimeout(() => { if (ui.confirmReset) { ui.confirmReset = false; render(); } }, 4000); return; } ui.confirmReset = false; S = clone(S0); ui.unidad=''; try { localStorage.removeItem(KEY); } catch (e) { } ui.drawer = null; pendientesRequisitos = []; ui.malla.libresFijas.clear(); R = compute(S); actualizarVistaComponentes(); render(); return toast('Volviste a los datos de referencia del programa.');
-    case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S), null, 1), 'application/json');
+    case 'export': return download('escenario-horarios.json', JSON.stringify(EscenarioPersonal.empaquetar(S0, S, pendientesRequisitos), null, 1), 'application/json');
     case 'import': return $('#file-in').click();
   }
 }
