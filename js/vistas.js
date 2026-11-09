@@ -648,7 +648,7 @@ function pageMalla() {
   const seleccionable = new Set(visibles.filter(m => !m._libreVirtual).map(m=>m.n));
   const sel=seleccionable.has(M.sel)?M.sel:null;
   const L=sel?lineage(S,sel):null;
-  const maxSem=maxSemester(S);
+  const maxSem=SIN_DATOS?0:maxSemester(S);
   const cols=Array.from({length:maxSem},(_,i)=>i+1).map(s=>{
     const cs=visibles.filter(m=>m.s===s);
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s,cs)}</h4>${cs.map(m=>{
@@ -666,9 +666,9 @@ function pageMalla() {
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
     <div class="row"><div class="seg"><button data-act="m-edges" data-v="all" aria-pressed="${M.edges==='all'}">Todas las flechas</button><button data-act="m-edges" data-v="sel" aria-pressed="${M.edges==='sel'}">Solo la selección</button></div>
     <button class="btn sm malla-libre-toggle" data-act="m-libres" aria-pressed="${!!M.libres}" ${!libres.posiciones.length?'disabled':''}>Libre elección · ${!libres.posiciones.length?'sin posiciones':libres.incompleto?'≥'+libres.creditos+' cr informados':libres.creditos+' cr'}</button>
-    <button class="btn sm" data-act="m-equilibrar" aria-pressed="${!!M.equilibrar}" ${!M.libres?'disabled':''}>${M.equilibrar?'Carga equilibrada':'Semestres registrados'}</button>
-    <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor?'checked':''}><i></i>Solo con horario</label></div></div>
-  ${M.libres && M.equilibrar?'<p class="hint malla-proyeccion-aviso">Distribución visual sugerida para equilibrar créditos del plan, excluyendo Nivelación. No cambia el semestre registrado ni certifica requisitos de avance. Para guardarlo como cambio personal, mueve una posición.</p>':''}
+    <button class="btn sm" data-act="m-equilibrar" aria-pressed="${!!M.equilibrar}" ${!M.libres||SIN_DATOS?'disabled':''}>${M.equilibrar?'Carga equilibrada':'Semestres registrados'}</button>
+    <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor?'checked':''} ${SIN_DATOS?'disabled':''}><i></i>Solo con horario</label></div></div>
+  ${!SIN_DATOS && M.libres && M.equilibrar?'<p class="hint malla-proyeccion-aviso">Distribución visual sugerida para equilibrar créditos del plan, excluyendo Nivelación. No cambia el semestre registrado ni certifica requisitos de avance. Para guardarlo como cambio personal, mueve una posición.</p>':''}
   <div class="mallawrap"><section class="malla-panel ${M.ampliado?'malla-panel--ampliado':''}" id="malla-panel" aria-label="Mapa de prerrequisitos">
      <div class="malla-toolbar">
        <div class="malla-toolbar-titulo"><strong>Mapa curricular</strong><span>Desplaza para explorar los semestres</span></div>
@@ -682,7 +682,7 @@ function pageMalla() {
      </div>
      <div class="card canvas" id="canvas" role="region" tabindex="0" aria-label="Mapa de prerrequisitos con desplazamiento horizontal y vertical">
        <div class="malla-stage" id="malla-stage" style="zoom:${M.zoom}">
-         <svg class="edges" id="edges" aria-hidden="true"></svg><div class="mcols" id="mcols">${cols}</div>
+         <svg class="edges" id="edges" aria-hidden="true"></svg><div class="mcols" id="mcols">${SIN_DATOS?'<div class="mapa-sin-datos" role="status">Mapa curricular sin asignaturas cargadas. Los semestres y sus relaciones aparecerán cuando existan datos académicos.</div>':cols}</div>
        </div>
      </div>
    </section>${mallaSide(L)}</div>
@@ -690,7 +690,7 @@ function pageMalla() {
 }
 function mallaSide(L) {
   const n = ui.malla.sel && mallaVisible(S.malla.find(m=>m.n===ui.malla.sel)) ? ui.malla.sel : null;
-  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p></aside>`;
+  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p>${SIN_DATOS?'<p class="hint" style="margin:0">Sin datos académicos para presentar asignaturas, créditos o relaciones.</p>':`<p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p>`}</aside>`;
   const m = S.malla.find(x => x.n === n), sc = RV.st[n];
   const dirIn = S.pre.filter(p => p.t === n), dirOut = S.pre.filter(p => p.r === n);
   const indUp = [...L.up.keys()].filter(x => !dirIn.some(p => p.r === x)), indDown = [...L.down.keys()].filter(x => !dirOut.some(p => p.t === x));
