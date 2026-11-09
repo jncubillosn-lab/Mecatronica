@@ -151,6 +151,25 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 
 Los identificadores del ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. **La estructura real adoptada está en `datos/academico.json` y sus pruebas de contrato**; el fragmento ilustrativo no autoriza crear campos académicos obligatorios ni inventar cardinalidades. Las reglas de identidad y la flexibilidad ante vacíos se mantienen según la información normalizada disponible, sin ampliar la frontera de entrada.
 
+### Contrato actual frente a compatibilidad histórica: obligaciones distintas
+
+**Regla normativa:** la existencia de un lector de escenarios de versiones anteriores **NO amplía** el contrato `FuentesAcadémicas` ni obliga a conservar metadatos de una versión antigua. El lector vigente debe abrir una entrada sin campos históricos. La prueba `tests/compatibilidad-opcional.js` compara la proyección y los cálculos **con y sin** estos campos: el análisis actual debe permanecer idéntico.
+
+| Campo / marca | Dónde se encuentra | Obligatorio para la entrada actual | Uso exclusivo o secundario |
+|---|---|---|---|
+| `versionEsquema: 1` | Raíz de `FuentesAcadémicas` | **Sí**: identifica el esquema normalizado | No equivale a una marca de migración |
+| `malla[].id` y `agrupaciones[].id / posicionId` | Referencias académicas normalizadas | **Sí** cuando existe cada registro: identidad estable | También permiten relacionar cambios personales por ID |
+| `agrupaciones[].introducidoEn` | Agrupación normalizada, si la procedencia se conserva | **No** | Solo `EscenarioPersonal.migrarAnterior` la usa para reconstruir qué agrupaciones existían en snapshots `{S}` originales |
+| `agrupaciones[].componentes[].bloques[].idAnterior` | Bloques de la entrada normalizada, si existe correspondencia histórica conocida | **No** | Permite cotejar el número de bloque de un snapshot antiguo con `ref` actual. Ausente se proyecta como `null` |
+| `incrementosOferta` | Contexto transitorio del antiguo lector, cuando se conoce | **No** | La rama opcional de `fixMalla` solo interviene al recuperar `{S}` si hay metadatos de incorporación; la lectura actual no requiere este dato |
+| `mig1`–`mig4`, `incorporacionesOferta` | Estado de **un escenario personal antiguo**, no contrato | **No** | Señales internas de cambios ya aplicados en esa copia anterior; no se escriben en `S0` |
+| `version:1`, `reqCredCambios`, `reqCredAmbiguos` | Archivo **personal** `escenario-personal` | **No** | Identifican formato y modificaciones o revisiones del usuario; no se transfieren a `FuentesAcadémicas` |
+| `analizable:false` | Agrupación normalizada | **Opcional, con efecto funcional actual** | Excluye grupos informativos de los cálculos. Su ausencia equivale a analizable; **no es legado** |
+
+**Límite honesto del soporte histórico:** si un archivo anterior y la referencia disponible carecen de correspondencias para ciertas identidades viejas, no existe evidencia para reconstruir todos los vínculos con precisión. Esa incertidumbre se trata **solo en la recuperación histórica**; nunca se exige completar `introducidoEn` o `idAnterior` en una nueva entrada, nunca se inventan relaciones y nunca se considera inválido el contrato actual por su ausencia. Conservar un lector no convierte sus datos auxiliares en requisitos académicos.
+
+**Separación de responsabilidades al leer código:** `EntradaAcademica` valida estructura presente y proyecta; `fromRaw` adapta el estado actual; `EscenarioPersonal.aplicar` restaura diferencias del formato personal v1; únicamente el camino `{S}` llama a `fixMalla(anterior)` y `migrarAnterior`. Los bloques técnicos que documentan el historial no son ejecutados para construir `S0`.
+
 ### Semántica de datos ausentes
 
 - `null` significa **dato no conocido / no informado**, cuando un campo admite ausencia.
