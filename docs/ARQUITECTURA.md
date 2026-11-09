@@ -394,6 +394,41 @@ Véase [DEC-01](DECISIONES-Y-ALCANCE.md) para la regla de no atribuir objetivos 
 
 El sistema sigue siendo compatible con publicación estática (GitHub Pages). La arquitectura no exige servidor, cuentas ni servicios externos.
 
+### Estándar de coherencia documental — tres niveles
+
+La calidad de documentación **no es una cantidad de comentarios**: es poder
+reconstruir cada decisión técnica sin atribuir requisitos falsos al sistema.
+
+1. **Documentos rectores concordantes.** ARQ-01 establece qué es exigible
+   (RF/RC y no requisitos); DEC-01 recoge decisiones vigentes y sustituidas;
+   EST-01 describe qué está implementado; MIG-ARQ01 conserva el acta histórica
+   cerrada; REG-01 delimita escenarios personales. Un archivo histórico no
+   puede introducir por sí solo una obligación para el contrato actual.
+2. **Código legible por unidades funcionales.** Cada módulo declara entradas,
+   salidas, fuente de autoridad y límites; cada método con efectos importantes
+   explica cuándo se llama y qué no modifica. Las ramas complejas (por ejemplo,
+   `mig1`–`mig4`, identidad de bloques, recuperación `{S}`, estadísticas
+   con datos incompletos) llevan comentarios próximos a la decisión. Evitar
+   comentar literalmente instrucciones evidentes: el exceso genera
+   contradicciones y dificulta la revisión.
+3. **Concordancia verificable.** Cada garantía transversal de los documentos
+   debe tener una prueba o un caso observacional concreto: entrada única
+   (`tests/contrato-arq01.js`), independencia de metadatos antiguos
+   (`tests/compatibilidad-opcional.js`), referencia sin `fixMalla(S0)`
+   (`tests/arranque-sin-migracion.js`), recuperación de archivos anteriores
+   (`tests/escenarios-arq01.js`) y conservación de revisión al exportar
+   (`tests/exportacion-ambiguos.js`). Antes de cambiar un comentario, verificar
+   que describe lo que el código hace; antes de cambiar código, actualizar
+   los límites y pruebas afectados.
+
+**Mapa de lectura:** `js/iniciar.js` carga → `js/entrada.js` proyecta →
+`js/analisis.js#fromRaw` construye `S0` → `js/escenarios.js` reconstruye
+modificaciones personales → `js/app.js` coordina la sesión → `js/modelo.js`
+y `js/analisis.js` calculan → `js/vistas.js` y `js/demanda.js` representan.
+`js/tema.js` y `js/identidad.js` solo determinan apariencia. El lector
+histórico `{S}` se encuentra **exclusivamente** en `recuperarEscenarioGuardado`,
+`fixMalla` y `EscenarioPersonal.migrarAnterior`. No ampliarlo por analogía.
+
 ## 9. Guía obligatoria para próximas interacciones
 
 Antes de modificar la aplicación o sus datos:
