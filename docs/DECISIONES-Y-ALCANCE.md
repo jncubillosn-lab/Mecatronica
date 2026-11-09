@@ -1,7 +1,7 @@
 # DEC-01 — Decisiones, alcance y criterios de conservación
 
 **Estado:** acuerdos adoptados para el desarrollo de Gestor de horarios · Mecatrónica.  
-**Revisión de vigencia:** 8 de noviembre de 2026, corte 0.7.5. Las decisiones anteriores se conservan como antecedentes, indicando cuándo fueron complementadas o sustituidas.  
+**Revisión de vigencia:** 8 de noviembre de 2026, corte de cierre ARQ-01 v0.8.0. Las decisiones anteriores se conservan como antecedentes, indicando cuándo fueron complementadas o sustituidas.  
 **Documento superior:** [ARQ-01](ARQUITECTURA.md).  
 **Estado del código y publicación:** [ESTADO-Y-PUBLICACION.md](ESTADO-Y-PUBLICACION.md).
 
@@ -32,6 +32,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 | D-13 | **Una versión pública verificable en cada cambio productivo.** | El número del pie, el `meta` HTML, los parámetros `?v=` de recursos y la versión de despliegue deben concordar. Una PR que cambie recursos de producción debe incrementar la versión. Los cambios exclusivamente documentales no requieren avance de versión. |
 | D-14 | **La documentación también vive en el código.** | Usar JSDoc y comentarios próximos a las clases, contratos internos, reglas no obvias y transiciones históricas. Explicar responsabilidades, datos de entrada/salida, invariantes y motivos; no comentar línea por línea ni presentar conjeturas como reglas. Actualizar el comentario cuando cambie el comportamiento. |
 | D-15 | **Filtros globales y unidad académica voluntaria.** | Los componentes de la malla y la unidad responsable filtran **las ocho consultas**, sin borrar registros. El departamento (Ingeniería) o facultad (otras áreas) es una atribución opcional del escenario personal por asignatura, independiente del docente, desconocida por defecto y exportable/importable. No se introduce como campo obligatorio de `FuentesAcadémicas` ni se deduce automáticamente. |
+| D-23 | **Cierre definitivo de la migración ARQ-01 (0.8.0).** | La entrada académica única y la separación de la referencia `S0` ya están implantadas. Se conserva la lectura de escenarios personales `{S}` antiguos como **compatibilidad soportada**, no deuda de migración. Pruebas actuales e históricas se ejecutan en CI, los archivos `RAW` permanecen archivados y las herramientas de comparación antigua dejan de anunciarse como tareas npm activas. Historial en [MIG-ARQ01](MIGRACION-ARQ01.md), estado en [EST-01](ESTADO-Y-PUBLICACION.md). |
 | D-22 | **Tonos discretos por tipología y contornos legibles (TONO-01).** | Reutilizar la paleta del diseño para B (azul), C (violeta), L (verde), N (gris azulado), con marcas estrechas y fondos mínimos ligados al componente del escenario; incrementar el contraste de dos tokens neutrales sin alterar información ni escalas estadísticas, selección, choques o identidad por carrera. Ver [TONO-01](TONO-01.md). |
 | D-21 | **Actualización de requisitos sin reemplazar colecciones completas (REG-01).** | Guardar y recuperar solo diferencias por ID y propiedad; conservar compatibilidad con archivos antiguos y advertir reglas históricas ambiguas para revisión explícita por asignatura. La corrección no modifica la única entrada académica ni los cálculos. Ver [REG-01](REG-01.md). |
 | D-20 | **Mínimos disciplinares TPI y PAI (REQ-C-01).** | Por criterio académico explícito proporcionado para Mecatrónica, TPI (2024045, 3 cr) exige 52 créditos aprobados del componente C y PAI (2017275, 4 cr) exige 65 créditos aprobados del componente C. El contrato actualiza la nota de ambos y el componente contable de PAI. El sistema no valida créditos realmente aprobados y no modifica Trabajo de Grado. Ver [REQ-C-01](REQ-C-01.md). |
@@ -42,7 +43,7 @@ La aplicación web ayuda a consultar el plan curricular, sus requisitos y la ofe
 
 ### Lectura temporal de las decisiones
 
-Las filas D-01–D-22 documentan decisiones sucesivas, **no** reglas que permanezcan inalterables cuando una posterior las modifica expresamente. D-19 describe una decisión anterior sobre los créditos TPI/PAI; **D-20 es el criterio actual y prevalece**, mientras que los valores concretos se consultan en `datos/academico.json`. Las reglas de persistencia de D-21 y las señales de tipología de D-22 se suman a las decisiones anteriores sin crear fuentes académicas nuevas.
+Las filas D-01–D-23 documentan decisiones sucesivas, **no** reglas que permanezcan inalterables cuando una posterior las modifica expresamente. D-19 describe una decisión anterior sobre los créditos TPI/PAI; **D-20 es el criterio actual y prevalece**, mientras que los valores concretos se consultan en `datos/academico.json`. Las reglas de persistencia de D-21 y las señales de tipología de D-22 se suman a las decisiones anteriores sin crear fuentes académicas nuevas. **D-23 declara concluida la migración ARQ-01 y distingue compatibilidad soportada de transición pendiente.**
 
 El registro de decisiones complementa los requisitos RF/RC y la matriz de no-requisitos de [ARQ-01](ARQUITECTURA.md). Para interpretar el comportamiento actual se contrasta siempre con la fuente normalizada y el código ejecutado.
 
@@ -54,7 +55,7 @@ El registro de decisiones complementa los requisitos RF/RC y la matriz de no-req
 - **Tipología institucional** no equivale necesariamente a **componente curricular**: por ejemplo, Inglés puede conservar tipología institucional `E` mientras pertenece al componente `N` del plan.
 - **Selección de componentes para consulta** no equivale a **modificación del escenario**. Los filtros no alteran ni eliminan datos.
 - **Mapa de calor de grupos** no equivale a aulas ocupadas, estudiantes matriculados ni disponibilidad real de salones.
-- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública del sitio** (`0.7.5` al corte) son números independientes.
+- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública del sitio** (`0.8.0` al corte) son números independientes.
 
 ## 4. Qué constituye un problema y qué no
 
