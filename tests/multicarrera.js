@@ -7,6 +7,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const {pathToFileURL}=require('node:url');
 const {JSDOM,VirtualConsole} = require('jsdom');
 const {EntradaAcademica} = require('../js/entrada.js');
 const identidad = require('../js/identidad.js');
@@ -40,11 +41,14 @@ async function abrir(id, opciones={}) {
   const errores=[], consultas=[];
   const vc = new VirtualConsole();
   vc.on('jsdomError', e=>errores.push(e.message));
-  const dom = await JSDOM.fromFile(path.join(raiz,'index.html'),{
+  const ruta=path.join(raiz,'index.html');
+  const url=pathToFileURL(ruta);
+  url.searchParams.set('programa',id);
+  const dom = await JSDOM.fromFile(ruta,{
+    url:url.href,
     resources:'usable',runScripts:'dangerously',pretendToBeVisual:true,
     virtualConsole:vc,
     beforeParse(window) {
-      window.history.replaceState(null,'','?programa='+id);
       window.scrollTo=()=>{};
       window.Element.prototype.scrollIntoView=()=>{};
       window.fetch=async url=>{
