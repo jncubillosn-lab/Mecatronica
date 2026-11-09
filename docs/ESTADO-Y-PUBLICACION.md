@@ -66,6 +66,13 @@ No confundir CI en la rama, una fusión en `main` y un despliegue completo; son 
 | `save()` / `export` de `pendientesRequisitos` | Corregido en 0.7.8 y cubierto por pruebas de exportación/importación | **Compatibilidad de escenarios protegida** |
 | GitHub Actions | Sin disparador de rama de migración; ejecuta la suite actual e histórica en PR hacia `main` | **Verificación ordinaria**, no flujo de transición |
 
+**Frontera de datos protegida:** `introducidoEn` e `idAnterior`
+no forman parte de las exigencias de la entrada actual. La prueba
+`tests/compatibilidad-opcional.js` comprueba escenario y resultados iguales
+con o sin esos metadatos históricos; la ruta de importación antigua puede
+aprovecharlos solo cuando existan correspondencias explícitas. La falta de
+evidencia en un archivo personal anterior no se subsana inventando datos.
+
 **Resultado:** **cero actividades de migración ARQ-01 pendientes**. No se considera deuda la presencia de lectores de archivos antiguos, comentarios históricos o fixtures archivados. Los cambios futuros se tramitan por los requisitos vigentes RF/RC, no como continuación de la migración.
 
 **No requisitos:** soporte comercial de matrícula, verificación de créditos realmente aprobados, inferencia de cupos, nuevas universidades u otros programas sin entrada disponible, inventar docentes, crear agrupaciones no registradas o resolver vacíos académicos mediante alarmas.
