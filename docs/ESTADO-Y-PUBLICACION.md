@@ -92,7 +92,7 @@ horarios, grupos, créditos, requisitos ni el normalizador externo del SIA.
 
 Se retiraron acciones de interfaz sin control invocador (`i-dist`,
 `h-addc`, `h-rename`), su estado sin uso, la función `levelDesc` y
-un oyente de desplazamiento vacío. Se agregó `tests/rutas-ui.js` para
+un oyente de desplazamiento vacío y `cntD` sin referencias. Se agregó `tests/rutas-ui.js` para
 detectar rutas sin consumidor; el filtro de distancia accesible `dist`
 se preservó. Esta limpieza no equivale a retirar funcionalidades visibles.
 

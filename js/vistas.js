@@ -136,7 +136,6 @@ function pageInter() {
   const sems = [...new Set(R.names.map(n => R.st[n].s))].sort((a, b) => a - b);
   const list = sortPairs(R.pairs.filter(p => pairMatches(p)));
   const active = f.grav.size || f.sems.size || f.asig || f.q || !f.soloChoque;
-  const cntD = d => R.pairs.filter(p => p.enRango && p.dist === d && (!f.soloChoque || p.clash)).length;
   return `
   <div class="page-title"><div><h1>Interferencias</h1><p>Cada fila es una pareja de asignaturas que se podrían cursar a la vez (${distSummary()}; sin ser prerrequisito una de otra). Ábrela para ver qué grupos chocan y cuándo.</p></div>
     <div class="row"><div class="seg" role="group" aria-label="Vista"><button data-act="i-view" data-v="lista" aria-pressed="${f.view === 'lista'}">Lista</button><button data-act="i-view" data-v="matriz" aria-pressed="${f.view === 'matriz'}">Matriz</button></div></div></div>

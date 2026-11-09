@@ -4,8 +4,8 @@ La **versión pública de la aplicación** se consulta en el pie de página y en
 
 ## 1.0.0 — Cierre de estabilidad de Mecatrónica (9 nov 2026)
 
-- Retiradas exclusivamente rutas de eventos sin control (`i-dist`, `h-addc`, `h-rename`), su filtro oculto, `levelDesc` y un oyente sin efecto. El control visible de distancias `dist` continúa.
-- `tests/rutas-ui.js` exige correspondencia entre acciones y controles; la batería vigente sigue cubriendo ocho vistas, datos incompletos y escenarios por diferencias.
+- Retiradas exclusivamente rutas de eventos sin control (`i-dist`, `h-addc`, `h-rename`), su filtro oculto, `levelDesc`, `cntD` y un oyente sin efecto. El control visible de distancias `dist` continúa.
+- `tests/rutas-ui.js` exige correspondencia entre acciones y controles; `tests/enlaces-documentales.js` evita referencias locales rotas; la batería vigente sigue cubriendo ocho vistas, datos incompletos y escenarios por diferencias.
 - CI de contrato y regresiones habilitada también en push a `main`, además de las PR; certificación HTTP del sitio mantenida como control independiente.
 - ARQ-01, DEC-01, EST-01, AGENTS y README actualizados: alcance estable de Mecatrónica, inventario de riesgos y protección real de GitHub, futuro multicarrera aprobado pero todavía no disponible.
 - Sin modificaciones académicas ni ampliación del contrato, sin reintroducir formatos antiguos ni inventar información. El éxito del despliegue se registra por ejecución en Actions, separado de la versión del código.
