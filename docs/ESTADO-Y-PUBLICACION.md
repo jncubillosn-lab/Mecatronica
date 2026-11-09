@@ -42,7 +42,7 @@ Se conservan las diferencias entre **grupo ofrecido**, **agrupación elegible** 
 
 ## 3. Pruebas y publicación
 
-El conjunto declarado en `package.json` se ejecuta con `npm ci && npm test`. El flujo `.github/workflows/verificacion-arq01.yml` corre en PR hacia `main`, verifica contrato, escenarios, cálculos, vistas e integración y exige incrementar la versión de los recursos de producción cuando corresponde. Los cambios **solo documentales no exigen** avance de versión.
+La batería **actual** declarada en `package.json` se ejecuta con `npm ci && npm test`. Los tres ensayos de la antigua estructura `RAW` se mantienen ejecutables por separado mediante `npm run test:historico` y no están en el flujo principal; sus resultados no representan el contrato vigente. El flujo `.github/workflows/verificacion-arq01.yml` corre en PR hacia `main`, verifica contrato, escenarios, cálculos, vistas e integración y exige incrementar la versión de los recursos de producción cuando corresponde. Los cambios **solo documentales no exigen** avance de versión.
 
 Para cada publicación:
 
@@ -60,7 +60,7 @@ No confundir CI en la rama, una fusión en `main` y un despliegue completo; son 
 |---|---|---|
 | `fromRaw` y proyección posicional | Usados para construir S0 desde la única entrada | Mantener hasta demostrar un reemplazo equivalente |
 | `fixMalla` y `mig1`–`mig4` | `fixMalla(S0)` sigue llamado durante el arranque y además sirve a `{S}` histórico | Reproducir invariantes de S0 y separar migración solo sin modificar estado |
-| `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` | Siguen usando archivos `RAW` históricos, no producción | Separar pruebas actuales/legadas con cobertura alternativa verificable |
+| `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` | **Pruebas históricas, aisladas de `npm test`**; ejecutables por separado con `npm run test:historico` | Mantener como evidencia mientras se revise el archivo de origen; no convertirlas en requisito de producción |
 | `js/datos.js`, `js/catalogo.js`, `js/oferta-fuente.js`, `js/fuentes.js` | No importados por HTML; utilizados por pruebas históricas | No borrar sin resolver todas las dependencias |
 | Herramientas `data/`, `scripts/`, `pruebas/` | Preparación externa o verificaciones de migraciones anteriores | Mantener claramente separadas de la aplicación estática |
 | `save()` frente a `export` de `pendientesRequisitos` | Rutas de serialización diferentes | Reproducir caso de escenario histórico antes de cambiar código |
