@@ -1,6 +1,6 @@
 # EST-01 — Estado real y publicación
 
-**Corte revisado:** 8 de noviembre de 2026 · **Versión pública de la etapa de archivo:** `0.7.7` (su publicación se comprueba tras la integración).  
+**Corte revisado:** 8 de noviembre de 2026 · **Versión pública objetivo del saneamiento de exportación:** `0.7.8` (verificar el despliegue tras integrar).  
 **Estado de la estabilización:** preparación hacia **1.0.0**; **no publicada ni aprobada todavía**.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md), incluidos sus 17 requisitos funcionales, 8 condiciones de calidad y no-requisitos.  
 **Trazabilidad detallada:** [CHANGELOG](../CHANGELOG.md) y [MIG-ARQ01](MIGRACION-ARQ01.md).  
@@ -9,11 +9,11 @@ Este archivo explica el **estado operativo** y la ruta de verificación. Las ver
 
 ## 1. Estado publicado y alcance
 
-El código de referencia de esta etapa declara `0.7.7` en `index.html` y en los recursos versionados; la publicación efectiva se verifica tras fusionar. Las ocho páginas son **Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos**. La aplicación es estudiantil, estática y no oficial.
+El código de referencia de esta etapa declara `0.7.8` en `index.html` y en los recursos versionados; la publicación efectiva se verifica tras fusionar. Las ocho páginas son **Inicio, Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y Prerrequisitos**. La aplicación es estudiantil, estática y no oficial.
 
 **Una sola entrada académica:** `datos/academico.json`. `js/iniciar.js` lee el contrato, `EntradaAcademica` construye una proyección interna y `fromRaw` prepara `S0`; `EscenarioPersonal` reconstruye `S` y `compute` calcula resultados. Los filtros construyen consultas `RV/RV0`, sin modificar `S/S0`. La presentación es independiente de la entrada académica.
 
-**Distinguir siempre tres versiones:** `versionEsquema:1` (contrato), `version:1` (archivo personal) y `0.7.7` (versión objetivo de esta etapa). El mismo número no tiene por qué servir a los tres formatos.
+**Distinguir siempre tres versiones:** `versionEsquema:1` (contrato), `version:1` (archivo personal) y `0.7.8` (versión objetivo de esta etapa). El mismo número no tiene por qué servir a los tres formatos.
 
 ### Hitos históricos verificados por PR
 
@@ -63,7 +63,7 @@ No confundir CI en la rama, una fusión en `main` y un despliegue completo; son 
 | `tests/filtros.js`, `tests/verificar.js`, `tests/fuentes.js` | **Pruebas históricas, aisladas de `npm test`**; ejecutables por separado con `npm run test:historico` | Mantener como evidencia mientras se revise el archivo de origen; no convertirlas en requisito de producción |
 | `pruebas/historico/js/{datos,catalogo,oferta-fuente,fuentes}.js` | **Archivados desde 0.7.7** fuera del directorio ejecutable; copias verificadas byte a byte respecto a la versión anterior. Pruebas históricas redirigidas | No reactivar en HTML ni en `npm test`; conservar para análisis histórico |
 | Herramientas `data/`, `scripts/`, `pruebas/` | Preparación externa o verificaciones de migraciones anteriores | Mantener claramente separadas de la aplicación estática |
-| `save()` frente a `export` de `pendientesRequisitos` | Rutas de serialización diferentes | Reproducir caso de escenario histórico antes de cambiar código |
+| `save()` y `export` de `pendientesRequisitos` | **Corregido en 0.7.8**: ambas rutas pasan las revisiones pendientes a `EscenarioPersonal.empaquetar` | Prueba de exportar/importar, conservar duda y resolverla explícitamente |
 | Documentos de versiones antiguas | Historial que debe identificarse explícitamente | Actualizar narrativa vigente sin falsear eventos pasados |
 
 **No requisitos:** soporte comercial de matrícula, verificación de créditos realmente aprobados, inferencia de cupos, nuevas universidades u otros programas sin entrada disponible, inventar docentes, crear agrupaciones no registradas o resolver vacíos académicos mediante alarmas.
