@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 const modelo = fs.readFileSync(path.join(root, 'js/modelo.js'), 'utf8');
-const datos = fs.readFileSync(path.join(root, 'js/datos.js'), 'utf8');
+const datos = fs.readFileSync(path.join(root, 'pruebas/historico/js/datos.js'), 'utf8');
 const app = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
 const antesEventos = app.slice(0, app.indexOf("document.addEventListener('click'"));
 

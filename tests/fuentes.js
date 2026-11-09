@@ -5,8 +5,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
-const payload = read('js/catalogo.js') + '\n' + read('js/oferta-fuente.js') + '\n' +
-  read('js/datos.js') + '\n' + read('js/fuentes.js') +
+const payload = read('pruebas/historico/js/catalogo.js') + '\n' + read('pruebas/historico/js/oferta-fuente.js') + '\n' +
+  read('pruebas/historico/js/datos.js') + '\n' + read('pruebas/historico/js/fuentes.js') +
   '\nreturn { CATALOGO_ACADEMICO, OFERTA_ACADEMICA, RAW, FuentesAcademicas };';
 const { CATALOGO_ACADEMICO, OFERTA_ACADEMICA, RAW, FuentesAcademicas } = new Function(payload)();
 const fuentes = new FuentesAcademicas({
