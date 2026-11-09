@@ -176,6 +176,25 @@ El sistema **consume** esas relaciones ya representadas en la entrada normalizad
 
 No es necesario crear una clase por entidad ni mantener exactamente estos nombres de clases. La regla vinculante es **una responsabilidad por componente** y dependencias dirigidas desde el contrato hacia los consumidores, nunca en sentido inverso.
 
+### Correspondencia con el programa real (corte v0.7.5)
+
+| Etapa | Archivo o estado ejecutado | Responsabilidad vigente y frontera |
+|---|---|---|
+| Carga y tema inicial | `index.html`, `js/tema.js`, `js/identidad.js` | Arranque estático; oscuro por defecto, claro opcional, identidad visual por ID del programa. Ninguna preferencia visual es dato académico. |
+| Entrada académica | `js/iniciar.js`, `js/entrada.js` (`EntradaAcademica`) | Solicitar **una vez** `datos/academico.json`, interpretar estructura y construir una proyección interna transitoria. No descargar ni interpretar fuentes institucionales originales. |
+| Contexto e instancia base | `window.CONTEXTO_ACADEMICO`, `fromRaw()`, `S0` | El contexto contiene programa, calendario, opciones, procedencia y `estadoBase`. `fromRaw` adapta la proyección interna al estado que consume el motor; no expone `window.RAW` ni abre una entrada alternativa. |
+| Plan y tiempo | `js/modelo.js` (`PlanCurricular`, `CalendarioAcademico`) | Consultar componentes, créditos, requisitos, resúmenes semestrales y calendario configurado, sin reglas fijas de asignaturas. |
+| Personalización | `js/escenarios.js` (`EscenarioPersonal`), `S` | Guardar diferencias identificadas, aplicar sobre `S0`, validar, importar y exportar. No sustituir la referencia con una copia anterior. |
+| Análisis académico-horario | `js/analisis.js` (`compute`, `closure`, `overlap`) | Calcular choques desde agrupaciones activas y bloques informados; distinguir requisitos directos/indirectos y distancias seleccionadas. |
+| Demanda | `js/demanda.js` (`DemandaEstadistica`) | Analizar anotaciones personales de solicitudes sobre el mismo escenario; simular solo en la vista previa **marcada ficticia** y sin persistir automáticamente. |
+| Sesión y coordinación | `js/app.js`: `S0`, `S`, `R0`, `R`, `RV0`, `RV`, `ui` | Separar referencia, escenario editable, resultados completos, resultados filtrados y estado transitorio de interfaz. Navegación, filtros, edición, descarga/carga y restauración. |
+| Visualizaciones | `js/vistas.js`, `js/demanda.js`, `css/estilos.css`, `css/pie.css` | Las ocho páginas, paneles, cuadrículas, gráfica DEM y mapa curricular. Apariencia y filtros no alteran la fuente académica. |
+| Pruebas | `tests/`, `.github/workflows/verificacion-arq01.yml` | Integridad, escenarios, horarios, filtros, vistas, datos parciales, versión y prueba de integración; los archivos legados de pruebas no son entradas productivas. |
+
+**No confundir las capas:** `S0` = referencia construida desde el contrato; `S` = escenario con modificaciones; `R0/R` = cálculos sobre referencia/escenario; `RV0/RV` = **consultas** filtradas; `ui` = selección/zoom/navegación transitorios. Guardar `ui` o un resultado calculado como verdad académica crearía una segunda autoridad y rompería la arquitectura.
+
+**Detalle transitorio observado:** en v0.7.5 `js/app.js` aún ejecuta `fixParams(S0); fixMalla(S0)` durante el arranque. `fixMalla` reúne compatibilidad histórica (`mig1`–`mig4`, identificaciones anteriores y oferta incrementada). **Esta mezcla es un punto de auditoría para mantenimiento**, no un comportamiento que debamos ocultar ni una autorización para eliminarla sin equivalencia probada.
+
 ### Cálculo y visualización
 
 - Los filtros de Fundamentación, Disciplinar y Nivelación son **selecciones de consulta**, no operaciones de eliminación de información.
@@ -194,7 +213,7 @@ El estado académico normalizado es una **referencia**. Un estudiante puede desa
 
 **DEM-01 — demanda de preinscripción:** una encuesta agregada es una anotación de escenario personal por ID curricular, no una entrada académica institucional ni una ampliación obligatoria de `FuentesAcadémicas`. Se carga como JSON de solicitudes ya estructuradas; la conversión desde formularios queda fuera del sistema. Sus indicadores de solicitudes por agrupación usan solamente las agrupaciones explícitas del escenario, sin inferir capacidades. Los filtros solo modifican consultas y las ausencias siguen siendo valores desconocidos. Véase [DEM-01](DEM-01.md).
 
-La arquitectura objetivo conserva **operaciones o diferencias personales** vinculadas a identificadores estables. Al cargar una versión posterior de `FuentesAcadémicas` se reconstruye el escenario utilizando la nueva referencia y las modificaciones de la persona.
+**Comportamiento implementado:** `EscenarioPersonal` conserva **operaciones o diferencias personales** vinculadas preferentemente a identificadores estables; al cargar una versión posterior de `FuentesAcadémicas` recompone sobre `S0` las modificaciones de la persona. Las reglas de mínimos se representan mediante operaciones `reqCredCambios` **por requisito y propiedad**. Un archivo antiguo que guardó la colección completa `reqCred` puede ser ambiguo: las divergencias se presentan para decidir por requisito entre referencia vigente y valor guardado, sin inventar la intención del usuario ([REG-01](REG-01.md)).
 
 **Invariantes:**
 1. La actualización del archivo académico no se atribuye a una edición personal.
@@ -204,6 +223,10 @@ La arquitectura objetivo conserva **operaciones o diferencias personales** vincu
 5. Exportar y recuperar un escenario no cambia la interpretación de los datos académicos.
 6. `Restablecer` reconstruye desde la referencia normalizada vigente.
 7. Las operaciones sobre el escenario **no son otra fuente académica de entrada**: son personalizaciones de datos ya cargados.
+8. Las revisiones pendientes de archivos históricos no se confunden con modificaciones deliberadas ni se resuelven silenciosamente.
+9. Los filtros, el tema, los acentos de carrera y el equilibrado **visual** de Libre elección no modifican los registros de `S0` o `S`.
+10. La simulación de demanda está señalada como ficticia y solo se guarda mediante acción voluntaria; los indicadores ausentes son desconocidos, nunca cero.
+11. Las comprobaciones de créditos por semestres **no certifican créditos realmente aprobados** por una persona ni habilitación oficial para inscribir una asignatura.
 
 ## 4. Verificaciones: antes de presentar información
 
