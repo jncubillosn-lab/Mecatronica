@@ -3,8 +3,9 @@
 /**
  * Identidad visual, independiente de FuentesAcadémicas (ARQ-01).
  *
- * Las claves son IDs de presentación, NO una oferta de carreras cargadas:
- * únicamente el contrato académico determina qué programa se puede consultar.
+ * Las claves son IDs de presentación, NO una oferta de carreras cargadas.
+ * La disponibilidad se declara por ruta en js/programas.js; el contrato
+ * académico normalizado confirma la identidad antes de crear el escenario.
  * Los acentos provienen del afiche estudiantil 2026-2028 y NO se presentan
  * como colores oficiales asignados por la Universidad a sus programas.
  */
