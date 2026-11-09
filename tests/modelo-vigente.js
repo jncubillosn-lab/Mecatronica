@@ -64,7 +64,7 @@ probar('Plan de prueba con IDs arbitrarios y créditos desconocidos',()=>{
  assert.equal(plan.evaluarCreditos(m,r).total,0);
  r.componentes=['F','E'];
  assert.equal(plan.evaluarCreditos(m,r).total,2);
- S.malla[1].cr=null;
+ S.malla[0].cr=null;
  assert.equal(plan.evaluarCreditos(m,r).unknown,true);
  assert.equal(plan.evaluarCreditos(m,r).low,false);
 });
