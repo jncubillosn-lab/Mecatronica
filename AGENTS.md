@@ -1,6 +1,6 @@
 # Guía de trabajo para agentes y colaboradores
 
-**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para la versión 1.1.0 (ARQ-01 permanece cerrada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
+**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para la versión 1.1.1 (ARQ-01 permanece cerrada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
 
 ## Antes de cualquier cambio
 
@@ -50,3 +50,7 @@ Antes de afirmar que una limpieza está completa, consultar el reporte generado 
 ## Selector multicarrera (1.1.0)
 
 El selector reutiliza exclusivamente el catálogo de nueve carreras de `js/identidad.js`; la disponibilidad es un registro mínimo de rutas en `js/programas.js`. Programas sin contrato no crean escenarios `S0`, no ejecutan el motor ni muestran resultados inventados. Mecatrónica conserva sus datos y clave local de escenarios. Revisar `tests/multicarrera.js`, la integración original, los controles de versión y la certificación de GitHub Pages antes de publicar cambios de programa.
+
+## Vistas estructurales sin datos (1.1.1)
+
+En nuevas carreras sin contrato, nunca reemplazar las ocho vistas por un único mensaje: preservar controles, marcos, filtros, cuadros e instrucciones visibles, sin obtener datos ficticios de Mecatrónica. `contextoSinDatos` de `js/programas.js` es **solo presentación**, no FuentesAcadémicas. Las operaciones académicas permanecen deshabilitadas, el motor de interferencias no corre y no se guarda escenario. Los indicadores deben marcarse «—» en vez de cero; la plantilla semanal nunca debe anunciarse como horario real. Véanse D-30 y `tests/multicarrera.js`.

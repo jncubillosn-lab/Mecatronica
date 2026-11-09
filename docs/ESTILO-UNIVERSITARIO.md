@@ -1,6 +1,6 @@
 # UNI-UI-01 — Identidad visual universitaria y temas por programa
 
-**Estado:** temas de v0.6.0 y selector multicarrera implementado en v1.1.0 (9 de noviembre de 2026).  
+**Estado:** temas de v0.6.0, selector multicarrera v1.1.0 y estructuras completas sin datos en v1.1.1 (9 de noviembre de 2026).  
 **Alcance:** presentación y navegación del sitio estático; no modifica la entrada académica, el modelo, los cálculos ni los escenarios.  
 **Normas superiores:** [ARQ-01](ARQUITECTURA.md) y [DEC-01](DECISIONES-Y-ALCANCE.md).
 
@@ -79,3 +79,7 @@ La política de geometría y adaptación de las ocho vistas se concreta en [RESP
 La suite `tests/identidad-visual.js` verifica nueve temas, color de Mecatrónica, borde de Química, fallback y separación de variables. Se ejecuta desde `npm test`, además de las pruebas académicas existentes. `tests/versionado.js` exige sincronizar HTML, CSS y JS con el número público.
 
 **Inspección visual:** CI y jsdom no sustituyen la revisión en un navegador real (especialmente tamaños, contraste y desbordamientos). No declarar despliegue en GitHub Pages hasta verificar la versión servida.
+
+## 7. Vistas sin información (1.1.1)
+
+Cuando no existe contrato académico, el sitio no se sustituye por una tarjeta de ausencia: mantiene navegación, barra global de filtros, estructura de las ocho páginas, marco y controles de mapa curricular, cuadrícula semanal, mapa de calor, paneles y gráfica de demanda vacía. Los controles académicos se conservan visibles, pero deshabilitados mientras no haya información; las operaciones puramente visuales, como el zoom y el tema, funcionan. No se representan ceros conocidos, no se generan datos de ejemplo y el calendario dibujado es solamente una plantilla de interfaz.
