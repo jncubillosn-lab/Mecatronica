@@ -6,6 +6,7 @@
  * No consulta datos académicos originales ni define el algoritmo de choques.
  */
 const CONTEXTO = window.CONTEXTO_ACADEMICO;
+const SIN_DATOS = !!CONTEXTO?.sinDatos;
 if (!CONTEXTO || !CONTEXTO.estadoBase) throw new Error('No existe un contexto académico inicializado');
 const OPCIONES = CONTEXTO.opciones;
 const PROGRAMA = CONTEXTO.programa;
@@ -40,7 +41,7 @@ const PAGES_ORDER = window.ProgramasUniversitarios.paginas;
 // Mantener separadas estas identidades al importar, guardar y restablecer.
 let S0 = clone(CONTEXTO.estadoBase), S = clone(S0), restored = false, datosGuardados = null;
 try {
-  const texto = localStorage.getItem(KEY);
+  const texto = !SIN_DATOS && KEY ? localStorage.getItem(KEY) : null;
   if (texto) {
     const o = JSON.parse(texto);
     if (EscenarioPersonal.esFormatoVigente(o)) datosGuardados = o;
@@ -68,7 +69,13 @@ if (datosGuardados) {
  // RV/RV0 son proyecciones filtradas de esos resultados, nunca nuevas
  // fuentes ni ediciones persistentes. La vista puede mostrar menos que S.
 // RV/RV0 son consultas filtradas y NUNCA reemplazan al escenario S/S0.
-let R = compute(S), R0 = compute(S0);
+const RESULTADO_SIN_DATOS=()=>({
+  names:[],pairs:[],stats:[],st:{},levels:[],totalPairs:0,
+  totalClash:0,totalCombos:0,groupClash:new Map(),groupsOf:{},
+  allGroupsOf:{},gBlocks:{},closure:{}
+});
+let R = SIN_DATOS?RESULTADO_SIN_DATOS():compute(S);
+let R0 = SIN_DATOS?RESULTADO_SIN_DATOS():compute(S0);
 
 /**
  * Estado TRANSITORIO de navegación, selección y paneles. Se distingue de S:
@@ -110,10 +117,10 @@ function nombresVisibles(estado, candidatos=estado.asg) {
 }
 function actualizarVistaComponentes() {
   const nombres=nombresVisibles(S),seleccion=new Set(nombres);
-  RV=compute({...S,asg:nombres});
+  RV=SIN_DATOS?RESULTADO_SIN_DATOS():compute({...S,asg:nombres});
   // Misma selección de asignaturas contra la referencia, aunque la unidad
   // solo se haya registrado como modificación personal en S.
-  RV0=compute({...S0,asg:S0.asg.filter(n=>seleccion.has(n))});
+  RV0=SIN_DATOS?RESULTADO_SIN_DATOS():compute({...S0,asg:S0.asg.filter(n=>seleccion.has(n))});
 }
 actualizarVistaComponentes();
 
@@ -170,6 +177,7 @@ function toast(msg) {
  * No depende del servidor ni altera el archivo normalizado.
  */
 function save() {
+  if(SIN_DATOS) return;
   try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); }
   catch (e) { /* El escenario funciona sin almacenamiento. */ }
 }
@@ -180,6 +188,7 @@ function save() {
  * ni debe llamarse desde filtros que solo cambian la selección de consulta.
  */
 function commit(extraMsg) {
+  if(SIN_DATOS) return;
   const prev = R; R = compute(S); actualizarVistaComponentes(); save();
   const flips = [];
   R.pairs.forEach(p => { const q = prev.pairs.find(x => x.key === p.key); if (q && q.enRango !== p.enRango && (p.clash || q.clash)) flips.push(`${p.A} ⇄ ${p.B} ${p.enRango ? 'ahora cuenta' : 'deja de contar'}`); });
@@ -297,7 +306,10 @@ function render() {
   }).filter(Boolean);
   const sideEl = $('.sidelist'), sideTop = sideEl ? sideEl.scrollTop : 0;
   $('#top').innerHTML = renderTop();
-  $('#view').innerHTML = PAGES[ui.page]();
+  $('#view').innerHTML = (SIN_DATOS
+    ? '<p class="sin-datos-banner" role="status"><b>Sin datos académicos de '+
+      esc(PROGRAMA.nombre)+'.</b> Se muestra la estructura de consulta, sin resultados académicos.</p>'
+    : '') + PAGES[ui.page]();
   renderDrawer();
   keep.forEach(({ selector, x, y }) => {
     const el = $(selector);
@@ -351,6 +363,13 @@ function download(name, text, type) { const u = URL.createObjectURL(new Blob([te
  * escenario personal sea una fuente académica.
  */
 function onAct(act, d, el, ev) {
+  // Con la estructura sin fuente solo están operativas las herramientas
+  // visuales. Nunca se guardan escenarios, importan datos ni simulan valores.
+  if(SIN_DATOS && !new Set([
+    'nav','tema-cambiar','i-view','a-sort','i-clear',
+    'm-edges','m-libres','m-equilibrar','m-zoom','m-zoom-reset','m-ampliar',
+    'hm-all','hm-none'
+  ]).has(act)) return;
   const f = ui.inter;
   switch (act) {
     case 'tema-cambiar': if (typeof TemaVisual !== 'undefined') TemaVisual.alternar(); return render();
@@ -505,6 +524,7 @@ function onAct(act, d, el, ev) {
  * académica en datos completados por el programa.
  */
 function onChange(k, el) {
+  if(SIN_DATOS) return;
   const f = ui.inter;
   switch (k) {
     case 'unidad-filtro': ui.unidad=el.value; actualizarVistaComponentes(); return render();
@@ -628,7 +648,7 @@ document.addEventListener('drop', e => {
   if (PROGRAMA?.nombre) document.title = 'Interferencias de horario · ' + PROGRAMA.nombre;
   const meta = METADATOS || {};
   const pie = document.getElementById('pie-datos');
-  if (pie) pie.textContent = ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
+  if (pie) pie.textContent = SIN_DATOS ? 'Sin datos académicos cargados para '+PROGRAMA.nombre+'.' : ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
   if (restored && changes().length) toast('Recuperé los cambios que tenías guardados en este navegador.');
 })();
 
