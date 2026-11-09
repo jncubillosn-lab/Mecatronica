@@ -1,3 +1,7 @@
 node_modules/
 mut/
 ultimo_informe.json
+
+# Artefactos generados de Python, ajenos al código fuente
+__pycache__/
+*.py[cod]
