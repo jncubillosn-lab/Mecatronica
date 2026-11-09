@@ -3,8 +3,12 @@
 /**
  * ARQ-01: modificaciones personales sobre un escenario de referencia.
  * No contiene información académica ni abre fuentes: opera con estados recibidos.
+ * Dos entradas conceptuales: `base` (S0, única referencia vigente) y `actual`
+ * (S, modificaciones personales). Los archivos antiguos se manejan en
+ * `migrarAnterior`, sin añadir campos obligatorios al contrato vigente.
  */
 class EscenarioPersonal {
+  /** Copia estructural: evita mutar S0 al reconstruir o comparar cambios. */
   static copia(x) { return JSON.parse(JSON.stringify(x)); }
   // Priorizar `ref` estable del contrato; el nombre visible es respaldo legado.
   static claveGrupo(g) { return g.ref ? 'r:' + g.ref : g.a + '\u0001' + g.g; }
@@ -19,11 +23,13 @@ class EscenarioPersonal {
     const id=r?.posicionId || idsPorNombre?.get(r?.n);
     return id ? 'id:'+id : 'n:'+String(r?.n||'');
   }
+  /** Tabla nombre->ID solo como respaldo de ficheros sin posicionId. */
   static indicePosiciones(estado) {
     return new Map((estado.malla || []).filter(m => m.idPos).map(m => [m.n, m.idPos]));
   }
   // El ID numérico legado solo identifica bloques sin `ref` normalizada.
   static claveBloque(b) { return b.ref ? 'r:' + b.ref : 'i:' + b.id; }
+  /** Propiedades que una persona puede modificar; ID, ref y origen no se editan. */
   static propiedadesBloque(b) {
     return { a:b.a, c:b.c, d:b.d, s:b.s, e:b.e, o:b.o || '' };
   }
@@ -35,6 +41,8 @@ class EscenarioPersonal {
    * @param {object} base Escenario de referencia vigente, sin mutaciones.
    * @param {object} actual Escenario personalizado de la sesión.
    * @returns {object} Operaciones de agregar, quitar y modificar.
+   * Los campos históricos `idAnterior`, `introducidoEn` y `mig1..mig4`
+   * no son parte de `diferencias`: no condicionan el contrato de entrada.
    */
   static diferencias(base, actual) {
     const out = {
@@ -130,7 +138,9 @@ class EscenarioPersonal {
    * y después aplica las operaciones. Una edición de `on`, `c1` o `c2` no
    * puede convertir una agrupación de referencia informativa en analizable.
    * Las incorporaciones académicas nuevas no deben reponer grupos que la
-   * persona quitó deliberadamente.
+   * persona quitó deliberadamente. Para archivos v1 con `reqCred` completo,
+   * la compatibilidad es conservadora: se mantienen reglas antiguas hasta
+   * que la UI solicite una decisión individual sobre cada diferencia.
    */
   static aplicar(base, cambios) {
     const s=EscenarioPersonal.copia(base);
@@ -281,7 +291,11 @@ class EscenarioPersonal {
   /**
    * Formato de exportación `{tipo:'escenario-personal',version:1,cambios}`.
    * `version:1` es la versión del FORMATO de escenario, independiente de
-   * `versionEsquema` y de la versión visible del sitio (p. ej. 0.5.2).
+   * `versionEsquema` y de la versión visible del sitio. El paquete contiene
+   * solamente modificaciones personales, nunca una nueva fuente académica.
+   * @param {object} base Referencia vigente S0
+   * @param {object} actual Escenario personal S
+   * @param {Array} pendientes Reglas heredadas aún no conciliadas, opcional
    */
   static empaquetar(base, actual, pendientes = []) {
     const cambios=EscenarioPersonal.diferencias(base,actual);
@@ -296,6 +310,8 @@ class EscenarioPersonal {
    * de origen: no permite distinguir una regla editada de otra desactualizada.
    * Retornar las diferencias para revisión explícita y conservar sus valores.
    * No contiene excepciones por carrera, asignatura o versión institucional.
+   * Devuelve solo diferencias no resueltas: no inventa una aprobación,
+   * rechazo ni interpretación normativa del requisito académico.
    */
   static requisitosAmbiguos(base, archivo, efectivo) {
     const cambios=archivo?.cambios;
@@ -320,14 +336,30 @@ class EscenarioPersonal {
   }
 
   /**
-   * Compatibilidad de lectura del formato histórico {S}, ya estabilizada.
-   * Se usa la identidad histórica DECLARADA EN EL MISMO CONTRATO NORMALIZADO.
+   * Lector OPCIONAL del formato personal antiguo `{S}`, ya estabilizado.
+   * Solo se invoca en importación/recuperación de esos archivos: nunca en S0.
+   *
+   * `agrupaciones[].introducidoEn` y `bloques[].idAnterior` son pistas
+   * HISTÓRICAS OPCIONALES del contrato. Su ausencia es válida para cualquier
+   * entrada académica vigente; simplemente reduce la correspondencia que
+   * puede reconstruirse al interpretar un snapshot de v0.4.x. No deducir
+   * vínculos faltantes, exigirlos a fuentes nuevas ni crear alarmas.
+   *
+   * @param {object} baseVigente S0, referencia académica ya construida.
+   * @param {object} snapshot Archivo personal antiguo (solo datos de usuario).
+   * @param {object} contrato Única entrada normalizada; puede omitir pistas antiguas.
+   * @param {Function} construirEstado Adaptador posicional puro.
+   * @param {Function} LectorAcademico Constructor actual EntradaAcademica.
+   * @returns {object} Escenario reconstruido sobre S0, con correspondencias
+   *   históricas solo donde existen datos inequívocos.
    */
-  // `introducidoEn` dentro de las agrupaciones indica su procedencia
-  // histórica. No constituye la versión de contrato ni de archivo exportado.
-  // Esta compatibilidad usa el MISMO contrato: no abre fuentes originales.
   static migrarAnterior(baseVigente, snapshot, contrato, construirEstado, LectorAcademico) {
+    // `incorporacionesOferta` pertenece al archivo PERSONAL previo, no a
+    // FuentesAcadémicas. Ausente significa que no consta esa aplicación.
     const aplicado = Array.isArray(snapshot.incorporacionesOferta) && snapshot.incorporacionesOferta.length > 0;
+    // Reconstruir el conjunto original usando procedencia DECLARADA;
+    // `introducidoEn` ausente no permite deducir antigüedad por nombre.
+    // Esta operación no afecta al lector actual ni exige campo histórico.
     const anteriores = contrato.agrupaciones.filter(g =>
       g.introducidoEn === '0.4.2' || (aplicado && g.introducidoEn === '0.4.3'));
     const referencia = { ...contrato, agrupaciones:anteriores };
@@ -338,12 +370,17 @@ class EscenarioPersonal {
       b.id=b.idAnterior ?? b.id;
       b.ref=null;
     });
+    // Comparar copia personal con su referencia antigua reconstruible,
+    // nunca con S0 directamente: evitar tomar una actualización del plan
+    // por una modificación voluntaria del usuario.
     const cambios=EscenarioPersonal.diferencias(baseAnterior,snapshot);
     // Las ediciones heredadas por nombre se enlazan al ID estable del grupo.
     const referenciaGrupo=new Map(baseVigente.grupos.map(g=>[g.a+'\u0001'+g.g,g.ref]));
     cambios.grupos.quitar=cambios.grupos.quitar.map(key=>referenciaGrupo.has(key)?'r:'+referenciaGrupo.get(key):key);
     cambios.grupos.modificar=cambios.grupos.modificar.map(x=>({...x,key:referenciaGrupo.has(x.key)?'r:'+referenciaGrupo.get(x.key):x.key}));
     // Identificar referencias originales mediante el número heredado cuando sea posible.
+    // Solo reidentificar un bloque si hay evidencia explícita de su id
+    // original; sin `idAnterior` NO asociarlo por horario o por parecido.
     const refPorId=new Map(baseAnterior.bloques.filter(b=>b.idAnterior!=null)
       .map(b=>[b.idAnterior,baseVigente.bloques.find(x=>x.idAnterior===b.idAnterior)?.ref||null]));
     for(const campo of ['quitar','modificar']){
@@ -357,6 +394,8 @@ class EscenarioPersonal {
       });
     }
     cambios.bloques.agregar.forEach(b=>{if(b.idAnterior==null)b.ref=null;});
+    // La salida usa la referencia vigente y las diferencias recuperables.
+    // No se escriben datos institucionales, ni se modifica `baseVigente`.
     return EscenarioPersonal.aplicar(baseVigente,cambios);
   }
 }
