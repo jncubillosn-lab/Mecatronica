@@ -2,6 +2,14 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.1 — Estructura de ocho vistas aun sin datos (9 nov 2026)
+
+- Los programas sin contrato ya no sustituyen el portal por una tarjeta: cargan la misma cabecera, filtros, instrucciones y ocho vistas, incluidos marco de prerrequisitos y zoom, cuadrículas de horarios y calor, y gráfica de demanda vacía.
+- `js/programas.js` proporciona solo un contexto **visual** con contenedores vacíos y una cuadrícula genérica ilustrativa, sin generar FuentesAcadémicas, información institucional ni resultados del motor.
+- Las métricas desconocidas aparecen como «—», no como ceros comprobados; Demanda no genera muestras ficticias. Guardar, importar y editar permanecen deshabilitados sin fuente académica.
+- Horarios reutiliza una función compartida para dibujar su cuadrícula tanto con datos como sin ellos. Mecatrónica conserva su contrato, escenario y cálculos.
+- `tests/multicarrera.js` verifica la estructura de las ocho vistas de las ocho carreras sin datos; las regresiones del programa operativo permanecen independientes.
+
 ## 1.1.0 — Selector de carreras (9 nov 2026)
 
 - Selector superior izquierdo de nueve carreras con los colores existentes en `js/identidad.js`, acceso directo por `?programa=ID` y navegación por ocho secciones.

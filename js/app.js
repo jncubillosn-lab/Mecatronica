@@ -6,6 +6,7 @@
  * No consulta datos académicos originales ni define el algoritmo de choques.
  */
 const CONTEXTO = window.CONTEXTO_ACADEMICO;
+const SIN_DATOS = !!CONTEXTO?.sinDatos;
 if (!CONTEXTO || !CONTEXTO.estadoBase) throw new Error('No existe un contexto académico inicializado');
 const OPCIONES = CONTEXTO.opciones;
 const PROGRAMA = CONTEXTO.programa;
@@ -40,7 +41,7 @@ const PAGES_ORDER = window.ProgramasUniversitarios.paginas;
 // Mantener separadas estas identidades al importar, guardar y restablecer.
 let S0 = clone(CONTEXTO.estadoBase), S = clone(S0), restored = false, datosGuardados = null;
 try {
-  const texto = localStorage.getItem(KEY);
+  const texto = !SIN_DATOS && KEY ? localStorage.getItem(KEY) : null;
   if (texto) {
     const o = JSON.parse(texto);
     if (EscenarioPersonal.esFormatoVigente(o)) datosGuardados = o;
@@ -68,7 +69,13 @@ if (datosGuardados) {
  // RV/RV0 son proyecciones filtradas de esos resultados, nunca nuevas
  // fuentes ni ediciones persistentes. La vista puede mostrar menos que S.
 // RV/RV0 son consultas filtradas y NUNCA reemplazan al escenario S/S0.
-let R = compute(S), R0 = compute(S0);
+const RESULTADO_SIN_DATOS=()=>({
+  names:[],pairs:[],stats:[],st:{},levels:[],totalPairs:0,
+  totalClash:0,totalCombos:0,groupClash:new Map(),groupsOf:{},
+  allGroupsOf:{},gBlocks:{},closure:{}
+});
+let R = SIN_DATOS?RESULTADO_SIN_DATOS():compute(S);
+let R0 = SIN_DATOS?RESULTADO_SIN_DATOS():compute(S0);
 
 /**
  * Estado TRANSITORIO de navegación, selección y paneles. Se distingue de S:
@@ -110,10 +117,10 @@ function nombresVisibles(estado, candidatos=estado.asg) {
 }
 function actualizarVistaComponentes() {
   const nombres=nombresVisibles(S),seleccion=new Set(nombres);
-  RV=compute({...S,asg:nombres});
+  RV=SIN_DATOS?RESULTADO_SIN_DATOS():compute({...S,asg:nombres});
   // Misma selección de asignaturas contra la referencia, aunque la unidad
   // solo se haya registrado como modificación personal en S.
-  RV0=compute({...S0,asg:S0.asg.filter(n=>seleccion.has(n))});
+  RV0=SIN_DATOS?RESULTADO_SIN_DATOS():compute({...S0,asg:S0.asg.filter(n=>seleccion.has(n))});
 }
 actualizarVistaComponentes();
 
@@ -170,6 +177,7 @@ function toast(msg) {
  * No depende del servidor ni altera el archivo normalizado.
  */
 function save() {
+  if(SIN_DATOS) return;
   try { localStorage.setItem(KEY, JSON.stringify(EscenarioPersonal.empaquetar(S0, S))); }
   catch (e) { /* El escenario funciona sin almacenamiento. */ }
 }
@@ -180,6 +188,7 @@ function save() {
  * ni debe llamarse desde filtros que solo cambian la selección de consulta.
  */
 function commit(extraMsg) {
+  if(SIN_DATOS) return;
   const prev = R; R = compute(S); actualizarVistaComponentes(); save();
   const flips = [];
   R.pairs.forEach(p => { const q = prev.pairs.find(x => x.key === p.key); if (q && q.enRango !== p.enRango && (p.clash || q.clash)) flips.push(`${p.A} ⇄ ${p.B} ${p.enRango ? 'ahora cuenta' : 'deja de contar'}`); });
@@ -238,11 +247,12 @@ function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
   const resultadoVisible = RV, anteriorVisible = RV0;
+  const plan = new PlanCurricular(S);
   const componentes = (OPCIONES.componentesComparables || []).map(id => {
-    const tipo = new PlanCurricular(S).componente(id);
+    const tipo = plan.componente(id);
     const nombre = tipo?.nombre || id;
-    const total = new PlanCurricular(S).seleccionarPorComponentes(S.asg, [id]).length;
-    return `<button type="button" class="component-toggle" data-tipologia="${esc(id)}" data-act="comp-toggle" data-comp="${esc(id)}" aria-pressed="${ui.componentes.has(id)}" title="${total} asignaturas de ${esc(nombre)} incorporadas al análisis">${esc(nombre)}</button>`;
+    const total = plan.seleccionarPorComponentes(S.asg, [id]).length;
+    return `<button type="button" class="component-toggle" data-tipologia="${esc(id)}" data-act="comp-toggle" data-comp="${esc(id)}" aria-pressed="${ui.componentes.has(id)}" ${SIN_DATOS?'disabled':''} title="${SIN_DATOS?'Filtro pendiente de datos académicos':total+' asignaturas de '+nombre+' incorporadas al análisis'}">${esc(nombre)}</button>`;
   }).join('');
   return `<a class="cta-bar" href="https://www.instagram.com/repremecatronicaun/" target="_blank" rel="noopener noreferrer"><span class="cta-in"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="cta-t"><b>Queremos tu opinión.</b> ¿Encontraste un error o tienes una idea para optimizar esta herramienta?</span><span class="cta-b">Escríbenos en Instagram · @repremecatronicaun →</span></span></a>
   <div class="top-in">
@@ -254,22 +264,22 @@ function renderTop() {
       title="Tema visual; no modifica datos ni escenarios">${!modoClaro?'☀ Modo claro':'☾ Modo oscuro'}</button>
     <div class="chg">
       <div class="pill-stat ${dirty ? 'dirty' : ''}">
-        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${anteriorVisible.totalPairs} → ${resultadoVisible.totalPairs}</b> ${dlt(resultadoVisible.totalPairs, anteriorVisible.totalPairs)}` : 'Datos de referencia del programa'}</span>
+        <span>${dirty ? `<b>${nChg}</b> cambio${nChg > 1 ? 's' : ''} · parejas con choque <b class="num">${anteriorVisible.totalPairs} → ${resultadoVisible.totalPairs}</b> ${dlt(resultadoVisible.totalPairs, anteriorVisible.totalPairs)}` : SIN_DATOS ? 'Datos académicos no disponibles' : 'Datos de referencia del programa'}</span>
         ${dirty ? `<button class="btn sm" data-act="drawer-cambios">Ver cambios</button><button class="btn sm danger" data-act="reset">${resetLabel()}</button>` : ''}
       </div>
-      <button class="btn sm" data-act="export" title="Descargar tu escenario como archivo">Guardar</button>
-      <button class="btn sm" data-act="import" title="Cargar un escenario guardado">Cargar</button>
+      <button class="btn sm" data-act="export" ${SIN_DATOS?'disabled':''} title="Descargar tu escenario como archivo">Guardar</button>
+      <button class="btn sm" data-act="import" ${SIN_DATOS?'disabled':''} title="Cargar un escenario guardado">Cargar</button>
       <input type="file" id="file-in" accept=".json,application/json" class="sr" tabindex="-1">
        <div class="componentes-bar" role="group" aria-label="Filtros globales de tipología y unidad académica">
          <span class="componentes-label">Tipología:</span>${componentes}
          <label class="unidad-filtro" for="filtro-unidad">Departamento / facultad
-           <select id="filtro-unidad" data-chg="unidad-filtro" aria-label="Filtrar por departamento o facultad">
+           <select id="filtro-unidad" data-chg="unidad-filtro" ${SIN_DATOS?'disabled':''} aria-label="Filtrar por departamento o facultad">
              <option value="">Todas las unidades</option>
              <option value="${SIN_UNIDAD}" ${ui.unidad===SIN_UNIDAD?'selected':''}>Sin información</option>
              ${[...new Set(S.malla.map(m=>m.unidad).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es')).map(u=>`<option value="${esc(u)}" ${ui.unidad===u?'selected':''}>${esc(u)}</option>`).join('')}
            </select>
          </label>
-         <button class="btn sm ghost" data-act="filtro-reset" title="Mostrar todos los componentes y unidades">Todos</button>
+         <button class="btn sm ghost" data-act="filtro-reset" ${SIN_DATOS?'disabled':''} title="Mostrar todos los componentes y unidades">Todos</button>
          <datalist id="unidades-academicas">${UNIDADES_SUGERIDAS.map(u=>`<option value="${esc(u)}"></option>`).join('')}</datalist>
        </div>
     </div>
@@ -297,8 +307,20 @@ function render() {
   }).filter(Boolean);
   const sideEl = $('.sidelist'), sideTop = sideEl ? sideEl.scrollTop : 0;
   $('#top').innerHTML = renderTop();
-  $('#view').innerHTML = PAGES[ui.page]();
+  $('#view').innerHTML = (SIN_DATOS
+    ? '<p class="sin-datos-banner" role="status"><b>Sin datos académicos de '+
+      esc(PROGRAMA.nombre)+'.</b> Se muestra la estructura de consulta, sin resultados académicos.</p>'
+    : '') + PAGES[ui.page]();
   renderDrawer();
+  if(SIN_DATOS){
+    document.body.dataset.sinDatos='true';
+    // Los controles aparecen, pero sin datos no permiten guardar ni importar.
+    $$('#view .dem-panel button, #view .dem-panel select, #view .dem-panel input')
+      .forEach(el=>{el.disabled=true;});
+    $$('#view .dem-metricas strong').forEach(el=>{el.textContent='—';});
+  }else{
+    delete document.body.dataset.sinDatos;
+  }
   keep.forEach(({ selector, x, y }) => {
     const el = $(selector);
     if (el) { el.scrollLeft = x; el.scrollTop = y; }
@@ -350,7 +372,15 @@ function download(name, text, type) { const u = URL.createObjectURL(new Blob([te
  * Las ramas de importación conservan sus validaciones y no exigen que un
  * escenario personal sea una fuente académica.
  */
+const ACCIONES_VISUALES_SIN_DATOS=new Set([
+  'nav','tema-cambiar','i-view','a-sort','i-clear',
+  'm-edges','m-libres','m-equilibrar','m-zoom','m-zoom-reset','m-ampliar',
+  'hm-all','hm-none'
+]);
 function onAct(act, d, el, ev) {
+  // Con la estructura sin fuente solo están operativas las herramientas
+  // visuales. Nunca se guardan escenarios, importan datos ni simulan valores.
+  if(SIN_DATOS && !ACCIONES_VISUALES_SIN_DATOS.has(act)) return;
   const f = ui.inter;
   switch (act) {
     case 'tema-cambiar': if (typeof TemaVisual !== 'undefined') TemaVisual.alternar(); return render();
@@ -505,6 +535,7 @@ function onAct(act, d, el, ev) {
  * académica en datos completados por el programa.
  */
 function onChange(k, el) {
+  if(SIN_DATOS) return;
   const f = ui.inter;
   switch (k) {
     case 'unidad-filtro': ui.unidad=el.value; actualizarVistaComponentes(); return render();
@@ -628,7 +659,7 @@ document.addEventListener('drop', e => {
   if (PROGRAMA?.nombre) document.title = 'Interferencias de horario · ' + PROGRAMA.nombre;
   const meta = METADATOS || {};
   const pie = document.getElementById('pie-datos');
-  if (pie) pie.textContent = ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
+  if (pie) pie.textContent = SIN_DATOS ? 'Sin datos académicos cargados para '+PROGRAMA.nombre+'.' : ['Malla: ' + (meta.malla || 'fecha no registrada'), 'Tipologías: ' + (meta.tipologias || 'fecha no registrada'), 'Horarios: ' + (meta.horarios || 'fecha no registrada')].join(' · ');
   if (restored && changes().length) toast('Recuperé los cambios que tenías guardados en este navegador.');
 })();
 

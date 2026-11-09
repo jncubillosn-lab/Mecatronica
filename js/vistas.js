@@ -26,7 +26,7 @@ function semCred(s, n) { return new PlanCurricular({malla:n, tipos:S.tipos}).res
 function distNames(ds) { return [...ds].sort((a,b)=>a-b).map(distLabel).join(' · '); }
 function distSummary() { const l = [...S.params.dists].sort((a,b)=>a-b).map(distLabel); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : (l[0] || 'sin selección'); }
 function distChips(counts) {
-  return OPCIONES.distanciasDisponibles.map(d => { const n = counts ? RV.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}">${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
+  return OPCIONES.distanciasDisponibles.map(d => { const n = counts && !SIN_DATOS ? RV.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}" ${SIN_DATOS?'disabled':''}>${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
 }
 function distText(p) { return p.dist === 0 ? 'Mismo semestre' : p.dist === 1 ? '1 semestre de diferencia' : p.dist + ' semestres de diferencia'; }
 function compGroups(A, c) { return S.grupos.filter(g => g.a === A && (g.c1 === c || g.c2 === c)).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y))); }
@@ -46,17 +46,17 @@ function pageInicio() {
   <p>Aquí ves qué tan difícil es armar un horario sin choques, y dónde está el problema.</p></div></div>
   <section class="card hero"><div>
       <div class="eyebrow">En pocas palabras</div>
-      <p class="hero-s">Entre asignaturas que se pueden cursar a la vez hay <b class="num">${R.totalCombos}</b> combinaciones posibles de grupos. <b class="num hl">${R.totalClash}</b> de ellas (${pct(gIdx, 1)}) tienen choque de horario. ${dlt(R.totalClash, R0.totalClash)}</p></div>
+      <p class="hero-s">${SIN_DATOS ? 'La comparación aparecerá aquí cuando se incorporen datos académicos de esta carrera.' : `Entre asignaturas que se pueden cursar a la vez hay <b class="num">${R.totalCombos}</b> combinaciones posibles de grupos. <b class="num hl">${R.totalClash}</b> de ellas (${pct(gIdx, 1)}) tienen choque de horario. ${dlt(R.totalClash, R0.totalClash)}`}</p></div>
     <div class="hero-k">
-      <div><b class="num">${inr.length}</b><span>parejas de asignaturas que se podrían cursar a la vez</span></div>
-      <div><b class="num">${con.length} ${dlt(con.length, R0.totalPairs)}</b><span>tienen al menos una combinación de grupos que choca</span></div>
-      <div><b class="num">${sie.length}</b><span>son incompatibles: ningún grupo de una cabe con ningún grupo de la otra</span></div>
+      <div><b class="num">${SIN_DATOS?'—':inr.length}</b><span>parejas de asignaturas que se podrían cursar a la vez</span></div>
+      <div><b class="num">${SIN_DATOS?'—':con.length+' '+dlt(con.length, R0.totalPairs)}</b><span>tienen al menos una combinación de grupos que choca</span></div>
+      <div><b class="num">${SIN_DATOS?'—':sie.length}</b><span>son incompatibles: ningún grupo de una cabe con ningún grupo de la otra</span></div>
     </div></section>
   <div class="grid2" style="margin-top:16px">
     <section class="card"><div class="card-h"><h2>Parejas con más choque</h2><button class="btn sm ghost" data-act="nav" data-p="inter">Ver todos →</button></div>
-      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b class="asig-etiqueta"${atributoTipologia(p.A)}>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b class="asig-etiqueta"${atributoTipologia(p.B)}>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || '<div class="hint">No hay choques con los parámetros actuales.</div>'}</div></section>
+      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b class="asig-etiqueta"${atributoTipologia(p.A)}>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b class="asig-etiqueta"${atributoTipologia(p.B)}>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || (SIN_DATOS?'<div class="hint">Sin datos académicos para analizar.</div>':'<div class="hint">No hay choques con los parámetros actuales.</div>')}</div></section>
     <section class="card"><div class="card-h"><h2>Asignaturas más afectadas</h2><button class="btn sm ghost" data-act="nav" data-p="asig">Ver todas →</button></div>
-      <div class="card-b" style="display:grid;gap:2px">${topA.map(s => `<button class="toprow" data-act="a-go" data-n="${esc(s.n)}"><span><b class="asig-etiqueta"${atributoTipologia(s.n)}>${esc(s.n)}</b> <span class="sem">S${s.s}</span><br><span class="hint">se cruza con ${s.conChoque} de ${s.pares} asignaturas con las que se compara</span></span><span class="bar"><i style="width:${Math.min(100, s.idxG * 100 / (topA[0].idxG || 1))}%"></i></span><b class="num">${pct(s.idxG)}</b></button>`).join('')}</div></section>
+      <div class="card-b" style="display:grid;gap:2px">${SIN_DATOS?'<div class="hint">Pendiente de datos académicos.</div>':topA.map(s => `<button class="toprow" data-act="a-go" data-n="${esc(s.n)}"><span><b class="asig-etiqueta"${atributoTipologia(s.n)}>${esc(s.n)}</b> <span class="sem">S${s.s}</span><br><span class="hint">se cruza con ${s.conChoque} de ${s.pares} asignaturas con las que se compara</span></span><span class="bar"><i style="width:${Math.min(100, s.idxG * 100 / (topA[0].idxG || 1))}%"></i></span><b class="num">${pct(s.idxG)}</b></button>`).join('')}</div></section>
   </div>
   <section class="card" style="margin-top:16px"><div class="card-h"><h2>Qué se compara y cómo se calcula</h2></div>
     <div class="card-b grid2" style="gap:24px">
@@ -68,12 +68,12 @@ function pageInicio() {
       </div>
       <ol class="steps"><li>Se toma una <b>pareja de asignaturas</b> que un estudiante podría cursar a la vez.</li><li>Se prueba cada grupo de la primera con cada grupo de la segunda: son las <b>combinaciones</b>.</li><li>Una combinación <b>choca</b> si sus horarios se traslapan aunque sea una hora. Los bloques pegados (9–11 y 11–13) no chocan.</li><li>El <b>porcentaje</b> es qué parte de las combinaciones choca. 100 % = <b>incompatibles</b> (ninguna funciona); entre 0 y 100 % = <b>depende del grupo</b> que elijas.</li></ol>
     </div></section>
-  <details class="fold"><summary>Supuestos de los datos</summary><dl>
+  ${SIN_DATOS?'<div class="hint">Esta estructura mostrará los supuestos de la fuente cuando exista un contrato académico.</div>':`<details class="fold"><summary>Supuestos de los datos</summary><dl>
     <dt>Asignaturas incluidas</dt><dd>Las que están incorporadas al análisis y pertenecen a los componentes seleccionados (${R.names.length}). La malla conserva también las asignaturas sin grupos cargados.</dd>
     <dt>Horas</dt><dd>Franja y días definidos en la configuración de la oferta.</dd>
     <dt>Prerrequisitos</dt><dd>Tomados de la malla vigente (Acuerdo 6 de 2022 del Consejo de Facultad de Ingeniería). Los requisitos de créditos se consultan en la malla, pero no modifican los cálculos de interferencias.</dd>
     <dt>Control</dt><dd>Cada grupo (G1 a G8) combina una magistral con un laboratorio. El emparejamiento de la magistral 3 (grupos G5 y G6) no está confirmado.</dd>
-    <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos de referencia del programa.</dd></dl></details>`;
+    <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos de referencia del programa.</dd></dl></details>`}`;
 }
 
 /* ---------- INTERFERENCIAS ---------- */
@@ -152,8 +152,8 @@ function pageInter() {
       <label class="switch"><input type="checkbox" data-chg="i-choque" ${f.soloChoque ? '' : 'checked'}><i></i>Incluir las que no chocan</label>
     </div></div>
   </details>
-  <div class="count-line"><span><b class="num">${list.length}</b> parejas de asignaturas${active ? ' · <button class="btn sm ghost" data-act="i-clear">Limpiar filtros</button>' : ''}${f.view === 'lista' ? ' <span class="faint">· Cada cuadrito es una combinación de grupos (rojo = choca)</span>' : ''}</span><button class="btn sm" data-act="i-csv">Descargar CSV</button></div>
-  ${f.view === 'matriz' ? matrixView() : (list.length ? `<div class="plist">${list.map(prow).join('')}</div>` : '<div class="empty-state">Ninguna pareja cumple estos filtros.<br><button class="btn sm" style="margin-top:10px" data-act="i-clear">Limpiar filtros</button></div>')}`;
+  <div class="count-line"><span><b class="num">${SIN_DATOS?'—':list.length}</b> parejas de asignaturas${active ? ' · <button class="btn sm ghost" data-act="i-clear">Limpiar filtros</button>' : ''}${f.view === 'lista' ? ' <span class="faint">· Cada cuadrito es una combinación de grupos (rojo = choca)</span>' : ''}</span><button class="btn sm" data-act="i-csv" ${SIN_DATOS?'disabled':''}>Descargar CSV</button></div>
+  ${f.view === 'matriz' ? matrixView() : (list.length ? `<div class="plist">${list.map(prow).join('')}</div>` : (SIN_DATOS?'<div class="empty-state">Sin datos académicos para comparar; los filtros y la matriz están preparados.</div>':'<div class="empty-state">Ninguna pareja cumple estos filtros.<br><button class="btn sm" style="margin-top:10px" data-act="i-clear">Limpiar filtros</button></div>'))}`;
 }
 
 /* ---------- PANEL LATERAL (par / cambios) ---------- */
@@ -272,7 +272,7 @@ function pageAsig() {
   }).join('');
   return `<div class="page-title"><div><h1>Asignaturas</h1><p>Cada asignatura se cruza con las que podría cursar a la vez (${distSummary()}; sin contar las que son prerrequisito suyo). Aquí ves con cuántas de ellas tiene conflicto y qué porcentaje de sus combinaciones de grupos choca. El semestre se cambia en <a href="#malla" data-act="nav" data-p="malla">Prerrequisitos</a>.</p></div>
     <div class="row" style="gap:20px;align-items:flex-end"><div class="field"><label>Distancia entre semestres</label><div class="chips">${distChips(false)}</div></div><div class="field"><label>Ordenar por</label><div class="seg"><button data-act="a-sort" data-s="idx" aria-pressed="${f.sort === 'idx'}">Mayor % de choque</button><button data-act="a-sort" data-s="pares" aria-pressed="${f.sort === 'pares'}">Más asignaturas en conflicto</button><button data-act="a-sort" data-s="sem" aria-pressed="${f.sort === 'sem'}">Semestre</button></div></div></div></div>
-    <div style="display:grid;gap:8px">${rows}</div>`;
+    <div style="display:grid;gap:8px">${rows || (SIN_DATOS?'<div class="empty-state">Aún no hay asignaturas académicas que mostrar en esta estructura.</div>':'')}</div>`;
 }
 
 /* ===== GRUPOS ===== */
@@ -323,8 +323,8 @@ function pageGrupos() {
     </section>`;
   }).join('');
   return `<div class="page-title"><div><h1>Grupos</h1><p>Los grupos que se ofertan de cada asignatura. Desactiva uno para simular que no se abre, o agrega uno nuevo y ajusta su horario en <a href="#hor" data-act="nav" data-p="hor">Horarios</a>.</p></div>
-    <div class="row"><select id="asg-new" aria-label="Asignatura a agregar"><option value="">Agregar asignatura de la malla…</option>${avail.map(m => `<option value="${esc(m.n)}">${esc(m.n)} (sem ${m.s})</option>`).join('')}</select><button class="btn" data-act="asg-add">Agregar</button></div></div>
-    <div class="gcards">${cards||'<div class="empty-state">No hay asignaturas de la tipología o unidad seleccionada.</div>'}</div>`;
+    <div class="row"><select id="asg-new" ${SIN_DATOS?'disabled':''} aria-label="Asignatura a agregar"><option value="">Agregar asignatura de la malla…</option>${avail.map(m => `<option value="${esc(m.n)}">${esc(m.n)} (sem ${m.s})</option>`).join('')}</select><button class="btn" data-act="asg-add" ${SIN_DATOS?'disabled':''}>Agregar</button></div></div>
+    <div class="gcards">${cards||(SIN_DATOS?'<div class="empty-state">Sin información curricular. Aquí aparecerán las tarjetas de grupos cuando se carguen datos.</div>':'<div class="empty-state">No hay asignaturas de la tipología o unidad seleccionada.</div>')}</div>`;
 }
 
 /* ===== HORARIOS ===== */
@@ -352,7 +352,46 @@ function lanes(blocks) {
  * el resaltado de cruces entre superposiciones consulta elegibilidad.
  */
 /** Horarios: cuadrícula editable desde S; el render no escribe en el escenario. */
+
+/** Un solo componente de cuadrícula semanal: se usa con bloques y sin ellos. */
+function cuadriculaSemanal(cols,hours) {
+  return '<div class="weekgrid-scroll" role="region" tabindex="0" '+
+    'aria-label="Horario semanal desplazable"><div class="weekgrid" '+
+    'style="--numero-dias:'+DAYS.length+'"><div class="dh" style="border-left:0"></div>'+
+    DAYS.map(d=>'<div class="dh"><span class="full">'+DAY_NAMES[d]+
+      '</span><span class="short">'+DAY_SHORT[d]+'</span></div>').join('')+
+    '<div class="hrs">'+hours.map(x=>'<div>'+x+'</div>').join('')+'</div>'+
+    cols+'</div></div>';
+}
+/** Misma estructura semanal con celdas vacías, sin asignaturas simuladas. */
+function pageHorSinDatos() {
+  const hours=Array.from({length:H_MAX-H_MIN},(_,i)=>H_MIN+i);
+  const cols=DAYS.map(d=>'<div class="dcol" data-d="'+d+'">'+
+    hours.map(h=>'<div class="hc" data-d="'+d+'" data-h="'+h+'"></div>').join('')+
+    '</div>').join('');
+  return '<div class="page-title"><div><h1>Horarios</h1>'+
+    '<p>Consulta la semana de las asignaturas y superpone grupos para comparar bloques. '+
+    'La cuadrícula es una referencia visual, no un horario académico confirmado.</p></div></div>'+
+    '<div class="hor">'+
+      '<aside class="card sidelist" aria-label="Asignaturas"><div class="empty-state">'+
+        'Sin asignaturas disponibles para seleccionar.</div></aside>'+
+      '<div><div class="row" style="margin-bottom:10px">'+
+        '<select disabled aria-label="Asignatura"><option>Seleccionar asignatura…</option></select>'+
+        '<select disabled aria-label="Superponer asignatura"><option>Superponer otra asignatura…</option></select>'+
+        '<button class="btn sm" disabled>Las que chocan (—)</button></div>'+
+        cuadriculaSemanal(cols,hours)+
+        '<div class="legend"><span>Los bloques aparecerán aquí al cargar horarios.</span></div></div>'+
+      '<div class="right" style="display:grid;gap:12px;align-content:start">'+
+        '<section class="card impact"><div class="lab">Impacto en la asignatura</div>'+
+          '<p class="hint">Sin información para calcular cruces.</p>'+
+          '<div class="imp-row"><span>Combinaciones que chocan</span><b>—</b></div></section>'+
+        '<section class="card impact"><div class="lab">Horario por grupo</div>'+
+          '<p class="hint">Selecciona una asignatura cuando haya datos disponibles.</p></section>'+
+      '</div></div>';
+}
+
 function pageHor() {
+  if(SIN_DATOS)return pageHorSinDatos();
   const R=RV,R0=RV0;
   if(!R.names.length)return `<div class="page-title"><div><h1>Horarios</h1><p>${S.asg.length?'Ninguna asignatura coincide con los filtros de tipología y departamento/facultad.':'No hay asignaturas incorporadas al análisis de horarios. Puedes agregarlas desde Grupos.'}</p></div></div>`;
   const h=ui.hor;
@@ -399,7 +438,7 @@ function pageHor() {
         <button class="btn sm" data-act="h-ov-clash" ${choques.length ? '' : 'disabled'} title="Superpone las asignaturas con las que choca">Las que chocan (${choques.length})</button></div>
       ${editorUnidad(A)}
       ${h.ov.length ? `<div class="chips" style="margin-bottom:10px">${h.ov.map(n => `<button class="chip" data-act="h-ov-del" data-n="${esc(n)}"${atributoTipologia(n)}>${esc(n)} ×</button>`).join('')}<button class="btn sm ghost" data-act="h-ov-none">Quitar todas</button></div>` : ''}
-      <div class="weekgrid-scroll" role="region" tabindex="0" aria-label="Horario semanal desplazable"><div class="weekgrid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${hours.map(x => `<div>${x}</div>`).join('')}</div>${cols}</div></div>
+      ${cuadriculaSemanal(cols,hours)}
       <div class="legend" style="margin-top:8px"><span>Cada bloque lleva el nombre del grupo (o grupos) que lo usan; bloques lado a lado son grupos alternativos a la misma hora.</span>${hasOv ? '<span><i class="sw" style="background:color-mix(in srgb,var(--heat) 22%,transparent)"></i>horas donde se pisan con lo superpuesto</span>' : ''}</div>
     </div>
     <div class="right" style="display:grid;gap:12px">${impact}
@@ -464,28 +503,28 @@ function pageHeat() {
     const intensity = peak && count ? Math.round(14 + (count / peak) * 72) : 0;
     const subjectNames = [...cell.subjects].sort((a, b) => a.localeCompare(b, 'es'));
     const groupNames = [...cell.groups].map(k => k.split('\u0001').join(' · ')).sort((a, b) => a.localeCompare(b, 'es'));
-    const title = `${DAY_NAMES[d]} ${h}:00–${h + 1}:00\n${count} grupos · ${subjectCount} asignaturas\n${groupNames.join('; ') || 'Sin grupos programados'}\nAsignaturas: ${subjectNames.join(', ') || '—'}`;
+    const title = SIN_DATOS ? `${DAY_NAMES[d]} · cuadrícula visual, sin datos académicos` : `${DAY_NAMES[d]} ${h}:00–${h + 1}:00\n${count} grupos · ${subjectCount} asignaturas\n${groupNames.join('; ') || 'Sin grupos programados'}\nAsignaturas: ${subjectNames.join(', ') || '—'}`;
     return `<div class="hc ${count ? 'has-groups' : ''}" ${count ? `style="background:color-mix(in srgb,var(--heat) ${intensity}%,var(--surface2))"` : ''} title="${esc(title)}">${count || ''}</div>`;
   }).join('')}</div>`).join('');
-  const dayRows = dayLoad.map(x => `<div class="hm-day"><span>${DAY_SHORT[x.d]}</span><div class="bar"><i style="width:${x.n / maxDay * 100}%"></i></div><strong>${x.n}</strong></div>`).join('');
-  const topText = top ? `${DAY_NAMES[top.d]} · ${top.h}:00–${top.h + 1}:00` : 'Sin horarios seleccionados';
-  const topDetail = top ? `${top.groups.size} grupos de ${top.subjects.size} asignaturas en esa franja` : 'Selecciona asignaturas que tengan grupos y horarios.';
+  const dayRows = dayLoad.map(x => `<div class="hm-day"><span>${DAY_SHORT[x.d]}</span><div class="bar"><i style="width:${x.n / maxDay * 100}%"></i></div><strong>${SIN_DATOS?'—':x.n}</strong></div>`).join('');
+  const topText = SIN_DATOS?'Sin información académica':top ? `${DAY_NAMES[top.d]} · ${top.h}:00–${top.h + 1}:00` : 'Sin horarios seleccionados';
+  const topDetail = SIN_DATOS?'Los grupos y su concentración se mostrarán aquí cuando existan datos.':top ? `${top.groups.size} grupos de ${top.subjects.size} asignaturas en esa franja` : 'Selecciona asignaturas que tengan grupos y horarios.';
 
   return `<div class="page-title"><div><h1>Mapa de calor de horarios</h1><p>Concentra los grupos ofertados en una sola semana. Se muestran los componentes marcados arriba y puedes excluir o incorporar asignaturas individualmente.</p></div></div>
   <div class="hor">
     <aside class="card sidelist hm-sidelist" aria-label="Asignaturas incluidas en el mapa">
-      <div class="hm-tools"><div class="lab">Asignaturas <span class="faint">${selected.length}/${names.length}</span></div><div class="row"><button class="btn sm" data-act="hm-all">Todas</button><button class="btn sm" data-act="hm-none">Ninguna</button></div><span class="hint">Activa o desactiva materias para recalcular el mapa.</span></div>
+      <div class="hm-tools"><div class="lab">Asignaturas <span class="faint">${SIN_DATOS?'—':selected.length+'/'+names.length}</span></div><div class="row"><button class="btn sm" data-act="hm-all">Todas</button><button class="btn sm" data-act="hm-none">Ninguna</button></div><span class="hint">Activa o desactiva materias para recalcular el mapa.</span></div>
       ${sidebar || '<div class="hint">No hay asignaturas incorporadas al análisis.</div>'}
     </aside>
     <div class="hm-main">
-      <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Vista semanal</span><div class="hint">${selected.length} asignaturas seleccionadas · ${scheduledGroups.size} grupos activos con horario</div></div><span class="sem">${H_MIN}:00–${H_MAX}:00</span></div>
+      <div class="row" style="justify-content:space-between"><div><span class="eyebrow">Vista semanal</span><div class="hint">${SIN_DATOS?'Sin información sobre asignaturas y grupos':selected.length+' asignaturas seleccionadas · '+scheduledGroups.size+' grupos activos con horario'}</div></div><span class="sem">${H_MIN}:00–${H_MAX}:00</span></div>
       <div class="weekgrid-scroll" role="region" tabindex="0" aria-label="Mapa de calor semanal desplazable"><div class="weekgrid hm-grid" style="--numero-dias:${DAYS.length}"><div class="dh" style="border-left:0"></div>${DAYS.map(d => `<div class="dh"><span class="full">${DAY_NAMES[d]}</span><span class="short">${DAY_SHORT[d]}</span></div>`).join('')}<div class="hrs">${Array.from({ length: H_MAX - H_MIN }, (_, i) => `<div>${H_MIN + i}</div>`).join('')}</div>${columns}</div></div>
       <div class="hm-legend"><span>Grupos programados por franja de una hora:</span><span class="hm-scale"><i style="--v:14%"></i><i style="--v:32%"></i><i style="--v:50%"></i><i style="--v:68%"></i><i style="--v:86%"></i></span><span>menor → mayor concentración</span><span class="faint">El número en cada celda es la cantidad de grupos.</span></div>
     </div>
     <div class="right" style="display:grid;gap:12px;align-content:start">
       <section class="card impact"><div class="lab">Resumen de selección</div>
-        <div class="hm-kpis"><div class="hm-kpi"><span>Asignaturas incluidas</span><b class="num">${selected.length}/${names.length}</b></div><div class="hm-kpi"><span>Grupos con horario</span><b class="num">${scheduledGroups.size}</b></div><div class="hm-kpi"><span>Mayor concentración</span><b class="num">${peak}</b></div><div class="hm-kpi"><span>Franjas vacías</span><b class="num">${empty}/${flat.length}</b></div></div>
-        <div class="hint">${occupied} de ${flat.length} franjas tienen al menos un grupo (${pct(occupied / flat.length, 1)} de la semana visible).</div>
+        <div class="hm-kpis"><div class="hm-kpi"><span>Asignaturas incluidas</span><b class="num">${SIN_DATOS?'—':selected.length+'/'+names.length}</b></div><div class="hm-kpi"><span>Grupos con horario</span><b class="num">${SIN_DATOS?'—':scheduledGroups.size}</b></div><div class="hm-kpi"><span>Mayor concentración</span><b class="num">${SIN_DATOS?'—':peak}</b></div><div class="hm-kpi"><span>Franjas vacías</span><b class="num">${SIN_DATOS?'—':empty+'/'+flat.length}</b></div></div>
+        <div class="hint">${SIN_DATOS?'No hay mediciones académicas para esta carrera.':occupied+' de '+flat.length+' franjas tienen al menos un grupo ('+pct(occupied / flat.length, 1)+' de la semana visible).'}</div>
       </section>
       <section class="card impact"><div class="lab">Franja de mayor concentración</div><div class="hm-top"><b>${esc(topText)}</b><span>${esc(topDetail)}</span></div><div class="lab" style="margin-top:5px">Carga por día · grupos-hora</div>${dayRows}<div class="hint">Suma los grupos presentes en cada hora del día. No representa estudiantes matriculados ni salones ocupados.</div></section>
       <section class="card impact"><div class="lab">Cómo leer el mapa</div><div class="hint">Cada celda corresponde a una hora. Se cuenta cada grupo activo una sola vez por franja, aunque tenga más de un componente horario. Los grupos alternativos sí se cuentan por separado.</div><div class="hint">Una celda vacía indica que ninguna de las asignaturas seleccionadas tiene un grupo programado allí. La intensidad del color se escala respecto al máximo de la selección actual.</div></section>
@@ -609,7 +648,7 @@ function pageMalla() {
   const seleccionable = new Set(visibles.filter(m => !m._libreVirtual).map(m=>m.n));
   const sel=seleccionable.has(M.sel)?M.sel:null;
   const L=sel?lineage(S,sel):null;
-  const maxSem=maxSemester(S);
+  const maxSem=SIN_DATOS?0:maxSemester(S);
   const cols=Array.from({length:maxSem},(_,i)=>i+1).map(s=>{
     const cs=visibles.filter(m=>m.s===s);
     return `<div class="mcol" data-sem="${s}"><h4>Semestre ${s} ${semHead(s,cs)}</h4>${cs.map(m=>{
@@ -627,9 +666,9 @@ function pageMalla() {
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
     <div class="row"><div class="seg"><button data-act="m-edges" data-v="all" aria-pressed="${M.edges==='all'}">Todas las flechas</button><button data-act="m-edges" data-v="sel" aria-pressed="${M.edges==='sel'}">Solo la selección</button></div>
     <button class="btn sm malla-libre-toggle" data-act="m-libres" aria-pressed="${!!M.libres}" ${!libres.posiciones.length?'disabled':''}>Libre elección · ${!libres.posiciones.length?'sin posiciones':libres.incompleto?'≥'+libres.creditos+' cr informados':libres.creditos+' cr'}</button>
-    <button class="btn sm" data-act="m-equilibrar" aria-pressed="${!!M.equilibrar}" ${!M.libres?'disabled':''}>${M.equilibrar?'Carga equilibrada':'Semestres registrados'}</button>
-    <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor?'checked':''}><i></i>Solo con horario</label></div></div>
-  ${M.libres && M.equilibrar?'<p class="hint malla-proyeccion-aviso">Distribución visual sugerida para equilibrar créditos del plan, excluyendo Nivelación. No cambia el semestre registrado ni certifica requisitos de avance. Para guardarlo como cambio personal, mueve una posición.</p>':''}
+    <button class="btn sm" data-act="m-equilibrar" aria-pressed="${!!M.equilibrar}" ${!M.libres||SIN_DATOS?'disabled':''}>${M.equilibrar?'Carga equilibrada':'Semestres registrados'}</button>
+    <label class="switch"><input type="checkbox" data-chg="m-solo" ${M.soloHor?'checked':''} ${SIN_DATOS?'disabled':''}><i></i>Solo con horario</label></div></div>
+  ${!SIN_DATOS && M.libres && M.equilibrar?'<p class="hint malla-proyeccion-aviso">Distribución visual sugerida para equilibrar créditos del plan, excluyendo Nivelación. No cambia el semestre registrado ni certifica requisitos de avance. Para guardarlo como cambio personal, mueve una posición.</p>':''}
   <div class="mallawrap"><section class="malla-panel ${M.ampliado?'malla-panel--ampliado':''}" id="malla-panel" aria-label="Mapa de prerrequisitos">
      <div class="malla-toolbar">
        <div class="malla-toolbar-titulo"><strong>Mapa curricular</strong><span>Desplaza para explorar los semestres</span></div>
@@ -643,7 +682,7 @@ function pageMalla() {
      </div>
      <div class="card canvas" id="canvas" role="region" tabindex="0" aria-label="Mapa de prerrequisitos con desplazamiento horizontal y vertical">
        <div class="malla-stage" id="malla-stage" style="zoom:${M.zoom}">
-         <svg class="edges" id="edges" aria-hidden="true"></svg><div class="mcols" id="mcols">${cols}</div>
+         <svg class="edges" id="edges" aria-hidden="true"></svg><div class="mcols" id="mcols">${SIN_DATOS?'<div class="mapa-sin-datos" role="status">Mapa curricular sin asignaturas cargadas. Los semestres y sus relaciones aparecerán cuando existan datos académicos.</div>':cols}</div>
        </div>
      </div>
    </section>${mallaSide(L)}</div>
@@ -651,7 +690,7 @@ function pageMalla() {
 }
 function mallaSide(L) {
   const n = ui.malla.sel && mallaVisible(S.malla.find(m=>m.n===ui.malla.sel)) ? ui.malla.sel : null;
-  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p><p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p></aside>`;
+  if (!n) return `<aside class="card sidecard"><h2>Selecciona una asignatura</h2><p class="hint" style="margin:0">Verás aquí sus requisitos directos e indirectos, lo que abre, y podrás cambiar su semestre o agregar y quitar relaciones.</p>${SIN_DATOS?'<p class="hint" style="margin:0">Sin datos académicos para presentar asignaturas, créditos o relaciones.</p>':`<p class="hint" style="margin:0">Los totales de ${S.pre.length} relaciones y ${S.malla.length} asignaturas corresponden al escenario curricular actual.</p>`}</aside>`;
   const m = S.malla.find(x => x.n === n), sc = RV.st[n];
   const dirIn = S.pre.filter(p => p.t === n), dirOut = S.pre.filter(p => p.r === n);
   const indUp = [...L.up.keys()].filter(x => !dirIn.some(p => p.r === x)), indDown = [...L.down.keys()].filter(x => !dirOut.some(p => p.t === x));

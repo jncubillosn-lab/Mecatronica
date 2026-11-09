@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.0, selector multicarrera sobre la base estable de Mecatrónica.  
+**Corte de evaluación:** 1.1.1, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras ya son seleccionables; ocho no tienen contrato disponible.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -20,7 +20,7 @@ calcula resultados completos y los filtros producen consultas `RV/RV0`.
 La presentación y sus filtros no constituyen fuentes académicas.
 
 La versión del esquema académico (`versionEsquema:1`), la del formato
-personal (`version:1`) y la de la página (`1.1.0` en esta intervención)
+personal (`version:1`) y la de la página (`1.1.1` en esta intervención)
 son independientes.
 
 ## 2. Retirada comprobada de responsabilidades sin usuarios
@@ -114,3 +114,7 @@ El procedimiento ejecutable de [MNT-01](MANTENIMIENTO-CONTINUO.md) genera eviden
 ## 7. Selector multicarrera (1.1.0)
 
 `IdentidadUniversitaria.catalogo` define nueve nombres y acentos; `js/programas.js` solamente registra las rutas de contratos disponibles. Las ocho carreras restantes muestran sus páginas sin estadísticas ni horarios inventados. `js/iniciar.js` carga un único contrato por sesión, comprueba el ID elegido y reutiliza el motor existente. La clave local de Mecatrónica se conserva; otras carreras tendrán claves aisladas. `tests/multicarrera.js` verifica estos límites.
+
+## 8. Corrección de estructuras de las ocho vistas (1.1.1)
+
+Las carreras sin contratos mantienen la misma cabecera y ocho páginas del núcleo: filtros de tipología y unidad, navegación, tarjetas de análisis, cuadrículas vacías, marcos de gráficos, mapas, instrucciones y controles de zoom. Los valores desconocidos aparecen como «—»; no se fabrican grupos, asignaturas, resultados ni simulaciones. El estado visual vacío (`sinDatos:true`) se distingue del contrato y deshabilita edición, guardar e importar. La cuadrícula semanal es una plantilla visual, no información institucional. La aplicación de Mecatrónica conserva todos sus datos y pruebas. La verificación de esta revisión se consulta en CI y en la certificación HTTP posterior a Pages, por separado.

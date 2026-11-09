@@ -12,17 +12,20 @@
 
   window.IdentidadUniversitaria.aplicarTema(seleccionado);
   if (!rutaAcademica) {
-    // No hay archivo para esta carrera, NO equivalen a cero las asignaturas.
-    const mostrar = () => programas.mostrarEstado(seleccionado, 'sin-datos');
-    window.addEventListener('hashchange', mostrar);
-    mostrar();
+    // Reutiliza TODAS las vistas sobre un estado de presentación sin datos.
+    // No es un contrato ni se crean escenarios académicos o cálculos.
+    window.CONTEXTO_ACADEMICO = programas.contextoSinDatos(seleccionado);
+    const script=document.createElement('script');
+    script.src='js/app.js?v=1.1.1';
+    script.onerror=()=>programas.mostrarEstado(seleccionado,'error');
+    document.body.appendChild(script);
     return;
   }
 
   try {
     // Una sola consulta a la ruta declarada. La herramienta externa del SIA
     // no se carga en el navegador y nunca se usa otra carrera como respaldo.
-    const respuesta = await fetch(rutaAcademica + '?v=1.1.0');
+    const respuesta = await fetch(rutaAcademica + '?v=1.1.1');
     if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
     const contrato = await respuesta.json();
     if (contrato?.programa?.id !== seleccionado)
@@ -42,7 +45,7 @@
     };
     // El núcleo y sus ocho vistas arrancan SOLO si existe contrato validado.
     const script = document.createElement('script');
-    script.src = 'js/app.js?v=1.1.0';
+    script.src = 'js/app.js?v=1.1.1';
     script.onerror = () => {
       console.error('No se pudo cargar la interfaz académica');
       programas.mostrarEstado(seleccionado, 'error');
