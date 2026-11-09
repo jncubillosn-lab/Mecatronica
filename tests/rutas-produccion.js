@@ -1,36 +1,29 @@
 'use strict';
-// ARQ-01 RF-01 / RC-04: directorios y rutas de producción sin fuentes RAW.
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const path=require('node:path');
-const base=path.join(__dirname,'..');
-const read=p=>fs.readFileSync(path.join(base,p),'utf8');
-const archived=['datos.js','catalogo.js','oferta-fuente.js','fuentes.js'];
-const html=read('index.html'),inicio=read('js/iniciar.js'),pkg=JSON.parse(read('package.json'));
-for(const file of archived){
-  assert(!fs.existsSync(path.join(base,'js',file)),
-    'El directorio productivo no debe incluir el legado '+file);
-  const src='pruebas/historico/js/'+file;
-  assert(fs.statSync(path.join(base,src)).size>100,
-    'La referencia histórica debe conservarse para pruebas o auditoría: '+src);
-  assert(!html.includes('src="js/'+file),'HTML intenta leer archivo histórico '+file);
-  assert(!inicio.includes('fetch("'+src) && !inicio.includes("fetch('"+src),
-    'El arranque no debe cargar datos del archivo');
-}
-const historico=pkg.scripts['test:historico'];
-assert(historico && /tests\/verificar\.js/.test(historico) &&
-  /tests\/filtros\.js/.test(historico) &&
-  /tests\/fuentes\.js/.test(historico));
+/**
+ * RF-01 — Verificación de la ruta de producción: un solo contrato académico.
+ * Las herramientas externas SIA no se cargan por HTML ni JS del navegador.
+ */
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.join(__dirname,'..'),exists=p=>fs.existsSync(path.join(root,p));
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const obsoletos=[
+  'js/datos.js','js/catalogo.js','js/oferta-fuente.js','js/fuentes.js',
+  'pruebas/historico/js/datos.js','pruebas/historico/js/catalogo.js',
+  'pruebas/historico/js/oferta-fuente.js','pruebas/historico/js/fuentes.js',
+  'pruebas/referencia/index.html','pruebas/compare.js','pruebas/mutar.sh',
+  'scripts/dividir.py','scripts/generar_datos.py','scripts/migrar_raw.py',
+  'tests/filtros.js','tests/fuentes.js','tests/verificar.js'
+];
+for(const p of obsoletos)assert(!exists(p),'Archivo exclusivo de versión anterior: '+p);
+for(const p of ['datos/academico.json','js/entrada.js','js/analisis.js','js/escenarios.js',
+  'scripts/normalizar_oferta.py','pruebas/test_normalizador.py','pruebas/fixtures/oferta_mini.txt'])
+  assert(exists(p),'Falta módulo vigente o herramienta externa útil: '+p);
+const html=read('index.html'),inicio=read('js/iniciar.js');
+assert(inicio.includes("fetch('datos/academico.json?v="));
+assert(!inicio.includes('window.fuentesAcademicas'));
+for(const p of obsoletos)assert(!html.includes(p)&&!inicio.includes(p),
+  'No deben reaparecer rutas obsoletas en el navegador: '+p);
+const pkg=JSON.parse(read('package.json'));
+assert(!Object.hasOwn(pkg.scripts,'test:historico'));
 assert(!pkg.scripts.test.includes('tests/verificar.js'));
-assert(!pkg.scripts.test.includes('tests/filtros.js'));
-assert(!pkg.scripts.test.includes('tests/fuentes.js'));
-for(const file of ['verificar.js','filtros.js','fuentes.js']){
-  const codigo=read('tests/'+file);
-  assert(codigo.includes("pruebas/historico/js/"),
-    'La prueba antigua debe leer el archivo archivado: '+file);
-  assert(!codigo.includes("'js/datos.js'"),
-    'No mantener referencias ejecutables al antiguo directorio js');
-}
-assert(!fs.existsSync(path.join(base,'pruebas/__pycache__/test_normalizador.cpython-312.pyc')));
-assert(read('.gitignore').includes('__pycache__/'));
-console.log('OK: legado archivado y separado de código, datos y pruebas de producción.');
+console.log('OK: entrada única y solo herramientas externas actuales.');
