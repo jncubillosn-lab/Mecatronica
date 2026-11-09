@@ -20,7 +20,9 @@ datos/academico.json
   -> resultados filtrados y las ocho vistas (js/app.js, js/vistas.js)
 ```
 
-La proyección interna `fromRaw` forma parte del arranque actual. **La migración ARQ-01 está finalizada desde la versión 0.8.0**: las rutinas que interpretan archivos personales antiguos `{S}` permanecen únicamente como compatibilidad de lectura, sin alterar el contrato ni la construcción de `S0`. La relación precisa entre responsabilidades, estados `S0/S/R0/R/RV0/RV/ui` y pruebas está en [ARQ-01](docs/ARQUITECTURA.md).
+La proyección interna `fromRaw` forma parte del arranque actual. **La migración ARQ-01 está finalizada desde la versión 0.8.0**: las rutinas que interpretan archivos personales antiguos `{S}` permanecen únicamente como compatibilidad de lectura, sin alterar el contrato ni la construcción de `S0`.
+
+**La compatibilidad antigua es opcional respecto a la entrada de datos:** campos como `introducidoEn` e `idAnterior` pueden ayudar a interpretar un archivo personal de otra versión, pero no son necesarios para cargar un plan académico vigente. Se verifica en `tests/compatibilidad-opcional.js`; el detalle y los límites se encuentran en [ARQ-01](docs/ARQUITECTURA.md) y [REG-01](docs/REG-01.md). La relación precisa entre responsabilidades, estados `S0/S/R0/R/RV0/RV/ui` y pruebas está en [ARQ-01](docs/ARQUITECTURA.md).
 
 La estructura normalizada contiene `programa`, `componentes`, `caracteres`, `catalogo`, `malla`, `requisitos`, `oferta`, `agrupaciones`, `exclusionesAgrupacion`, `configuracion` y `procedencia`, además de `versionEsquema`. Los IDs institucionales de asignatura y de posición curricular son distintos. Las agrupaciones se analizan **solo si han sido declaradas verificables y elegibles**; una agrupación informativa de otra sede o un grupo sin horario no autoriza inventar choques.
 
