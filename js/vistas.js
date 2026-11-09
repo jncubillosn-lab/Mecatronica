@@ -152,8 +152,8 @@ function pageInter() {
       <label class="switch"><input type="checkbox" data-chg="i-choque" ${f.soloChoque ? '' : 'checked'}><i></i>Incluir las que no chocan</label>
     </div></div>
   </details>
-  <div class="count-line"><span><b class="num">${list.length}</b> parejas de asignaturas${active ? ' · <button class="btn sm ghost" data-act="i-clear">Limpiar filtros</button>' : ''}${f.view === 'lista' ? ' <span class="faint">· Cada cuadrito es una combinación de grupos (rojo = choca)</span>' : ''}</span><button class="btn sm" data-act="i-csv">Descargar CSV</button></div>
-  ${f.view === 'matriz' ? matrixView() : (list.length ? `<div class="plist">${list.map(prow).join('')}</div>` : '<div class="empty-state">Ninguna pareja cumple estos filtros.<br><button class="btn sm" style="margin-top:10px" data-act="i-clear">Limpiar filtros</button></div>')}`;
+  <div class="count-line"><span><b class="num">${SIN_DATOS?'—':list.length}</b> parejas de asignaturas${active ? ' · <button class="btn sm ghost" data-act="i-clear">Limpiar filtros</button>' : ''}${f.view === 'lista' ? ' <span class="faint">· Cada cuadrito es una combinación de grupos (rojo = choca)</span>' : ''}</span><button class="btn sm" data-act="i-csv" ${SIN_DATOS?'disabled':''}>Descargar CSV</button></div>
+  ${f.view === 'matriz' ? matrixView() : (list.length ? `<div class="plist">${list.map(prow).join('')}</div>` : (SIN_DATOS?'<div class="empty-state">Sin datos académicos para comparar; los filtros y la matriz están preparados.</div>':'<div class="empty-state">Ninguna pareja cumple estos filtros.<br><button class="btn sm" style="margin-top:10px" data-act="i-clear">Limpiar filtros</button></div>'))}`;
 }
 
 /* ---------- PANEL LATERAL (par / cambios) ---------- */
@@ -272,7 +272,7 @@ function pageAsig() {
   }).join('');
   return `<div class="page-title"><div><h1>Asignaturas</h1><p>Cada asignatura se cruza con las que podría cursar a la vez (${distSummary()}; sin contar las que son prerrequisito suyo). Aquí ves con cuántas de ellas tiene conflicto y qué porcentaje de sus combinaciones de grupos choca. El semestre se cambia en <a href="#malla" data-act="nav" data-p="malla">Prerrequisitos</a>.</p></div>
     <div class="row" style="gap:20px;align-items:flex-end"><div class="field"><label>Distancia entre semestres</label><div class="chips">${distChips(false)}</div></div><div class="field"><label>Ordenar por</label><div class="seg"><button data-act="a-sort" data-s="idx" aria-pressed="${f.sort === 'idx'}">Mayor % de choque</button><button data-act="a-sort" data-s="pares" aria-pressed="${f.sort === 'pares'}">Más asignaturas en conflicto</button><button data-act="a-sort" data-s="sem" aria-pressed="${f.sort === 'sem'}">Semestre</button></div></div></div></div>
-    <div style="display:grid;gap:8px">${rows}</div>`;
+    <div style="display:grid;gap:8px">${rows || (SIN_DATOS?'<div class="empty-state">Aún no hay asignaturas académicas que mostrar en esta estructura.</div>':'')}</div>`;
 }
 
 /* ===== GRUPOS ===== */
@@ -323,8 +323,8 @@ function pageGrupos() {
     </section>`;
   }).join('');
   return `<div class="page-title"><div><h1>Grupos</h1><p>Los grupos que se ofertan de cada asignatura. Desactiva uno para simular que no se abre, o agrega uno nuevo y ajusta su horario en <a href="#hor" data-act="nav" data-p="hor">Horarios</a>.</p></div>
-    <div class="row"><select id="asg-new" aria-label="Asignatura a agregar"><option value="">Agregar asignatura de la malla…</option>${avail.map(m => `<option value="${esc(m.n)}">${esc(m.n)} (sem ${m.s})</option>`).join('')}</select><button class="btn" data-act="asg-add">Agregar</button></div></div>
-    <div class="gcards">${cards||'<div class="empty-state">No hay asignaturas de la tipología o unidad seleccionada.</div>'}</div>`;
+    <div class="row"><select id="asg-new" ${SIN_DATOS?'disabled':''} aria-label="Asignatura a agregar"><option value="">Agregar asignatura de la malla…</option>${avail.map(m => `<option value="${esc(m.n)}">${esc(m.n)} (sem ${m.s})</option>`).join('')}</select><button class="btn" data-act="asg-add" ${SIN_DATOS?'disabled':''}>Agregar</button></div></div>
+    <div class="gcards">${cards||(SIN_DATOS?'<div class="empty-state">Sin información curricular. Aquí aparecerán las tarjetas de grupos cuando se carguen datos.</div>':'<div class="empty-state">No hay asignaturas de la tipología o unidad seleccionada.</div>')}</div>`;
 }
 
 /* ===== HORARIOS ===== */
