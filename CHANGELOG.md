@@ -2,6 +2,11 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## Preparación técnica 1.0.0 (sin declarar versión estable)
+
+- **0.7.6 — [PR #31](https://github.com/jncubillosn-lab/Mecatronica/pull/31)**: se retiró la llamada `fixMalla(S0)` del arranque después de comparar el escenario normalizado antes/después. La única diferencia comprobada eran las marcas históricas `mig1`–`mig4`. Se preservan `fixMalla(anterior)` y la ruta `{S}` para escenarios heredados. Esta entrada registra el cambio propuesto en la PR; **su despliegue se verifica después de fusionar**.
+- **Sin nueva versión pública:** [PR #29](https://github.com/jncubillosn-lab/Mecatronica/pull/29), actualización documental; [PR #30](https://github.com/jncubillosn-lab/Mecatronica/pull/30), separación de pruebas vigentes y `RAW` heredado.
+
 ## Cambios posteriores al corte 0.5.5 (integrados y documentados)
 
 Las fechas y números se verificaron contra las PR fusionadas. **Estas notas describen hitos pasados**, no una nueva versión pública.
