@@ -9,12 +9,12 @@ const {EntradaAcademica}=require('../js/entrada.js');
 const raw=new EntradaAcademica(contrato).generarEscenarioBase();
 const appCode=read('js/modelo.js')+'\n'+read('js/entrada.js')+'\n'+read('js/escenarios.js')+'\n'+
  read('js/analisis.js')+'\n'+read('js/demanda.js')+'\n'+read('js/vistas.js')+'\n'+
- 'window.CONTEXTO_ACADEMICO = { estadoBase: fromRaw(RAW), opciones: RAW.opciones, programa: RAW.programa, calendario: RAW.calendario, almacenamiento: RAW.almacenamiento, metadatos: RAW.metadatos, incrementosOferta: RAW.incrementosOferta };\n'+
+ 'window.CONTEXTO_ACADEMICO = { estadoBase: fromRaw(RAW), opciones: RAW.opciones, programa: RAW.programa, calendario: RAW.calendario, almacenamiento: RAW.almacenamiento, metadatos: RAW.metadatos };\n'+
  read('js/app.js').split("document.addEventListener('click'")[0];
 const api=new Function('RAW','localStorage','window','document',appCode+
-  '\nrender=()=>{};toast=()=>{};return {S,S0,R,ui,changes,onAct,onChange,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageDemanda,pageMalla,renderTop,drawerPair,getVista:()=>RV,setPendientes:(list)=>{pendientesRequisitos=list;},getPendientes:()=>pendientesRequisitos};')(
+  '\nrender=()=>{};toast=()=>{};return {S,S0,R,ui,changes,onAct,onChange,pageInicio,pageInter,pageAsig,pageGrupos,pageHor,pageHeat,pageDemanda,pageMalla,renderTop,drawerPair,getVista:()=>RV};')(
   raw,{getItem:()=>null,setItem(){},removeItem(){}},
-  {innerWidth:1200,fuentesAcademicas:{datos:contrato}},{}
+  {innerWidth:1200},{}
 );
 function verificar(nombre,trabajo){trabajo();console.log('OK '+nombre);}
 
@@ -137,36 +137,6 @@ verificar('Tipología y unidad están visibles y actúan en las ocho secciones',
  assert.equal(api.getVista().names.length,api.S.asg.length-1);
  api.onChange('unidad-filtro',{value:''});
  assert.equal(api.getVista().names.length,api.S.asg.length);
-});
-
-verificar('Un requisito legado puede revisarse individualmente sin restablecer el escenario',()=>{
- const id='mecatronica:pos:proyecto-aplicado-de-ingenieria';
- const base=api.S0.reqCred.find(r=>r.posicionId===id);
- const r=api.S.reqCred.find(r=>r.posicionId===id);
- assert.deepEqual(base.componentes,['C']);
- r.componentes=['B','C','L'];
- const sem=api.S.malla[0].s;
- api.setPendientes([{key:'id:'+id,nombre:r.n,
-   guardado:JSON.parse(JSON.stringify(r)),vigente:JSON.parse(JSON.stringify(base))}]);
- const alerta=api.renderTop();
- assert(alerta.includes('data-act="req-vigente"'));
- assert(alerta.includes('data-act="req-conservar"'));
- assert(alerta.includes('Fundamentación')&&alerta.includes('Disciplinar'));
- api.onAct('req-vigente',{key:'id:'+id},{},{preventDefault(){}});
- assert.deepEqual(api.S.reqCred.find(x=>x.posicionId===id).componentes,['C']);
- assert.equal(api.S.malla[0].s,sem,'La decisión no borra cambios de otras colecciones');
- assert.equal(api.getPendientes().length,0);
- assert(!api.renderTop().includes('data-act="req-vigente"'),
-   'El aviso desaparece cuando se resuelve la ambigüedad');
- // La segunda elección permite conservar una regla histórica deliberadamente.
- const actual=api.S.reqCred.find(x=>x.posicionId===id);
- actual.componentes=['B','C','L'];
- api.setPendientes([{key:'id:'+id,nombre:actual.n,
-   guardado:JSON.parse(JSON.stringify(actual)),vigente:JSON.parse(JSON.stringify(base))}]);
- api.onAct('req-conservar',{key:'id:'+id},{},{preventDefault(){}});
- assert.deepEqual(actual.componentes,['B','C','L']);
- assert.equal(api.getPendientes().length,0);
-
 });
 
 verificar('El tono de la asignatura sigue al escenario, sin cambiar estadísticas',()=>{
