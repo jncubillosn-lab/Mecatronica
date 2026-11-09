@@ -126,7 +126,9 @@ function fixParams(s) {
   }
   return s;
 }
-fixParams(S0); fixMalla(S0);
+// La referencia S0 sale completa del contrato: no ejecutar migraciones
+// históricas sobre ella. fixMalla se reserva para importar snapshots {S}.
+fixParams(S0);
 S = clone(S0);
 /**
  * Distingue el formato actual de diferencias personales (v1) del antiguo
