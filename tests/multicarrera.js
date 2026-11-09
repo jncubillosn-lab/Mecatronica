@@ -81,6 +81,14 @@ async function main() {
       assert(document.querySelector('#top [data-act="import"]')?.disabled);
       assert.equal(document.documentElement.dataset.programa,id);
       assert(document.querySelector('.sin-datos-banner'));
+      assert.equal(document.querySelectorAll('#top .component-toggle').length,3);
+      assert([...document.querySelectorAll('#top .component-toggle')]
+        .every(b=>b.disabled));
+      assert.equal(document.querySelectorAll('#view .hero-k .num').length,3);
+      assert([...document.querySelectorAll('#view .hero-k .num')]
+        .every(n=>n.textContent.trim()==='—'));
+      assert(!document.querySelector('#view')?.textContent.includes('Acuerdo 6 de 2022'),
+        'No atribuirle a una carrera reglas de Mecatrónica');
       const estructura=[
         ['inicio','.hero','.hero-k','.grid2'],
         ['inter','.filters','.count-line','.seg'],
@@ -101,6 +109,17 @@ async function main() {
           assert(document.querySelector(selector),id+'/'+pagina+': falta '+selector);
         assert(document.querySelector('.sin-datos-banner'),'Falta señal de ausencia');
       }
+      document.querySelector('[data-act="nav"][data-p="inter"]').click();
+      document.querySelector('[data-act="i-view"][data-v="matriz"]').click();
+      assert(document.querySelector('.mxwrap .mx'),
+        'La matriz permanece disponible aunque no tenga asignaturas');
+      document.querySelector('[data-act="nav"][data-p="hor"]').click();
+      assert(document.querySelectorAll('.weekgrid .hc').length>0);
+      assert.equal(document.querySelectorAll('.weekgrid .hb').length,0);
+      document.querySelector('[data-act="nav"][data-p="heat"]').click();
+      assert(document.querySelectorAll('.hm-grid .hc').length>0);
+      assert(document.querySelectorAll('.hm-grid .hc.has-groups').length===0);
+      document.querySelector('[data-act="nav"][data-p="malla"]').click();
       assert(document.querySelector('#mcols .mapa-sin-datos'));
       assert(!document.querySelector('#mcols .mcard'));
       assert(document.querySelector('#malla-panel .malla-controles'));
