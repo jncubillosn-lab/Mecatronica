@@ -9,6 +9,18 @@
 
 **Presentación multicarrera (UNI-UI-01):** el catálogo cromático de `js/identidad.js` es configuración puramente visual que resuelve el ID de un programa ya presente en `FuentesAcadémicas`. No representa una segunda fuente académica ni habilita carreras sin contrato. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
 
+### Uso rápido de esta guía
+
+| Antes de… | Consultar aquí | Comprobar después |
+|---|---|---|
+| Cambiar información del plan o de la oferta | §0–1: entrada única, contrato, vacíos e IDs | Contrato académico, cobertura y horas, sin tocar conversores internos |
+| Cambiar algoritmos, consultas o una vista | §2–4: módulos, estados y RF aplicable | Resultados de referencia/escenario, filtros, ocho páginas y casos incompletos |
+| Corregir guardado, importación o una migración | §3, §4 RF-10/RC-03 y §6: compatibilidad efectiva | Ediciones antiguas y nuevas, sin pérdida silenciosa |
+| Analizar una anomalía o un supuesto pendiente | §4.4: **no requisitos** y clasificación de hallazgos | Reproducción y evidencia antes de convertirla en alarma |
+| Eliminar código o documentar una versión 1.0 | §5–9: verificaciones, legado, puertas de estabilidad y método | Dependencias, CI, versión y publicación; nunca borrar por nombre antiguo |
+
+**Principio operativo:** no tomar directamente una explicación de README, un documento histórico o un resultado simulado como norma de ejecución cuando contradiga esta referencia y la implementación. Primero precisar **qué observación es real** y qué parte de la documentación necesita actualización.
+
 ## 0. Regla principal, no negociable
 
 **El sistema recibe una sola entrada académica estandarizada: `FuentesAcadémicas`.**
