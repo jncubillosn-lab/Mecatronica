@@ -314,9 +314,9 @@ function render() {
   if(SIN_DATOS){
     document.body.dataset.sinDatos='true';
     // Los controles aparecen, pero sin datos no permiten guardar ni importar.
-    $('#view .dem-panel button, #view .dem-panel select, #view .dem-panel input')
+    $$('#view .dem-panel button, #view .dem-panel select, #view .dem-panel input')
       .forEach(el=>{el.disabled=true;});
-    $('#view .dem-metricas strong').forEach(el=>{el.textContent='—';});
+    $$('#view .dem-metricas strong').forEach(el=>{el.textContent='—';});
   }else{
     delete document.body.dataset.sinDatos;
   }
