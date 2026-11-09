@@ -247,10 +247,11 @@ function renderTop() {
   const nChg = changes().length;
   const dirty = nChg > 0;
   const resultadoVisible = RV, anteriorVisible = RV0;
+  const plan = new PlanCurricular(S);
   const componentes = (OPCIONES.componentesComparables || []).map(id => {
-    const tipo = new PlanCurricular(S).componente(id);
+    const tipo = plan.componente(id);
     const nombre = tipo?.nombre || id;
-    const total = new PlanCurricular(S).seleccionarPorComponentes(S.asg, [id]).length;
+    const total = plan.seleccionarPorComponentes(S.asg, [id]).length;
     return `<button type="button" class="component-toggle" data-tipologia="${esc(id)}" data-act="comp-toggle" data-comp="${esc(id)}" aria-pressed="${ui.componentes.has(id)}" ${SIN_DATOS?'disabled':''} title="${SIN_DATOS?'Filtro pendiente de datos académicos':total+' asignaturas de '+nombre+' incorporadas al análisis'}">${esc(nombre)}</button>`;
   }).join('');
   return `<a class="cta-bar" href="https://www.instagram.com/repremecatronicaun/" target="_blank" rel="noopener noreferrer"><span class="cta-in"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span class="cta-t"><b>Queremos tu opinión.</b> ¿Encontraste un error o tienes una idea para optimizar esta herramienta?</span><span class="cta-b">Escríbenos en Instagram · @repremecatronicaun →</span></span></a>
@@ -371,14 +372,15 @@ function download(name, text, type) { const u = URL.createObjectURL(new Blob([te
  * Las ramas de importación conservan sus validaciones y no exigen que un
  * escenario personal sea una fuente académica.
  */
+const ACCIONES_VISUALES_SIN_DATOS=new Set([
+  'nav','tema-cambiar','i-view','a-sort','i-clear',
+  'm-edges','m-libres','m-equilibrar','m-zoom','m-zoom-reset','m-ampliar',
+  'hm-all','hm-none'
+]);
 function onAct(act, d, el, ev) {
   // Con la estructura sin fuente solo están operativas las herramientas
   // visuales. Nunca se guardan escenarios, importan datos ni simulan valores.
-  if(SIN_DATOS && !new Set([
-    'nav','tema-cambiar','i-view','a-sort','i-clear',
-    'm-edges','m-libres','m-equilibrar','m-zoom','m-zoom-reset','m-ampliar',
-    'hm-all','hm-none'
-  ]).has(act)) return;
+  if(SIN_DATOS && !ACCIONES_VISUALES_SIN_DATOS.has(act)) return;
   const f = ui.inter;
   switch (act) {
     case 'tema-cambiar': if (typeof TemaVisual !== 'undefined') TemaVisual.alternar(); return render();
