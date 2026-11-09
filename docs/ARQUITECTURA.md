@@ -1,11 +1,11 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** criterio arquitectónico adoptado para el desarrollo posterior.  
-> **Fecha:** 7 de noviembre de 2026.  
-> **Alcance:** sistema web de planeación curricular de Mecatrónica. La estructura evita fijar reglas de una carrera en el motor, pero esto **no establece como función solicitada** el soporte de otros programas.  
-> **Arquitectura normativa:** la descrita en este documento. **Integrada en `main` desde v0.5.0.** El sistema adopta entrada única, escenario derivado y cambios personales; conserva una proyección interna transitoria para la interfaz existente. Las versiones posteriores y su estado se registran en [EST-01](ESTADO-Y-PUBLICACION.md), sin requerir que esta norma cambie con cada versión.
->
-> **Documentos complementarios:** [DEC-01 — decisiones y alcance](DECISIONES-Y-ALCANCE.md) · [EST-01 — estado y publicación](ESTADO-Y-PUBLICACION.md) · [MIG-ARQ01 — historial de migración](MIGRACION-ARQ01.md).
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes**, contrastados con la implementación publicada v0.7.5.  
+> **Revisión operativa:** 8 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
+> **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, pero esto **no** significa que se hayan habilitado otros programas ni que sea requisito implementarlos.  
+> **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
+> **Lectura de versiones:** v0.7.5 describe el corte inspeccionado, **no** una obligación de actualizar este documento ante cada parche. No se declara aquí v1.0.0 ni se da por completada la limpieza. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
+> **Fuentes de autoridad:** ARQ-01 fija la norma; `datos/academico.json` fija el dato académico vigente; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
 
 **Presentación multicarrera (UNI-UI-01):** el catálogo cromático de `js/identidad.js` es configuración puramente visual que resuelve el ID de un programa ya presente en `FuentesAcadémicas`. No representa una segunda fuente académica ni habilita carreras sin contrato. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
 
@@ -23,32 +23,29 @@ No habrá una conexión alternativa desde la malla, el catálogo, una fuente sin
 
 ```mermaid
 flowchart TB
-    EN["ÚNICA ENTRADA ACADÉMICA<br/>FuentesAcadémicas<br/>datos/academico.json"]
-
-    subgraph SISTEMA["SISTEMA WEB — límite de responsabilidad"]
-        L["Lector del contrato normalizado"]
-        MA["Modelo académico<br/>catálogo · plan · oferta · relaciones"]
-        SB["Escenario base de referencia"]
-        AP["Aplicación de cambios personales"]
-        EF["Escenario efectivo"]
-        AN["Motor de análisis curricular y de horarios"]
-        VF["Selección de componentes y filtros de consulta"]
-        RE["Resultados de la selección"]
-        VI["Interfaz: inicio · interferencias · asignaturas<br/>grupos · horarios · mapa de calor · prerrequisitos"]
-        PE["Persistencia local de modificaciones personales"]
-
-        L --> MA --> SB --> AP --> EF
-        EF --> AN
-        VF --> AN
-        AN --> RE --> VI
-        VI -->|"ediciones del usuario"| AP
-        AP <-->|"guardar / recuperar cambios"| PE
+    EN["ÚNICA ENTRADA ACADÉMICA<br/>FuentesAcadémicas: datos/academico.json"]
+    subgraph WEB["SISTEMA WEB — responsabilidades actuales"]
+        L["EntradaAcademica<br/>validación de estructura y proyección interna"]
+        BASE["Referencia S0<br/>plan, grupos, horarios, requisitos"]
+        EP["EscenarioPersonal<br/>aplicar diferencias sobre S0"]
+        EFE["Estado efectivo S<br/>ediciones voluntarias"]
+        MOTOR["Modelo y motor<br/>PlanCurricular · compute · DemandaEstadistica"]
+        CONSULTA["Consulta filtrada<br/>RV/RV0: componentes, unidad y controles locales"]
+        UI["OCHO VISTAS<br/>Inicio · Interferencias · Asignaturas · Grupos<br/>Horarios · Mapa de calor · Demanda · Prerrequisitos"]
+        PERS["Escenario personal<br/>localStorage / importar / exportar"]
+        EDI["Acciones personales<br/>grupos, horas, malla, requisitos, encuesta"]
+        FIL["Estado visual de filtros<br/>no cambia S ni S0"]
+        VIS["Presentación<br/>temas, identidad, tonos, zoom"]
+        L --> BASE --> EP --> EFE --> MOTOR --> CONSULTA --> UI
+        PERS <--> EP
+        UI --> EDI --> EP
+        UI --> FIL --> CONSULTA
+        VIS --> UI
     end
-
     EN --> L
 ```
 
-**Interpretación obligatoria:** la flecha `FuentesAcadémicas → Lector` es **la única entrada académica** al sistema. No deben añadirse flechas laterales ni un segundo canal desde archivos de origen hacia la interfaz, los escenarios, los cálculos o las pruebas de producción.
+**Interpretación obligatoria:** la flecha `FuentesAcadémicas → EntradaAcademica` es **la única entrada académica** al sistema. No deben añadirse flechas laterales ni un segundo canal desde archivos de origen hacia la interfaz, los escenarios, los cálculos o las pruebas de producción.
 
 ### Lo que expresamente NO pertenece a este mapa
 
@@ -97,7 +94,7 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
       "codigo": "1000003-B",
       "nombre": "Álgebra Lineal",
       "creditos": 4,
-      "tipologiaInstitucional": "B",
+      "tipologia": "FUND. OBLIGATORIA",
       "descripcion": null
     }
   ],
@@ -108,7 +105,7 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
       "semestre": 2,
       "creditos": 4,
       "componente": "B",
-      "caracter": "obligatoria"
+      "caracter": "obl"
     }
   ],
   "requisitos": {
@@ -184,7 +181,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 - Los filtros de Fundamentación, Disciplinar y Nivelación son **selecciones de consulta**, no operaciones de eliminación de información.
 - Una agrupación con `analizable: false` puede consultarse; los cambios personales no pueden convertirla por sí solos en una agrupación calculable.
 - Inicio, Interferencias, Asignaturas, exportaciones, paneles y mapa de calor deben interpretar **la misma selección activa**; no debe persistir una vía de resultados no filtrados en un panel cuando su filtro está desmarcado.
-- Desde v0.5.4, los filtros de componente y unidad académica se muestran **en las siete páginas**, incluso Grupos, Horarios y Prerrequisitos. Reducen solo la **vista** y sus resultados; el escenario conserva todos los registros, y la selección puede restablecerse para volver a consultarlos.
+- Los filtros de componente y unidad académica se aplican **en las ocho páginas**, incluidas Demanda, Grupos, Horarios y Prerrequisitos. Son consulta, no mutación de S ni S0. Los componentes comparables provienen de `configuracion.opciones.componentesComparables` (actualmente B, C y N), no de constantes universales. El componente L se representa mediante un **control local de Prerrequisitos**, sin añadirlo a la selección global.
 - Un grupo con varias actividades conserva todos sus bloques **según las agrupaciones explícitas del contrato**.
 - No se confunde el número de grupos disponibles con número de estudiantes, capacidad de aulas u ocupación efectiva.
 - Los créditos mínimos se comprueban por los componentes y criterios registrados en el plan, no por totales fijos del código.
