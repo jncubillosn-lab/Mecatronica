@@ -320,8 +320,8 @@ class EscenarioPersonal {
   }
 
   /**
-   * Transición de archivos {S} antiguos. La fuente académica sigue siendo una:
-   * se usa la identidad histórica DECLARADA EN EL MISMO CONTRATO NORMALIZADO.
+   * Compatibilidad de lectura del formato histórico {S}, ya estabilizada.
+   * Se usa la identidad histórica DECLARADA EN EL MISMO CONTRATO NORMALIZADO.
    */
   // `introducidoEn` dentro de las agrupaciones indica su procedencia
   // histórica. No constituye la versión de contrato ni de archivo exportado.
