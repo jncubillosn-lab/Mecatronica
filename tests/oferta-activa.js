@@ -5,7 +5,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const {EntradaAcademica}=require('../js/entrada.js');
-const contrato=JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/academico.json'),'utf8'));
+const contrato=JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/programas/mecatronica/academico.json'),'utf8'));
 const lector=new EntradaAcademica(contrato);
 const raw=lector.generarEscenarioBase();
 const nombres=new Map(contrato.malla.map(p=>[p.id,p.nombre]));

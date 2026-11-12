@@ -13,12 +13,12 @@ const {EntradaAcademica} = require('../js/entrada.js');
 const identidad = require('../js/identidad.js');
 const programas = require('../js/programas.js');
 const raiz = path.join(__dirname,'..');
-const contrato = JSON.parse(fs.readFileSync(path.join(raiz,'datos/academico.json'),'utf8'));
+const contrato = JSON.parse(fs.readFileSync(path.join(raiz,'datos/programas/mecatronica/academico.json'),'utf8'));
 const ids = Object.keys(identidad.catalogo);
 
 assert.equal(ids.length,9);
 assert.deepEqual([...programas.ids].sort(),[...ids].sort());
-assert.equal(programas.fuentePara('mecatronica'),'datos/academico.json');
+assert.equal(programas.fuentePara('mecatronica'),'datos/programas/mecatronica/academico.json');
 assert.equal(ids.filter(id=>programas.fuentePara(id)).length,1);
 assert.equal(programas.desdeBusqueda('?programa=civil'),'civil');
 assert.equal(programas.desdeBusqueda('?programa=inexistente'),'mecatronica');
@@ -53,7 +53,7 @@ async function abrir(id, opciones={}) {
       window.Element.prototype.scrollIntoView=()=>{};
       window.fetch=async url=>{
         consultas.push(String(url));
-        assert.match(String(url),/^datos\/academico\.json\?v=1\.1\.1$/);
+        assert.equal(String(url), programas.fuentePara('mecatronica')+'?v=1.1.2');
         return {ok:true,json:async()=>opciones.equivocado?equivocado:contrato};
       };
     }

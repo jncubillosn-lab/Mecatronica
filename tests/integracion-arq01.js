@@ -19,11 +19,11 @@ async function main() {
       window.scrollTo = () => {};
       window.Element.prototype.scrollIntoView = () => {};
       window.fetch = async function (url) {
-        assert.match(String(url), /^datos\/academico\.json(?:\?|$)/);
+        assert.equal(String(url).split('?')[0], 'datos/programas/mecatronica/academico.json');
         return {
           ok: true,
           json: async () => JSON.parse(fs.readFileSync(
-            path.join(root, 'datos/academico.json'), 'utf8'
+            path.join(root, 'datos/programas/mecatronica/academico.json'), 'utf8'
           ))
         };
       };
@@ -40,7 +40,7 @@ async function main() {
     assert(contexto?.estadoBase,'El arranque no entregó el escenario académico base');
     assert.equal(Object.hasOwn(dom.window,'RAW'),false,
       'La proyección histórica no debe quedar como variable global');
-    const fuente=JSON.parse(fs.readFileSync(path.join(root,'datos/academico.json'),'utf8'));
+    const fuente=JSON.parse(fs.readFileSync(path.join(root,'datos/programas/mecatronica/academico.json'),'utf8'));
     assert.equal(contexto.estadoBase.grupos.length,fuente.agrupaciones.length);
     assert.equal(contexto.estadoBase.pre.length,fuente.requisitos.prerrequisitos.length);
     assert.equal(contexto.estadoBase.reqCred.length,fuente.requisitos.minimosCreditos.length);

@@ -7,7 +7,7 @@ const { EntradaAcademica } = require('../js/entrada.js');
 const { EscenarioPersonal } = require('../js/escenarios.js');
 const raiz=path.join(__dirname,'..');
 const leer=p=>fs.readFileSync(path.join(raiz,p),'utf8');
-const contrato=JSON.parse(leer('datos/academico.json'));
+const contrato=JSON.parse(leer('datos/programas/mecatronica/academico.json'));
 const raw=new EntradaAcademica(contrato).generarEscenarioBase();
 const modulo=new Function('RAW',leer('js/modelo.js')+'\n'+leer('js/entrada.js')+'\n'+
   leer('js/analisis.js')+'\nreturn {fromRaw,compute}')(raw);
