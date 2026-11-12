@@ -1,7 +1,7 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.2, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
-**Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras ya son seleccionables; ocho no tienen contrato disponible.  
+**Corte de evaluación:** 1.1.3, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
+**Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; ocho no contienen oferta académica de grupos ni horarios.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Historia anterior:** [CHANGELOG](../CHANGELOG.md) y
@@ -13,14 +13,14 @@ El sitio es estático, no oficial y ofrece **ocho páginas**: Inicio,
 Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y
 Prerrequisitos.
 
-La entrada normalizada única por sesión se selecciona mediante `js/programas.js`. Actualmente solo Mecatrónica dispone de `datos/programas/mecatronica/academico.json`. `EntradaAcademica`
+La entrada normalizada única por sesión se selecciona mediante `js/programas.js`. Cada carrera dispone de `datos/programas/<id>/academico.json`; solo Mecatrónica tiene oferta de grupos. `EntradaAcademica`
 y `fromRaw` proyectan el estado de referencia `S0`; `EscenarioPersonal`
 aplica cambios identificados sobre `S0` para construir `S`. El motor
 calcula resultados completos y los filtros producen consultas `RV/RV0`.
 La presentación y sus filtros no constituyen fuentes académicas.
 
 La versión del esquema académico (`versionEsquema:1`), la del formato
-personal (`version:1`) y la de la página (`1.1.2` en esta intervención)
+personal (`version:1`) y la de la página (`1.1.3` en esta intervención)
 son independientes.
 
 ## 2. Retirada comprobada de responsabilidades sin usuarios
@@ -124,3 +124,7 @@ Las carreras sin contratos mantienen la misma cabecera y ocho páginas del núcl
 Mecatrónica usa `datos/programas/mecatronica/academico.json` y las otras ocho carreras siguen sin contrato hasta disponer de información académica verificable. El lector de datos y el motor son comunes. La ruta antigua `datos/academico.json` deja de ser fuente productiva; el contenido se ha trasladado sin reformar los registros. El registro de correcciones `data/programas/mecatronica/ajustes.json` y su aplicador externo no son entradas web. El registro y las pruebas hacen comprobable la identidad de cada contrato, el aislamiento y los requisitos de integridad.
 
 El cambio de ruta requiere verificar CI y la certificación HTTP de GitHub Pages por separado; hasta que esos controles concluyan, la actualización del código no demuestra que el sitio público ya esté actualizado.
+
+## 10. Ocho contratos preliminares incorporados (1.1.3)
+
+Todos los programas cuentan ya con una entrada normalizada separada. Los contratos nuevos tienen mallas y catálogos iniciales sin oferta real de horarios, sin agrupaciones, con prerrequisitos incompletos. El motor no inventa sesiones, choques ni combinaciones. Los ajustes externos están separados por carrera y empiezan vacíos. El detalle de discrepancias y fuentes es `docs/INFORME-BASES-INICIALES-2026.md`. Las secciones anteriores describen hitos históricos o el comportamiento genérico cuando falta un contrato, no el estado actual de los nueve programas.

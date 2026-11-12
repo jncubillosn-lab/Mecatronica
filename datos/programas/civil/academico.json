@@ -1,0 +1,1302 @@
+{
+  "versionEsquema": 1,
+  "programa": {
+    "id": "civil",
+    "nombre": "Ingeniería Civil",
+    "planId": "acuerdo-27-2015"
+  },
+  "componentes": [
+    {
+      "id": "B",
+      "nombre": "Fundamentación",
+      "enPlan": true
+    },
+    {
+      "id": "C",
+      "nombre": "Disciplinar",
+      "enPlan": true
+    },
+    {
+      "id": "L",
+      "nombre": "Libre elección",
+      "enPlan": true
+    },
+    {
+      "id": "N",
+      "nombre": "Nivelación",
+      "enPlan": false
+    }
+  ],
+  "caracteres": [
+    {
+      "id": "obl",
+      "nombre": "Obligatoria"
+    },
+    {
+      "id": "opt",
+      "nombre": "Optativa"
+    }
+  ],
+  "catalogo": [
+    {
+      "codigo": "2015938",
+      "nombre": "Acueductos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Componentes del sistema de abastecimiento de agua potable. Situación del sector en Colombia. Conceptos básicos de química general. Normas y parámetros de diseño. Captaciones. Conducciones. Teoría de la sedimentación (desarenadores). Potabilización. Almacenamiento. Distribución."
+    },
+    {
+      "codigo": "2015939",
+      "nombre": "Alcantarillados",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "CONTENIDO SINTÉTICO El programa comprende básicamente dos (2) módulos: Módulo 1: Diseño de sistemas de alcantarillado Módulo 2: Fundamentos del tratamiento de las aguas residuales - PTARs"
+    },
+    {
+      "codigo": "1000003-B",
+      "nombre": "Álgebra Lineal",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: Asimilar los fundamentos del Algebra Lineal, a nivel elemental, pero con la profundidad necesaria para adquirir los conocimientos y habilidades básicas (capacidad de análisis y de razonamiento lógico - deductivo) para la solución de problemas en las cuales estén involucrados los elementos matemáticos de sistemas de ecuaciones lineales, espacios vectoriales, valores y vectores propios de una matriz y diagonalización de matrices. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2015940",
+      "nombre": "Análisis estructural aplicado",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En el curso de análisis estructural aplicado inicia con una introducción a la solución de elementos laminares básicos, tales como los diafragmas y las placas, presentes con mayor frecuencia en las estructuras reticulares. Posteriormente se muestran y aplican las técnicas y metodologías de análisis de los sistemas estructurales convencionales de edificaciones de acuerdo con las Normas Colombianas de Construcción Sismo-resistente, donde se evalúan las cargas actuantes en la estructura, se analiza la estabilidad local y global de la edificación, y se determinan las acciones internas máximas en sus elementos estructurales. Asimismo, se abordan diferentes metodologías y técnicas del análisis dinámico de las estructuras, en lo correspondiente al análisis modal cronológico y al análisis modal espectral en el que se desarrollan aplicaciones computacionales que permiten analizar el comportamiento de las estructuras ante cargas dinámicas. Conceptos Previos Ecuaciones diferenciales: Solución de ecuaciones diferenciales de segundo grado. Algebra lineal: Solución de sistemas de ecuaciones simultáneas. Propiedades y operaciones con matrices tales como adición, inversión y multiplicación Estática: Formulación de ecuaciones de equilibro en sistemas y elementos estructurales Cálculo de las propiedades de la sección, tanto sencillas como compuestas Deducción e interpretación de los diagramas de acciones internas de fuerzas en elementos estructurales Dinámica: Principios fundamentales de la cinética y de la cinemática. Mecánica de sólidos: Relación entre las solicitaciones externas y las acciones internas de fuerzas y momentos Deducción de las ecuaciones de compatibilidad estática y cinemática para el estado plano de esfuerzos."
+    },
+    {
+      "codigo": "2015941",
+      "nombre": "Análisis estructural básico",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En el curso de análisis estructural básico se presentan, desarrollan y aplican métodos para resolver estática y cinemáticamente estructuras reticulares isostáticas; se abordan diferentes metodologías y técnicas para resolver estructuras reticulares hiperestáticas, partiendo desde los métodos clásicos o convencionales, tratando los métodos basados en principios de energía y trabajo, presentando algunos métodos iterativos y aproximados, hasta llegar al desarrollo de aplicaciones computacionales que permiten resolver estructuras utilizando los métodos matriciales. El curso concluye con la formulación de las líneas de influencia para cargas móviles, tanto para efectos cinemáticos como estáticos. Conceptos Previos Algebra lineal: Solución de sistemas de ecuaciones simultáneas Propiedades y operaciones con matrices tales como adición, inversión y multiplicación Estática: Formulación de ecuaciones de equilibrio de partículas y cuerpos rígidos Formulación de ecuaciones de equilibro en sistemas y elementos estructurales Cálculo de las propiedades de la sección, tanto sencillas como compuestas Deducción e interpretación de los diagramas de acciones internas de fuerzas en elementos estructurales Mecánica de sólidos: Relación entre las solicitaciones externas y las acciones internas de fuerza Método de la integración directa, método de la doble integración Elementos geométricos de la curva elástica."
+    },
+    {
+      "codigo": "2015942",
+      "nombre": "Aplicaciones de elementos finitos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Aplicaciones de elementos finitos."
+    },
+    {
+      "codigo": "1000004-B",
+      "nombre": "Cálculo diferencial",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS Estudiar los conceptos de límite y derivada para funciones de una variable real y utilizar estas ideas en la solución de problemas de optimización, trazado de curvas y razones de cambio. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "1000006-B",
+      "nombre": "Cálculo en varias variables",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: ¿ Estudiar los conceptos fundamentales del cálculo de funciones de varias variables (límites, continuidad, diferenciación e integración) y los teoremas centrales del Cálculo vectorial (Teoremas de Green, Gauss y Stokes). ¿ Estimular y desarrollar la capacidad de análisis y de razonamiento lógico-deductivo del estudiante. ¿ Capacitar al estudiante para la interpretación, formulación y solución de problemas en las áreas relacionadas con su especialidad en las cuales se haga necesario la aplicación del cálculo de funciones de varias variables y del cálculo vectorial."
+    },
+    {
+      "codigo": "1000005-B",
+      "nombre": "Cálculo Integral",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS General ¿ Lograr la apropiación por parte del. estudiante de los conceptos fundamentales del cálculo integral de funciones de una variable real y crear habilidades que le permitan aplicar estos conocimientos en problemas propios de su disciplina y abordar de manera elemental los conceptos de sucesiones y series. Específicos ¿ Conocer y manejar con propiedad el concepto de integral definida de una función real de una variable real y su relación con el concepto de primitiva o antiderivada, para facilitar los cálculos. ¿ Estudiar algunas de las diferentes aplicaciones del concepto de integral. ¿ Adquirir destrezas en el estudio de la convergencia de sucesiones y series"
+    },
+    {
+      "codigo": "2015229",
+      "nombre": "Colombia Contemporánea",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Esta asignatura es de carácter multi e interdisciplinar, impartida por profesores de varios departamentos, y se orienta a la contextualización del estudiante en la Colombia de hoy, y a mostrar el papel de las diferentes disciplinas de las ciencias sociale"
+    },
+    {
+      "codigo": "2015943",
+      "nombre": "Construcción de edificaciones",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "El curso hace un recorrido por los diferentes procesos constructivos que componen una edificación. Se hace una descripción de todas las actividades de obra, incluidas cimentación, estructura, cerramientos, envolventes, mecanismos y acabados. Se incluyen conceptos de prefabricación, industrialización, aseguramiento de calidad, patologías y controles de obra. Conceptos Previos Diseño de estructuras en concreto Dibujo e interpretación de planos Materiales para construcción Presupuestos de construcción Programación de obra"
+    },
+    {
+      "codigo": "2015944",
+      "nombre": "Construcción de Infraestructura Vial",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "La construcción de obras civiles es la culminación de proyectos que satisfagan las necesidades de la comunidad y en ese contexto está enmarcada, entre otras, la infraestructura vial que planea, materializa y opera el Estado colombiano para prestar el servicio de transporte indispensable para la actividad económica de los ciudadanos en cuanto al traslado de personas, bienes y mercancías, indispensable para el comercio, la industria y el turismo, que significa en últimas el desarrollo de las regiones y de la nación como un todo."
+    },
+    {
+      "codigo": "2015711",
+      "nombre": "Dibujo básico",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Al finalizar la asignatura el estudiante estará en capacidad de: 1. Comprender el espacio, fomentando las capacidades y competencias necesarias para expresar sus ideas gráficamente a mano alzada, con instrumentos y/o por medio de software en 2D y 3D 2. Interpretar lo expresado gráficamente por otras personas. 3. Conocer e interpretar las principales normas de dibujo técnico. 4. Interpretar vistas para componer sólidos y viceversa. 5. Conocer y aplicar los conceptos básicos y fundamentales de Geometría descriptiva como son: conceptos de líneas y planos, vistas auxiliares, perpendicularidad, paralelismo, topografía de líneas y planos, intersecciones de línea con plano o con prisma, plano con plano o con prisma, prisma con prisma. 6. Realizar en equipo un proyecto de aplicación con software, según la disciplina."
+    },
+    {
+      "codigo": "2015948",
+      "nombre": "Dinámica",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Dinámica es la asignatura del Plan curricular de ingeniería civil que se ocupa de la enseñanza de la mecánica Newtoniana. En consecuencia, y antes de entrar de lleno en la materia, explora brevemente el contexto histórico en que se produce el desarrollo de la mecánica clásica, explica sus consecuencias posteriores en el desarrollo de la física y muestra su aplicabilidad en el mundo de la ciencia y de la tecnología contemporáneas. La componente analítica del curso, desde los puntos de vista físico y matemático, se inicia con la descripción de las principales variables del movimiento - posición, velocidad y aceleración- ; es decir: con la cinemática. Con el objeto de darle el mayor alcance posible a esta rama de la dinámica, se presenta la formulación de las variables del movimiento en diversos sistemas coordenados  el sistema cartesiano, el de las coordenadas intrínsecas o de trayectoria y el sistema coordenado cilíndrico. En este campo de la cinemática se analizan las relaciones entre las variables en los diferentes sistemas coordenados y se inicia el estudio del movimiento relativo. Conceptos Previos: Álgebra lineal, álgebra vectorial Ecuaciones diferenciales Cálculo integral Física Estática"
+    },
+    {
+      "codigo": "2015950",
+      "nombre": "Diseño estructural",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En el curso de Diseño Estructural se manejan los conceptos generales del diseño básico de estructuras de concreto reforzado, con base en los requerimientos establecidos en la norma sismo resistente vigente aplicable en Colombia, teniendo en consideración los conocimientos de análisis estructural y del comportamiento de materiales como el concreto y el acero que se han adquirido durante el desarrollo previo de la carrera. Conceptos Previos: ESTATICA. Solución de estructuras isostáticas. Diagramas de V, M y N MATERIALES PARA INGENIERÍA. El concreto, cemento, adiciones, agregados y aditivos. El acero de refuerzo MECÁNICA DE SÓLIDOS. Flexión, Cortante, Torsión, Compresión. Cálculo de deflexiones. Diagramas de deformaciones y esfuerzos de las estructuras (elástica). ANÁLISIS ESTRUCTURAL BÁSICO. Solución de estructuras hiperestáticas. Acciones internas y deformaciones. Análisis lineal elástico de primer orden. Líneas de influencia y trayectorias de carga. ANÁLISIS ESTRUCTURAL APLICADO. Evaluación de cargas. Evaluación de fuerzas sísmicas. Análisis estructural mediante modelos computacionales. Verificación de requisitos de deriva de piso. Introducción al análisis dinámico de estructuras. DESTREZAS. Manejo de mínimo un programa de análisis y diseño de estructuras de concreto reforzado. Sistema de información (Elaboración de planos). Elaboración de Informes y Memorias."
+    },
+    {
+      "codigo": "2015949",
+      "nombre": "Diseño geométrico de Vías",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Esta asignatura está enfocada a proporcionar a los participantes, las bases y las metodologías necesarias para analizar los factores multicriterio que intervienen en el diseño de proyectos viales, entre los que se pueden contar la topografía o tipo de terreno, la capacidad y los niveles de servicio, la velocidad, la seguridad, la economía, la comodidad, la funcionalidad, la coherencia con el desarrollo territorial y los usos del suelo, el manejo del impacto ambiental, entre otros. Si bien no todos estos temas serán tratados con profundidad técnica, se pretende que mediante el estudio detallado de la geometría de la planta, el perfil y la sección transversal de las vías y su asociación con las premisas básicas de la seguridad vial y el concepto de movilidad, los estudiantes cuenten con las bases suficientes para emprender un proyecto vial integral."
+    },
+    {
+      "codigo": "1000007-B",
+      "nombre": "Ecuaciones Diferenciales",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: Modelar por medio de ecuaciones diferenciales algunos sistemas simples y predecir su comportamiento. Comprender y utilizar las diferentes técnicas analíticas y cualitativas para resolver ecuaciones diferenciales. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2026134",
+      "nombre": "Estática",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En esta asignatura, cuya base son las tres leyes de Newton, se estudian las condiciones de equilibrio partículas, sistemas de partículas, elementos y sistemas estructurales sencillos en estado de equilibrio o en reposo. El curso se orienta principalmente al estudio de los cuerpos indeformables o rígidos en reposo. Estudia las condiciones por las cuales los cuerpos sólidos (edificios, puentes, presas, voladizos, cerchas, etc.) mantienen su posición de equilibrio bajo fuerzas aplicadas. Se introduce al alumno en los principios básicos de la mecánica de cuerpos rígidos y su aplicación en la solución de problemas de ingeniería que estén relacionados con la conservación del equilibrio. Al final del curso, las y los estudiantes deben poder trabajar tanto individualmente como en grupo para resolver problemas relacionados con la estática de cuerpos rígidos, resolviéndolos de manera eficiente, lógica y consistente. El curso busca desarrollar las habilidades para la solución de problemas básicos del cuerpo rígido. Además, a través de diferentes actividades experimentales, se espera que las y los estudiantes desarrollen habilidades de análisis, comunicación, pensamiento crítico y trabajo en equipo. Conceptos Previos: Fundamentos de mecánica: Dominar y aplicar con propiedad las leyes de Newton. Algebra lineal: Entender el concepto de vector y tener la capacidad para operar con ellos, entre otras, se requiere dominio de las siguientes operaciones: producto punto, producto cruz, triple producto punto escalar, determinantes y solución de sistemas de ecuaciones Calculo diferencial y calculo integral: Dominio y destreza en el uso de las herramientas de diferenciación e integración, claridad en el significado físico o mecánico de estos conceptos."
+    },
+    {
+      "codigo": "2015954",
+      "nombre": "Estructuras hidráulicas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Aplicación de las leyes fundamentales de la Mecánica de fluidos al estudio de las estructuras Hiodráulicas y las máquinas hidráulicas. Al finalizar el curso, el estudiante debe estar en capacidad de diseñar diferentes estructuras Hidráulicas, como tambien"
+    },
+    {
+      "codigo": "2015955",
+      "nombre": "Fundamentos de construcción",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso se dicta en tres módulos diferenciados: - Introducción a la construcción, marco legal que rige la actividad y descripción de procesos constructivos básicos. - Elaboración de presupuesto de obra a partir de la revisión de planos y especificaciones técnicas, cuantificación de actividades de obra, planteamiento de análisis de precios unitarios y elaboración del presupuesto detallado de obra. - Elaboración de un programa de obra a partir de la definición de actividades, rendimientos, recursos y uso de herramientas gráficas y de trayectoria crítica. Conceptos Previos: Diseño de estructuras en concreto Dibujo e interpretación de planos Materiales para construcción"
+    },
+    {
+      "codigo": "1000011-B",
+      "nombre": "Fundamentos de ecología",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "La asignatura ECOLOGIA busca dar las bases fundamentales del funcionamiento de los sistemas ecológicos a sus diferentes escalas y hacer visible las relaciones entre estos sistemas de organización a escala ecológica. El curso también pretende mostrar los t"
+    },
+    {
+      "codigo": "1000019-B",
+      "nombre": "Fundamentos de mecánica",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios básicos de la mecánica clásica, proporcionando herramientas para comprender y analizar el movimiento de los cuerpos y las fuerzas que actúan sobre ellos. El curso constituye una base esencial para la formación científica y tecnológica al permitir interpretar fenómenos físicos presentes en diferentes contextos naturales y aplicados. A lo largo de la asignatura, el estudiante desarrollará habilidades para describir movimientos, analizar sistemas dinámicos, interpretar leyes físicas y resolver problemas relacionados con cinemática, dinámica, trabajo, energía y conservación del momento. Asimismo, fortalecerá competencias en razonamiento cuantitativo, pensamiento analítico y modelación matemática de fenómenos físicos. La asignatura tiene un enfoque interdisciplinar al conectarse con áreas como ingeniería, matemáticas aplicadas, ciencias ambientales, astronomía, biomecánica y ciencias computacionales, permitiendo que estudiantes de distintas disciplinas comprendan principios fundamentales del comportamiento de sistemas físicos. Los conocimientos adquiridos tienen aplicación práctica en el análisis de movimientos, diseño y comprensión de sistemas mecánicos, interpretación de fenómenos naturales y desarrollo de soluciones tecnológicas, además de fortalecer capacidades útiles para contextos académicos y profesionales diversos. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en matemáticas básicas y nociones introductorias de física. Se sugiere un nivel inicial de avance curricular que facilite la apropiación gradual de los conceptos y herramientas del curso."
+    },
+    {
+      "codigo": "2015956",
+      "nombre": "Geología",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso introduce al estudiante a los procesos físicos que operan en la Tierra. Se estudia la composición de la Tierra, geoformas, procesos de geodinámica interna y externa, y su consecuencia en la deformación dúctil y frágil de los materiales. Se estudian procesos de gran escala como tectónica de placas, vulcanismo y sismicidad; y se hace énfasis en la descripción de materiales geológicos (rocas y suelos) y la caracterización de la deformación frágil de rocas (fracturamiento) para relacionarlos con su comportamiento geomecánico. Se discuten procesos de dinámica superficial, incluyendo movimientos en masa y erosión. Se proporcionan las herramientas para analizar y clasificar la estructura de los macizos rocosos. Todo lo anterior se enfoca hacia aspectos de geología ambiental, hidrogeología, amenazas y riesgos geológicos. Conceptos Previos: Requisitos formales: Topografía, Geomática, Química, Física y Ecología Requisitos tácitos: Se espera que los estudiantes tengan conocimientos básicos de geografía mundial y de Colombia, fotogrametría, conceptos de geodesia y topografía, al igual que nociones de química inorgánica y de ecología."
+    },
+    {
+      "codigo": "2015957",
+      "nombre": "Geomática Aplicada",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "La Geomática apoya, orienta y afina procesos de toma de decisiones y planeación estratégica para los sectores productivo, social, gubernamental e internacional. Su campo de acción es el estudio del espacio geográfico con una visión científica e integral. Como ciencia integradora, incorpora el conocimiento generado en otros ámbitos dentro de un marco de referencia espacial, lo que permite una visión más completa, y por lo tanto, el desarrollo de soluciones más inteligentes a problemas complejos. El enfoque de la Geomática aporta información significativa de base, que fundamentan las prácticas de la Ingeniería Civil, en todos sus ámbitos como son la Hidráulica, Hidromática y recursos hídricos, geotécnica, estructuras y construcción de infraestructura, el transporte, análisis y gestión ambiental y sanitaria, entre los más destacados."
+    },
+    {
+      "codigo": "2015958",
+      "nombre": "Geomática básica",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Conocimiento de la instrumentación topográfica y los métodos de trabajo necesarios para realizar levantamientos y replanteos de áreas de terreno de escalas apropiadas a las técnicas de la topografía, con el objetivo de que el ingeniero civil, esté en capacidad de apoyar procesos públicos y privadas tendientes a planificar, diseñar, ejecutar y evaluar, proyectos de infraestructura, de ordenamiento territorial, elaboración de mapas temáticos de acuerdo a sus áreas de desempeño, coordinación de trabajos topográficos para proyectos de desarrollo comunitario, gestión en empresas privadas en la consultoría e interventora en Geomática, Empresas que realicen estudios de impacto ambiental, Ejercicio libre de la profesión en contratación, interventora y consultoría, Monitoreo de obras de infraestructura."
+    },
+    {
+      "codigo": "2015959",
+      "nombre": "Geotecnia",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En la introducción de Geotecnia se hace ver que los materiales térreos son materiales naturales que requieren procesos de exploración e investigación del terreno para descubrir sus propiedades. En una primera parte del curso se revisan las ecuaciones básicas de la mecánica del medio continuo y la manera de resolver problemas de análisis y diseño de estructuras geotécnicas. Luego de abordar los procesos de carga en geotecnia, el curso se centra en el análisis del comportamiento de las estructuras geotécnicas. Se hace énfasis en los métodos de análisis que se derivan del modelo elástico, lineal y no lineal, y algunos elementos de la elastoplasticidad y de la consolidación en lo referente a la predicción de los desplazamientos. En lo relativo a problemas de estabilidad, se usan los métodos de análisis derivados de la teoría de la plasticidad y del equilibrio límite. Las aplicaciones se dirigen principalmente hacia el análisis y diseño de cimentaciones, muros de contención, excavaciones y taludes."
+    },
+    {
+      "codigo": "2022760",
+      "nombre": "Gestión en construcción",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "En este curso se hace una descripción de las actividades de gestión que se realizan en la ejecución de un proyecto de construcción, diferenciando los roles de gerencia de obra, dirección de obra e interventoría. Se relacionan actividades de tipo gerencial, administrativo, financiero, legal y comercial que se ejecutan durante el desarrollo del proyecto y se describen otros aspectos que complementan el desempeño profesional del estudiante en el marco de la estructuración, ejecución y dirección de los proyectos. Conceptos previos: Fundamentos de construcción"
+    },
+    {
+      "codigo": "2015961",
+      "nombre": "Hidráulica básica",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Aplicación de las leyes fundamentales de la Mecánica de fluidos a casos reales como son el flujo a través de conductos a presión y al flujo real de líquidos a través de conductos con superficie libre. Al finalizar el curso, el estudiante debe estar en"
+    },
+    {
+      "codigo": "2015978",
+      "nombre": "Hidrología",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Este curso de hidrología presenta y analiza los fenómenos meteorológicos que afectan la precipitación y evapotranspiración, así como sus instrumentos de medición. Introduce la captura, análisis y llenado de datos faltantes, además de las características fisiográficas de la cuenca que influye en el caudal en un área determinada. Presenta modelos lluvia-escorrentía, del mismo modo modelos estadísticos para análisis de extremos. Estos conceptos son fundamentales para la planeación y desarrollo de los recursos hídricos, también para el diseño de estructuras y obras hidráulicas."
+    },
+    {
+      "codigo": "2026135",
+      "nombre": "Ingeniería civil sostenible",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "I. La problemática ambiental y su relación con la ingeniería civil. II. El ordenamiento jurídico-institucional y el proceso de licenciamiento ambiental de proyectos de ingeniería III. Introducción a la ingeniería sostenible. IV. Aplicaciones de Ingeniería Sostenible en la ingeniería civil"
+    },
+    {
+      "codigo": "2015963",
+      "nombre": "Ingeniería de Tránsito",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Objetivo general: impartir a los estudiantes, técnicas aplicables en el área, en cuanto a procesos de planificación, diseño y evaluación operacional de infraestructuras viales a nivel regional y urbano que integren los diferentes medios y modos de transporte terrestre a partir de la aplicación de metodologías de carácter nacional e internacional. Objetivos específicos: - Dar a conocer conceptos generales y específicos actualizados, utilizados en la planeación, diseño, ejecución y supervisión de estudios relacionados con la ingeniería de tránsito. - Brindar lineamientos y aspectos técnicos relacionados con las metodologías, modelos, programas, parámetros y estudios que se deben tener en cuenta en el proceso de planeación aplicable a la Ingeniería de Tránsito a nivel regional y urbano. Metodología: desarrollo de la asignatura a través de clases magistrales en cuanto a la explicación de los marcos conceptuales y aplicados de las técnicas de ingeniería de tránsito; e integración de los estudiantes a través de la interrelación directa de estos con las condiciones operacionales reales de la infraestructura -flujos y aplicación de técnicas teóricas a partir del desarrollo de prácticas."
+    },
+    {
+      "codigo": "2026138",
+      "nombre": "Ingenieria de transporte",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Los sistemas de transporte son fundamentales en el desarrollo de las ciudades, las regiones y los países. La competitividad se mide en términos de indicadores de movilización de personas y bienes y del tiempo en que esta se realiza. La ingeniería, en sus distintas especialidades, tiene la responsabilidad de desarrollar soluciones de transporte desde los aspectos estratégicos, operacionales y tácticos y es indispensable que tales soluciones se encuentren integradas al desarrollo de la población. El transporte es un ejercicio interdisciplinario que acompaña a las actividades económicas y hace necesario profundizar en el conocimiento de los aspectos técnicos de la política, la planeación y la operación. Requiere que sea evaluada tanto la oferta como la demanda con criterios técnicos cualitativos usando recursos matemáticos adecuados para procurar alta calidad de los resultados. De esta manera es posible ofrecer soluciones de transporte de una manera viable, rentable y sostenible. El objetivo de la asignatura es: capacitar al estudiante en los elementos técnicos necesarios para evaluar, analizar y describir los aspectos técnicos de los sistemas de transporte considerando los aspectos normativos y regulatorias, las técnicas de análisis de la oferta y la demanda y los enfoques teóricos y metodológicos utilizados en la planeación de transporte."
+    },
+    {
+      "codigo": "2015703",
+      "nombre": "Ingeniería económica",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Suministrar al estudiante de ingeniería en la Universidad Nacional de Colombia los conceptos básicos de la teoría económica que le permitan desarrollar su capacidad de análisis y comprensión de las áreas propias de sus actividades profesionales y en parti"
+    },
+    {
+      "codigo": "1000044-B",
+      "nombre": "Inglés I- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de este primer nivel de inglés, puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y que además, puedan expresar de manera oral y escrita información de tipo personal. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "1000045-B",
+      "nombre": "Inglés II - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general. Se espera que en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad y secuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñanza y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000049-B",
+      "nombre": "Inglés II - Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general.Se esperaque en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "1000046-B",
+      "nombre": "Inglés III - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000050-B",
+      "nombre": "Inglés III- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "1000052-B",
+      "nombre": "Inglés Intensivo I y II",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de los niveles I y II puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Los estudiantes pueden expresar de manera oral y escrita información de tipo personal e información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "1000053-B",
+      "nombre": "Inglés Intensivo III y IV",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término de este curso intesivo puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Se espera además que los estudiantes puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Tambien participan de manera oral en debates."
+    },
+    {
+      "codigo": "1000047-B",
+      "nombre": "Inglés IV- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea."
+    },
+    {
+      "codigo": "1000051-B",
+      "nombre": "Inglés IV- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "2026186",
+      "nombre": "Introducción a la ingeniería civil",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Se pretende que el estudiante recien ingresado al programa de ingenieria civil pueda: -Identificar claramente la importancia de esta profesion dentro del contexto de desarrollo de la humanidad y del pais, de su importancia social y de su trascendencia en la evolucion de la sociedad y la civilizacion. -Incentivar su creatividad enfocandola hacia el diseño, la construccion, y la explotracion de obras civiles para la solucion de problemas de calidad de vida de la sociedad moderna. -Recrearse con las posibilidades que le ofrece la ingenieria civil mediante el reconocimiento de las principales areas de trabajo de la profesion -Trabajo en clase, ya sea individual o por grupo, con asesoria por parte del profesor. -Trabajo fuera de clase, ya sea individual o por grupo, por parte de los estudiantes."
+    },
+    {
+      "codigo": "1000002-B",
+      "nombre": "Lecto-Escritura",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo de este curso nivelatorio es cualificar la competencia argumentativa de los estudiantes, en lectura y escritura, por medio de la apropiación de estrategias de comprensión y expresión. Al finalizar el curso los estudiantes estarán en la capacidad de: - Identificar distintos modos discursivos presentes en un texto argumentativo. - Identificar la estructura argumentativa de un texto: Tesis central o hipótesis, premisas, red de relaciones entre la premisas. - Emitir un juicio de valor en la relación con la estructura identificada. - Identificar las distintas posturas que origina la argumentación contenida en el texto. - Construir un texto que tenga una estructura argumentativa."
+    },
+    {
+      "codigo": "1000001-B",
+      "nombre": "Matemáticas Básicas",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "OBJETIVOS: Generales ¿ Brindar al estudiante los fundamentos conceptuales para abordar los cursos posteriores que requieran la matemática básica. ¿ Promover a través de los talleres, una participación activa del estudiante en su proceso de aprendizaje matemático. ¿ Generar un espacio y tiempo más adecuados para que el estudiante madure e interiorice los conocimientos adquiridos. Específicos ¿ Presentar elementos básicos de lógica que permitan al estudiante incorporar formalismo y validez a sus argumentos. ¿ Desarrollar habilidades básicas para el manejo de operaciones aritméticas y entre conjuntos ¿ Lograr un manejo adecuado de las expresiones algebraicas. ¿ Familiarizar al alumno con la noción de función, su representación gráfica e interpretación, y trabajar con algunas funciones fundamentales tales como las lineales, cuadráticas, exponenciales, logarítmicas y trigonométricas. ¿ Repasar elementos de la geometría euclidiana básica y de la trigonometría elemental. ¿ Hacer una introducción a los métodos de conteo."
+    },
+    {
+      "codigo": "2015965",
+      "nombre": "Materiales para construcción",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El contenido de este curso aborda el estudio de los materiales más comunes, que son empleados en grandes volúmenes para la construcción de obras civiles. Entre estos materiales comunes de estudio se incluyen los agregados pétreos no cementados y estabilizados, suelos naturales estabilizados, asfaltos, cementantes hidráulicos, mezclas asfálticas y de concreto hidráulico, acero, madera, prefabricados en arcilla y geosintéticos. Se hace énfasis en las propiedades obtenidas según procesos estandarizados o normas de ensayo y en algunas metodologías para el diseño de las mezclas mencionadas, cuyos resultados son utilizados como referencia para verificar el cumplimiento de la calidad a partir de las especificaciones establecidas para la construcción con estos materiales. Conceptos Previos: Se requiere de conocimientos en áreas específicas relacionadas con la fundamentación básica en matemáticas, física y química, así como en la componente disciplinar de geología para un desempeño académico satisfactorio"
+    },
+    {
+      "codigo": "2015966",
+      "nombre": "Mecánica de fluidos",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "La asignatura mecánica de fluidos con base en aspectos fundamentales de la física, el cálculo y las ecuaciones diferenciales se centra en el estudio y análisis de las propiedades físicas más relevantes de los fluidos. Con ello el curso se centra en el estudio y aplicación de cuatro principios: de Pascal, de conservación de la masa, de conservación de la energía, momentum lineal y angular, principios que se aplican a diferentes condiciones de contorno a los cuales están sometidos los fluidos. Finalmente se hace una introducción al análisis dimensional y semejanza hidráulica."
+    },
+    {
+      "codigo": "2015967",
+      "nombre": "Mecánica de Rocas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "La ingeniería civil actual tiene que ocuparse de obras cada vez más grandes y del aprovechamiento, progresivamente creciente, del espacio subterráneo. Además, en otras áreas de la ingeniería, como en la ingeniería de minas, la estabilidad de las grandes excavaciones, a cielo abierto y en subterráneo, es definitiva y la intervención de la geotecnia muy necesaria. Todos estos proyectos sobrepasan, en general, los niveles de la cobertura del suelo e involucran directamente a las rocas. Esos retos hacen que en la formación del ingeniero civil actual sea necesaria la enseñanza de los principios y aplicaciones básicos de la mecánica de rocas. Ahora bien, esa disciplina se diferencia bastante de la mecánica de suelos en el sentido de que los suelos se asemejan más a un continuo que los macizos rocosos. Estos últimos están conformados por grandes bloques separados por planos de discontinuidad como la estratificación, las diaclasas y la foliación. El curso se ha diseñado, entonces, para cumplir con esa necesidad de formación académica en la mecánica de esos materiales tan complejos pero siempre presentes en los grandes proyectos de ingeniería. METODOLOGÍA Mecánica de Rocas es una asignatura teórica práctica que incluye una parte teórica sobre los modelos mecánicos que se han concebido para simular el comportamiento mecánico de las rocas y de los macizos. Como esos modelos tienen un fundamento empírico importante y valoraciones de las características mecánicas dependientes de procesos de clasificación de los materiales, es necesario evaluar algunas propiedades índices y comprobar algunos rasgos de las relaciones esfuerzo-deformación. Por ello, la componente de laboratorio, la observación directa de campo y el estudio y discusión de casos aleccionadores son indispensables."
+    },
+    {
+      "codigo": "2015968",
+      "nombre": "Mecánica de sólidos",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En la asignatura Mecánica de Sólidos se estudia el comportamiento mecánico de sólidos bajo acciones externas estáticas y considerando deformaciones infinitesimales. En el primer módulo de curso se describe el estado de esfuerzos, de deformaciones y de desplazamientos en cada partícula del sólido. En la segunda parte del mismo se definen las acciones internas equivalentes como fuerza axial, fuerza cortante, momento flector y momento torsor, que actúan sobre la sección transversal de una barra sometida a diferentes acciones externas. En el último módulo del curso se realizan prácticas de laboratorio donde se demuestran algunos conceptos adquiridos previamente. Los conocimientos previos corresponden al contenido detallado de las asignaturas Cálculo de varias variables y Estática. El objetivo general de la asignatura es Presentar al estudiante los conceptos fundamentales que le permitan establecer o predecir el comportamiento de cuerpos deformables sometidos a diferentes condiciones de carga, identificando las acciones internas, los desplazamientos y los estados de estado de esfuerzo y de deformación actuantes sobre él."
+    },
+    {
+      "codigo": "2015969",
+      "nombre": "Mecánica de suelos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En este curso se estudian las relaciones entre la composición del suelo, su organización estructural y el comportamiento mecánico, en términos de relaciones constitutivas de esfuerzo-deformacióntiempo, bajo diferentes condiciones de carga y drenaje. El curso incluye clases magistrales y prácticas de laboratorio. Se estudia el origen y la composición de los suelos, las técnicas de exploración del subsuelo, las características de flujo en medios porosos, los análisis de esfuerzos totales, efectivos y de incrementos de esfuerzos, las características de compresibilidad y resistencia al corte y finalmente se hace una introducción a los modelos de estado crítico. Se espera que al final del curso el estudiante esté en capacidad de comprender cómo se interrelacionan las variables que intervienen en un problema geotécnico y que cuente con herramientas teóricas y prácticas para caracterizar propiedades mecánicas de los suelos y para resolver problemas de ingeniería geotécnica. Conceptos Previos: Conocimientos básicos de geología, de caracterización de materiales de construcción, de mecánica de fluidos, así como de estática y de mecánica de sólidos."
+    },
+    {
+      "codigo": "2015970",
+      "nombre": "Métodos numéricos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO GENERAL Capacitar al estudiante en los conceptos fundamentales del análisis numérico para la solución de problemas matemáticos mediante algoritmos numéricos, con la orientación necesaria para su implementación en computador y aplicados a la solución de problemas en ingeniería. OBJETIVOS ESPECÍFICOS - Implementar soluciones a diversos problemas con procedimientos numéricos en el computador, mediante el paquete matemático MATLAB. - Estimular al alumno para crear sus propias soluciones en el computador para resolver problemas particulares. METODOLOGÍA El propósito de este curso es darle apoyo al estudiante de manera que pueda llevar a cabo su proceso de aprendizaje de manera autónoma; este apoyo está representado por: material escrito, desarrollo de talleres y laboratorios, ejercicios teóricos y prácticos, software didáctico y explicaciones por parte de profesores y monitores. Cada módulo temático está conformado por 4 sesiones distribuidas en dos semanas: una conferencia, una clase, un taller y un laboratorio. A continuación se describe cada tipo de sesión."
+    },
+    {
+      "codigo": "2017293",
+      "nombre": "Modelación matemática",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "En esta asignatura se busca familiarizar al estudiante en la solución de problemas de ingeniería mediante el uso de herramientas matemáticas y computacionales, con énfasis en el proceso de planteamiento, desarrollo y evaluación de modelos matemáticos. Se busca que el estudiante pueda diferenciar entre modelos analíticos, numéricos y observacionales, distinguiendo ventajas y limitantes de cada uno de ellos. Igualmente se desea que el estudiante desarrolle habilidades para la solución de problemas de ingeniería mediante el uso de herramientas matemáticas. La metodología usada es la exposición y análisis del proceso de desarrollo de modelos matemáticos para casos particulares de estudio, y la presentación de los fundamentos matemáticos detrás de dichos modelos."
+    },
+    {
+      "codigo": "2025970",
+      "nombre": "Modelos y simulación",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "El curso se desarrolla a través de sesiones presenciales en donde se explican los conceptos básicos, y se comparten ejemplos que ayuden al aprendizaje práctico de las temáticas, con el soporte de lecturas previas que el estudiante realiza para contextualizar el área de estudio. De tal manera que los estudiantes puedan de forma autónoma desarrollar talleres y estudios de caso basados en el material revisado. Se contará con talleres prácticos en el uso de herramientas de software. - Los contenidos, presentaciones y demás material serán publicados en el curso virtual generado por Moodle. OBJETIVOS: - Las asignaciones (trabajos, talleres) deberán ser entregadas en medio magnético o físico de acuerdo con las especificaciones del docente. En el caso del medio magnético las asignaciones deberán ser cargadas directamente a la página de Moodle. - Todas las sesiones se realizarán en salas de cómputo equipadas con las herramientas de software que posee el departamento de Ingeniería de Sistemas e Industrial de la Facultad de Ingeniería de la Universidad Nacional de Colombia Sede Bogotá. - El enfoque investigativo del curso hará necesario el uso de material bibliográfico de las bases de datos disponibles en la Universidad como Science Direct, JStor, Springer, Scielo, entre otras. Requisitos del curso Los informes que se presentarán en el curso deberán ser escritos en LaTex."
+    },
+    {
+      "codigo": "2025971",
+      "nombre": "Optimización",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Los problemas de optimización se plantean muy a menudo en la industria, y la capacidad de resolverlos es una ventaja competitiva. Sin embargo, el modelado de problemas de Optimización requiere herramientas especiales y habilidades. Un problema que no se entiende o se modela incorrectamente puede conducir a la solución equivocada o puede ser muy difícil de resolver. OBJETIVOS Introducir al estudiante en el ambiente de la Investigación de Operaciones entendida ésta como un medio fundamental que soporta una toma acertada de decisiones. Proporcionar las herramientas y conocimientos necesarios para modelar problemas de optimización prácticos y obtener una solución. Propender por el trabajo en equipo y la apropiación de la modelación mediante el uso de talleres de aplicación y estudios de casos. Entender y aplicar el algoritmo Simplex para programación lineal y otros algoritmos para enfrentar y resolver problemas no lineales, enteros, y en estructuras de redes Conocer y aplicar herramientas computacionales (softwares) para resolver modelos de optimización. Capacitar al estudiante en la utilización de diferentes técnicas, algorítmicas y modelos como herramientas para resolver problemas de programación lineal, entera, no lineal, redes, dinámica y de proyectos. AL TERMINAR ESTE CURSO, los alumnos serán capaces de: Identificar los objetivos y las limitaciones basados en las descripciones de los problemas del mundo real. Crear modelos de optimización matemática correspondiente a las descripciones de los problemas. Seleccionar y trabajar a través de una adecuada técnica de solución basada en el tipo de modelo. Utilizar software de optimización para llevar a cabo los análisis; interpretar los resultados. Hacer recomendaciones sólidas basadas en las soluciones, análisis, y las limitaciones de los modelos. Presentar una introducción a las técnicas Meta heurísticas (Opcional) ."
+    },
+    {
+      "codigo": "2015971",
+      "nombre": "Pavimentos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso aborda las etapas de conceptualización, diseño, construcción, evaluación durante operación y rehabilitación de estructuras de pavimento. En primer lugar, se evalúan las variables que son necesarias para el diseño, como son el periodo de diseño, las cargas del tránsito, los efectos ambientales, el suelo de cimentación y los materiales utilizados en las capas de la estructura. Se estudian diferentes metodologías de diseño orientadas a pavimentos de tipo flexible y rígido, que permiten obtener estructuras con garantía de operación en condiciones de estabilidad y seguridad. Así mismo, se revisan los procesos constructivos que lleven al cumplimiento de la calidad según las especificaciones generales de construcción y se estudian las patologías de deterioro que pueden presentarse en las vías en servicio, y las posibles intervenciones que permitan prolongar la vida útil de los pavimentos. Conceptos Previos: Geología Materiales de construcción Mecánica de suelos Geotecnia"
+    },
+    {
+      "codigo": "2015972",
+      "nombre": "Preparación y evaluación de proyectos de infraestructura",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "La formación de nuevas promociones de ingenieros debe considerar las componentes normativas y regulatorias para orientar el empleo de las técnicas de análisis y los enfoques teóricos y metodológicos usuales para la evaluación y preparación de proyectos de infraestructura."
+    },
+    {
+      "codigo": "1000024-B",
+      "nombre": "Principios de química",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Suministrar a los estudiantes los conceptos básicos de la Química que le permitan la interpretación de fenómenos involucrados en diferentes procesos químicos. La asignatura se desarrollará mediante exposiciones orales por parte del profesor. Se propondrán actividades de reforzamiento y repaso (talleres y lecturas complementarias). OBJETIVOS: 1. Preparar al estudiante para la interpretación de fenómenos involucrados en diferentes procesos químicos. 2. Promover el aprendizaje y comprensión del lenguaje básico de la Química como herramienta indispensable para su desarrollo profesional, el trabajo interdisciplinario y para que entienda la vida cotidiana desde la óptica de los procesos químicos. 3. Aumentar el interés en los estudiantes por la comprensión de la materia a nivel atómico y molecular. 4. Potencializar competencias interpretativas, propositivas y argumentativas fundamentadas en el lenguaje químico. 5. Fomentar la integración de los conceptos de materia y energía de creciente relevancia en el presente siglo, en todas las actividades del quehacer cotidiano. 6. Desarrollar habilidades y destrezas para la resolución de ejercicios y problemas que requieran de conocimientos de Química. 7. Promover en el estudiante el uso responsable de los conocimientos de química en su entorno, especialmente en lo que tiene que ver con el cuidado del medio ambiente. Conceptos Previos: Considerando que es un curso para los ciclos de fundamentación de diferentes programas académicos de la Universidad Nacional de Colombia no se requieren conocimientos previos"
+    },
+    {
+      "codigo": "1000013-B",
+      "nombre": "Probabilidad y estadística fundamental",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015734",
+      "nombre": "Programación de computadores",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. OBJETIVOS Con el curso de programación de computadores se espera que un estudiante este en capacidad de:  Reconocer problemas a los que se les puede dar solución mediante un algoritmo Aplicar una metodología sistemática para su solución.  Especificar algoritmos de manera precisa utilizando conceptos y elementos de programación.  Implementar la solución algorítmica mediante un lenguaje de programación como Python. Aprende a programar, como aprender a nadar, es un proceso de aprendizaje activo que solo se logra si el estudiante trata de programar, es decir, aprender a programar depende en gran parte de la motivación y trabajo activo del estudiante. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la exlicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2016375",
+      "nombre": "Programación orientada a objetos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. Sin embargo, para que ellos cumplan con estas funciones, es necesario programarlos: decirles qué hacer y cómo hacerlo. Esto se hace mediante la especificación de un algoritmo (una secuencia finita de pasos bien definida) en un lenguaje de programación como Python, C++ y/o Java Script. OBJETIVOS  Uno de los enfoques más usados en la actualidad es la programación orientada por objetos (POO). Con el curso de programación orientada por objetos se espera que un estudiante este en capacidad de: Identificar objetos, clases e instancias en la descripción de un problema.  Abstraer mediante métodos y atributos los mismos. Establecer relaciones de herencia, polimorfismo, colaboración, composición entre ellos.  Aplicar una metodología sistemática de POO para la solución de problemas algorítmicos. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la explicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2015973",
+      "nombre": "Saneamiento ambiental",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Aproximadamente 2.400 millones de personas en todo el mundo viven en condiciones insalubres, esto debido a la carencia de agua potable y servicios básicos en sus hogares, lo que aumenta significativamente los niveles de exposición a riesgos de incidencia y diseminación de enfermedades infecciosas. Según el Joint monitoring programe (JMP) para el año 2017, en la región de Latinoamérica y el Caribe (ALC) 28 millones de personas carecían de acceso a una fuente de agua mejorada, 83 millones carecían de acceso a instalaciones de saneamiento mejorado, y 15.6 millones practicaban aún defecación al aire libre. Cifras que se siguen presentando en la actualidad y se hacen más significativas por las recientes emergencias sanitarias a nivel mundial."
+    },
+    {
+      "codigo": "2022761",
+      "nombre": "SIG para Ingeniería Civil",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Los recientes desarrollos en cuanto se refieren a las tecnologías de manejo de información, impulsadas por los adelantos informáticos, han ofrecido a la sociedad la posibilidad de recopilar y almacenar tal cantidad de datos que hace apenas algunos años no sería razonable poder pensarlo. La revolución informática que permite tener datos de cuanto fenómeno natural o social sea registrable, asociado a un componente geográfico que permita su localización, hace que estas tecnologías de los sistemas de información, y en especial los que tienen asociado un componente geográfico tengan un importante uso y aplicación en el desarrollo de proyectos de ingeniería. Con base en lo anterior, el objetivo de este curso es brindarle al estudiante los conceptos y desarrollar habilidades básicas para que pueda consultar información para generar indicadores, modelar datos de diversos componentes temáticos que estén asociados a una posición geográfica y modelar posibles eventualidades para recomendar o soportar una correcta toma de decisiones en el campo de la Ingeniería Civil."
+    },
+    {
+      "codigo": "2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "El Taller de Proyectos Interdisciplinarios es una asignatura común para varios programas curriculares de la Facultad de Ingeniería que pretende promover el trabajo en equipo e interdisciplinario de los estudiantes, en torno a la solución de problemas en"
+    },
+    {
+      "codigo": "2015296",
+      "nombre": "Trabajo de Grado",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": "La asignatura Trabajo de Grado es aquella en la cual el estudiante concreta y consolida el proceso investigativo, creativo o de innovación, en el tratamiento de un problema específico, como fruto de la aplicación de los conocimientos y métodos adquiridos durante su proceso de formación universitaria. Podrá ser el punto final de una serie de asignaturas previas tales como seminarios, prácticas académicas, investigativas o creativas."
+    },
+    {
+      "codigo": "2015299",
+      "nombre": "Trabajo de Grado - Asignaturas de Posgrado",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": "la asignatura Trabajo de Grado es aquella en la cual el estudiante concreta y consolida el proceso investigativo, creativo o de innovación, en el tratamiento de un problema específico, como fruto de la aplicación de los conocimientos y métodos adquiridos durante su proceso de formación universitaria. Podrá ser el punto final de una serie de asignaturas previas tales como seminarios, prácticas académicas, investigativas o creativas."
+    },
+    {
+      "codigo": "2015977",
+      "nombre": "Transporte Sostenible",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "as ciudades y las regiones son un fenómeno social, producto de las relaciones de interdependencia entre los elementos de la estructura física y las dimensiones socioeconómicas que se producen dentro de su ámbito. En la medida en que los usos del suelo se encuentran dispersos y distantes, estas relaciones determinarán las necesidades e intensidades de movilización de sus habitantes, conformándose así, un sistema dinámico que evoluciona, donde los flujos de transporte cambian en respuesta a modificaciones en los usos de la tierra y viceversa. Cada alternativa de desarrollo físico espacial de una ciudad o región requiere un sistema de transporte que permita la prestación de un servicio eficaz, seguro, oportuno, económico y ambientalmente sostenible. Las fortalezas y debilidades del sistema de transporte inducirán un desarrollo urbano y regional que requiere una coordinación de objetivos entre el desarrollo vial y de transporte, el desarrollo físico espacial y objetivos medioambientales, de manera fundamental. Complementariamente, el sistema de transporte debe estar acorde con principios de competitividad y productividad, los cuales deben estimularse en estos tiempos de apertura económica."
+    }
+  ],
+  "malla": [
+    {
+      "id": "civil:pos:1:1000011",
+      "nombre": "Fundamentos de ecología",
+      "codigoAsignatura": "1000011-B",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:1:1000004",
+      "nombre": "Cálculo diferencial",
+      "codigoAsignatura": "1000004-B",
+      "semestre": 1,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:1:1000024",
+      "nombre": "Principios de química",
+      "codigoAsignatura": "1000024-B",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:1:2015711",
+      "nombre": "Dibujo básico",
+      "codigoAsignatura": "2015711",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:1:2026186",
+      "nombre": "Introducción a la ingeniería civil",
+      "codigoAsignatura": "2026186",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:2:1000003",
+      "nombre": "Álgebra Lineal",
+      "codigoAsignatura": "1000003-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:2:1000005",
+      "nombre": "Cálculo Integral",
+      "codigoAsignatura": "1000005-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:2:1000019",
+      "nombre": "Fundamentos de mecánica",
+      "codigoAsignatura": "1000019-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:3:1000006",
+      "nombre": "Cálculo en varias variables",
+      "codigoAsignatura": "1000006-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:3:1000013",
+      "nombre": "Probabilidad y estadística fundamental",
+      "codigoAsignatura": "1000013-B",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:3:2026134",
+      "nombre": "Estática",
+      "codigoAsignatura": "2026134",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:3:2015958",
+      "nombre": "Geomática básica",
+      "codigoAsignatura": "2015958",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:3:2015703",
+      "nombre": "Ingeniería económica",
+      "codigoAsignatura": "2015703",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:4:1000007",
+      "nombre": "Ecuaciones Diferenciales",
+      "codigoAsignatura": "1000007-B",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:4:2015948",
+      "nombre": "Dinámica",
+      "codigoAsignatura": "2015948",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:4:2015956",
+      "nombre": "Geología",
+      "codigoAsignatura": "2015956",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:4:2015957",
+      "nombre": "Geomática Aplicada",
+      "codigoAsignatura": "2015957",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:5:2015966",
+      "nombre": "Mecánica de fluidos",
+      "codigoAsignatura": "2015966",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:5:2015968",
+      "nombre": "Mecánica de sólidos",
+      "codigoAsignatura": "2015968",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:5:2015965",
+      "nombre": "Materiales para construcción",
+      "codigoAsignatura": "2015965",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:6:2015961",
+      "nombre": "Hidráulica básica",
+      "codigoAsignatura": "2015961",
+      "semestre": 6,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:6:2015978",
+      "nombre": "Hidrología",
+      "codigoAsignatura": "2015978",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:6:2015941",
+      "nombre": "Análisis estructural básico",
+      "codigoAsignatura": "2015941",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:6:2015969",
+      "nombre": "Mecánica de suelos",
+      "codigoAsignatura": "2015969",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:6:2026138",
+      "nombre": "Ingenieria de transporte",
+      "codigoAsignatura": "2026138",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:7:2015954",
+      "nombre": "Estructuras hidráulicas",
+      "codigoAsignatura": "2015954",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:7:2015938",
+      "nombre": "Acueductos",
+      "codigoAsignatura": "2015938",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:7:2015940",
+      "nombre": "Análisis estructural aplicado",
+      "codigoAsignatura": "2015940",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:7:2015959",
+      "nombre": "Geotecnia",
+      "codigoAsignatura": "2015959",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:7:2015963",
+      "nombre": "Ingeniería de Tránsito",
+      "codigoAsignatura": "2015963",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:8:2015973",
+      "nombre": "Saneamiento ambiental",
+      "codigoAsignatura": "2015973",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:8:2015939",
+      "nombre": "Alcantarillados",
+      "codigoAsignatura": "2015939",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:8:2015950",
+      "nombre": "Diseño estructural",
+      "codigoAsignatura": "2015950",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:8:2015971",
+      "nombre": "Pavimentos",
+      "codigoAsignatura": "2015971",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:8:2015949",
+      "nombre": "Diseño geométrico de Vías",
+      "codigoAsignatura": "2015949",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:9:2015955",
+      "nombre": "Fundamentos de construcción",
+      "codigoAsignatura": "2015955",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:9:2026135",
+      "nombre": "Ingeniería civil sostenible",
+      "codigoAsignatura": "2026135",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:9:2015972",
+      "nombre": "Preparación y evaluación de proyectos de infraestructura",
+      "codigoAsignatura": "2015972",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "civil:pos:10:trabajo-de-grado",
+      "nombre": "Trabajo de grado",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": "Posición sin código SIA individual en la malla del plan."
+    },
+    {
+      "id": "civil:pos:0:1000001",
+      "nombre": "Matemáticas Básicas",
+      "codigoAsignatura": "1000001-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación."
+    },
+    {
+      "id": "civil:pos:0:1000002",
+      "nombre": "Lecto-Escritura",
+      "codigoAsignatura": "1000002-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación."
+    },
+    {
+      "id": "civil:pos:0:1000044",
+      "nombre": "Inglés I- Semestral",
+      "codigoAsignatura": "1000044-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "civil:pos:0:1000045",
+      "nombre": "Inglés II - Semestral",
+      "codigoAsignatura": "1000045-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "civil:pos:0:1000046",
+      "nombre": "Inglés III - Semestral",
+      "codigoAsignatura": "1000046-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "civil:pos:0:1000047",
+      "nombre": "Inglés IV- Semestral",
+      "codigoAsignatura": "1000047-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "civil:pos:1:libre-eleccion:1",
+      "nombre": "Libre elección (1)",
+      "codigoAsignatura": null,
+      "semestre": 1,
+      "creditos": 2,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:2:libre-eleccion:2",
+      "nombre": "Libre elección (2)",
+      "codigoAsignatura": null,
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:2:optativa-sin-asignatura-especificada:3",
+      "nombre": "Optativa sin asignatura especificada (1)",
+      "codigoAsignatura": null,
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:4:libre-eleccion:4",
+      "nombre": "Libre elección (3)",
+      "codigoAsignatura": null,
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:5:libre-eleccion:5",
+      "nombre": "Libre elección (4)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:5:optativa-sin-asignatura-especificada:6",
+      "nombre": "Optativa sin asignatura especificada (2)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:7:libre-eleccion:7",
+      "nombre": "Libre elección (5)",
+      "codigoAsignatura": null,
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:8:libre-eleccion:8",
+      "nombre": "Libre elección (6)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:9:libre-eleccion:9",
+      "nombre": "Libre elección (9)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:9:libre-eleccion:10",
+      "nombre": "Libre elección (7)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:9:libre-eleccion:11",
+      "nombre": "Libre elección (8)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:10:libre-eleccion:12",
+      "nombre": "Libre elección (10)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:10:libre-eleccion:13",
+      "nombre": "Libre elección (11)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:10:libre-eleccion:14",
+      "nombre": "Libre elección",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "civil:pos:10:optativa-sin-asignatura-especificada:15",
+      "nombre": "Optativa sin asignatura especificada",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    }
+  ],
+  "requisitos": {
+    "prerrequisitos": [
+      {
+        "desde": "civil:pos:1:1000004",
+        "hasta": "civil:pos:2:1000005",
+        "metodo": "prerrequisito"
+      },
+      {
+        "desde": "civil:pos:1:1000004",
+        "hasta": "civil:pos:2:1000003",
+        "metodo": "prerrequisito"
+      },
+      {
+        "desde": "civil:pos:2:1000005",
+        "hasta": "civil:pos:3:1000006",
+        "metodo": "prerrequisito"
+      },
+      {
+        "desde": "civil:pos:2:1000003",
+        "hasta": "civil:pos:3:1000006",
+        "metodo": "prerrequisito"
+      },
+      {
+        "desde": "civil:pos:2:1000005",
+        "hasta": "civil:pos:4:1000007",
+        "metodo": "prerrequisito"
+      },
+      {
+        "desde": "civil:pos:2:1000003",
+        "hasta": "civil:pos:4:1000007",
+        "metodo": "prerrequisito"
+      },
+      {
+        "desde": "civil:pos:1:1000004",
+        "hasta": "civil:pos:3:1000013",
+        "metodo": "prerrequisito"
+      }
+    ],
+    "minimosCreditos": [
+      {
+        "destino": "civil:pos:9:2015955",
+        "minimo": 67,
+        "componentes": [
+          "C"
+        ]
+      }
+    ]
+  },
+  "oferta": [],
+  "agrupaciones": [],
+  "exclusionesAgrupacion": [],
+  "configuracion": {
+    "calendario": {
+      "dias": [
+        {
+          "id": "L",
+          "nombre": "Lunes",
+          "corto": "Lun"
+        },
+        {
+          "id": "M",
+          "nombre": "Martes",
+          "corto": "Mar"
+        },
+        {
+          "id": "X",
+          "nombre": "Miércoles",
+          "corto": "Mié"
+        },
+        {
+          "id": "J",
+          "nombre": "Jueves",
+          "corto": "Jue"
+        },
+        {
+          "id": "V",
+          "nombre": "Viernes",
+          "corto": "Vie"
+        },
+        {
+          "id": "S",
+          "nombre": "Sábado",
+          "corto": "Sáb"
+        }
+      ],
+      "horaInicio": 7,
+      "horaFin": 21
+    },
+    "opciones": {
+      "distanciasDisponibles": [
+        0,
+        1,
+        2
+      ],
+      "distanciasIniciales": [
+        0,
+        1
+      ],
+      "excluirIndirectos": true,
+      "asignaturaInicial": "Fundamentos de ecología",
+      "componentesComparables": [
+        "C",
+        "B",
+        "N"
+      ]
+    },
+    "almacenamiento": {
+      "clave": "escenario-personal:civil"
+    }
+  },
+  "procedencia": {
+    "catalogo": {
+      "descripcion": "civil.txt; complementado únicamente con casillas codificadas de la malla PDF",
+      "fechaCaptura": null
+    },
+    "oferta": {
+      "descripcion": "Oferta y grupos no suministrados; sin información registrada",
+      "fechaCaptura": null,
+      "periodo": null
+    },
+    "malla": {
+      "descripcion": "PLAN_ING.pdf",
+      "version": "acuerdo-27-2015"
+    },
+    "metadatos": {
+      "malla": "PLAN_ING.pdf",
+      "tipologias": "civil.txt",
+      "horarios": "No informados"
+    }
+  }
+}

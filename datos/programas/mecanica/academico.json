@@ -1,0 +1,1030 @@
+{
+  "versionEsquema": 1,
+  "programa": {
+    "id": "mecanica",
+    "nombre": "Ingeniería Mecánica",
+    "planId": "acuerdo-68-2018"
+  },
+  "componentes": [
+    {
+      "id": "B",
+      "nombre": "Fundamentación",
+      "enPlan": true
+    },
+    {
+      "id": "C",
+      "nombre": "Disciplinar",
+      "enPlan": true
+    },
+    {
+      "id": "L",
+      "nombre": "Libre elección",
+      "enPlan": true
+    },
+    {
+      "id": "N",
+      "nombre": "Nivelación",
+      "enPlan": false
+    }
+  ],
+  "caracteres": [
+    {
+      "id": "obl",
+      "nombre": "Obligatoria"
+    },
+    {
+      "id": "opt",
+      "nombre": "Optativa"
+    }
+  ],
+  "catalogo": [
+    {
+      "codigo": "1000004-B",
+      "nombre": "Cálculo diferencial",
+      "creditos": 4,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015734",
+      "nombre": "Programación de computadores",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015711",
+      "nombre": "Dibujo básico",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017278",
+      "nombre": "Tecnología mecánica básica",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA",
+      "rotulo": "FUND. OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017265",
+      "nombre": "Ingeniería y desarrollo sostenible",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA",
+      "rotulo": "FUND. OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000005-B",
+      "nombre": "Cálculo Integral",
+      "creditos": 4,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000003-B",
+      "nombre": "Álgebra Lineal",
+      "creditos": 4,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000019-B",
+      "nombre": "Fundamentos de mecánica",
+      "creditos": 4,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017257",
+      "nombre": "Dibujo de máquinas",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000006-B",
+      "nombre": "Cálculo en varias variables",
+      "creditos": 4,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000013-B",
+      "nombre": "Probabilidad y estadística fundamental",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000024-B",
+      "nombre": "Principios de química",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016640",
+      "nombre": "Principios de estática",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000007-B",
+      "nombre": "Ecuaciones Diferenciales",
+      "creditos": 4,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017271",
+      "nombre": "Principios de dinámica",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017256",
+      "nombre": "Ciencia e ingeniería de materiales",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017279",
+      "nombre": "Termodinámica técnica",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015970",
+      "nombre": "Métodos numéricos",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017277",
+      "nombre": "Resistencia de materiales",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017268",
+      "nombre": "Fundamentos de mecanismos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017267",
+      "nombre": "Materiales de ingeniería",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017272",
+      "nombre": "Principios de mecánica de fluidos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017266",
+      "nombre": "Instalaciones y máquinas eléctricas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017293",
+      "nombre": "Modelación matemática",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015703",
+      "nombre": "Ingeniería económica",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017273",
+      "nombre": "Procesos de manufactura I",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017262",
+      "nombre": "Transferencia de calor",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017260",
+      "nombre": "Electrónica básica",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016506",
+      "nombre": "Señales y sistemas I",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015942",
+      "nombre": "Aplicaciones de elementos finitos",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015702",
+      "nombre": "Gerencia y gestión de proyectos",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017258",
+      "nombre": "Diseño de elementos de máquinas I",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017274",
+      "nombre": "Procesos de manufactura II",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017259",
+      "nombre": "Diseño de elementos de máquinas II",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017264",
+      "nombre": "Ingeniería de manufactura",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015215",
+      "nombre": "Análisis de sistemas dinámicos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017261",
+      "nombre": "Fundamentos de control",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017275",
+      "nombre": "Proyecto aplicado de ingeniería",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2017295",
+      "nombre": "Trabajo de grado",
+      "creditos": 6,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    }
+  ],
+  "malla": [
+    {
+      "id": "mecanica:pos:1:1000004",
+      "nombre": "Cálculo diferencial",
+      "codigoAsignatura": "1000004-B",
+      "semestre": 1,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:1:2015734",
+      "nombre": "Programación de computadores",
+      "codigoAsignatura": "2015734",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:1:2015711",
+      "nombre": "Dibujo básico",
+      "codigoAsignatura": "2015711",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:1:2017278",
+      "nombre": "Tecnología mecánica básica",
+      "codigoAsignatura": "2017278",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:1:2017265",
+      "nombre": "Ingeniería y desarrollo sostenible",
+      "codigoAsignatura": "2017265",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:2:1000005",
+      "nombre": "Cálculo Integral",
+      "codigoAsignatura": "1000005-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:2:1000003",
+      "nombre": "Álgebra Lineal",
+      "codigoAsignatura": "1000003-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:2:1000019",
+      "nombre": "Fundamentos de mecánica",
+      "codigoAsignatura": "1000019-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:2:2017257",
+      "nombre": "Dibujo de máquinas",
+      "codigoAsignatura": "2017257",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:3:1000006",
+      "nombre": "Cálculo en varias variables",
+      "codigoAsignatura": "1000006-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:3:1000013",
+      "nombre": "Probabilidad y estadística fundamental",
+      "codigoAsignatura": "1000013-B",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:3:1000024",
+      "nombre": "Principios de química",
+      "codigoAsignatura": "1000024-B",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:3:2016640",
+      "nombre": "Principios de estática",
+      "codigoAsignatura": "2016640",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:4:1000007",
+      "nombre": "Ecuaciones Diferenciales",
+      "codigoAsignatura": "1000007-B",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:4:2017271",
+      "nombre": "Principios de dinámica",
+      "codigoAsignatura": "2017271",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:4:2017256",
+      "nombre": "Ciencia e ingeniería de materiales",
+      "codigoAsignatura": "2017256",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:4:2017279",
+      "nombre": "Termodinámica técnica",
+      "codigoAsignatura": "2017279",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:5:2015970",
+      "nombre": "Métodos numéricos",
+      "codigoAsignatura": "2015970",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:5:2017277",
+      "nombre": "Resistencia de materiales",
+      "codigoAsignatura": "2017277",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:5:2017268",
+      "nombre": "Fundamentos de mecanismos",
+      "codigoAsignatura": "2017268",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:5:2017267",
+      "nombre": "Materiales de ingeniería",
+      "codigoAsignatura": "2017267",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:5:2017272",
+      "nombre": "Principios de mecánica de fluidos",
+      "codigoAsignatura": "2017272",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:5:2017266",
+      "nombre": "Instalaciones y máquinas eléctricas",
+      "codigoAsignatura": "2017266",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:6:2017293",
+      "nombre": "Modelación matemática",
+      "codigoAsignatura": "2017293",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:6:2015703",
+      "nombre": "Ingeniería económica",
+      "codigoAsignatura": "2015703",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:6:2017273",
+      "nombre": "Procesos de manufactura I",
+      "codigoAsignatura": "2017273",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:6:2017262",
+      "nombre": "Transferencia de calor",
+      "codigoAsignatura": "2017262",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:6:2017260",
+      "nombre": "Electrónica básica",
+      "codigoAsignatura": "2017260",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:6:2016506",
+      "nombre": "Señales y sistemas I",
+      "codigoAsignatura": "2016506",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:6:2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "codigoAsignatura": "2024045",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:7:2015942",
+      "nombre": "Aplicaciones de elementos finitos",
+      "codigoAsignatura": "2015942",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:7:2015702",
+      "nombre": "Gerencia y gestión de proyectos",
+      "codigoAsignatura": "2015702",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:7:2017258",
+      "nombre": "Diseño de elementos de máquinas I",
+      "codigoAsignatura": "2017258",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:7:2017274",
+      "nombre": "Procesos de manufactura II",
+      "codigoAsignatura": "2017274",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:8:2017259",
+      "nombre": "Diseño de elementos de máquinas II",
+      "codigoAsignatura": "2017259",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:8:2017264",
+      "nombre": "Ingeniería de manufactura",
+      "codigoAsignatura": "2017264",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:8:2015215",
+      "nombre": "Análisis de sistemas dinámicos",
+      "codigoAsignatura": "2015215",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:9:2017261",
+      "nombre": "Fundamentos de control",
+      "codigoAsignatura": "2017261",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:9:2017275",
+      "nombre": "Proyecto aplicado de ingeniería",
+      "codigoAsignatura": "2017275",
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:10:2017295",
+      "nombre": "Trabajo de grado",
+      "codigoAsignatura": "2017295",
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "mecanica:pos:0:ingles-i",
+      "nombre": "Inglés I",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "mecanica:pos:0:ingles-ii",
+      "nombre": "Inglés II",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "mecanica:pos:0:ingles-iii",
+      "nombre": "Inglés III",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "mecanica:pos:0:ingles-iv",
+      "nombre": "Inglés IV",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "mecanica:pos:2:libre-eleccion:1",
+      "nombre": "Libre elección (1)",
+      "codigoAsignatura": null,
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:3:optativa-sin-asignatura-especificada:2",
+      "nombre": "Optativa sin asignatura especificada (1)",
+      "codigoAsignatura": null,
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:5:optativa-sin-asignatura-especificada:3",
+      "nombre": "Optativa sin asignatura especificada (2)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:7:optativa-sin-asignatura-especificada:4",
+      "nombre": "Optativa sin asignatura especificada (3)",
+      "codigoAsignatura": null,
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:8:libre-eleccion:5",
+      "nombre": "Libre elección (2)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:8:libre-eleccion:6",
+      "nombre": "Libre elección (3)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:8:optativa-sin-asignatura-especificada:7",
+      "nombre": "Optativa sin asignatura especificada",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:9:libre-eleccion:8",
+      "nombre": "Libre elección (5)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:9:libre-eleccion:9",
+      "nombre": "Libre elección (6)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:9:libre-eleccion:10",
+      "nombre": "Libre elección (4)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:10:libre-eleccion:11",
+      "nombre": "Libre elección (7)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:10:libre-eleccion:12",
+      "nombre": "Libre elección (8)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:10:libre-eleccion:13",
+      "nombre": "Libre elección (9)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "mecanica:pos:10:libre-eleccion:14",
+      "nombre": "Libre elección",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    }
+  ],
+  "requisitos": {
+    "prerrequisitos": [],
+    "minimosCreditos": []
+  },
+  "oferta": [],
+  "agrupaciones": [],
+  "exclusionesAgrupacion": [],
+  "configuracion": {
+    "calendario": {
+      "dias": [
+        {
+          "id": "L",
+          "nombre": "Lunes",
+          "corto": "Lun"
+        },
+        {
+          "id": "M",
+          "nombre": "Martes",
+          "corto": "Mar"
+        },
+        {
+          "id": "X",
+          "nombre": "Miércoles",
+          "corto": "Mié"
+        },
+        {
+          "id": "J",
+          "nombre": "Jueves",
+          "corto": "Jue"
+        },
+        {
+          "id": "V",
+          "nombre": "Viernes",
+          "corto": "Vie"
+        },
+        {
+          "id": "S",
+          "nombre": "Sábado",
+          "corto": "Sáb"
+        }
+      ],
+      "horaInicio": 7,
+      "horaFin": 21
+    },
+    "opciones": {
+      "distanciasDisponibles": [
+        0,
+        1,
+        2
+      ],
+      "distanciasIniciales": [
+        0,
+        1
+      ],
+      "excluirIndirectos": true,
+      "asignaturaInicial": "Cálculo diferencial",
+      "componentesComparables": [
+        "C",
+        "B",
+        "N"
+      ]
+    },
+    "almacenamiento": {
+      "clave": "escenario-personal:mecanica"
+    }
+  },
+  "procedencia": {
+    "catalogo": {
+      "descripcion": "Sin catálogo TXT; registros de asignaturas codificadas tomados únicamente de la malla PDF",
+      "fechaCaptura": null
+    },
+    "oferta": {
+      "descripcion": "Oferta y grupos no suministrados; sin información registrada",
+      "fechaCaptura": null,
+      "periodo": null
+    },
+    "malla": {
+      "descripcion": "MallaCurricular-IngenieraMecnicaUNAL_Ac_86_-18_.pdf",
+      "version": "acuerdo-68-2018"
+    },
+    "metadatos": {
+      "malla": "MallaCurricular-IngenieraMecnicaUNAL_Ac_86_-18_.pdf",
+      "tipologias": "Clasificación parcial desde malla",
+      "horarios": "No informados"
+    }
+  }
+}

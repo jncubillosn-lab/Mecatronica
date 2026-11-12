@@ -1,0 +1,1190 @@
+{
+  "versionEsquema": 1,
+  "programa": {
+    "id": "electrica",
+    "nombre": "Ingeniería Eléctrica",
+    "planId": "acuerdo-121-2021"
+  },
+  "componentes": [
+    {
+      "id": "B",
+      "nombre": "Fundamentación",
+      "enPlan": true
+    },
+    {
+      "id": "C",
+      "nombre": "Disciplinar",
+      "enPlan": true
+    },
+    {
+      "id": "L",
+      "nombre": "Libre elección",
+      "enPlan": true
+    },
+    {
+      "id": "N",
+      "nombre": "Nivelación",
+      "enPlan": false
+    }
+  ],
+  "caracteres": [
+    {
+      "id": "obl",
+      "nombre": "Obligatoria"
+    },
+    {
+      "id": "opt",
+      "nombre": "Optativa"
+    }
+  ],
+  "catalogo": [
+    {
+      "codigo": "2016850",
+      "nombre": "Aislamiento eléctrico",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "OBJ. GENERAL: Adquirir, complementar y aplicar los conocimientos sobre campos electromagnéticos, con profundidad en el campo eléctrico para controlarlo en la formación o inhibición de descargas eléctricas. OBJ. ESPECÍFICOS: 1. Adquirir e involucrar los conceptos de diseño del aislamiento. 2. Entender los conceptos de la formación e inhibición de las descargas eléctricas 3. Adquirir los principios seguridad en el manejo de las altas tensiones y comportamiento ético en el trabajo con altas tensiones 4. Adquirir los principios de primeros auxilios para casos de accidentes eléctricos. 5. Aplicar las ecuaciones de Maxwell para involucrar los conceptos de Compatibilidad Electromagnética 6. Diferenciar entre fenómenos de alta y baja frecuencia, parámetros concentrados y distribuidos 7. Entender las diferencias fundamentales entre las altas AC, DC e impulso. 8. Entender los conceptos de generación y medida de altas tensiones y altas corrientes. 9. Comprender los principios fundamentales que gobiernan las descargas eléctricas en el aire, en la tierra, en los sólidos y los líquidos. 10. Comprender los conceptos de protección contra fenómenos transitorios tales como las descargas atmosféricas y las sobretensiones de maniobra. 11. Desarrollar habilidades búsqueda bibliográfica, de trabajo en grupo, de medición y de presentación de trabajos mediante la solución de un problema de aislamiento tal como la investigación de accidentes, la medición de puesta atierra o la medición de impulsos."
+    },
+    {
+      "codigo": "1000003-B",
+      "nombre": "Álgebra Lineal",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: Asimilar los fundamentos del Algebra Lineal, a nivel elemental, pero con la profundidad necesaria para adquirir los conocimientos y habilidades básicas (capacidad de análisis y de razonamiento lógico - deductivo) para la solución de problemas en las cuales estén involucrados los elementos matemáticos de sistemas de ecuaciones lineales, espacios vectoriales, valores y vectores propios de una matriz y diagonalización de matrices. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2016851",
+      "nombre": "Análisis de Sistemas de Potencia",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVO: Capacitar al estudiante en el modelado de sistemas de energía eléctrica con el propósito de analizar y entender su comportamiento, tanto en estado estable como en estado transitorio. De esta forma, al finalizar el curso el estudiante deberá adquirir la capacidad de:  Seleccionar y Aplicar los modelos de los distintos elementos que conforman un sistema de potencia con el propósito de entender su comportamiento tanto en estado transitorio (dinámico o cuasi-estacionario) como en estado estacionario.  Reconocer y Aplicar los modelos de operación del sistema de potencia (Flujo de Carga, Control Automático de Generación, Despacho económico, Análisis de Corto Circuito y Análisis de Estabilidad), identificando las posibles soluciones a los problemas derivados de la operación del mismo (Estrategias de Compensación, Cambio de derivaciones de transformadores, Reducción de Corrientes de corto Asimétricas, etc.).  Formular y comprobar hipótesis sobre el comportamiento de algunos parámetros del sistema a través de la experimentación virtual con las plataformas de simulación en Sistemas de Potencia.  Utilizar las herramientas gráficas adecuadas y expresar de forma coherente el análisis de los resultados obtenidos durante la experimentación virtual a través de la presentación de informes escritos resultado de proyectos realizados por equipos.  Explicar las distintas etapas y alcances de la planeación y operación de los sistemas de potencia."
+    },
+    {
+      "codigo": "1000004-B",
+      "nombre": "Cálculo diferencial",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS Estudiar los conceptos de límite y derivada para funciones de una variable real y utilizar estas ideas en la solución de problemas de optimización, trazado de curvas y razones de cambio. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "1000006-B",
+      "nombre": "Cálculo en varias variables",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: ¿ Estudiar los conceptos fundamentales del cálculo de funciones de varias variables (límites, continuidad, diferenciación e integración) y los teoremas centrales del Cálculo vectorial (Teoremas de Green, Gauss y Stokes). ¿ Estimular y desarrollar la capacidad de análisis y de razonamiento lógico-deductivo del estudiante. ¿ Capacitar al estudiante para la interpretación, formulación y solución de problemas en las áreas relacionadas con su especialidad en las cuales se haga necesario la aplicación del cálculo de funciones de varias variables y del cálculo vectorial."
+    },
+    {
+      "codigo": "1000005-B",
+      "nombre": "Cálculo Integral",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS General ¿ Lograr la apropiación por parte del. estudiante de los conceptos fundamentales del cálculo integral de funciones de una variable real y crear habilidades que le permitan aplicar estos conocimientos en problemas propios de su disciplina y abordar de manera elemental los conceptos de sucesiones y series. Específicos ¿ Conocer y manejar con propiedad el concepto de integral definida de una función real de una variable real y su relación con el concepto de primitiva o antiderivada, para facilitar los cálculos. ¿ Estudiar algunas de las diferentes aplicaciones del concepto de integral. ¿ Adquirir destrezas en el estudio de la convergencia de sucesiones y series"
+    },
+    {
+      "codigo": "2016487",
+      "nombre": "Campos electromagnéticos",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVO GENERAL A partir de las ecuaciones de Maxwell se explican la generaciób y las relaciones entre los campos eléctricos y magnéticos, finalizando con los campos electrostáticos y megnetostáticos para incluir los conceptos de capacidad, inductancia, flujo y energía. OBJETIVOS ESPECÍFICOS 1. Con base en el álgenra vectorial entender y usar adecuadamente los conceptos de flujo y energia para calcular campos eléctricos y magnéticos 2. Entender la formulación de los conceptos de Divergencia, Gradiente y Rotacional empleando ecuaciones de diferencias 3. Entender el efecto de los campos eléctricos y magnéticos en los materiales para calcular los vectores de densidad e intensidad de los campos eléctricos y magnéticos 4. Calcular los campos eléctricos estáticos a partir del potencial o los conglomerados de carga o usando la ecuación de Laplace 5. Calcular los campos magnéticos estáticos a partir del vector de potencial, la ley de Biot-Savart METODOLOGÍA Se presentan diapositivas compartidas en Moodle. Los conceptos vistos en clase se profundizan en tareas semanales. Las tareas a resolver implican el uso de cálculos computaciones usando el programa EXCEL. Los conocimientos se profundizan en un trabajo final de aplicación de la teoría electromagnética."
+    },
+    {
+      "codigo": "2016489",
+      "nombre": "Circuitos Eléctricos I",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso pretende ser un espacio de discusión y estudio entre los estudiantes y el profesor sobre temas de circuitos eléctricos básicos (tensión continua y alterna, estado estacionario y transitorio de primer orden, etc.), enfatizando en los conceptos fundamentales y las aproximaciones que se hacen para trabajar los circuitos eléctricos. Los circuitos eléctricos, su evaluación y análisis, son una herramienta fundamental de ingenieros electricistas, electrónicos, mecatrónicos y afines, pues les permite prever el comportamiento de instalaciones eléctricas y electrónicas y el de componentes pasivos y activos y por lo tanto su diseño, optimización y operación desde antes de ser construidos. Por la importancia del tema para las carreras, se considera que el manejo de la teoría de circuitos eléctricos es lo que diferencia a los ingenieros de estas especialidades de otros profesionales. Es deseable que para aprovechar los contenidos del curso el estudiante tenga información sobre principios físicos mecánicos como fuerza, potencia y energía, y matemáticas básicas."
+    },
+    {
+      "codigo": "2016490",
+      "nombre": "Circuitos Eléctricos II",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso de circuitos II aplica los temas estudiados previamente (circuitos I, señales I) y presenta nuevos temas como sistemas trifásicos, respuesta en frecuencia, circuitos acoplados magnéticamente, redes de dos puertos, elementos no lineales y fundamentos del diseño de filtros. El curso es una integración de la teoría de circuitos con una sólida fundamentación en principios físicos dentro de un marco teórico matemático. El curso se apoya en simulaciones para dimensionar adecuadamente los alcances de la teoría. Adicional a la descripción matemática, el curso tiene un componente experimental donde es posible analizar circuitos físicos con sus respectivas mediciones. El laboratorio permite comparar tres aspectos {teoría, simulaciones, experimentos} con el fin de lograr en el estudiante una visión integral de los conceptos y una adecuada ponderación de cada aspecto. Como parte del laboratorio de desarrolla un proyecto práctico acompañado de un informe escrito con su marco teórico, simulaciones y resultados experimentales; el proyecto se comparte en clase de manera oral."
+    },
+    {
+      "codigo": "2022660",
+      "nombre": "Comprensión de textos en idioma extranjero",
+      "creditos": 12,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016493",
+      "nombre": "Control",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Realimentación. Propiedades. Criterios de desempeño de sistemas de control. Técnicas de análisis y diseño de controladores SISO (digitales y analógicos): clásicas, algebraicas, variables de estado. Implementación de controladores digitales y análogos."
+    },
+    {
+      "codigo": "2016494",
+      "nombre": "Conversión Electromagnética",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El contenido del curso comprende el estudio de circuitos magnéticos y las generalidades de transformadores, máquinas DC, máquinas sincrónicas, motores de inducción y motores de uso especial. Objetivos  Establecer suposiciones para simplificar sistemas de actuadores electromagnéticos complejos bajo las condiciones de estado estacionario. Evaluar resultados esenciales de simulación y establecer mejoras en el proceso de solución y análisis de dispositivos Electromagnéticos.  Construir argumentos lógicos para definir el comportamiento de los dispositivos y máquinas eléctricas e identificar soluciones en las diferentes condiciones de operación como velocidad, frecuencia, etc. Explicar y sintetizar la valoración tanto de aplicaciones como de requerimientos referentes a la operación de las maquinas eléctricas en los diferentes campos de uso.  Demostrar escritura coherente y fluida en la interpretación de las leyes electromagnéticas y en la explicación de los componentes de actuadores, transformadores y maquinas eléctricas. Demostrar habilidad durante exposiciones con apoyos multimedios utilizando el lenguaje apropiado, el estilo, tiempo y fluidez establecidos en temas de modelos y simulación de dispositivos electromagnéticos en condiciones reales.  Definir tareas, procesos y responsabilidades en equipo durante el proceso de planificación, diseño, realización, análisis y resultados en modelamiento de dispositivos y maquinas eléctricas."
+    },
+    {
+      "codigo": "2016592",
+      "nombre": "Economía general",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO Esta asignatura pretende acercar a los estudiantes a una comprensión general de la forma en la que interactúan los agentes económicos, al finalizar este curso el estudiante debe disponer de conocimiento para pronunciarse sobre problemas de la economía en general. METODOLOGÍA El curso consta de 25 clases magistrales donde se analizará y discutirá la teoría económica, los estudiantes deben realizar una lectura de las referencias bibliográficas previa a clase."
+    },
+    {
+      "codigo": "1000007-B",
+      "nombre": "Ecuaciones Diferenciales",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: Modelar por medio de ecuaciones diferenciales algunos sistemas simples y predecir su comportamiento. Comprender y utilizar las diferentes técnicas analíticas y cualitativas para resolver ecuaciones diferenciales. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2016495",
+      "nombre": "Electrónica análoga I",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVO GENERAL Comprender fundamentos teóricos y prácticos sobre diodos semiconductores, transistores BJT, transistores FET y su complemento con amplificadores operacionales en aplicaciones de electrónica analógica y digital. OBJETIVOS ESPECÍFICOS 1. Comprender los principios de funcionamiento del diodo y sus aplicaciones en circuitos D.C. y A.C. Adicionalmente, familiarizarse con otros tipos de diodos. 2. Entender los principios de funcionamiento de los transistores BJT y FET, diferenciar los distintos modos de operación y emplearlos en aplicaciones de conmutación lógica y como amplificadores de pequeña señal. 3. Analizar y calcular circuitos básicos con diodos, transistores y amplificadores operacionales. 4. Desarrollar habilidades en el manejo de señales analógicas a través de prácticas de laboratorio con diodos, transistores y amplificadores operacionales. 5. Crear equipos de trabajo funcionales para llevar a cabo de manera eficiente las prácticas de laboratorio de la materia, así como adelantar tareas y cumplir con las responsabilidades asumidas dentro del equipo. 6. Desarrollar habilidades de comunicación oral y escrita que permitan presentar de manera clara y ordenada los resultados obtenidos durante las prácticas de laboratorio. 7. Desarrollar capacidades de búsqueda y lectura de textos técnicos, en el idioma inglés, relacionados con la temática de la materia y reconocer las especificaciones claves en las hojas de datos de dispositivos semiconductores."
+    },
+    {
+      "codigo": "2016498",
+      "nombre": "Electrónica digital I",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Este curso proporciona las bases metodológicas y tecnológicas para el diseño de sistemas digitales. Una vez cursado, el estudiante deberá estar en capacidad de realizar el proceso completo de diseño de un sistema digital complejo, desde su especificación física utilizando herramientas modernas que faciliten su desarrollo."
+    },
+    {
+      "codigo": "2016741",
+      "nombre": "Finanzas",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "En el curso de Finanzas los alumnos aprenden el papel que desempeña un Gerente Financiero de una Corporación o Compañía en el contexto de la teoría de las finanzas privadas. El Ingeniero que se desempeña a nivel de la Industria o en las Empresas de Servicios debe conocer la teoría de portafolio y de riesgo y aprender a utilizar dichos modelos en el diseño de estrategias corporativas sobre estructura de capital; presupuestación y planeación financiera tanto de corto como de largo plazo. Igualmente debe desempeñarse muy bien en la definición y administración de las políticas de dividendos y de capital de trabajo de la empresa. METODOLOGÍA El curso se enseña a través de la cátedra magistral y uso de la red para cursos virtuales de la UNIVERSIDAD NACIONAL DE COLOMBIA. En la clase magistral el docente explica los conceptos básicos, y suministra ejemplos para que el estudiante asimile los conocimientos adquiridos, de tal forma que individualmente y con la ayuda y utilización de la página virtual del curso, el alumno pueda desarrollar una serie de ejercicios para clarificar dudas o reforzar lo aprendido con el Profesor en el salón de clase."
+    },
+    {
+      "codigo": "2016500",
+      "nombre": "Física de Semiconductores",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000017-B",
+      "nombre": "Fundamentos de electricidad y magnetismo",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios fundamentales de la electricidad y el magnetismo, así como de las interacciones electromagnéticas presentes en sistemas naturales y tecnológicos. El curso proporciona herramientas conceptuales y matemáticas para comprender fenómenos eléctricos, magnéticos y electromagnéticos esenciales en la formación científica y tecnológica. Durante la asignatura, el estudiante desarrollará habilidades para analizar campos eléctricos y magnéticos, interpretar circuitos básicos, comprender fenómenos de inducción electromagnética y resolver problemas relacionados con cargas, corrientes y potenciales eléctricos. Asimismo, fortalecerá competencias en razonamiento lógico, modelación matemática, análisis experimental y solución de problemas físicos. La asignatura posee un carácter interdisciplinar al relacionarse con áreas como física, ingeniería, telecomunicaciones, electrónica, bioingeniería y ciencias aplicadas, beneficiando a estudiantes interesados en comprender el funcionamiento de múltiples tecnologías contemporáneas. Los contenidos tienen aplicación práctica en sistemas eléctricos, dispositivos electrónicos, telecomunicaciones, instrumentación científica y tecnologías de uso cotidiano, además de aportar herramientas fundamentales para la comprensión de fenómenos físicos presentes en diversos contextos académicos y profesionales. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en física general y matemáticas básicas, especialmente en álgebra y cálculo diferencial. Se sugiere un avance curricular inicial o intermedio para favorecer la apropiación conceptual y matemática de los contenidos."
+    },
+    {
+      "codigo": "1000018-B",
+      "nombre": "Fundamentos de física moderna",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Objetivo General: familiarizar al estudiante con las más importantes teorías físicas originadas en el siglo XX. Dar una visión general de la nueva concepción de la física implicada por esas teorías. Objetivos Específicos: Estudiar los fundamentos de la te"
+    },
+    {
+      "codigo": "1000019-B",
+      "nombre": "Fundamentos de mecánica",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios básicos de la mecánica clásica, proporcionando herramientas para comprender y analizar el movimiento de los cuerpos y las fuerzas que actúan sobre ellos. El curso constituye una base esencial para la formación científica y tecnológica al permitir interpretar fenómenos físicos presentes en diferentes contextos naturales y aplicados. A lo largo de la asignatura, el estudiante desarrollará habilidades para describir movimientos, analizar sistemas dinámicos, interpretar leyes físicas y resolver problemas relacionados con cinemática, dinámica, trabajo, energía y conservación del momento. Asimismo, fortalecerá competencias en razonamiento cuantitativo, pensamiento analítico y modelación matemática de fenómenos físicos. La asignatura tiene un enfoque interdisciplinar al conectarse con áreas como ingeniería, matemáticas aplicadas, ciencias ambientales, astronomía, biomecánica y ciencias computacionales, permitiendo que estudiantes de distintas disciplinas comprendan principios fundamentales del comportamiento de sistemas físicos. Los conocimientos adquiridos tienen aplicación práctica en el análisis de movimientos, diseño y comprensión de sistemas mecánicos, interpretación de fenómenos naturales y desarrollo de soluciones tecnológicas, además de fortalecer capacidades útiles para contextos académicos y profesionales diversos. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en matemáticas básicas y nociones introductorias de física. Se sugiere un nivel inicial de avance curricular que facilite la apropiación gradual de los conceptos y herramientas del curso."
+    },
+    {
+      "codigo": "1000021-B",
+      "nombre": "Fundamentos de mecánica de fluidos",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios básicos que describen el comportamiento de los fluidos en reposo y movimiento, así como su aplicación en fenómenos naturales, científicos y tecnológicos. El curso proporciona herramientas fundamentales para comprender procesos relacionados con presión, flujo, viscosidad y transporte de fluidos en distintos sistemas físicos. Durante la asignatura, el estudiante desarrollará habilidades para analizar propiedades de fluidos, interpretar fenómenos hidrostáticos e hidrodinámicos, modelar sistemas físicos y resolver problemas asociados al comportamiento de líquidos y gases. Además, fortalecerá competencias en razonamiento cuantitativo y aplicación de modelos físicos a situaciones reales. La asignatura tiene un enfoque interdisciplinar al conectarse con áreas como ingeniería, física, ciencias ambientales, biología, geociencias y ciencias de la salud, permitiendo comprender fenómenos relacionados con circulación de fluidos, dinámica atmosférica, sistemas hidráulicos y procesos biológicos. Los contenidos poseen aplicabilidad práctica en contextos académicos, industriales y cotidianos, incluyendo el análisis de sistemas de transporte de fluidos, fenómenos ambientales, dispositivos tecnológicos y procesos fisiológicos, aportando herramientas útiles para diferentes campos profesionales. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en física general y matemáticas básicas, particularmente en álgebra y cálculo diferencial. Se sugiere un nivel inicial o intermedio de avance curricular para facilitar la apropiación de los contenidos."
+    },
+    {
+      "codigo": "1000020-B",
+      "nombre": "Fundamentos de oscilaciones, ondas y óptica",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los fenómenos oscilatorios, ondulatorios y ópticos, proporcionando herramientas conceptuales y matemáticas para comprender procesos físicos presentes en sistemas naturales y tecnológicos. El curso permite analizar cómo se propaga la energía y cómo interactúan las ondas y la luz con distintos medios, constituyendo una base fundamental para áreas científicas y aplicadas. Durante la asignatura, el estudiante desarrollará habilidades para describir movimientos oscilatorios, interpretar fenómenos de propagación de ondas, analizar procesos de interferencia, difracción y polarización, y resolver problemas asociados a sistemas físicos. Asimismo, fortalecerá competencias en modelación matemática, razonamiento científico, análisis experimental y pensamiento crítico. La asignatura posee un carácter interdisciplinar al relacionarse con áreas como física, ingeniería, telecomunicaciones, acústica, astronomía, ciencias de materiales y ciencias de la salud. Por ello, resulta útil para estudiantes interesados en comprender fenómenos asociados al sonido, la vibración, la luz y las tecnologías ópticas. Los conocimientos adquiridos tienen aplicación en el estudio de sistemas de comunicación, instrumentos ópticos, procesamiento de señales, tecnologías láser, análisis acústico y múltiples herramientas científicas y tecnológicas presentes en contextos académicos y profesionales. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en física general y matemáticas, especialmente en álgebra y cálculo básico. Se sugiere un avance curricular inicial o intermedio que facilite la comprensión de los contenidos."
+    },
+    {
+      "codigo": "2015701",
+      "nombre": "Gerencia de recursos humanos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Una de las áreas en que los ingenieros industriales pueden aportar a la competitividad y productividad de las empresas es en la gerencia del talento humano. Siendo relativamente fácil el acceso a nuevas tecnologías, la gran diferencia entre las empresas a menudo la hacen las personas. La planeación de las políticas de talento humano, los procesos de reclutamiento, selección, inducción, formación y capacitación, evaluación del desempeño, remuneración, carrera profesional, entre otras, son áreas en las que con seguridad es muy relevante el aporte de los ingenieros industriales.Al concluir esta asignatura el participante estará en capacidad de: Analizar la importancia de la Administración de Recursos Humanos en la Organización con el fin de lograr mayores niveles de productividad y clima organizacional mediante el conocimiento de las metodologías y técnicas modernas de gestión del talento humano en las organizaciones. OBJETIVOS ESPECÍFICOS ¿ Reconocer los vínculos entre la estrategia corporativa de negocios y la Estrategia de Recursos Humanos. ¿ Diseñar un plan de recursos humanos desde una óptica estratégica. ¿ Reconocer y aplicar técnicas para diseñar y rediseñar cargos. ¿ Diseñar una estrategia de atracción y obtención de recursos humanos, aplicando las técnicas más adecuadas de reclutamiento, selección y contratación. ¿ Diseñar un sistema de inducción de personal ¿ Diseñar estrategia de estimulación de recursos humanos y las técnicas más adecuadas de compensación."
+    },
+    {
+      "codigo": "2015702",
+      "nombre": "Gerencia y gestión de proyectos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Objetivos: El curso busca preparar al futuro ingeniero en las metodologías de formulación, evaluación y gestión de proyectos, como una de las actividades habituales que desempeñan los ingenieros en entidades públicas o privadas."
+    },
+    {
+      "codigo": "1000016-B",
+      "nombre": "Inferencia estadística fundamental",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Objetivo de formación: Proseguir el desarrollo del pensamiento estadístico en la formación profesional del estudiante ofreciéndole una sintaxis especializada referente a procesos estadísticos de inducción por amplificación, fundamento de la generalización"
+    },
+    {
+      "codigo": "2015703",
+      "nombre": "Ingeniería económica",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Suministrar al estudiante de ingeniería en la Universidad Nacional de Colombia los conceptos básicos de la teoría económica que le permitan desarrollar su capacidad de análisis y comprensión de las áreas propias de sus actividades profesionales y en parti"
+    },
+    {
+      "codigo": "1000044-B",
+      "nombre": "Inglés I- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de este primer nivel de inglés, puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y que además, puedan expresar de manera oral y escrita información de tipo personal. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "1000045-B",
+      "nombre": "Inglés II - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general. Se espera que en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad y secuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñanza y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000049-B",
+      "nombre": "Inglés II - Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general.Se esperaque en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "1000046-B",
+      "nombre": "Inglés III - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000050-B",
+      "nombre": "Inglés III- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "1000052-B",
+      "nombre": "Inglés Intensivo I y II",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de los niveles I y II puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Los estudiantes pueden expresar de manera oral y escrita información de tipo personal e información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "1000053-B",
+      "nombre": "Inglés Intensivo III y IV",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término de este curso intesivo puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Se espera además que los estudiantes puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Tambien participan de manera oral en debates."
+    },
+    {
+      "codigo": "1000047-B",
+      "nombre": "Inglés IV- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea."
+    },
+    {
+      "codigo": "1000051-B",
+      "nombre": "Inglés IV- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "2017003",
+      "nombre": "Instalaciones eléctricas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016855",
+      "nombre": "Instalaciones eléctricas industriales",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016856",
+      "nombre": "Introducción a ingeniería eléctrica",
+      "creditos": 5,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Objetivos  Identificar y clasificar las aptitudes personales y profesionales que se requieren para el ejercicio de la profesión.  Identificar y clasificar las habilidades interpersonales que se requieren para el ejercicio de la profesión, en especial las habilidades de comunicación y trabajo en equipo.  Explicar el proceso genérico de Concepción, Diseño, Implementación y Operación de sistemas en un contexto empresarial y social.  Reconocer las variables físicas básicas asociadas a la energía eléctrica  Reconocer la necesidad de comprender textos técnicos en el idioma inglés"
+    },
+    {
+      "codigo": "1000040-B",
+      "nombre": "Introducción a la ciencia de materiales",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: General: Comprender los conceptos y aplicaciones básicas de la Ciencia de Materiales, necesarios para el reconocimiento de las propiedades de materiales comunes en ciencia e ingeniería y para la selección de los mismos en los procedimientos de diseño. Específicos: 1.Adquirir nociones fundamentales sobre la estructura y propiedades de los materiales útiles en Ingeniería. 2.Reconocer los diferentes tipos de materiales comunes en ingeniería. 3.Relacionar las propiedades y la funcionalidad de los materiales con su estructura, su composición, su síntesis y su procesamiento. 4.Conocer en forma general algunas técnicas básicas de caracterización de materiales. 5.Comprender algunos procesos generales de fallo y deterioro de los materiales. 6.Adquirir habilidad en la búsqueda e interpretación de la información relacionada con la Ciencia de Materiales, la caracterización, la aplicación y el desarrollo de nuevos materiales. COMPETENCIAS: 1. Interpretación de los fundamentos y principios de la Ciencia de Materiales. 2. Argumentación sobre las propiedades químicas y físicas de materiales. 3. Proposición de posibles soluciones en la resolución de problemas relacionados con el uso de materiales. METODOLOGÍA: Resolución de problemas (de lápiz y papel), clases magistrales, lectura y discusión de artículos. Las diferentes actividades se enfocarán mediante aprendizaje significativo."
+    },
+    {
+      "codigo": "2016861",
+      "nombre": "Introducción a los sistemas de energía eléctrica",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso permitirá al alumno integrar diversos conceptos de sus cursos anteriores y unirlos para generar una visión holística de un sistema eléctrico, considerando desde lo individual hasta lo sistémico, para entender los principios de operación, interpretar modelos y analizar el funcionamiento de elementos trifásicos de la red como componentes de un sistema eléctrico de potencia."
+    },
+    {
+      "codigo": "2016603",
+      "nombre": "Investigación de operaciones I",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Utilizar la investigaciòn de Operaciones como medio fundamental que soporta el proceso de toma de decisiones en las organizaciones, capacitar al estudiante en la formulación de modelos de programación matemática (lineal, lineal entera, de metas, grafos y"
+    },
+    {
+      "codigo": "2016857",
+      "nombre": "Laboratorio de aislamiento eléctrico",
+      "creditos": 2,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "La asignatura de Laboratorio de aislamiento eléctrico tiene como objetivo el estudio de la electricidad en altas tensiones, la aplicación de la tecnología de los materiales aislantes eléctricos bajo esfuerzos dieléctricos y el análisis de las condiciones para garantizar la seguridad de las personas y equipos cuando se trabaja en sistemas de alta tensión. El desarrollo de la asignatura de laboratorio le permite al estudiante reforzar, aplicar y complementar los conceptos fundamentales, las herramientas y técnicas de trabajo adquiridos en la Carrera de Ingeniería Eléctrica para la solución de problemas asociados con la generación, transmisión, distribución y aplicación de la energía eléctrica. Los tópicos de las sesiones de laboratorio se organizan para estudiar los fenómenos asociados con altas tensiones en las técnicas de generación, medida y control; las propiedades y características principales de los materiales usados como aislantes eléctricos; los procedimientos para realizar ensayos y pruebas de equipo eléctrico y electrónico basado en los criterios de seguridad de las personas y equipos."
+    },
+    {
+      "codigo": "2016858",
+      "nombre": "Laboratorio de conversión electromagnética",
+      "creditos": 2,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Objetivos generales Se espera que el estudiante demuestre su capacidad de: 1. Evaluar resultados de las prácticas desarrolladas en el Laboratorio. 2. Construir argumentos lógicos para definir el comportamiento de los dispositivos y máquinas eléctricas e identificar soluciones en las diferentes condiciones de operación como velocidad, frecuencia, etc. 3. Demostrar escritura coherente y fluida en la interpretación y conclusión de los resultados de los ensayos desarrollados en el Laboratorio de Conversión Electromagnética. 4. Especificar la viabilidad de ejecución de los ensayos propuestos con los recursos del laboratorio. 5. Establecer el procedimiento a seguir para realizar ensayos a motores, generadores y transformadores con base a las normas investigadas. 6. Describir los requerimientos y recursos necesarios para desarrollar las pruebas, como por ejemplo equipos necesarios, características nominales y de funcionamiento de las máquinas."
+    },
+    {
+      "codigo": "1000002-B",
+      "nombre": "Lecto-Escritura",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo de este curso nivelatorio es cualificar la competencia argumentativa de los estudiantes, en lectura y escritura, por medio de la apropiación de estrategias de comprensión y expresión. Al finalizar el curso los estudiantes estarán en la capacidad de: - Identificar distintos modos discursivos presentes en un texto argumentativo. - Identificar la estructura argumentativa de un texto: Tesis central o hipótesis, premisas, red de relaciones entre la premisas. - Emitir un juicio de valor en la relación con la estructura identificada. - Identificar las distintas posturas que origina la argumentación contenida en el texto. - Construir un texto que tenga una estructura argumentativa."
+    },
+    {
+      "codigo": "1000001-B",
+      "nombre": "Matemáticas Básicas",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "OBJETIVOS: Generales ¿ Brindar al estudiante los fundamentos conceptuales para abordar los cursos posteriores que requieran la matemática básica. ¿ Promover a través de los talleres, una participación activa del estudiante en su proceso de aprendizaje matemático. ¿ Generar un espacio y tiempo más adecuados para que el estudiante madure e interiorice los conocimientos adquiridos. Específicos ¿ Presentar elementos básicos de lógica que permitan al estudiante incorporar formalismo y validez a sus argumentos. ¿ Desarrollar habilidades básicas para el manejo de operaciones aritméticas y entre conjuntos ¿ Lograr un manejo adecuado de las expresiones algebraicas. ¿ Familiarizar al alumno con la noción de función, su representación gráfica e interpretación, y trabajar con algunas funciones fundamentales tales como las lineales, cuadráticas, exponenciales, logarítmicas y trigonométricas. ¿ Repasar elementos de la geometría euclidiana básica y de la trigonometría elemental. ¿ Hacer una introducción a los métodos de conteo."
+    },
+    {
+      "codigo": "2016845",
+      "nombre": "Mecánica para Ingeniería",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "\"El curso Mecánica para ingeniería está dirigido especialmente a los estudiantes que hacen parte del plan de estudios de la carrera de Ingeniería Eléctrica de la Universidad Nacional de Colombia, pero bien puede ser útil a los estudiantes de diferentes ingenierías, distintas a la Ingeniería Mecánica, que requieran para su formación de los principios básicos y aplicaciones de la mecánica de sólidos. El curso abarca una selección de temas en las tres ramas de la mecánica (Estática, Dinámica y Resistencia de materiales), unos básicos y otros de aplicaciones, que permiten la resolución de diferentes problemas de ingeniería y brindar la sustentación teórica para la profundización en áreas relacionadas. Una vez finalizado el curso, el estudiante estará en capacidad de: 1. Realizar el análisis estático de estructuras, cables y vigas. 2. Realizar el análisis de esfuerzos bajo condiciones uniformes de carga axial, torsión o flexión. 3. Realizar el análisis cinemático y dinámico de cuerpos rígidos en rotación alrededor de un eje fijo."
+    },
+    {
+      "codigo": "2015970",
+      "nombre": "Métodos numéricos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO GENERAL Capacitar al estudiante en los conceptos fundamentales del análisis numérico para la solución de problemas matemáticos mediante algoritmos numéricos, con la orientación necesaria para su implementación en computador y aplicados a la solución de problemas en ingeniería. OBJETIVOS ESPECÍFICOS - Implementar soluciones a diversos problemas con procedimientos numéricos en el computador, mediante el paquete matemático MATLAB. - Estimular al alumno para crear sus propias soluciones en el computador para resolver problemas particulares. METODOLOGÍA El propósito de este curso es darle apoyo al estudiante de manera que pueda llevar a cabo su proceso de aprendizaje de manera autónoma; este apoyo está representado por: material escrito, desarrollo de talleres y laboratorios, ejercicios teóricos y prácticos, software didáctico y explicaciones por parte de profesores y monitores. Cada módulo temático está conformado por 4 sesiones distribuidas en dos semanas: una conferencia, una clase, un taller y un laboratorio. A continuación se describe cada tipo de sesión."
+    },
+    {
+      "codigo": "1000015-B",
+      "nombre": "Probabilidad fundamental",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Objetivo de formación: Iniciar el desarrollo del pensamiento probabilístico en la formación profesional del estudiante ofreciéndole tanto una sintaxis inicial del lenguaje estadístico como una sintaxis formal de la probabilidad. Objetivos pedagógicos: El"
+    },
+    {
+      "codigo": "1000013-B",
+      "nombre": "Probabilidad y estadística fundamental",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015734",
+      "nombre": "Programación de computadores",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. OBJETIVOS Con el curso de programación de computadores se espera que un estudiante este en capacidad de:  Reconocer problemas a los que se les puede dar solución mediante un algoritmo Aplicar una metodología sistemática para su solución.  Especificar algoritmos de manera precisa utilizando conceptos y elementos de programación.  Implementar la solución algorítmica mediante un lenguaje de programación como Python. Aprende a programar, como aprender a nadar, es un proceso de aprendizaje activo que solo se logra si el estudiante trata de programar, es decir, aprender a programar depende en gran parte de la motivación y trabajo activo del estudiante. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la exlicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2016375",
+      "nombre": "Programación orientada a objetos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. Sin embargo, para que ellos cumplan con estas funciones, es necesario programarlos: decirles qué hacer y cómo hacerlo. Esto se hace mediante la especificación de un algoritmo (una secuencia finita de pasos bien definida) en un lenguaje de programación como Python, C++ y/o Java Script. OBJETIVOS  Uno de los enfoques más usados en la actualidad es la programación orientada por objetos (POO). Con el curso de programación orientada por objetos se espera que un estudiante este en capacidad de: Identificar objetos, clases e instancias en la descripción de un problema.  Abstraer mediante métodos y atributos los mismos. Establecer relaciones de herencia, polimorfismo, colaboración, composición entre ellos.  Aplicar una metodología sistemática de POO para la solución de problemas algorítmicos. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la explicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2024048",
+      "nombre": "Regulación de energia",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Con la expedición de las Leyes 142 y 143 de 1994 y luego de la reestructuración del sector eléctrico de la década de los noventa, la intervención del Estado en la prestación de servicios públicos domiciliarios evolucionó de una intervención directa en la propiedad y administración de las empresas de servicios públicos hacia una intervención indirecta a través de la regulación económica de las actividades de la cadena del servicio eléctrico. De esta forma, la regulación económica del servicio es una disciplina necesaria para todos aquellos que se desempeñan directa o indirectamente en el desarrollo de alguna de las actividades reguladas del servicio eléctrico domiciliario o para aquellos que representan los intereses de los consumidores de energía eléctrica. El curso incluye un recorriedo por la regulación económica de ls actividades competitiva, como los mercados de corto plazo, de contratos, de energía firme y de intercambios internacionales. Posteriormente el curso presenta las base de la regulación de monopolios y su aplicación a la regulación del Sistema Nacional de Transmisión y al Sistema de Distribución. Adicionalmente, se incluye el análisis del mercado minorista de electricidad, la relación entre los mercados eléctricos y los mercados de gas natural, y el futuro del sector eléctrico en temas como la medición inteligente, la gestión de la demanada, la inserción de las energías renovables."
+    },
+    {
+      "codigo": "2016609",
+      "nombre": "Seguridad industrial",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "La asignatura busca formar personas integrales con conocimientos particulares que aporten en la medida de sus capacidades a mejorar las condiciones de seguridad y salud de los trabajadores. En este sentido la seguridad Industrial, permitirá al ingeniero en las empresas colombianas, generar mecanismo para la protección de los trabajadores proporcionando soluciones reales y tangibles a las cuestiones propias de la seguridad e higiene industrial, procurando que el trabajador sea cuidadoso de sí mismo y el empresario responsable con la seguridad social y las condiciones de trabajo en sus organizaciones. Al finalizar el curso, el estudiante podrá: Identificar condiciones de trabajo bajo la legislación vigente, Aporta una visión general para evaluar los diferentes factores de riesgo, Ejecutar medidas preventivas y correctivas correspondientes a identificación de los riesgos laborales. Gestionar procesos de Promoción y Prevención concernientes a la Seguridad Industrial. METODOLOGÍA: El desarrollo de los contenidos se hará mediante clases magistrales y videos de apoyo, trabajo individual o en grupo sustentado, participativo y crítico. El desarrollo de la asignatura por su naturaleza, exigen del estudiante su mayor compromiso en el desarrollo de las temáticas. Se parte de la premisa que la lectura comprensiva es el componente de base; el trabajo guiado, participativo es fundamento para un óptimo aprendizaje; así como el desarrollo de la autonomía, la creatividad y la responsabilidad de las partes."
+    },
+    {
+      "codigo": "2016506",
+      "nombre": "Señales y sistemas I",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso de Señales y Sistemas I tiene como objetivos: Conocer y manejar métodos de análisis más generales como las transformadas de Fourier y Laplace, introducir el estudio y manejo de señales dentro del conocimiento de sistemas de transmisión de información y reconocer las características de funcionamiento, análisis y diseño de sistemas de elementos lineales que no varían en el tiempo."
+    },
+    {
+      "codigo": "2016507",
+      "nombre": "Señales y Sistemas II",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El curso de Señales y Sistemas II se enfoca en los sistemas que podemos representar mediante ecuaciones diferenciales o de diferencia y en las señales mediante las cuales se interrelacionan. En otras palabras, se enfoca en el estudio de los sistemas dinámicos continuos y discretos, y de sus señales. El énfasis está puesto en los sistemas lineales."
+    },
+    {
+      "codigo": "2024049",
+      "nombre": "Subestaciones eléctricas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Conocer los elementos constitutivos de la subestación eléctrica de potencia en alta tensión del tipo convencional y las funcionalidades que se involucran en ella para considerar y desarrollar los elementos para su diseño conjuntamente con los aspectos de la especificación de los equipos de potencia que la componen."
+    },
+    {
+      "codigo": "2021185",
+      "nombre": "Suficiencia por Acogimiento al Acuerdo 032",
+      "creditos": 12,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016863",
+      "nombre": "Taller de ingeniería",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016862",
+      "nombre": "Taller de ingeniería eléctrica",
+      "creditos": 2,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Este curso es un primer acercamiento al ejercicio práctico de la ingeniería eléctrica; es decir, es un primer acercamiento al uso de los equipos necesarios para transformar y aprovechar la energía eléctrica. Durante el curso se reflexionará sobre elementos generales de la Ingeniería, alrededor de preguntas tales como: - ¿Cómo se interactúa con la electricidad? - ¿Cómo se puede aprovechar la energía eléctrica? - ¿Cómo se desarrolla un producto de ingeniería? - ¿Cómo se logra que un equipo de trabajo funcione eficazmente? Objetivos de aprendizaje - Comprender los riesgos asociados al uso y aplicación de la energía eléctrica dentro del contexto de un laboratorio e interpretar esos riesgos en equipos e instalaciones reales. - Reconocer las variables físicas básicas asociadas a la ingeniería eléctrica. - Identificar los principios de funcionamiento, uso y operación de elementos propios del laboratorio: fuentes, protoboards, equipos de medida, osciloscopio, generador de señales. - Definir problemas asociados al diseño y elaboración de productos tecnológicos básicos. Formular soluciones a esos problemas. - Montar y probar circuitos simples en el laboratorio. - Explicar el proceso genérico de Concepción, Diseño, Implementación y Operación de sistemas en un contexto empresarial y social. - Identificar y usar habilidades interpersonales y de trabajo en equipo que se requieren para el ejercicio profesional de la ingeniería."
+    },
+    {
+      "codigo": "2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El Taller de Proyectos Interdisciplinarios es una asignatura común para varios programas curriculares de la Facultad de Ingeniería que pretende promover el trabajo en equipo e interdisciplinario de los estudiantes, en torno a la solución de problemas en"
+    },
+    {
+      "codigo": "2016866",
+      "nombre": "Trabajo de Grado",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016867",
+      "nombre": "Trabajo de Grado - Asignaturas de Posgrado",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016865",
+      "nombre": "Transmisión y Distribución",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Esta asignatura permite conocer y aplicar los fundamentos del modelamiento y diseño eléctrico de redes de distribución y líneas de transmisión de energía, así como el detalle los elementos que las constituyen; y adquirir conocimiento de las características y diseño del aislamiento de este tipo de infraestructura."
+    },
+    {
+      "codigo": "2015159",
+      "nombre": "Variable compleja",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "La asignatura de Variable Compleja tiene como propósito proporcionar herramientas matemáticas avanzadas para el estudio y análisis de fenómenos modelados mediante funciones complejas. Su enfoque combina el rigor teórico con aplicaciones concretas en matemáticas, ingeniería y ciencias aplicadas, permitiendo al estudiante comprender cómo conceptos abstractos pueden utilizarse para resolver problemas reales. La asignatura es valiosa para estudiantes de distintas carreras porque fortalece capacidades de razonamiento lógico, modelación, análisis de sistemas y resolución de problemas complejos, competencias ampliamente demandadas en contextos científicos, tecnológicos y profesionales. El curso desarrolla conocimientos relacionados con números complejos, funciones holomorfas, integración compleja, series de Taylor y Laurent, singularidades, teorema de los residuos y transformaciones conformes. A través de estos contenidos, el estudiante fortalece habilidades de análisis matemático, argumentación rigurosa, abstracción y construcción de modelos. Más allá de su aplicación disciplinar, la asignatura fortalece habilidades útiles para la vida profesional y académica, como la capacidad de razonamiento abstracto, el análisis crítico, la resolución sistemática de problemas y la comunicación rigurosa de ideas. Para el adecuado desarrollo de la asignatura se recomienda haber aprobado cursos de cálculo en varias variables y contar con bases sólidas en álgebra, cálculo diferencial e integral y manejo básico de demostraciones matemáticas. No se requieren conocimientos previos específicos en análisis complejo. Se sugiere que el estudiante haya avanzado al menos un 40 % de su plan de estudios en programas con componente matemático significativo, de manera que cuente con la madurez académica necesaria para abordar los contenidos teóricos y aplicados del curso."
+    }
+  ],
+  "malla": [
+    {
+      "id": "electrica:pos:1:1000004",
+      "nombre": "Cálculo diferencial",
+      "codigoAsignatura": "1000004-B",
+      "semestre": 1,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:1:2015734",
+      "nombre": "Programación de computadores",
+      "codigoAsignatura": "2015734",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:1:2016856",
+      "nombre": "Introducción a ingeniería eléctrica",
+      "codigoAsignatura": "2016856",
+      "semestre": 1,
+      "creditos": 5,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:1:2016862",
+      "nombre": "Taller de ingeniería eléctrica",
+      "codigoAsignatura": "2016862",
+      "semestre": 1,
+      "creditos": 2,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:2:1000005",
+      "nombre": "Cálculo Integral",
+      "codigoAsignatura": "1000005-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:2:1000003",
+      "nombre": "Álgebra Lineal",
+      "codigoAsignatura": "1000003-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:2:1000019",
+      "nombre": "Fundamentos de mecánica",
+      "codigoAsignatura": "1000019-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:3:1000006",
+      "nombre": "Cálculo en varias variables",
+      "codigoAsignatura": "1000006-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:3:1000007",
+      "nombre": "Ecuaciones Diferenciales",
+      "codigoAsignatura": "1000007-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:3:1000017",
+      "nombre": "Fundamentos de electricidad y magnetismo",
+      "codigoAsignatura": "1000017-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:3:1000040",
+      "nombre": "Introducción a la ciencia de materiales",
+      "codigoAsignatura": "1000040-B",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:3:2016489",
+      "nombre": "Circuitos Eléctricos I",
+      "codigoAsignatura": "2016489",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:4:2015159",
+      "nombre": "Variable compleja",
+      "codigoAsignatura": "2015159",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:4:1000020",
+      "nombre": "Fundamentos de oscilaciones, ondas y óptica",
+      "codigoAsignatura": "1000020-B",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:4:1000021",
+      "nombre": "Fundamentos de mecánica de fluidos",
+      "codigoAsignatura": "1000021-B",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:4:2016845",
+      "nombre": "Mecánica para Ingeniería",
+      "codigoAsignatura": "2016845",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:4:2016495",
+      "nombre": "Electrónica análoga I",
+      "codigoAsignatura": "2016495",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:5:2016487",
+      "nombre": "Campos electromagnéticos",
+      "codigoAsignatura": "2016487",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:5:2016506",
+      "nombre": "Señales y sistemas I",
+      "codigoAsignatura": "2016506",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:5:2016490",
+      "nombre": "Circuitos Eléctricos II",
+      "codigoAsignatura": "2016490",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:5:2016498",
+      "nombre": "Electrónica digital I",
+      "codigoAsignatura": "2016498",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:6:2016507",
+      "nombre": "Señales y Sistemas II",
+      "codigoAsignatura": "2016507",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:6:2016494",
+      "nombre": "Conversión Electromagnética",
+      "codigoAsignatura": "2016494",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:6:2016865",
+      "nombre": "Transmisión y Distribución",
+      "codigoAsignatura": "2016865",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:7:2015703",
+      "nombre": "Ingeniería económica",
+      "codigoAsignatura": "2015703",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:7:2016863",
+      "nombre": "Taller de ingeniería",
+      "codigoAsignatura": "2016863",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:7:2016493",
+      "nombre": "Control",
+      "codigoAsignatura": "2016493",
+      "semestre": 7,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:7:2016861",
+      "nombre": "Introducción a los sistemas de energía eléctrica",
+      "codigoAsignatura": "2016861",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:7:2017003",
+      "nombre": "Instalaciones eléctricas",
+      "codigoAsignatura": "2017003",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:8:2016851",
+      "nombre": "Análisis de Sistemas de Potencia",
+      "codigoAsignatura": "2016851",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:9:2024049",
+      "nombre": "Subestaciones eléctricas",
+      "codigoAsignatura": "2024049",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:9:2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "codigoAsignatura": "2024045",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:10:2016866",
+      "nombre": "Trabajo de Grado",
+      "codigoAsignatura": "2016866",
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "electrica:pos:0:1000001",
+      "nombre": "Matemáticas Básicas",
+      "codigoAsignatura": "1000001-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación: no se suma al plan curricular principal."
+    },
+    {
+      "id": "electrica:pos:0:1000002",
+      "nombre": "Lecto-Escritura",
+      "codigoAsignatura": "1000002-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación: no se suma al plan curricular principal."
+    },
+    {
+      "id": "electrica:pos:0:1000044",
+      "nombre": "Inglés I- Semestral",
+      "codigoAsignatura": "1000044-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación: no se suma al plan curricular principal."
+    },
+    {
+      "id": "electrica:pos:0:1000045",
+      "nombre": "Inglés II - Semestral",
+      "codigoAsignatura": "1000045-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación: no se suma al plan curricular principal."
+    },
+    {
+      "id": "electrica:pos:0:1000046",
+      "nombre": "Inglés III - Semestral",
+      "codigoAsignatura": "1000046-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación: no se suma al plan curricular principal."
+    },
+    {
+      "id": "electrica:pos:0:1000047",
+      "nombre": "Inglés IV- Semestral",
+      "codigoAsignatura": "1000047-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación: no se suma al plan curricular principal."
+    },
+    {
+      "id": "electrica:pos:1:libre-eleccion:1",
+      "nombre": "Libre elección (1)",
+      "codigoAsignatura": null,
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:2:libre-eleccion:2",
+      "nombre": "Libre elección (2)",
+      "codigoAsignatura": null,
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:5:optativa-sin-asignatura-especificada:3",
+      "nombre": "Optativa sin asignatura especificada (1)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:6:libre-eleccion:4",
+      "nombre": "Libre elección (3)",
+      "codigoAsignatura": null,
+      "semestre": 6,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:6:optativa-sin-asignatura-especificada:5",
+      "nombre": "Optativa sin asignatura especificada (2)",
+      "codigoAsignatura": null,
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:8:libre-eleccion:6",
+      "nombre": "Libre elección (4)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:8:libre-eleccion:7",
+      "nombre": "Libre elección (5)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:8:optativa-sin-asignatura-especificada:8",
+      "nombre": "Optativa sin asignatura especificada (3)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:8:optativa-sin-asignatura-especificada:9",
+      "nombre": "Optativa sin asignatura especificada (4)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 2,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:9:libre-eleccion:10",
+      "nombre": "Libre elección (6)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:9:optativa-sin-asignatura-especificada:11",
+      "nombre": "Optativa sin asignatura especificada (5)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:9:optativa-sin-asignatura-especificada:12",
+      "nombre": "Optativa sin asignatura especificada",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:10:libre-eleccion:13",
+      "nombre": "Libre elección (7)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:10:libre-eleccion:14",
+      "nombre": "Libre elección (8)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "electrica:pos:10:libre-eleccion:15",
+      "nombre": "Libre elección",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    }
+  ],
+  "requisitos": {
+    "prerrequisitos": [],
+    "minimosCreditos": []
+  },
+  "oferta": [],
+  "agrupaciones": [],
+  "exclusionesAgrupacion": [],
+  "configuracion": {
+    "calendario": {
+      "dias": [
+        {
+          "id": "L",
+          "nombre": "Lunes",
+          "corto": "Lun"
+        },
+        {
+          "id": "M",
+          "nombre": "Martes",
+          "corto": "Mar"
+        },
+        {
+          "id": "X",
+          "nombre": "Miércoles",
+          "corto": "Mié"
+        },
+        {
+          "id": "J",
+          "nombre": "Jueves",
+          "corto": "Jue"
+        },
+        {
+          "id": "V",
+          "nombre": "Viernes",
+          "corto": "Vie"
+        },
+        {
+          "id": "S",
+          "nombre": "Sábado",
+          "corto": "Sáb"
+        }
+      ],
+      "horaInicio": 7,
+      "horaFin": 21
+    },
+    "opciones": {
+      "distanciasDisponibles": [
+        0,
+        1,
+        2
+      ],
+      "distanciasIniciales": [
+        0,
+        1
+      ],
+      "excluirIndirectos": true,
+      "asignaturaInicial": "Cálculo diferencial",
+      "componentesComparables": [
+        "C",
+        "B",
+        "N"
+      ]
+    },
+    "almacenamiento": {
+      "clave": "escenario-personal:electrica"
+    }
+  },
+  "procedencia": {
+    "catalogo": {
+      "descripcion": "eléctrica.txt; complementado únicamente con casillas codificadas de la malla PDF",
+      "fechaCaptura": null
+    },
+    "oferta": {
+      "descripcion": "Oferta y grupos no suministrados; sin información registrada",
+      "fechaCaptura": null,
+      "periodo": null
+    },
+    "malla": {
+      "descripcion": "Malla_Curricular_Electrica.pdf",
+      "version": "acuerdo-121-2021"
+    },
+    "metadatos": {
+      "malla": "Malla_Curricular_Electrica.pdf",
+      "tipologias": "eléctrica.txt",
+      "horarios": "No informados"
+    }
+  }
+}

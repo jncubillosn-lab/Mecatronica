@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.2 · **Estado:** nueve carreras seleccionables, Mecatrónica con datos · **Rama publicada:** `main`
+**Versión pública:** 1.1.3 · **Estado:** nueve carreras seleccionables, nueve carreras con contratos académicos; ocho sin oferta de grupos · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -10,9 +10,9 @@ Aplicación web estudiantil **no oficial** de la Facultad de Ingeniería de la U
 
 ## Selector multicarrera
 
-En la esquina superior izquierda puede elegirse entre **nueve carreras**, con el nombre y el color ya establecidos en `js/identidad.js`. Por ahora **únicamente Mecatrónica tiene datos académicos**; las otras ocho **conservan exactamente las mismas ocho vistas, controles, paneles, marcos y herramientas visuales**, pero su contenido académico permanece vacío y se etiqueta como «sin información». No se crean horarios o estadísticas ficticias.
+En la esquina superior izquierda puede elegirse entre **nueve carreras**, con el nombre y el color ya establecidos en `js/identidad.js`. Ahora los nueve programas tienen un contrato académico propio. Mecatrónica mantiene su oferta de grupos; los otros ocho contienen planes, asignaturas y requisitos parciales, pero **no incluyen grupos ni horarios verificados**. Se conservan las mismas ocho vistas y no se suponen choques de horarios. No se crean horarios o estadísticas ficticias.
 
-La selección se refleja en la URL (`?programa=civil`, `?programa=mecatronica`). `js/programas.js` registra solamente rutas de contratos disponibles, y `js/iniciar.js` carga un contrato normalizado por sesión y valida la identidad antes de iniciar el motor. Un error técnico no se disfraza de ausencia de datos. En un programa sin contrato, `js/app.js` se carga igualmente y reutiliza las mismas vistas con un **contexto de presentación sin datos**, que no es una entrada académica ni genera cálculos. Los botones de edición/importación se muestran deshabilitados. La cuadrícula de horario es únicamente visual, no un calendario confirmado. El escenario personal de Mecatrónica conserva su clave histórica; futuros programas tienen claves propias.
+La selección se refleja en la URL (`?programa=civil`, `?programa=mecatronica`). `js/programas.js` registra solamente rutas de contratos disponibles, y `js/iniciar.js` carga un contrato normalizado por sesión y valida la identidad antes de iniciar el motor. Un error técnico no se disfraza de ausencia de datos. En un programa sin contrato (caso futuro), `js/app.js` se carga igualmente y reutiliza las mismas vistas con un **contexto de presentación sin datos**, que no es una entrada académica ni genera cálculos. Los botones de edición/importación se muestran deshabilitados. La cuadrícula de horario es únicamente visual, no un calendario confirmado. El escenario personal de Mecatrónica conserva su clave histórica; futuros programas tienen claves propias.
 
 ## Qué ofrece
 
@@ -44,13 +44,17 @@ La entrada admite datos faltantes: desconocer un horario, profesor o crédito no
 
 Los escenarios personales se guardan como diferencias sobre la referencia vigente; se pueden importar, exportar y restablecer. El formato actual es `escenario-personal/version:1`, sin lectores de archivos de desarrollo anteriores.
 
-**Multicarrera:** la selección de nueve carreras funciona desde la 1.1.0. Solo existe el contrato operativo de Mecatrónica; las demás no tienen archivos académicos y no generan cálculos hasta que haya datos normalizados reales.
+**Multicarrera:** la selección de nueve carreras funciona desde la 1.1.0. Hay nueve contratos normalizados: Mecatrónica tiene oferta de grupos, mientras que las otras ocho carreras contienen inicialmente malla y catálogo sin oferta de horarios. No se asumen horarios, combinaciones ni cifras de capacidad.
 
 ## Contratos independientes y correcciones de datos
 
 Cada carrera con datos reales dispone de su propio contrato `datos/programas/<id>/academico.json`; no se fabrican archivos académicos para carreras sin información. El navegador solicita **solo el contrato de la carrera elegida**, verifica `programa.id` y conserva la estructura de las ocho vistas cuando la carrera no tiene fuente. Para activar una nueva carrera se agrega su ruta a `js/programas.js` tras validar el contrato. Ningún lector ni cálculo cambia según el nombre de la carrera.
 
 Las correcciones excepcionales verificadas se mantienen **fuera de la ejecución web**, en `data/programas/<id>/ajustes.json`. El comando `node scripts/aplicar-ajustes-academicos.js mecatronica --verificar` comprueba que los ajustes estén incorporados en el contrato publicado; con `--aplicar` los incorpora por identificador y solo modifica ese contrato. No lee fuentes institucionales en el navegador ni escribe escenarios personales. Cualquier cambio exige pruebas, versionado y publicación. La guía está en [DAT-01 — contratos independientes y ajustes](docs/CONTRATOS-POR-PROGRAMA.md).
+
+## Incorporación inicial de ocho carreras (1.1.3)
+
+Los contratos de Eléctrica, Electrónica, Civil, Agrícola, Sistemas, Industrial, Mecánica y Química se incorporaron en `datos/programas/<id>/academico.json` sin alterar el de Mecatrónica. Sus registros externos `data/programas/<id>/ajustes.json` están vacíos a la espera de correcciones respaldadas. **No contienen oferta de grupos ni horarios**, y los prerrequisitos son incompletos; no usar el resultado de interferencias como evidencia de disponibilidad ni de ausencia real de choques. Ver [informe de calidad de bases iniciales](docs/INFORME-BASES-INICIALES-2026.md).
 
 ## Verificación y publicación
 

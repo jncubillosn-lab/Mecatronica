@@ -13,7 +13,15 @@
   if (!identidad) throw new Error('Falta el catálogo de identidad universitaria');
 
   const fuentes = Object.freeze({
-    mecatronica: 'datos/programas/mecatronica/academico.json'
+    mecatronica: 'datos/programas/mecatronica/academico.json',
+    agricola: 'datos/programas/agricola/academico.json',
+    civil: 'datos/programas/civil/academico.json',
+    electrica: 'datos/programas/electrica/academico.json',
+    electronica: 'datos/programas/electronica/academico.json',
+    industrial: 'datos/programas/industrial/academico.json',
+    mecanica: 'datos/programas/mecanica/academico.json',
+    quimica: 'datos/programas/quimica/academico.json',
+    sistemas: 'datos/programas/sistemas/academico.json'
   });
   const paginas = Object.freeze([
     ['inicio','Inicio'],['inter','Interferencias'],['asig','Asignaturas'],
