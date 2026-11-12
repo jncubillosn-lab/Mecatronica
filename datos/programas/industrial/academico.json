@@ -1,0 +1,796 @@
+{
+  "versionEsquema": 1,
+  "programa": {
+    "id": "industrial",
+    "nombre": "Ingeniería Industrial",
+    "planId": "acuerdo-024-2014"
+  },
+  "componentes": [
+    {
+      "id": "B",
+      "nombre": "Fundamentación",
+      "enPlan": true
+    },
+    {
+      "id": "C",
+      "nombre": "Disciplinar",
+      "enPlan": true
+    },
+    {
+      "id": "L",
+      "nombre": "Libre elección",
+      "enPlan": true
+    },
+    {
+      "id": "N",
+      "nombre": "Nivelación",
+      "enPlan": false
+    }
+  ],
+  "caracteres": [
+    {
+      "id": "obl",
+      "nombre": "Obligatoria"
+    },
+    {
+      "id": "opt",
+      "nombre": "Optativa"
+    }
+  ],
+  "catalogo": [
+    {
+      "codigo": "2015811",
+      "nombre": "Sociología especial: industrial y del trabajo",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2026805",
+      "nombre": "Introducción a la ingeniería industrial",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015734",
+      "nombre": "Programación de computadores",
+      "creditos": 3,
+      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
+      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016615",
+      "nombre": "Taller de invención y creatividad",
+      "creditos": 3,
+      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016375",
+      "nombre": "Programación orientada a objetos",
+      "creditos": 3,
+      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
+      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000019-B",
+      "nombre": "Fundamentos de mecánica",
+      "creditos": 4,
+      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
+      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2026488",
+      "nombre": "Taller de herramientas y problemas en ingeniería industrial",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2027877",
+      "nombre": "Probabilidad fundamental",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA",
+      "rotulo": "FUND. OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000017-B",
+      "nombre": "Fundamentos de electricidad y magnetismo",
+      "creditos": 4,
+      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
+      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2025993",
+      "nombre": "Taller de ciencia y tecnología de materiales",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2025986",
+      "nombre": "Ingeniería económica y análisis de riesgo",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR SIN CARÁCTER CONFIRMADO",
+      "rotulo": "DISCIPLINAR SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016619",
+      "nombre": "Taller de procesos químicos y biotecnológicos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016618",
+      "nombre": "Taller de procesos metalmecánicos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2027878",
+      "nombre": "Inferencia estadística fundamental",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA",
+      "rotulo": "FUND. OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2025987",
+      "nombre": "Modelos estocásticos para procesos de manufactura y sistemas de servicio",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016613",
+      "nombre": "Taller de ergonomía e ingeniería de métodos",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2025988",
+      "nombre": "Taller de simulación de procesos de manufactura y sistemas de servicios",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016609",
+      "nombre": "Seguridad industrial",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR SIN CARÁCTER CONFIRMADO",
+      "rotulo": "DISCIPLINAR SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016614",
+      "nombre": "Taller de ingeniería de la producción",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016616",
+      "nombre": "Taller de metodología de la investigación",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016605",
+      "nombre": "Logística",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016612",
+      "nombre": "Taller de diseño de plantas",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    }
+  ],
+  "malla": [
+    {
+      "id": "industrial:pos:1:2015811",
+      "nombre": "Sociología especial: industrial y del trabajo",
+      "codigoAsignatura": "2015811",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:1:2026805",
+      "nombre": "Introducción a la ingeniería industrial",
+      "codigoAsignatura": "2026805",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:1:2015734",
+      "nombre": "Programación de computadores",
+      "codigoAsignatura": "2015734",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:2:2016615",
+      "nombre": "Taller de invención y creatividad",
+      "codigoAsignatura": "2016615",
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:2:2016375",
+      "nombre": "Programación orientada a objetos",
+      "codigoAsignatura": "2016375",
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:3:1000019",
+      "nombre": "Fundamentos de mecánica",
+      "codigoAsignatura": "1000019-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:3:2026488",
+      "nombre": "Taller de herramientas y problemas en ingeniería industrial",
+      "codigoAsignatura": "2026488",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:3:2027877",
+      "nombre": "Probabilidad fundamental",
+      "codigoAsignatura": "2027877",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:4:1000017",
+      "nombre": "Fundamentos de electricidad y magnetismo",
+      "codigoAsignatura": "1000017-B",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:4:2025993",
+      "nombre": "Taller de ciencia y tecnología de materiales",
+      "codigoAsignatura": "2025993",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:5:2025986",
+      "nombre": "Ingeniería económica y análisis de riesgo",
+      "codigoAsignatura": "2025986",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:5:2016619",
+      "nombre": "Taller de procesos químicos y biotecnológicos",
+      "codigoAsignatura": "2016619",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:5:2016618",
+      "nombre": "Taller de procesos metalmecánicos",
+      "codigoAsignatura": "2016618",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:5:2027878",
+      "nombre": "Inferencia estadística fundamental",
+      "codigoAsignatura": "2027878",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:6:2025987",
+      "nombre": "Modelos estocásticos para procesos de manufactura y sistemas de servicio",
+      "codigoAsignatura": "2025987",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:6:2016613",
+      "nombre": "Taller de ergonomía e ingeniería de métodos",
+      "codigoAsignatura": "2016613",
+      "semestre": 6,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:7:2025988",
+      "nombre": "Taller de simulación de procesos de manufactura y sistemas de servicios",
+      "codigoAsignatura": "2025988",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:7:2016609",
+      "nombre": "Seguridad industrial",
+      "codigoAsignatura": "2016609",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:7:2016614",
+      "nombre": "Taller de ingeniería de la producción",
+      "codigoAsignatura": "2016614",
+      "semestre": 7,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:7:2016616",
+      "nombre": "Taller de metodología de la investigación",
+      "codigoAsignatura": "2016616",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:8:2016605",
+      "nombre": "Logística",
+      "codigoAsignatura": "2016605",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:8:2016612",
+      "nombre": "Taller de diseño de plantas",
+      "codigoAsignatura": "2016612",
+      "semestre": 8,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "industrial:pos:10:trabajo-de-grado",
+      "nombre": "Trabajo de grado",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": "Posición sin código de asignatura identificado en el diagrama."
+    },
+    {
+      "id": "industrial:pos:0:matematicas-basicas",
+      "nombre": "Matemáticas Básicas",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "industrial:pos:0:lecto-escritura",
+      "nombre": "Lecto-Escritura",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "industrial:pos:0:ingles-i",
+      "nombre": "Inglés I",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "industrial:pos:0:ingles-ii",
+      "nombre": "Inglés II",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "industrial:pos:0:ingles-iii",
+      "nombre": "Inglés III",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "industrial:pos:0:ingles-iv",
+      "nombre": "Inglés IV",
+      "codigoAsignatura": null,
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "industrial:pos:2:libre-eleccion:1",
+      "nombre": "Libre elección (1)",
+      "codigoAsignatura": null,
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:3:optativa-sin-asignatura-especificada:2",
+      "nombre": "Optativa sin asignatura especificada (1)",
+      "codigoAsignatura": null,
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:4:optativa-sin-asignatura-especificada:3",
+      "nombre": "Optativa sin asignatura especificada (2)",
+      "codigoAsignatura": null,
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:4:optativa-sin-asignatura-especificada:4",
+      "nombre": "Optativa sin asignatura especificada (3)",
+      "codigoAsignatura": null,
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:5:optativa-sin-asignatura-especificada:5",
+      "nombre": "Optativa sin asignatura especificada (4)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:5:optativa-sin-asignatura-especificada:6",
+      "nombre": "Optativa sin asignatura especificada (5)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:6:optativa-sin-asignatura-especificada:7",
+      "nombre": "Optativa sin asignatura especificada (6)",
+      "codigoAsignatura": null,
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:6:optativa-sin-asignatura-especificada:8",
+      "nombre": "Optativa sin asignatura especificada (7)",
+      "codigoAsignatura": null,
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:6:optativa-sin-asignatura-especificada:9",
+      "nombre": "Optativa sin asignatura especificada (8)",
+      "codigoAsignatura": null,
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:7:optativa-sin-asignatura-especificada:10",
+      "nombre": "Optativa sin asignatura especificada (9)",
+      "codigoAsignatura": null,
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:8:libre-eleccion:11",
+      "nombre": "Libre elección (2)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:8:optativa-sin-asignatura-especificada:12",
+      "nombre": "Optativa sin asignatura especificada (10)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:8:optativa-sin-asignatura-especificada:13",
+      "nombre": "Optativa sin asignatura especificada",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:9:libre-eleccion:14",
+      "nombre": "Libre elección (3)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:9:libre-eleccion:15",
+      "nombre": "Libre elección (4)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:9:libre-eleccion:16",
+      "nombre": "Libre elección (5)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:9:libre-eleccion:17",
+      "nombre": "Libre elección (6)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:10:libre-eleccion:18",
+      "nombre": "Libre elección (7)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:10:libre-eleccion:19",
+      "nombre": "Libre elección (8)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "industrial:pos:10:libre-eleccion:20",
+      "nombre": "Libre elección",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    }
+  ],
+  "requisitos": {
+    "prerrequisitos": [],
+    "minimosCreditos": []
+  },
+  "oferta": [],
+  "agrupaciones": [],
+  "exclusionesAgrupacion": [],
+  "configuracion": {
+    "calendario": {
+      "dias": [
+        {
+          "id": "L",
+          "nombre": "Lunes",
+          "corto": "Lun"
+        },
+        {
+          "id": "M",
+          "nombre": "Martes",
+          "corto": "Mar"
+        },
+        {
+          "id": "X",
+          "nombre": "Miércoles",
+          "corto": "Mié"
+        },
+        {
+          "id": "J",
+          "nombre": "Jueves",
+          "corto": "Jue"
+        },
+        {
+          "id": "V",
+          "nombre": "Viernes",
+          "corto": "Vie"
+        },
+        {
+          "id": "S",
+          "nombre": "Sábado",
+          "corto": "Sáb"
+        }
+      ],
+      "horaInicio": 7,
+      "horaFin": 21
+    },
+    "opciones": {
+      "distanciasDisponibles": [
+        0,
+        1,
+        2
+      ],
+      "distanciasIniciales": [
+        0,
+        1
+      ],
+      "excluirIndirectos": true,
+      "asignaturaInicial": "Sociología especial: industrial y del trabajo",
+      "componentesComparables": [
+        "C",
+        "B",
+        "N"
+      ]
+    },
+    "almacenamiento": {
+      "clave": "escenario-personal:industrial"
+    }
+  },
+  "procedencia": {
+    "catalogo": {
+      "descripcion": "Sin catálogo TXT; registros de asignaturas codificadas tomados únicamente de la malla PDF",
+      "fechaCaptura": null
+    },
+    "oferta": {
+      "descripcion": "Oferta y grupos no suministrados; sin información registrada",
+      "fechaCaptura": null,
+      "periodo": null
+    },
+    "malla": {
+      "descripcion": "MALLA_CURRICULAR_INGENIERIA_INDUSTRIAL_20201027.pdf",
+      "version": "acuerdo-024-2014"
+    },
+    "metadatos": {
+      "malla": "MALLA_CURRICULAR_INGENIERIA_INDUSTRIAL_20201027.pdf",
+      "tipologias": "Clasificación parcial desde malla",
+      "horarios": "No informados"
+    }
+  }
+}

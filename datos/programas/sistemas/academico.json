@@ -1,0 +1,1448 @@
+{
+  "versionEsquema": 1,
+  "programa": {
+    "id": "sistemas",
+    "nombre": "Ingeniería de Sistemas y Computación",
+    "planId": "acuerdo-006-2023"
+  },
+  "componentes": [
+    {
+      "id": "B",
+      "nombre": "Fundamentación",
+      "enPlan": true
+    },
+    {
+      "id": "C",
+      "nombre": "Disciplinar",
+      "enPlan": true
+    },
+    {
+      "id": "L",
+      "nombre": "Libre elección",
+      "enPlan": true
+    },
+    {
+      "id": "N",
+      "nombre": "Nivelación",
+      "enPlan": false
+    }
+  ],
+  "caracteres": [
+    {
+      "id": "obl",
+      "nombre": "Obligatoria"
+    },
+    {
+      "id": "opt",
+      "nombre": "Optativa"
+    }
+  ],
+  "catalogo": [
+    {
+      "codigo": "1000003-B",
+      "nombre": "Álgebra Lineal",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVOS: Asimilar los fundamentos del Algebra Lineal, a nivel elemental, pero con la profundidad necesaria para adquirir los conocimientos y habilidades básicas (capacidad de análisis y de razonamiento lógico - deductivo) para la solución de problemas en las cuales estén involucrados los elementos matemáticos de sistemas de ecuaciones lineales, espacios vectoriales, valores y vectores propios de una matriz y diagonalización de matrices. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2015555",
+      "nombre": "Álgebra lineal básica",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Esta asignatura introduce los fundamentos del álgebra lineal desde una doble perspectiva: algebraica y geométrica. Su valor radica en proporcionar un lenguaje matemático universal ¿vectores, matrices, transformaciones¿ que subyace en la mayoría de las disciplinas científicas, tecnológicas y cuantitativas, permitiendo modelar, analizar y resolver problemas estructurados de manera rigurosa y eficiente. El estudiante desarrollará la capacidad de resolver sistemas de ecuaciones lineales, operar con matrices y determinantes, comprender espacios y transformaciones lineales, calcular valores y vectores propios, y aplicar técnicas de ortogonalización. Estas herramientas fortalecen el pensamiento abstracto, la argumentación lógica y la habilidad para representar fenómenos reales mediante estructuras matemáticas formales. Tipo de asignatura Pregrado. Carácter Fundamental Obligatorio, 4 créditos académicos. Carácter interdisciplinar El álgebra lineal es transversal a Matemáticas, Física, Ingeniería (en todas sus ramas), Economía, Estadística, Ciencias de la Computación e Inteligencia Artificial. Sus conceptos son base directa de cursos como Análisis Numérico, Ecuaciones Diferenciales, Aprendizaje Automático y Procesamiento de Señales. Aplicabilidad práctica Sus aplicaciones son amplísimas: compresión de imágenes digitales, análisis de redes, modelado económico, simulación física, gráficos computacionales y desarrollo de algoritmos de IA. El dominio del álgebra lineal amplía significativamente el perfil profesional del estudiante en entornos donde se procesan y analizan datos. Conocimientos previos El único prerrequisito formal es Matemáticas Básicas (1000001). No obstante, se recomienda haber cursado previamente Cálculo Diferencial en una Variable (2016377) y Fundamentos de Matemáticas (2015168), ya que aportan la madurez matemática necesaria para una comprensión profunda de los contenidos. Se sugiere no tomar esta asignatura en el primer semestre de carrera."
+    },
+    {
+      "codigo": "2016696",
+      "nombre": "Algoritmos",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura del componente fundamental del Programa de Ingeniería de Sistemas y Computación, que contiene los temas pertinentes para el análisis y diseño de algoritmos de manera eficiente para resolver problemas. El objetivo del curso es estudiar los principios fundamentales de la resolución de problemas a través de algortimos informáticos OBJETIVO GENERAL Estudiar los principios fundamentales de la resolución de problemas a través de algortimos informáticos. El curso aborda dos aspectos principales: el análsis de algoritmos y el diseño de algoritmos eficientes. El análisis de algoritmos estudia las herramientas matemáticas que permiten caracterizar la eficacia y eficiencia, en términos de tiempo y memoria, de un algoritmo. El diseño del algoritmo estudia varios tipos de problemas y técnicas para resolverlos de manera eficiente. OBJETIVOS ESPECÍFICOS  Evaluar matemáticamente el desempeño de un algoritmo desde el punto de vista de la eficacia y eficiencia.  Aplicar las principales estrategias de solución de problemas algorítmicos.  Conocer y entender la importancia de problemas \"Fundamentales\" en algoritmia.  Diseñar, desarrollar e implementar soluciones algorítmicas con base en criterios de calidad tales como corrección, eficiencia (temporal y espacial) y simplicidad. METODOLOGÍA El contenido es impartido por el profesor en clase, y los estudiantes desarrollon talleres apoyados por herramientas tecnológicas y aplican los conocimientos adquiridos en un proyecto."
+    },
+    {
+      "codigo": "2027641",
+      "nombre": "Análisis de bases de datos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Esta asignatura tiene como objetivo el estudio teórico de las bases de datos. Se estudian los sistemas gestores para los distintos tipos de bases de datos existentes. En particular se estudian las bases de datos dinámicas y estáticas, y los distintos modelos para representar las bases de datos jerárquicas, de red, transaccionales, relacionales, multidimensionales, orientadas a objetos etc."
+    },
+    {
+      "codigo": "2019072",
+      "nombre": "Análisis numérico I",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Enfoque y propósito Esta asignatura forma puentes entre la matemática teórica y la resolución computacional de problemas reales. Su valor radica en dotar al estudiante de herramientas algorítmicas y analíticas para abordar modelos matemáticos complejos que no tienen solución analítica cerrada, situación frecuente en ciencias e ingeniería. Conocimientos por desarrollar El estudiante aprenderá a construir, analizar e implementar métodos numéricos para: búsqueda de raíces, resolución de sistemas lineales (directos e iterativos), interpolación, integración y diferenciación numéricas, y métodos básicos para ecuaciones diferenciales ordinarias. Se fortalecerán habilidades de programación científica (Python, MATLAB, Julia u otros), pensamiento crítico frente al error y la convergencia, y capacidad de interpretar resultados computacionales con rigor matemático. Tipo de asignatura Pregrado. Carácter disciplinar, 4 créditos académicos. Carácter interdisciplinar Conecta álgebra lineal, análisis real, ecuaciones diferenciales y computación científica. Resulta especialmente valiosa para estudiantes de Matemáticas, Física, Ingeniería (civil, mecánica, eléctrica, industrial), Estadística y Ciencias de la Computación. Aplicabilidad práctica Los métodos estudiados son la base de simulaciones físicas, modelos financieros, aprendizaje automático, análisis estructural y procesamiento de señales, entre otros campos. El estudiante adquiere competencias transferibles a cualquier entorno donde se requiera cálculo aproximado confiable. Conocimientos previos Se requiere haber cursado Introducción al Análisis Real (código 2015155). Se recomienda tener bases sólidas en cálculo diferencial e integral, álgebra lineal y nociones de programación. Idealmente, el estudiante debe contar con al menos un 40¿50 % de avance en su carrera para aprovechar plenamente los contenidos."
+    },
+    {
+      "codigo": "2016697",
+      "nombre": "Arquitectura de computadores",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVO GENERAL Hacer que el alumno adquiera los conocimientos básicos que le permitan entender cuales son los componentes hardware necesario y su respectivo procesamiento de instrucciones para la interconexión en la arquitectura de los computadores de propósito general. OBJETIVOS ESPECÍFICOS: - Conocer los sistemas numéricos más utilizados para el trabajo con maquinas electrónicas digitales. - Conocer la estructura interna de los microprocesadores en especial los suministrados por INTEL y MOTOROLA. - Entender los diagramas de tiempo, relacionados con el acceso a memoria principal. - Analizar el comportamiento de las operaciones realizadas por la ALU. - Diferenciar las funciones de los tres buses externos del procesador. - Analizar y utilizar correctamente las instrucciones más empleadas en el diseño de software. - Escribir cortos programas en lenguaje ensamblador y entender la decodificación de las instrucciones. - Conocer la estructura de comunicación con las diferentes interfaces de E/S. - Conocer los mecanismos de comunicación de un procesador con los diferentes tipos de memorias."
+    },
+    {
+      "codigo": "2025983",
+      "nombre": "Arquitectura de infraestructura y gobierno de tics",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Dentro de los objetivos específicos de la carrera de Ingeniería de Sistemas y Computación, se establece el proporcionar la formación para que el profesional pueda desempeñarse en actividades de asesoría, interventoría, consultoría y auditoría, relacionadas con sistemas informáticos. También se define en el perfil profesional la capacidad de ejercer su profesión en el diseño, implantación, gestión, evaluación y desarrollo de diferentes clases de sistemas o servicios que estén relacionados con el manejo de la información o conocimiento. En consonancia, el programa tiene en cuenta procesos de formación a través del componente profesional en la línea de software y manejo de información. Este es un programa acorde con ese lineamiento curricular. OBJETIVOS 1. Proveer los elementos conceptuales que debe manejar un Director de Sistemas, con las prácticas actuales y pertinentes del estado del arte. 2. Contribuir al desarrollo de las competencias funcionales necesarias para el desempeño de los futuros Ingenieros de Sistemas en los roles de Dirección. 3. Proporcionar al futuro Ingeniero de Sistemas los elementos para planificar, analizar, diseñar, implementar, administrar y evaluar sistemas computacionales, de servicios basados en éstos, sistemas complejos de información y de conocimiento. - METODOLOGÍA En este curso se asume la educación como un proceso de interacción dinámica centrada en los participantes, donde el rol del profesor, además de proveer su experiencia profesional y los elementos conceptuales, se concentra en ser un dinamizador. Desde esta perspectiva, la metodología debe refleja el enfoque propiciando el desarrollo de las competencias propuestas. Se pretende entonces una participación activa y productiva en el desarrollo del curso, a través de: a) exposición magistral, b) talleres para temas seleccionados, c) sustentación y argumentación de los trabajos de proyectos."
+    },
+    {
+      "codigo": "2016716",
+      "nombre": "Arquitectura de Software",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "At the end of the course the students will be able to:  Develop professional skills.  Understand the software architecture concepts.  Practice of architecting through a case study.  Model software architecture through architectural views.  Documenting software architecture using Architecture Description Document.  Take architectural decisions through the conception and use of software architecture styles and software architecture patterns.  Understand main topics of software architecture with respect to quality attributes: interoperability, usability, security, performance, scalability, resilience and availability."
+    },
+    {
+      "codigo": "2016353",
+      "nombre": "Bases de datos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Este curso es una introducción a los sistemas de bases de datos relacionales, que pretende ilustrar conceptos y técnicas asociados con el diseño, implementación y uso de dichos sistemas. OBJETIVO GENERAL Este curso pretende capacitar al estudiante en principios y técnicas que permitan diseñar, implementar y usar un sistema de bases de datos relacional. OBJETIVOS ESPECÍFICOS &#61623; Capacitar al estudiante en la metodología formal del diseño de bases de datos. &#61623; Capacitar al estudiante en las operaciones de algebra relacional implicadas en la manejo de los datos. &#61623; Capacitar al estudiante en instrucciones SQL para el manejo de datos. METODOLOGÍA El contenido es impartido por el profesor en clase, y los estudiantes desarrollan talleres y aplican los conocimientos adquiridos en un proyecto desarrollado durante el semestre."
+    },
+    {
+      "codigo": "1000004-B",
+      "nombre": "Cálculo diferencial",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVOS Estudiar los conceptos de límite y derivada para funciones de una variable real y utilizar estas ideas en la solución de problemas de optimización, trazado de curvas y razones de cambio. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2016377",
+      "nombre": "Cálculo diferencial en una variable",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "En la primera parte del curso de cálculo diferencial en una variable se estudia el conjunto de los números reales y su completez. Luego se estudian los conceptos centrales del curso que son: funciones, límites, continuidad y derivación de funciones. Finalmente, se estudian aplicaciones de la derivada que permiten abordar problemas de trazado de curvas, razones de cambio y problemas que exigen minimizar o maximizar alguna cantidad. Enfoque y propósito: La asignatura aporta las bases necesarias para el estudio del cálculo diferencial (números reales, funciones, límites y derivadas) y para afrontar muchos de los cursos de matemáticas que le siguen (cálculo integral, cálculo vectorial, cálculo de ecuaciones diferenciales ordinarias, análisis real, entre otros). Las aplicaciones de estos conocimientos abarcan las diferentes ramas del saber, por lo que su estudio es valioso para estudiantes de las distintas carreras. El desarrollo del curso no solo ofrece beneficios en el aspecto disciplinar, sino que proporciona a los estudiantes herramientas para organizar sus ideas, justificarlas y formalizarlas en distintos tipos de registros. Además, se fortalece el trabajo en equipo y las habilidades para comunicar ideas entre pares. Conocimientos previos: Matemáticas Básicas* (1000001) (*En caso de que el estudiante haya sido clasificado por el examen de admisión para tomar este curso nivelatorio). Conjuntos, su representación y operaciones. Sistemas numéricos, naturales, divisibilidad, enteros, racionales, reales y sus propiedades. Manejo de expresiones algebraicas, operaciones, factorización de polinomios, solución de ecuaciones e inecuaciones. Geometría elemental, plano cartesiano, rectas, cónicas, identificando cada una de ellas con su ecuación correspondiente. Funciones, clases, propiedades y trigonometría."
+    },
+    {
+      "codigo": "1000006-B",
+      "nombre": "Cálculo en varias variables",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVOS: ¿ Estudiar los conceptos fundamentales del cálculo de funciones de varias variables (límites, continuidad, diferenciación e integración) y los teoremas centrales del Cálculo vectorial (Teoremas de Green, Gauss y Stokes). ¿ Estimular y desarrollar la capacidad de análisis y de razonamiento lógico-deductivo del estudiante. ¿ Capacitar al estudiante para la interpretación, formulación y solución de problemas en las áreas relacionadas con su especialidad en las cuales se haga necesario la aplicación del cálculo de funciones de varias variables y del cálculo vectorial."
+    },
+    {
+      "codigo": "1000005-B",
+      "nombre": "Cálculo Integral",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVOS General ¿ Lograr la apropiación por parte del. estudiante de los conceptos fundamentales del cálculo integral de funciones de una variable real y crear habilidades que le permitan aplicar estos conocimientos en problemas propios de su disciplina y abordar de manera elemental los conceptos de sucesiones y series. Específicos ¿ Conocer y manejar con propiedad el concepto de integral definida de una función real de una variable real y su relación con el concepto de primitiva o antiderivada, para facilitar los cálculos. ¿ Estudiar algunas de las diferentes aplicaciones del concepto de integral. ¿ Adquirir destrezas en el estudio de la convergencia de sucesiones y series"
+    },
+    {
+      "codigo": "2015556",
+      "nombre": "Cálculo integral en una variable",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "La asignatura Cálculo Integral en una Variable es un curso fundamental orientado al estudio de la acumulación, la integral definida y la modelación de fenómenos continuos. Su propósito es desarrollar el razonamiento cuantitativo, la abstracción matemática y la capacidad de análisis, siendo valiosa para estudiantes de ingeniería, ciencias, economía, salud y otras áreas con formación cuantitativa. El curso fortalece habilidades en técnicas de integración, métodos numéricos y aplicaciones geométricas y físicas, además de competencias para modelar y resolver problemas mediante herramientas matemáticas. También fomenta la autonomía, el pensamiento crítico y la capacidad de interpretar información cuantitativa. Está dirigido principalmente a estudiantes de pregrado, aunque puede servir como nivelación en posgrados o apoyo en trabajos de investigación. Su carácter interdisciplinar permite aplicaciones en física, ingeniería, economía, biología, ciencias ambientales y ciencia de datos. En la vida académica y profesional, constituye base para cursos avanzados y para la modelación y análisis de procesos reales. Para cursar la asignatura se requieren conocimientos previos en álgebra, funciones, límites, derivadas y trigonometría, recomendándose un dominio mínimo del 75 % de estos contenidos."
+    },
+    {
+      "codigo": "2015162",
+      "nombre": "Calculo vectorial",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "En esta asignatura se extienden los conceptos estudiados en los cursos de previos de Cálculo en los que las funciones de una variable real y valor real juegan un papel central. Las funciones que se estudian en este curso son los campos escalares, que son funciones de variable vectorial y valor real, y los campos vectoriales, los cuales son funciones a valor vectorial. En el caso de los campos vectoriales, las curvas (funciones de variable real y valor vectorial) juegan un papel importante en todo el curso. Se estudiarán las derivadas de campos escalares y vectoriales así como las integrales dobles y triples de campos escalares y las integrales de línea y de superficie de campos vectoriales. Los operadores rotacional y divergencia de campos vectoriales serán fundamentales para estudiar los teoremas de Green, Gauss y Stokes, que son generalizaciones del Teorema Fundamental del Cálculo. Las aplicaciones en cada uno de los temas del curso le darán sentido a todo el contenido teórico."
+    },
+    {
+      "codigo": "2027642",
+      "nombre": "Compiladores",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Los principales temas que se estudian en este curso son: Traductores de expresiones infijas y postfijas, análisis de lexico, expresiones regulares y máquinas de estado finito. Adicionalmente se estudian las técnicas de análisis sintáctico, verificación semántica, organización de memoria, análisis de lenguajes intermedios, generación de código objeto y optimización de código."
+    },
+    {
+      "codigo": "2016722",
+      "nombre": "Computación paralela y distribuida",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Objetivo general del curso: El estudiante adquirirá habilidades para diseñar, implementar y desplegar sistemas de software paralelos y distribuidos acordes a las necesidades de procesamiento, memoria y desempeño requeridos para la solución de un problema específico."
+    },
+    {
+      "codigo": "2025960",
+      "nombre": "Computación visual",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Brindar una introducción a los conceptos básicos de la computación gráfica y el procesamiento de imágenes, tomando como eje central el estudio del pipeline gráfico presente en diferentes plataformas modernas, que tienen en común la existencia de hardware dedicado para el procesamiento gráfico."
+    },
+    {
+      "codigo": "2016492",
+      "nombre": "Comunicaciones",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Estudio y comprensión de los principios y los sistemas de comunicaciones simples y complejos desde el punto de vista de la teoría de señales como de los bloques funcionales. Se desarrollan dos partes distinguibles de las comunicaciones, los sistemas analógicos y los sistemas digitales. Se inicia con una breve introducción a la teoría de señales y a la teoría de la información, fundamentales en comunicaciones. Se estudian los casos convencionales de modulación analógica AM, PM y FM considerando sus espectros, rendimientos y características esenciales; de manera similar, se abordan los sistemas de comunicación digital con señalización en banda base y posteriormente los diferentes tipos de modulación incluyendo los sistemas de comunicaciones actuales de espectro ensanchado. Finalmente se estudia el ruido y su influencia en los sistemas de comunicaciones."
+    },
+    {
+      "codigo": "2026551",
+      "nombre": "Creación y gestión de empresas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Objetivo : El objetivo del seminario es proporcionar un solido marco teorico para la comprension practica y la creacion de empresa. El seminario introducira un proceso sistematico para desarrollar oportunidades, diseñar nuevos productos y procesos de negocio. Tambien profundizara la compresion de como analizar y manejar la complejidad de un mercado y las fuerzas que lo impulsan. Ademas, el seminario reflexionara sobre las maneras de establecer estructuras, procesos y herramientas organizacionales que esten alineadas con la estrategia empresarial elegida, el entorno empresaril y la cultura emprendedora deseada. El curso ayuda a los estudiantes a adquirir una compresion del espiritu empresarial en el contexto de iniciar una pequeña empresa y para aprender las habilidades necesarias para llevar a cabo eficazmente la actividad empresarial. Para los estudiantes que participan en este programa, el seminario sirve como una plataforma para establecer nuevas empresas innovadoras y nuevos modelos de negocio y los preparara para los proximos desafios como innovador corporativo o empresario. METODOLOGÍA El programa de estudio introducira un enfoque de emprendimiento basado en estas tres areas definidas como \"Talento , Temperamento y Tecnica\". La metodologia del curso se basa principalmente en los aspectos de la planificacion de negocios y sigue como guia los principales pasos del desarrollo de un plan de negocios eficaz. Ademas los estudiantes tendran que hacer proyectos de innovacion que seran acompañaods por el profesro durante el curso. Los proyectos seran ejecutados en equipo con presentaciones intermedias de los resultados actuales."
+    },
+    {
+      "codigo": "2027310",
+      "nombre": "Criptografía",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Enfoque y propósito El curso ofrece una visión rigurosa de la criptografía moderna, distinguiéndose de su predecesora clásica mediante definiciones formales, supuestos precisos y pruebas de seguridad. Se busca que los estudiantes comprendan cómo construir esquemas criptográficos con garantías matemáticas, transformando la disciplina de un arte heurístico a una ciencia aplicada. Conocimientos por desarrollar Seguridad computacional: adversarios acotados, funciones despreciables y cifrado semánticamente seguro. Funciones una¿vía (OWF): teoría básica y avanzada, incluyendo la función universal de Levin. Generadores pseudoaleatorios (PRG) y su uso en cifrados de flujo (LFSR, RC4, Salsa, ChaCha). Funciones pseudoaleatorias (PRF) y construcción GGM. Cifrados de bloque: modos de operación, redes Feistel, DES/AES. Funciones hash criptográficas: resistencia a colisiones, Merkle¿Damgård y Esponja (SHA¿3). Autenticación de mensajes: MACs, HMAC. Firmas digitales y el paradigma Hash¿and¿Sign. Cifrado de clave pública: Rabin, Diffie¿Hellman, RSA, Goldwasser¿Micali. Criptografía post¿cuántica: LWE, problemas de retículos y el algoritmo de Shor. Pruebas de conocimiento nulo: sistemas interactivos y Zero¿Knowledge Proofs. Carácter interdisciplinar Conecta estrechamente con informática, seguridad de la información, teoría de números, análisis numérico y física cuántica. Estudiantes de ingeniería y ciencias pueden beneficiarse al aplicar estos conceptos a protocolos seguros, blockchain y protección de datos. Aplicabilidad práctica Desarrollo de sistemas de comunicación segura (VPN, TLS). Implementación de autenticación y firmas digitales en software financiero y gubernamental. Diseño de protocolos de privacidad y blockchain. Preparación para certificaciones profesionales en ciberseguridad. Conocimientos previos Se requiere dominio de cálculo diferencial e integral, álgebra lineal, probabilidad y programación (Python o Sage)."
+    },
+    {
+      "codigo": "2016028",
+      "nombre": "Diseño, gestión y evaluación de proyectos",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Los proyectos permiten la creación de productos y servicios para la sociedad. Un proyecto aprovecha oportunidades y resuelve problemas, sus productos generan desarrollo y por ende es de vital importancia para el país preparar a sus profesionales en la gerencia de proyectos de tal manera que puedan aportar en el desarrollo de estrategias en entornos de competencia. La adecuada definición, gestión y evaluación de proyectos permite implementar exitosamente ideas, estrategias y/o emprendimientos en cualquier industria o sector de la sociedad. Esto obliga a que los profesionales cuenten con herramientas para formular, desarrollar y gestionar un proyecto. El objetivo principal del curso es enseñar al estudiante cómo gerenciar adecuadamente los proyectos en cualquier campo de la economía. Con este curso la Escuela de Administración de Empresas y Contaduría Pública busca afianzar conocimientos en los participantes para que en su ejercicio profesional contribuyan al desarrollo económico y social a través de proyectos que generen valor al entorno socioeconómico colombiano. Para lograr lo anterior, además de bibliografía especializada, se hará uso de metodologías estándares globales tipo PMI."
+    },
+    {
+      "codigo": "2016498",
+      "nombre": "Electrónica digital I",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Este curso proporciona las bases metodológicas y tecnológicas para el diseño de sistemas digitales. Una vez cursado, el estudiante deberá estar en capacidad de realizar el proceso completo de diseño de un sistema digital complejo, desde su especificación física utilizando herramientas modernas que faciliten su desarrollo."
+    },
+    {
+      "codigo": "2016698",
+      "nombre": "Elementos de computadores",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Asignatura disciplinar del programa de Ingeniería de Sistemas y Computación. Se abarcan técnicas de análsisis y diseño de sistemas digitales, y se estudian circuitos usados habitualmente en el ámbito de la computación electrónica. La asignatura consta de dos grandes bloques en el que se estudian los distintos sistemas digitales en orden creciente de complejidad, partiendo de diseños sencillos hasta llegar a estructuras de relativa complejidad. OBJETIVOS  El objetivo general de las asignaturas es mostrar a los alumnos las principales técnicas de análsis y diseño de sistemas digitales, así como los circuitos usados habitualmente en el ámbito de la computación electrónica.  Conocer las bases de la teoría aritmética digital, las técnicas de codificación digital, los fundamentos teóricos del álgebra de conmutación, dominio de las técnicas de diseño combinacional de circuitos lógicos, los conceptos de memoria y máquinas de estado.  Analizar y diseñar circuitos secuenciales.  Conocer y usar algunos paquetes de software de ayuda al diseño de sistemas digitales. METODOLOGÍA El curso se desarrolla mediante clases magistrales por parte del profesor. Se realizan talleres, ejercicios y presentaciones por parte de los estudiantes. Se realizan evaluaciones y se fomenta el uso de software para el diseño de sistemas digitales."
+    },
+    {
+      "codigo": "2016699",
+      "nombre": "Estructuras de datos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Objetivo del curso: Adquirir conceptos, técnicas y métodos básicos sobre las estructuras de datos fundamentales, que permitan al estudiante la implementación y aplicación eficiente de dichas estructuras en la solución de problemas."
+    },
+    {
+      "codigo": "2016741",
+      "nombre": "Finanzas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "En el curso de Finanzas los alumnos aprenden el papel que desempeña un Gerente Financiero de una Corporación o Compañía en el contexto de la teoría de las finanzas privadas. El Ingeniero que se desempeña a nivel de la Industria o en las Empresas de Servicios debe conocer la teoría de portafolio y de riesgo y aprender a utilizar dichos modelos en el diseño de estrategias corporativas sobre estructura de capital; presupuestación y planeación financiera tanto de corto como de largo plazo. Igualmente debe desempeñarse muy bien en la definición y administración de las políticas de dividendos y de capital de trabajo de la empresa. METODOLOGÍA El curso se enseña a través de la cátedra magistral y uso de la red para cursos virtuales de la UNIVERSIDAD NACIONAL DE COLOMBIA. En la clase magistral el docente explica los conceptos básicos, y suministra ejemplos para que el estudiante asimile los conocimientos adquiridos, de tal forma que individualmente y con la ayuda y utilización de la página virtual del curso, el alumno pueda desarrollar una serie de ejercicios para clarificar dudas o reforzar lo aprendido con el Profesor en el salón de clase."
+    },
+    {
+      "codigo": "2016037",
+      "nombre": "Finanzas avanzadas",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Comprender la Gestión Financiera dentro del contexto organizacional para el diseño e implementación de la estrategia a través de los procesos de planeación, evaluación, selección y gestión de las decisiones de inversión y financiación en ambientes de incertidumbre."
+    },
+    {
+      "codigo": "2016007",
+      "nombre": "Fundamentos de administración",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "La asignatura se aproxima históricamente al desarrollo y evolución de las formas de organización de los seres humanos centrándose en la revolución industrial como fuerza impulsora del surgimiento de las grandes empresas en occidente. Se presenta la noción de individuo en la sociedad moderna como la base fundamental del management. Se estudia el surgimiento de las áreas funcionales y el proceso administrativo como mecanismos de coordinación necesarios para la gestión de las empresas modernas. Se analiza el papel del individuo en las organizaciones y las herramientas que pretenden mejorar su desempeño en los procesos de toma de decisiones y ejecución de acciones orientadas a alcanzar objetivos. Finalmente, se muestra la manera como estos conocimientos y herramientas se organizan en las denominadas escuelas del pensamiento administrativo, así como las discusiones sobre el estatus epistemológico de la administración en la actualidad."
+    },
+    {
+      "codigo": "1000017-B",
+      "nombre": "Fundamentos de electricidad y magnetismo",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios fundamentales de la electricidad y el magnetismo, así como de las interacciones electromagnéticas presentes en sistemas naturales y tecnológicos. El curso proporciona herramientas conceptuales y matemáticas para comprender fenómenos eléctricos, magnéticos y electromagnéticos esenciales en la formación científica y tecnológica. Durante la asignatura, el estudiante desarrollará habilidades para analizar campos eléctricos y magnéticos, interpretar circuitos básicos, comprender fenómenos de inducción electromagnética y resolver problemas relacionados con cargas, corrientes y potenciales eléctricos. Asimismo, fortalecerá competencias en razonamiento lógico, modelación matemática, análisis experimental y solución de problemas físicos. La asignatura posee un carácter interdisciplinar al relacionarse con áreas como física, ingeniería, telecomunicaciones, electrónica, bioingeniería y ciencias aplicadas, beneficiando a estudiantes interesados en comprender el funcionamiento de múltiples tecnologías contemporáneas. Los contenidos tienen aplicación práctica en sistemas eléctricos, dispositivos electrónicos, telecomunicaciones, instrumentación científica y tecnologías de uso cotidiano, además de aportar herramientas fundamentales para la comprensión de fenómenos físicos presentes en diversos contextos académicos y profesionales. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en física general y matemáticas básicas, especialmente en álgebra y cálculo diferencial. Se sugiere un avance curricular inicial o intermedio para favorecer la apropiación conceptual y matemática de los contenidos."
+    },
+    {
+      "codigo": "2015168",
+      "nombre": "Fundamentos de matemáticas",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "El curso de fundamentos de matemáticas introduce al estudiante en las nociones básicas de lógica proposicional y teoría de conjuntos. Se pretende que un estudiante logré destrezas en la escritura y presentación de resultados con la rigurosidad que las matemáticas exigen. Los estudiantes de careras diferentes de las matemáticas logran establecer conexiones entre las matemáticas y distintos campos de las ciencias. Por ejemplo, los estudiantes pueden ver aplicaciones de la lógica proposicional en la construcción de circuitos eléctricos clásicos, las construcción de palabras con las reglas que proponen los procesos de la lógica proposicional, la teoría de conjuntos, relaciones de orden y de equivalencia permite introducir al estudiante en la construcción de circuitos cuánticos y modelos de grandes lenguajes o modelos de lenguaje extendido que constituyen la piedra fundamental del desarrollo de la IA y la computación cuántica. El estudiante aprende a presentar resultados científicos de forma rigurosa, estas presentaciones incluyen la escritura rigurosa de los hechos observados en un experimento o la interrelación de resultados en matemáticas. La materia la pueden inscribir estudiantes de cualquier carrera que quieran fortalecer capacidades en la escritura de artículos científicos o la presentación científica y rigurosa de trabajos científicos. Las aplicaciones van desde las humanidades hasta las ciencias de la computación incluyendo el campo de la salud teniendo encuentra el rápido crecimiento del uso de la IA en estas áreas del conocimiento. Las aplicaciones contemplan distintas disciplinas que usan la IA como herramienta para su desarrollo. La asignatura introduce al estudiante en la arquitectura de modelos computaciones clásicos y cuánticos así como de modelos de lenguajes de grandes. La asignatura requiere conocimientos introductorios en Geometría, teoría de números, y teoría de conjuntos propios de los que reciben los estudiantes en secundaría."
+    },
+    {
+      "codigo": "1000019-B",
+      "nombre": "Fundamentos de mecánica",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios básicos de la mecánica clásica, proporcionando herramientas para comprender y analizar el movimiento de los cuerpos y las fuerzas que actúan sobre ellos. El curso constituye una base esencial para la formación científica y tecnológica al permitir interpretar fenómenos físicos presentes en diferentes contextos naturales y aplicados. A lo largo de la asignatura, el estudiante desarrollará habilidades para describir movimientos, analizar sistemas dinámicos, interpretar leyes físicas y resolver problemas relacionados con cinemática, dinámica, trabajo, energía y conservación del momento. Asimismo, fortalecerá competencias en razonamiento cuantitativo, pensamiento analítico y modelación matemática de fenómenos físicos. La asignatura tiene un enfoque interdisciplinar al conectarse con áreas como ingeniería, matemáticas aplicadas, ciencias ambientales, astronomía, biomecánica y ciencias computacionales, permitiendo que estudiantes de distintas disciplinas comprendan principios fundamentales del comportamiento de sistemas físicos. Los conocimientos adquiridos tienen aplicación práctica en el análisis de movimientos, diseño y comprensión de sistemas mecánicos, interpretación de fenómenos naturales y desarrollo de soluciones tecnológicas, además de fortalecer capacidades útiles para contextos académicos y profesionales diversos. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en matemáticas básicas y nociones introductorias de física. Se sugiere un nivel inicial de avance curricular que facilite la apropiación gradual de los conceptos y herramientas del curso."
+    },
+    {
+      "codigo": "2015702",
+      "nombre": "Gerencia y gestión de proyectos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Objetivos: El curso busca preparar al futuro ingeniero en las metodologías de formulación, evaluación y gestión de proyectos, como una de las actividades habituales que desempeñan los ingenieros en entidades públicas o privadas."
+    },
+    {
+      "codigo": "2016600",
+      "nombre": "Gestión tecnológica",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "La gestión tecnológica surge como respuesta a la necesidad de manejar el factor tecnológico como aspecto estratégico en las organizaciones productivas. Inicialmente esta nueva disciplina se enfocó en la administración de la ciencia y la tecnología a través de políticas públicas. Durante las últimas dos décadas del siglo pasado la gestión tecnológica se formuló en sistemas de desarrollo tecnológico como la innovación y la transferencia de tecnología. Actualmente las organizaciones deben ejecutar sus decisiones en forma eficaz y eficiente para responder el ritmo con el cual las tecnologías entran al mercado y para enfrentar los desafíos de los agentes de cambio. La gestión tecnológica ha evolucionado y, si bien retoma las bases y el valor de las etapas anteriores de su desarrollo, hoy se proyecta desde la gestión de la información y su transformación en conocimiento, considerado como impulsor de la productividad y el desarrollo económico del siglo XXI. En este sentido, recientemente se ha venido proponiendo la generación y aplicación de sistemas formalizados de inteligencia, la cual permite generar vectores de conocimiento en la variable tecnológica para la toma de decisiones y el planteamiento de estrategias, aplicable en diferentes entornos productivos. METODOLOGÍA 1. Clases magistrales por parte del profesor. 2. Realización de quices, comprobaciones de lectura y talleres. 3. Desarrollo de un trabajo final práctico"
+    },
+    {
+      "codigo": "2016701",
+      "nombre": "Ingeniería de software I",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Asignatura práctica en la cual el estudiante aprenderá a formular, diseñar, desarrollar y evaluar sistemas de software. OBJETIVOS Al finalizar este curso el estudiante estará en capacidad de:  Formular, desarrollar y evaluar sistemas de software con herramientas estandarizadas.  Estudiar un dominio de problema para recolectar y validar requerimientos para sistemas de software.  Diseñar software utilizando diagramas y escogiendo la arquitectura apropiada.  Comenzar a trabajar en equipos de proyectos de software.  Formular métricas de software para evaluar y probar su software. METODOLOGÍA Asignatura con alto contenido práctico. Los temas se impartirán en clase y se aplocarán en el desarrollo de proyectos a lo largo del semestre. Los proyectos se desarrollan en grupo, y de ser posible se participará en hackatones. Se realizan talleres específicos y parciales."
+    },
+    {
+      "codigo": "2016702",
+      "nombre": "Ingeniería de software II",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVOS ESPECÍFICOS Al final del curso, los estudiantes podrán:  Distinguir claramente entre los procesos de software basados en modelos clásicos y métodos ágiles.  Identificar los conceptos básicos relacionados con el desarrollo web y la forma en que las aplicaciones Web 2.0 funcionan en un entorno real incluyendo soluciones en la nube.  Recordar y reforzar habilidades básicas de trabajo en equipo y valores centrales necesarios para trabajar en el desarrollo de Software en un ambiente real.  Aplicar los conceptos principales de la ingenieróa de software moderna en la práctica desarrollando una aplicación web real con las tecnologías de la industria de hoy, utilizando herramientas de soporte profesional y siguiendo un modelo ágil de proceso definido. METODOLOGÍA En este curso, los estudiantes se organizan en grupos para ejecutar un pequeño proyecto de desarrollo web, siguiendo un proceso ágil basado en la metodología SCRUM, y usando herramientas profesionales para apoyar tanto las actividades técnicas como administrativas. la mayoría de los temas tratados en las sesiones de clase están diseñados para respaldar el desarrollo adecuado del proyecto y proporcionar conocimientos importatnes relacionados con la ingeniería de software que se aplicarán y experimentarán durante el desarrollo de proyecto. Sin embargo, dependiendo del tipo de proyecto, algunas de las necesidades de aprendizaje y capacitación deben ser cubiertas por los integrantes del equipo de manera autónoma."
+    },
+    {
+      "codigo": "2015703",
+      "nombre": "Ingeniería económica",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Suministrar al estudiante de ingeniería en la Universidad Nacional de Colombia los conceptos básicos de la teoría económica que le permitan desarrollar su capacidad de análisis y comprensión de las áreas propias de sus actividades profesionales y en parti"
+    },
+    {
+      "codigo": "2025986",
+      "nombre": "Ingeniería económica y análisis de riesgo",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO Presentar los conceptos fundamentales de la Ingeniería Económica y su importancia en la evaluación de proyectos de ingeniería para la toma de decisiones. METODOLOGIA Exposiciones del profesor.- Ejercicios y aplicaciones de los conceptos a través de talleres en clase y fuera de clase.- Exposiciones de los estudiantes sobre temas específicos.- Uso intensivo de herramientas informáticas de Excel financiero)"
+    },
+    {
+      "codigo": "1000044-B",
+      "nombre": "Inglés I- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de este primer nivel de inglés, puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y que además, puedan expresar de manera oral y escrita información de tipo personal. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "1000048-B",
+      "nombre": "Inglés I- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de este primer nivel de inglés, puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y que además, puedan expresar de manera oral y escrita información de tipo personal. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla.Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brinda (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "1000045-B",
+      "nombre": "Inglés II - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general. Se espera que en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad y secuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñanza y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000049-B",
+      "nombre": "Inglés II - Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general.Se esperaque en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "2023925",
+      "nombre": "Inglés II- Intensivo",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general.Se espera que en términos de comprensión escrita, el estudiante pueda identifi"
+    },
+    {
+      "codigo": "1000046-B",
+      "nombre": "Inglés III - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000050-B",
+      "nombre": "Inglés III- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "2023926",
+      "nombre": "Inglés III-Intensivo",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo"
+    },
+    {
+      "codigo": "2024731",
+      "nombre": "Inglés intensivo I",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de este primer nivel de inglés, puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y que además, puedan expresar de manera oral y escrita información de tipo personal. Los cursos son de carácter presencial y además se espera que el o la estudiante dedique un tiempo al trabajo autónomo en el centro de recursos. Se abordan las cuatro habilidades constitutivas de la competencia comunicativa (comprensión auditiva, expresión oral, expresión escrita y comprensión de lectura) con énfasis en ésta última. Al mismo tiempo se espera que el aprendiente desarrolle su competencia de aprendizaje (aprender a aprender). Metodológicamente, esta asignatura se inscribe en el aprendizaje autónomo de lenguas, en el cual el aprendiente tiene a disposición cuatro modalidades de trabajo: la clase-taller, el trabajo en el Centro de Recursos, el trabajo por proyectos y los encuentros académicos y culturales. Observaciones: Los contenidos de la producción escrita se relacionan con los temas propuestos para gramática y comprensión de lectura y no se explicitan porque se determinan a través de la dinámica del curso. La evaluación de los cursos tiene dos modalidades: Durante el semestre la evaluación es valorativa y evaluativa. Se valora el desempeño de los estudiantes mediante el envío de acticvidades a través de la plataforma virtual, en su presentación de Encuentros Académicos y Culturales y en la realización de los Proyectos. Se hacen por lo tanto reflexiones sobre el proceso de cada estudiante con base en los siguientes criterios"
+    },
+    {
+      "codigo": "1000052-B",
+      "nombre": "Inglés Intensivo I y II",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de los niveles I y II puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Los estudiantes pueden expresar de manera oral y escrita información de tipo personal e información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "2022291",
+      "nombre": "Inglés intensivo II",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2021183",
+      "nombre": "Inglés Intensivo II y III",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": null
+    },
+    {
+      "codigo": "1000053-B",
+      "nombre": "Inglés Intensivo III y IV",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término de este curso intesivo puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Se espera además que los estudiantes puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Tambien participan de manera oral en debates."
+    },
+    {
+      "codigo": "2021184",
+      "nombre": "Inglés Intensivo IV",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2023927",
+      "nombre": "Inglés IV- intensivo",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte"
+    },
+    {
+      "codigo": "1000047-B",
+      "nombre": "Inglés IV- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea."
+    },
+    {
+      "codigo": "1000051-B",
+      "nombre": "Inglés IV- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "2016748",
+      "nombre": "Inteligencia artificial",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2023251",
+      "nombre": "Inteligencia artificial y mini-robots",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Utilizar herramientas de inteligencia artificial y realidad virtual para la conceptualización, modelamiento y control de robots móviles, que le permitan al estudiante explorar campos de aplicación y uso de algoritmos de control en la robótica. Exposicion"
+    },
+    {
+      "codigo": "2025972",
+      "nombre": "Introducción a la criptografía y a la seguridad de la Información",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Este curso busca que los asistentes conozcan los conceptos básicos de la criptografía y la seguridad de la información, los cuales le permitirán aplicarlos de manera práctica en diferentes escenarios tales como la construcción de software seguro, protección de redes de comunicaciones, manejo de llaves privada y públicas, manejo de certificados digitales, manejo de firmas digitales, entre otros."
+    },
+    {
+      "codigo": "2027311",
+      "nombre": "Introducción a la criptografía y a la teoría de información",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Uno de los aspectos básicos de la vida cotidiana actual tiene que ver con la seguridad informática. Esto es, la seguridad que un individuo o compañía debe tener al realizar sus transacciones ya sean financieras o de información a través de la red. El carácter secreto de la clave que debe tener un usuario al pagar bienes y servicios además de la autenticación de su identidad, son ejemplos del tipo de servicios que en este tiempo son requeridos por la sociedad. Es por esto que este curso pretende estudiar los métodos básicos de seguridad informática, Criptoanálisis y Teoría de Shannon"
+    },
+    {
+      "codigo": "2025975",
+      "nombre": "Introducción a la ingeniería de sistemas y computación",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Asignatura de primer semestre que pretende introducir al estudiante a lo que es la Ingeniería de Sistemas y Computación, ilustrar la evolución histórica de la ingeniería y en específico de la ingeniería de Sistemas y Computación. También se busca fortalecer habilidades blandas en los estudiantes. OBJETIVOS El curso sobre Introducción a la Ingeniería de Sistemas y Computación pretende:  Motivar al estudiante y ubicarlo de la mejor manera en las prácticas sociales de las disciplinas que forman la ingeniería y su especialidad en los sistemas de computación.  Facilitar la comprensión de los conceptos desarrollados y de la evolución histórica de la ingeniería y en específico de la ingeniería de Sistemas y Computación.  Brindar elementos para desarrollar habilidades de comunicación oral y escrita, trabajo en equipo, liderazgo y creatividad. METODOLOGÍA Profesores del departamento e invitados, con base en exposiciones magistrales, presentarán los temas más relevantes del curso. Los estudiantes desarrolláran la parte práctica en forma de talleres libres. Los estudiantes deben presentar reportes de su trabajo Los estudiantes desarrollarán un proyecto de aplicación de los conceptos y métodos de Ingeniería de Sistemas y Computación en la solución de un preblema real. Los estudiantes desarrollarán actividades, a lo largo del curso, para el fortalecimiento de habilidades blandas."
+    },
+    {
+      "codigo": "2027631",
+      "nombre": "Introducción a la inteligencia artificial",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Esta asignatura se estudiarán el razonamiento automático, el aprendizaje automático, los agentes autónomos, los sistemas basados en conocimiento y los procesos de percepción de ambientes."
+    },
+    {
+      "codigo": "2015174",
+      "nombre": "Introducción a la teoría de la computación",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Esta materia está dirigida a estudiantes de pregrado de carreras como Ciencias de la Computación, Matemáticas e Ingeniería de Sistemas y Computación. El modelo de cómputo propuesto por Turing es fundamental en la teoría del computador digital, y los conceptos de la teoría de la computación han sido esenciales para el desarrollo de las ciencias de la computación. Dicha teoría analiza modelos abstractos de los dispositivos concretos que llamamos computadoras. A lo largo del curso se exploran diversas estructuras discretas computacionales, como autómatas, gramáticas, expresiones regulares y máquinas de Turing, evaluando su capacidad de cómputo y su vínculo con las gramáticas. Esto aporta al perfil profesional un conocimiento sólido sobre los lenguajes formales, fundamental para entender y crear lenguajes de programación. El contenido resulta muy útil tanto en la vida académica como en la práctica profesional, ya que complementa el desarrollo de software y la creación de compiladores. Se recomienda que el estudiante tenga bases en Fundamentos de Matemáticas y, de manera muy valiosa, un conocimiento previo en matemáticas discretas."
+    },
+    {
+      "codigo": "2026573",
+      "nombre": "Introducción a las ciencias de la computación y a la programación",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Propósito: Introducir al estudiante en los conceptos fundamentales de las Ciencias de la Computación y sus aplicaciones, proporcionando las bases necesarias para abordar con solvencia la resolución de problemas mediante el uso de herramientas computacionales. Asimismo, desarrollar capacidades y habilidades en programación de computadores. Conocimientos por desarrollar: Esta asignatura fortalece en el estudiante habilidades analíticas para el planteamiento y solución de problemas mediante métodos algorítmicos y computacionales. El perfil profesional se verá enriquecido con el desarrollo de destrezas matemáticas y computacionales, proporcionando una estructura analítica sólida para la resolución de problemas. Tipo de estudios a los que está dirigida: Esta asignatura es de pregrado y está orientada a estudiantes de cualquier programa académico que deseen adquirir bases sólidas en programación y construcción de algoritmos computacionales. Carácter interdisciplinar: Debido a la diversidad de herramientas analíticas y computacionales aplicables a la resolución de problemas en distintas áreas, esta asignatura posee un carácter altamente interdisciplinario. Aplicabilidad práctica: Los conocimientos adquiridos en esta asignatura tienen aplicación en múltiples áreas del conocimiento y en diversos contextos profesionales."
+    },
+    {
+      "codigo": "2025995",
+      "nombre": "Introducción a los sistemas inteligentes",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Al finalizar el curso se espera que el estudiante conozca y aplique los fundamentos y algunas metodologías que hacen posible la inteligencia artificial, adquiera habilidades para determinar, describir y usar los principios técnicas que permiten el desarrollo de sistemas inteligentes."
+    },
+    {
+      "codigo": "1000002-B",
+      "nombre": "Lecto-Escritura",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo de este curso nivelatorio es cualificar la competencia argumentativa de los estudiantes, en lectura y escritura, por medio de la apropiación de estrategias de comprensión y expresión. Al finalizar el curso los estudiantes estarán en la capacidad de: - Identificar distintos modos discursivos presentes en un texto argumentativo. - Identificar la estructura argumentativa de un texto: Tesis central o hipótesis, premisas, red de relaciones entre la premisas. - Emitir un juicio de valor en la relación con la estructura identificada. - Identificar las distintas posturas que origina la argumentación contenida en el texto. - Construir un texto que tenga una estructura argumentativa."
+    },
+    {
+      "codigo": "2025966",
+      "nombre": "Lenguajes de programación",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Asignatura del componente disciplinar del Programa de Ingeniería de Sistemas y Computación, pretende forma en el estudiante la capacidad de analizar, diseñar e implementar un lenguaje de programación en el marco de un sistema automático de procesamiento de lenguaje. OBJETIVOS  Formar en el estudiante la capacidad de analizar, diseñar e implementar un lenguaje de programación en el marco de un sistema automático de procesamiento de lenguaje.  Aplicar los conceptos fundamentales de la teoría de la computación en el diseño de lenguajes de programación.  Conocer, desde una perspectiva histórica, el desarrollo de los diferentes lenguajes de programacióm y de los paradigmas de programación.  Determinar la estructura y el funcionamiento de un analizador léxico, sintáctico y semántico.  Aplicar metodologías para el desarrollo de analizadores léxicos, sintácticos y semánticos mediante el uso de herramientas de software.  Adquirir habilidades para desarrollar herramientas computacionales de procesamiento de lenguajes de programación como compiladores, traductores e intérpretes en diversas áreas de conocimiento. METODOLOGÍA Clases magistrales, exposiciones de estudiantes y prácticas. Conceptos Previos Introducción a la Teoría de la Computación Estructuras de Datos"
+    },
+    {
+      "codigo": "1000001-B",
+      "nombre": "Matemáticas Básicas",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "OBJETIVOS: Generales ¿ Brindar al estudiante los fundamentos conceptuales para abordar los cursos posteriores que requieran la matemática básica. ¿ Promover a través de los talleres, una participación activa del estudiante en su proceso de aprendizaje matemático. ¿ Generar un espacio y tiempo más adecuados para que el estudiante madure e interiorice los conocimientos adquiridos. Específicos ¿ Presentar elementos básicos de lógica que permitan al estudiante incorporar formalismo y validez a sus argumentos. ¿ Desarrollar habilidades básicas para el manejo de operaciones aritméticas y entre conjuntos ¿ Lograr un manejo adecuado de las expresiones algebraicas. ¿ Familiarizar al alumno con la noción de función, su representación gráfica e interpretación, y trabajar con algunas funciones fundamentales tales como las lineales, cuadráticas, exponenciales, logarítmicas y trigonométricas. ¿ Repasar elementos de la geometría euclidiana básica y de la trigonometría elemental. ¿ Hacer una introducción a los métodos de conteo."
+    },
+    {
+      "codigo": "2025963",
+      "nombre": "Matemáticas discretas I",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO GENERAL El propósito de este curso es ofrecer al estudiante de ingeniería de sistemas algunos temas y técnicas de razonamiento matemático que son de naturaleza discreta y en muchos casos finita. De igual forma se busca que el alumno desarrolle destrezas en la forma de definir, describir y usar las matemáticas Discretas en la representación y solución de problemas de ingeniería de sistemas. La solución incluye algoritmos específicos."
+    },
+    {
+      "codigo": "2025964",
+      "nombre": "Matemáticas discretas II",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "La asignatura Matemáticas Discretas II es un curso de pregrado de carácter interdisciplinar que fortalece el razonamiento lógico y la capacidad de modelar problemas de naturaleza discreta, fundamentales en ciencias exactas, ingeniería y áreas aplicadas como la informática y la economía. Su propósito es brindar al estudiante herramientas matemáticas para definir, describir y resolver problemas computacionales mediante estructuras algebraicas, teoría de números, ecuaciones en diferencias y teoría de juegos, integrando además algoritmos específicos que potencian la capacidad de análisis y solución. El curso desarrolla competencias en: ¿ Habilidades analíticas: razonamiento abstracto, identificación de patrones y construcción de modelos discretos. ¿ Destrezas técnicas: manejo de aritmética modular, aplicación del algoritmo de Euclides, resolución de ecuaciones en diferencias y comprensión de equilibrios estratégicos en juegos. ¿ Actitudes profesionales: rigor lógico, pensamiento crítico y capacidad de cooperación en la resolución de problemas. Está dirigido principalmente a estudiantes de pregrado en matemáticas, ingeniería, ciencias de la computación y economía, aunque también resulta valioso como opción de grado para quienes buscan fortalecer su perfil en áreas aplicadas. Su carácter interdisciplinar lo conecta con la criptografía, la estadística, la bioinformática y la teoría de decisiones, beneficiando perfiles diversos que requieren modelar fenómenos discretos. No se requieren conocimientos avanzados previos, aunque se recomienda haber cursado Matemáticas Discretas I o contar con bases sólidas en lógica y álgebra elemental para un mejor aprovechamiento del curso."
+    },
+    {
+      "codigo": "2015970",
+      "nombre": "Métodos numéricos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO GENERAL Capacitar al estudiante en los conceptos fundamentales del análisis numérico para la solución de problemas matemáticos mediante algoritmos numéricos, con la orientación necesaria para su implementación en computador y aplicados a la solución de problemas en ingeniería. OBJETIVOS ESPECÍFICOS - Implementar soluciones a diversos problemas con procedimientos numéricos en el computador, mediante el paquete matemático MATLAB. - Estimular al alumno para crear sus propias soluciones en el computador para resolver problemas particulares. METODOLOGÍA El propósito de este curso es darle apoyo al estudiante de manera que pueda llevar a cabo su proceso de aprendizaje de manera autónoma; este apoyo está representado por: material escrito, desarrollo de talleres y laboratorios, ejercicios teóricos y prácticos, software didáctico y explicaciones por parte de profesores y monitores. Cada módulo temático está conformado por 4 sesiones distribuidas en dos semanas: una conferencia, una clase, un taller y un laboratorio. A continuación se describe cada tipo de sesión."
+    },
+    {
+      "codigo": "2016753",
+      "nombre": "Microcontroladores",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "En las últimas décadas la tecnología de los microcontroladores (MCU) ha avanzado en gran medida generando elementos más pequeños y capaces de funcionar de forma más simple pero a su vez son más capaces, que pueden ir desde una programación simple, a una programación compleja que incorpora elementos de procesamiento y conectividad, para controlar cualquier proceso de la industria o del hogar.  El curso de MCU está organizado en dos actividades principales: la teoría y práctica; con mayor énfasis en la práctica, que es el eje principal de la asignatura, se buscan soluciones a problemas del mundo real haciendo uso de MCU. Se inicia con conceptos simples pero con gran contenido de información, la cual debe ser apropiada por los estudiantes a través de procesos guiados."
+    },
+    {
+      "codigo": "2017293",
+      "nombre": "Modelación matemática",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "En esta asignatura se busca familiarizar al estudiante en la solución de problemas de ingeniería mediante el uso de herramientas matemáticas y computacionales, con énfasis en el proceso de planteamiento, desarrollo y evaluación de modelos matemáticos. Se busca que el estudiante pueda diferenciar entre modelos analíticos, numéricos y observacionales, distinguiendo ventajas y limitantes de cada uno de ellos. Igualmente se desea que el estudiante desarrolle habilidades para la solución de problemas de ingeniería mediante el uso de herramientas matemáticas. La metodología usada es la exposición y análisis del proceso de desarrollo de modelos matemáticos para casos particulares de estudio, y la presentación de los fundamentos matemáticos detrás de dichos modelos."
+    },
+    {
+      "codigo": "2025969",
+      "nombre": "Modelos estocásticos y simulación en computación y comunicaciones",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Generar en los estudiantes un manejo formal de la probabilidad, estadística y los procesos estocásticos, que les permita a través del estudio de distintas estructuras probabiísticas y sistemas computacionales, adquirir las habilidades necesarias para identificar, analizar, modelar y solucionar problemas asociados con sistemas de cómputo y de telecomunicaciones de naturaleza estocástica y dinámica. OBJETIVOS  Generar en los estudiantes un manejo formal de la probabilidad, estadística y los procesos estocásticos, que les permita a través del estudio de distintas estructuras probabiísticas y sistemas computacionales, adquirir las habilidades necesarias para identificar, analizar, modelar y solucionar problemas asociados con sistemas de cómputo y de telecomunicaciones de naturaleza estocástica y dinámica.  Estudiar modelos matemáticos y probabilísticos complejos que permitan describir comportamientos en sistemas de cómputo y telecomunicaciones.  Diseñar experimentos basados en simulación de eventos discretos para estimar medidas de desempeño en sistemas de cómputo y telecomunicaciones.  Proponer metodologías para el análisis de sistemas de cómputo complejos. METODOLOGÍA Clases magistrales, exposiciones de estudiantes y prácticas. Conceptos Previos: Modelos y simulación Optimización"
+    },
+    {
+      "codigo": "2019082",
+      "nombre": "Modelos matemáticos I",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Este curso enseña modelos matemáticos y resolución de problemas estructurados, a través de una serie de problemas cuidadosamente seleccionados de diferentes áreas de aplicación. Está dirigido principalmente a estudiantes con conocimiento básico de cálculo, ecuaciones diferenciales y probabilidad, pero que pueden trabajar en diferentes áreas donde se usan las matemáticas o pueden ser útiles. El curso, por lo tanto, tiene la intención de cerrar la brecha entre los cursos teóricos de matemáticas y aplicaciones relevantes, y de enseñar a usar las matemáticas que ya conoce el estudiante en situaciones reales."
+    },
+    {
+      "codigo": "2025970",
+      "nombre": "Modelos y simulación",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "El curso se desarrolla a través de sesiones presenciales en donde se explican los conceptos básicos, y se comparten ejemplos que ayuden al aprendizaje práctico de las temáticas, con el soporte de lecturas previas que el estudiante realiza para contextualizar el área de estudio. De tal manera que los estudiantes puedan de forma autónoma desarrollar talleres y estudios de caso basados en el material revisado. Se contará con talleres prácticos en el uso de herramientas de software. - Los contenidos, presentaciones y demás material serán publicados en el curso virtual generado por Moodle. OBJETIVOS: - Las asignaciones (trabajos, talleres) deberán ser entregadas en medio magnético o físico de acuerdo con las especificaciones del docente. En el caso del medio magnético las asignaciones deberán ser cargadas directamente a la página de Moodle. - Todas las sesiones se realizarán en salas de cómputo equipadas con las herramientas de software que posee el departamento de Ingeniería de Sistemas e Industrial de la Facultad de Ingeniería de la Universidad Nacional de Colombia Sede Bogotá. - El enfoque investigativo del curso hará necesario el uso de material bibliográfico de las bases de datos disponibles en la Universidad como Science Direct, JStor, Springer, Scielo, entre otras. Requisitos del curso Los informes que se presentarán en el curso deberán ser escritos en LaTex."
+    },
+    {
+      "codigo": "2025971",
+      "nombre": "Optimización",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Los problemas de optimización se plantean muy a menudo en la industria, y la capacidad de resolverlos es una ventaja competitiva. Sin embargo, el modelado de problemas de Optimización requiere herramientas especiales y habilidades. Un problema que no se entiende o se modela incorrectamente puede conducir a la solución equivocada o puede ser muy difícil de resolver. OBJETIVOS Introducir al estudiante en el ambiente de la Investigación de Operaciones entendida ésta como un medio fundamental que soporta una toma acertada de decisiones. Proporcionar las herramientas y conocimientos necesarios para modelar problemas de optimización prácticos y obtener una solución. Propender por el trabajo en equipo y la apropiación de la modelación mediante el uso de talleres de aplicación y estudios de casos. Entender y aplicar el algoritmo Simplex para programación lineal y otros algoritmos para enfrentar y resolver problemas no lineales, enteros, y en estructuras de redes Conocer y aplicar herramientas computacionales (softwares) para resolver modelos de optimización. Capacitar al estudiante en la utilización de diferentes técnicas, algorítmicas y modelos como herramientas para resolver problemas de programación lineal, entera, no lineal, redes, dinámica y de proyectos. AL TERMINAR ESTE CURSO, los alumnos serán capaces de: Identificar los objetivos y las limitaciones basados en las descripciones de los problemas del mundo real. Crear modelos de optimización matemática correspondiente a las descripciones de los problemas. Seleccionar y trabajar a través de una adecuada técnica de solución basada en el tipo de modelo. Utilizar software de optimización para llevar a cabo los análisis; interpretar los resultados. Hacer recomendaciones sólidas basadas en las soluciones, análisis, y las limitaciones de los modelos. Presentar una introducción a las técnicas Meta heurísticas (Opcional) ."
+    },
+    {
+      "codigo": "2016703",
+      "nombre": "Pensamiento sistémico",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVO GENERAL Capacitar al estudiante en una fundamentación conceptual sobre la teoría general de sistemas, presentando diferentes concepciones de ésta, y además los conceptos básicos de lo que es la información. METODOLOGÍA Metodología: El curso es teórico práctico. En la primera parte, los estudiantes realizan trabajos de lecturas y discusión en pequeños grupos. La segunda parte exigirá la construcción de modelos utilizando las definiciones. La tercera parte involucra la construcción de modelos utilizando las diferentes herramientas aplicados a problemas de ingeniería y organizaciones."
+    },
+    {
+      "codigo": "2015178",
+      "nombre": "Probabilidad",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Esta asignatura dispone los elementos de la sintaxis formal de la probabilidad para eventos y variables aleatorias unidimensionales y multidimensionales. Describe los modelos probabilísticos clásicos. Aborda la convergencia y la simulación de variables aleatorias. Se requieren conocimientos de álgebra lineal y de cálculo en varias variables. El estudiante que curse la asignatura y cumpla con las exigencias académicas, podrá: 1. Manejar e interpretar los axiomas y los conceptos fundamentales de la teoría de probabilidad. 2. Reconocer en casos específicos el o los modelos probabilísticos más adecuados en la descripción de una situación real. 3. Fortalecer su formación disciplinar con el pensamiento probabilístico. CONCEPTOS PREVIOS NECESARIOS: Cálculo integral en una variable"
+    },
+    {
+      "codigo": "1000013-B",
+      "nombre": "Probabilidad y estadística fundamental",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015734",
+      "nombre": "Programación de computadores",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. OBJETIVOS Con el curso de programación de computadores se espera que un estudiante este en capacidad de:  Reconocer problemas a los que se les puede dar solución mediante un algoritmo Aplicar una metodología sistemática para su solución.  Especificar algoritmos de manera precisa utilizando conceptos y elementos de programación.  Implementar la solución algorítmica mediante un lenguaje de programación como Python. Aprende a programar, como aprender a nadar, es un proceso de aprendizaje activo que solo se logra si el estudiante trata de programar, es decir, aprender a programar depende en gran parte de la motivación y trabajo activo del estudiante. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la exlicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2016375",
+      "nombre": "Programación orientada a objetos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. Sin embargo, para que ellos cumplan con estas funciones, es necesario programarlos: decirles qué hacer y cómo hacerlo. Esto se hace mediante la especificación de un algoritmo (una secuencia finita de pasos bien definida) en un lenguaje de programación como Python, C++ y/o Java Script. OBJETIVOS  Uno de los enfoques más usados en la actualidad es la programación orientada por objetos (POO). Con el curso de programación orientada por objetos se espera que un estudiante este en capacidad de: Identificar objetos, clases e instancias en la descripción de un problema.  Abstraer mediante métodos y atributos los mismos. Establecer relaciones de herencia, polimorfismo, colaboración, composición entre ellos.  Aplicar una metodología sistemática de POO para la solución de problemas algorítmicos. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la explicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2025967",
+      "nombre": "Redes de computadores",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En este curso se pretende que el estudiante sea capaz de analizar, seleccionar y utilizar los servicios de redes tanto de largo alcance como locales. Además, que adquiera elementos para diseñar e implantar soluciones de diferentes tipos de redes."
+    },
+    {
+      "codigo": "2025982",
+      "nombre": "Sistemas de información",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Los Sistemas de Información corresponden a la integración de soluciones de tecnologías de la información y la dinámica de los negocios para satisfacer las necesidades de información de las empresas, lo que les permite a la empresas alcanzar sus objetivos de una manera eficaz y eficiente, esta disciplina hace hincapié en la información y la tecnología como un instrumento para generar, procesar y distribuir la información. Se concentra en definir estrategias de negocio y arquitecturas empresariales que implementen efectiva y eficientemente las tecnologías de información y comunicaciones generando ventajas competitivas para las organizaciones, en consecuencia esta asignatura proporciona a los futuros Ingenieros de Sistemas y Computación y programas afines el marco conceptual en lo referente a los Sistemas de Información."
+    },
+    {
+      "codigo": "2016053",
+      "nombre": "Sistemas de Información Gerencial",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "La asignatura introduce a los estudiantes en el uso, implementación y gestión estratégica de las tecnologías de la información (TI) en las organizaciones. ¿Qué problema resuelve? Permite comprender que la tecnología va más allá del soporte operativo; es un pilar fundamental para la toma de decisiones, la integración de procesos y la alineación con los objetivos organizacionales. El curso aporta un gran valor al perfil profesional al desarrollar la capacidad de aprovechar las TI para solucionar problemas empresariales complejos. Su aplicabilidad práctica es directa: capacita al estudiante para transformar entornos de trabajo, caracterizar ecosistemas tecnológicos y proponer acciones de mejora viables que impacten la estrategia de la empresa, fomentando al mismo tiempo la autogestión de su propio aprendizaje. Contenido Temático y Metodología A través de un enfoque participativo que combina presentaciones teóricas, resolución de casos, quices y talleres, el curso aborda los siguientes ejes fundamentales: Fundamentos de TI: Apropiación de conceptos básicos asociados a la infraestructura tecnológica, incluyendo hardware, software, redes, bases de datos y aplicaciones empresariales. Caracterización, Análisis y Diseño: Comprensión integral de los Sistemas de Información (SI) para responder eficientemente a las necesidades operativas y directivas de la organización. Proyecto de Intervención (Metodología de Checkland): El núcleo práctico del curso es un trabajo colaborativo enfocado en evaluar un sistema de información dentro de una empresa real. Utilizando la metodología de sistemas suaves de Checkland, los estudiantes diagnostican problemas y sustentan propuestas de mejora tecnológica."
+    },
+    {
+      "codigo": "2015181",
+      "nombre": "Sistemas numéricos",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "La asignatura de Sistemas Numéricos tiene como propósito ofrecer una comprensión estructurada y rigurosa de la construcción de los distintos conjuntos numéricos, desde los números naturales hasta los complejos, resaltando las propiedades algebraicas y lógicas que fundamentan las matemáticas modernas. Su enfoque combina razonamiento abstracto, demostración matemática y resolución de problemas, permitiendo al estudiante desarrollar una visión más profunda de conceptos utilizados cotidianamente en matemáticas, ciencias e ingeniería. El curso desarrolla conocimientos relacionados con operaciones binarias, estructuras algebraicas elementales, axiomas de Peano, inducción matemática, teoría de divisibilidad, construcción de números racionales, reales y complejos, así como teoría básica de polinomios y raíces. A través de estos contenidos, el estudiante fortalece habilidades de demostración matemática, razonamiento deductivo, abstracción y análisis de estructuras formales. La asignatura permite comprender problemas fundamentales asociados con la representación de números, la factorización, la divisibilidad y el comportamiento algebraico de expresiones matemáticas. Sistemas Numéricos posee un carácter interdisciplinar debido a su conexión con áreas como informática, estadística, física, ingeniería y lógica matemática. Los contenidos del curso son especialmente útiles para estudiantes interesados en programación, algoritmos, criptografía, modelación matemática, análisis de datos y fundamentos teóricos de las ciencias computacionales. Para el adecuado desarrollo de la asignatura se recomienda contar con conocimientos básicos de álgebra elemental, aritmética y manejo de expresiones matemáticas adquiridos en cursos introductorios de matemáticas. No se requieren conocimientos avanzados previos en álgebra abstracta o teoría de números."
+    },
+    {
+      "codigo": "2016707",
+      "nombre": "Sistemas operativos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVO GENERAL Adquirir conceptos relacionados con sistemas operativos, teles como estructura, procesos, manejo de memoria, manejo y organización de archivos, y seguridad; que permitan al estudiante el entendimiento y uso adecuado de diferentes sistemas operativos. METODOLOGÍA El contenido es impartido por el profesor en clase, y los estudiantes desarrollan actividades donde aplican el conocimiento adquirido. Conceptos Previos: Arquitectura de Computadores"
+    },
+    {
+      "codigo": "2016615",
+      "nombre": "Taller de invención y creatividad",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "OBJETIVO GENERAL Potencializar la capacidad creativa e inventiva de los estudiantes por medio del conocimiento de metodologías y técnicas para la generación de nuevas ideas con un enfoque de solución de problemas en contextos particulares. OBJETIVOS ESPECÍFICOS Entender los procesos mentales relacionados con la creatividad, comprender los diferentes tipos de creatividad, conocer diferentes tipos de invenciones a lo largo del desarrollo de la humanidad, aprender técnicas para el análisis de problemas, aprender técnicas para el fomento de la creatividad individual y colectiva, apropiar técnicas relacionadas con el pensamiento creativo para materializarlo en invenciones concretas y comprender la relación entre creatividad, invención e innovación. METODOLOGÍA La metodología combina talleres en clase, exposiciones magistrales, conferencias de expertos, visitas a museos, actividades al aire libre, estudios de caso y un proyecto final que compila lo estudiado a lo largo del semestre."
+    },
+    {
+      "codigo": "2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "El Taller de Proyectos Interdisciplinarios es una asignatura común para varios programas curriculares de la Facultad de Ingeniería que pretende promover el trabajo en equipo e interdisciplinario de los estudiantes, en torno a la solución de problemas en"
+    },
+    {
+      "codigo": "2017290",
+      "nombre": "Técnicas de inteligencia artificial",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "El curso está compuesto por tres partes. En la primera se abordan temas relacionados con el proceso de adquisición de imágenes digitales, operaciones de reducción de ruido en imágenes y realce de características, se estudian algunas operaciones realizadas usando morfología matemática en imágenes y, finalmente se estudian técnicas de segmentación basadas en contornos y basadas en regiones. La segunda parte está relacionada con el reconocimiento de patrones, inicialmente se definen las propiedades de las características y se revisan las técnicas de selección y extracción de características, posteriormente se introducen diferentes métodos de clasificación supervisada y no supervisada. La última es una introducción a las redes neuronales artificiales y su uso como clasificadores. A lo largo del curso se debe desarrollar un proyecto donde se apliquen los diferentes conceptos estudiados."
+    },
+    {
+      "codigo": "2016788",
+      "nombre": "Tecnología digital",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2027313",
+      "nombre": "Teoría de Codificación",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Propósito: Introducir al estudiante en los fundamentos de la teoría de codificación y su aplicación en sistemas de transmisión y almacenamiento de información, proporcionando las herramientas matemáticas y computacionales necesarias para el diseño y análisis de códigos detectores y correctores de errores. Conocimientos por desarrollar: Esta asignatura desarrolla competencias en el análisis algebraico y computacional de códigos, así como en el estudio de técnicas para la detección y corrección de errores en sistemas digitales de comunicación. El estudiante fortalecerá habilidades en álgebra discreta, teoría de la información y modelado matemático, aplicadas a problemas de confiabilidad y eficiencia en la transmisión de datos. Tipo de estudios a los que está dirigida: Esta asignatura es de pregrado y está dirigida a estudiantes de programas relacionados con matemáticas, ciencias de la computación, ingeniería electrónica, telecomunicaciones y áreas afines interesados en los fundamentos matemáticos de las comunicaciones digitales. Carácter interdisciplinar: La teoría de codificación integra conceptos de matemáticas, informática, telecomunicaciones y teoría de la información, lo que le confiere un marcado carácter interdisciplinario. Aplicabilidad práctica: Los conceptos estudiados tienen aplicación en comunicaciones digitales, almacenamiento de datos, criptografía, redes de computadores, sistemas satelitales y tecnologías de transmisión de información. Conocimientos previos: Se recomiendan conocimientos básicos de álgebra lineal, Cálculo vectorial y programación."
+    },
+    {
+      "codigo": "2025994",
+      "nombre": "Teoría de la información y sistemas de comunicacion",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Proporcionar un cubrimiento introductorio moderno de un curso tradicional sobre teoría de la información y sistemas de comunicación. El principal objetivo es ayudar a los estudiantes a adquirir las habilidades esenciales, intuitivas y formales, para prepararlos para el estudio de disciplinas tales como teoría avanzada de información, teoría cuántica de la información, comunicaciones ópticas y redes inalámbricas. Específicamente, los estudiantes aprenderán las representaciones matemáticas formales y los métodos de análisis de la teoría de la información y los sistemas de comunicación, adquirirán una comprensión física e intuitica de los temas y la experiencia de la práctica de implementar algunos de los conceptos vistos sobre un computador. OBJETIVOS  Introducir los fundamentos y herramientas matemáticas del análisis y transmisión de señales.  Analizar las señales en el dominio del tiempo y de la frecuencia.  Analizar el proceso de conversión analógica a digital de una señal.  Introducir los principios subyacentes a la transmisión de datos digitales.  Comprender los conceptos fundamentales de la teoría de la información y la codificación de la fuente.  Entender el funcionamiento de los códigos para la detección / corrección de errores. METODOLOGÍA Clases Magistrales. Prácticas de laboratorio en hardware o software de simulación. Evaluaciones teóricas o prácticas. Proyecto final / exposición."
+    },
+    {
+      "codigo": "2016843",
+      "nombre": "Trabajo de grado - asignaturas de posgrado",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2025973",
+      "nombre": "Trabajo de grado - modalidad practica de extensión",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": "Trabajo de grado practica de extensión"
+    },
+    {
+      "codigo": "2025974",
+      "nombre": "Trabajo de grado - modalidad trabajos investigativos",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": "Trabajo de grado modalidad trabajos investigativos"
+    },
+    {
+      "codigo": "1000089-B",
+      "nombre": "Cátedra nacional de inducción y preparación para la vida universitaria",
+      "creditos": 2,
+      "tipologia": "LIBRE ELECCIÓN SIN CARÁCTER CONFIRMADO",
+      "rotulo": "LIBRE ELECCIÓN SIN CARÁCTER CONFIRMADO",
+      "descripcion": null
+    },
+    {
+      "codigo": "2025968",
+      "nombre": "Computación paralela y distribuida",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "descripcion": null
+    }
+  ],
+  "malla": [
+    {
+      "id": "sistemas:pos:1:1000004",
+      "nombre": "Cálculo diferencial",
+      "codigoAsignatura": "1000004-B",
+      "semestre": 1,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:1:2025975",
+      "nombre": "Introducción a la ingeniería de sistemas y computación",
+      "codigoAsignatura": "2025975",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:1:2015734",
+      "nombre": "Programación de computadores",
+      "codigoAsignatura": "2015734",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:1:2016703",
+      "nombre": "Pensamiento sistémico",
+      "codigoAsignatura": "2016703",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:1:1000089",
+      "nombre": "Cátedra nacional de inducción y preparación para la vida universitaria",
+      "codigoAsignatura": "1000089-B",
+      "semestre": 1,
+      "creditos": 2,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:2:1000019",
+      "nombre": "Fundamentos de mecánica",
+      "codigoAsignatura": "1000019-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:2:1000005",
+      "nombre": "Cálculo Integral",
+      "codigoAsignatura": "1000005-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:2:1000003",
+      "nombre": "Álgebra Lineal",
+      "codigoAsignatura": "1000003-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:2:2016375",
+      "nombre": "Programación orientada a objetos",
+      "codigoAsignatura": "2016375",
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:3:1000017",
+      "nombre": "Fundamentos de electricidad y magnetismo",
+      "codigoAsignatura": "1000017-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:3:1000006",
+      "nombre": "Cálculo en varias variables",
+      "codigoAsignatura": "1000006-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:3:2025963",
+      "nombre": "Matemáticas discretas I",
+      "codigoAsignatura": "2025963",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:3:2016353",
+      "nombre": "Bases de datos",
+      "codigoAsignatura": "2016353",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:3:2016698",
+      "nombre": "Elementos de computadores",
+      "codigoAsignatura": "2016698",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:4:1000013",
+      "nombre": "Probabilidad y estadística fundamental",
+      "codigoAsignatura": "1000013-B",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:4:2015703",
+      "nombre": "Ingeniería económica",
+      "codigoAsignatura": "2015703",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:4:2025964",
+      "nombre": "Matemáticas discretas II",
+      "codigoAsignatura": "2025964",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:4:2016699",
+      "nombre": "Estructuras de datos",
+      "codigoAsignatura": "2016699",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:4:2016697",
+      "nombre": "Arquitectura de computadores",
+      "codigoAsignatura": "2016697",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:5:2025970",
+      "nombre": "Modelos y simulación",
+      "codigoAsignatura": "2025970",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:5:2015702",
+      "nombre": "Gerencia y gestión de proyectos",
+      "codigoAsignatura": "2015702",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:5:2025967",
+      "nombre": "Redes de computadores",
+      "codigoAsignatura": "2025967",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:5:2016701",
+      "nombre": "Ingeniería de software I",
+      "codigoAsignatura": "2016701",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:5:2015174",
+      "nombre": "Introducción a la teoría de la computación",
+      "codigoAsignatura": "2015174",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:6:2025971",
+      "nombre": "Optimización",
+      "codigoAsignatura": "2025971",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:6:2025982",
+      "nombre": "Sistemas de información",
+      "codigoAsignatura": "2025982",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:6:2015970",
+      "nombre": "Métodos numéricos",
+      "codigoAsignatura": "2015970",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:6:2016702",
+      "nombre": "Ingeniería de software II",
+      "codigoAsignatura": "2016702",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:6:2016696",
+      "nombre": "Algoritmos",
+      "codigoAsignatura": "2016696",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:6:2016707",
+      "nombre": "Sistemas operativos",
+      "codigoAsignatura": "2016707",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:7:2025969",
+      "nombre": "Modelos estocásticos y simulación en computación y comunicaciones",
+      "codigoAsignatura": "2025969",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:7:2025983",
+      "nombre": "Arquitectura de infraestructura y gobierno de tics",
+      "codigoAsignatura": "2025983",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:7:2025994",
+      "nombre": "Teoría de la información y sistemas de comunicacion",
+      "codigoAsignatura": "2025994",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:7:2016716",
+      "nombre": "Arquitectura de Software",
+      "codigoAsignatura": "2016716",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:7:2025995",
+      "nombre": "Introducción a los sistemas inteligentes",
+      "codigoAsignatura": "2025995",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:7:2025966",
+      "nombre": "Lenguajes de programación",
+      "codigoAsignatura": "2025966",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:8:2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "codigoAsignatura": "2024045",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:8:2025968",
+      "nombre": "Computación paralela y distribuida",
+      "codigoAsignatura": "2025968",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:8:2025972",
+      "nombre": "Introducción a la criptografía y a la seguridad de la Información",
+      "codigoAsignatura": "2025972",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:8:2025960",
+      "nombre": "Computación visual",
+      "codigoAsignatura": "2025960",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": null
+    },
+    {
+      "id": "sistemas:pos:10:trabajo-de-grado",
+      "nombre": "Trabajo de grado",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": "Posición sin código individual de asignatura en el diagrama."
+    },
+    {
+      "id": "sistemas:pos:0:1000001",
+      "nombre": "Matemáticas Básicas",
+      "codigoAsignatura": "1000001-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "sistemas:pos:0:1000002",
+      "nombre": "Lecto-Escritura",
+      "codigoAsignatura": "1000002-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "sistemas:pos:0:1000044",
+      "nombre": "Inglés I- Semestral",
+      "codigoAsignatura": "1000044-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "sistemas:pos:0:1000045",
+      "nombre": "Inglés II - Semestral",
+      "codigoAsignatura": "1000045-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "sistemas:pos:0:1000046",
+      "nombre": "Inglés III - Semestral",
+      "codigoAsignatura": "1000046-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "sistemas:pos:0:1000047",
+      "nombre": "Inglés IV- Semestral",
+      "codigoAsignatura": "1000047-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "sistemas:pos:8:libre-eleccion:1",
+      "nombre": "Libre elección (1)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "sistemas:pos:9:libre-eleccion:2",
+      "nombre": "Libre elección (2)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "sistemas:pos:9:libre-eleccion:3",
+      "nombre": "Libre elección (3)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "sistemas:pos:9:libre-eleccion:4",
+      "nombre": "Libre elección (4)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "sistemas:pos:9:libre-eleccion:5",
+      "nombre": "Libre elección (5)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "sistemas:pos:10:libre-eleccion:6",
+      "nombre": "Libre elección (6)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "sistemas:pos:10:libre-eleccion:7",
+      "nombre": "Libre elección (7)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "sistemas:pos:10:libre-eleccion:8",
+      "nombre": "Libre elección",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    }
+  ],
+  "requisitos": {
+    "prerrequisitos": [],
+    "minimosCreditos": []
+  },
+  "oferta": [],
+  "agrupaciones": [],
+  "exclusionesAgrupacion": [],
+  "configuracion": {
+    "calendario": {
+      "dias": [
+        {
+          "id": "L",
+          "nombre": "Lunes",
+          "corto": "Lun"
+        },
+        {
+          "id": "M",
+          "nombre": "Martes",
+          "corto": "Mar"
+        },
+        {
+          "id": "X",
+          "nombre": "Miércoles",
+          "corto": "Mié"
+        },
+        {
+          "id": "J",
+          "nombre": "Jueves",
+          "corto": "Jue"
+        },
+        {
+          "id": "V",
+          "nombre": "Viernes",
+          "corto": "Vie"
+        },
+        {
+          "id": "S",
+          "nombre": "Sábado",
+          "corto": "Sáb"
+        }
+      ],
+      "horaInicio": 7,
+      "horaFin": 21
+    },
+    "opciones": {
+      "distanciasDisponibles": [
+        0,
+        1,
+        2
+      ],
+      "distanciasIniciales": [
+        0,
+        1
+      ],
+      "excluirIndirectos": true,
+      "asignaturaInicial": "Cálculo diferencial",
+      "componentesComparables": [
+        "C",
+        "B",
+        "N"
+      ]
+    },
+    "almacenamiento": {
+      "clave": "escenario-personal:sistemas"
+    }
+  },
+  "procedencia": {
+    "catalogo": {
+      "descripcion": "sistemas.txt; complementado únicamente con casillas codificadas de la malla PDF",
+      "fechaCaptura": null
+    },
+    "oferta": {
+      "descripcion": "Oferta y grupos no suministrados; sin información registrada",
+      "fechaCaptura": null,
+      "periodo": null
+    },
+    "malla": {
+      "descripcion": "Malla_Plan_de_estudios_estndar_2023.pdf",
+      "version": "acuerdo-006-2023"
+    },
+    "metadatos": {
+      "malla": "Malla_Plan_de_estudios_estndar_2023.pdf",
+      "tipologias": "sistemas.txt",
+      "horarios": "No informados"
+    }
+  }
+}
