@@ -1,6 +1,6 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-**Estado vigente:** 1.1.2. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.3. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -48,3 +48,7 @@ npm test
 Después de una corrección se revisan contenido, integridad de referencias y días/horas, se incrementa la versión pública de los recursos publicados y se verifica GitHub Actions y Pages. El registro de ajustes no sustituye las pruebas académicas ni justifica modificar datos sin evidencia.
 
 **Diferencia importante:** `analizable:false` y la ausencia de horarios son atributos **del contrato académico**. El registro externo sirve para decisiones de corrección, no para inventar combinaciones ni reglas específicas del motor. Los escenarios personales importados/exportados son independientes de ambas capas.
+
+## 4. Bases preliminares habilitadas
+
+Desde 1.1.3 los nueve programas tienen contrato registrado; las ocho bases nuevas son documentales, sin grupos ni horarios ofertados. En todos los casos `data/programas/<id>/ajustes.json` permanece independiente. No añadir datos de oferta sin fuentes verificadas ni rellenar relaciones de prerrequisitos desconocidas. Véase [informe de calidad](INFORME-BASES-INICIALES-2026.md).

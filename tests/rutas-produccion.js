@@ -21,7 +21,7 @@ for(const p of ['datos/programas/mecatronica/academico.json','js/entrada.js','js
 const html=read('index.html'),inicio=read('js/iniciar.js');
 const programas=require('../js/programas.js');
 assert.equal(programas.fuentePara('mecatronica'),'datos/programas/mecatronica/academico.json');
-assert.equal(programas.fuentePara('civil'),null);
+assert.equal(programas.fuentePara('civil'),'datos/programas/civil/academico.json');
 assert(inicio.includes("fetch(rutaAcademica + '?v="));
 assert(!inicio.includes('window.fuentesAcademicas'));
 for(const p of obsoletos)assert(!html.includes(p)&&!inicio.includes(p),

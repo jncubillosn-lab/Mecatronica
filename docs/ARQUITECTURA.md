@@ -2,10 +2,10 @@
 
 > **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.2. **La migración ARQ-01 está terminada y cerrada.**  
 > **Revisión operativa:** 12 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
-> **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, aunque solo Mecatrónica cuenta con datos académicos operativos.  
+> **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, con ocho contratos académicos preliminares adicionales sin oferta de grupos y Mecatrónica con oferta operativa.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
 > **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. La versión 1.0.0 cerró el saneamiento; 1.1.0 incorpora selección multicarrera sin crear fuentes ficticias ni duplicar el núcleo. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
-> **Fuentes de autoridad:** ARQ-01 fija la norma; `datos/programas/mecatronica/academico.json` fija el dato académico vigente; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
+> **Fuentes de autoridad:** ARQ-01 fija la norma; cada `datos/programas/<id>/academico.json` fija los datos académicos de ese programa; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
 
 **Presentación multicarrera (UNI-UI-01):** `js/identidad.js` enumera los nueve nombres y acentos; `js/programas.js` registra solo rutas de contratos disponibles. Los programas sin datos conservan su identidad y navegación, pero no generan escenarios ni cálculos. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
 
@@ -167,7 +167,7 @@ Se mantienen como necesidades **vigentes**:
 - Un escenario personal de diferencias `escenario-personal/version:1`,
   aplicable sobre futuras referencias. No se interpretan snapshots `{S}`
   ni listas `reqCred` completas creadas durante desarrollo.
-- **Multicarrera:** el motor es independiente de Mecatrónica y el selector permite elegir nueve programas. La incorporación de nuevas fuentes académicas sigue pendiente; no se inventan datos de carreras sin contrato.
+- **Multicarrera:** el motor es independiente de Mecatrónica y el selector permite elegir nueve programas. Los nueve programas ya tienen contratos académicos; los ocho nuevos aún no tienen oferta de grupos ni horarios verificables. No se inventan actividades ni choques.
 - **Resiliencia solicitada:** validar integridad técnica, permitir información
   incompleta y prevenir riesgos sin eliminar defensas por no haber vivido
   incidentes. Valorar su costo solo si se demuestra degradación real.
@@ -495,3 +495,9 @@ La única entrada académica **por sesión** sigue siendo `FuentesAcadémicas`, 
 Las correcciones académicas verificadas pueden documentarse en `data/programas/<id>/ajustes.json` y aplicarse **fuera del navegador**, con `scripts/aplicar-ajustes-academicos.js`. Las rutas del registro identifican entidades por propiedades/IDs declarados, no por índices ni parecidos del nombre; el proceso exige el valor anterior para cambios nuevos y rechaza referencias ambiguas. El resultado integrado es **el mismo contrato normalizado** que publica la carrera; el navegador no lee el registro de ajustes ni interpreta un formato adicional. Los ajustes personales de escenarios siguen siendo otra responsabilidad, separada de esta preparación.
 
 Para garantizar el aislamiento, `tests/ajustes-academicos.js` y `tests/multicarrera.js` comprueban el contrato registrado, la independencia por programa y las ocho vistas vacías. La guía de operación de datos está en [DAT-01](CONTRATOS-POR-PROGRAMA.md). Esta organización ejecuta RF-01, RF-02, RC-01, RC-04 y D-31, sin cambiar cálculo, reglas de horario ni representación visual.
+
+## 13. Carga de ocho contratos documentales sin oferta (1.1.3)
+
+Se registran los contratos independientes de `agricola`, `civil`, `electrica`, `electronica`, `industrial`, `mecanica`, `quimica` y `sistemas`, junto al contrato ya operativo de `mecatronica`. Estos primeros ocho contratos incluyen malla y catálogos recuperados de documentación aportada, pero su `oferta:[]` y sus `agrupaciones:[]` se deben a **ausencia de información de grupos**, no a inexistencia de clases, ausencia real de choques o disponibilidad académica confirmada. Los requisitos también son parciales. La interfaz se mantiene compartida sin añadir lectores ni motores de carrera; una sesión sigue cargando un solo contrato con identidad verificada. Véase [informe de calidad de fuentes](INFORME-BASES-INICIALES-2026.md).
+
+Las secciones 10 y 11 documentan el comportamiento histórico y el caso válido de programas todavía no registrados; no describen la disponibilidad actual de estos nueve programas.

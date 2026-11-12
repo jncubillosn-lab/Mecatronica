@@ -2,6 +2,13 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.3 — Bases documentales iniciales de ocho carreras (12 nov 2026)
+
+- Ocho nuevos contratos académicos independientes de Mecatrónica, con catálogos, mallas y requisitos parciales de documentos aportados.
+- Cada contrato se registra por ID en el selector existente; cada sesión lee únicamente una carrera. El motor y el lector normalizado no cambian.
+- No se inventan ofertas ni agrupaciones: las ocho nuevas carreras carecen todavía de horarios de grupos verificables.
+- Se añaden ocho archivos de ajustes independientes y el informe de calidad, se actualizan las pruebas multicarrera y el versionado.
+
 ## 1.1.2 — Contratos independientes por carrera (12 nov 2026)
 
 - La base normalizada de Mecatrónica se traslada **sin modificar sus registros** a `datos/programas/mecatronica/academico.json`. `js/programas.js` resuelve exclusivamente esa ruta y `js/iniciar.js` verifica la identidad antes de cargar las ocho vistas.

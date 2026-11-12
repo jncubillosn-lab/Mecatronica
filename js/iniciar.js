@@ -16,7 +16,7 @@
     // No es un contrato ni se crean escenarios académicos o cálculos.
     window.CONTEXTO_ACADEMICO = programas.contextoSinDatos(seleccionado);
     const script=document.createElement('script');
-    script.src='js/app.js?v=1.1.2';
+    script.src='js/app.js?v=1.1.3';
     script.onerror=()=>programas.mostrarEstado(seleccionado,'error');
     document.body.appendChild(script);
     return;
@@ -25,7 +25,7 @@
   try {
     // Una sola consulta a la ruta declarada. La herramienta externa del SIA
     // no se carga en el navegador y nunca se usa otra carrera como respaldo.
-    const respuesta = await fetch(rutaAcademica + '?v=1.1.2');
+    const respuesta = await fetch(rutaAcademica + '?v=1.1.3');
     if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
     const contrato = await respuesta.json();
     if (contrato?.programa?.id !== seleccionado)
@@ -45,7 +45,7 @@
     };
     // El núcleo y sus ocho vistas arrancan SOLO si existe contrato validado.
     const script = document.createElement('script');
-    script.src = 'js/app.js?v=1.1.2';
+    script.src = 'js/app.js?v=1.1.3';
     script.onerror = () => {
       console.error('No se pudo cargar la interfaz académica');
       programas.mostrarEstado(seleccionado, 'error');
