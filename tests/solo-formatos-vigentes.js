@@ -10,7 +10,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const raiz=path.join(__dirname,'..');
 const read=p=>fs.readFileSync(path.join(raiz,p),'utf8');
-const fuente=JSON.parse(read('datos/academico.json'));
+const fuente=JSON.parse(read('datos/programas/mecatronica/academico.json'));
 const {EntradaAcademica}=require('../js/entrada.js');
 const {EscenarioPersonal}=require('../js/escenarios.js');
 const {fromRaw,compute}=new Function(

@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.1, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
+**Corte de evaluación:** 1.1.2, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras ya son seleccionables; ocho no tienen contrato disponible.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -13,14 +13,14 @@ El sitio es estático, no oficial y ofrece **ocho páginas**: Inicio,
 Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y
 Prerrequisitos.
 
-La entrada normalizada única por sesión se selecciona mediante `js/programas.js`. Actualmente solo Mecatrónica dispone de `datos/academico.json`. `EntradaAcademica`
+La entrada normalizada única por sesión se selecciona mediante `js/programas.js`. Actualmente solo Mecatrónica dispone de `datos/programas/mecatronica/academico.json`. `EntradaAcademica`
 y `fromRaw` proyectan el estado de referencia `S0`; `EscenarioPersonal`
 aplica cambios identificados sobre `S0` para construir `S`. El motor
 calcula resultados completos y los filtros producen consultas `RV/RV0`.
 La presentación y sus filtros no constituyen fuentes académicas.
 
 La versión del esquema académico (`versionEsquema:1`), la del formato
-personal (`version:1`) y la de la página (`1.1.1` en esta intervención)
+personal (`version:1`) y la de la página (`1.1.2` en esta intervención)
 son independientes.
 
 ## 2. Retirada comprobada de responsabilidades sin usuarios
@@ -118,3 +118,9 @@ El procedimiento ejecutable de [MNT-01](MANTENIMIENTO-CONTINUO.md) genera eviden
 ## 8. Corrección de estructuras de las ocho vistas (1.1.1)
 
 Las carreras sin contratos mantienen la misma cabecera y ocho páginas del núcleo: filtros de tipología y unidad, navegación, tarjetas de análisis, cuadrículas vacías, marcos de gráficos, mapas, instrucciones y controles de zoom. Los valores desconocidos aparecen como «—»; no se fabrican grupos, asignaturas, resultados ni simulaciones. El estado visual vacío (`sinDatos:true`) se distingue del contrato y deshabilita edición, guardar e importar. La cuadrícula semanal es una plantilla visual, no información institucional. La aplicación de Mecatrónica conserva todos sus datos y pruebas. La verificación de esta revisión se consulta en CI y en la certificación HTTP posterior a Pages, por separado.
+
+## 9. Contratos independientes por programa (1.1.2)
+
+Mecatrónica usa `datos/programas/mecatronica/academico.json` y las otras ocho carreras siguen sin contrato hasta disponer de información académica verificable. El lector de datos y el motor son comunes. La ruta antigua `datos/academico.json` deja de ser fuente productiva; el contenido se ha trasladado sin reformar los registros. El registro de correcciones `data/programas/mecatronica/ajustes.json` y su aplicador externo no son entradas web. El registro y las pruebas hacen comprobable la identidad de cada contrato, el aislamiento y los requisitos de integridad.
+
+El cambio de ruta requiere verificar CI y la certificación HTTP de GitHub Pages por separado; hasta que esos controles concluyan, la actualización del código no demuestra que el sitio público ya esté actualizado.

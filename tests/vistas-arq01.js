@@ -4,7 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.join(__dirname,'..'), read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const contrato=JSON.parse(read('datos/academico.json'));
+const contrato=JSON.parse(read('datos/programas/mecatronica/academico.json'));
 const {EntradaAcademica}=require('../js/entrada.js');
 const programas=require('../js/programas.js');
 const raw=new EntradaAcademica(contrato).generarEscenarioBase();

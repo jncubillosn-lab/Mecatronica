@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.1 · **Estado:** nueve carreras seleccionables, Mecatrónica con datos · **Rama publicada:** `main`
+**Versión pública:** 1.1.2 · **Estado:** nueve carreras seleccionables, Mecatrónica con datos · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -31,10 +31,10 @@ Los filtros de componente y unidad académica actúan en las ocho páginas sin m
 
 ## Cómo están organizados los datos
 
-La aplicación tiene **una sola entrada académica normalizada**: [`datos/academico.json`](datos/academico.json). La extracción y transformación de las fuentes universitarias se hacen **fuera** del sistema web.
+En cada sesión la aplicación consume **una sola entrada académica normalizada del programa seleccionado**. Para Mecatrónica: [`datos/programas/mecatronica/academico.json`](datos/programas/mecatronica/academico.json). La extracción y transformación de las fuentes universitarias se hacen **fuera** del sistema web.
 
 ```text
-FuentesAcadémicas (datos/academico.json)
+FuentesAcadémicas (datos/programas/<id>/academico.json)
     → EntradaAcademica → referencia S0
     → EscenarioPersonal + diferencias voluntarias → escenario S
     → motor de análisis → consultas filtradas → ocho vistas
@@ -45,6 +45,12 @@ La entrada admite datos faltantes: desconocer un horario, profesor o crédito no
 Los escenarios personales se guardan como diferencias sobre la referencia vigente; se pueden importar, exportar y restablecer. El formato actual es `escenario-personal/version:1`, sin lectores de archivos de desarrollo anteriores.
 
 **Multicarrera:** la selección de nueve carreras funciona desde la 1.1.0. Solo existe el contrato operativo de Mecatrónica; las demás no tienen archivos académicos y no generan cálculos hasta que haya datos normalizados reales.
+
+## Contratos independientes y correcciones de datos
+
+Cada carrera con datos reales dispone de su propio contrato `datos/programas/<id>/academico.json`; no se fabrican archivos académicos para carreras sin información. El navegador solicita **solo el contrato de la carrera elegida**, verifica `programa.id` y conserva la estructura de las ocho vistas cuando la carrera no tiene fuente. Para activar una nueva carrera se agrega su ruta a `js/programas.js` tras validar el contrato. Ningún lector ni cálculo cambia según el nombre de la carrera.
+
+Las correcciones excepcionales verificadas se mantienen **fuera de la ejecución web**, en `data/programas/<id>/ajustes.json`. El comando `node scripts/aplicar-ajustes-academicos.js mecatronica --verificar` comprueba que los ajustes estén incorporados en el contrato publicado; con `--aplicar` los incorpora por identificador y solo modifica ese contrato. No lee fuentes institucionales en el navegador ni escribe escenarios personales. Cualquier cambio exige pruebas, versionado y publicación. La guía está en [DAT-01 — contratos independientes y ajustes](docs/CONTRATOS-POR-PROGRAMA.md).
 
 ## Verificación y publicación
 

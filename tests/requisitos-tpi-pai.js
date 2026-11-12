@@ -6,7 +6,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {EntradaAcademica}=require('../js/entrada.js');
 const {PlanCurricular}=require('../js/modelo.js');
-const d=JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/academico.json'),'utf8'));
+const d=JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/programas/mecatronica/academico.json'),'utf8'));
 const reglas=[
   {nombre:'Taller de Proyectos Interdisciplinarios',id:'mecatronica:pos:taller-de-proyectos-interdisciplinarios',codigo:'2024045',creditos:3,minimo:52},
   {nombre:'Proyecto Aplicado de Ingeniería',id:'mecatronica:pos:proyecto-aplicado-de-ingenieria',codigo:'2017275',creditos:4,minimo:65}

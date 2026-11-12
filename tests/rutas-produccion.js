@@ -15,12 +15,12 @@ const obsoletos=[
   'tests/filtros.js','tests/fuentes.js','tests/verificar.js'
 ];
 for(const p of obsoletos)assert(!exists(p),'Archivo exclusivo de versión anterior: '+p);
-for(const p of ['datos/academico.json','js/entrada.js','js/analisis.js','js/escenarios.js',
+for(const p of ['datos/programas/mecatronica/academico.json','js/entrada.js','js/analisis.js','js/escenarios.js',
   'scripts/normalizar_oferta.py','pruebas/test_normalizador.py','pruebas/fixtures/oferta_mini.txt'])
   assert(exists(p),'Falta módulo vigente o herramienta externa útil: '+p);
 const html=read('index.html'),inicio=read('js/iniciar.js');
 const programas=require('../js/programas.js');
-assert.equal(programas.fuentePara('mecatronica'),'datos/academico.json');
+assert.equal(programas.fuentePara('mecatronica'),'datos/programas/mecatronica/academico.json');
 assert.equal(programas.fuentePara('civil'),null);
 assert(inicio.includes("fetch(rutaAcademica + '?v="));
 assert(!inicio.includes('window.fuentesAcademicas'));

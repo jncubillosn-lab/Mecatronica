@@ -8,7 +8,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const s=read('js/vistas.js'),a=s.indexOf('function idComponenteLibre('),b=s.indexOf('function semHead(s, visibles)');
 assert(a>=0&&b>a,'Los cálculos de la vista están documentados junto a la malla');
 const {idComponenteLibre,proyeccionLibresMalla}=new Function(s.slice(a,b)+'\nreturn {idComponenteLibre,proyeccionLibresMalla};')();
-const fuente=JSON.parse(read('datos/academico.json'));
+const fuente=JSON.parse(read('datos/programas/mecatronica/academico.json'));
 const estado={
   tipos:{componentes:fuente.componentes},
   malla:fuente.malla.map(m=>({n:m.nombre,s:m.semestre,cr:m.creditos,comp:m.componente,idPos:m.id}))

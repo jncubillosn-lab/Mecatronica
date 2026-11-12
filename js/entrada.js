@@ -5,11 +5,11 @@
  *
  * Este módulo NO lee ni convierte archivos de malla, catálogo u oferta originales.
  * Produce una proyección transitoria para las vistas existentes; el contrato que
- * consume siempre es datos/academico.json.
+ * consume siempre es datos/programas/<id>/academico.json.
  */
 class EntradaAcademica {
   /**
-   * @param {object} datos Único contrato normalizado de `datos/academico.json`.
+   * @param {object} datos Único contrato normalizado de `datos/programas/<id>/academico.json`.
    * Valida identidad y forma técnica, no exige completitud institucional.
    * Las colecciones vacías y los valores nulos admitidos son datos legítimos.
    */

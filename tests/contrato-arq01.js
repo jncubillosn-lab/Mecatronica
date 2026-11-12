@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { EntradaAcademica } = require('../js/entrada.js');
 
-const datos = JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/academico.json'),'utf8'));
+const datos = JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/programas/mecatronica/academico.json'),'utf8'));
 function probar(nombre, fn) { fn(); console.log('OK '+nombre); }
 
 probar('Una entrada con estructura y versión conocidas', () => {

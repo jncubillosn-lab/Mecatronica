@@ -10,7 +10,7 @@ const {EntradaAcademica}=require('../js/entrada.js');
 const {fromRaw,compute,overlap,maxSemester,PlanCurricular,CalendarioAcademico}
  =new Function(read('js/entrada.js')+'\n'+read('js/modelo.js')+'\n'+read('js/analisis.js')+
    '\nreturn {fromRaw,compute,overlap,maxSemester,PlanCurricular,CalendarioAcademico};')();
-const fuente=JSON.parse(read('datos/academico.json'));
+const fuente=JSON.parse(read('datos/programas/mecatronica/academico.json'));
 const crear=()=>fromRaw(new EntradaAcademica(fuente).generarEscenarioBase());
 const copia=x=>JSON.parse(JSON.stringify(x));
 function probar(etiqueta,fn){fn();console.log('OK '+etiqueta);}
