@@ -1,6 +1,13 @@
 # Historial de versiones
 
-La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y `datos/academico.json` incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
+La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
+
+## 1.1.2 — Contratos independientes por carrera (12 nov 2026)
+
+- La base normalizada de Mecatrónica se traslada **sin modificar sus registros** a `datos/programas/mecatronica/academico.json`. `js/programas.js` resuelve exclusivamente esa ruta y `js/iniciar.js` verifica la identidad antes de cargar las ocho vistas.
+- Se registra el esquema de ajustes excepcionales por programa en `data/programas/mecatronica/ajustes.json`; un aplicador **externo al navegador** incorpora o verifica las correcciones por identificadores y rechaza cambios ambiguos.
+- Las carreras sin contrato siguen mostrando la misma interfaz estructural vacía. No se crean ocho fuentes ficticias, ni motores o lecturas académicas adicionales.
+- Se actualizan rutas de pruebas, auditoría de contratos, documentación y versión pública; las claves de escenarios personales y los algoritmos académicos no cambian.
 
 ## 1.1.1 — Estructura de ocho vistas aun sin datos (9 nov 2026)
 

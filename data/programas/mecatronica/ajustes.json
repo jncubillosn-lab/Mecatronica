@@ -1,0 +1,92 @@
+{
+  "versionAjustes": 1,
+  "programaId": "mecatronica",
+  "ajustes": [
+    {
+      "id": "tpi-horario-grupo-1",
+      "motivo": "Horario único de TPI verificado para lunes y miércoles 14:00–16:00, sin crear clases adicionales.",
+      "ruta": [
+        "oferta",
+        {
+          "codigoAsignatura": "2024045"
+        },
+        "actividades",
+        {
+          "id": "2024045:act:1"
+        },
+        "grupos",
+        {
+          "id": "1"
+        }
+      ],
+      "campo": "horarios",
+      "valor": [
+        {
+          "dia": "L",
+          "inicio": "14:00",
+          "fin": "16:00"
+        },
+        {
+          "dia": "X",
+          "inicio": "14:00",
+          "fin": "16:00"
+        }
+      ]
+    },
+    {
+      "id": "tpi-bloques-agrupacion",
+      "motivo": "La agrupación única de TPI debe reflejar las mismas dos sesiones declaradas en la oferta.",
+      "ruta": [
+        "agrupaciones",
+        {
+          "id": "mecatronica:pos:taller-de-proyectos-interdisciplinarios|G1"
+        },
+        "componentes",
+        {
+          "id": "G1"
+        }
+      ],
+      "campo": "bloques",
+      "valor": [
+        {
+          "dia": "L",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "nota": "CLASE TEORICA (2024045)"
+        },
+        {
+          "dia": "X",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "nota": "CLASE TEORICA (2024045)"
+        }
+      ]
+    },
+    {
+      "id": "tpi-minimo-disciplinar",
+      "motivo": "REQ-C-01: TPI requiere 52 créditos de componente disciplinar (C).",
+      "ruta": [
+        "requisitos",
+        "minimosCreditos",
+        {
+          "destino": "mecatronica:pos:taller-de-proyectos-interdisciplinarios"
+        }
+      ],
+      "campo": "minimo",
+      "valor": 52
+    },
+    {
+      "id": "pai-minimo-disciplinar",
+      "motivo": "REQ-C-01: PAI requiere 65 créditos de componente disciplinar (C).",
+      "ruta": [
+        "requisitos",
+        "minimosCreditos",
+        {
+          "destino": "mecatronica:pos:proyecto-aplicado-de-ingenieria"
+        }
+      ],
+      "campo": "minimo",
+      "valor": 65
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.1. **La migración ARQ-01 está terminada y cerrada.**  
-> **Revisión operativa:** 9 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.2. **La migración ARQ-01 está terminada y cerrada.**  
+> **Revisión operativa:** 12 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.  
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, aunque solo Mecatrónica cuenta con datos académicos operativos.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
 > **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. La versión 1.0.0 cerró el saneamiento; 1.1.0 incorpora selección multicarrera sin crear fuentes ficticias ni duplicar el núcleo. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
-> **Fuentes de autoridad:** ARQ-01 fija la norma; `datos/academico.json` fija el dato académico vigente; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
+> **Fuentes de autoridad:** ARQ-01 fija la norma; `datos/programas/mecatronica/academico.json` fija el dato académico vigente; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
 
 **Presentación multicarrera (UNI-UI-01):** `js/identidad.js` enumera los nueve nombres y acentos; `js/programas.js` registra solo rutas de contratos disponibles. Los programas sin datos conservan su identidad y navegación, pero no generan escenarios ni cálculos. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
 
@@ -25,7 +25,7 @@
 
 **El sistema recibe una sola entrada académica estandarizada: `FuentesAcadémicas`.**
 
-El artefacto de intercambio se denomina en este documento **`datos/academico.json`** (archivo normalizado implementado desde la migración v0.5.0). Contiene todos los datos normalizados que la aplicación puede utilizar: asignaturas, planes y mallas, requisitos, oferta y relaciones entre actividades, además de la configuración necesaria.
+Cada programa con datos dispone de **su propio contrato `datos/programas/<id>/academico.json`** (en Mecatrónica, `datos/programas/mecatronica/academico.json`). La entrada normalizada única por sesión se estableció con ARQ-01 en v0.5.0; la separación física por carrera corresponde a v1.1.2. Contiene todos los datos normalizados que la aplicación puede utilizar: asignaturas, planes y mallas, requisitos, oferta y relaciones entre actividades, además de la configuración necesaria.
 
 **Fuera del sistema** quedan por completo la recopilación, lectura, extracción, OCR, transcripción, limpieza, comparación, corrección y **conversión** del catálogo institucional, de la oferta de grupos y de la malla curricular. No constituyen capas ni módulos de la aplicación. Quien produzca el JSON decide cómo convertir las fuentes; la aplicación **no conoce ni necesita conocer** ese proceso.
 
@@ -35,7 +35,7 @@ No habrá una conexión alternativa desde la malla, el catálogo, una fuente sin
 
 ```mermaid
 flowchart TB
-    EN["ÚNICA ENTRADA ACADÉMICA<br/>FuentesAcadémicas: datos/academico.json"]
+    EN["ÚNICA ENTRADA ACADÉMICA<br/>FuentesAcadémicas: datos/programas/&lt;id&gt;/academico.json"]
     subgraph WEB["SISTEMA WEB — responsabilidades actuales"]
         L["EntradaAcademica<br/>validación de estructura y proyección interna"]
         BASE["Referencia S0<br/>plan, grupos, horarios, requisitos"]
@@ -149,7 +149,7 @@ No son obligatorias las **cantidades** de registros: una colección puede estar 
 }
 ```
 
-Los identificadores del ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. **La estructura real adoptada está en `datos/academico.json` y sus pruebas de contrato**; el fragmento ilustrativo no autoriza crear campos académicos obligatorios ni inventar cardinalidades. Las reglas de identidad y la flexibilidad ante vacíos se mantienen según la información normalizada disponible, sin ampliar la frontera de entrada.
+Los identificadores del ejemplo ilustran el contrato: no implican que toda posición curricular tenga código ni que cada fuente tenga la misma cobertura. **La estructura real adoptada está en `datos/programas/mecatronica/academico.json` y sus pruebas de contrato**; el fragmento ilustrativo no autoriza crear campos académicos obligatorios ni inventar cardinalidades. Las reglas de identidad y la flexibilidad ante vacíos se mantienen según la información normalizada disponible, sin ampliar la frontera de entrada.
 
 ### Contrato vigente sin obligaciones de versiones anteriores
 
@@ -220,7 +220,7 @@ No es necesario crear una clase por entidad ni mantener exactamente estos nombre
 | Etapa | Archivo o estado ejecutado | Responsabilidad vigente y frontera |
 |---|---|---|
 | Carga y tema inicial | `index.html`, `js/tema.js`, `js/identidad.js` | Arranque estático; oscuro por defecto, claro opcional, identidad visual por ID del programa. Ninguna preferencia visual es dato académico. |
-| Entrada académica | `js/iniciar.js`, `js/entrada.js` (`EntradaAcademica`) | Solicitar **una vez** `datos/academico.json`, interpretar estructura y construir una proyección interna transitoria. No descargar ni interpretar fuentes institucionales originales. |
+| Entrada académica | `js/iniciar.js`, `js/entrada.js` (`EntradaAcademica`) | Solicitar **una vez** `datos/programas/mecatronica/academico.json`, interpretar estructura y construir una proyección interna transitoria. No descargar ni interpretar fuentes institucionales originales. |
 | Contexto e instancia base | `window.CONTEXTO_ACADEMICO`, `fromRaw()`, `S0` | El contexto contiene programa, calendario, opciones, procedencia y `estadoBase`. `fromRaw` adapta la proyección interna al estado que consume el motor; no expone `window.RAW` ni abre una entrada alternativa. |
 | Plan y tiempo | `js/modelo.js` (`PlanCurricular`, `CalendarioAcademico`) | Consultar componentes, créditos, requisitos, resúmenes semestrales y calendario configurado, sin reglas fijas de asignaturas. |
 | Personalización | `js/escenarios.js` (`EscenarioPersonal`), `S` | Guardar diferencias identificadas, aplicar sobre `S0`, validar, importar y exportar. No sustituir la referencia con una copia anterior. |
@@ -289,7 +289,7 @@ Esta sección define **qué debe hacer el programa y qué no puede presumir**. U
 
 | ID | Requerimiento exigible | Comportamiento esperado y límite |
 |---|---|---|
-| RF-01 | **Entrada académica única** | El sitio carga `datos/academico.json` a través de `EntradaAcademica`; ninguna ruta productiva consulta `js/datos.js` ni PDF, TXT, Excel u oferta original. |
+| RF-01 | **Entrada académica única** | El sitio carga `datos/programas/mecatronica/academico.json` a través de `EntradaAcademica`; ninguna ruta productiva consulta `js/datos.js` ni PDF, TXT, Excel u oferta original. |
 | RF-02 | **Catálogo, plan, oferta y requisitos** | Conservar separadas asignaturas institucionales, posiciones curriculares, grupos, actividades y bloques; no obligar a que todas las colecciones tengan igual cobertura. |
 | RF-03 | **Horarios reales normalizados** | Mostrar y calcular solamente bloques informados, con días/horas configurados. Grupos vacíos de horario siguen existiendo; no se fabrican sesiones. |
 | RF-04 | **Agrupaciones de grupos explícitas** | Analizar solo alternativas declaradas y elegibles; no formar combinaciones cartesianas por número o nombre de grupo. |
@@ -314,7 +314,7 @@ Esta sección define **qué debe hacer el programa y qué no puede presumir**. U
 | ID | Condición de calidad | Criterio verificable |
 |---|---|---|
 | RC-01 | Validez estructural sin exigir completitud | Detectar JSON inválido, referencias rotas, tipos/horarios imposibles; admitir nulos, listas vacías y grupos sin horario. |
-| RC-02 | Ausencia de mutaciones invisibles | Los filtros y visualizaciones, incluidas simulaciones, no modifican `S0`, `S` ni `datos/academico.json` sin acción expresa. |
+| RC-02 | Ausencia de mutaciones invisibles | Los filtros y visualizaciones, incluidas simulaciones, no modifican `S0`, `S` ni `datos/programas/mecatronica/academico.json` sin acción expresa. |
 | RC-03 | Conservación personal | Probar escenarios vigentes y sus diferencias sobre una nueva referencia; un cambio de contrato no debe confundirse con edición voluntaria. |
 | RC-04 | Independencia académica del motor | No codificar reglas por nombres, prefijos, carrera, tamaño de semestre ni cantidades del contrato. |
 | RC-05 | Versionado verificable | Si cambian recursos productivos HTML/CSS/JS/JSON, incrementar y sincronizar versión visible, metadatos y parámetros de caché; ejecutar CI en PR. |
@@ -379,7 +379,7 @@ Errores **técnicos** del contrato (por ejemplo, archivo ilegible o una hora fin
 
 | Componente | Función vigente | Límite |
 |---|---|---|
-| `datos/academico.json`, `EntradaAcademica`, `fromRaw` | Entrada normalizada única y adaptación interna | No abre ni convierte fuentes originales |
+| `datos/programas/mecatronica/academico.json`, `EntradaAcademica`, `fromRaw` | Entrada normalizada única y adaptación interna | No abre ni convierte fuentes originales |
 | `EscenarioPersonal` | Deltas del formato `escenario-personal/version:1`, por ID; también IDs de elementos nuevos creados por la persona | No lee snapshots `{S}` ni listas completas de requisitos de desarrollo |
 | `js/modelo.js`, `js/analisis.js`, `js/demanda.js` | Modelo, interferencias y estadística | No inventar cupos, créditos, clases ni riesgos |
 | `js/app.js`, `js/vistas.js`, temas e identidad | Ocho vistas, filtros, edición y presentación | Preservar operaciones y preparación multicarrera |
@@ -412,7 +412,7 @@ degradación concreta y una decisión nueva.
 
 ## 7. Antecedentes de ARQ-01 (migración finalizada; solo historial)
 
-En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S}` completos. La migración ARQ-01 (desde v0.5.0) estableció `datos/academico.json` como única entrada; posteriormente v0.5.3 dejó de exponer `window.RAW` y separó motor y vistas. Esta cronología explica la procedencia de la arquitectura actual; los ejecutables, identificadores y pruebas exclusivos de aquel formato se retiraron en 0.8.1.
+En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S}` completos. La migración ARQ-01 (desde v0.5.0) estableció `datos/academico.json` como entrada original de Mecatrónica (ruta trasladada en 1.1.2); posteriormente v0.5.3 dejó de exponer `window.RAW` y separó motor y vistas. Esta cronología explica la procedencia de la arquitectura actual; los ejecutables, identificadores y pruebas exclusivos de aquel formato se retiraron en 0.8.1.
 
 **No usar una descripción histórica como instrucción vigente.** Para conocer la sucesión detallada de PR, cambios y decisiones, consultar [MIG-ARQ01](MIGRACION-ARQ01.md) y el historial de Git; para un comportamiento actual aplicar las secciones 0–6 de este documento y contrastarlo con el código. Las referencias originales pueden consultarse en Git; no son campos exigibles al sistema vigente.
 
@@ -478,7 +478,7 @@ Antes de modificar la aplicación o sus datos:
 
 ## 10. Selección académica sin duplicar el núcleo (1.1.0)
 
-La interfaz reutiliza los nueve nombres y colores de `IdentidadUniversitaria.catalogo`. `ProgramasUniversitarios` separa las rutas de contratos realmente disponibles de la identidad visual y comparte la cabecera/navegación, sin crear nueve motores o archivos ficticios. Por sesión, `js/iniciar.js` consulta **un solo contrato normalizado**, valida que `programa.id` corresponda a la selección y crea `S0`, `S` y los resultados solo entonces. Sin fuente se presentan ocho espacios con estado «sin datos», sin estadísticas en cero; una carga inválida es un error técnico. Mecatrónica mantiene su archivo `datos/academico.json` y su clave local; otros programas usarán claves de escenario diferenciadas. El nuevo límite se verifica en `tests/multicarrera.js`, sin cambiar `EntradaAcademica`, `EscenarioPersonal`, `PlanCurricular` ni el motor de análisis.
+La interfaz reutiliza los nueve nombres y colores de `IdentidadUniversitaria.catalogo`. `ProgramasUniversitarios` separa las rutas de contratos realmente disponibles de la identidad visual y comparte la cabecera/navegación, sin crear nueve motores o archivos ficticios. Por sesión, `js/iniciar.js` consulta **un solo contrato normalizado**, valida que `programa.id` corresponda a la selección y crea `S0`, `S` y los resultados solo entonces. Sin fuente se presentan ocho espacios con estado «sin datos», sin estadísticas en cero; una carga inválida es un error técnico. Mecatrónica mantiene su contrato académico (ahora en `datos/programas/mecatronica/academico.json`) y su clave local; otros programas usarán claves de escenario diferenciadas. El nuevo límite se verifica en `tests/multicarrera.js`, sin cambiar `EntradaAcademica`, `EscenarioPersonal`, `PlanCurricular` ni el motor de análisis.
 
 ## 11. Estructura de consulta independiente de los datos (1.1.1)
 
@@ -487,3 +487,11 @@ La interfaz y el dominio no son equivalentes: una carrera sin datos académicos 
 En dicho modo se carga `js/app.js` y se reutilizan las mismas funciones de vista de `js/vistas.js` y `js/demanda.js`; no se consulta otro programa como respaldo, no se invoca el motor de interferencias, no se crea un escenario personal persistente y se deshabilitan los controles de edición/importación de datos. Los contadores y análisis que requieren datos muestran **«— / sin información»**, nunca un cero que pueda interpretarse como dato observado. La navegación, el tema visual, el zoom y las estructuras de gráfica siguen disponibles. El modo de error técnico por contrato inválido es distinto del modo sin fuente.
 
 `tests/multicarrera.js` verifica la presencia de marcos y controles en las ocho páginas para todas las carreras sin datos; la integración original de Mecatrónica sigue comprobando sus valores y comportamientos. Este patrón es obligatorio cuando se incorporen nuevas páginas: la existencia del contenedor de la vista no puede depender de tener registros académicos.
+
+## 12. Contratos por carrera y ajustes externos (1.1.2)
+
+La única entrada académica **por sesión** sigue siendo `FuentesAcadémicas`, validada por `EntradaAcademica`; solo cambia la organización física. Cada programa con fuente verificada tiene un contrato independiente en `datos/programas/<id>/academico.json`. `js/programas.js` asocia exclusivamente IDs y rutas disponibles, `js/iniciar.js` solicita una de ellas y valida `programa.id` antes de generar S0. No hay respaldo cruzado ni archivos ficticios para carreras sin contrato; sus ocho vistas estructurales permanecen visibles.
+
+Las correcciones académicas verificadas pueden documentarse en `data/programas/<id>/ajustes.json` y aplicarse **fuera del navegador**, con `scripts/aplicar-ajustes-academicos.js`. Las rutas del registro identifican entidades por propiedades/IDs declarados, no por índices ni parecidos del nombre; el proceso exige el valor anterior para cambios nuevos y rechaza referencias ambiguas. El resultado integrado es **el mismo contrato normalizado** que publica la carrera; el navegador no lee el registro de ajustes ni interpreta un formato adicional. Los ajustes personales de escenarios siguen siendo otra responsabilidad, separada de esta preparación.
+
+Para garantizar el aislamiento, `tests/ajustes-academicos.js` y `tests/multicarrera.js` comprueban el contrato registrado, la independencia por programa y las ocho vistas vacías. La guía de operación de datos está en [DAT-01](CONTRATOS-POR-PROGRAMA.md). Esta organización ejecuta RF-01, RF-02, RC-01, RC-04 y D-31, sin cambiar cálculo, reglas de horario ni representación visual.
