@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.3 · **Estado:** nueve carreras seleccionables, nueve carreras con contratos académicos; ocho sin oferta de grupos · **Rama publicada:** `main`
+**Versión pública:** 1.1.4 · **Estado:** nueve carreras seleccionables, nueve carreras con contratos académicos; ocho sin oferta de grupos · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -81,3 +81,7 @@ El punto de partida es [ARQ-01 — Arquitectura](docs/ARQUITECTURA.md): describe
 Las decisiones específicas se encuentran en [REG-01](docs/REG-01.md), [REQ-C-01](docs/REQ-C-01.md), [DEM-01](docs/DEM-01.md), [LIB-01](docs/LIB-01.md), [RESP-01](docs/RESP-01.md), [TEMA-ALTURA-01](docs/TEMA-ALTURA-01.md), [TONO-01](docs/TONO-01.md) y [UNI-UI-01](docs/ESTILO-UNIVERSITARIO.md).
 
 La migración antigua está terminada. Su historia se conserva en [MIG-ARQ01](docs/MIGRACION-ARQ01.md) y [CHANGELOG](CHANGELOG.md), **no como procedimiento pendiente**. La normalización externa del SIA (`scripts/normalizar_oferta.py`) sigue disponible porque forma parte de la preparación de datos, no de la aplicación publicada.
+
+## Corrección de información transversal (1.1.4)
+
+Las ayudas de Inicio describen únicamente el contrato seleccionado; ya no contienen el Acuerdo 6 de 2022 ni combinaciones G1–G8 de Mecatrónica cuando se consulta otro programa. La ausencia de grupos en los ocho contratos preliminares se comunica como **indicador desconocido («—»)**, no como evidencia de cero interferencias. Se mantienen intactos los datos académicos de las nueve carreras y el motor.

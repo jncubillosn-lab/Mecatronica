@@ -40,6 +40,9 @@ const PAGES_ORDER = window.ProgramasUniversitarios.paginas;
 // S0 = referencia reconstruida desde el contrato; S = copia editable personal.
 // Mantener separadas estas identidades al importar, guardar y restablecer.
 let S0 = clone(CONTEXTO.estadoBase), S = clone(S0), restored = false, datosGuardados = null;
+// Sin grupos en el contrato no significa ausencia institucional de choques.
+// No altera el motor: solo impide presentar cálculos sin muestra como 0 real.
+const SIN_GRUPOS_CARGADOS = !SIN_DATOS && S0.grupos.length === 0;
 try {
   const texto = !SIN_DATOS && KEY ? localStorage.getItem(KEY) : null;
   if (texto) {
@@ -310,7 +313,10 @@ function render() {
   $('#view').innerHTML = (SIN_DATOS
     ? '<p class="sin-datos-banner" role="status"><b>Sin datos académicos de '+
       esc(PROGRAMA.nombre)+'.</b> Se muestra la estructura de consulta, sin resultados académicos.</p>'
-    : '') + PAGES[ui.page]();
+    : SIN_GRUPOS_CARGADOS
+      ? '<p class="hint oferta-no-informada" role="status"><b>Sin oferta de grupos cargada para '+
+        esc(PROGRAMA.nombre)+'.</b> El plan curricular está disponible, pero no hay horarios de grupos verificados para determinar interferencias. Los indicadores de choques son desconocidos, no cero.</p>'
+      : '') + PAGES[ui.page]();
   renderDrawer();
   if(SIN_DATOS){
     document.body.dataset.sinDatos='true';

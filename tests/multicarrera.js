@@ -37,7 +37,7 @@ async function abrir(id,otroContrato=false){
      window.Element.prototype.scrollIntoView=()=>{};
      window.fetch=async path=>{
        consultas.push(String(path));
-       assert.equal(String(path),programas.fuentePara(id)+'?v=1.1.3');
+       assert.equal(String(path),programas.fuentePara(id)+'?v=1.1.4');
        return {ok:true,json:async()=>otroContrato?contratos.mecatronica:contratos[id]};
      };
    }
@@ -55,7 +55,7 @@ async function main(){
  for(const id of ids){
    const {dom,document,errores,consultas}=await abrir(id);
    try{
-     assert.deepEqual(consultas,[programas.fuentePara(id)+'?v=1.1.3'],
+     assert.deepEqual(consultas,[programas.fuentePara(id)+'?v=1.1.4'],
        'Una sola fuente consultada en '+id);
      const contexto=dom.window.CONTEXTO_ACADEMICO;
      assert(contexto?.estadoBase, 'No inició el contrato de '+id);
@@ -69,6 +69,13 @@ async function main(){
      assert(!document.querySelector('.sin-datos-banner'),
        'La malla cargada no debe presentarse como un programa sin contrato');
      if(id!=='mecatronica'){
+       assert(document.querySelector('.oferta-no-informada'), 'No se advirtió la falta de oferta: '+id);
+       assert([...document.querySelectorAll('.hero-k .num')].every(el=>el.textContent.trim()==='—'),
+         'Sin grupos no se pueden mostrar ceros como ausencia de choques: '+id);
+       const textosInicio=document.querySelector('#view').textContent;
+       assert(!/Acuerdo 6 de 2022|G1 a G8/.test(textosInicio),
+         'Se filtraron supuestos de Mecatrónica a '+id);
+       assert(textosInicio.includes('Se consideran las 0 relaciones') || id==='civil' || id==='agricola');
        assert.equal(contexto.estadoBase.grupos.length,0);
        assert.equal(contexto.estadoBase.bloques.length,0);
      }
@@ -81,6 +88,11 @@ async function main(){
      if(id!=='mecatronica'){
        assert(document.querySelector('#mcols .mcard'),
          'Malla con posiciones reales no visible en '+id);
+       if(id==='quimica'){
+         const malla=document.querySelector('#mcols').textContent;
+         assert(malla.includes('Principios de química') && malla.includes('Balance de materia'));
+         assert(!malla.includes('Tec. Mecánica Básica'),'Química no debe recibir la malla de Mecatrónica');
+       }
      }
      assert.deepEqual(errores.filter(e=>/Uncaught|Could not load/i.test(e)),[],
        'Errores de scripts en '+id);

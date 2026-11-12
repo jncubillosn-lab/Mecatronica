@@ -26,7 +26,7 @@ function semCred(s, n) { return new PlanCurricular({malla:n, tipos:S.tipos}).res
 function distNames(ds) { return [...ds].sort((a,b)=>a-b).map(distLabel).join(' · '); }
 function distSummary() { const l = [...S.params.dists].sort((a,b)=>a-b).map(distLabel); return l.length > 1 ? l.slice(0, -1).join(', ') + ' o ' + l[l.length - 1] : (l[0] || 'sin selección'); }
 function distChips(counts) {
-  return OPCIONES.distanciasDisponibles.map(d => { const n = counts && !SIN_DATOS ? RV.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}" ${SIN_DATOS?'disabled':''}>${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
+  return OPCIONES.distanciasDisponibles.map(d => { const n = counts && !SIN_DATOS && !SIN_GRUPOS_CARGADOS ? RV.pairs.filter(p => p.aplica && p.dist === d && p.clash).length : null; return `<button class="chip" data-act="dist" data-d="${d}" aria-pressed="${S.params.dists.includes(d)}" ${SIN_DATOS?'disabled':''}>${d === 0 ? 'Mismo semestre' : d + (d === 1 ? ' semestre' : ' semestres')}${n === null ? '' : `<span class="n" title="parejas con choque">${n}</span>`}</button>`; }).join('');
 }
 function distText(p) { return p.dist === 0 ? 'Mismo semestre' : p.dist === 1 ? '1 semestre de diferencia' : p.dist + ' semestres de diferencia'; }
 function compGroups(A, c) { return S.grupos.filter(g => g.a === A && (g.c1 === c || g.c2 === c)).sort((x, y) => natKey(glabel(x)) - natKey(glabel(y))); }
@@ -36,6 +36,7 @@ function compLabel(A, c) { const gs = compGroups(A, c); return gs.length ? gs.ma
 function pageInicio() {
   const R = RV, R0 = RV0;
   const P = S.params;
+  const SIN_REFERENCIA_HORARIA = SIN_DATOS || SIN_GRUPOS_CARGADOS;
   const inr = R.pairs.filter(p => p.enRango), con = inr.filter(p => p.clash), sie = inr.filter(p => p.clash && p.clash === p.total);
   const gIdx = R.totalCombos ? R.totalClash / R.totalCombos : 0;
   const topP = [...con].sort((a, b) => b.idx - a.idx || b.clash - a.clash).slice(0, 6);
@@ -46,17 +47,17 @@ function pageInicio() {
   <p>Aquí ves qué tan difícil es armar un horario sin choques, y dónde está el problema.</p></div></div>
   <section class="card hero"><div>
       <div class="eyebrow">En pocas palabras</div>
-      <p class="hero-s">${SIN_DATOS ? 'La comparación aparecerá aquí cuando se incorporen datos académicos de esta carrera.' : `Entre asignaturas que se pueden cursar a la vez hay <b class="num">${R.totalCombos}</b> combinaciones posibles de grupos. <b class="num hl">${R.totalClash}</b> de ellas (${pct(gIdx, 1)}) tienen choque de horario. ${dlt(R.totalClash, R0.totalClash)}`}</p></div>
+      <p class="hero-s">${SIN_DATOS ? 'La comparación aparecerá aquí cuando se incorporen datos académicos de esta carrera.' : SIN_GRUPOS_CARGADOS ? 'El plan curricular está cargado, pero aún no se ha incorporado la oferta de grupos y horarios de esta carrera. No se puede determinar si existen interferencias.' : `Entre asignaturas que se pueden cursar a la vez hay <b class="num">${R.totalCombos}</b> combinaciones posibles de grupos. <b class="num hl">${R.totalClash}</b> de ellas (${pct(gIdx, 1)}) tienen choque de horario. ${dlt(R.totalClash, R0.totalClash)}`}</p></div>
     <div class="hero-k">
-      <div><b class="num">${SIN_DATOS?'—':inr.length}</b><span>parejas de asignaturas que se podrían cursar a la vez</span></div>
-      <div><b class="num">${SIN_DATOS?'—':con.length+' '+dlt(con.length, R0.totalPairs)}</b><span>tienen al menos una combinación de grupos que choca</span></div>
-      <div><b class="num">${SIN_DATOS?'—':sie.length}</b><span>son incompatibles: ningún grupo de una cabe con ningún grupo de la otra</span></div>
+      <div><b class="num">${SIN_REFERENCIA_HORARIA?'—':inr.length}</b><span>parejas de asignaturas que se podrían cursar a la vez</span></div>
+      <div><b class="num">${SIN_REFERENCIA_HORARIA?'—':con.length+' '+dlt(con.length, R0.totalPairs)}</b><span>tienen al menos una combinación de grupos que choca</span></div>
+      <div><b class="num">${SIN_REFERENCIA_HORARIA?'—':sie.length}</b><span>son incompatibles: ningún grupo de una cabe con ningún grupo de la otra</span></div>
     </div></section>
   <div class="grid2" style="margin-top:16px">
     <section class="card"><div class="card-h"><h2>Parejas con más choque</h2><button class="btn sm ghost" data-act="nav" data-p="inter">Ver todos →</button></div>
-      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b class="asig-etiqueta"${atributoTipologia(p.A)}>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b class="asig-etiqueta"${atributoTipologia(p.B)}>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || (SIN_DATOS?'<div class="hint">Sin datos académicos para analizar.</div>':'<div class="hint">No hay choques con los parámetros actuales.</div>')}</div></section>
+      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b class="asig-etiqueta"${atributoTipologia(p.A)}>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b class="asig-etiqueta"${atributoTipologia(p.B)}>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || (SIN_REFERENCIA_HORARIA?'<div class="hint">Sin grupos y horarios cargados para calcular choques.</div>':'<div class="hint">No hay choques con los parámetros actuales.</div>')}</div></section>
     <section class="card"><div class="card-h"><h2>Asignaturas más afectadas</h2><button class="btn sm ghost" data-act="nav" data-p="asig">Ver todas →</button></div>
-      <div class="card-b" style="display:grid;gap:2px">${SIN_DATOS?'<div class="hint">Pendiente de datos académicos.</div>':topA.map(s => `<button class="toprow" data-act="a-go" data-n="${esc(s.n)}"><span><b class="asig-etiqueta"${atributoTipologia(s.n)}>${esc(s.n)}</b> <span class="sem">S${s.s}</span><br><span class="hint">se cruza con ${s.conChoque} de ${s.pares} asignaturas con las que se compara</span></span><span class="bar"><i style="width:${Math.min(100, s.idxG * 100 / (topA[0].idxG || 1))}%"></i></span><b class="num">${pct(s.idxG)}</b></button>`).join('')}</div></section>
+      <div class="card-b" style="display:grid;gap:2px">${SIN_REFERENCIA_HORARIA?'<div class="hint">Sin oferta de grupos cargada; no se identifican asignaturas afectadas.</div>':topA.map(s => `<button class="toprow" data-act="a-go" data-n="${esc(s.n)}"><span><b class="asig-etiqueta"${atributoTipologia(s.n)}>${esc(s.n)}</b> <span class="sem">S${s.s}</span><br><span class="hint">se cruza con ${s.conChoque} de ${s.pares} asignaturas con las que se compara</span></span><span class="bar"><i style="width:${Math.min(100, s.idxG * 100 / (topA[0].idxG || 1))}%"></i></span><b class="num">${pct(s.idxG)}</b></button>`).join('')}</div></section>
   </div>
   <section class="card" style="margin-top:16px"><div class="card-h"><h2>Qué se compara y cómo se calcula</h2></div>
     <div class="card-b grid2" style="gap:24px">
@@ -69,10 +70,10 @@ function pageInicio() {
       <ol class="steps"><li>Se toma una <b>pareja de asignaturas</b> que un estudiante podría cursar a la vez.</li><li>Se prueba cada grupo de la primera con cada grupo de la segunda: son las <b>combinaciones</b>.</li><li>Una combinación <b>choca</b> si sus horarios se traslapan aunque sea una hora. Los bloques pegados (9–11 y 11–13) no chocan.</li><li>El <b>porcentaje</b> es qué parte de las combinaciones choca. 100 % = <b>incompatibles</b> (ninguna funciona); entre 0 y 100 % = <b>depende del grupo</b> que elijas.</li></ol>
     </div></section>
   ${SIN_DATOS?'<div class="hint">Esta estructura mostrará los supuestos de la fuente cuando exista un contrato académico.</div>':`<details class="fold"><summary>Supuestos de los datos</summary><dl>
-    <dt>Asignaturas incluidas</dt><dd>Las que están incorporadas al análisis y pertenecen a los componentes seleccionados (${R.names.length}). La malla conserva también las asignaturas sin grupos cargados.</dd>
-    <dt>Horas</dt><dd>Franja y días definidos en la configuración de la oferta.</dd>
-    <dt>Prerrequisitos</dt><dd>Tomados de la malla vigente (Acuerdo 6 de 2022 del Consejo de Facultad de Ingeniería). Los requisitos de créditos se consultan en la malla, pero no modifican los cálculos de interferencias.</dd>
-    <dt>Control</dt><dd>Cada grupo (G1 a G8) combina una magistral con un laboratorio. El emparejamiento de la magistral 3 (grupos G5 y G6) no está confirmado.</dd>
+    <dt>Asignaturas incluidas</dt><dd>El contrato de ${esc(PROGRAMA.nombre)} registra ${S.malla.length} posiciones curriculares. ${S.asg.length} tienen agrupaciones cargadas para analizar horarios; las demás permanecen en la malla.</dd>
+    <dt>Horas</dt><dd>Se consultan únicamente los días y franjas declarados en el contrato de la carrera; no se completan horarios faltantes.</dd>
+    <dt>Prerrequisitos</dt><dd>Se consideran las ${S.pre.length} relaciones expresamente registradas en este plan; las faltantes no se infieren. Los mínimos de créditos se consultan en la malla y no determinan choques de horarios.</dd>
+    <dt>Grupos y actividades</dt><dd>${SIN_GRUPOS_CARGADOS?'No hay grupos académicos cargados para este programa. No se pueden concluir interferencias.':'Solo se utilizan agrupaciones de actividades declaradas explícitamente en el contrato; no se combinan magistrales y laboratorios por suposiciones.'}</dd>
     <dt>Tus cambios</dt><dd>Se guardan solos en este navegador. «Guardar» descarga el escenario, «Cargar» lo recupera y «Restablecer» vuelve a los datos de referencia del programa.</dd></dl></details>`}`;
 }
 
@@ -152,8 +153,8 @@ function pageInter() {
       <label class="switch"><input type="checkbox" data-chg="i-choque" ${f.soloChoque ? '' : 'checked'}><i></i>Incluir las que no chocan</label>
     </div></div>
   </details>
-  <div class="count-line"><span><b class="num">${SIN_DATOS?'—':list.length}</b> parejas de asignaturas${active ? ' · <button class="btn sm ghost" data-act="i-clear">Limpiar filtros</button>' : ''}${f.view === 'lista' ? ' <span class="faint">· Cada cuadrito es una combinación de grupos (rojo = choca)</span>' : ''}</span><button class="btn sm" data-act="i-csv" ${SIN_DATOS?'disabled':''}>Descargar CSV</button></div>
-  ${f.view === 'matriz' ? matrixView() : (list.length ? `<div class="plist">${list.map(prow).join('')}</div>` : (SIN_DATOS?'<div class="empty-state">Sin datos académicos para comparar; los filtros y la matriz están preparados.</div>':'<div class="empty-state">Ninguna pareja cumple estos filtros.<br><button class="btn sm" style="margin-top:10px" data-act="i-clear">Limpiar filtros</button></div>'))}`;
+  <div class="count-line"><span><b class="num">${SIN_DATOS||SIN_GRUPOS_CARGADOS?'—':list.length}</b> parejas de asignaturas${active ? ' · <button class="btn sm ghost" data-act="i-clear">Limpiar filtros</button>' : ''}${f.view === 'lista' ? ' <span class="faint">· Cada cuadrito es una combinación de grupos (rojo = choca)</span>' : ''}</span><button class="btn sm" data-act="i-csv" ${SIN_DATOS||SIN_GRUPOS_CARGADOS?'disabled':''}>Descargar CSV</button></div>
+  ${f.view === 'matriz' ? matrixView() : (list.length ? `<div class="plist">${list.map(prow).join('')}</div>` : (SIN_DATOS?'<div class="empty-state">Sin datos académicos para comparar; los filtros y la matriz están preparados.</div>':SIN_GRUPOS_CARGADOS?'<div class="empty-state">No hay oferta de grupos y horarios cargada para calcular interferencias de esta carrera.</div>':'<div class="empty-state">Ninguna pareja cumple estos filtros.<br><button class="btn sm" style="margin-top:10px" data-act="i-clear">Limpiar filtros</button></div>'))}`;
 }
 
 /* ---------- PANEL LATERAL (par / cambios) ---------- */

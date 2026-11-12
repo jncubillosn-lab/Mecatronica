@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.3, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
+**Corte de evaluación:** 1.1.4, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; ocho no contienen oferta académica de grupos ni horarios.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -128,3 +128,7 @@ El cambio de ruta requiere verificar CI y la certificación HTTP de GitHub Pages
 ## 10. Ocho contratos preliminares incorporados (1.1.3)
 
 Todos los programas cuentan ya con una entrada normalizada separada. Los contratos nuevos tienen mallas y catálogos iniciales sin oferta real de horarios, sin agrupaciones, con prerrequisitos incompletos. El motor no inventa sesiones, choques ni combinaciones. Los ajustes externos están separados por carrera y empiezan vacíos. El detalle de discrepancias y fuentes es `docs/INFORME-BASES-INICIALES-2026.md`. Las secciones anteriores describen hitos históricos o el comportamiento genérico cuando falta un contrato, no el estado actual de los nueve programas.
+
+## 11. Aislamiento de supuestos de presentación (1.1.4)
+
+El texto «Acuerdo 6 de 2022» y la descripción de grupos G1–G8 eran supuestos fijos de Mecatrónica colocados en la vista compartida de Inicio; no procedían del contrato de Química. Se retiraron para que el texto use el plan seleccionado y la cobertura real de relaciones/grupos. Ocho programas conservan sus mallas, pero sin agrupaciones verificadas: se informa explícitamente que **no es posible concluir interferencias**. Ceros computacionales derivados de colecciones vacías no se muestran como cero institucional comprobado en el resumen y la lista de interferencias. `tests/multicarrera.js` comprueba ese aislamiento. La atribución histórica del proyecto en el pie de página no constituye información académica de una carrera.
