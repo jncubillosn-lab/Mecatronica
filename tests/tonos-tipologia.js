@@ -12,8 +12,8 @@ const css = read('css/estilos.css');
 const vistas = read('js/vistas.js');
 const demanda = read('js/demanda.js');
 const app = read('js/app.js');
-const actual = JSON.parse(read('datos/academico.json'));
-const antes = read('datos/academico.json');
+const actual = JSON.parse(read('datos/programas/mecatronica/academico.json'));
+const antes = read('datos/programas/mecatronica/academico.json');
 
 const begin = vistas.indexOf('function atributoComponente(');
 const finish = vistas.indexOf('function gl(', begin);
@@ -70,7 +70,7 @@ assert.match(css, /\.mcard\.down\{background:var\(--ok-soft\)/);
 assert.match(app, /data-tipologia="\$\{esc\(id\)\}" data-act="comp-toggle"/);
 assert.match(demanda, /atributoComponente\(x\.componente\)/);
 assert.match(css, /\/\* TONO-01/);
-assert.equal(read('datos/academico.json'),antes,
+assert.equal(read('datos/programas/mecatronica/academico.json'),antes,
   'La integración de colores no modifica FuentesAcadémicas');
 assert.equal(actual.versionEsquema,1);
 console.log('OK: cuatro tipologías, colores compartidos y bordes más legibles en ambos temas.');

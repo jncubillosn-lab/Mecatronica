@@ -101,9 +101,14 @@ function evaluar({ archivos, leer, sha = null }) {
       'index.html o js/iniciar.js solicita un archivo que no figura en el árbol Git');
   }
   const entradasAcademicas = [...activos.programados].filter(p => p.startsWith('datos/'));
-  if (entradasAcademicas.length !== 1 || entradasAcademicas[0] !== 'datos/academico.json')
-    agregar('CONTRATO_UNICO', 'error', 'js/iniciar.js',
-      'Solo debe cargarse datos/academico.json como entrada académica normalizada');
+  // Cada ruta disponible pertenece a un contrato independiente; una sesión
+  // conserva una sola entrada, aunque el proyecto incluya varias carreras.
+  const rutasRegistradas = Object.values(require('../js/programas.js').fuentes).sort();
+  if (rutasRegistradas.length === 0 ||
+      entradasAcademicas.length !== rutasRegistradas.length ||
+      entradasAcademicas.sort().some((ruta, i) => ruta !== rutasRegistradas[i]))
+    agregar('CONTRATOS_REGISTRADOS', 'error', 'js/programas.js',
+      'Las fuentes publicadas deben coincidir con las rutas registradas por carrera');
   controles.push({id:'RECURSOS',detalle:'Cobertura de JS/CSS productivo y entrada académica única'});
 
   let paquete;

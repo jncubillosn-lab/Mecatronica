@@ -10,7 +10,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const arq=read('docs/ARQUITECTURA.md');
 const agentes=read('AGENTS.md');
 const readme=read('README.md');
-assert(arq.includes('FuentesAcadémicas')&&arq.includes('datos/academico.json'));
+assert(arq.includes('FuentesAcadémicas')&&arq.includes('datos/programas/mecatronica/academico.json'));
 assert(arq.includes('multicarrera')||arq.includes('múltiples programas'));
 assert(/datos incompletos|información incompleta/i.test(arq));
 assert(agentes.includes('ARQ-01'));

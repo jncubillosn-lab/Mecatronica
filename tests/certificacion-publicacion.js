@@ -29,7 +29,7 @@ function servidorSimulado(variantes = {}) {
 (async () => {
   const plan = planDeVersion();
   assert(plan.referencias.includes('js/app.js?v=' + plan.version));
-  assert(plan.referencias.includes('datos/academico.json?v=' + plan.version));
+  assert(plan.referencias.includes('datos/programas/mecatronica/academico.json?v=' + plan.version));
   const bien = await verificarUnaVez(base, servidorSimulado(), 'prueba');
   assert.equal(bien.version, plan.version);
   assert.equal(bien.comprobados.length, plan.referencias.length + 3);
