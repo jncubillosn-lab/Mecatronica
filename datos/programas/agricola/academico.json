@@ -1,0 +1,1287 @@
+{
+  "versionEsquema": 1,
+  "programa": {
+    "id": "agricola",
+    "nombre": "Ingeniería Agrícola",
+    "planId": "acuerdo-030-2016"
+  },
+  "componentes": [
+    {
+      "id": "B",
+      "nombre": "Fundamentación",
+      "enPlan": true
+    },
+    {
+      "id": "C",
+      "nombre": "Disciplinar",
+      "enPlan": true
+    },
+    {
+      "id": "L",
+      "nombre": "Libre elección",
+      "enPlan": true
+    },
+    {
+      "id": "N",
+      "nombre": "Nivelación",
+      "enPlan": false
+    }
+  ],
+  "caracteres": [
+    {
+      "id": "obl",
+      "nombre": "Obligatoria"
+    },
+    {
+      "id": "opt",
+      "nombre": "Optativa"
+    }
+  ],
+  "catalogo": [
+    {
+      "codigo": "1000003-B",
+      "nombre": "Álgebra Lineal",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: Asimilar los fundamentos del Algebra Lineal, a nivel elemental, pero con la profundidad necesaria para adquirir los conocimientos y habilidades básicas (capacidad de análisis y de razonamiento lógico - deductivo) para la solución de problemas en las cuales estén involucrados los elementos matemáticos de sistemas de ecuaciones lineales, espacios vectoriales, valores y vectores propios de una matriz y diagonalización de matrices. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2015941",
+      "nombre": "Análisis estructural básico",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En el curso de análisis estructural básico se presentan, desarrollan y aplican métodos para resolver estática y cinemáticamente estructuras reticulares isostáticas; se abordan diferentes metodologías y técnicas para resolver estructuras reticulares hiperestáticas, partiendo desde los métodos clásicos o convencionales, tratando los métodos basados en principios de energía y trabajo, presentando algunos métodos iterativos y aproximados, hasta llegar al desarrollo de aplicaciones computacionales que permiten resolver estructuras utilizando los métodos matriciales. El curso concluye con la formulación de las líneas de influencia para cargas móviles, tanto para efectos cinemáticos como estáticos. Conceptos Previos Algebra lineal: Solución de sistemas de ecuaciones simultáneas Propiedades y operaciones con matrices tales como adición, inversión y multiplicación Estática: Formulación de ecuaciones de equilibrio de partículas y cuerpos rígidos Formulación de ecuaciones de equilibro en sistemas y elementos estructurales Cálculo de las propiedades de la sección, tanto sencillas como compuestas Deducción e interpretación de los diagramas de acciones internas de fuerzas en elementos estructurales Mecánica de sólidos: Relación entre las solicitaciones externas y las acciones internas de fuerza Método de la integración directa, método de la doble integración Elementos geométricos de la curva elástica."
+    },
+    {
+      "codigo": "2015942",
+      "nombre": "Aplicaciones de elementos finitos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Aplicaciones de elementos finitos."
+    },
+    {
+      "codigo": "1000009-B",
+      "nombre": "Biología general",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "La Biología es una disciplina fundamental que estudia los seres vivos, sus procesos vitales, su diversidad, evolución e interacción con el ambiente. Este curso de pregrado proporciona una formación integral en los principios biológicos que explican la organización y funcionamiento de la vida desde el nivel molecular hasta los ecosistemas, promoviendo el pensamiento científico, sistémico y crítico. A lo largo del curso, los estudiantes comprenderán la estructura y función celular, la genética, la herencia, el metabolismo, la evolución, la biodiversidad, la fisiología de organismos, la ecología y las relaciones entre ciencia, sociedad y ambiente. Asimismo, se fortalecerán competencias para interpretar fenómenos biológicos, analizar problemáticas ambientales y de salud, desarrollar habilidades experimentales y aplicar el conocimiento biológico a contextos reales y multidisciplinarios. Al finalizar el curso, el estudiante estará en capacidad de: ¿ Explicar los principios fundamentales de la organización biológica. ¿ Relacionar estructura y función en los diferentes niveles de organización de la vida. ¿ Interpretar procesos biológicos desde una perspectiva sistémica e integradora. ¿ Aplicar conceptos biológicos en la solución de problemas ambientales, sociales y de salud. ¿ Reconocer la importancia ética y social del conocimiento biológico en la toma de decisiones responsables. Este curso constituye una base esencial para programas de ciencias naturales, ciencias de la salud, ingenierías, ciencias ambientales, educación y áreas afines, favoreciendo la formación de profesionales críticos, éticos y comprometidos con la sustentabilidad y la transformación social."
+    },
+    {
+      "codigo": "1000004-B",
+      "nombre": "Cálculo diferencial",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS Estudiar los conceptos de límite y derivada para funciones de una variable real y utilizar estas ideas en la solución de problemas de optimización, trazado de curvas y razones de cambio. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "1000006-B",
+      "nombre": "Cálculo en varias variables",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: ¿ Estudiar los conceptos fundamentales del cálculo de funciones de varias variables (límites, continuidad, diferenciación e integración) y los teoremas centrales del Cálculo vectorial (Teoremas de Green, Gauss y Stokes). ¿ Estimular y desarrollar la capacidad de análisis y de razonamiento lógico-deductivo del estudiante. ¿ Capacitar al estudiante para la interpretación, formulación y solución de problemas en las áreas relacionadas con su especialidad en las cuales se haga necesario la aplicación del cálculo de funciones de varias variables y del cálculo vectorial."
+    },
+    {
+      "codigo": "1000005-B",
+      "nombre": "Cálculo Integral",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS General ¿ Lograr la apropiación por parte del. estudiante de los conceptos fundamentales del cálculo integral de funciones de una variable real y crear habilidades que le permitan aplicar estos conocimientos en problemas propios de su disciplina y abordar de manera elemental los conceptos de sucesiones y series. Específicos ¿ Conocer y manejar con propiedad el concepto de integral definida de una función real de una variable real y su relación con el concepto de primitiva o antiderivada, para facilitar los cálculos. ¿ Estudiar algunas de las diferentes aplicaciones del concepto de integral. ¿ Adquirir destrezas en el estudio de la convergencia de sucesiones y series"
+    },
+    {
+      "codigo": "2023219",
+      "nombre": "Construcciones rurales: Materiales y administración de obra",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OPTATIVA (T)",
+      "rotulo": "DISCIPLINAR OPTATIVA (T)",
+      "descripcion": "Uno de los aspectos importantes dentro de la formación del ingeniero Agrícola esta centrado en la planificación de instalaciones agrícolas, pecuarias y agroindustriales, así como obras para la adecuación del medio productivo. Este curso aplica conceptos de las áreas de planificación, administración y gestión, con el diseño estructural y bioclimático, brindando al estudiante herramientas para dar respuesta integral a la infraestructura de los sistemas de producción."
+    },
+    {
+      "codigo": "2016626",
+      "nombre": "Control en biosistemas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Teniendo en cuenta que el ingeniero agrícola se desempeña fundamentalmente en actividades relacionadas en los procesos productivos agrícolas, pecuarios, agroindustriales, el enfoque del curso se da en el monitoreo y control de máquinas aplicadas a procesos de Biosistemas, buscando la optimización a partir del control de variables del proceso. Además, se busca la aplicación del control en procesos que aún no se han automatizado en el sector rural bajo parámetros de eficiencia energética y sostenibilidad ambiental."
+    },
+    {
+      "codigo": "2015711",
+      "nombre": "Dibujo básico",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Al finalizar la asignatura el estudiante estará en capacidad de: 1. Comprender el espacio, fomentando las capacidades y competencias necesarias para expresar sus ideas gráficamente a mano alzada, con instrumentos y/o por medio de software en 2D y 3D 2. Interpretar lo expresado gráficamente por otras personas. 3. Conocer e interpretar las principales normas de dibujo técnico. 4. Interpretar vistas para componer sólidos y viceversa. 5. Conocer y aplicar los conceptos básicos y fundamentales de Geometría descriptiva como son: conceptos de líneas y planos, vistas auxiliares, perpendicularidad, paralelismo, topografía de líneas y planos, intersecciones de línea con plano o con prisma, plano con plano o con prisma, prisma con prisma. 6. Realizar en equipo un proyecto de aplicación con software, según la disciplina."
+    },
+    {
+      "codigo": "2016627",
+      "nombre": "Diseño de estructuras de concreto",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Las actividades encaminadas al diseño estructural de las construcciones en el sector agrícola como vivienda rural, explotaciones agropecuarias y plantas de acopio, entre otras, son fundamentales para la formación del ingeniero agrícola. De esa forma, en esta asignatura se abordarán los principios introductorios al diseño de estructuras en concreto reforzado, de acuerdo a la normatividad vigente. Se estudiarán los materiales concreto, acero de refuerzo y concreto reforzado, además de las diferentes metodologías de diseño, el comportamiento del concreto reforzado como material estructural y su respuesta ante los diferentes tipos de solicitaciones, así como las provisiones necesarias para el diseño sismorresistente."
+    },
+    {
+      "codigo": "2016628",
+      "nombre": "Diseño de sistemas de riego",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Para garantizar competitividad en cantidad y calidad de la producción agropecuaria colombiana en los mercados internacionales, el diseño y la operación de sistemas de riego, dentro de un marco de sostenibilidad en el tiempo y el espacio, ocupa un lugar de importancia singular. En consecuencia, esta asignatura tiene en cuenta, tanto sistemas de riego por superficie, como a presión y, en ambos casos se consideran: 1. Los parámetros biofísicos e hidrodinámicos relacionados con el suelo y con los requerimientos de agua por los cultivos. 2. La adecuada disposición de los sistemas de riego en el predio. 3. La selección del caudal unitario, del caudal del sistema y de tasas de aplicación adecuadas para una frecuencia de riego óptima. 4. El diseño hidráulico de los ramales laterales del sistema que garanticen uniformidad adecuada de distribución del agua. 5. El diseño hidráulico y óptimo económico de la conducción principal."
+    },
+    {
+      "codigo": "2015695",
+      "nombre": "Diseño, gestión y evaluación de proyectos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2016629",
+      "nombre": "Drenaje de tierras agricolas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Este curso brindará los conocimientos referentes a los problemas de drenaje, su origen, su efecto en la producción de los cultivos; el diagnóstico, la conceptualización y diseño de sistemas de drenaje superficial y subterráneo. La operación y el mantenimiento de los mismos, así como, los aspectos relacionados con la recuperación de suelos degradados o afectados por sales, para evitar las pérdidas del potencial de las áreas productivas, generando un impacto positivo en el desarrollo de la agricultura, en la economía local, regional y nacional."
+    },
+    {
+      "codigo": "2016592",
+      "nombre": "Economía general",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO Esta asignatura pretende acercar a los estudiantes a una comprensión general de la forma en la que interactúan los agentes económicos, al finalizar este curso el estudiante debe disponer de conocimiento para pronunciarse sobre problemas de la economía en general. METODOLOGÍA El curso consta de 25 clases magistrales donde se analizará y discutirá la teoría económica, los estudiantes deben realizar una lectura de las referencias bibliográficas previa a clase."
+    },
+    {
+      "codigo": "1000007-B",
+      "nombre": "Ecuaciones Diferenciales",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "OBJETIVOS: Modelar por medio de ecuaciones diferenciales algunos sistemas simples y predecir su comportamiento. Comprender y utilizar las diferentes técnicas analíticas y cualitativas para resolver ecuaciones diferenciales. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
+    },
+    {
+      "codigo": "2016630",
+      "nombre": "Electrotecnia",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Uno de los aspectos importantes dentro de la formación del ingeniero agrícola está centrado en la planificación de instalaciones agrícolas, pecuarias y agroindustriales, procesos agroindustriales, maquinaria agrícola, adecuación de tierras, entre otros, para la resolución de problemas asociados con la aplicación de la electricidad en el sector rural. Este curso brinda conocimientos básicos para la aplicación de las leyes que rigen los fenómenos eléctricos y electromagnéticos, así como las metodologías para resolver circuitos de corriente continua y alterna, selección de conductores, instalaciones eléctricas, cálculos de potencia, eficiencia, y sistemas de protección de máquinas eléctricas; dando prioridad a la conservación del medio ambiente mediante la producción de energías limpias."
+    },
+    {
+      "codigo": "2016631",
+      "nombre": "Elementos de máquinas agrícolas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El campo de la Ingeniería Agrícola se relaciona con el diseño, mejoramiento y adaptación de una gran variedad de máquinas, herramientas, instrumentos y equipos que son necesarios para la producción agropecuaria, la transformación agroindustrial de productos, el manejo y aprovechamiento de varias fuentes de energía, el control de calidad de insumos y productos, y el transporte a nivel rural o a niveles más amplios, entre otros. Si bien algunos mecanismos requieren de niveles superiores de conceptualización relacionados con cinemática y dinámica, el ingeniero agrícola debe estar en la capacidad de abordar diseños a partir del cálculo de los elementos de máquinas principales incluyendo las estructuras que las constituyen y además debe tener las bases suficientes para intervenir en el diseño de otros componentes. De esta forma, esta asignatura busca desarrollar en el estudiante las competencias que le permitan usar los conocimientos de las ciencias básicas (estática, física, matemáticas y mecánica de sólidos) para abordar el diseño o selección de los elementos de las máquinas que solucionen problemas específicos relacionados con el campo de acción de la ingeniería agrícola."
+    },
+    {
+      "codigo": "2026134",
+      "nombre": "Estática",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En esta asignatura, cuya base son las tres leyes de Newton, se estudian las condiciones de equilibrio partículas, sistemas de partículas, elementos y sistemas estructurales sencillos en estado de equilibrio o en reposo. El curso se orienta principalmente al estudio de los cuerpos indeformables o rígidos en reposo. Estudia las condiciones por las cuales los cuerpos sólidos (edificios, puentes, presas, voladizos, cerchas, etc.) mantienen su posición de equilibrio bajo fuerzas aplicadas. Se introduce al alumno en los principios básicos de la mecánica de cuerpos rígidos y su aplicación en la solución de problemas de ingeniería que estén relacionados con la conservación del equilibrio. Al final del curso, las y los estudiantes deben poder trabajar tanto individualmente como en grupo para resolver problemas relacionados con la estática de cuerpos rígidos, resolviéndolos de manera eficiente, lógica y consistente. El curso busca desarrollar las habilidades para la solución de problemas básicos del cuerpo rígido. Además, a través de diferentes actividades experimentales, se espera que las y los estudiantes desarrollen habilidades de análisis, comunicación, pensamiento crítico y trabajo en equipo. Conceptos Previos: Fundamentos de mecánica: Dominar y aplicar con propiedad las leyes de Newton. Algebra lineal: Entender el concepto de vector y tener la capacidad para operar con ellos, entre otras, se requiere dominio de las siguientes operaciones: producto punto, producto cruz, triple producto punto escalar, determinantes y solución de sistemas de ecuaciones Calculo diferencial y calculo integral: Dominio y destreza en el uso de las herramientas de diferenciación e integración, claridad en el significado físico o mecánico de estos conceptos."
+    },
+    {
+      "codigo": "2016741",
+      "nombre": "Finanzas",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "En el curso de Finanzas los alumnos aprenden el papel que desempeña un Gerente Financiero de una Corporación o Compañía en el contexto de la teoría de las finanzas privadas. El Ingeniero que se desempeña a nivel de la Industria o en las Empresas de Servicios debe conocer la teoría de portafolio y de riesgo y aprender a utilizar dichos modelos en el diseño de estrategias corporativas sobre estructura de capital; presupuestación y planeación financiera tanto de corto como de largo plazo. Igualmente debe desempeñarse muy bien en la definición y administración de las políticas de dividendos y de capital de trabajo de la empresa. METODOLOGÍA El curso se enseña a través de la cátedra magistral y uso de la red para cursos virtuales de la UNIVERSIDAD NACIONAL DE COLOMBIA. En la clase magistral el docente explica los conceptos básicos, y suministra ejemplos para que el estudiante asimile los conocimientos adquiridos, de tal forma que individualmente y con la ayuda y utilización de la página virtual del curso, el alumno pueda desarrollar una serie de ejercicios para clarificar dudas o reforzar lo aprendido con el Profesor en el salón de clase."
+    },
+    {
+      "codigo": "2017538",
+      "nombre": "Fisiología vegetal",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Este es un curso introductorio a la Fisiología Vegetal, hace parte del programa básico del plan curricular de la carrera de Biología, se dictará en 16 semanas durante el transcurso del semestre. Para ayudar al desarrollo del curso se realizarán actividades como lecturas de capítulos de libros, seminarios, prácticas de laboratorio y evaluaciones. Durante el curso se va a - analizar el funcionamiento de las plantas a partir de los principios de la física y la química.- orientar hacia la observación, formulación, aplicación y solución de problemas relacionados con los diferentes tópicos de la fisiología vegetal.- realizar ensayos prácticos destinados a cuantificar y analizar diferentes aspectos relacionados con la fisiología de los vegetales. - interpretar la interacción de los comportamientos fisiológicos de los vegetales con el medio ambiente.isiologicos de los vegetales con el medio ambiente Conceptos Previos: Se recomienda a los estudiante que inscriban esta asignatura contar con los conocimiento de los cursos Principios de Bioquímica con código 2023214 y Biología de plantas con código 2015877."
+    },
+    {
+      "codigo": "2016633",
+      "nombre": "Fuentes de potencia en la agricultura",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En esta asignatura se hace una introducción al estudio del motor de combustión interna en conjunto con sus elementos y accesorios; vista como máquina para generar potencia. Así mismo, se hace un estudio de los componentes del tractor agrícola, la transmisión y los mecanismos finales de entrega de potencia. Se abordan igualmente el uso de otras fuentes de energía con énfasis en fuentes renovables. Finalmente se estudia el tractor como una máquina integral para su uso en el sector agropecuario."
+    },
+    {
+      "codigo": "1000017-B",
+      "nombre": "Fundamentos de electricidad y magnetismo",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios fundamentales de la electricidad y el magnetismo, así como de las interacciones electromagnéticas presentes en sistemas naturales y tecnológicos. El curso proporciona herramientas conceptuales y matemáticas para comprender fenómenos eléctricos, magnéticos y electromagnéticos esenciales en la formación científica y tecnológica. Durante la asignatura, el estudiante desarrollará habilidades para analizar campos eléctricos y magnéticos, interpretar circuitos básicos, comprender fenómenos de inducción electromagnética y resolver problemas relacionados con cargas, corrientes y potenciales eléctricos. Asimismo, fortalecerá competencias en razonamiento lógico, modelación matemática, análisis experimental y solución de problemas físicos. La asignatura posee un carácter interdisciplinar al relacionarse con áreas como física, ingeniería, telecomunicaciones, electrónica, bioingeniería y ciencias aplicadas, beneficiando a estudiantes interesados en comprender el funcionamiento de múltiples tecnologías contemporáneas. Los contenidos tienen aplicación práctica en sistemas eléctricos, dispositivos electrónicos, telecomunicaciones, instrumentación científica y tecnologías de uso cotidiano, además de aportar herramientas fundamentales para la comprensión de fenómenos físicos presentes en diversos contextos académicos y profesionales. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en física general y matemáticas básicas, especialmente en álgebra y cálculo diferencial. Se sugiere un avance curricular inicial o intermedio para favorecer la apropiación conceptual y matemática de los contenidos."
+    },
+    {
+      "codigo": "1000019-B",
+      "nombre": "Fundamentos de mecánica",
+      "creditos": 4,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los principios básicos de la mecánica clásica, proporcionando herramientas para comprender y analizar el movimiento de los cuerpos y las fuerzas que actúan sobre ellos. El curso constituye una base esencial para la formación científica y tecnológica al permitir interpretar fenómenos físicos presentes en diferentes contextos naturales y aplicados. A lo largo de la asignatura, el estudiante desarrollará habilidades para describir movimientos, analizar sistemas dinámicos, interpretar leyes físicas y resolver problemas relacionados con cinemática, dinámica, trabajo, energía y conservación del momento. Asimismo, fortalecerá competencias en razonamiento cuantitativo, pensamiento analítico y modelación matemática de fenómenos físicos. La asignatura tiene un enfoque interdisciplinar al conectarse con áreas como ingeniería, matemáticas aplicadas, ciencias ambientales, astronomía, biomecánica y ciencias computacionales, permitiendo que estudiantes de distintas disciplinas comprendan principios fundamentales del comportamiento de sistemas físicos. Los conocimientos adquiridos tienen aplicación práctica en el análisis de movimientos, diseño y comprensión de sistemas mecánicos, interpretación de fenómenos naturales y desarrollo de soluciones tecnológicas, además de fortalecer capacidades útiles para contextos académicos y profesionales diversos. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en matemáticas básicas y nociones introductorias de física. Se sugiere un nivel inicial de avance curricular que facilite la apropiación gradual de los conceptos y herramientas del curso."
+    },
+    {
+      "codigo": "1000020-B",
+      "nombre": "Fundamentos de oscilaciones, ondas y óptica",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Asignatura de pregrado orientada al estudio de los fenómenos oscilatorios, ondulatorios y ópticos, proporcionando herramientas conceptuales y matemáticas para comprender procesos físicos presentes en sistemas naturales y tecnológicos. El curso permite analizar cómo se propaga la energía y cómo interactúan las ondas y la luz con distintos medios, constituyendo una base fundamental para áreas científicas y aplicadas. Durante la asignatura, el estudiante desarrollará habilidades para describir movimientos oscilatorios, interpretar fenómenos de propagación de ondas, analizar procesos de interferencia, difracción y polarización, y resolver problemas asociados a sistemas físicos. Asimismo, fortalecerá competencias en modelación matemática, razonamiento científico, análisis experimental y pensamiento crítico. La asignatura posee un carácter interdisciplinar al relacionarse con áreas como física, ingeniería, telecomunicaciones, acústica, astronomía, ciencias de materiales y ciencias de la salud. Por ello, resulta útil para estudiantes interesados en comprender fenómenos asociados al sonido, la vibración, la luz y las tecnologías ópticas. Los conocimientos adquiridos tienen aplicación en el estudio de sistemas de comunicación, instrumentos ópticos, procesamiento de señales, tecnologías láser, análisis acústico y múltiples herramientas científicas y tecnológicas presentes en contextos académicos y profesionales. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en física general y matemáticas, especialmente en álgebra y cálculo básico. Se sugiere un avance curricular inicial o intermedio que facilite la comprensión de los contenidos."
+    },
+    {
+      "codigo": "2015958",
+      "nombre": "Geomática básica",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Conocimiento de la instrumentación topográfica y los métodos de trabajo necesarios para realizar levantamientos y replanteos de áreas de terreno de escalas apropiadas a las técnicas de la topografía, con el objetivo de que el ingeniero civil, esté en capacidad de apoyar procesos públicos y privadas tendientes a planificar, diseñar, ejecutar y evaluar, proyectos de infraestructura, de ordenamiento territorial, elaboración de mapas temáticos de acuerdo a sus áreas de desempeño, coordinación de trabajos topográficos para proyectos de desarrollo comunitario, gestión en empresas privadas en la consultoría e interventora en Geomática, Empresas que realicen estudios de impacto ambiental, Ejercicio libre de la profesión en contratación, interventora y consultoría, Monitoreo de obras de infraestructura."
+    },
+    {
+      "codigo": "2015701",
+      "nombre": "Gerencia de recursos humanos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Una de las áreas en que los ingenieros industriales pueden aportar a la competitividad y productividad de las empresas es en la gerencia del talento humano. Siendo relativamente fácil el acceso a nuevas tecnologías, la gran diferencia entre las empresas a menudo la hacen las personas. La planeación de las políticas de talento humano, los procesos de reclutamiento, selección, inducción, formación y capacitación, evaluación del desempeño, remuneración, carrera profesional, entre otras, son áreas en las que con seguridad es muy relevante el aporte de los ingenieros industriales.Al concluir esta asignatura el participante estará en capacidad de: Analizar la importancia de la Administración de Recursos Humanos en la Organización con el fin de lograr mayores niveles de productividad y clima organizacional mediante el conocimiento de las metodologías y técnicas modernas de gestión del talento humano en las organizaciones. OBJETIVOS ESPECÍFICOS ¿ Reconocer los vínculos entre la estrategia corporativa de negocios y la Estrategia de Recursos Humanos. ¿ Diseñar un plan de recursos humanos desde una óptica estratégica. ¿ Reconocer y aplicar técnicas para diseñar y rediseñar cargos. ¿ Diseñar una estrategia de atracción y obtención de recursos humanos, aplicando las técnicas más adecuadas de reclutamiento, selección y contratación. ¿ Diseñar un sistema de inducción de personal ¿ Diseñar estrategia de estimulación de recursos humanos y las técnicas más adecuadas de compensación."
+    },
+    {
+      "codigo": "2015702",
+      "nombre": "Gerencia y gestión de proyectos",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Objetivos: El curso busca preparar al futuro ingeniero en las metodologías de formulación, evaluación y gestión de proyectos, como una de las actividades habituales que desempeñan los ingenieros en entidades públicas o privadas."
+    },
+    {
+      "codigo": "2015961",
+      "nombre": "Hidráulica básica",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Aplicación de las leyes fundamentales de la Mecánica de fluidos a casos reales como son el flujo a través de conductos a presión y al flujo real de líquidos a través de conductos con superficie libre. Al finalizar el curso, el estudiante debe estar en"
+    },
+    {
+      "codigo": "2015978",
+      "nombre": "Hidrología",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Este curso de hidrología presenta y analiza los fenómenos meteorológicos que afectan la precipitación y evapotranspiración, así como sus instrumentos de medición. Introduce la captura, análisis y llenado de datos faltantes, además de las características fisiográficas de la cuenca que influye en el caudal en un área determinada. Presenta modelos lluvia-escorrentía, del mismo modo modelos estadísticos para análisis de extremos. Estos conceptos son fundamentales para la planeación y desarrollo de los recursos hídricos, también para el diseño de estructuras y obras hidráulicas."
+    },
+    {
+      "codigo": "2016634",
+      "nombre": "Ingeniería de riegos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "La Ingeniería de riegos consiste en el diseño de sistemas tendientes a regular el complejo agua-suelo-planta y el medio ambiente, buscando crear las condiciones óptimas de producción y calidad mediante un manejo eficiente del recurso. Comprende el proceso de determinación de requerimientos hídricos de la planta, manejo de las fuentes de abastecimiento y su distribución. con el objetivo de capacitar al estudiante en la planeación, diseño, operación, evaluación y mantenimiento de sistemas de riego, para que adquiera los conocimientos y principios básicos de la relación planta-agua-suelo-clima y su importancia de aplicación."
+    },
+    {
+      "codigo": "2015703",
+      "nombre": "Ingeniería económica",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Suministrar al estudiante de ingeniería en la Universidad Nacional de Colombia los conceptos básicos de la teoría económica que le permitan desarrollar su capacidad de análisis y comprensión de las áreas propias de sus actividades profesionales y en parti"
+    },
+    {
+      "codigo": "1000044-B",
+      "nombre": "Inglés I- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de este primer nivel de inglés, puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y que además, puedan expresar de manera oral y escrita información de tipo personal. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "1000045-B",
+      "nombre": "Inglés II - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general. Se espera que en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad y secuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñanza y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000049-B",
+      "nombre": "Inglés II - Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del segundo nivel, puedan comprender textos expositivos y narrativos relacionados con temáticas de tipo académico y de cultura general.Se esperaque en términos de comprensión escrita, el estudiante pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Además se espera que puedan expresar de manera oral y escrita información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. A partir de un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante, a través del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué le sirve, por qué y cómo usarlo. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "1000046-B",
+      "nombre": "Inglés III - Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua."
+    },
+    {
+      "codigo": "1000050-B",
+      "nombre": "Inglés III- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término del tercer nivel, puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "1000052-B",
+      "nombre": "Inglés Intensivo I y II",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes al término de los niveles I y II puedan comprender textos expositivos cortos relacionados con temáticas de tipo académico y pueda identificar relaciones de temporalidad ysecuencia, de contraste y de causa y efecto. Los estudiantes pueden expresar de manera oral y escrita información de tipo personal e información relacionada con la descripción detallada de lugares, de estados de salud, eventos del pasado y planes. Con base en un listado de descriptores predeterminados, el profesor selecciona el material que puede utilizar y ayuda al estudiante a partir del uso de estrategias de aprendizaje, para que poco a poco sea él o ella quien tenga el criterio para saber qué información le sirve, por qué y cómo usarla."
+    },
+    {
+      "codigo": "1000053-B",
+      "nombre": "Inglés Intensivo III y IV",
+      "creditos": 6,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "Se espera que los estudiantes, al término de este curso intesivo puedan leer y comprender textos auténticos de tipo académico y cultural, en los que, por ejemplo, se narren eventos o se describa un concepto a través del tiempo, se presente información de tipo periodístico, se explique el desarrollo de un fenómeno a través de una línea de realaciones de causa y efecto o se presente de manera sustentada un determinado punto de vista. Se espera además que los estudiantes puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. Además se espera que puedan expresar de manera oral y escrita información relacionada con los conceptos trabajados a partir de la comprensión de lectura, que puedan sustentar su punto de vista y hacer reporte de la información queotraspersonaslestransmitan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Tambien participan de manera oral en debates."
+    },
+    {
+      "codigo": "1000047-B",
+      "nombre": "Inglés IV- Semestral",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea."
+    },
+    {
+      "codigo": "1000051-B",
+      "nombre": "Inglés IV- Virtual",
+      "creditos": 3,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo general de los cuatro niveles de lengua en el Programa ALEX es desarrollar la competencia comunicativa en la lengua extranjera elegida por el estudiante (con énfasis en comprensión de lectura) y, paralelamente, su capacidad para tomar decisiones con respecto al proceso de aprendizaje. Se espera que los estudiantes, al término del cuarto nivel puedan leer y comprender textos auténticos de tipo académico con mayor énfasis en reportes de tipo investigativo y argumentativo. Identifican, por lo tanto, los principales aspectos en un reporte de investigación y los argumentos y contra argumentos que aparecen en un ensayo. También participan de manera oral en debates en torno a situaciones de tipo académico y cultural y redactan textos con el rigor que se requiere para expresar su punto de vista con respecto a un tema específico y los diferentes argumentos que lo sustentan. Se cuenta con un Centro de Recursos que le brinda tanto a profesores como estudiantes un buen número de recursos para la enseñana y aprendizaje de la lengua y que se relacionan directamente con los contenidos que el curso plantea. Este curso está dirigido a estudiantes de la Sede Bogotá, interesados en aprender o en avanzar en el aprendizaje del inglés, apoyándose en medios virtuales. El entorno virtual lo conforman los espacios proporcionados por la plataforma Blackboard ( a través de la página web de la Universidad) y las herramientas que ésta brind (curso, foros, chats, etc.). En el entorno virtual se presentan explicaciones y contextos para comprender aspectos de la lengua y practicar conocimientos adquiridos. El entorno virtual es el eje del programa y requiere del estudiante disciplina para concentrarse en el aprendizaje y práctica del idioma."
+    },
+    {
+      "codigo": "2016635",
+      "nombre": "Introducción a la ingeniería agrícola",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Es la primera asignatura de la carrera, en la cual el estudiante tiene la oportunidad de conocer en forma global la incidencia de la Ingeniería en el desarrollo del país y en particular de la Ingeniería Agrícola. En el desarrollo de la asignatura se muestra como esta profesión está presente en el desarrollo y uso de la tecnología en la producción agrícola, pecuaria y agroindustrial, así como sus diferentes campos de acción para el ejercicio profesional. Se promueve el desarrollo de habilidades sociales (trabajo en equipo, manejo del tiempo, comunicación efectiva, entre otros) para lograr un mejor desempeño en su vida académica y profesional."
+    },
+    {
+      "codigo": "1000002-B",
+      "nombre": "Lecto-Escritura",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "El objetivo de este curso nivelatorio es cualificar la competencia argumentativa de los estudiantes, en lectura y escritura, por medio de la apropiación de estrategias de comprensión y expresión. Al finalizar el curso los estudiantes estarán en la capacidad de: - Identificar distintos modos discursivos presentes en un texto argumentativo. - Identificar la estructura argumentativa de un texto: Tesis central o hipótesis, premisas, red de relaciones entre la premisas. - Emitir un juicio de valor en la relación con la estructura identificada. - Identificar las distintas posturas que origina la argumentación contenida en el texto. - Construir un texto que tenga una estructura argumentativa."
+    },
+    {
+      "codigo": "2016636",
+      "nombre": "Máquinas agrícolas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En Colombia existe una importante producción agropecuaria y agroindustrial, a partir de los diferentes sistemas de producción, así como de variables técnicas y aspectos sociales y culturales, se han implementado diferentes tecnologías para las operaciones de labranza, siembra, labores culturales, recolección, acondicionamiento primario y producción pecuaria y agroindustrial. Estas operaciones con asistencia mecánica o totalmente mecanizada son una excelente opción para reducir los costos de la operación al mejorar la eficiencia y aumentar la productividad agropecuaria. Dentro del estudio y selección de estas máquinas es necesario tener una comprensión de sus mecanismos y de los fenómenos que se desarrollan durante la manipulación que sufren los productos agrícolas al entrar en contacto con sus componentes o herramientas. Así mismo, es importante conocer las causas de la eficiencia de estas labores para reducir las pérdidas en la producción agropecuaria y agroindustrial. Conceptos Previos El estudiante que curse esta asignatura debe contar con las siguientes competencias previas: a. Conocimientos de elementos de maquinas, fuentes de potencia y del área de las ciencias económico administrativas. b. Capacidad de proponer, desarrollar o ejecutar procesos o sistemas conforme a necesidades y restricciones de orden: tecnológico, económico, ambiental, social, de seguridad, de fabricación y de sostenibilidad. c. Habilidad para trabajar en equipo y comunicación efectiva. d. Capacidad para identificar, formular y solucionar problemas de ingeniería enfocándose en el ejercicio profesional e. Percepción e interpretación de la realidad y la problemática actual del medio en que vive y se desempeña f. Habilidad en el uso de técnicas y herramientas de la ingeniería."
+    },
+    {
+      "codigo": "1000001-B",
+      "nombre": "Matemáticas Básicas",
+      "creditos": 4,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": "OBJETIVOS: Generales ¿ Brindar al estudiante los fundamentos conceptuales para abordar los cursos posteriores que requieran la matemática básica. ¿ Promover a través de los talleres, una participación activa del estudiante en su proceso de aprendizaje matemático. ¿ Generar un espacio y tiempo más adecuados para que el estudiante madure e interiorice los conocimientos adquiridos. Específicos ¿ Presentar elementos básicos de lógica que permitan al estudiante incorporar formalismo y validez a sus argumentos. ¿ Desarrollar habilidades básicas para el manejo de operaciones aritméticas y entre conjuntos ¿ Lograr un manejo adecuado de las expresiones algebraicas. ¿ Familiarizar al alumno con la noción de función, su representación gráfica e interpretación, y trabajar con algunas funciones fundamentales tales como las lineales, cuadráticas, exponenciales, logarítmicas y trigonométricas. ¿ Repasar elementos de la geometría euclidiana básica y de la trigonometría elemental. ¿ Hacer una introducción a los métodos de conteo."
+    },
+    {
+      "codigo": "2015966",
+      "nombre": "Mecánica de fluidos",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "La asignatura mecánica de fluidos con base en aspectos fundamentales de la física, el cálculo y las ecuaciones diferenciales se centra en el estudio y análisis de las propiedades físicas más relevantes de los fluidos. Con ello el curso se centra en el estudio y aplicación de cuatro principios: de Pascal, de conservación de la masa, de conservación de la energía, momentum lineal y angular, principios que se aplican a diferentes condiciones de contorno a los cuales están sometidos los fluidos. Finalmente se hace una introducción al análisis dimensional y semejanza hidráulica."
+    },
+    {
+      "codigo": "2015968",
+      "nombre": "Mecánica de sólidos",
+      "creditos": 4,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En la asignatura Mecánica de Sólidos se estudia el comportamiento mecánico de sólidos bajo acciones externas estáticas y considerando deformaciones infinitesimales. En el primer módulo de curso se describe el estado de esfuerzos, de deformaciones y de desplazamientos en cada partícula del sólido. En la segunda parte del mismo se definen las acciones internas equivalentes como fuerza axial, fuerza cortante, momento flector y momento torsor, que actúan sobre la sección transversal de una barra sometida a diferentes acciones externas. En el último módulo del curso se realizan prácticas de laboratorio donde se demuestran algunos conceptos adquiridos previamente. Los conocimientos previos corresponden al contenido detallado de las asignaturas Cálculo de varias variables y Estática. El objetivo general de la asignatura es Presentar al estudiante los conceptos fundamentales que le permitan establecer o predecir el comportamiento de cuerpos deformables sometidos a diferentes condiciones de carga, identificando las acciones internas, los desplazamientos y los estados de estado de esfuerzo y de deformación actuantes sobre él."
+    },
+    {
+      "codigo": "2015969",
+      "nombre": "Mecánica de suelos",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "En este curso se estudian las relaciones entre la composición del suelo, su organización estructural y el comportamiento mecánico, en términos de relaciones constitutivas de esfuerzo-deformacióntiempo, bajo diferentes condiciones de carga y drenaje. El curso incluye clases magistrales y prácticas de laboratorio. Se estudia el origen y la composición de los suelos, las técnicas de exploración del subsuelo, las características de flujo en medios porosos, los análisis de esfuerzos totales, efectivos y de incrementos de esfuerzos, las características de compresibilidad y resistencia al corte y finalmente se hace una introducción a los modelos de estado crítico. Se espera que al final del curso el estudiante esté en capacidad de comprender cómo se interrelacionan las variables que intervienen en un problema geotécnico y que cuente con herramientas teóricas y prácticas para caracterizar propiedades mecánicas de los suelos y para resolver problemas de ingeniería geotécnica. Conceptos Previos: Conocimientos básicos de geología, de caracterización de materiales de construcción, de mecánica de fluidos, así como de estática y de mecánica de sólidos."
+    },
+    {
+      "codigo": "2015970",
+      "nombre": "Métodos numéricos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "OBJETIVO GENERAL Capacitar al estudiante en los conceptos fundamentales del análisis numérico para la solución de problemas matemáticos mediante algoritmos numéricos, con la orientación necesaria para su implementación en computador y aplicados a la solución de problemas en ingeniería. OBJETIVOS ESPECÍFICOS - Implementar soluciones a diversos problemas con procedimientos numéricos en el computador, mediante el paquete matemático MATLAB. - Estimular al alumno para crear sus propias soluciones en el computador para resolver problemas particulares. METODOLOGÍA El propósito de este curso es darle apoyo al estudiante de manera que pueda llevar a cabo su proceso de aprendizaje de manera autónoma; este apoyo está representado por: material escrito, desarrollo de talleres y laboratorios, ejercicios teóricos y prácticos, software didáctico y explicaciones por parte de profesores y monitores. Cada módulo temático está conformado por 4 sesiones distribuidas en dos semanas: una conferencia, una clase, un taller y un laboratorio. A continuación se describe cada tipo de sesión."
+    },
+    {
+      "codigo": "2017293",
+      "nombre": "Modelación matemática",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "En esta asignatura se busca familiarizar al estudiante en la solución de problemas de ingeniería mediante el uso de herramientas matemáticas y computacionales, con énfasis en el proceso de planteamiento, desarrollo y evaluación de modelos matemáticos. Se busca que el estudiante pueda diferenciar entre modelos analíticos, numéricos y observacionales, distinguiendo ventajas y limitantes de cada uno de ellos. Igualmente se desea que el estudiante desarrolle habilidades para la solución de problemas de ingeniería mediante el uso de herramientas matemáticas. La metodología usada es la exposición y análisis del proceso de desarrollo de modelos matemáticos para casos particulares de estudio, y la presentación de los fundamentos matemáticos detrás de dichos modelos."
+    },
+    {
+      "codigo": "2025970",
+      "nombre": "Modelos y simulación",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "El curso se desarrolla a través de sesiones presenciales en donde se explican los conceptos básicos, y se comparten ejemplos que ayuden al aprendizaje práctico de las temáticas, con el soporte de lecturas previas que el estudiante realiza para contextualizar el área de estudio. De tal manera que los estudiantes puedan de forma autónoma desarrollar talleres y estudios de caso basados en el material revisado. Se contará con talleres prácticos en el uso de herramientas de software. - Los contenidos, presentaciones y demás material serán publicados en el curso virtual generado por Moodle. OBJETIVOS: - Las asignaciones (trabajos, talleres) deberán ser entregadas en medio magnético o físico de acuerdo con las especificaciones del docente. En el caso del medio magnético las asignaciones deberán ser cargadas directamente a la página de Moodle. - Todas las sesiones se realizarán en salas de cómputo equipadas con las herramientas de software que posee el departamento de Ingeniería de Sistemas e Industrial de la Facultad de Ingeniería de la Universidad Nacional de Colombia Sede Bogotá. - El enfoque investigativo del curso hará necesario el uso de material bibliográfico de las bases de datos disponibles en la Universidad como Science Direct, JStor, Springer, Scielo, entre otras. Requisitos del curso Los informes que se presentarán en el curso deberán ser escritos en LaTex."
+    },
+    {
+      "codigo": "2016638",
+      "nombre": "Poscosecha de frutas y hortalizas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Los productos agrícolas para su buen manejo y conservación desde el momento de la cosecha o producción, requieren de la aplicación de conocimientos de ciencia y tecnología, que es en esencia la Ingeniería de Poscosecha de Productos Agrícolas. Un gran volumen del consumo nacional de alimentos está representado por productos agrícolas frescos, que por su naturaleza biológica, requieren de tratamientos diferentes a los productos inertes. Estos productos son tejidos vivos que continúan respirando después de ser cosechados, ejerciendo su función metabólica normal y produciendo cambios fisicoquímicos que alteran su calidad. Para la adecuada conservación de los productos, los Ingenieros Agrícolas deben tener el conocimiento suficiente sobre la naturaleza de los mismos, al igual que de los principios de Ingeniería, que les permitan desarrollar criterios para el diseño y selección de las tecnologías e infraestructuras requeridas que permita conservar en gran medida la calidad integral de los productos y minimizar las grandes pérdidas tanto cualitativas como cuantitativas que adolece el sector hortofrutícola."
+    },
+    {
+      "codigo": "2016639",
+      "nombre": "Poscosecha de granos y semillas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Las grandes pérdidas de granos y semillas que se ocasionan especialmente en las operaciones poscosecha, son consecuencia de la carencia de mecanismos adecuados de manejo, secado, almacenamiento y beneficio de estos productos. Para reducir estas pérdidas es necesario aplicar los fundamentos de las ciencias básicas y los principios de la ingeniería, para lo cual es indispensable conocer las características fisiológicas y físico-mecánicas, así como los equipos más adecuados para el manejo, secado, conservación y beneficio de los productos. El Ingeniero Agrícola es el profesional más indicado para participar en este tipo de actividades, tanto para seleccionar y diseñar procesos de poscosecha y procesamiento, como para administrar plantas de beneficio y de almacenamiento de productos agrícolas."
+    },
+    {
+      "codigo": "1000024-B",
+      "nombre": "Principios de química",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Suministrar a los estudiantes los conceptos básicos de la Química que le permitan la interpretación de fenómenos involucrados en diferentes procesos químicos. La asignatura se desarrollará mediante exposiciones orales por parte del profesor. Se propondrán actividades de reforzamiento y repaso (talleres y lecturas complementarias). OBJETIVOS: 1. Preparar al estudiante para la interpretación de fenómenos involucrados en diferentes procesos químicos. 2. Promover el aprendizaje y comprensión del lenguaje básico de la Química como herramienta indispensable para su desarrollo profesional, el trabajo interdisciplinario y para que entienda la vida cotidiana desde la óptica de los procesos químicos. 3. Aumentar el interés en los estudiantes por la comprensión de la materia a nivel atómico y molecular. 4. Potencializar competencias interpretativas, propositivas y argumentativas fundamentadas en el lenguaje químico. 5. Fomentar la integración de los conceptos de materia y energía de creciente relevancia en el presente siglo, en todas las actividades del quehacer cotidiano. 6. Desarrollar habilidades y destrezas para la resolución de ejercicios y problemas que requieran de conocimientos de Química. 7. Promover en el estudiante el uso responsable de los conocimientos de química en su entorno, especialmente en lo que tiene que ver con el cuidado del medio ambiente. Conceptos Previos: Considerando que es un curso para los ciclos de fundamentación de diferentes programas académicos de la Universidad Nacional de Colombia no se requieren conocimientos previos"
+    },
+    {
+      "codigo": "1000013-B",
+      "nombre": "Probabilidad y estadística fundamental",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2015734",
+      "nombre": "Programación de computadores",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. OBJETIVOS Con el curso de programación de computadores se espera que un estudiante este en capacidad de:  Reconocer problemas a los que se les puede dar solución mediante un algoritmo Aplicar una metodología sistemática para su solución.  Especificar algoritmos de manera precisa utilizando conceptos y elementos de programación.  Implementar la solución algorítmica mediante un lenguaje de programación como Python. Aprende a programar, como aprender a nadar, es un proceso de aprendizaje activo que solo se logra si el estudiante trata de programar, es decir, aprender a programar depende en gran parte de la motivación y trabajo activo del estudiante. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la exlicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2016375",
+      "nombre": "Programación orientada a objetos",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. Sin embargo, para que ellos cumplan con estas funciones, es necesario programarlos: decirles qué hacer y cómo hacerlo. Esto se hace mediante la especificación de un algoritmo (una secuencia finita de pasos bien definida) en un lenguaje de programación como Python, C++ y/o Java Script. OBJETIVOS  Uno de los enfoques más usados en la actualidad es la programación orientada por objetos (POO). Con el curso de programación orientada por objetos se espera que un estudiante este en capacidad de: Identificar objetos, clases e instancias en la descripción de un problema.  Abstraer mediante métodos y atributos los mismos. Establecer relaciones de herencia, polimorfismo, colaboración, composición entre ellos.  Aplicar una metodología sistemática de POO para la solución de problemas algorítmicos. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la explicación por parte de profesores y monitores."
+    },
+    {
+      "codigo": "2016609",
+      "nombre": "Seguridad industrial",
+      "creditos": 3,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "La asignatura busca formar personas integrales con conocimientos particulares que aporten en la medida de sus capacidades a mejorar las condiciones de seguridad y salud de los trabajadores. En este sentido la seguridad Industrial, permitirá al ingeniero en las empresas colombianas, generar mecanismo para la protección de los trabajadores proporcionando soluciones reales y tangibles a las cuestiones propias de la seguridad e higiene industrial, procurando que el trabajador sea cuidadoso de sí mismo y el empresario responsable con la seguridad social y las condiciones de trabajo en sus organizaciones. Al finalizar el curso, el estudiante podrá: Identificar condiciones de trabajo bajo la legislación vigente, Aporta una visión general para evaluar los diferentes factores de riesgo, Ejecutar medidas preventivas y correctivas correspondientes a identificación de los riesgos laborales. Gestionar procesos de Promoción y Prevención concernientes a la Seguridad Industrial. METODOLOGÍA: El desarrollo de los contenidos se hará mediante clases magistrales y videos de apoyo, trabajo individual o en grupo sustentado, participativo y crítico. El desarrollo de la asignatura por su naturaleza, exigen del estudiante su mayor compromiso en el desarrollo de las temáticas. Se parte de la premisa que la lectura comprensiva es el componente de base; el trabajo guiado, participativo es fundamento para un óptimo aprendizaje; así como el desarrollo de la autonomía, la creatividad y la responsabilidad de las partes."
+    },
+    {
+      "codigo": "2016610",
+      "nombre": "Sistemas de costos",
+      "creditos": 4,
+      "tipologia": "FUND. OPTATIVA (O)",
+      "rotulo": "FUND. OPTATIVA (O)",
+      "descripcion": "Contribuir a la formación integral del futuro profesional de la Ingeniería Industrial fortaleciendo en él su aptitud analítica, OBJETIVO GENERAL Al finalizar el curso el estudiante estará en capacidad de entender los conceptos contables básicos y su utilidad como herramienta para el análisisi financiero y la toma de decisiones. Podrá distinguir entre los diferentes sistemas de costos aplicados a los procesos industriales y estará en capacidad de relacionar los procesos de la contabilidad general y de costos en una empresa, para consolidad la información contable como elemento de un sistema de información gerencial."
+    },
+    {
+      "codigo": "2016632",
+      "nombre": "Suelos agrícolas",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Las actividades del Ingeniero Agrícola están directamente relacionadas con el conocimiento, el manejo racional, y la recuperación de los recursos productivos, entre los cuales uno de los más importantes es el recurso suelo. El suelo es un componente esencial en las actividades relacionadas en las áreas del riego y drenajes agrícolas y en la mecanización agrícola, por tanto, el Ingeniero Agrícola debe tener un conocimiento integral del origen, las propiedades físicas, químicas y biológicas y su interrelación en la aptitud del uso del suelo, sus limitaciones y su manejo, teniendo como base la producción agrícola. Conceptos Previos: El estudiante que curse esta asignatura debe contar con las siguientes competencias previas: a. Capacidad de identificar los conocimientos de matemáticas, física, química, biología e informática para su aplicación en el área de suelos agrícolas. b. Entender la responsabilidad y ética profesional. c. Comprender el impacto de las soluciones aportadas por la ingeniería en un contexto social y global. d. Habilidad en el uso de técnicas y herramientas de la ingeniería."
+    },
+    {
+      "codigo": "2021185",
+      "nombre": "Suficiencia por Acogimiento al Acuerdo 032",
+      "creditos": 12,
+      "tipologia": "NIVELACIÓN (E)",
+      "rotulo": "NIVELACIÓN (E)",
+      "descripcion": null
+    },
+    {
+      "codigo": "2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El Taller de Proyectos Interdisciplinarios es una asignatura común para varios programas curriculares de la Facultad de Ingeniería que pretende promover el trabajo en equipo e interdisciplinario de los estudiantes, en torno a la solución de problemas en"
+    },
+    {
+      "codigo": "2015741",
+      "nombre": "Termodinámica",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "El estudiante estará en capacidad de emplear los principios de la Termodinámica en el análisis de sistemas que involucren transformaciónes físicas con sustancias puras en estados sólido, líquido o vapor. Podrá identificar las diferentes formas de energía"
+    },
+    {
+      "codigo": "2015372",
+      "nombre": "Trabajo de Grado",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": "La asignatura Trabajo de Grado es aquella en la cual el estudiante concreta y consolida el proceso investigativo, creativo o de innovación, en el tratamiento de un problema específico, como fruto de la aplicación de los conocimientos y métodos adquiridos durante su proceso de formación universitaria. Podrá ser el punto final de una serie de asignaturas previas tales como seminarios, prácticas académicas, investigativas o creativas."
+    },
+    {
+      "codigo": "2015373",
+      "nombre": "Trabajo de Grado - Asignaturas de Posgrado",
+      "creditos": 6,
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
+      "descripcion": "La asignatura Trabajo de Grado es aquella en la cual el estudiante concreta y consolida el proceso investigativo, creativo o de innovación, en el tratamiento de un problema específico, como fruto de la aplicación de los conocimientos y métodos adquiridos durante su proceso de formación universitaria. Podrá ser el punto final de una serie de asignaturas previas tales como seminarios, prácticas académicas, investigativas o creativas."
+    },
+    {
+      "codigo": "2016643",
+      "nombre": "Transferencia de calor y masa",
+      "creditos": 3,
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Este curso pretende que el estudiante comprenda que en la práctica de la Ingeniería Agrícola cada vez es más importante contar con los conocimientos de los mecanismos de transferencia de calor y masa, ya que estos desempeñan un papel crítico en el diseño de sistemas de acondicionamiento de productos agrícolas (refrigeración, secado, entre otros) e instalaciones rurales (agrícola, pecuario y agroindustrial), así como la utilización de equipos y elementos industriales tales como ductos, aletas, máquinas térmicas, motores de combustión interna e intercambiadores de calor. Además, los principios que rigen los fenómenos de transferencia de calor y masa permiten desarrollar tecnologías y cuantificar los recursos energéticos y su forma de aprovechamiento, optimizándolo en los diferentes usos y aplicaciones a sistemas biológicos en el sector rural."
+    }
+  ],
+  "malla": [
+    {
+      "id": "agricola:pos:1:2016635",
+      "nombre": "Introducción a la ingeniería agrícola",
+      "codigoAsignatura": "2016635",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:1:1000004",
+      "nombre": "Cálculo diferencial",
+      "codigoAsignatura": "1000004-B",
+      "semestre": 1,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:1:1000024",
+      "nombre": "Principios de química",
+      "codigoAsignatura": "1000024-B",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:1:1000009",
+      "nombre": "Biología general",
+      "codigoAsignatura": "1000009-B",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:1:2015711",
+      "nombre": "Dibujo básico",
+      "codigoAsignatura": "2015711",
+      "semestre": 1,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:2:1000003",
+      "nombre": "Álgebra Lineal",
+      "codigoAsignatura": "1000003-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:2:1000005",
+      "nombre": "Cálculo Integral",
+      "codigoAsignatura": "1000005-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:2:1000019",
+      "nombre": "Fundamentos de mecánica",
+      "codigoAsignatura": "1000019-B",
+      "semestre": 2,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:2:2015734",
+      "nombre": "Programación de computadores",
+      "codigoAsignatura": "2015734",
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:3:1000006",
+      "nombre": "Cálculo en varias variables",
+      "codigoAsignatura": "1000006-B",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:3:1000013",
+      "nombre": "Probabilidad y estadística fundamental",
+      "codigoAsignatura": "1000013-B",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:3:2026134",
+      "nombre": "Estática",
+      "codigoAsignatura": "2026134",
+      "semestre": 3,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:3:2015958",
+      "nombre": "Geomática básica",
+      "codigoAsignatura": "2015958",
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:4:1000007",
+      "nombre": "Ecuaciones Diferenciales",
+      "codigoAsignatura": "1000007-B",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:4:2017538",
+      "nombre": "Fisiología vegetal",
+      "codigoAsignatura": "2017538",
+      "semestre": 4,
+      "creditos": 4,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:4:2016632",
+      "nombre": "Suelos agrícolas",
+      "codigoAsignatura": "2016632",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:4:2015703",
+      "nombre": "Ingeniería económica",
+      "codigoAsignatura": "2015703",
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "B",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:5:2015966",
+      "nombre": "Mecánica de fluidos",
+      "codigoAsignatura": "2015966",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:5:2015968",
+      "nombre": "Mecánica de sólidos",
+      "codigoAsignatura": "2015968",
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:5:2015741",
+      "nombre": "Termodinámica",
+      "codigoAsignatura": "2015741",
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:6:2015961",
+      "nombre": "Hidráulica básica",
+      "codigoAsignatura": "2015961",
+      "semestre": 6,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:6:2015969",
+      "nombre": "Mecánica de suelos",
+      "codigoAsignatura": "2015969",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:6:2015941",
+      "nombre": "Análisis estructural básico",
+      "codigoAsignatura": "2015941",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:6:2016631",
+      "nombre": "Elementos de máquinas agrícolas",
+      "codigoAsignatura": "2016631",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:6:2016643",
+      "nombre": "Transferencia de calor y masa",
+      "codigoAsignatura": "2016643",
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:7:2016634",
+      "nombre": "Ingeniería de riegos",
+      "codigoAsignatura": "2016634",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": "Código contrastado con tabla de agrupaciones del mismo PDF."
+    },
+    {
+      "id": "agricola:pos:7:2015978",
+      "nombre": "Hidrología",
+      "codigoAsignatura": "2015978",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:7:2016627",
+      "nombre": "Diseño de estructuras de concreto",
+      "codigoAsignatura": "2016627",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:7:2016633",
+      "nombre": "Fuentes de potencia en la agricultura",
+      "codigoAsignatura": "2016633",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:7:2016638",
+      "nombre": "Poscosecha de frutas y hortalizas",
+      "codigoAsignatura": "2016638",
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:8:2016628",
+      "nombre": "Diseño de sistemas de riego",
+      "codigoAsignatura": "2016628",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:8:2016629",
+      "nombre": "Drenaje de tierras agricolas",
+      "codigoAsignatura": "2016629",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:8:2016636",
+      "nombre": "Máquinas agrícolas",
+      "codigoAsignatura": "2016636",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:8:2016639",
+      "nombre": "Poscosecha de granos y semillas",
+      "codigoAsignatura": "2016639",
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:9:2016630",
+      "nombre": "Electrotecnia",
+      "codigoAsignatura": "2016630",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:9:2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "codigoAsignatura": "2024045",
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:10:2016626",
+      "nombre": "Control en biosistemas",
+      "codigoAsignatura": "2016626",
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": null
+    },
+    {
+      "id": "agricola:pos:10:optativa-trabajo-de-grado",
+      "nombre": "Optativa - Trabajo de grado",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "C",
+      "caracter": "opt",
+      "nota": "Posición sin código de asignatura identificado en el diagrama."
+    },
+    {
+      "id": "agricola:pos:0:1000001",
+      "nombre": "Matemáticas Básicas",
+      "codigoAsignatura": "1000001-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "agricola:pos:0:1000002",
+      "nombre": "Lecto-Escritura",
+      "codigoAsignatura": "1000002-B",
+      "semestre": 0,
+      "creditos": 4,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "agricola:pos:0:1000044",
+      "nombre": "Inglés I- Semestral",
+      "codigoAsignatura": "1000044-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "agricola:pos:0:1000045",
+      "nombre": "Inglés II - Semestral",
+      "codigoAsignatura": "1000045-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "agricola:pos:0:1000046",
+      "nombre": "Inglés III - Semestral",
+      "codigoAsignatura": "1000046-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "agricola:pos:0:1000047",
+      "nombre": "Inglés IV- Semestral",
+      "codigoAsignatura": "1000047-B",
+      "semestre": 0,
+      "creditos": 3,
+      "componente": "N",
+      "caracter": "obl",
+      "nota": "Nivelación indicada en la malla. No integra los créditos del plan; código solo si está identificado en el catálogo de esta carrera."
+    },
+    {
+      "id": "agricola:pos:1:libre-eleccion:1",
+      "nombre": "Libre elección (1)",
+      "codigoAsignatura": null,
+      "semestre": 1,
+      "creditos": 2,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:2:libre-eleccion:2",
+      "nombre": "Libre elección (2)",
+      "codigoAsignatura": null,
+      "semestre": 2,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:3:libre-eleccion:3",
+      "nombre": "Libre elección (3)",
+      "codigoAsignatura": null,
+      "semestre": 3,
+      "creditos": 4,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:4:libre-eleccion:4",
+      "nombre": "Libre elección (4)",
+      "codigoAsignatura": null,
+      "semestre": 4,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:5:optativa-sin-asignatura-especificada:5",
+      "nombre": "Optativa sin asignatura especificada (1)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 4,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:5:optativa-sin-asignatura-especificada:6",
+      "nombre": "Optativa sin asignatura especificada (2)",
+      "codigoAsignatura": null,
+      "semestre": 5,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:6:libre-eleccion:7",
+      "nombre": "Libre elección (5)",
+      "codigoAsignatura": null,
+      "semestre": 6,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:7:libre-eleccion:8",
+      "nombre": "Libre elección (6)",
+      "codigoAsignatura": null,
+      "semestre": 7,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:8:optativa-sin-asignatura-especificada:9",
+      "nombre": "Optativa sin asignatura especificada (3)",
+      "codigoAsignatura": null,
+      "semestre": 8,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:9:libre-eleccion:10",
+      "nombre": "Libre elección (7)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:9:libre-eleccion:11",
+      "nombre": "Libre elección (8)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:9:libre-eleccion:12",
+      "nombre": "Libre elección (9)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:9:optativa-sin-asignatura-especificada:13",
+      "nombre": "Optativa sin asignatura especificada (4)",
+      "codigoAsignatura": null,
+      "semestre": 9,
+      "creditos": 3,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:10:libre-eleccion:14",
+      "nombre": "Libre elección (10)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:10:libre-eleccion:15",
+      "nombre": "Libre elección (11)",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:10:libre-eleccion:16",
+      "nombre": "Libre elección",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 3,
+      "componente": "L",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    },
+    {
+      "id": "agricola:pos:10:optativa-sin-asignatura-especificada:17",
+      "nombre": "Optativa sin asignatura especificada",
+      "codigoAsignatura": null,
+      "semestre": 10,
+      "creditos": 6,
+      "componente": "",
+      "caracter": "opt",
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+    }
+  ],
+  "requisitos": {
+    "prerrequisitos": [
+      {
+        "desde": "agricola:pos:5:2015968",
+        "hasta": "agricola:pos:6:2015969",
+        "metodo": "prerrequisito"
+      },
+      {
+        "desde": "agricola:pos:4:2016632",
+        "hasta": "agricola:pos:6:2015969",
+        "metodo": "prerrequisito"
+      }
+    ],
+    "minimosCreditos": [
+      {
+        "destino": "agricola:pos:9:2016630",
+        "minimo": 40,
+        "componentes": [
+          "C"
+        ]
+      }
+    ]
+  },
+  "oferta": [],
+  "agrupaciones": [],
+  "exclusionesAgrupacion": [],
+  "configuracion": {
+    "calendario": {
+      "dias": [
+        {
+          "id": "L",
+          "nombre": "Lunes",
+          "corto": "Lun"
+        },
+        {
+          "id": "M",
+          "nombre": "Martes",
+          "corto": "Mar"
+        },
+        {
+          "id": "X",
+          "nombre": "Miércoles",
+          "corto": "Mié"
+        },
+        {
+          "id": "J",
+          "nombre": "Jueves",
+          "corto": "Jue"
+        },
+        {
+          "id": "V",
+          "nombre": "Viernes",
+          "corto": "Vie"
+        },
+        {
+          "id": "S",
+          "nombre": "Sábado",
+          "corto": "Sáb"
+        }
+      ],
+      "horaInicio": 7,
+      "horaFin": 21
+    },
+    "opciones": {
+      "distanciasDisponibles": [
+        0,
+        1,
+        2
+      ],
+      "distanciasIniciales": [
+        0,
+        1
+      ],
+      "excluirIndirectos": true,
+      "asignaturaInicial": "Introducción a la ingeniería agrícola",
+      "componentesComparables": [
+        "C",
+        "B",
+        "N"
+      ]
+    },
+    "almacenamiento": {
+      "clave": "escenario-personal:agricola"
+    }
+  },
+  "procedencia": {
+    "catalogo": {
+      "descripcion": "Agricola.txt; complementado únicamente con casillas codificadas de la malla PDF",
+      "fechaCaptura": null
+    },
+    "oferta": {
+      "descripcion": "Oferta y grupos no suministrados; sin información registrada",
+      "fechaCaptura": null,
+      "periodo": null
+    },
+    "malla": {
+      "descripcion": "Malla_Curricular_Agricola_2021.pdf",
+      "version": "acuerdo-030-2016"
+    },
+    "metadatos": {
+      "malla": "Malla_Curricular_Agricola_2021.pdf",
+      "tipologias": "Agricola.txt",
+      "horarios": "No informados"
+    }
+  }
+}
