@@ -2,6 +2,12 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.4 — Aislamiento de supuestos académicos en las vistas (12 nov 2026)
+
+- Se retiran de la vista compartida los textos fijos de Mecatrónica sobre su Acuerdo 6 de 2022 y agrupaciones G1–G8; ahora los supuestos describen las relaciones y grupos del contrato seleccionado.
+- Las carreras sin oferta de grupos informada muestran indicadores de interferencias desconocidos («—») y un aviso en las ocho vistas, evitando confundir ausencia de muestra con ausencia de choques.
+- Se amplían las pruebas multicarrera para comprobar la vista de Química y el aislamiento de su malla. Sin cambios en contratos académicos, lector, motor ni escenarios personales.
+
 ## 1.1.3 — Bases documentales iniciales de ocho carreras (12 nov 2026)
 
 - Ocho nuevos contratos académicos independientes de Mecatrónica, con catálogos, mallas y requisitos parciales de documentos aportados.
