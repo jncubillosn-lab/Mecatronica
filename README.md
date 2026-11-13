@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.4 · **Estado:** nueve carreras seleccionables, nueve carreras con contratos académicos; ocho sin oferta de grupos · **Rama publicada:** `main`
+**Versión pública:** 1.1.5 · **Estado:** nueve carreras seleccionables, nueve carreras con contratos académicos; ocho sin oferta de grupos · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -85,3 +85,9 @@ La migración antigua está terminada. Su historia se conserva en [MIG-ARQ01](do
 ## Corrección de información transversal (1.1.4)
 
 Las ayudas de Inicio describen únicamente el contrato seleccionado; ya no contienen el Acuerdo 6 de 2022 ni combinaciones G1–G8 de Mecatrónica cuando se consulta otro programa. La ausencia de grupos en los ocho contratos preliminares se comunica como **indicador desconocido («—»)**, no como evidencia de cero interferencias. Se mantienen intactos los datos académicos de las nueve carreras y el motor.
+
+## Correcciones de consulta y escenarios (1.1.5)
+
+Las posiciones sin componente confirmado permanecen consultables mediante «Sin clasificar», sin asignarles una tipología. La selección global se comparte con las ocho vistas. La malla de carrera conserva sus semestres desde el 1; los registros de semestre 0 no crean una columna nueva.
+
+Los archivos personales version:1 incluyen ahora programaId. La recuperación comprueba el programa, respeta IDs explícitos y valida el estado antes de sustituir el escenario. Los archivos vigentes previos sin ese metadato solo se identifican por referencias inequívocas, y el almacenamiento local conserva su aislamiento por clave. Un valor de semestre técnicamente inválido no puede vaciar la malla. Los vacíos legítimos siguen admitidos y la oferta marcada analizable:false sigue excluida del análisis.

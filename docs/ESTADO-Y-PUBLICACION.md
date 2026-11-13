@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.4, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.  
+**Corte de evaluación:** 1.1.5, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; ocho no contienen oferta académica de grupos ni horarios.  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -132,3 +132,7 @@ Todos los programas cuentan ya con una entrada normalizada separada. Los contrat
 ## 11. Aislamiento de supuestos de presentación (1.1.4)
 
 El texto «Acuerdo 6 de 2022» y la descripción de grupos G1–G8 eran supuestos fijos de Mecatrónica colocados en la vista compartida de Inicio; no procedían del contrato de Química. Se retiraron para que el texto use el plan seleccionado y la cobertura real de relaciones/grupos. Ocho programas conservan sus mallas, pero sin agrupaciones verificadas: se informa explícitamente que **no es posible concluir interferencias**. Ceros computacionales derivados de colecciones vacías no se muestran como cero institucional comprobado en el resumen y la lista de interferencias. `tests/multicarrera.js` comprueba ese aislamiento. La atribución histórica del proyecto en el pie de página no constituye información académica de una carrera.
+
+## 12. Consulta parcial y recuperación aislada (1.1.5)
+
+Se incorporan la consulta «Sin clasificar», programaId en los escenarios y la recuperación común con validación antes de sustituir el estado. Los semestres no utilizables no invalidan el máximo semestre del resto de la malla. Se conserva el semestre 0 fuera de la representación de carrera, la entrada única y la exclusión analítica de otras sedes. Los contratos académicos no cambian. La prueba frontera-escenarios verifica las causas reproducidas y la conservación de archivos vigentes identificables. La publicación debe certificarse por HTTP sobre el commit integrado, por separado de estas verificaciones locales.

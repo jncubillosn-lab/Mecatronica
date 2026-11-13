@@ -65,8 +65,15 @@ const delta=E.empaquetar(base,escenario);
 const restaurado=E.aplicar(base,JSON.parse(JSON.stringify(delta)).cambios);
 assert.deepEqual(restaurado.demanda,encuesta,'Importación y exportación conservan la encuesta');
 assert.equal(E.aplicar(base,{}).demanda,undefined,'Escenarios previos sin demanda siguen válidos');
-const err=E.copia(restaurado);err.demanda.solicitudes[0].cantidad=-2;
-assert.throws(()=>E.validarEstado(err,{ids:()=>['L'],inicio:6,fin:22}),/demanda inválida|Solicitud de demanda inválida/);
+// La muestra estadística anterior incluye duplicados deliberados y omite
+// componentes. Para probar persistencia se construye un estado técnico válido.
+const validable=E.copia(restaurado);
+validable.grupos=[...new Map(validable.grupos.map(g=>[g.ref,g])).values()]
+  .map(g=>({...g,c1:g.g,c2:''}));
+const calendario={ids:()=>['L'],inicio:6,fin:22};
+assert.equal(E.validarEstado(validable,calendario),validable);
+const err=E.copia(validable);err.demanda.solicitudes[0].cantidad=-2;
+assert.throws(()=>E.validarEstado(err,calendario),/demanda inválida|Solicitud de demanda inválida/);
 const demo=D.ejemplo(malla,grupos);
 assert(demo.simulado&&demo.solicitudes.length>0,'Los datos de demostración siempre están etiquetados');
 assert(demo.respuestasAnonimas.length>0,'La demostración permite examinar co-solicitudes');

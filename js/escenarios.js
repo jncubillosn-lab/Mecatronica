@@ -34,6 +34,14 @@ class EscenarioPersonal {
     return { a:b.a, c:b.c, d:b.d, s:b.s, e:b.e, o:b.o || '' };
   }
 
+  /** Aplica solo propiedades editables; IDs y elegibilidad académica no se importan como ediciones. */
+  static asignarValores(destino, valores, permitidas) {
+    if (!valores || typeof valores !== 'object' || Array.isArray(valores) ||
+        Object.keys(valores).some(k => !permitidas.includes(k)))
+      throw new Error('Propiedades de escenario no editables');
+    for (const k of Object.keys(valores)) destino[k] = EscenarioPersonal.copia(valores[k]);
+  }
+
   /**
    * Devuelve exclusivamente operaciones personales sobre la referencia.
    * Un cambio institucional en el contrato NO debe aparecer como edición
@@ -139,12 +147,13 @@ class EscenarioPersonal {
   static aplicar(base, cambios) {
     const s=EscenarioPersonal.copia(base);
     if (!cambios || typeof cambios!=='object') return s;
-    Object.assign(s.params, cambios.params || {});
+    EscenarioPersonal.asignarValores(s.params, cambios.params || {}, ['dists','indirect']);
     for(const r of cambios.malla || []){
-      const m=s.malla.find(x=>(r.posicionId&&x.idPos===r.posicionId)||x.n===r.nombre);
+      // Un ID explícito nunca se sustituye por una coincidencia de nombre.
+      // El nombre solo identifica posiciones personales que no tienen ID.
+      const m=s.malla.find(x=>r.posicionId ? x.idPos===r.posicionId : !x.idPos&&x.n===r.nombre);
       if(m){
-        Object.assign(m,r.valores||{});
-        if(typeof m.unidad!=='string')m.unidad='';
+        EscenarioPersonal.asignarValores(m,r.valores||{},['s','cr','comp','car','nota','unidad']);
       }
       else if(r.nueva)s.malla.push(EscenarioPersonal.copia(r.nueva));
     }
@@ -173,14 +182,14 @@ class EscenarioPersonal {
     }
     for(const r of groups.modificar||[]){
       const g=s.grupos.find(x=>EscenarioPersonal.claveGrupo(x)===r.key);
-      if(g)Object.assign(g,r.valores||{});
+      if(g)EscenarioPersonal.asignarValores(g,r.valores||{},['on','c1','c2']);
     }
 
     const bl=cambios.bloques||{},quitarBl=new Set(bl.quitar||[]);
     s.bloques=s.bloques.filter(b=>!quitarBl.has(EscenarioPersonal.claveBloque(b)));
     for(const r of bl.modificar||[]){
       const b=s.bloques.find(x=>EscenarioPersonal.claveBloque(x)===r.key);
-      if(b)Object.assign(b,r.valores||{});
+      if(b)EscenarioPersonal.asignarValores(b,r.valores||{},['a','c','d','s','e','o']);
     }
     let next=s.bloques.reduce((n,b)=>Math.max(n,b.id||0),0)+1;
     const ids=new Set(s.bloques.map(b=>b.id));
@@ -229,20 +238,64 @@ class EscenarioPersonal {
         !Array.isArray(estado.bloques)) {
       throw new Error('Estructura de escenario no reconocida');
     }
+    const texto = x => typeof x === 'string' && x.trim().length > 0;
+    const opcional = x => x == null || typeof x === 'string';
+    if (estado.params.dists.some(d => !Number.isSafeInteger(d) || d < 0) ||
+        ![0,1,false,true].includes(estado.params.indirect))
+      throw new Error('Parámetros de escenario inválidos');
+    if (estado.tipos != null && (!Array.isArray(estado.tipos.componentes) ||
+        !Array.isArray(estado.tipos.caracteres) ||
+        [...estado.tipos.componentes,...estado.tipos.caracteres]
+          .some(t => !t || !texto(t.id) || !texto(t.nombre)) ||
+        estado.tipos.componentes.some(t => t.enPlan != null && typeof t.enPlan !== 'boolean')))
+      throw new Error('Clasificaciones de escenario inválidas');
+    const posiciones = new Map(), nombres = new Set();
+    for (const m of estado.malla) {
+      // Ausencia no equivale a cero ni autoriza completar un semestre/crédito.
+      // Un texto donde se necesita un número es un error técnico del archivo.
+      if (!m || !texto(m.n) ||
+          (m.s != null && (!Number.isSafeInteger(m.s) || m.s < 0)) ||
+          (m.cr != null && (!Number.isFinite(m.cr) || m.cr < 0)) ||
+          !['comp','car','nota','idPos'].every(k => opcional(m[k])))
+        throw new Error('Posición curricular inválida en el escenario');
+      if (m.idPos) {
+        if (posiciones.has(m.idPos)) throw new Error('ID curricular duplicado en el escenario');
+        posiciones.set(m.idPos,m);
+      }
+      nombres.add(m.n);
+      if(m.unidad!=null && (typeof m.unidad!=='string' || m.unidad.length>180))
+        throw new Error('Unidad académica inválida en el escenario');
+    }
+    const pertenece = (id,nombre) => id ? posiciones.has(id) : nombres.has(nombre);
+    if (estado.asg.some(n => !texto(n) || !nombres.has(n)))
+      throw new Error('Asignatura de escenario sin posición curricular');
+    for (const p of estado.pre) {
+      if (!p || !texto(p.r) || !texto(p.t) || !opcional(p.rId) || !opcional(p.tId) ||
+          !pertenece(p.rId,p.r) || !pertenece(p.tId,p.t))
+        throw new Error('Referencia de prerrequisito inválida en el escenario');
+    }
+    const grupos = new Set();
+    for (const g of estado.grupos) {
+      if (!g || !texto(g.a) || !nombres.has(g.a) || !texto(g.g) ||
+          !texto(g.c1) || !opcional(g.c2) || !opcional(g.ref) ||
+          typeof g.on !== 'boolean' ||
+          (g.analizable != null && typeof g.analizable !== 'boolean'))
+        throw new Error('Grupo inválido en el escenario');
+      const clave = g.a+'\u0001'+g.g;
+      if (grupos.has(clave)) throw new Error('Grupo duplicado en el escenario');
+      grupos.add(clave);
+    }
     const dias=new Set(calendario.ids());
     const ids=new Set();
     for(const b of estado.bloques){
-      if(!b || typeof b.a!=='string' || typeof b.c!=='string' ||
+      if(!b || !texto(b.a) || !nombres.has(b.a) || !texto(b.c) ||
+          !opcional(b.ref) || !opcional(b.o) ||
           !dias.has(b.d) || !Number.isFinite(b.s) || !Number.isFinite(b.e) ||
           b.s<calendario.inicio || b.e>calendario.fin || b.s>=b.e ||
           !Number.isFinite(b.id) || ids.has(b.id)){
         throw new Error('Bloque horario inválido en el escenario');
       }
       ids.add(b.id);
-    }
-    for(const m of estado.malla){
-      if(m?.unidad!=null && (typeof m.unidad!=='string' || m.unidad.length>180))
-        throw new Error('Unidad académica inválida en el escenario');
     }
     // La anotación de demanda es opcional y no pertenece al contrato académico.
     if(estado.demanda!=null){
@@ -269,7 +322,9 @@ class EscenarioPersonal {
       if(typeof DemandaEstadistica!=='undefined')DemandaEstadistica.normalizar(d);
     }
     for(const regla of estado.reqCred||[]){
-      if(!regla || !Number.isFinite(regla.min)){
+      if(!regla || !Number.isFinite(regla.min) || regla.min < 0 ||
+          !pertenece(regla.posicionId,regla.n) ||
+          !Array.isArray(regla.componentes) || !regla.componentes.every(texto)){
         throw new Error('Requisito de créditos inválido en el escenario');
       }
     }
@@ -284,6 +339,7 @@ class EscenarioPersonal {
   static esFormatoVigente(archivo) {
     const c=archivo?.cambios;
     return archivo?.tipo==='escenario-personal' && archivo.version===1 &&
+      (archivo.programaId == null || (typeof archivo.programaId==='string' && archivo.programaId.trim())) &&
       c && typeof c==='object' && !Array.isArray(c) &&
       !Object.hasOwn(c,'reqCred') && !Object.hasOwn(c,'reqCredAmbiguos');
   }
@@ -293,8 +349,59 @@ class EscenarioPersonal {
    * version:1 describe este formato personal, no versionEsquema del contrato.
    */
   static empaquetar(base, actual) {
-    return {tipo:'escenario-personal',version:1,
+    return {tipo:'escenario-personal',version:1,programaId:base.programaId,
       cambios:EscenarioPersonal.diferencias(base,actual)};
+  }
+
+  /**
+   * Única frontera de recuperación para archivos y almacenamiento local.
+   * Comprueba contexto ANTES de aplicar y valida el estado NUEVO antes de
+   * devolverlo. Ningún rechazo modifica base ni el escenario de la interfaz.
+   * Los archivos version:1 ya existentes sin programaId solo se identifican
+   * por referencias inequívocas de la base; no por nombres ni prefijos.
+   * Una copia local sin metadato ya está aislada por la clave del programa.
+   */
+  static recuperar(base, archivo, calendario, almacenadoLocalmente = false) {
+    if (!EscenarioPersonal.esFormatoVigente(archivo))
+      throw new Error('Formato de escenario personal no soportado');
+    if (archivo.programaId != null) {
+      if (archivo.programaId !== base.programaId)
+        throw new Error('El escenario corresponde a otro programa');
+    } else if (!almacenadoLocalmente) {
+      EscenarioPersonal.verificarReferenciasArchivo(base,archivo.cambios);
+    }
+    return EscenarioPersonal.validarEstado(EscenarioPersonal.aplicar(base,archivo.cambios),calendario);
+  }
+
+  /** Identifica archivos vigentes sin metadato sin inferir carrera por texto académico. */
+  static verificarReferenciasArchivo(base, c) {
+    const posiciones=new Set(base.malla.map(m=>m.idPos).filter(Boolean));
+    const indice=EscenarioPersonal.indicePosiciones(base);
+    const grupos=new Set(base.grupos.map(EscenarioPersonal.claveGrupo));
+    const bloques=new Set(base.bloques.map(EscenarioPersonal.claveBloque));
+    const pre=new Set(base.pre.map(p=>EscenarioPersonal.clavePre(p,indice)));
+    const req=new Set((base.reqCred||[]).map(r=>EscenarioPersonal.claveReq(r,indice)));
+    let referencias=0;
+    const comprobar=(valor,conjunto)=>{
+      if (!valor || !conjunto.has(valor)) throw new Error('Referencia de escenario ajena a la base vigente');
+      referencias++;
+    };
+    for(const m of c.malla||[]) if(m.posicionId) comprobar(m.posicionId,posiciones);
+    for(const p of c.pre?.agregar||[]) {
+      if(p.rId)comprobar(p.rId,posiciones);
+      if(p.tId)comprobar(p.tId,posiciones);
+    }
+    for(const clave of c.pre?.quitar||[])comprobar(clave,pre);
+    for(const [operaciones,conjunto] of [[c.grupos,grupos],[c.bloques,bloques],[c.reqCredCambios,req]]){
+      for(const clave of operaciones?.quitar||[])comprobar(clave,conjunto);
+      for(const r of operaciones?.modificar||[])comprobar(r.key,conjunto);
+    }
+    for(const r of c.reqCredCambios?.agregar||[])if(r.posicionId)comprobar(r.posicionId,posiciones);
+    for(const r of c.demanda?.solicitudes||[])comprobar(r.posicionId,posiciones);
+    const contieneDatos=v=>Array.isArray(v) ? v.length>0 :
+      v && typeof v==='object' ? Object.values(v).some(contieneDatos) : v!=null;
+    if (!referencias && contieneDatos(c))
+      throw new Error('No se puede identificar el programa de este escenario');
   }
 }
 if(typeof module!=='undefined')module.exports={EscenarioPersonal};

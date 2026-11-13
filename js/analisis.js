@@ -35,6 +35,7 @@ function fromRaw(D) {
   // Cada arreglo posicional produce un objeto nuevo. No se modifica la
   // fuente original ni se exige correspondencia con IDs de otro periodo.
   return {
+    programaId: D.programa?.id || null,
     params: { dists: [...D.opciones.distanciasIniciales], indirect: D.opciones.excluirIndirectos ? 1 : 0 },
     malla: D.malla.map(([n, s, nota, cr, comp, car, idPos]) => ({ n, s, nota: nota || '', cr: cr == null ? null : cr, comp: comp || '', car: car || '', idPos: idPos || null, unidad: '' })),
     pre: D.pre.map(([r, t, m, rId, tId]) => ({ r, t, m: m || '', rId: rId || null, tId: tId || null })), // IDs del contrato, nombres para interfaz y ediciones personales sin ID

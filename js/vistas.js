@@ -565,7 +565,7 @@ function mallaVisible(m) {
 /** Distribución VISUAL opcional de posiciones L: no mueve posiciones reales en S. */
 function proyeccionLibresMalla(estado, referencia, fijadas = new Set(), equilibrar = true) {
   const libre = idComponenteLibre(estado.tipos);
-  const maxSem = Math.max(1, ...estado.malla.map(m => m.s));
+  const maxSem = new PlanCurricular(estado).maxSemestre();
   const componentes = new Map((estado.tipos?.componentes || []).map(c => [c.id, c]));
   const cargas = Array.from({ length: maxSem + 1 }, () => 0);
   const originales = new Map(referencia.malla.map(m => [m.idPos || m.n, m.s]));
@@ -701,7 +701,7 @@ function mallaSide(L) {
   return `<aside class="card sidecard">
     <div><span class="eyebrow">Asignatura</span><h2 style="font:650 18px/1.25 var(--serif);margin-top:2px"><span class="asig-etiqueta"${atributoTipologia(n)}>${esc(n)}</span></h2></div>
     <div class="row" style="justify-content:space-between"><span class="lab">Créditos</span><span class="stepper"><button data-act="m-cr" data-dx="-1" aria-label="Un crédito menos" ${m.cr <= 0 ? 'disabled' : ''}>−</button><b>${m.cr == null ? '—' : m.cr}</b><button data-act="m-cr" data-dx="1" aria-label="Un crédito más">+</button></span></div>
-    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
+    <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Componente</span><select data-chg="m-comp" aria-label="Componente de la asignatura">${!m.comp?'<option value="" selected disabled>Sin clasificar</option>':''}${(S.tipos?.componentes || []).map(({id,nombre}) => `<option value="${esc(id)}" ${m.comp === id ? 'selected' : ''}>${esc(nombre)}</option>`).join('')}</select></div>
     <div class="row" style="justify-content:space-between;align-items:center"><span class="lab">Carácter</span><select data-chg="m-car" aria-label="Carácter de la asignatura">${[['','No aplica'], ...(S.tipos?.caracteres || []).map(({id,nombre})=>[id,nombre])].map(([k,v]) => `<option value="${esc(k)}" ${m.car === k ? 'selected' : ''}>${esc(v)}</option>`).join('')}</select></div>
     ${ui.malla.equilibrar && mallaVisible(m) && ui.malla.ubicacionesLibres?.get(n) !== undefined && ui.malla.ubicacionesLibres.get(n) !== m.s ? `<div class="hint">Ubicación sugerida: semestre ${ui.malla.ubicacionesLibres.get(n)} · semestre registrado: ${m.s}. La sugerencia solo afecta a este mapa.</div>` : ''}
     ${editorUnidad(n)}
