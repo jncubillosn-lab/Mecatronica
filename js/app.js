@@ -54,14 +54,12 @@ try {
  * El escenario personal vigente contiene diferencias sobre S0. El archivo
  * no constituye una segunda entrada académica ni modifica la referencia.
  */
-function recuperarEscenarioGuardado(archivo) {
-  if (!EscenarioPersonal.esFormatoVigente(archivo))
-    throw new Error('Formato de escenario personal no soportado');
-  return EscenarioPersonal.aplicar(S0, archivo.cambios);
+function recuperarEscenarioGuardado(archivo, almacenadoLocalmente = false) {
+  return EscenarioPersonal.recuperar(S0, archivo, CALENDARIO, almacenadoLocalmente);
 }
 if (datosGuardados) {
   try {
-    S = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(datosGuardados), CALENDARIO);
+    S = recuperarEscenarioGuardado(datosGuardados, true);
     restored = true;
   } catch (e) {
     console.error('No se pudo cargar el escenario personal:', e);
@@ -86,7 +84,7 @@ let R0 = SIN_DATOS?RESULTADO_SIN_DATOS():compute(S0);
  */
 const ui = {
   page: 'inicio',
-  componentes: new Set(OPCIONES.componentesComparables || []),
+  componentes: new Set(PlanCurricular.componentesConsulta(OPCIONES.componentesComparables || [])),
   unidad: '', // filtro de vista, nunca edición del contrato
   inter: { view: 'lista', grav: new Set(), sems: new Set(), asig: '', soloChoque: true, q: '', sort: 'idx' },
   asig: { sort: 'idx', open: null },
@@ -111,7 +109,7 @@ let RV, RV0;
  * Unidad desconocida permanece vacía: no se infiere desde el profesor.
  */
 function pasaFiltros(m) {
-  return !!m && ui.componentes.has(m.comp) &&
+  return !!m && ui.componentes.has(m.comp || '') &&
     (!ui.unidad || (ui.unidad===SIN_UNIDAD ? !m.unidad : m.unidad===ui.unidad));
 }
 function nombresVisibles(estado, candidatos=estado.asg) {
@@ -251,9 +249,10 @@ function renderTop() {
   const dirty = nChg > 0;
   const resultadoVisible = RV, anteriorVisible = RV0;
   const plan = new PlanCurricular(S);
-  const componentes = (OPCIONES.componentesComparables || []).map(id => {
+  const componentes = PlanCurricular.componentesConsulta(OPCIONES.componentesComparables || [])
+    .filter(id => id !== '' || S.malla.some(m => !m.comp)).map(id => {
     const tipo = plan.componente(id);
-    const nombre = tipo?.nombre || id;
+    const nombre = tipo?.nombre || (id === '' ? 'Sin clasificar' : id);
     const total = plan.seleccionarPorComponentes(S.asg, [id]).length;
     return `<button type="button" class="component-toggle" data-tipologia="${esc(id)}" data-act="comp-toggle" data-comp="${esc(id)}" aria-pressed="${ui.componentes.has(id)}" ${SIN_DATOS?'disabled':''} title="${SIN_DATOS?'Filtro pendiente de datos académicos':total+' asignaturas de '+nombre+' incorporadas al análisis'}">${esc(nombre)}</button>`;
   }).join('');
@@ -447,13 +446,13 @@ function onAct(act, d, el, ev) {
       return commit('La cantidad quedó desconocida, no en cero.');
     }
     case 'filtro-reset': {
-      ui.componentes=new Set(OPCIONES.componentesComparables||[]);
+      ui.componentes=new Set(PlanCurricular.componentesConsulta(OPCIONES.componentesComparables||[]));
       ui.unidad='';
       actualizarVistaComponentes();
       return render();
     }
     case 'comp-toggle': {
-      if (!(OPCIONES.componentesComparables || []).includes(d.comp)) return;
+      if (!PlanCurricular.componentesConsulta(OPCIONES.componentesComparables || []).includes(d.comp)) return;
       if (ui.componentes.has(d.comp)) ui.componentes.delete(d.comp);
       else ui.componentes.add(d.comp);
       actualizarVistaComponentes();
@@ -597,8 +596,7 @@ function onChange(k, el) {
       rd.onload = () => {
         try {
           const o = JSON.parse(rd.result);
-          if (!EscenarioPersonal.esFormatoVigente(o)) throw new Error('formato');
-          const recuperado = EscenarioPersonal.validarEstado(recuperarEscenarioGuardado(o), CALENDARIO);
+          const recuperado = recuperarEscenarioGuardado(o);
           S = recuperado; ui.drawer = null; commit('Escenario cargado.');
         } catch (e) { toast('Ese archivo no es un escenario válido.'); }
       };

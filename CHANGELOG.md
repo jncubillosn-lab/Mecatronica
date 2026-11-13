@@ -2,6 +2,14 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.5 — Consulta incompleta y frontera de escenarios (13 nov 2026)
+
+- Se conserva la consulta de posiciones sin componente mediante «Sin clasificar», sin completar datos ni alterar los filtros académicos declarados.
+- El escenario conserva programaId y la recuperación de archivos y almacenamiento comparte validación de contexto e integridad antes de adoptar el estado. Los IDs explícitos no se sustituyen por nombres.
+- Los cambios personales solo aplican propiedades editables, conservando identidad y elegibilidad de grupos de otras sedes. Se validan parámetros, posiciones, relaciones y colecciones que consumen motor y vistas, admitiendo vacíos legítimos.
+- El máximo semestre se calcula desde valores utilizables en el modelo común. El semestre 0 continúa fuera de la malla por decisión expresa; no se modifican fuentes académicas.
+- Se agregan regresiones de las nueve carreras, conservación del escenario ante importaciones inválidas y compatibilidad del formato personal vigente identificado por su contexto.
+
 ## 1.1.4 — Aislamiento de supuestos académicos en las vistas (12 nov 2026)
 
 - Se retiran de la vista compartida los textos fijos de Mecatrónica sobre su Acuerdo 6 de 2022 y agrupaciones G1–G8; ahora los supuestos describen las relaciones y grupos del contrato seleccionado.

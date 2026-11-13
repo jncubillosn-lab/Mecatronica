@@ -15,7 +15,17 @@ class PlanCurricular {
 
   /** Buscar una posición por nombre en el escenario recibido, no en catálogos externos. */
   asignatura(nombre) { return this.estado.malla.find(a => a.n === nombre); }
-  maxSemestre() { return Math.max(1, ...this.estado.malla.map(a => a.s)); }
+  /** Los valores ausentes o no utilizables no invalidan la geometría del resto. */
+  maxSemestre() {
+    return Math.max(1, ...this.estado.malla.map(a => a.s)
+      .filter(s => Number.isSafeInteger(s) && s >= 1));
+  }
+  /**
+   * La cadena vacía representa una clasificación desconocida en la consulta,
+   * no un componente académico añadido a S/S0. Mantenerla seleccionada por
+   * defecto permite mostrar nuevas posiciones incompletas al importar.
+   */
+  static componentesConsulta(comparables) { return [...new Set([...comparables, ''])]; }
   componentes() { return this.estado.tipos?.componentes || []; }
   caracteres() { return this.estado.tipos?.caracteres || []; }
 
@@ -27,7 +37,7 @@ class PlanCurricular {
   /** Selección de visualización: no borra ni modifica asignaturas, grupos o bloques. */
   seleccionarPorComponentes(nombres, componentes) {
     const permitidos = new Set(componentes);
-    const indice = new Map(this.estado.malla.map(a => [a.n, a.comp]));
+    const indice = new Map(this.estado.malla.map(a => [a.n, a.comp || '']));
     return nombres.filter(nombre => permitidos.has(indice.get(nombre)));
   }
 

@@ -9,6 +9,7 @@ const {JSDOM,VirtualConsole}=require('jsdom');
 const identidad=require('../js/identidad.js');
 const programas=require('../js/programas.js');
 const raiz=path.join(__dirname,'..');
+const version=require('../package.json').version;
 const ids=Object.keys(identidad.catalogo);
 const cargar=id=>JSON.parse(fs.readFileSync(path.join(raiz,programas.fuentePara(id)),'utf8'));
 const contratos=Object.fromEntries(ids.map(id=>[id,cargar(id)]));
@@ -37,7 +38,7 @@ async function abrir(id,otroContrato=false){
      window.Element.prototype.scrollIntoView=()=>{};
      window.fetch=async path=>{
        consultas.push(String(path));
-       assert.equal(String(path),programas.fuentePara(id)+'?v=1.1.4');
+       assert.equal(String(path),programas.fuentePara(id)+'?v='+version);
        return {ok:true,json:async()=>otroContrato?contratos.mecatronica:contratos[id]};
      };
    }
@@ -55,7 +56,7 @@ async function main(){
  for(const id of ids){
    const {dom,document,errores,consultas}=await abrir(id);
    try{
-     assert.deepEqual(consultas,[programas.fuentePara(id)+'?v=1.1.4'],
+     assert.deepEqual(consultas,[programas.fuentePara(id)+'?v='+version],
        'Una sola fuente consultada en '+id);
      const contexto=dom.window.CONTEXTO_ACADEMICO;
      assert(contexto?.estadoBase, 'No inició el contrato de '+id);

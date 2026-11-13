@@ -1,6 +1,6 @@
 # Guía de trabajo para agentes y colaboradores
 
-**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para la versión 1.1.3 (ARQ-01 permanece cerrada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
+**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para la versión 1.1.5 (ARQ-01 permanece cerrada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
 
 ## Antes de cualquier cambio
 
@@ -62,3 +62,7 @@ Cada programa con información dispone de un único `datos/programas/<id>/academ
 ## Carga de bases iniciales de las otras ocho carreras (1.1.3)
 
 Los ocho contratos iniciales quedaron registrados y tienen malla/catálogo documentados, sin oferta de grupos ni horarios. No interpretar los ceros de cruces calculados sobre `agrupaciones:[]` como ausencia institucional de interferencias; significan falta de oferta aportada. Las ocho bases restantes tienen requisitos parciales, caracterizaciones por confirmar y ajustes vacíos. Conservan aislamiento, ID de programa, una lectura por sesión, ocho vistas comunes y clave de escenario separada. Ver `docs/INFORME-BASES-INICIALES-2026.md` y `tests/contratos-iniciales.js`.
+
+## Consulta parcial y recuperación de escenarios (1.1.5)
+
+Conservar «Sin clasificar» como estado de consulta, sin inventar componente ni mutar S/S0. El semestre 0 no crea una columna de carrera. Todas las cargas personales deben pasar por EscenarioPersonal.recuperar antes de sustituir S: verificar programaId o referencias inequívocas del formato vigente y validar los valores consumidos. Un ID explícito no usa el nombre de respaldo. Mantener las propiedades de identidad y analizable fuera de los campos editables. Los vacíos académicos continúan admitidos y la oferta de otras sedes sigue fuera de cálculos. Ejecutar tests/frontera-escenarios.js con la batería completa.

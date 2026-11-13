@@ -56,6 +56,12 @@ Las filas D-01–D-30 documentan decisiones sucesivas, **no** reglas que permane
 
 El registro de decisiones complementa los requisitos RF/RC y la matriz de no-requisitos de [ARQ-01](ARQUITECTURA.md). Para interpretar el comportamiento actual se contrasta siempre con la fuente normalizada y el código ejecutado.
 
+### D-33 — Corrección de la frontera personal y consulta incompleta (13-11-2026)
+
+Decisión expresa de reparación: conservar la arquitectura y corregir las causas de ocultación por clasificación ausente, mezcla de programas e importación de valores que rompen la malla. D-03 a D-06 continúan vigentes; no se bloquea publicación por información incompleta ni se reincorpora oferta no analizable.
+
+La consulta permite «Sin clasificar» sin modificar datos. El programa del escenario y sus IDs se verifican antes de aceptar cambios; se conserva el formato personal version:1 y solo sus propiedades editables. Los vacíos legítimos permanecen como tales. El semestre 0 queda fuera de la malla de carrera: no se incorpora una columna, se deducen equivalencias ni se trasladan posiciones por suposición. No se alteran contratos académicos como parte de estos correctivos.
+
 ## 3. Distinciones que no pueden perderse
 
 - **Dato académico registrado** no equivale a **agrupación elegible para el análisis**. Una exclusión analítica no es una eliminación de datos.
