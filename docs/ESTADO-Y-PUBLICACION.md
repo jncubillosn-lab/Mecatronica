@@ -1,7 +1,7 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.5, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
-**Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; ocho no contienen oferta académica de grupos ni horarios.  
+**Corte de evaluación:** 1.1.6, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
+**Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; cuatro siguen sin oferta de grupos y cinco tienen oferta documental (con distintas fechas de referencia).  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
 **Historia anterior:** [CHANGELOG](../CHANGELOG.md) y
@@ -13,7 +13,7 @@ El sitio es estático, no oficial y ofrece **ocho páginas**: Inicio,
 Interferencias, Asignaturas, Grupos, Horarios, Mapa de calor, Demanda y
 Prerrequisitos.
 
-La entrada normalizada única por sesión se selecciona mediante `js/programas.js`. Cada carrera dispone de `datos/programas/<id>/academico.json`; solo Mecatrónica tiene oferta de grupos. `EntradaAcademica`
+La entrada normalizada única por sesión se selecciona mediante `js/programas.js`. Cada carrera dispone de `datos/programas/<id>/academico.json`; Mecatrónica, Electrónica, Industrial, Mecánica y Química tienen oferta de grupos, con distinto periodo de referencia. `EntradaAcademica`
 y `fromRaw` proyectan el estado de referencia `S0`; `EscenarioPersonal`
 aplica cambios identificados sobre `S0` para construir `S`. El motor
 calcula resultados completos y los filtros producen consultas `RV/RV0`.
@@ -136,3 +136,7 @@ El texto «Acuerdo 6 de 2022» y la descripción de grupos G1–G8 eran supuesto
 ## 12. Consulta parcial y recuperación aislada (1.1.5)
 
 Se incorporan la consulta «Sin clasificar», programaId en los escenarios y la recuperación común con validación antes de sustituir el estado. Los semestres no utilizables no invalidan el máximo semestre del resto de la malla. Se conserva el semestre 0 fuera de la representación de carrera, la entrada única y la exclusión analítica de otras sedes. Los contratos académicos no cambian. La prueba frontera-escenarios verifica las causas reproducidas y la conservación de archivos vigentes identificables. La publicación debe certificarse por HTTP sobre el commit integrado, por separado de estas verificaciones locales.
+
+## 13. Oferta documentada de cuatro programas (1.1.6)
+
+Se incorporan catálogos y ofertas parciales de Electrónica, Industrial, Mecánica y Química (agosto–diciembre de 2026), respetando una entrada normalizada por carrera sin modificar reglas del motor. Se conservan por separado sus `revision-oferta-2026.json` externos con condiciones de requisitos pendientes, grupos incompletos y ambigüedades curriculares. Las carreras Eléctrica, Sistemas, Civil y Agrícola aún no tienen oferta de grupos; Mecatrónica conserva la anterior. Los párrafos de hitos 1.1.2–1.1.5 describen estados pasados, no el inventario actual. Véase [informe de complementación](INFORME-COMPLEMENTACION-HORARIOS-2026.md).

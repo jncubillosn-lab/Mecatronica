@@ -1,6 +1,6 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-**Estado vigente:** 1.1.3. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.6. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -52,3 +52,7 @@ Después de una corrección se revisan contenido, integridad de referencias y d�
 ## 4. Bases preliminares habilitadas
 
 Desde 1.1.3 los nueve programas tienen contrato registrado; las ocho bases nuevas son documentales, sin grupos ni horarios ofertados. En todos los casos `data/programas/<id>/ajustes.json` permanece independiente. No añadir datos de oferta sin fuentes verificadas ni rellenar relaciones de prerrequisitos desconocidas. Véase [informe de calidad](INFORME-BASES-INICIALES-2026.md).
+
+## 5. Carga de oferta documental 2026
+
+Los contratos de `electronica`, `industrial`, `mecanica` y `quimica` incorporan oferta externa normalizada. Los expedientes `data/programas/<id>/revision-oferta-2026.json` conservan casos pendientes, **no se leen en tiempo de ejecución** y no sustituyen a `ajustes.json`. En particular, ninguna alternativa de condición prerrequisito se convirtió automáticamente en un vínculo del mapa; tampoco se asignaron semestres a asignaturas fuera de la malla. Mecatrónica, Eléctrica, Sistemas, Civil y Agrícola no cambiaron. [Informe](INFORME-COMPLEMENTACION-HORARIOS-2026.md).

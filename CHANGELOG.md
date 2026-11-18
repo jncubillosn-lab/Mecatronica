@@ -2,6 +2,13 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.6 — Incorporación de oferta documental por carrera (18 nov 2026)
+
+- Se actualizan los contratos independientes de Electrónica, Industrial, Mecánica y Química con grupos, horarios, descripciones y datos aportados del segundo semestre de 2026; sin modificar la malla institucional original ni sus requisitos ya registrados.
+- Se registran 23/34/24/29 asignaturas ofertadas, 144/63/101/89 grupos y 31/20/72/48 agrupaciones analizables, respectivamente. No se deducen combinaciones entre actividades ni posiciones curriculares por nombres parecidos.
+- Las ambigüedades, los grupos sin horario y las condiciones de prerrequisitos no verificadas se guardan en `data/programas/<id>/revision-oferta-2026.json` y se documentan separadamente.
+- Mecatrónica, Eléctrica, Sistemas, Civil y Agrícola permanecen sin modificaciones académicas. Se actualizan exclusivamente pruebas, documentación y versión de carga de recursos; ningún algoritmo o interfaz se modifica.
+
 ## 1.1.5 — Consulta incompleta y frontera de escenarios (13 nov 2026)
 
 - Se conserva la consulta de posiciones sin componente mediante «Sin clasificar», sin completar datos ni alterar los filtros académicos declarados.
