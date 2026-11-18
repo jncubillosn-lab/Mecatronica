@@ -13,6 +13,7 @@ const version=require('../package.json').version;
 const ids=Object.keys(identidad.catalogo);
 const cargar=id=>JSON.parse(fs.readFileSync(path.join(raiz,programas.fuentePara(id)),'utf8'));
 const contratos=Object.fromEntries(ids.map(id=>[id,cargar(id)]));
+const conOferta=new Set(['electronica','industrial','mecanica','quimica']);
 assert.equal(ids.length,9);
 assert.equal(Object.keys(programas.fuentes).length,9);
 assert.equal(programas.desdeBusqueda('?programa=civil'),'civil');
@@ -70,15 +71,22 @@ async function main(){
      assert(!document.querySelector('.sin-datos-banner'),
        'La malla cargada no debe presentarse como un programa sin contrato');
      if(id!=='mecatronica'){
-       assert(document.querySelector('.oferta-no-informada'), 'No se advirtió la falta de oferta: '+id);
-       assert([...document.querySelectorAll('.hero-k .num')].every(el=>el.textContent.trim()==='—'),
-         'Sin grupos no se pueden mostrar ceros como ausencia de choques: '+id);
+       const noHayOferta=!conOferta.has(id);
+       assert.equal(!!document.querySelector('.oferta-no-informada'),noHayOferta,
+         'Aviso de oferta incorrecto: '+id);
+       if(noHayOferta){
+         assert([...document.querySelectorAll('.hero-k .num')]
+           .every(el=>el.textContent.trim()==='—'),
+           'Sin grupos no se pueden mostrar ceros como ausencia de choques: '+id);
+         assert.equal(contexto.estadoBase.grupos.length,0);
+         assert.equal(contexto.estadoBase.bloques.length,0);
+       }else{
+         assert(contexto.estadoBase.grupos.length>0,'Faltan grupos: '+id);
+         assert(contexto.estadoBase.bloques.length>0,'Faltan horarios: '+id);
+       }
        const textosInicio=document.querySelector('#view').textContent;
        assert(!/Acuerdo 6 de 2022|G1 a G8/.test(textosInicio),
          'Se filtraron supuestos de Mecatrónica a '+id);
-       assert(textosInicio.includes('Se consideran las 0 relaciones') || id==='civil' || id==='agricola');
-       assert.equal(contexto.estadoBase.grupos.length,0);
-       assert.equal(contexto.estadoBase.bloques.length,0);
      }
      for(const pagina of ['inicio','inter','asig','grupos','hor','heat','demanda','malla']){
        const nav=document.querySelector('[data-act="nav"][data-p="'+pagina+'"]');

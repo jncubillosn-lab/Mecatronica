@@ -16,9 +16,11 @@ const ids = Object.keys(identidad.catalogo);
 assert.equal(ids.length,9);
 assert.deepEqual(Object.keys(programas.fuentes).sort(), ids.sort());
 const esperado = {
- agricola:[66,61], civil:[66,60], electrica:[65,54], electronica:[63,56],
- industrial:[22,49], mecanica:[40,58], quimica:[40,63], sistemas:[96,55]
+ agricola:[66,61,0,0], civil:[66,60,0,0], electrica:[65,54,0,0],
+ electronica:[63,56,23,31], industrial:[67,49,34,20],
+ mecanica:[59,58,24,72], quimica:[72,63,29,48], sistemas:[96,55,0,0]
 };
+const ofertaDocumentada = new Set(['electronica','industrial','mecanica','quimica']);
 for(const id of ids){
  const ruta = programas.fuentePara(id);
  assert.equal(ruta, 'datos/programas/'+id+'/academico.json');
@@ -46,11 +48,35 @@ for(const id of ids){
  assert.equal(proyeccion.malla.length,data.malla.length);
  assert.equal(proyeccion.programa.id,id);
  if(id!=='mecatronica'){
-   assert.deepEqual([data.catalogo.length,data.malla.length],esperado[id]);
-   assert.deepEqual(data.oferta,[],'No se debe inventar oferta: '+id);
-   assert.deepEqual(data.agrupaciones,[],'No se deben inferir grupos: '+id);
-   assert.deepEqual(proyeccion.gr,[]);
-   assert.deepEqual(proyeccion.bl,[]);
+   assert.deepEqual([data.catalogo.length,data.malla.length,
+     data.oferta.length,data.agrupaciones.length],esperado[id]);
+   const idsAgrupaciones=data.agrupaciones.map(g=>g.id);
+   assert.equal(new Set(idsAgrupaciones).size,idsAgrupaciones.length,
+     'Agrupaciones duplicadas: '+id);
+   for(const g of data.agrupaciones){
+     assert(posiciones.has(g.posicionId),'Agrupación sin malla: '+id);
+     assert(g.componentes?.length>0,'Sin componentes: '+id);
+     const dias=new Set(data.configuracion.calendario.dias.map(d=>d.id));
+     for(const c of g.componentes)for(const b of c.bloques||[]){
+       assert(dias.has(b.dia),'Día fuera de calendario: '+id);
+       assert(/^\\d{2}:\\d{2}$/.test(b.inicio)&&/^\\d{2}:\\d{2}$/.test(b.fin),
+         'Franja inválida: '+id);
+     }
+   }
+   assert.equal(proyeccion.gr.length,data.agrupaciones.length);
+   if(ofertaDocumentada.has(id)){
+     assert(data.oferta.length>0&&data.agrupaciones.length>0,
+       'Falta oferta verificada: '+id);
+     assert(proyeccion.bl.length>0,'No aparecen los bloques: '+id);
+     const revision=leer('data/programas/'+id+'/revision-oferta-2026.json');
+     assert.equal(revision.programa,id);
+     assert(Array.isArray(revision.alertas));
+     assert(Array.isArray(revision.condicionesPrerrequisitosPendientes));
+   } else {
+     assert.deepEqual(data.oferta,[],'No se debe inventar oferta: '+id);
+     assert.deepEqual(data.agrupaciones,[],'No se deben inferir grupos: '+id);
+     assert.deepEqual(proyeccion.bl,[]);
+   }
  }
  const ajuste=leer('data/programas/'+id+'/ajustes.json');
  assert.equal(ajuste.versionAjustes,1);
@@ -61,4 +87,4 @@ for(const id of ids){
 assert.equal(leer('datos/programas/mecatronica/academico.json').agrupaciones.length,432);
 assert.equal(programas.contextoSinDatos('civil').sinDatos,true,
  'El estado sin fuente sigue disponible como estado visual futuro');
-console.log('OK: nueve contratos aislados; ocho mallas preliminares sin grupos inventados.');
+console.log('OK: nueve contratos aislados; cuatro ofertas verificadas sin inferir combinaciones.');
