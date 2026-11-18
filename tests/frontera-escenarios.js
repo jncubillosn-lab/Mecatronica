@@ -23,9 +23,10 @@ function importar(api,archivo){api.onChange('import-file',{files:[{texto:JSON.st
 function probar(n,fn){fn();console.log('OK '+n);}
 
 probar('Las posiciones sin clasificación siguen consultables en las nueve carreras',()=>{
-  let comprobadas=0;
+  let comprobadas=0,esperadas=0;
   for(const id of Object.keys(programas.fuentes)){
     const api=abrir(id),antes=JSON.stringify([api.S,api.S0]),sinTipo=api.S.malla.filter(m=>!m.comp&&m.s>0);
+    esperadas+=fuente(id).malla.filter(m=>!m.componente&&m.semestre>0).length;
     api.onAct('filtro-reset',{},null,{});
     const html=api.pageMalla();
     for(const m of sinTipo){
@@ -49,7 +50,8 @@ probar('Las posiciones sin clasificación siguen consultables en las nueve carre
     for(const m of api.S.malla.filter(m=>m.s===0))
       assert(!api.pageMalla().includes('data-n="'+api.esc(m.n)+'"'));
   }
-  assert.equal(comprobadas,58);
+  assert(comprobadas>0,'La prueba debe incluir posiciones sin clasificar');
+  assert.equal(comprobadas,esperadas,'Se deben preservar los vacíos realmente declarados por carrera');
 });
 
 probar('La selección sin clasificar se comparte con demanda y no cambia cálculos completos',()=>{
