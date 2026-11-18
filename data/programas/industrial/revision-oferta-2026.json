@@ -1,0 +1,1548 @@
+{
+  "programa": "industrial",
+  "estado": "complementado",
+  "fuentes": [
+    "Horario industrial.txt",
+    "industrial.txt",
+    "MALLA_CURRICULAR_INGENIERIA_INDUSTRIAL_20201027(1).pdf"
+  ],
+  "alertas": [
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016204",
+      "asignatura": "Contabilidad de gestión avanzada",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 3,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016317",
+      "asignatura": "Control estadístico de calidad",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 547,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016589",
+      "asignatura": "Control y gestión de calidad",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 569,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2026551",
+      "asignatura": "Creación y gestión de empresas",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 602,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016028",
+      "asignatura": "Diseño, gestión y evaluación de proyectos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 643,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016592",
+      "asignatura": "Economía general",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 681,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016741",
+      "asignatura": "Finanzas",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 757,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016037",
+      "asignatura": "Finanzas avanzadas",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 828,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016007",
+      "asignatura": "Fundamentos de administración",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 848,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2015701",
+      "asignatura": "Gerencia de recursos humanos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 889,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2015702",
+      "asignatura": "Gerencia y gestión de proyectos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 919,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016600",
+      "asignatura": "Gestión tecnológica",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1034,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016017",
+      "asignatura": "Microeconomía I",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1066,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2025970",
+      "asignatura": "Modelos y simulación",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1089,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2025971",
+      "asignatura": "Optimización",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1173,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016610",
+      "asignatura": "Sistemas de costos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1249,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2025982",
+      "asignatura": "Sistemas de información",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1289,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016053",
+      "asignatura": "Sistemas de Información Gerencial",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1350,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    }
+  ],
+  "condicionesPrerrequisitosPendientes": [
+    {
+      "codigoAsignatura": "2016204",
+      "nombre": "Contabilidad de gestión avanzada",
+      "condiciones": [
+        {
+          "linea": 26,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016590",
+              "nombre": "Creación de Empresa",
+              "linea": 27
+            },
+            {
+              "codigo": "2026551",
+              "nombre": "Creación y gestión de empresas",
+              "linea": 28
+            },
+            {
+              "codigo": "2016007",
+              "nombre": "Fundamentos de administración",
+              "linea": 29
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2025986",
+      "nombre": "Ingeniería económica y análisis de riesgo",
+      "condiciones": [
+        {
+          "linea": 66,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables",
+              "linea": 67
+            },
+            {
+              "codigo": "2015162",
+              "nombre": "Calculo vectorial",
+              "linea": 68
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 69
+            }
+          ]
+        },
+        {
+          "linea": 70,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016038",
+              "nombre": "Fundamentos de contabilidad de gestión",
+              "linea": 71
+            },
+            {
+              "codigo": "2016610",
+              "nombre": "Sistemas de costos",
+              "linea": 72
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016605",
+      "nombre": "Logística",
+      "condiciones": [
+        {
+          "linea": 120,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2007880",
+              "nombre": "Control de calidad",
+              "linea": 121
+            },
+            {
+              "codigo": "2016607",
+              "nombre": "Modelamiento y simulación",
+              "linea": 122
+            },
+            {
+              "codigo": "2025988",
+              "nombre": "Taller de simulación procesos de manufactura y sistemas de servicios",
+              "linea": 123
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2025987",
+      "nombre": "Modelos estocásticos para procesos de manufactura y sistemas de servicios",
+      "condiciones": [
+        {
+          "linea": 148,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015173",
+              "nombre": "Introducción a la optimización",
+              "linea": 149
+            },
+            {
+              "codigo": "2016603",
+              "nombre": "Investigación de operaciones I",
+              "linea": 150
+            },
+            {
+              "codigo": "2025971",
+              "nombre": "Optimización",
+              "linea": 151
+            }
+          ]
+        },
+        {
+          "linea": 152,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015177",
+              "nombre": "Modelos matemáticos",
+              "linea": 153
+            },
+            {
+              "codigo": "2025970",
+              "nombre": "Modelos y simulación",
+              "linea": 154
+            },
+            {
+              "codigo": "2016617",
+              "nombre": "Taller de Modelamiento y Solución de Problemas en Ingeniería",
+              "linea": 155
+            }
+          ]
+        },
+        {
+          "linea": 156,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [N]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2025985",
+              "nombre": "Complemento inferencia fundamental",
+              "linea": 157
+            },
+            {
+              "codigo": "2007277",
+              "nombre": "Estadistica industrial",
+              "linea": 158
+            },
+            {
+              "codigo": "2016379",
+              "nombre": "Inferencia estadística",
+              "linea": 159
+            },
+            {
+              "codigo": "1000016-B",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 160
+            },
+            {
+              "codigo": "2027878",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 161
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016609",
+      "nombre": "Seguridad industrial",
+      "condiciones": [
+        {
+          "linea": 186,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2000371",
+              "nombre": "Fisica ii",
+              "linea": 187
+            },
+            {
+              "codigo": "1000017-B",
+              "nombre": "Fundamentos de electricidad y magnetismo",
+              "linea": 188
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2025993",
+      "nombre": "Taller de ciencia y tecnología de materiales",
+      "condiciones": [
+        {
+          "linea": 236,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2000438",
+              "nombre": "Fisica i",
+              "linea": 237
+            },
+            {
+              "codigo": "1000019-B",
+              "nombre": "Fundamentos de mecánica",
+              "linea": 238
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016612",
+      "nombre": "Taller de diseño de plantas",
+      "condiciones": [
+        {
+          "linea": 263,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2007879",
+              "nombre": "Taller de ingenieria de la produccion",
+              "linea": 264
+            },
+            {
+              "codigo": "2016614",
+              "nombre": "Taller de ingeniería de la producción",
+              "linea": 265
+            }
+          ]
+        },
+        {
+          "linea": 266,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016609",
+              "nombre": "Seguridad industrial",
+              "linea": 267
+            }
+          ]
+        },
+        {
+          "linea": 268,
+          "numero": 4,
+          "tipo": "M",
+          "texto": "Condición 4Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016586",
+              "nombre": "Análisis y Diseño de Sistemas de Información",
+              "linea": 269
+            },
+            {
+              "codigo": "2025982",
+              "nombre": "Sistemas de información",
+              "linea": 270
+            },
+            {
+              "codigo": "2016053",
+              "nombre": "Sistemas de Información Gerencial",
+              "linea": 271
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016613",
+      "nombre": "Taller de ergonomía e ingeniería de métodos",
+      "condiciones": [
+        {
+          "linea": 307,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001530",
+              "nombre": "Taller de procesos",
+              "linea": 308
+            },
+            {
+              "codigo": "2016618",
+              "nombre": "Taller de Procesos Metalmecánicos",
+              "linea": 309
+            }
+          ]
+        },
+        {
+          "linea": 310,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015173",
+              "nombre": "Introducción a la optimización",
+              "linea": 311
+            },
+            {
+              "codigo": "2016603",
+              "nombre": "Investigación de operaciones I",
+              "linea": 312
+            },
+            {
+              "codigo": "2025971",
+              "nombre": "Optimización",
+              "linea": 313
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2026488",
+      "nombre": "Taller de herramientas y problemas en ingeniería industrial",
+      "condiciones": [
+        {
+          "linea": 349,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000004-B",
+              "nombre": "Cálculo diferencial",
+              "linea": 350
+            },
+            {
+              "codigo": "2016377",
+              "nombre": "Cálculo diferencial en una variable",
+              "linea": 351
+            },
+            {
+              "codigo": "2001285",
+              "nombre": "Matematicas i",
+              "linea": 352
+            }
+          ]
+        },
+        {
+          "linea": 353,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016601",
+              "nombre": "Introducción a la Ingeniería Industrial",
+              "linea": 354
+            },
+            {
+              "codigo": "2026805",
+              "nombre": "Introducción a la ingeniería industrial",
+              "linea": 355
+            },
+            {
+              "codigo": "2001526",
+              "nombre": "Taller de fundamentos de ingenieria",
+              "linea": 356
+            }
+          ]
+        },
+        {
+          "linea": 357,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016375",
+              "nombre": "Programación orientada a objetos",
+              "linea": 358
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016614",
+      "nombre": "Taller de ingeniería de la producción",
+      "condiciones": [
+        {
+          "linea": 385,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016613",
+              "nombre": "Taller de ergonomía e ingeniería de métodos",
+              "linea": 386
+            },
+            {
+              "codigo": "2007875",
+              "nombre": "Taller de ingenieria de metodos",
+              "linea": 387
+            }
+          ]
+        },
+        {
+          "linea": 388,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016604",
+              "nombre": "Investigación de Operaciones II",
+              "linea": 389
+            },
+            {
+              "codigo": "2025987",
+              "nombre": "Modelos estocásticos para procesos de manufactura y sistemas de servicios",
+              "linea": 390
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016615",
+      "nombre": "Taller de invención y creatividad",
+      "condiciones": [
+        {
+          "linea": 427,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016601",
+              "nombre": "Introducción a la Ingeniería Industrial",
+              "linea": 428
+            },
+            {
+              "codigo": "2026805",
+              "nombre": "Introducción a la ingeniería industrial",
+              "linea": 429
+            },
+            {
+              "codigo": "2001526",
+              "nombre": "Taller de fundamentos de ingenieria",
+              "linea": 430
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016616",
+      "nombre": "Taller de metodología de la investigación",
+      "condiciones": [
+        {
+          "linea": 455,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2007277",
+              "nombre": "Estadistica industrial",
+              "linea": 456
+            },
+            {
+              "codigo": "2016379",
+              "nombre": "Inferencia estadística",
+              "linea": 457
+            },
+            {
+              "codigo": "1000016-B",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 458
+            },
+            {
+              "codigo": "2027878",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 459
+            }
+          ]
+        },
+        {
+          "linea": 460,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2019610",
+              "nombre": "Taller de creatividad",
+              "linea": 461
+            },
+            {
+              "codigo": "2016615",
+              "nombre": "Taller de invención y creatividad",
+              "linea": 462
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016618",
+      "nombre": "Taller de Procesos Metalmecánicos",
+      "condiciones": [
+        {
+          "linea": 487,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2025993",
+              "nombre": "Taller de ciencia y tecnología de materiales",
+              "linea": 488
+            },
+            {
+              "codigo": "2007750",
+              "nombre": "Taller de ingenieria de materiales",
+              "linea": 489
+            },
+            {
+              "codigo": "2016620",
+              "nombre": "Taller de Química e Ingeniería de Materiales",
+              "linea": 490
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016619",
+      "nombre": "Taller de Procesos Químicos y Biotecnológicos",
+      "condiciones": [
+        {
+          "linea": 515,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2025993",
+              "nombre": "Taller de ciencia y tecnología de materiales",
+              "linea": 516
+            },
+            {
+              "codigo": "2007750",
+              "nombre": "Taller de ingenieria de materiales",
+              "linea": 517
+            },
+            {
+              "codigo": "2016620",
+              "nombre": "Taller de Química e Ingeniería de Materiales",
+              "linea": 518
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2025988",
+      "nombre": "Taller de simulación procesos de manufactura y sistemas de servicios",
+      "condiciones": [
+        {
+          "linea": 543,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016603",
+              "nombre": "Investigación de operaciones I",
+              "linea": 544
+            },
+            {
+              "codigo": "2025987",
+              "nombre": "Modelos estocásticos para procesos de manufactura y sistemas de servicios",
+              "linea": 545
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016317",
+      "nombre": "Control estadístico de calidad",
+      "condiciones": [
+        {
+          "linea": 559,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2007277",
+              "nombre": "Estadistica industrial",
+              "linea": 560
+            },
+            {
+              "codigo": "2016379",
+              "nombre": "Inferencia estadística",
+              "linea": 561
+            },
+            {
+              "codigo": "1000016-B",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 562
+            },
+            {
+              "codigo": "2027878",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 563
+            }
+          ]
+        },
+        {
+          "linea": 564,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016590",
+              "nombre": "Creación de Empresa",
+              "linea": 565
+            },
+            {
+              "codigo": "2026551",
+              "nombre": "Creación y gestión de empresas",
+              "linea": 566
+            },
+            {
+              "codigo": "2016007",
+              "nombre": "Fundamentos de administración",
+              "linea": 567
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016589",
+      "nombre": "Control y gestión de calidad",
+      "condiciones": [
+        {
+          "linea": 592,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2007277",
+              "nombre": "Estadistica industrial",
+              "linea": 593
+            },
+            {
+              "codigo": "2016379",
+              "nombre": "Inferencia estadística",
+              "linea": 594
+            },
+            {
+              "codigo": "1000016-B",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 595
+            },
+            {
+              "codigo": "2027878",
+              "nombre": "Inferencia estadística fundamental",
+              "linea": 596
+            }
+          ]
+        },
+        {
+          "linea": 597,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016590",
+              "nombre": "Creación de Empresa",
+              "linea": 598
+            },
+            {
+              "codigo": "2026551",
+              "nombre": "Creación y gestión de empresas",
+              "linea": 599
+            },
+            {
+              "codigo": "2016007",
+              "nombre": "Fundamentos de administración",
+              "linea": 600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2026551",
+      "nombre": "Creación y gestión de empresas",
+      "condiciones": [
+        {
+          "linea": 636,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2019610",
+              "nombre": "Taller de creatividad",
+              "linea": 637
+            },
+            {
+              "codigo": "2016615",
+              "nombre": "Taller de invención y creatividad",
+              "linea": 638
+            }
+          ]
+        },
+        {
+          "linea": 639,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016592",
+              "nombre": "Economía general",
+              "linea": 640
+            },
+            {
+              "codigo": "2016017",
+              "nombre": "Microeconomía I",
+              "linea": 641
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016028",
+      "nombre": "Diseño, gestión y evaluación de proyectos",
+      "condiciones": [
+        {
+          "linea": 677,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015703",
+              "nombre": "Ingeniería económica",
+              "linea": 678
+            },
+            {
+              "codigo": "2025986",
+              "nombre": "Ingeniería económica y análisis de riesgo",
+              "linea": 679
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016592",
+      "nombre": "Economía general",
+      "condiciones": [
+        {
+          "linea": 748,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000004-B",
+              "nombre": "Cálculo diferencial",
+              "linea": 749
+            },
+            {
+              "codigo": "2016377",
+              "nombre": "Cálculo diferencial en una variable",
+              "linea": 750
+            },
+            {
+              "codigo": "2001285",
+              "nombre": "Matematicas i",
+              "linea": 751
+            }
+          ]
+        },
+        {
+          "linea": 752,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016601",
+              "nombre": "Introducción a la Ingeniería Industrial",
+              "linea": 753
+            },
+            {
+              "codigo": "2026805",
+              "nombre": "Introducción a la ingeniería industrial",
+              "linea": 754
+            },
+            {
+              "codigo": "2001526",
+              "nombre": "Taller de fundamentos de ingenieria",
+              "linea": 755
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016741",
+      "nombre": "Finanzas",
+      "condiciones": [
+        {
+          "linea": 824,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015703",
+              "nombre": "Ingeniería económica",
+              "linea": 825
+            },
+            {
+              "codigo": "2025986",
+              "nombre": "Ingeniería económica y análisis de riesgo",
+              "linea": 826
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016037",
+      "nombre": "Finanzas avanzadas",
+      "condiciones": [
+        {
+          "linea": 840,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016600",
+              "nombre": "Gestión tecnológica",
+              "linea": 841
+            }
+          ]
+        },
+        {
+          "linea": 842,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015703",
+              "nombre": "Ingeniería económica",
+              "linea": 843
+            },
+            {
+              "codigo": "2025986",
+              "nombre": "Ingeniería económica y análisis de riesgo",
+              "linea": 844
+            }
+          ]
+        },
+        {
+          "linea": 845,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016039",
+              "nombre": "Fundamentos de finanzas",
+              "linea": 846
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016007",
+      "nombre": "Fundamentos de administración",
+      "condiciones": [
+        {
+          "linea": 882,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2019610",
+              "nombre": "Taller de creatividad",
+              "linea": 883
+            },
+            {
+              "codigo": "2016615",
+              "nombre": "Taller de invención y creatividad",
+              "linea": 884
+            }
+          ]
+        },
+        {
+          "linea": 885,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016592",
+              "nombre": "Economía general",
+              "linea": 886
+            },
+            {
+              "codigo": "2016017",
+              "nombre": "Microeconomía I",
+              "linea": 887
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015701",
+      "nombre": "Gerencia de recursos humanos",
+      "condiciones": [
+        {
+          "linea": 912,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016609",
+              "nombre": "Seguridad industrial",
+              "linea": 913
+            }
+          ]
+        },
+        {
+          "linea": 914,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016590",
+              "nombre": "Creación de Empresa",
+              "linea": 915
+            },
+            {
+              "codigo": "2026551",
+              "nombre": "Creación y gestión de empresas",
+              "linea": 916
+            },
+            {
+              "codigo": "2016007",
+              "nombre": "Fundamentos de administración",
+              "linea": 917
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015702",
+      "nombre": "Gerencia y gestión de proyectos",
+      "condiciones": [
+        {
+          "linea": 1030,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015703",
+              "nombre": "Ingeniería económica",
+              "linea": 1031
+            },
+            {
+              "codigo": "2025986",
+              "nombre": "Ingeniería económica y análisis de riesgo",
+              "linea": 1032
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016600",
+      "nombre": "Gestión tecnológica",
+      "condiciones": [
+        {
+          "linea": 1057,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016586",
+              "nombre": "Análisis y Diseño de Sistemas de Información",
+              "linea": 1058
+            },
+            {
+              "codigo": "2025982",
+              "nombre": "Sistemas de información",
+              "linea": 1059
+            },
+            {
+              "codigo": "2016053",
+              "nombre": "Sistemas de Información Gerencial",
+              "linea": 1060
+            }
+          ]
+        },
+        {
+          "linea": 1061,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016590",
+              "nombre": "Creación de Empresa",
+              "linea": 1062
+            },
+            {
+              "codigo": "2026551",
+              "nombre": "Creación y gestión de empresas",
+              "linea": 1063
+            },
+            {
+              "codigo": "2016007",
+              "nombre": "Fundamentos de administración",
+              "linea": 1064
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016017",
+      "nombre": "Microeconomía I",
+      "condiciones": [
+        {
+          "linea": 1078,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000004-B",
+              "nombre": "Cálculo diferencial",
+              "linea": 1079
+            },
+            {
+              "codigo": "2016377",
+              "nombre": "Cálculo diferencial en una variable",
+              "linea": 1080
+            },
+            {
+              "codigo": "2001285",
+              "nombre": "Matematicas i",
+              "linea": 1081
+            }
+          ]
+        },
+        {
+          "linea": 1082,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016601",
+              "nombre": "Introducción a la Ingeniería Industrial",
+              "linea": 1083
+            },
+            {
+              "codigo": "2026805",
+              "nombre": "Introducción a la ingeniería industrial",
+              "linea": 1084
+            },
+            {
+              "codigo": "2001526",
+              "nombre": "Taller de fundamentos de ingenieria",
+              "linea": 1085
+            }
+          ]
+        },
+        {
+          "linea": 1086,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2015270",
+              "nombre": "Fundamentos de economía",
+              "linea": 1087
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2025970",
+      "nombre": "Modelos y simulación",
+      "condiciones": [
+        {
+          "linea": 1156,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables",
+              "linea": 1157
+            },
+            {
+              "codigo": "2015162",
+              "nombre": "Calculo vectorial",
+              "linea": 1158
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 1159
+            }
+          ]
+        },
+        {
+          "linea": 1160,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016342",
+              "nombre": "Cálculo de ecuaciones diferenciales ordinarias",
+              "linea": 1161
+            },
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales",
+              "linea": 1162
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv",
+              "linea": 1163
+            }
+          ]
+        },
+        {
+          "linea": 1164,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [N]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2025984",
+              "nombre": "Complemento probabilidad fundamental",
+              "linea": 1165
+            },
+            {
+              "codigo": "2015178",
+              "nombre": "Probabilidad",
+              "linea": 1166
+            },
+            {
+              "codigo": "1000015-B",
+              "nombre": "Probabilidad fundamental",
+              "linea": 1167
+            },
+            {
+              "codigo": "2027877",
+              "nombre": "Probabilidad fundamental",
+              "linea": 1168
+            },
+            {
+              "codigo": "2001065",
+              "nombre": "Probabilidad y estadistica",
+              "linea": 1169
+            }
+          ]
+        },
+        {
+          "linea": 1170,
+          "numero": 4,
+          "tipo": "M",
+          "texto": "Condición 4Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2026488",
+              "nombre": "Taller de herramientas y problemas en ingeniería industrial",
+              "linea": 1171
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2025971",
+      "nombre": "Optimización",
+      "condiciones": [
+        {
+          "linea": 1240,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables",
+              "linea": 1241
+            },
+            {
+              "codigo": "2015162",
+              "nombre": "Calculo vectorial",
+              "linea": 1242
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 1243
+            }
+          ]
+        },
+        {
+          "linea": 1244,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000003-B",
+              "nombre": "Álgebra Lineal",
+              "linea": 1245
+            },
+            {
+              "codigo": "2015555",
+              "nombre": "Álgebra lineal básica",
+              "linea": 1246
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 1247
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016610",
+      "nombre": "Sistemas de costos",
+      "condiciones": [
+        {
+          "linea": 1283,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016592",
+              "nombre": "Economía general",
+              "linea": 1284
+            },
+            {
+              "codigo": "2016017",
+              "nombre": "Microeconomía I",
+              "linea": 1285
+            }
+          ]
+        },
+        {
+          "linea": 1286,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2026488",
+              "nombre": "Taller de herramientas y problemas en ingeniería industrial",
+              "linea": 1287
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2025982",
+      "nombre": "Sistemas de información",
+      "condiciones": [
+        {
+          "linea": 1345,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016028",
+              "nombre": "Diseño, gestión y evaluación de proyectos",
+              "linea": 1346
+            },
+            {
+              "codigo": "2007885",
+              "nombre": "Formulacion y evaluacion de proyectos",
+              "linea": 1347
+            },
+            {
+              "codigo": "2015702",
+              "nombre": "Gerencia y gestión de proyectos",
+              "linea": 1348
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016053",
+      "nombre": "Sistemas de Información Gerencial",
+      "condiciones": [
+        {
+          "linea": 1384,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016028",
+              "nombre": "Diseño, gestión y evaluación de proyectos",
+              "linea": 1385
+            },
+            {
+              "codigo": "2007885",
+              "nombre": "Formulacion y evaluacion de proyectos",
+              "linea": 1386
+            },
+            {
+              "codigo": "2015702",
+              "nombre": "Gerencia y gestión de proyectos",
+              "linea": 1387
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,918 @@
+{
+  "programa": "quimica",
+  "estado": "complementado",
+  "fuentes": [
+    "Química horarios.txt",
+    "Química.txt",
+    "Malla_Curricular_-_Ingeniería_Química(1).pdf"
+  ],
+  "alertas": [
+    {
+      "tipo": "codigo_catalogo_nombre_contradiccion",
+      "codigo": "1000010-B",
+      "asignatura": "Biología molecular y celular",
+      "descripcion": "Nombre anterior: Laboratorio de principios de química orgánica; coincidencia=0.15",
+      "linea": null,
+      "decision": "preservar registro anterior"
+    },
+    {
+      "tipo": "actividad_sin_grupos",
+      "codigo": "2015708",
+      "asignatura": "Balance de materia",
+      "descripcion": "CLASE TEORICA (2015708)",
+      "linea": 74,
+      "decision": "mantener oferta sin agrupaciones"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2015712",
+      "asignatura": "Diseño de plantas y equipos",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 128,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2015713",
+      "asignatura": "Diseño de procesos químicos y bioquímicos",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 192,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "actividad_sin_grupos",
+      "codigo": "2015715",
+      "asignatura": "Ingeniería de Procesos",
+      "descripcion": "CLASE TEORICA (2015715)",
+      "linea": 315,
+      "decision": "mantener oferta sin agrupaciones"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2015718",
+      "asignatura": "Introducción a la ingeniería química",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 370,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2015726",
+      "asignatura": "Manejo de sólidos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 681,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "grupo_sin_horario",
+      "codigo": "2024045",
+      "asignatura": "Taller de proyectos interdisciplinarios",
+      "descripcion": "Actividad CLASE TEORICA (2024045), grupo 41: horario no informado",
+      "linea": 910,
+      "decision": "conservar sin bloques; no analizar"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2024045",
+      "asignatura": "Taller de proyectos interdisciplinarios",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 726,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "actividad_sin_grupos",
+      "codigo": "2015744",
+      "asignatura": "Transferencia de masa",
+      "descripcion": "CLASE TEORICA (2015744)",
+      "linea": 1230,
+      "decision": "mantener oferta sin agrupaciones"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2017256",
+      "asignatura": "Ciencia e ingeniería de materiales",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1236,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "1000038-B",
+      "asignatura": "Fisicoquímica II",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1292,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2015717",
+      "asignatura": "Introducción a la Ingeniería de Materiales",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1330,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "1000040-B",
+      "asignatura": "ntroducción a la ciencia de materiales",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1346,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2024929",
+      "asignatura": "Introducción a la Ingeniería de Materiales Poliméricos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1358,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2015729",
+      "asignatura": "Modelamiento y simulación de procesos químicos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1376,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2015738",
+      "asignatura": "Termodinámica de Ciclos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1417,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2015739",
+      "asignatura": "Termodinámica molecular",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1444,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "malla_catalogo_codigo_nombre_distinto",
+      "codigo": "1000010",
+      "asignatura": "Laboratorio de principios de química orgánica",
+      "descripcion": "Catálogo: Biología molecular y celular; similitud=0.15",
+      "linea": null,
+      "decision": "no alterar malla"
+    }
+  ],
+  "condicionesPrerrequisitosPendientes": [
+    {
+      "codigoAsignatura": "2015707",
+      "nombre": "Balance de energía y equilibrio químico",
+      "condiciones": [
+        {
+          "linea": 59,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015740",
+              "nombre": "Termodinámica química",
+              "linea": 60
+            },
+            {
+              "codigo": "2001379",
+              "nombre": "Termodinamica quimica i",
+              "linea": 61
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015710",
+      "nombre": "Control de procesos",
+      "condiciones": [
+        {
+          "linea": 121,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001852",
+              "nombre": "Metodos numericos",
+              "linea": 122
+            },
+            {
+              "codigo": "2015970",
+              "nombre": "Métodos numéricos",
+              "linea": 123
+            }
+          ]
+        },
+        {
+          "linea": 124,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001800",
+              "nombre": "Diseño de reactores",
+              "linea": 125
+            },
+            {
+              "codigo": "2015716",
+              "nombre": "Ingeniería de Reacciones Químicas",
+              "linea": 126
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015712",
+      "nombre": "Diseño de plantas y equipos",
+      "condiciones": [
+        {
+          "linea": 185,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015731",
+              "nombre": "Operaciones de Separación",
+              "linea": 186
+            },
+            {
+              "codigo": "2001371",
+              "nombre": "Transferencia de masa ii",
+              "linea": 187
+            }
+          ]
+        },
+        {
+          "linea": 188,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015713",
+              "nombre": "Diseño de procesos químicos y bioquímicos",
+              "linea": 189
+            },
+            {
+              "codigo": "2001799",
+              "nombre": "Procesos quimicos ii",
+              "linea": 190
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015713",
+      "nombre": "Diseño de procesos químicos y bioquímicos",
+      "condiciones": [
+        {
+          "linea": 249,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico",
+              "linea": 250
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii",
+              "linea": 251
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015714",
+      "nombre": "Fluidos",
+      "condiciones": [
+        {
+          "linea": 298,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2000438",
+              "nombre": "Fisica i",
+              "linea": 299
+            },
+            {
+              "codigo": "1000019-B",
+              "nombre": "Fundamentos de mecánica",
+              "linea": 300
+            }
+          ]
+        },
+        {
+          "linea": 301,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica",
+              "linea": 302
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i",
+              "linea": 303
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015715",
+      "nombre": "Ingeniería de Procesos",
+      "condiciones": [
+        {
+          "linea": 317,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015713",
+              "nombre": "Diseño de procesos químicos y bioquímicos",
+              "linea": 318
+            },
+            {
+              "codigo": "2001799",
+              "nombre": "Procesos quimicos ii",
+              "linea": 319
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015716",
+      "nombre": "Ingeniería de Reacciones Químicas",
+      "condiciones": [
+        {
+          "linea": 366,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico",
+              "linea": 367
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii",
+              "linea": 368
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015719",
+      "nombre": "Laboratorio de fluidos, sólidos y transferencia de calor",
+      "condiciones": [
+        {
+          "linea": 494,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015714",
+              "nombre": "Fluidos",
+              "linea": 495
+            }
+          ]
+        },
+        {
+          "linea": 496,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001367",
+              "nombre": "Manejo de solidos",
+              "linea": 497
+            },
+            {
+              "codigo": "2015726",
+              "nombre": "Manejo de sólidos",
+              "linea": 498
+            }
+          ]
+        },
+        {
+          "linea": 499,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015743",
+              "nombre": "Transferencia de calor",
+              "linea": 500
+            },
+            {
+              "codigo": "2001368",
+              "nombre": "Transferencia de calor i",
+              "linea": 501
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015720",
+      "nombre": "Laboratorio de operaciones de separación, reaccion y control",
+      "condiciones": [
+        {
+          "linea": 581,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015731",
+              "nombre": "Operaciones de Separación",
+              "linea": 582
+            },
+            {
+              "codigo": "2001371",
+              "nombre": "Transferencia de masa ii",
+              "linea": 583
+            }
+          ]
+        },
+        {
+          "linea": 584,
+          "numero": null,
+          "tipo": null,
+          "texto": "Condición 2Tipo Y¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001806",
+              "nombre": "Control de procesos",
+              "linea": 585
+            },
+            {
+              "codigo": "2015710",
+              "nombre": "Control de procesos",
+              "linea": 586
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015721",
+      "nombre": "Laboratorio de propiedades termodinámicas y de transporte",
+      "condiciones": [
+        {
+          "linea": 677,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico",
+              "linea": 678
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii",
+              "linea": 679
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015726",
+      "nombre": "Manejo de sólidos",
+      "condiciones": [
+        {
+          "linea": 693,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2015714",
+              "nombre": "Fluidos",
+              "linea": 694
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015731",
+      "nombre": "Operaciones de Separación",
+      "condiciones": [
+        {
+          "linea": 719,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015744",
+              "nombre": "Transferencia de masa",
+              "linea": 720
+            },
+            {
+              "codigo": "2001370",
+              "nombre": "Transferencia de masa i",
+              "linea": 721
+            }
+          ]
+        },
+        {
+          "linea": 722,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico",
+              "linea": 723
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii",
+              "linea": 724
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015735",
+      "nombre": "Taller 1",
+      "condiciones": [
+        {
+          "linea": 1020,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica",
+              "linea": 1021
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i",
+              "linea": 1022
+            }
+          ]
+        },
+        {
+          "linea": 1023,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables",
+              "linea": 1024
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 1025
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015736",
+      "nombre": "Taller 2",
+      "condiciones": [
+        {
+          "linea": 1061,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales",
+              "linea": 1062
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv",
+              "linea": 1063
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015741",
+      "nombre": "Termodinámica",
+      "condiciones": [
+        {
+          "linea": 1132,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000004-B",
+              "nombre": "Cálculo diferencial",
+              "linea": 1133
+            },
+            {
+              "codigo": "2001285",
+              "nombre": "Matematicas i",
+              "linea": 1134
+            }
+          ]
+        },
+        {
+          "linea": 1135,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2015708",
+              "nombre": "Balance de materia",
+              "linea": 1136
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015740",
+      "nombre": "Termodinámica química",
+      "condiciones": [
+        {
+          "linea": 1161,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica",
+              "linea": 1162
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i",
+              "linea": 1163
+            }
+          ]
+        },
+        {
+          "linea": 1164,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables",
+              "linea": 1165
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 1166
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015743",
+      "nombre": "Transferencia de calor",
+      "condiciones": [
+        {
+          "linea": 1213,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica",
+              "linea": 1214
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i",
+              "linea": 1215
+            }
+          ]
+        },
+        {
+          "linea": 1216,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales",
+              "linea": 1217
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv",
+              "linea": 1218
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015744",
+      "nombre": "Transferencia de masa",
+      "condiciones": [
+        {
+          "linea": 1232,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales",
+              "linea": 1233
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv",
+              "linea": 1234
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "1000038-B",
+      "nombre": "Fisicoquímica II",
+      "condiciones": [
+        {
+          "linea": 1326,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico",
+              "linea": 1327
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii",
+              "linea": 1328
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015717",
+      "nombre": "Introducción a la Ingeniería de Materiales",
+      "condiciones": [
+        {
+          "linea": 1342,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015740",
+              "nombre": "Termodinámica química",
+              "linea": 1343
+            },
+            {
+              "codigo": "2001379",
+              "nombre": "Termodinamica quimica i",
+              "linea": 1344
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015729",
+      "nombre": "Modelamiento y simulación de procesos químicos",
+      "condiciones": [
+        {
+          "linea": 1410,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015744",
+              "nombre": "Transferencia de masa",
+              "linea": 1411
+            },
+            {
+              "codigo": "2001370",
+              "nombre": "Transferencia de masa i",
+              "linea": 1412
+            }
+          ]
+        },
+        {
+          "linea": 1413,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001800",
+              "nombre": "Diseño de reactores",
+              "linea": 1414
+            },
+            {
+              "codigo": "2015716",
+              "nombre": "Ingeniería de Reacciones Químicas",
+              "linea": 1415
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015738",
+      "nombre": "Termodinámica de Ciclos",
+      "condiciones": [
+        {
+          "linea": 1440,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico",
+              "linea": 1441
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii",
+              "linea": 1442
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2015739",
+      "nombre": "Termodinámica molecular",
+      "condiciones": [
+        {
+          "linea": 1467,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015740",
+              "nombre": "Termodinámica química",
+              "linea": 1468
+            },
+            {
+              "codigo": "2001379",
+              "nombre": "Termodinamica quimica i",
+              "linea": 1469
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

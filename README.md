@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.5 · **Estado:** nueve carreras seleccionables, nueve carreras con contratos académicos; ocho sin oferta de grupos · **Rama publicada:** `main`
+**Versión pública:** 1.1.6 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -10,7 +10,7 @@ Aplicación web estudiantil **no oficial** de la Facultad de Ingeniería de la U
 
 ## Selector multicarrera
 
-En la esquina superior izquierda puede elegirse entre **nueve carreras**, con el nombre y el color ya establecidos en `js/identidad.js`. Ahora los nueve programas tienen un contrato académico propio. Mecatrónica mantiene su oferta de grupos; los otros ocho contienen planes, asignaturas y requisitos parciales, pero **no incluyen grupos ni horarios verificados**. Se conservan las mismas ocho vistas y no se suponen choques de horarios. No se crean horarios o estadísticas ficticias.
+En la esquina superior izquierda puede elegirse entre **nueve carreras**, con el nombre y el color ya establecidos en `js/identidad.js`. Ahora los nueve programas tienen un contrato académico propio. Mecatrónica conserva su oferta de referencia. Electrónica, Industrial, Mecánica y Química incorporan ofertas de grupos y horarios documentadas para el periodo agosto–diciembre de 2026; Eléctrica, Sistemas, Civil y Agrícola todavía carecen de oferta cargada. Se conservan las mismas ocho vistas y no se suponen choques de horarios. No se crean horarios o estadísticas ficticias.
 
 La selección se refleja en la URL (`?programa=civil`, `?programa=mecatronica`). `js/programas.js` registra solamente rutas de contratos disponibles, y `js/iniciar.js` carga un contrato normalizado por sesión y valida la identidad antes de iniciar el motor. Un error técnico no se disfraza de ausencia de datos. En un programa sin contrato (caso futuro), `js/app.js` se carga igualmente y reutiliza las mismas vistas con un **contexto de presentación sin datos**, que no es una entrada académica ni genera cálculos. Los botones de edición/importación se muestran deshabilitados. La cuadrícula de horario es únicamente visual, no un calendario confirmado. El escenario personal de Mecatrónica conserva su clave histórica; futuros programas tienen claves propias.
 
@@ -44,7 +44,7 @@ La entrada admite datos faltantes: desconocer un horario, profesor o crédito no
 
 Los escenarios personales se guardan como diferencias sobre la referencia vigente; se pueden importar, exportar y restablecer. El formato actual es `escenario-personal/version:1`, sin lectores de archivos de desarrollo anteriores.
 
-**Multicarrera:** la selección de nueve carreras funciona desde la 1.1.0. Hay nueve contratos normalizados: Mecatrónica tiene oferta de grupos, mientras que las otras ocho carreras contienen inicialmente malla y catálogo sin oferta de horarios. No se asumen horarios, combinaciones ni cifras de capacidad.
+**Multicarrera:** la selección de nueve carreras funciona desde la 1.1.0. Hay nueve contratos normalizados: Mecatrónica conserva oferta de referencia y cuatro carreras tienen ofertas parciales de agosto–diciembre de 2026; las cuatro restantes solo disponen de malla y catálogo. No se asumen horarios, combinaciones ni cifras de capacidad.
 
 ## Contratos independientes y correcciones de datos
 
@@ -55,6 +55,14 @@ Las correcciones excepcionales verificadas se mantienen **fuera de la ejecución
 ## Incorporación inicial de ocho carreras (1.1.3)
 
 Los contratos de Eléctrica, Electrónica, Civil, Agrícola, Sistemas, Industrial, Mecánica y Química se incorporaron en `datos/programas/<id>/academico.json` sin alterar el de Mecatrónica. Sus registros externos `data/programas/<id>/ajustes.json` están vacíos a la espera de correcciones respaldadas. **No contienen oferta de grupos ni horarios**, y los prerrequisitos son incompletos; no usar el resultado de interferencias como evidencia de disponibilidad ni de ausencia real de choques. Ver [informe de calidad de bases iniciales](docs/INFORME-BASES-INICIALES-2026.md).
+
+## Complementación de grupos y horarios (1.1.6)
+
+Se publicaron contratos normalizados completos por carrera, preparados **fuera del programa** a partir de los TXT de oferta y catálogo, y cotejados con las mallas existentes. La carga incluye: Electrónica (23 asignaturas ofertadas, 144 grupos, 31 agrupaciones analizables), Industrial (34, 63, 20), Mecánica (24, 101, 72) y Química (29, 89, 48). Estos grupos corresponden a una consulta documental del segundo semestre de 2026, no garantizan cupos ni horarios futuros.
+
+**No se inventaron combinaciones de teoría, laboratorio o taller**: actividades múltiples sin correspondencias verificadas permanecen en `oferta` y se excluyen de `agrupaciones`. Las asignaturas sin posición curricular identificada también permanecen en la oferta sin semestre supuesto. Los cupos disponibles no equivalen a capacidad total. Los requisitos extraídos pendientes de equivalencias no se incorporaron al motor.
+
+Cada carrera conserva por separado su [registro de revisión](data/programas/quimica/revision-oferta-2026.json) (uno por cada programa con oferta nueva). Véase el [informe documental de complementación](docs/INFORME-COMPLEMENTACION-HORARIOS-2026.md). Mecatrónica y las otras cuatro carreras no se modificaron. Los únicos cambios en el código de arranque son parámetros de versión para evitar caché antigua; el lector, el motor y las vistas no se modificaron.
 
 ## Verificación y publicación
 

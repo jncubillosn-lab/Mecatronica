@@ -1,0 +1,680 @@
+{
+  "programa": "electronica",
+  "estado": "complementado",
+  "fuentes": [
+    "Electronica horarios.txt",
+    "Electronica(1).txt",
+    "Malla_Ing_Electrnica_2023(1).pdf"
+  ],
+  "alertas": [
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016490",
+      "asignatura": "Circuitos Eléctricos II",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 151,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016493",
+      "asignatura": "Control",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 344,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2028816",
+      "asignatura": "Diseño de sistemas electrónicos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 493,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016495",
+      "asignatura": "Electrónica análoga I",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 522,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016496",
+      "asignatura": "Electrónica análoga II",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 725,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016497",
+      "asignatura": "Electrónica de potencia",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 810,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016498",
+      "asignatura": "Electrónica digital I",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 895,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016499",
+      "asignatura": "Electrónica digital II",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 1076,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016501",
+      "asignatura": "Instrumentación y medidas",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 1158,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2016502",
+      "asignatura": "Introducción a ingeniería electrónica",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 1229,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "grupo_sin_horario",
+      "codigo": "2024045",
+      "asignatura": "Taller de proyectos interdisciplinarios",
+      "descripcion": "Actividad CLASE TEORICA (2024045), grupo 41: horario no informado",
+      "linea": 1747,
+      "decision": "conservar sin bloques; no analizar"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2024045",
+      "asignatura": "Taller de proyectos interdisciplinarios",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1563,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016488",
+      "asignatura": "Circuitos de RF",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1812,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2028211",
+      "asignatura": "Circuitos integrados lineales y aplicaciones",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1861,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016508",
+      "asignatura": "Sistemas embebidos",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1921,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    },
+    {
+      "tipo": "oferta_sin_posicion_curricular",
+      "codigo": "2016512",
+      "asignatura": "Verificación de sistemas digitales",
+      "descripcion": "La oferta existe, pero la malla no contiene posición curricular con este código.",
+      "linea": 1947,
+      "decision": "mantener solo en oferta; no inventar semestre"
+    }
+  ],
+  "condicionesPrerrequisitosPendientes": [
+    {
+      "codigoAsignatura": "2016487",
+      "nombre": "Campos electromagnéticos",
+      "condiciones": [
+        {
+          "linea": 59,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables",
+              "linea": 60
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 61
+            }
+          ]
+        },
+        {
+          "linea": 62,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2000439",
+              "nombre": "Fisica II",
+              "linea": 63
+            },
+            {
+              "codigo": "1000017-B",
+              "nombre": "Fundamentos de electricidad y magnetismo",
+              "linea": 64
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016489",
+      "nombre": "Circuitos Eléctricos I",
+      "condiciones": [
+        {
+          "linea": 144,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000003-B",
+              "nombre": "Álgebra Lineal",
+              "linea": 145
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii",
+              "linea": 146
+            }
+          ]
+        },
+        {
+          "linea": 147,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001331",
+              "nombre": "Taller de electronica",
+              "linea": 148
+            },
+            {
+              "codigo": "2016509",
+              "nombre": "Taller de ingeniería electrónica",
+              "linea": 149
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016490",
+      "nombre": "Circuitos Eléctricos II",
+      "condiciones": [
+        {
+          "linea": 296,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016489",
+              "nombre": "Circuitos Eléctricos I",
+              "linea": 297
+            }
+          ]
+        },
+        {
+          "linea": 298,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales",
+              "linea": 299
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv",
+              "linea": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016492",
+      "nombre": "Comunicaciones",
+      "condiciones": [
+        {
+          "linea": 336,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001619",
+              "nombre": "Analisis de sistemas dinamicos",
+              "linea": 337
+            },
+            {
+              "codigo": "2016507",
+              "nombre": "Señales y Sistemas II",
+              "linea": 338
+            }
+          ]
+        },
+        {
+          "linea": 339,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000015-B",
+              "nombre": "Probabilidad fundamental",
+              "linea": 340
+            },
+            {
+              "codigo": "2001065",
+              "nombre": "Probabilidad y estadistica",
+              "linea": 341
+            },
+            {
+              "codigo": "1000013-B",
+              "nombre": "Probabilidad y estadística fundamental",
+              "linea": 342
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016493",
+      "nombre": "Control",
+      "condiciones": [
+        {
+          "linea": 489,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001619",
+              "nombre": "Analisis de sistemas dinamicos",
+              "linea": 490
+            },
+            {
+              "codigo": "2016507",
+              "nombre": "Señales y Sistemas II",
+              "linea": 491
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016495",
+      "nombre": "Electrónica análoga I",
+      "condiciones": [
+        {
+          "linea": 722,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016489",
+              "nombre": "Circuitos Eléctricos I",
+              "linea": 723
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016496",
+      "nombre": "Electrónica análoga II",
+      "condiciones": [
+        {
+          "linea": 804,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I",
+              "linea": 805
+            }
+          ]
+        },
+        {
+          "linea": 806,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016490",
+              "nombre": "Circuitos Eléctricos II",
+              "linea": 807
+            },
+            {
+              "codigo": "2001603",
+              "nombre": "Circuitos electricos ii",
+              "linea": 808
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016497",
+      "nombre": "Electrónica de potencia",
+      "condiciones": [
+        {
+          "linea": 889,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I",
+              "linea": 890
+            }
+          ]
+        },
+        {
+          "linea": 891,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016490",
+              "nombre": "Circuitos Eléctricos II",
+              "linea": 892
+            },
+            {
+              "codigo": "2001603",
+              "nombre": "Circuitos electricos ii",
+              "linea": 893
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016498",
+      "nombre": "Electrónica digital I",
+      "condiciones": [
+        {
+          "linea": 1073,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I",
+              "linea": 1074
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016499",
+      "nombre": "Electrónica digital II",
+      "condiciones": [
+        {
+          "linea": 1155,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016498",
+              "nombre": "Electrónica digital I",
+              "linea": 1156
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016501",
+      "nombre": "Instrumentación y medidas",
+      "condiciones": [
+        {
+          "linea": 1226,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I",
+              "linea": 1227
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016503",
+      "nombre": "Líneas y antenas",
+      "condiciones": [
+        {
+          "linea": 1320,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001608",
+              "nombre": "Campos electromagneticos",
+              "linea": 1321
+            },
+            {
+              "codigo": "2016487",
+              "nombre": "Campos electromagnéticos",
+              "linea": 1322
+            }
+          ]
+        },
+        {
+          "linea": 1323,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2019615",
+              "nombre": "Fisica iii",
+              "linea": 1324
+            },
+            {
+              "codigo": "1000020-B",
+              "nombre": "Fundamentos de oscilaciones, ondas y óptica",
+              "linea": 1325
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016506",
+      "nombre": "Señales y sistemas I",
+      "condiciones": [
+        {
+          "linea": 1405,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016489",
+              "nombre": "Circuitos Eléctricos I",
+              "linea": 1406
+            }
+          ]
+        },
+        {
+          "linea": 1407,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales",
+              "linea": 1408
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv",
+              "linea": 1409
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016507",
+      "nombre": "Señales y Sistemas II",
+      "condiciones": [
+        {
+          "linea": 1467,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2016506",
+              "nombre": "Señales y sistemas I",
+              "linea": 1468
+            },
+            {
+              "codigo": "2000490",
+              "nombre": "Tratamiento de señales",
+              "linea": 1469
+            }
+          ]
+        },
+        {
+          "linea": 1470,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2000967",
+              "nombre": "Matematicas v",
+              "linea": 1471
+            },
+            {
+              "codigo": "2015159",
+              "nombre": "Variable compleja",
+              "linea": 1472
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016488",
+      "nombre": "Circuitos de RF",
+      "condiciones": [
+        {
+          "linea": 1858,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016496",
+              "nombre": "Electrónica análoga II",
+              "linea": 1859
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2019125",
+      "nombre": "Redes de telecomunicaciones",
+      "condiciones": [
+        {
+          "linea": 1918,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016492",
+              "nombre": "Comunicaciones",
+              "linea": 1919
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016508",
+      "nombre": "Sistemas embebidos",
+      "condiciones": [
+        {
+          "linea": 1944,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016499",
+              "nombre": "Electrónica digital II",
+              "linea": 1945
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016512",
+      "nombre": "Verificación de sistemas digitales",
+      "condiciones": [
+        {
+          "linea": 1970,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [S]Número asignaturas []",
+          "alternativas": [
+            {
+              "codigo": "2016499",
+              "nombre": "Electrónica digital II",
+              "linea": 1971
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

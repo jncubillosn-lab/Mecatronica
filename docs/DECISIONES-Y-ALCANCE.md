@@ -87,3 +87,7 @@ Ante una solicitud, primero identificar la capa afectada en ARQ-01 y el comporta
 **Precedencia:** ARQ-01 gobierna la arquitectura; este registro precisa los acuerdos de alcance; [ESTADO-Y-PUBLICACION.md](ESTADO-Y-PUBLICACION.md) describe lo realmente implementado. Una diferencia entre diseño y estado actual se documenta como transición, nunca se oculta cambiando el relato.
 
 Para nuevas decisiones añadir identificador, fecha, motivo, impacto sobre datos/escenarios/vistas y evidencia de aceptación. No reinterpretar unilateralmente acuerdos anteriores.
+
+### D-34 — Incorporación de ofertas documentales por carrera (18-11-2026)
+
+**Decisión:** cargar únicamente la información verificada de los contratos de Electrónica, Industrial, Mecánica y Química sin introducir nuevos lectores ni reglas de motor. En una asignatura con múltiples actividades sin relación comprobada, conservarlas en oferta pero no generar automáticamente una agrupación analizable; las asignaturas fuera de la malla conservan su código y datos de oferta sin semestre ficticio. Los cupos disponibles se distinguen de la capacidad total, y las condiciones de prerrequisitos no verificadas no se convierten en relaciones normativas. Las alertas y el origen se conservan separadamente por carrera en `revision-oferta-2026.json`. La actualización no afecta las otras cinco bases ni los escenarios personales. Evidencia: [informe de complementación](INFORME-COMPLEMENTACION-HORARIOS-2026.md).
