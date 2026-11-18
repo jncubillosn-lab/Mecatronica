@@ -59,7 +59,7 @@ for(const id of ids){
      const dias=new Set(data.configuracion.calendario.dias.map(d=>d.id));
      for(const c of g.componentes)for(const b of c.bloques||[]){
        assert(dias.has(b.dia),'Día fuera de calendario: '+id);
-       assert(/^\\d{2}:\\d{2}$/.test(b.inicio)&&/^\\d{2}:\\d{2}$/.test(b.fin),
+       assert(/^\d{2}:\d{2}$/.test(b.inicio)&&/^\d{2}:\d{2}$/.test(b.fin),
          'Franja inválida: '+id);
      }
    }
