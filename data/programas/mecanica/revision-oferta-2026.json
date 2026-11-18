@@ -1,0 +1,782 @@
+{
+  "programa": "mecanica",
+  "estado": "complementado",
+  "fuentes": [
+    "Mecanica horarios.txt",
+    "Mecanica.txt",
+    "MallaCurricular-IngenieraMecnicaUNAL_Ac_86_-18_(1).pdf"
+  ],
+  "alertas": [
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2017260",
+      "asignatura": "Electrónica básica",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 215,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2017262",
+      "asignatura": "Fundamentos de transferencia de calor",
+      "descripcion": "3 actividades sin emparejamiento documentado",
+      "linea": 314,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2017264",
+      "asignatura": "Ingeniería de Manufactura",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 435,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2017265",
+      "asignatura": "Ingeniería y desarrollo sostenible",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 488,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2017266",
+      "asignatura": "Instalaciones y máquinas eléctricas",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 567,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "grupo_sin_horario",
+      "codigo": "2016640",
+      "asignatura": "Principios de Estática",
+      "descripcion": "Actividad CLASE TEORICA 2016640 (2016640), grupo 7: horario no informado",
+      "linea": 799,
+      "decision": "conservar sin bloques; no analizar"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2017274",
+      "asignatura": "Procesos de Manufactura II",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 959,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "componentes_multiples",
+      "codigo": "2017275",
+      "asignatura": "Proyecto aplicado de ingeniería",
+      "descripcion": "2 actividades sin emparejamiento documentado",
+      "linea": 1034,
+      "decision": "mantener actividad y grupos en oferta; excluir de análisis"
+    },
+    {
+      "tipo": "grupo_sin_horario",
+      "codigo": "2024045",
+      "asignatura": "Taller de proyectos interdisciplinarios",
+      "descripcion": "Actividad CLASE TEORICA (2024045), grupo 41: horario no informado",
+      "linea": 1406,
+      "decision": "conservar sin bloques; no analizar"
+    },
+    {
+      "tipo": "tipologia_malla_catalogo_difieren",
+      "codigo": "2017278",
+      "asignatura": "Tecnología mecánica básica",
+      "descripcion": "Malla B vs catálogo C",
+      "linea": null,
+      "decision": "conservar malla actual"
+    },
+    {
+      "tipo": "tipologia_malla_catalogo_difieren",
+      "codigo": "2017265",
+      "asignatura": "Ingeniería y desarrollo sostenible",
+      "descripcion": "Malla B vs catálogo C",
+      "linea": null,
+      "decision": "conservar malla actual"
+    }
+  ],
+  "condicionesPrerrequisitosPendientes": [
+    {
+      "codigoAsignatura": "2015215",
+      "nombre": "Análisis de sistemas dinámicos",
+      "condiciones": [
+        {
+          "linea": 32,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2000967",
+              "nombre": "Matematicas v",
+              "linea": 33
+            },
+            {
+              "codigo": "2022341",
+              "nombre": "Matematicas v",
+              "linea": 34
+            },
+            {
+              "codigo": "2016506",
+              "nombre": "Señales y sistemas I",
+              "linea": 35
+            }
+          ]
+        },
+        {
+          "linea": 36,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001771",
+              "nombre": "Electronica basica",
+              "linea": 37
+            },
+            {
+              "codigo": "2017260",
+              "nombre": "Electrónica básica",
+              "linea": 38
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017256",
+      "nombre": "Ciencia e ingeniería de materiales",
+      "condiciones": [
+        {
+          "linea": 96,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001753",
+              "nombre": "Materiales i",
+              "linea": 97
+            },
+            {
+              "codigo": "1000024-B",
+              "nombre": "Principios de química",
+              "linea": 98
+            }
+          ]
+        },
+        {
+          "linea": 99,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001747",
+              "nombre": "Tecnologia mecanica basica",
+              "linea": 100
+            },
+            {
+              "codigo": "2017278",
+              "nombre": "Tecnología mecánica básica",
+              "linea": 101
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017257",
+      "nombre": "Dibujo de Máquinas",
+      "condiciones": [
+        {
+          "linea": 126,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001731",
+              "nombre": "Dibujo basico",
+              "linea": 127
+            },
+            {
+              "codigo": "2015711",
+              "nombre": "Dibujo básico",
+              "linea": 128
+            }
+          ]
+        },
+        {
+          "linea": 129,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015711",
+              "nombre": "Dibujo básico",
+              "linea": 130
+            },
+            {
+              "codigo": "2001730",
+              "nombre": "Geometria descriptiva",
+              "linea": 131
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017258",
+      "nombre": "Diseño de elementos de máquinas I",
+      "condiciones": [
+        {
+          "linea": 167,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017277",
+              "nombre": "Resistencia de Materiales",
+              "linea": 168
+            },
+            {
+              "codigo": "2001737",
+              "nombre": "Resistencia de materiales",
+              "linea": 169
+            }
+          ]
+        },
+        {
+          "linea": 170,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001736",
+              "nombre": "Cinetica",
+              "linea": 171
+            },
+            {
+              "codigo": "2017268",
+              "nombre": "Mecanismos",
+              "linea": 172
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017259",
+      "nombre": "Diseño de elementos de máquinas II",
+      "condiciones": [
+        {
+          "linea": 208,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017257",
+              "nombre": "Dibujo de Máquinas",
+              "linea": 209
+            },
+            {
+              "codigo": "2001732",
+              "nombre": "Dibujo de maquinas",
+              "linea": 210
+            }
+          ]
+        },
+        {
+          "linea": 211,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017258",
+              "nombre": "Diseño de elementos de máquinas I",
+              "linea": 212
+            },
+            {
+              "codigo": "2001739",
+              "nombre": "Elementos de maquinas i",
+              "linea": 213
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017260",
+      "nombre": "Electrónica básica",
+      "condiciones": [
+        {
+          "linea": 272,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001612",
+              "nombre": "Instalaciones y maquinas electricas",
+              "linea": 273
+            },
+            {
+              "codigo": "2017266",
+              "nombre": "Instalaciones y máquinas eléctricas",
+              "linea": 274
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017261",
+      "nombre": "Fundamentos de control",
+      "condiciones": [
+        {
+          "linea": 310,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2015215",
+              "nombre": "Análisis de sistemas dinámicos",
+              "linea": 311
+            },
+            {
+              "codigo": "2001772",
+              "nombre": "Sistemas dinamicos y control",
+              "linea": 312
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017262",
+      "nombre": "Fundamentos de transferencia de calor",
+      "condiciones": [
+        {
+          "linea": 427,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2019611",
+              "nombre": "TERMODINAMICA",
+              "linea": 428
+            },
+            {
+              "codigo": "2001762",
+              "nombre": "Termodinamica",
+              "linea": 429
+            },
+            {
+              "codigo": "2017279",
+              "nombre": "Termodinámica técnica",
+              "linea": 430
+            }
+          ]
+        },
+        {
+          "linea": 431,
+          "numero": 3,
+          "tipo": "M",
+          "texto": "Condición 3Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001563",
+              "nombre": "Mecanica de fluidos",
+              "linea": 432
+            },
+            {
+              "codigo": "2017272",
+              "nombre": "Principios de mecánica de fluidos",
+              "linea": 433
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017264",
+      "nombre": "Ingeniería de Manufactura",
+      "condiciones": [
+        {
+          "linea": 481,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017274",
+              "nombre": "Procesos de Manufactura II",
+              "linea": 482
+            },
+            {
+              "codigo": "2001748",
+              "nombre": "Procesos de mecanizado",
+              "linea": 483
+            }
+          ]
+        },
+        {
+          "linea": 484,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001065",
+              "nombre": "Probabilidad y estadistica",
+              "linea": 485
+            },
+            {
+              "codigo": "1000013-B",
+              "nombre": "Probabilidad y estadística fundamental",
+              "linea": 486
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017266",
+      "nombre": "Instalaciones y máquinas eléctricas",
+      "condiciones": [
+        {
+          "linea": 646,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000003-B",
+              "nombre": "Álgebra Lineal",
+              "linea": 647
+            },
+            {
+              "codigo": "2000916",
+              "nombre": "Matematicas ii",
+              "linea": 648
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017267",
+      "nombre": "Materiales de Ingeniería",
+      "condiciones": [
+        {
+          "linea": 684,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017256",
+              "nombre": "Ciencia e ingeniería de materiales",
+              "linea": 685
+            },
+            {
+              "codigo": "2022886",
+              "nombre": "Materiales I-B",
+              "linea": 686
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017268",
+      "nombre": "Mecanismos",
+      "condiciones": [
+        {
+          "linea": 722,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001735",
+              "nombre": "Cinematica",
+              "linea": 723
+            },
+            {
+              "codigo": "2017271",
+              "nombre": "Principios de dinámica",
+              "linea": 724
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017271",
+      "nombre": "Principios de dinámica",
+      "condiciones": [
+        {
+          "linea": 782,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000003-B",
+              "nombre": "Álgebra Lineal",
+              "linea": 783
+            },
+            {
+              "codigo": "2000916",
+              "nombre": "Matematicas ii",
+              "linea": 784
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016640",
+      "nombre": "Principios de Estática",
+      "condiciones": [
+        {
+          "linea": 864,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000003-B",
+              "nombre": "Álgebra Lineal",
+              "linea": 865
+            },
+            {
+              "codigo": "2000916",
+              "nombre": "Matematicas ii",
+              "linea": 866
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017272",
+      "nombre": "Principios de mecánica de fluidos",
+      "condiciones": [
+        {
+          "linea": 913,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales",
+              "linea": 914
+            },
+            {
+              "codigo": "2017294",
+              "nombre": "Ecuaciones diferenciales",
+              "linea": 915
+            },
+            {
+              "codigo": "2019609",
+              "nombre": "Matematicas iv",
+              "linea": 916
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017273",
+      "nombre": "Procesos de Manufactura I",
+      "condiciones": [
+        {
+          "linea": 952,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017267",
+              "nombre": "Materiales de Ingeniería",
+              "linea": 953
+            },
+            {
+              "codigo": "2001754",
+              "nombre": "Materiales ii",
+              "linea": 954
+            }
+          ]
+        },
+        {
+          "linea": 955,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017277",
+              "nombre": "Resistencia de Materiales",
+              "linea": 956
+            },
+            {
+              "codigo": "2001737",
+              "nombre": "Resistencia de materiales",
+              "linea": 957
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017274",
+      "nombre": "Procesos de Manufactura II",
+      "condiciones": [
+        {
+          "linea": 1027,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017267",
+              "nombre": "Materiales de Ingeniería",
+              "linea": 1028
+            },
+            {
+              "codigo": "2001754",
+              "nombre": "Materiales ii",
+              "linea": 1029
+            }
+          ]
+        },
+        {
+          "linea": 1030,
+          "numero": 2,
+          "tipo": "M",
+          "texto": "Condición 2Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017277",
+              "nombre": "Resistencia de Materiales",
+              "linea": 1031
+            },
+            {
+              "codigo": "2001737",
+              "nombre": "Resistencia de materiales",
+              "linea": 1032
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017277",
+      "nombre": "Resistencia de Materiales",
+      "condiciones": [
+        {
+          "linea": 1136,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001733",
+              "nombre": "Estatica",
+              "linea": 1137
+            },
+            {
+              "codigo": "2016640",
+              "nombre": "Principios de Estática",
+              "linea": 1138
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2016506",
+      "nombre": "Señales y sistemas I",
+      "condiciones": [
+        {
+          "linea": 1218,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001612",
+              "nombre": "Instalaciones y maquinas electricas",
+              "linea": 1219
+            },
+            {
+              "codigo": "2017266",
+              "nombre": "Instalaciones y máquinas eléctricas",
+              "linea": 1220
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "condiciones": [
+        {
+          "linea": 1471,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2017265",
+              "nombre": "Ingeniería y desarrollo sostenible",
+              "linea": 1472
+            },
+            {
+              "codigo": "2001722",
+              "nombre": "Introduccion a la ingenieria mecánica",
+              "linea": 1473
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "codigoAsignatura": "2017279",
+      "nombre": "Termodinámica técnica",
+      "condiciones": [
+        {
+          "linea": 1620,
+          "numero": 1,
+          "tipo": "M",
+          "texto": "Condición 1Tipo M¿Todas? [N]Número asignaturas [1]",
+          "alternativas": [
+            {
+              "codigo": "2001753",
+              "nombre": "Materiales i",
+              "linea": 1621
+            },
+            {
+              "codigo": "1000024-B",
+              "nombre": "Principios de química",
+              "linea": 1622
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
