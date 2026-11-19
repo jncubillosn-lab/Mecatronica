@@ -20,7 +20,7 @@ function atributoTipologia(nombre) {
   return atributoComponente(S.malla.find(m => m.n === nombre)?.comp);
 }
 function gl(a, gname) { const g = S.grupos.find(x => x.a === a && x.g === gname); return g ? glabel(g) : gname; }
-function sev(p) { return p.clash === 0 ? ['ok', 'Compatibles'] : p.clash === p.total ? ['a', 'Incompatibles'] : ['b', 'Depende del grupo']; }
+function sev(p) { if (!p.total) return ['off', 'Sin grupos comparables']; return p.clash === 0 ? ['ok', 'Compatibles'] : p.clash === p.total ? ['a', 'Incompatibles'] : ['b', 'Depende del grupo']; }
 const distLabel = d => d === 0 ? 'mismo semestre' : d + (d === 1 ? ' semestre de diferencia' : ' semestres de diferencia');
 function semCred(s, n) { return new PlanCurricular({malla:n, tipos:S.tipos}).resumenSemestre(s); }
 function distNames(ds) { return [...ds].sort((a,b)=>a-b).map(distLabel).join(' · '); }
@@ -40,14 +40,14 @@ function pageInicio() {
   const inr = R.pairs.filter(p => p.enRango), con = inr.filter(p => p.clash), sie = inr.filter(p => p.clash && p.clash === p.total);
   const gIdx = R.totalCombos ? R.totalClash / R.totalCombos : 0;
   const topP = [...con].sort((a, b) => b.idx - a.idx || b.clash - a.clash).slice(0, 6);
-  const topA = [...R.stats].sort((a, b) => b.idxG - a.idxG).slice(0, 5);
+  const topA = R.stats.filter(s => s.sumTotal > 0).sort((a, b) => b.idxG - a.idxG).slice(0, 5);
   const txt = p => p.clash === p.total ? 'incompatibles: todas las combinaciones de grupos chocan' : `${p.clash} de ${p.total} combinaciones de grupos chocan`;
   return `
   <div class="page-title"><div><h1>Resumen de cruces de horario</h1>
   <p>Aquí ves qué tan difícil es armar un horario sin choques, y dónde está el problema.</p></div></div>
   <section class="card hero"><div>
       <div class="eyebrow">En pocas palabras</div>
-      <p class="hero-s">${SIN_DATOS ? 'La comparación aparecerá aquí cuando se incorporen datos académicos de esta carrera.' : SIN_GRUPOS_CARGADOS ? 'El plan curricular está cargado, pero aún no se ha incorporado la oferta de grupos y horarios de esta carrera. No se puede determinar si existen interferencias.' : `Entre asignaturas que se pueden cursar a la vez hay <b class="num">${R.totalCombos}</b> combinaciones posibles de grupos. <b class="num hl">${R.totalClash}</b> de ellas (${pct(gIdx, 1)}) tienen choque de horario. ${dlt(R.totalClash, R0.totalClash)}`}</p></div>
+      <p class="hero-s">${SIN_DATOS ? 'La comparación aparecerá aquí cuando se incorporen datos académicos de esta carrera.' : SIN_GRUPOS_CARGADOS ? 'El plan curricular está cargado, pero aún no se ha incorporado la oferta de grupos y horarios de esta carrera. No se puede determinar si existen interferencias.' : !R.totalCombos ? 'Sin combinaciones comparables con los grupos activos y los filtros seleccionados.' : `Entre asignaturas que se pueden cursar a la vez hay <b class="num">${R.totalCombos}</b> combinaciones posibles de grupos. <b class="num hl">${R.totalClash}</b> de ellas (${R.totalCombos ? pct(gIdx, 1) : '—'}) tienen choque de horario. ${dlt(R.totalClash, R0.totalClash)}`}</p></div>
     <div class="hero-k">
       <div><b class="num">${SIN_REFERENCIA_HORARIA?'—':inr.length}</b><span>parejas de asignaturas que se podrían cursar a la vez</span></div>
       <div><b class="num">${SIN_REFERENCIA_HORARIA?'—':con.length+' '+dlt(con.length, R0.totalPairs)}</b><span>tienen al menos una combinación de grupos que choca</span></div>
@@ -55,7 +55,7 @@ function pageInicio() {
     </div></section>
   <div class="grid2" style="margin-top:16px">
     <section class="card"><div class="card-h"><h2>Parejas con más choque</h2><button class="btn sm ghost" data-act="nav" data-p="inter">Ver todos →</button></div>
-      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b class="asig-etiqueta"${atributoTipologia(p.A)}>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b class="asig-etiqueta"${atributoTipologia(p.B)}>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || (SIN_REFERENCIA_HORARIA?'<div class="hint">Sin grupos y horarios cargados para calcular choques.</div>':'<div class="hint">No hay choques con los parámetros actuales.</div>')}</div></section>
+      <div class="card-b" style="display:grid;gap:2px">${topP.map(p => `<button class="toprow" data-act="pair-open" data-k="${esc(p.key)}"><span><b class="asig-etiqueta"${atributoTipologia(p.A)}>${esc(p.A)}</b> <span class="sem">S${p.sA}</span> <span class="faint">y</span> <b class="asig-etiqueta"${atributoTipologia(p.B)}>${esc(p.B)}</b> <span class="sem">S${p.sB}</span><br><span class="hint">${txt(p)}</span></span><span class="bar"><i style="width:${p.idx * 100}%"></i></span><b class="num">${pct(p.idx)}</b></button>`).join('') || (SIN_REFERENCIA_HORARIA?'<div class="hint">Sin grupos y horarios cargados para calcular choques.</div>':'<div class="hint">'+(R.totalCombos ? 'No hay choques con los parámetros actuales.' : 'Sin combinaciones comparables.')+'</div>')}</div></section>
     <section class="card"><div class="card-h"><h2>Asignaturas más afectadas</h2><button class="btn sm ghost" data-act="nav" data-p="asig">Ver todas →</button></div>
       <div class="card-b" style="display:grid;gap:2px">${SIN_REFERENCIA_HORARIA?'<div class="hint">Sin oferta de grupos cargada; no se identifican asignaturas afectadas.</div>':topA.map(s => `<button class="toprow" data-act="a-go" data-n="${esc(s.n)}"><span><b class="asig-etiqueta"${atributoTipologia(s.n)}>${esc(s.n)}</b> <span class="sem">S${s.s}</span><br><span class="hint">se cruza con ${s.conChoque} de ${s.pares} asignaturas con las que se compara</span></span><span class="bar"><i style="width:${Math.min(100, s.idxG * 100 / (topA[0].idxG || 1))}%"></i></span><b class="num">${pct(s.idxG)}</b></button>`).join('')}</div></section>
   </div>
@@ -95,6 +95,7 @@ function sortPairs(arr) {
   return arr.sort(fn);
 }
 function whyOff(p) {
+  if (!p.total) return 'Sin grupos activos analizables en una o ambas asignaturas';
   if (!p.aplica) return `No cuenta: prerrequisito ${p.pre.toLowerCase()}`;
   if (!S.params.dists.includes(p.dist)) return `No se compara (${p.dist} semestres de diferencia)`;
   return '';
@@ -125,7 +126,7 @@ function matrixView() {
     else if (p.clash === 0) { cls += ' ok'; txt = '✓'; }
     else { style = `background:${heatBg(p.idx)};color:${p.idx > .5 ? '#fff' : 'var(--ink)'}`; txt = Math.round(p.idx * 100); }
     if (!m) cls += ' dim';
-    return `<td class="${sg}"><button class="${cls}" style="${style}" data-act="pair-open" data-k="${esc(p.key)}" title="${esc(p.A)} ⇄ ${esc(p.B)}: ${p.clash} de ${p.total} (${pct(p.idx)})${whyOff(p) ? ' · ' + whyOff(p) : ''}">${txt}</button></td>`;
+    return `<td class="${sg}"><button class="${cls}" style="${style}" data-act="pair-open" data-k="${esc(p.key)}" title="${esc(p.A)} ⇄ ${esc(p.B)}: ${p.total ? `${p.clash} de ${p.total} (${pct(p.idx)})` : 'Sin grupos comparables'}${p.total && whyOff(p) ? ' · ' + whyOff(p) : ''}">${txt}</button></td>`;
   }).join('')}</tr>`).join('');
   return `<div class="card"><div class="mxwrap"><table class="mx"><thead><tr><th></th>${N.map((b, j) => `<th class="colh ${j && R.st[b].s !== R.st[N[j - 1]].s ? 'semgap' : ''}" scope="col"><div><span class="asig-etiqueta"${atributoTipologia(b)}>${esc(b)}</span> · S${R.st[b].s}</div></th>`).join('')}</tr></thead><tbody>${cells}</tbody></table></div>
   <div class="legend" style="padding:0 16px 14px"><span>Cada celda = índice de solape (%)</span><span><i class="sw" style="background:var(--surface2)"></i>0<i class="heatscale"></i>100</span><span><i class="sw" style="background:var(--ok-soft)"></i>sin choque</span><span><i class="sw" style="background:repeating-linear-gradient(135deg,transparent 0 3px,var(--line2) 3px 4px);border:1px solid var(--line)"></i>no se compara (prerrequisito o distancia no elegida)</span><span class="faint">Las celdas atenuadas no cumplen los filtros.</span></div></div>`;
@@ -209,7 +210,7 @@ function drawerPair(dw) {
     <button class="xbtn" data-act="drawer-close" aria-label="Cerrar">×</button></div>
   <div class="dr-b">
     ${why ? `<div class="note heat"><b>${why}.</b> Esta pareja ya no entra en los totales; la ves aquí solo como referencia.</div>` : ''}
-    <div class="kv"><div><div class="k">Porcentaje en choque</div><div class="v num">${pct(p.idx, 0)}</div></div><div><div class="k">Combinaciones en choque</div><div class="v num">${p.clash} <span class="faint" style="font-size:14px">de ${p.total}</span></div></div><div><div class="k">Grupos ofertados</div><div class="v num">${p.nA} y ${p.nB}</div></div></div>
+    <div class="kv"><div><div class="k">Porcentaje en choque</div><div class="v num">${p.total ? pct(p.idx, 0) : '—'}</div></div><div><div class="k">Combinaciones en choque</div><div class="v num">${p.clash} <span class="faint" style="font-size:14px">de ${p.total}</span></div></div><div><div class="k">Grupos ofertados</div><div class="v num">${p.nA} y ${p.nB}</div></div></div>
     <section><div class="lab" style="margin-bottom:8px">Cada grupo con cada grupo <span style="text-transform:none;letter-spacing:0;font-weight:500">· rojo = chocan, verde = caben</span></div>
       ${p.total || GA.length ? `<div style="overflow:auto"><table class="gmx"><thead><tr><th class="rh" style="vertical-align:bottom"><span style="color:var(--ca)">${esc(p.A.split(' ')[0])} ↓</span> <span style="color:var(--cb)">${esc(p.B.split(' ')[0])} →</span></th>${GB.map(h => `<th class="ch ${h.on ? '' : 'offg'}"><div><button data-act="gtoggle" data-a="${esc(p.B)}" data-g="${esc(h.g)}" title="${h.on ? 'Simular que este grupo no se oferta' : 'Volver a ofertar este grupo'}" ${h.on ? '' : 'style="text-decoration:line-through;opacity:.55"'}>${esc(glabel(h))}</button></div></th>`).join('')}<th class="tot ch"><div>total</div></th></tr></thead><tbody>${body}${foot}</tbody></table></div>
       <div class="hint" style="margin-top:6px">Clic en una celda para ver los horarios de esos dos grupos. Clic en el nombre de un grupo para simular que no se oferta.</div>` : '<div class="hint">Alguna de las dos asignaturas no tiene grupos activos.</div>'}
@@ -259,13 +260,15 @@ function pageAsig() {
   const rows = L.map(x => {
     const mine = R.pairs.filter(p => p.enRango && (p.A === x.n || p.B === x.n)).map(p => ({ p, o: p.A === x.n ? p.B : p.A, os: p.A === x.n ? p.sB : p.sA }));
     const worst = [...mine].sort((a, b) => b.p.idx - a.p.idx)[0];
+    const consulta = R.allGroupsOf[x.n].filter(g => g.analizable === false).length;
+    const desactivados = x.gruposTotal - x.grupos - consulta;
     const open = f.open === x.n;
     const rk = f.sort === 'idx' ? x.rankIdx : f.sort === 'pares' ? x.rankPares : null;
     return `<div class="arow ${open ? 'open' : ''}"${atributoTipologia(x.n)} data-aname="${esc(x.n)}"><button class="head" data-act="a-open" data-n="${esc(x.n)}" aria-expanded="${open}">
       <span class="rank ${rk && rk <= 3 ? 'top' : ''}">${rk ? '#' + rk : 'S' + x.s}</span>
-      <span><b>${esc(x.n)}</b> <span class="sem">S${x.s}</span><br><span class="hint">${x.grupos} grupo${x.grupos === 1 ? '' : 's'}${x.gruposTotal !== x.grupos ? ` (${x.gruposTotal - x.grupos} desactivado${x.gruposTotal - x.grupos > 1 ? 's' : ''})` : ''}</span></span>
+      <span><b>${esc(x.n)}</b> <span class="sem">S${x.s}</span><br><span class="hint">${x.grupos} grupo${x.grupos === 1 ? '' : 's'} en el análisis${consulta ? ` · ${consulta} solo consulta` : ''}${desactivados ? ` · ${desactivados} desactivados` : ''}</span></span>
       <span class="met"><span class="l"><span>Se cruza con</span><b class="num">${x.conChoque} de ${x.pares} asignaturas</b></span><span class="bar"><i style="width:${x.pares ? x.conChoque / x.pares * 100 : 0}%"></i></span><span class="l"><span>${dlt(x.conChoque, (R0.st[x.n] || x).conChoque)}</span></span></span>
-      <span class="met"><span class="l"><span>Combinaciones que chocan</span><b class="num">${pct(x.idxG)}</b></span><span class="bar"><i style="width:${x.idxG / maxIdx * 100}%"></i></span><span class="l"><span>${worst && worst.p.clash ? `peor cruce: ${esc(worst.o)} (${pct(worst.p.idx)})` : 'sin choques'}</span>${dlt(x.idxG, (R0.st[x.n] || x).idxG, 1)}</span></span>
+      <span class="met"><span class="l"><span>Combinaciones que chocan</span><b class="num">${x.sumTotal ? pct(x.idxG) : '—'}</b></span><span class="bar"><i style="width:${x.idxG / maxIdx * 100}%"></i></span><span class="l"><span>${worst && worst.p.clash ? `peor cruce: ${esc(worst.o)} (${pct(worst.p.idx)})` : x.sumTotal ? 'sin choques' : 'sin combinaciones comparables'}</span>${x.sumTotal && R0.st[x.n]?.sumTotal ? dlt(x.idxG, R0.st[x.n].idxG, 1) : ''}</span></span>
       <span class="chev">›</span></button>
       ${open ? `<div class="body"><div class="row" style="justify-content:space-between;padding:10px 0 4px"><span class="lab">Se cruza con ${mine.length} asignaturas</span><span class="row"><button class="btn sm" data-act="grp-go" data-n="${esc(x.n)}">Ver grupos</button><button class="btn sm" data-act="hor-go" data-n="${esc(x.n)}">Ver horarios</button></span></div>
       ${editorUnidad(x.n)}
@@ -295,9 +298,9 @@ function groupDetail(a, g) {
     const sh = S.grupos.filter(o => o.a === a && o.g !== g.g && (o.c1 === c || o.c2 === c));
     return `<div>${esc(compText(a, c))}${sh.length ? ` <span class="hint">(clase compartida con ${sh.map(o => esc(glabel(o))).join(', ')})</span>` : ''}</div>`;
   }).join('');
-  return `<div class="gdet"><div><b>${esc(glabel(g))}</b> <span class="faint">${g.analizable === false ? '(solo consulta: combinación o vinculación académica no verificada)' : (g.on ? '' : '(no se oferta en esta simulación)')}</span></div>
+  return `<div class="gdet"><div><b>${esc(glabel(g))}</b> <span class="faint">${g.analizable === false ? '(solo consulta)' : (g.on ? '' : '(no se oferta en esta simulación)')}</span></div>
     ${parts}
-    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.analizable === false ? '<span class="hint">Registrado para consulta; no participa en los cálculos.</span>' : g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}"><span class="asig-etiqueta"${atributoTipologia(n)}>${esc(n)}</span></button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
+    <div><div class="lab" style="margin-bottom:4px">Choca con</div>${g.analizable === false ? '<span class="hint">Puedes consultar sus franjas. Este registro está excluido del cálculo de interferencias.</span>' : g.on ? (Object.keys(by).length ? Object.entries(by).map(([n, gs]) => `<div class="cl" style="margin-bottom:4px"><button class="btn sm ghost" data-act="grp-go" data-n="${esc(n)}"><span class="asig-etiqueta"${atributoTipologia(n)}>${esc(n)}</span></button>${gs.map(x => `<span class="tag heat">${esc(x)}</span>`).join('')}</div>`).join('') : '<span class="tag ok">no choca con ningún grupo</span>') : '<span class="hint">Desactivado: no entra en los cálculos.</span>'}</div>
     <div class="row">${g.analizable === false ? '' : `<button class="btn sm" data-act="g-toggle" data-a="${esc(a)}" data-g="${esc(g.g)}">${g.on ? 'Dejar de ofertar' : 'Volver a ofertar'}</button>`}<button class="btn sm" data-act="hor-go" data-n="${esc(a)}" data-c="${esc(g.c1)}">Editar horario</button><button class="btn sm danger" data-act="g-del" data-a="${esc(a)}" data-g="${esc(g.g)}">Eliminar</button></div></div>`;
 }
 /**
@@ -319,7 +322,7 @@ function pageGrupos() {
         const c = (R.groupClash.get(n + '\u0001' + g.g) || []).length;
         return `<button class="gchip ${g.on ? '' : 'off'} ${selG && selG.g === g.g ? 'sel' : ''}" data-act="g-sel" data-a="${esc(n)}" data-g="${esc(g.g)}">${esc(glabel(g))}${g.analizable === false ? '<span class="faint"> · solo consulta</span>' : g.on ? `<span class="b ${c ? 'h' : 'o'}">${c ? c : '✓'}</span>` : ''}</button>`;
       }).join('') || '<span class="hint">Sin grupos todavía.</span>'}</div>
-      ${selG ? groupDetail(n, selG) : '<div class="hint">Clic en un grupo para ver su horario y con qué choca. El número rojo es la cantidad de grupos de otras asignaturas con los que choca.</div>'}
+      ${selG ? groupDetail(n, selG) : `<div class="hint">${gs.some(g => g.analizable === false) ? 'Selecciona un registro para ver sus horarios. «Solo consulta» indica que sus franjas están fuera del cálculo de choques.' : 'Selecciona un grupo para ver su horario y los grupos de otras asignaturas con los que se cruza.'}</div>`}
       <div class="addrow" data-a="${esc(n)}"><input type="text" class="ng-n" placeholder="Nuevo grupo (ej. G7)" aria-label="Nombre del nuevo grupo"><button class="btn sm" data-act="g-add">Agregar</button></div>
     </section>`;
   }).join('');
@@ -413,9 +416,9 @@ function pageHor() {
   </div>`).join('');
   const st = R.st[A], st0 = R0.st[A];
   const pdiff = R.pairs.filter(p => (p.A === A || p.B === A)).map(p => { const q = R0.pairs.find(x => x.key === p.key); return { p, o: p.A === A ? p.B : p.A, bi: q && q.enRango ? q.idx : 0, ni: p.enRango ? p.idx : 0, bc: q && q.enRango ? q.clash : 0, nc: p.enRango ? p.clash : 0 }; }).filter(x => Math.abs(x.bi - x.ni) > 1e-9 || x.bc !== x.nc).sort((x, y) => Math.abs(y.ni - y.bi) - Math.abs(x.ni - x.bi));
-  const impact = `<section class="card impact"><div class="lab">Impacto en ${esc(A)}</div>
+  const impact = !st.sumTotal ? '<section class="card impact"><div class="lab">Impacto en '+esc(A)+'</div><p class="hint">Sin combinaciones comparables con la selección actual.</p></section>' : `<section class="card impact"><div class="lab">Impacto en ${esc(A)}</div>
     <div class="imp-row"><span>Asignaturas con las que se cruza</span><span class="arrow num">${st0 ? st0.conChoque : '–'} → <b>${st.conChoque}</b> ${st0 ? dlt(st.conChoque, st0.conChoque) : ''}</span></div>
-    <div class="imp-row"><span>Combinaciones que chocan</span><span class="arrow num">${st0 ? pct(st0.idxG, 1) : '–'} → <b>${pct(st.idxG, 1)}</b> ${st0 ? dlt(st.idxG, st0.idxG, 1) : ''}</span></div>
+    <div class="imp-row"><span>Combinaciones que chocan</span><span class="arrow num">${st0?.sumTotal ? pct(st0.idxG, 1) : '–'} → <b>${pct(st.idxG, 1)}</b> ${st0?.sumTotal ? dlt(st.idxG, st0.idxG, 1) : ''}</span></div>
     ${pdiff.length ? `<div class="lab" style="margin-top:4px">Parejas que cambiaron</div>${pdiff.slice(0, 6).map(x => `<div class="imp-row"><button class="btn sm ghost" style="text-align:left;justify-content:flex-start" data-act="pair-open" data-k="${esc(x.p.key)}">${esc(x.o)}</button><span class="arrow num">${pct(x.bi)} → <b class="delta ${x.ni > x.bi ? 'up' : 'down'}">${pct(x.ni)}</b></span></div>`).join('')}` : '<div class="hint">Mueve un bloque o cambia sus horas y aquí verás el efecto sobre esta asignatura.</div>'}</section>`;
   const hourOpts = (from, to, sel) => Array.from({ length: to - from + 1 }, (_, i) => from + i).map(x => `<option ${x === sel ? 'selected' : ''}>${x}</option>`).join('');
   const ordered = [...comps].sort((a, b) => { const ga = compGroups(A, a)[0], gb = compGroups(A, b)[0]; return (ga ? natKey(glabel(ga)) : 1e9) - (gb ? natKey(glabel(gb)) : 1e9); });
@@ -431,7 +434,7 @@ function pageHor() {
   const choques = R.pairs.filter(p => p.enRango && p.clash && (p.A === A || p.B === A)).map(p => p.A === A ? p.B : p.A);
   return `<div class="page-title"><div><h1>Horarios</h1><p>La semana de cada asignatura con todos sus grupos superpuestos. <b>Arrastra un bloque</b> a otro día u hora (o edítalo a la derecha) y mira cómo cambia el impacto. Superpón otras asignaturas para ver dónde se pisan.</p></div></div>
   <div class="hor">
-    <aside class="card sidelist" aria-label="Asignaturas">${sems.map(s => `<div class="sg">Semestre ${s}</div>${R.names.filter(n => R.st[n].s === s).map(n => `<button data-act="h-sel" data-n="${esc(n)}" aria-current="${n === A}"${atributoTipologia(n)}><span>${esc(n)}</span><i class="hdot" title="${pct(R.st[n].idxG)} de combinaciones chocan" style="background:${heatBg(R.st[n].idxG * 2)}"></i></button>`).join('')}`).join('')}</aside>
+    <aside class="card sidelist" aria-label="Asignaturas">${sems.map(s => `<div class="sg">Semestre ${s}</div>${R.names.filter(n => R.st[n].s === s).map(n => `<button data-act="h-sel" data-n="${esc(n)}" aria-current="${n === A}"${atributoTipologia(n)}><span>${esc(n)}</span><i class="hdot" title="${R.st[n].sumTotal ? pct(R.st[n].idxG) + ' de combinaciones chocan' : 'Sin combinaciones comparables'}" style="background:${heatBg(R.st[n].idxG * 2)}"></i></button>`).join('')}`).join('')}</aside>
     <div>
       <select class="mobile-only" data-chg="h-pick" aria-label="Asignatura" style="width:100%;margin-bottom:10px">${R.names.map(n => `<option ${n === A ? 'selected' : ''}>${esc(n)}</option>`).join('')}</select>
       <div class="row" style="margin-bottom:10px"><h2 style="font:650 20px var(--serif)"><span class="asig-etiqueta"${atributoTipologia(A)}>${esc(A)}</span></h2><span class="sem">S${R.st[A].s}</span><span style="flex:1"></span>
@@ -661,7 +664,7 @@ function pageMalla() {
       if(esLibre)cls+=' mcard-libre';
       if(L) cls+=m.n===M.sel?' sel':L.up.has(m.n)?' up':L.down.has(m.n)?' down':' dim';
       const sugerencia = esLibre && M.equilibrar && m.s !== m._libreReferencia;
-      return `<button class="mcard ${cls}"${atributoComponente(m.comp)} draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n===M.sel}" title="${sugerencia?'Ubicación visual sugerida; ':''}Arrastra a otro semestre para cambiar tu escenario"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr==null?'—':m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car?' · '+esc(carName(m.car)):''}</span></small>${check&&check.low?`<small><span class="tag heat">Faltan ${req.min-check.total} cr. previos</span></small>`:''}${sc?`<small><span>${sc.grupos} grupos</span><span class="num">${pct(sc.idxG)} chocan</span></small><span class="heatbar"><i style="width:${Math.min(100,sc.idxG*200)}%"></i></span>`:esLibre?'<small><span>Créditos flexibles · sin asignatura definida</span></small>':'<small><span>sin horario</span></small>'}${!req&&m.nota?`<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ','').replace(' de los créditos del plan',' de créditos'))}</span></small>`:''}</button>`;
+      return `<button class="mcard ${cls}"${atributoComponente(m.comp)} draggable="true" data-act="m-sel" data-n="${esc(m.n)}" aria-pressed="${m.n===M.sel}" title="${sugerencia?'Ubicación visual sugerida; ':''}Arrastra a otro semestre para cambiar tu escenario"><span class="mt"><span>${esc(m.n)}</span><span class="cr" title="Créditos">${m.cr==null?'—':m.cr} cr</span></span><small><span>${esc(compName(m.comp))}${m.car?' · '+esc(carName(m.car)):''}</span></small>${check&&check.low?`<small><span class="tag heat">Faltan ${req.min-check.total} cr. previos</span></small>`:''}${sc?`<small><span>${sc.grupos} grupos</span><span class="num">${sc.sumTotal ? pct(sc.idxG) + ' chocan' : 'Sin comparación'}</span></small><span class="heatbar"><i style="width:${Math.min(100,sc.idxG*200)}%"></i></span>`:esLibre?'<small><span>Créditos flexibles · sin asignatura definida</span></small>':'<small><span>sin horario</span></small>'}${!req&&m.nota?`<small title="${esc(m.nota)}"><span>${esc(m.nota.replace('Requiere el ','').replace(' de los créditos del plan',' de créditos'))}</span></small>`:''}</button>`;
     }).join('')}</div>`;
   }).join('');
   return `<div class="page-title"><div><h1>Prerrequisitos</h1><p>La malla como grafo. Selecciona una asignatura para ver su cadena de requisitos (azul) y lo que abre (verde). <b>Arrastra</b> una asignatura a otra columna para cambiarla de semestre y mira cómo cambia la carga de créditos de cada uno, o edita sus relaciones en el panel: las comparaciones entre asignaturas que dejan de poder cursarse juntas salen del análisis.</p></div>
@@ -706,7 +709,7 @@ function mallaSide(L) {
     ${ui.malla.equilibrar && mallaVisible(m) && ui.malla.ubicacionesLibres?.get(n) !== undefined && ui.malla.ubicacionesLibres.get(n) !== m.s ? `<div class="hint">Ubicación sugerida: semestre ${ui.malla.ubicacionesLibres.get(n)} · semestre registrado: ${m.s}. La sugerencia solo afecta a este mapa.</div>` : ''}
     ${editorUnidad(n)}
     <div class="row" style="justify-content:space-between"><span class="lab">Semestre</span><span class="stepper"><button data-act="m-sem" data-dx="-1" aria-label="Un semestre antes" ${m.s <= 1 ? 'disabled' : ''}>−</button><b>${m.s}</b><button data-act="m-sem" data-dx="1" aria-label="Un semestre después" ${m.s >= maxSemester(S) ? 'disabled' : ''}>+</button></span></div>
-    ${sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
+    ${sc && !sc.sumTotal ? `<div class="hint">Horario registrado · sin combinaciones comparables. <button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Ver horarios</button></div>` : sc ? `<div class="note ok" style="background:var(--surface2)"><b>${sc.grupos} grupos</b> · choca el <b>${pct(sc.idxG, 1)}</b> de sus combinaciones (se cruza con ${sc.conChoque} de ${sc.pares} asignaturas).<div class="row" style="margin-top:6px"><button class="btn sm" data-act="inter-go" data-n="${esc(n)}">Ver sus choques</button><button class="btn sm" data-act="hor-go" data-n="${esc(n)}">Horarios</button></div></div>` : '<div class="hint">Sin horario cargado: no entra al análisis. Agrégala en <a href="#grupos" data-act="nav" data-p="grupos">Grupos</a>.</div>'}
     ${creditRequirementNote(m)}
     <div><div class="lab" style="margin-bottom:6px">Requiere (directos)</div><div class="rel">${rel(dirIn, 'in', 'r')}</div>
       <select data-chg="m-addreq" aria-label="Agregar requisito" style="margin-top:6px;width:100%"><option value="">+ Agregar requisito…</option>${optsReq.map(c => `<option value="${esc(c.n)}">${esc(c.n)} (sem ${c.s})</option>`).join('')}</select>

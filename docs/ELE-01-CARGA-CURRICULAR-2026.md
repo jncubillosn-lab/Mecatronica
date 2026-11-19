@@ -1,5 +1,7 @@
 # ELE-01 — Auditoría y reconstrucción de Ingeniería Electrónica
 
+Para la oferta 2026-2 vigente en 1.1.13, véase la [revisión de agrupaciones de las tres carreras](AGRUPACIONES-OFERTA-2026.md). Allí se identifican las relaciones verificadas y los grupos consultables por separado.
+
 **Estado vigente: 1.1.11.** Las secciones 1–8 conservan la historia de las versiones 1.1.9–1.1.10, pero la cobertura de agrupaciones y horarios descrita en ellas fue corregida por la sección 9. No utilizar los números históricos 31/144 para determinar la disponibilidad curricular vigente.
 
 **Corte:** 18 de noviembre de 2026. **Carrera:** Ingeniería Electrónica, Sede Bogotá, Plan de Estudios 2545. **Contrato:** `datos/programas/electronica/academico.json`. **Formato:** `versionEsquema: 1`.

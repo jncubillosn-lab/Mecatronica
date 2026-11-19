@@ -53,6 +53,44 @@ async function abrir(id,otroContrato=false){
  }
  return {dom,document,errores,consultas};
 }
+// Comprueba el recorrido de una pareja confirmada o una actividad de consulta
+// usando los mismos controles que abre el estudiante.
+function revisarHorario(document, id) {
+  const casos = {
+    electronica: ['Control', 'M1+L1', 8, 3],
+    mecanica: ['Ingeniería y desarrollo sostenible', 'G1', 3, 2],
+    quimica: ['Diseño de plantas y equipos', 'Taller G1', 0, 1]
+  };
+  const caso = casos[id];
+  if (!caso) return;
+  const [asignatura, grupo, numGrupos, numBloques] = caso;
+  document.querySelector('[data-act="nav"][data-p="grupos"]').click();
+  const tarjeta = [...document.querySelectorAll('.gcard')].find(c => c.dataset.aname === asignatura);
+  assert(tarjeta, id + '/' + asignatura);
+  assert(tarjeta.querySelector('.hd .hint').textContent.startsWith(numGrupos + ' en el análisis'));
+  const boton = [...tarjeta.querySelectorAll('[data-act="g-sel"]')].find(b => b.dataset.g === grupo);
+  assert(boton);
+  boton.click();
+  const detalle = document.querySelector('.gdet');
+  assert(detalle);
+  assert.equal(detalle.querySelectorAll('[data-act="g-toggle"]').length, numGrupos ? 1 : 0);
+  detalle.querySelector('[data-act="hor-go"]').click();
+  assert.equal(document.querySelectorAll('.compcard.sel .brow').length, id === 'electronica' ? 2 : 1);
+  assert(document.querySelectorAll('.hb[data-bid]').length >= numBloques);
+  if (!numGrupos) {
+    assert(document.querySelector('.impact').textContent.includes('Sin combinaciones comparables'));
+    document.querySelector('[data-act="nav"][data-p="asig"]').click();
+    const fila = [...document.querySelectorAll('.arow')].find(c => c.dataset.aname === asignatura);
+    assert(fila.textContent.includes('4 solo consulta'));
+    assert(!fila.textContent.includes('desactivado'));
+    document.querySelector('[data-act="nav"][data-p="inter"]').click();
+    document.querySelector('[data-act="i-view"][data-v="matriz"]').click();
+    const celdas = [...document.querySelectorAll('.cell[data-k]')].filter(b =>
+      b.dataset.k.split('|').includes(asignatura));
+    assert(celdas.length && celdas.every(b => b.title.includes('Sin grupos comparables') && !b.textContent.includes('✓')));
+  }
+}
+
 async function main(){
  for(const id of ids){
    const {dom,document,errores,consultas}=await abrir(id);
@@ -103,6 +141,7 @@ async function main(){
          assert(!malla.includes('Tec. Mecánica Básica'),'Química no debe recibir la malla de Mecatrónica');
        }
      }
+     revisarHorario(document,id);
      assert.deepEqual(errores.filter(e=>/Uncaught|Could not load/i.test(e)),[],
        'Errores de scripts en '+id);
    }finally{dom.window.close();}

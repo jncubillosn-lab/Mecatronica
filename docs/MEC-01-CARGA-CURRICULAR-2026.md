@@ -1,5 +1,7 @@
 # MEC-01 — Carga curricular verificada de Ingeniería Mecánica
 
+Para la oferta 2026-2 vigente en 1.1.13, véase la [revisión de agrupaciones de las tres carreras](AGRUPACIONES-OFERTA-2026.md). Allí se identifican las relaciones verificadas y los grupos consultables por separado.
+
 **Fecha:** 18 de noviembre de 2026. **Contrato objetivo:** `datos/programas/mecanica/academico.json`. **Esquema:** `versionEsquema:1`. **Cambio:** solo datos académicos normalizados y controles de regresión. No se incorpora un conversor a GitHub Pages.
 
 ## Fuentes cruzadas

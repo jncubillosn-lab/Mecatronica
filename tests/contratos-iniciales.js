@@ -18,8 +18,8 @@ assert.equal(ids.length,9);
 assert.deepEqual(Object.keys(programas.fuentes).sort(), ids.sort());
 const esperado = {
  agricola:[66,61,0,0], civil:[66,60,0,0], electrica:[65,54,0,0],
- electronica:[63,56,23,120], industrial:[67,49,34,20],
- mecanica:[59,58,24,52], quimica:[72,63,29,48], sistemas:[96,55,0,0]
+ electronica:[63,56,23,116], industrial:[67,49,34,20],
+ mecanica:[59,58,24,86], quimica:[72,63,29,56], sistemas:[96,55,0,0]
 };
 const ofertaDocumentada = new Set(['electronica','industrial','mecanica','quimica']);
 for(const id of ids){
@@ -126,7 +126,7 @@ for(const r of mecanica.requisitos.prerrequisitos){
 const gruposMecanica=mecanica.oferta.flatMap(a=>a.actividades.flatMap(t=>t.grupos));
 assert.equal(gruposMecanica.length,90);
 assert.equal(gruposMecanica.filter(g=>g.horarios.length===0).length,3);
-assert.equal(mecanica.agrupaciones.filter(g=>g.analizable!==false).length,52);
+assert.equal(mecanica.agrupaciones.filter(g=>g.analizable!==false).length,55);
 for(const c of ['2017278','2017265'])
   assert.equal(mecanica.malla.find(x=>x.codigoAsignatura===c).componente,'C');
 const revisionMecanica=leer('data/programas/mecanica/revision-prerrequisitos-2026.json');

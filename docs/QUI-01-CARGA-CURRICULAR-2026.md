@@ -1,5 +1,7 @@
 # QUI-01 — Contrato limpio y requisitos de Ingeniería Química
 
+Para la oferta 2026-2 vigente en 1.1.13, véase la [revisión de agrupaciones de las tres carreras](AGRUPACIONES-OFERTA-2026.md). Allí se identifican las relaciones verificadas y los grupos consultables por separado.
+
 **Fecha de corte:** 18 de noviembre de 2026. **Contrato:** `datos/programas/quimica/academico.json` (`versionEsquema: 1`). La carga es documental; el servicio web no convierte directamente archivos externos.
 
 ## 1. Fuentes contrastadas
