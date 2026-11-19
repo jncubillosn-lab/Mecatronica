@@ -84,3 +84,5 @@ El programa solo admite los formatos actuales de entrada académica y escenario 
 
 
 **Política de consulta:** la memoria de correcciones y procesos antiguos se conserva fuera de `main`, en una rama de archivo. No consultarla ni extraer decisiones de ella para nuevas intervenciones sin solicitud histórica explícita.
+
+**Archivo de no consulta:** los registros antiguos se envían a la rama `archivo/no-consulta-2026-11-18-v1.1.14`, carpeta `registros/no-consulta/AAAA-MM-DD/`, con la etiqueta `HISTÓRICO | NO CONSULTAR | NO VIGENTE`. No deben consultarse como instrucciones de trabajo. Procedimiento completo en [AGENTS.md](AGENTS.md).

@@ -55,3 +55,15 @@ Antes de afirmar que una limpieza está completa, consultar el reporte generado 
 ## Regla de conservación documental
 
 No reintroducir relatos de versiones, informes de migración terminada ni actas de corrección dentro de las guías operativas. Las modificaciones futuras se explican por su contrato actual, evidencia y prueba de regresión. La evidencia académica de `data/programas/` permanece disponible para verificar incertidumbres, pero **no** se carga como entrada paralela en el sitio.
+
+## ARCHIVO HISTÓRICO — NO CONSULTAR NI HEREDAR
+
+**Etiqueta obligatoria:** `HISTÓRICO | NO CONSULTAR | NO VIGENTE`.
+
+**Destino de nuevos registros históricos:** rama `archivo/no-consulta-2026-11-18-v1.1.14`, carpeta `registros/no-consulta/AAAA-MM-DD/`. Conservar allí cada documento íntegro, identificado por fecha y ruta de procedencia. Los registros retirados anteriormente se recuperan en esa misma rama, en sus rutas originales.
+
+**Protocolo de envío:** cuando una corrección, informe, explicación de fallos, plan descartado o registro de un proceso deje de ser vigente, primero copiar el documento completo a ese destino y comprobar que puede recuperarse; después retirarlo de la documentación de consulta de `main`, actualizando los enlaces. No archivar código operativo, pruebas de regresión, contratos o evidencia aún necesaria para decisiones vigentes. Nunca fusionar la rama de archivo con `main`.
+
+**Prohibición de lectura por defecto:** no buscar, recorrer, indexar como contexto, citar ni aplicar documentos con esa etiqueta, ramas `archivo/*` o commits anteriores para desarrollar o corregir el proyecto. Solo consultarlos ante una petición explícita de investigación histórica. La información histórica nunca prevalece sobre el contrato, código, pruebas y documentación actuales de `main`.
+
+Esta es una **política documental para colaboradores y agentes**, no un bloqueo de permisos de GitHub: los archivos pueden abrirse deliberadamente desde el historial público.
