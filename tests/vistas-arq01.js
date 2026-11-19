@@ -94,7 +94,8 @@ verificar('Las otras sedes están disponibles para consulta pero no afectan mapa
   for(const id of contrato.configuracion.opciones.componentesComparables){
     if(!api.ui.componentes.has(id))api.onAct('comp-toggle',{comp:id},{},{preventDefault(){}});
   }
-  assert(api.pageGrupos().includes('otra sede'));
+  assert(api.pageGrupos().includes('solo consulta'));
+  // La etiqueta es genérica: puede ser otra sede o un laboratorio con vínculo no acreditado.
   const antes=api.pageHeat();
   const horarios=api.S.bloques.filter(b=>b.a===externo.a&&[externo.c1,externo.c2].includes(b.c));
   const previos=horarios.map(b=>({b,s:b.s,e:b.e}));
