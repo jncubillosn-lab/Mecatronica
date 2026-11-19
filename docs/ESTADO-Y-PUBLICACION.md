@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.10, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
+**Corte de evaluación:** 1.1.11, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; cuatro siguen sin oferta de grupos y cinco tienen oferta documental (con distintas fechas de referencia).  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -156,3 +156,7 @@ Las fuentes permiten conciliar 172 créditos del plan 2545 y 20 de nivelación, 
 ## 17. Electrónica: actualización correctiva de cupos (1.1.10)
 
 La segunda exportación de horarios reitera la primera y añade doce copias de asignaturas, incluida una repetición incompleta de TPI. El cotejo revela solo tres cupos corregidos: `2016502` magistral G1 3, taller G1 2; `2016509` G4 2. Se preservan todos los demás datos y las 146 entradas de grupos, incluidos los 22 de TPI, así como 31 agrupaciones, 32 prerrequisitos y tres mínimos de créditos. Se actualizan solamente el contrato de Electrónica, su evidencia, pruebas y versión 1.1.10. Véase [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
+
+## 18. Electrónica: reparación de presentación de grupos (1.1.11)
+
+Se audita de nuevo la tríada de fuentes `Electronica(3).txt`, `Electronica horarios(3).txt` y `Malla_Ing_Electrnica_2023(3).pdf`. El problema reportado era que `oferta` tenía los 146 grupos, pero solo 31 grupos habían sido insertados en `agrupaciones` para que la interfaz pudiera consultar sus horas. La nueva base independiente contiene 139 agrupaciones con 212 bloques, 53 analizables y 86 informativas. El resto de oferta (tres grupos de Circuitos RF, dos reservas TPI y dos grupos Sumapaz sin horario) permanece documentado sin forzar asociaciones curriculares. Se mantienen 56 posiciones, 32 prerrequisitos, tres mínimos de créditos, 172 créditos plan y 20 nivelación. Los párrafos anteriores del historial 1.1.9 y 1.1.10 describen el corte histórico, no la cobertura vigente. La única adaptación visual es llamar «solo consulta» a los grupos `analizable:false`, sin cambio de cálculo. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).

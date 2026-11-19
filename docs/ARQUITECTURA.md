@@ -1,6 +1,6 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.10. **La migración ARQ-01 está terminada y cerrada.**
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.11. **La migración ARQ-01 está terminada y cerrada.**
 > **Revisión operativa:** 13 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, con ocho contratos académicos preliminares adicionales sin oferta de grupos y Mecatrónica con oferta operativa.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
@@ -529,3 +529,7 @@ Se reconstruye exclusivamente el contrato de Electrónica tomando la malla 2545 
 ## 19. Corrección de cupos sin cambios estructurales (1.1.10)
 
 Una fuente de oferta de Electrónica corregida repite parcialmente la información de origen. Se coteja por identidad código de asignatura + actividad + grupo, sin reemplazar colecciones enteras: solo se actualizan tres `cuposDisponibles` verificados; se ignoran los duplicados y el segundo bloque parcial de TPI. No cambia el contrato ARQ-01, ninguna relación de requisitos ni la interpretación del motor. Se conserva el número de grupos y sus IDs (146), las 31 agrupaciones y todos los demás programas. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
+
+## 20. Distinción entre oferta, visibilidad y analizabilidad (1.1.11)
+
+El contrato multicarrera conserva ARQ-01: `oferta` contiene los registros institucionales, mientras `agrupaciones` determina qué grupos y bloques se proyectan a las vistas y al escenario. Se identifica la omisión de Electrónica: 146 grupos almacenados, pero solo 31 agrupaciones disponibles en UI. Sin modificar el motor ni añadir parsers de ejecución, se reconstruyen las agrupaciones de Electrónica desde la fuente normalizada: 139 visibles (53 analizables de actividad única, 86 componentes independientes para consulta). Los grupos con clases y laboratorio no se cruzan de forma cartesiana; carecen de vinculación académica certificada. Los grupos PEAMA sin horario y las reservas TPI permanecen únicamente en `oferta`. Las posiciones del plan mantienen identidad; sus requisitos y créditos no se infieren desde la oferta. El rótulo general `analizable:false` se neutraliza a «solo consulta» para no afirmar falsamente otra sede. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
