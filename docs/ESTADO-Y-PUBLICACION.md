@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.11, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
+**Corte de evaluación:** 1.1.12, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; cuatro siguen sin oferta de grupos y cinco tienen oferta documental (con distintas fechas de referencia).  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  

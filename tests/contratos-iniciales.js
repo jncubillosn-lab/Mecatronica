@@ -10,6 +10,7 @@ const path = require('node:path');
 const {EntradaAcademica} = require('../js/entrada.js');
 const identidad = require('../js/identidad.js');
 const programas = require('../js/programas.js');
+const {aplicarAjustes} = require('../scripts/aplicar-ajustes-academicos.js');
 const raiz = path.resolve(__dirname, '..');
 const leer = p => JSON.parse(fs.readFileSync(path.join(raiz,p), 'utf8'));
 const ids = Object.keys(identidad.catalogo);
@@ -17,8 +18,8 @@ assert.equal(ids.length,9);
 assert.deepEqual(Object.keys(programas.fuentes).sort(), ids.sort());
 const esperado = {
  agricola:[66,61,0,0], civil:[66,60,0,0], electrica:[65,54,0,0],
- electronica:[63,56,23,139], industrial:[67,49,34,20],
- mecanica:[59,58,24,72], quimica:[72,63,29,48], sistemas:[96,55,0,0]
+ electronica:[63,56,23,120], industrial:[67,49,34,20],
+ mecanica:[59,58,24,52], quimica:[72,63,29,48], sistemas:[96,55,0,0]
 };
 const ofertaDocumentada = new Set(['electronica','industrial','mecanica','quimica']);
 for(const id of ids){
@@ -82,7 +83,31 @@ for(const id of ids){
  assert.equal(ajuste.versionAjustes,1);
  assert.equal(ajuste.programaId,id);
  assert(Array.isArray(ajuste.ajustes));
- if(id!=='mecatronica')assert.deepEqual(ajuste.ajustes,[]);
+ if (['mecanica', 'quimica', 'electronica'].includes(id)) {
+   const horarios = [
+     {dia: 'L', inicio: '14:00', fin: '16:00'},
+     {dia: 'X', inicio: '14:00', fin: '16:00'}
+   ];
+   const actividades = data.oferta.filter(o => o.codigoAsignatura === '2024045')
+     .flatMap(o => o.actividades);
+   const grupos = actividades.flatMap(a => a.grupos);
+   assert.deepEqual(grupos.map(g => g.id), ['1'], 'Oferta única de TPI en ' + id);
+   assert.deepEqual(grupos[0].horarios, horarios);
+   const prefijo = actividades[0].id + ':G';
+   const agrupacionesTpi = data.agrupaciones.filter(g =>
+     g.componentes.some(c => c.id.startsWith(prefijo)));
+   assert.equal(agrupacionesTpi.length, id === 'quimica' ? 0 : 1, 'Agrupaciones de TPI en ' + id);
+   for (const grupo of agrupacionesTpi) {
+     assert.equal(grupo.etiqueta, 'G1');
+     assert.deepEqual(grupo.componentes.map(c => c.id), [prefijo + '1']);
+     assert.deepEqual(grupo.componentes[0].bloques.map(({dia, inicio, fin}) =>
+       ({dia, inicio, fin})), horarios);
+   }
+   assert(ajuste.ajustes.some(a => a.id === 'tpi-horario-grupo-unico'));
+   assert.deepEqual(aplicarAjustes(data, ajuste).cambios, []);
+ } else if (id !== 'mecatronica') {
+   assert.deepEqual(ajuste.ajustes, []);
+ }
 }
 // Regresión integral del contrato normalizado de Mecánica (malla 2018 + SIA 2026-2).
 const mecanica=leer('datos/programas/mecanica/academico.json');
@@ -99,11 +124,9 @@ for(const r of mecanica.requisitos.prerrequisitos){
   assert.equal(r.metodo,'flecha');
 }
 const gruposMecanica=mecanica.oferta.flatMap(a=>a.actividades.flatMap(t=>t.grupos));
-assert.equal(gruposMecanica.length,111);
-assert.equal(gruposMecanica.filter(g=>g.horarios.length===0).length,4);
-const g40=mecanica.agrupaciones.find(g=>g.id==='mecanica:pos:6:2024045|G40');
-assert(g40&&g40.analizable===false,'Bloque de reserva TPI no debe generar choques');
-assert.equal(mecanica.agrupaciones.filter(g=>g.analizable!==false).length,71);
+assert.equal(gruposMecanica.length,90);
+assert.equal(gruposMecanica.filter(g=>g.horarios.length===0).length,3);
+assert.equal(mecanica.agrupaciones.filter(g=>g.analizable!==false).length,52);
 for(const c of ['2017278','2017265'])
   assert.equal(mecanica.malla.find(x=>x.codigoAsignatura===c).componente,'C');
 const revisionMecanica=leer('data/programas/mecanica/revision-prerrequisitos-2026.json');

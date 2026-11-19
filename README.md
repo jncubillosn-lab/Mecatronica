@@ -1,12 +1,14 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.11 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
+**Versión pública:** 1.1.12 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
 Aplicación web estudiantil **no oficial** de la Facultad de Ingeniería de la Universidad Nacional de Colombia, sede Bogotá. Permite consultar el plan curricular y grupos ofertados, analizar interferencias de horarios y construir escenarios personales. No sustituye los sistemas institucionales, ni confirma matrículas o cupos.
 
 > **Importante sobre GitHub:** la aplicación se publica desde la rama **`main`**. Las versiones antiguas se consultan en el historial de Git, no en ramas de trabajo. Un README abierto desde un enlace de una rama histórica no describe la versión publicada.
+
+**Corrección de TPI (1.1.12).** En la oferta 2026-2 de Mecánica, Química y Electrónica, TPI (`2024045`) tiene un solo grupo, G1, con clase los lunes y miércoles de 14:00 a 16:00. La captura de cada carrera contenía 22 registros. Se conserva el G1 original y se retiran las demás entradas de TPI de la oferta y de las agrupaciones que las utilizaban.
 
 ## Selector multicarrera
 

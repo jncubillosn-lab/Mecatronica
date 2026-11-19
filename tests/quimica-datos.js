@@ -16,7 +16,7 @@ assert.equal(new Set(d.catalogo.map(c=>c.codigo)).size,72);
 assert.equal(d.oferta.length,29);
 assert.equal(d.agrupaciones.length,48);
 const grupos=d.oferta.flatMap(c=>c.actividades.flatMap(a=>a.grupos));
-assert.equal(grupos.length,91);
+assert.equal(grupos.length,70);
 const ort=d.oferta.find(c=>c.codigoAsignatura==='2015718');
 assert.equal(ort.actividades.reduce((n,a)=>n+a.grupos.filter(g=>g.id==='ORIN-01').length,0),2);
 assert(ort.actividades.every(a=>a.grupos.filter(g=>g.id==='ORIN-01')
