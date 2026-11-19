@@ -19,7 +19,8 @@
     "aristasSoloMalla": 9,
     "aristasTotales": 32,
     "minimos": 3,
-    "pendientes": 4
+    "pendientes": 4,
+    "exclusionesAgrupacion": 9
   },
   "decisiones": [
     "Se agrega Control 2016493 en semestre VII (4 créditos) porque está presente en malla y catálogo, y se retira una casilla optativa genérica duplicada en VIII.",
@@ -31,7 +32,8 @@
     "No se presume equivalencia TPI 2016510 (malla) con 2024045 (oferta). Tampoco equivalencia confirmada de Diseño 2016494 (malla) y 2028816 (SIA): la posición de Diseño permanece con código null, oferta disponible separadamente.",
     "El total B60/C78/L34=172 concilia, pero el desglose de optatividad del catálogo para 2019125 no debe imponerse al resumen del plan 72 obligatorios/6 optativos C sin estudio normativo.",
     "No se forman combinaciones entre teoría y laboratorio si la fuente no certifica sus correspondencias.",
-    "La condición de probabilidad 1000013-B no se identifica con cualquier optativa genérica de Probabilidad; se conserva fuera del mapa de flechas hasta determinar posición definitiva."
+    "La condición de probabilidad 1000013-B no se identifica con cualquier optativa genérica de Probabilidad; se conserva fuera del mapa de flechas hasta determinar posición definitiva.",
+    "Control 2016493 incluye magistral y laboratorio. Se agrega a exclusiones de agrupación (ahora 9): la oferta tiene 12 grupos, pero no existe una vinculación verificada por matrícula entre magistral y laboratorio; no generar combinación cartesiana."
   ],
   "cambioControl": {
     "id": "electronica:pos:7:2016493",

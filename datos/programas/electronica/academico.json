@@ -5603,6 +5603,11 @@
       "posicionId": "electronica:pos:1:2016502",
       "codigoAsignatura": "2016502",
       "motivo": "actividades-multiples-sin-agrupacion-verificada"
+    },
+    {
+      "posicionId": "electronica:pos:7:2016493",
+      "codigoAsignatura": "2016493",
+      "motivo": "actividades-multiples-sin-agrupacion-verificada"
     }
   ],
   "configuracion": {
