@@ -4991,6 +4991,734 @@
         }
       ],
       "procedencia": "oferta-verificada-por-actividad-unica-2026"
+    },
+    {
+      "id": "mecanica:pos:6:2017260|2017260:act:1:G1",
+      "posicionId": "mecanica:pos:6:2017260",
+      "etiqueta": "Teórica G1",
+      "componentes": [
+        {
+          "id": "2017260:act:1:G1",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017260|2017260:act:1:G2",
+      "posicionId": "mecanica:pos:6:2017260",
+      "etiqueta": "Teórica G2",
+      "componentes": [
+        {
+          "id": "2017260:act:1:G2",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017260|2017260:act:1:G3",
+      "posicionId": "mecanica:pos:6:2017260",
+      "etiqueta": "Teórica G3",
+      "componentes": [
+        {
+          "id": "2017260:act:1:G3",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017260|2017260:act:2:G1M",
+      "posicionId": "mecanica:pos:6:2017260",
+      "etiqueta": "Magistral G1M",
+      "componentes": [
+        {
+          "id": "2017260:act:2:G1M",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:1:G2T",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Teórica G2T",
+      "componentes": [
+        {
+          "id": "2017262:act:1:G2T",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:1:G3T",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Teórica G3T",
+      "componentes": [
+        {
+          "id": "2017262:act:1:G3T",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:2:G1",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2017262:act:2:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:2:G2",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2017262:act:2:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:2:G3",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2017262:act:2:G3",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:2:G4",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2017262:act:2:G4",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:2:G5",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Laboratorio G5",
+      "componentes": [
+        {
+          "id": "2017262:act:2:G5",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:2:G6",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Laboratorio G6",
+      "componentes": [
+        {
+          "id": "2017262:act:2:G6",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:6:2017262|2017262:act:3:G1M",
+      "posicionId": "mecanica:pos:6:2017262",
+      "etiqueta": "Magistral G1M",
+      "componentes": [
+        {
+          "id": "2017262:act:3:G1M",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:8:2017264|2017264:act:1:G1",
+      "posicionId": "mecanica:pos:8:2017264",
+      "etiqueta": "Teórica G1",
+      "componentes": [
+        {
+          "id": "2017264:act:1:G1",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:8:2017264|2017264:act:1:G2",
+      "posicionId": "mecanica:pos:8:2017264",
+      "etiqueta": "Teórica G2",
+      "componentes": [
+        {
+          "id": "2017264:act:1:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:8:2017264|2017264:act:2:G1M",
+      "posicionId": "mecanica:pos:8:2017264",
+      "etiqueta": "Magistral G1M",
+      "componentes": [
+        {
+          "id": "2017264:act:2:G1M",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:1:2017265|G1",
+      "posicionId": "mecanica:pos:1:2017265",
+      "etiqueta": "G1",
+      "componentes": [
+        {
+          "id": "2017265:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2017265:act:2:G1M",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
+    },
+    {
+      "id": "mecanica:pos:1:2017265|G3",
+      "posicionId": "mecanica:pos:1:2017265",
+      "etiqueta": "G3",
+      "componentes": [
+        {
+          "id": "2017265:act:1:G3",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2017265:act:2:G1M",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
+    },
+    {
+      "id": "mecanica:pos:1:2017265|G4",
+      "posicionId": "mecanica:pos:1:2017265",
+      "etiqueta": "G4",
+      "componentes": [
+        {
+          "id": "2017265:act:1:G4",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2017265:act:2:G1M",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
+    },
+    {
+      "id": "mecanica:pos:5:2017266|2017266:act:1:G1",
+      "posicionId": "mecanica:pos:5:2017266",
+      "etiqueta": "Teórica G1",
+      "componentes": [
+        {
+          "id": "2017266:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:5:2017266|2017266:act:1:G2",
+      "posicionId": "mecanica:pos:5:2017266",
+      "etiqueta": "Teórica G2",
+      "componentes": [
+        {
+          "id": "2017266:act:1:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:5:2017266|2017266:act:2:G1",
+      "posicionId": "mecanica:pos:5:2017266",
+      "etiqueta": "Taller G1",
+      "componentes": [
+        {
+          "id": "2017266:act:2:G1",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:5:2017266|2017266:act:2:G2",
+      "posicionId": "mecanica:pos:5:2017266",
+      "etiqueta": "Taller G2",
+      "componentes": [
+        {
+          "id": "2017266:act:2:G2",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:5:2017266|2017266:act:2:G3",
+      "posicionId": "mecanica:pos:5:2017266",
+      "etiqueta": "Taller G3",
+      "componentes": [
+        {
+          "id": "2017266:act:2:G3",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:5:2017266|2017266:act:2:G4",
+      "posicionId": "mecanica:pos:5:2017266",
+      "etiqueta": "Taller G4",
+      "componentes": [
+        {
+          "id": "2017266:act:2:G4",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:7:2017274|2017274:act:1:G1M",
+      "posicionId": "mecanica:pos:7:2017274",
+      "etiqueta": "Magistral G1M",
+      "componentes": [
+        {
+          "id": "2017274:act:1:G1M",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:7:2017274|2017274:act:2:G1",
+      "posicionId": "mecanica:pos:7:2017274",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2017274:act:2:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "10:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:7:2017274|2017274:act:2:G2",
+      "posicionId": "mecanica:pos:7:2017274",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2017274:act:2:G2",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "10:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:7:2017274|2017274:act:2:G3",
+      "posicionId": "mecanica:pos:7:2017274",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2017274:act:2:G3",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "14:00",
+              "fin": "17:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:7:2017274|2017274:act:2:G4",
+      "posicionId": "mecanica:pos:7:2017274",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2017274:act:2:G4",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "17:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:9:2017275|2017275:act:1:G1",
+      "posicionId": "mecanica:pos:9:2017275",
+      "etiqueta": "Teórica G1",
+      "componentes": [
+        {
+          "id": "2017275:act:1:G1",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:9:2017275|2017275:act:1:G2",
+      "posicionId": "mecanica:pos:9:2017275",
+      "etiqueta": "Teórica G2",
+      "componentes": [
+        {
+          "id": "2017275:act:1:G2",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:9:2017275|2017275:act:1:G3",
+      "posicionId": "mecanica:pos:9:2017275",
+      "etiqueta": "Teórica G3",
+      "componentes": [
+        {
+          "id": "2017275:act:1:G3",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
+    },
+    {
+      "id": "mecanica:pos:9:2017275|2017275:act:2:G1M",
+      "posicionId": "mecanica:pos:9:2017275",
+      "etiqueta": "Magistral G1M",
+      "componentes": [
+        {
+          "id": "2017275:act:2:G1M",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "analizable": false,
+      "procedencia": "oferta-2026-2-actividad-sin-agrupacion-verificada"
     }
   ],
   "exclusionesAgrupacion": [
@@ -5007,11 +5735,6 @@
     {
       "posicionId": "mecanica:pos:8:2017264",
       "codigoAsignatura": "2017264",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "mecanica:pos:1:2017265",
-      "codigoAsignatura": "2017265",
       "motivo": "actividades-multiples-sin-agrupacion-verificada"
     },
     {

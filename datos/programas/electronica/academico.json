@@ -4907,9 +4907,9 @@
       "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
-      "id": "electronica:pos:7:2016493|Magistral G1",
+      "id": "electronica:pos:7:2016493|M1+L1",
       "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Magistral G1",
+      "etiqueta": "M1+L1",
       "componentes": [
         {
           "id": "2016493:act:1:G1",
@@ -4927,15 +4927,61 @@
               "nota": null
             }
           ]
+        },
+        {
+          "id": "2016493:act:2:G1",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
     },
     {
-      "id": "electronica:pos:7:2016493|Magistral G2",
+      "id": "electronica:pos:7:2016493|M1+L2",
       "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Magistral G2",
+      "etiqueta": "M1+L2",
+      "componentes": [
+        {
+          "id": "2016493:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016493:act:2:G2",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
+    },
+    {
+      "id": "electronica:pos:7:2016493|M2+L3",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "M2+L3",
       "componentes": [
         {
           "id": "2016493:act:1:G2",
@@ -4953,15 +4999,61 @@
               "nota": null
             }
           ]
+        },
+        {
+          "id": "2016493:act:2:G3",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
     },
     {
-      "id": "electronica:pos:7:2016493|Magistral G3",
+      "id": "electronica:pos:7:2016493|M2+L4",
       "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Magistral G3",
+      "etiqueta": "M2+L4",
+      "componentes": [
+        {
+          "id": "2016493:act:1:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016493:act:2:G4",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
+    },
+    {
+      "id": "electronica:pos:7:2016493|M3+L5",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "M3+L5",
       "componentes": [
         {
           "id": "2016493:act:1:G3",
@@ -4979,15 +5071,61 @@
               "nota": null
             }
           ]
+        },
+        {
+          "id": "2016493:act:2:G5",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
     },
     {
-      "id": "electronica:pos:7:2016493|Magistral G4",
+      "id": "electronica:pos:7:2016493|M3+L6",
       "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Magistral G4",
+      "etiqueta": "M3+L6",
+      "componentes": [
+        {
+          "id": "2016493:act:1:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016493:act:2:G6",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
+    },
+    {
+      "id": "electronica:pos:7:2016493|M4+L7",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "M4+L7",
       "componentes": [
         {
           "id": "2016493:act:1:G4",
@@ -5005,136 +5143,7 @@
               "nota": null
             }
           ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:7:2016493|Laboratorio G1",
-      "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G1",
-      "componentes": [
-        {
-          "id": "2016493:act:2:G1",
-          "bloques": [
-            {
-              "dia": "J",
-              "inicio": "09:00",
-              "fin": "11:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:7:2016493|Laboratorio G2",
-      "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G2",
-      "componentes": [
-        {
-          "id": "2016493:act:2:G2",
-          "bloques": [
-            {
-              "dia": "J",
-              "inicio": "11:00",
-              "fin": "13:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:7:2016493|Laboratorio G3",
-      "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G3",
-      "componentes": [
-        {
-          "id": "2016493:act:2:G3",
-          "bloques": [
-            {
-              "dia": "M",
-              "inicio": "11:00",
-              "fin": "13:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:7:2016493|Laboratorio G4",
-      "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G4",
-      "componentes": [
-        {
-          "id": "2016493:act:2:G4",
-          "bloques": [
-            {
-              "dia": "M",
-              "inicio": "14:00",
-              "fin": "16:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:7:2016493|Laboratorio G5",
-      "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G5",
-      "componentes": [
-        {
-          "id": "2016493:act:2:G5",
-          "bloques": [
-            {
-              "dia": "M",
-              "inicio": "09:00",
-              "fin": "11:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:7:2016493|Laboratorio G6",
-      "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G6",
-      "componentes": [
-        {
-          "id": "2016493:act:2:G6",
-          "bloques": [
-            {
-              "dia": "X",
-              "inicio": "11:00",
-              "fin": "13:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:7:2016493|Laboratorio G7",
-      "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G7",
-      "componentes": [
+        },
         {
           "id": "2016493:act:2:G7",
           "bloques": [
@@ -5147,14 +5156,30 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
     },
     {
-      "id": "electronica:pos:7:2016493|Laboratorio G8",
+      "id": "electronica:pos:7:2016493|M4+L8",
       "posicionId": "electronica:pos:7:2016493",
-      "etiqueta": "Laboratorio G8",
+      "etiqueta": "M4+L8",
       "componentes": [
+        {
+          "id": "2016493:act:1:G4",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        },
         {
           "id": "2016493:act:2:G8",
           "bloques": [
@@ -5167,8 +5192,7 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "oferta-2026-2-y-agrupacion-explicita-del-mismo-curso"
     },
     {
       "id": "electronica:pos:10:diseno-de-sistemas-electronicos|G1",
@@ -7040,11 +7064,6 @@
       "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
     },
     {
-      "posicionId": "electronica:pos:7:2016493",
-      "codigoAsignatura": "2016493",
-      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
-    },
-    {
       "posicionId": "electronica:pos:4:2016495",
       "codigoAsignatura": "2016495",
       "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
@@ -7168,7 +7187,7 @@
       "horarios": "Archivo Electronica horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada.",
       "revisionRequisitos": "data/programas/electronica/revision-prerrequisitos-2026.json",
       "ultimaCorreccionOferta": "Electronica horarios(2).txt, 18-11-2026: tres cupos corregidos; duplicados y TPI parcial descartados",
-      "reconstruccionIntegral": "Corte 1.1.11 del 18-11-2026: 139 grupos consultables antes de corregir TPI. Con G1 de TPI quedan 120 agrupaciones consultables (34 analizables y 86 solo consulta) y 5 grupos únicamente en oferta."
+      "reconstruccionIntegral": "Oferta 2026-2 con G1 único de TPI. La revisión de agrupaciones se documenta en docs/AGRUPACIONES-OFERTA-2026.md."
     },
     "requisitos": {
       "descripcion": "32 conexiones existentes respaldadas en 23 condiciones tipo M SIA y nueve enlaces de malla 2023; tres mínimos curriculares. Todas las 27 condiciones originales recalculadas desde el SIA en el expediente.",

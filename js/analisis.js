@@ -136,12 +136,13 @@ function compute(S) {
     if (cl.direct.has(A + '\u0001' + B) || cl.direct.has(B + '\u0001' + A)) pre = 'Directo';
     else if ((cl.desc.get(A) && cl.desc.get(A).has(B)) || (cl.desc.get(B) && cl.desc.get(B).has(A))) pre = 'Indirecto';
     const aplica = pre === 'Directo' ? 0 : (pre === 'Indirecto' && indirect ? 0 : 1);
-    const enRango = aplica && dists.includes(dist) ? 1 : 0;
+    // Una pareja necesita al menos una alternativa activa de cada asignatura.
+    const enRango = total > 0 && aplica && dists.includes(dist) ? 1 : 0;
     // Si no se informó ninguna combinación, NO inventar cruces ni alertas.
     // El cero representa la ausencia de choque calculado, no un certificado
     // de compatibilidad académica definitiva.
     const idx = total ? clash / total : 0;
-    const nivel = clash === 0 ? 'sin choque' : dist + (clash === total ? 'a' : 'b');
+    const nivel = !total ? 'sin grupos comparables' : clash === 0 ? 'sin choque' : dist + (clash === total ? 'a' : 'b');
     const p = { key: A + '|' + B, A, B, sA, sB, nA: gA.length, nB: gB.length, total, clash, idx, dist, pre, aplica, enRango, nivel, matrix, gA: gA.map(g => g.g), gB: gB.map(g => g.g) };
     pairs.push(p);
     if (enRango && clash) gA.forEach((x, a) => gB.forEach((y, b) => { if (matrix[a][b]) { addGC(x, y); addGC(y, x); } }));
