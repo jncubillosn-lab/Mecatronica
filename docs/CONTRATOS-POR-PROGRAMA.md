@@ -1,8 +1,8 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-Para la oferta 2026-2 vigente en 1.1.13, véase la [revisión de agrupaciones de las tres carreras](AGRUPACIONES-OFERTA-2026.md). Allí se identifican las relaciones verificadas y los grupos consultables por separado.
+Para la oferta 2026-2 vigente en 1.1.14, véase la [revisión de agrupaciones de las tres carreras](AGRUPACIONES-OFERTA-2026.md). Allí se identifican las relaciones verificadas y los grupos consultables por separado.
 
-**Estado vigente:** 1.1.13. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.14. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -51,34 +51,14 @@ Después de una corrección se revisan contenido, integridad de referencias y d�
 
 **Diferencia importante:** `analizable:false` y la ausencia de horarios son atributos **del contrato académico**. El registro externo sirve para decisiones de corrección, no para inventar combinaciones ni reglas específicas del motor. Los escenarios personales importados/exportados son independientes de ambas capas.
 
-## 4. Bases preliminares habilitadas
+## 4. Cobertura y clasificación actuales
 
-Desde 1.1.3 los nueve programas tienen contrato registrado; las ocho bases nuevas son documentales, sin grupos ni horarios ofertados. En todos los casos `data/programas/<id>/ajustes.json` permanece independiente. No añadir datos de oferta sin fuentes verificadas ni rellenar relaciones de prerrequisitos desconocidas. Véase [informe de calidad](INFORME-BASES-INICIALES-2026.md).
+Cada una de las nueve carreras tiene un contrato normalizado propio. Mecatrónica, Electrónica, Industrial, Mecánica y Química disponen de oferta de grupos; las otras cuatro conservan la estructura del plan sin horarios cargados. El vacío no es un valor cero ni una prueba de que no existen clases.
 
-## 5. Carga de oferta documental 2026
+Los registros externos `data/programas/<id>/revision-oferta-2026.json` y `revision-prerrequisitos-2026.json` conservan incertidumbres de las fuentes, pero **no son archivos consumidos por la aplicación**. Las condiciones sin equivalencia curricular acreditada no generan aristas ni parejas por suposición. Los cupos disponibles no se interpretan como capacidad total.
 
-Los contratos de `electronica`, `industrial`, `mecanica` y `quimica` incorporan oferta externa normalizada. Los expedientes `data/programas/<id>/revision-oferta-2026.json` conservan casos pendientes, **no se leen en tiempo de ejecución** y no sustituyen a `ajustes.json`. En particular, ninguna alternativa de condición prerrequisito se convirtió automáticamente en un vínculo del mapa; tampoco se asignaron semestres a asignaturas fuera de la malla. Mecatrónica, Eléctrica, Sistemas, Civil y Agrícola no cambiaron. [Informe](INFORME-COMPLEMENTACION-HORARIOS-2026.md).
+La [cobertura actual](AGRUPACIONES-OFERTA-2026.md) distingue grupos ofertados, agrupaciones proyectadas, grupos solo informativos y alternativas analizables. Los IDs, horarios y relaciones de `datos/programas/<id>/academico.json` prevalecen frente a recuentos de trabajos anteriores.
 
-## 6. Mecánica: contrato y expediente de evidencia (1.1.7)
+## 5. Grupo único de TPI
 
-La carga limpia de Mecánica se conserva íntegra en su único `academico.json`. Las 30 condiciones originales del SIA con códigos alternativos, las 41 evidencias de flechas de la malla y los umbrales porcentuales se depositan en `data/programas/mecanica/revision-prerrequisitos-2026.json`, **no interpretado en la web**. El mapa usa únicamente pares de posiciones verificadas; los mínimos porcentuales no se modelan con una condición de créditos inventada. [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md) explica las diferencias.
-
-## 7. Química: SIA, malla y separación de ambigüedades (1.1.8)
-
-`datos/programas/quimica/academico.json` contiene el contrato único normalizado de Química con 37 relaciones por ID y catálogos cotejados, sin nuevos lectores. `data/programas/quimica/revision-prerrequisitos-2026.json` conserva las 35 condiciones de matrícula completas, las alternativas de códigos históricos y la justificación de cada una de las nueve flechas que solo aparecen en la malla de 2013. Los casos de tipo Y y las optativas sin una posición de plan verificable no se fuerzan a flechas. [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md).
-
-## 8. Electrónica: fuentes y requisitos con identificadores estables (1.1.9)
-
-`datos/programas/electronica/academico.json` concentra 32 prerrequisitos y tres requisitos mínimos de créditos, derivados de 2026 SIA y malla 2023 plan 2545. En `data/programas/electronica/revision-prerrequisitos-2026.json` se conservan las 27 condiciones completas, los códigos alternativos e incidencias por verificar. Se mantiene separación de malla, catálogo y oferta: la coincidencia de nombres no demuestra que los códigos TPI 2016510/2024045 y Diseño 2016494/2028816 sean equivalentes. Sin lector adicional. [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
-
-## 9. Electrónica: tres cupos corregidos de una fuente duplicada (1.1.10)
-
-El archivo `Electronica horarios(2).txt` contiene doce duplicados documentales añadidos, pero ninguna nueva asignatura ni nuevo grupo: tres cupos del SIA cambiaron respecto de `Electronica horarios(1).txt`. Se aplica actualización por código+actividad+grupo sin reconstruir las agrupaciones ni tocar prerrequisitos. El expediente `data/programas/electronica/revision-prerrequisitos-2026.json` registra el cotejo. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
-
-## 10. Contrato de Electrónica: cobertura comprobable (1.1.11)
-
-La integridad de datos debe medirse en **tres niveles**: oferta bruta (146 grupos), proyección a vistas (139 agrupaciones y 212 bloques) y combinaciones analizables (53), no solo comparando cupos o contando grupos. 86 agrupaciones representan actividades individuales de asignaturas multiactividad u optativas temáticas y son visibles, pero no computables como matrícula completa. La fuente no acredita cómo combinar magistral+laboratorio. Siete entradas se conservan exclusivamente en oferta por ausencia de posición curricular verificada, reserva de espacios o pertenencia a PEAMA sin horario. Los resultados se auditan por curso, actividad, grupo, día y hora; no se modifica el contrato de otras carreras ni se añaden fuentes al lector web. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
-
-## 11. Grupo único de TPI (1.1.12)
-
-En la oferta 2026-2 de Mecánica, Química y Electrónica, TPI (`2024045`) tiene un solo grupo, G1, con clase los lunes y miércoles de 14:00 a 16:00. La captura de cada carrera contenía 22 registros. Se conserva el G1 original y se retiran las demás entradas de TPI de la oferta y de las agrupaciones que las utilizaban. Mecánica y Electrónica proyectan G1 en las vistas del horario. Química conserva el G1 en oferta y el código 2015737 en la malla, cuya relación con 2024045 sigue pendiente de confirmar. La prueba de contratos comprueba la cantidad de grupos y ambas franjas tras cada carga.
+En la oferta 2026-2 de Mecánica, Química y Electrónica, TPI (`2024045`) dispone de un único grupo G1, lunes y miércoles de 14:00 a 16:00. Química conserva la posición curricular con código 2015737 sin declarar equivalencia normativa automática con 2024045. La prueba de contratos comprueba identidad y franjas. No regenerar grupos duplicados desde capturas antiguas.

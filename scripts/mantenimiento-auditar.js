@@ -27,7 +27,6 @@ const raizPermitida = new Map([
   ['index.html', 'aplicacion'],
   ['README.md', 'documentacion'],
   ['AGENTS.md', 'documentacion'],
-  ['CHANGELOG.md', 'historial'],
   ['package.json', 'configuracion'],
   ['package-lock.json', 'configuracion'],
   ['.gitignore', 'configuracion'],
@@ -38,7 +37,6 @@ function clasificar(archivo) {
   if (raizPermitida.has(archivo)) return raizPermitida.get(archivo);
   const perfil = carpetas.find(([prefijo]) => archivo.startsWith(prefijo));
   if (!perfil) return null;
-  if (archivo === 'docs/MIGRACION-ARQ01.md') return 'historial';
   return perfil[1];
 }
 function inventarioGit(directorio = raiz) {

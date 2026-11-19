@@ -1,11 +1,11 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.11. **La migración ARQ-01 está terminada y cerrada.**
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** para el corte multicarrera 1.1.14. **La migración ARQ-01 está terminada y cerrada.**
 > **Revisión operativa:** 13 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, con ocho contratos académicos preliminares adicionales sin oferta de grupos y Mecatrónica con oferta operativa.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
 > **Lectura de versiones:** el núcleo se consolidó en 0.7.5 y el saneamiento de ARQ-01 terminó en **0.8.0**. La versión 1.0.0 cerró el saneamiento; 1.1.0 incorpora selección multicarrera sin crear fuentes ficticias ni duplicar el núcleo. `versionEsquema:1` (entrada), `version:1` (escenario personal) y la versión pública del sitio son independientes.  
-> **Fuentes de autoridad:** ARQ-01 fija la norma; cada `datos/programas/<id>/academico.json` fija los datos académicos de ese programa; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones con detalle e historia permanecen en [DEC-01](DECISIONES-Y-ALCANCE.md), la trazabilidad en [MIG-ARQ01](MIGRACION-ARQ01.md) y la situación de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
+> **Fuentes de autoridad:** ARQ-01 fija la norma; cada `datos/programas/<id>/academico.json` fija los datos académicos de ese programa; el código ejecutado y sus pruebas muestran lo realmente implementado. Las decisiones de alcance vigentes están en [DEC-01](DECISIONES-Y-ALCANCE.md), y la situación actual de publicación en [EST-01](ESTADO-Y-PUBLICACION.md). Ante una contradicción, **investigar y actualizar las afirmaciones**, no atribuir a la aplicación comportamientos inexistentes.
 
 **Presentación multicarrera (UNI-UI-01):** `js/identidad.js` enumera los nueve nombres y acentos; `js/programas.js` registra solo rutas de contratos disponibles. Los programas sin datos conservan su identidad y navegación, pero no generan escenarios ni cálculos. Véase [UNI-UI-01](ESTILO-UNIVERSITARIO.md).
 
@@ -17,7 +17,7 @@
 | Cambiar algoritmos, consultas o una vista | §2–4: módulos, estados y RF aplicable | Resultados de referencia/escenario, filtros, ocho páginas y casos incompletos |
 | Corregir guardado o escenarios vigentes | §3, §4 RF-10/RC-03 y §6 | Importación y exportación actuales sin mutar S0 |
 | Analizar una anomalía o un supuesto pendiente | §4.4: **no requisitos** y clasificación de hallazgos | Reproducción y evidencia antes de convertirla en alarma |
-| Eliminar código o documentar una versión 1.0 | §5–9: verificaciones, legado, puertas de estabilidad y método | Dependencias, CI, versión y publicación; nunca borrar por nombre antiguo |
+| Eliminar código o documentar una versión 1.0 | §5–9: verificaciones, alcance vigente y método | Dependencias, CI, versión y publicación; nunca borrar por nombre antiguo |
 
 **Principio operativo:** no tomar directamente una explicación de README, un documento histórico o un resultado simulado como norma de ejecución cuando contradiga esta referencia y la implementación. Primero precisar **qué observación es real** y qué parte de la documentación necesita actualización.
 
@@ -410,12 +410,6 @@ degradación concreta y una decisión nueva.
 
 **La versión 1.1.1 mantiene las mismas ocho vistas también en programas sin contrato, pero sin generar resultados académicos.** La evidencia de cada despliegue se consulta en CI y en la certificación HTTP de Pages.
 
-## 7. Antecedentes de ARQ-01 (migración finalizada; solo historial)
-
-En v0.4.x se ejecutaban datos globales heredados y se conservaban escenarios `{S}` completos. La migración ARQ-01 (desde v0.5.0) estableció `datos/academico.json` como entrada original de Mecatrónica (ruta trasladada en 1.1.2); posteriormente v0.5.3 dejó de exponer `window.RAW` y separó motor y vistas. Esta cronología explica la procedencia de la arquitectura actual; los ejecutables, identificadores y pruebas exclusivos de aquel formato se retiraron en 0.8.1.
-
-**No usar una descripción histórica como instrucción vigente.** Para conocer la sucesión detallada de PR, cambios y decisiones, consultar [MIG-ARQ01](MIGRACION-ARQ01.md) y el historial de Git; para un comportamiento actual aplicar las secciones 0–6 de este documento y contrastarlo con el código. Las referencias originales pueden consultarse en Git; no son campos exigibles al sistema vigente.
-
 ## 8. Cambios de alcance expresamente aprobados
 
 **Este documento no inventa funciones futuras por anticipado.** D-29 introduce el selector; incorporar fuentes de otras carreras sigue sujeto a contratos válidos y pruebas. Solo cuando una necesidad sea solicitada y aprobada se examina su efecto arquitectónico. La falta de una característica no requerida no es un problema del sistema.
@@ -433,8 +427,7 @@ reconstruir cada decisión técnica sin atribuir requisitos falsos al sistema.
 
 1. **Documentos rectores concordantes.** ARQ-01 establece qué es exigible
    (RF/RC y no requisitos); DEC-01 recoge decisiones vigentes y sustituidas;
-   EST-01 describe qué está implementado; MIG-ARQ01 conserva el acta histórica
-   cerrada; REG-01 delimita escenarios personales. Un archivo histórico no
+   EST-01 describe qué está implementado y REG-01 delimita escenarios personales. Un archivo histórico no
    puede introducir por sí solo una obligación para el contrato actual.
 2. **Código legible por unidades funcionales.** Cada módulo declara entradas,
    salidas, fuente de autoridad y límites; cada método con efectos importantes
@@ -476,60 +469,3 @@ Antes de modificar la aplicación o sus datos:
 
 **La prioridad arquitectónica es la simplicidad: una entrada académica, un modelo común, un escenario efectivo y resultados coherentes.** No se requieren capas, validaciones ni objetivos adicionales por costumbre. Para distinguir decisiones normativas de características implementadas consultar DEC-01 y EST-01.
 
-## 10. Selección académica sin duplicar el núcleo (1.1.0)
-
-La interfaz reutiliza los nueve nombres y colores de `IdentidadUniversitaria.catalogo`. `ProgramasUniversitarios` separa las rutas de contratos realmente disponibles de la identidad visual y comparte la cabecera/navegación, sin crear nueve motores o archivos ficticios. Por sesión, `js/iniciar.js` consulta **un solo contrato normalizado**, valida que `programa.id` corresponda a la selección y crea `S0`, `S` y los resultados solo entonces. Sin fuente se presentan ocho espacios con estado «sin datos», sin estadísticas en cero; una carga inválida es un error técnico. Mecatrónica mantiene su contrato académico (ahora en `datos/programas/mecatronica/academico.json`) y su clave local; otros programas usarán claves de escenario diferenciadas. El nuevo límite se verifica en `tests/multicarrera.js`, sin cambiar `EntradaAcademica`, `EscenarioPersonal`, `PlanCurricular` ni el motor de análisis.
-
-## 11. Estructura de consulta independiente de los datos (1.1.1)
-
-La interfaz y el dominio no son equivalentes: una carrera sin datos académicos debe conservar las **ocho vistas completas**, sus filtros visibles, instrucciones, marcos gráficos, paneles y controles propios. `ProgramasUniversitarios.contextoSinDatos` crea exclusivamente un contexto transitorio de **presentación** con colecciones estructurales vacías y `sinDatos:true`: **no es FuentesAcadémicas**, ni prueba que esa carrera no tenga asignaturas, grupos, requisitos o clases. La cuadrícula semanal genérica (lunes a sábado, 7–21) representa el diseño disponible, **no un horario institucional confirmado**; lo mismo aplica a las etiquetas de los filtros de tipología que permanecen visibles pero sin fuentes.
-
-En dicho modo se carga `js/app.js` y se reutilizan las mismas funciones de vista de `js/vistas.js` y `js/demanda.js`; no se consulta otro programa como respaldo, no se invoca el motor de interferencias, no se crea un escenario personal persistente y se deshabilitan los controles de edición/importación de datos. Los contadores y análisis que requieren datos muestran **«— / sin información»**, nunca un cero que pueda interpretarse como dato observado. La navegación, el tema visual, el zoom y las estructuras de gráfica siguen disponibles. El modo de error técnico por contrato inválido es distinto del modo sin fuente.
-
-`tests/multicarrera.js` verifica la presencia de marcos y controles en las ocho páginas para todas las carreras sin datos; la integración original de Mecatrónica sigue comprobando sus valores y comportamientos. Este patrón es obligatorio cuando se incorporen nuevas páginas: la existencia del contenedor de la vista no puede depender de tener registros académicos.
-
-## 12. Contratos por carrera y ajustes externos (1.1.2)
-
-La única entrada académica **por sesión** sigue siendo `FuentesAcadémicas`, validada por `EntradaAcademica`; solo cambia la organización física. Cada programa con fuente verificada tiene un contrato independiente en `datos/programas/<id>/academico.json`. `js/programas.js` asocia exclusivamente IDs y rutas disponibles, `js/iniciar.js` solicita una de ellas y valida `programa.id` antes de generar S0. No hay respaldo cruzado ni archivos ficticios para carreras sin contrato; sus ocho vistas estructurales permanecen visibles.
-
-Las correcciones académicas verificadas pueden documentarse en `data/programas/<id>/ajustes.json` y aplicarse **fuera del navegador**, con `scripts/aplicar-ajustes-academicos.js`. Las rutas del registro identifican entidades por propiedades/IDs declarados, no por índices ni parecidos del nombre; el proceso exige el valor anterior para cambios nuevos y rechaza referencias ambiguas. El resultado integrado es **el mismo contrato normalizado** que publica la carrera; el navegador no lee el registro de ajustes ni interpreta un formato adicional. Los ajustes personales de escenarios siguen siendo otra responsabilidad, separada de esta preparación.
-
-Para garantizar el aislamiento, `tests/ajustes-academicos.js` y `tests/multicarrera.js` comprueban el contrato registrado, la independencia por programa y las ocho vistas vacías. La guía de operación de datos está en [DAT-01](CONTRATOS-POR-PROGRAMA.md). Esta organización ejecuta RF-01, RF-02, RC-01, RC-04 y D-31, sin cambiar cálculo, reglas de horario ni representación visual.
-
-## 13. Carga de ocho contratos documentales sin oferta (1.1.3)
-
-Se registran los contratos independientes de `agricola`, `civil`, `electrica`, `electronica`, `industrial`, `mecanica`, `quimica` y `sistemas`, junto al contrato ya operativo de `mecatronica`. Estos primeros ocho contratos incluyen malla y catálogos recuperados de documentación aportada, pero su `oferta:[]` y sus `agrupaciones:[]` se deben a **ausencia de información de grupos**, no a inexistencia de clases, ausencia real de choques o disponibilidad académica confirmada. Los requisitos también son parciales. La interfaz se mantiene compartida sin añadir lectores ni motores de carrera; una sesión sigue cargando un solo contrato con identidad verificada. Véase [informe de calidad de fuentes](INFORME-BASES-INICIALES-2026.md).
-
-Las secciones 10 y 11 documentan el comportamiento histórico y el caso válido de programas todavía no registrados; no describen la disponibilidad actual de estos nueve programas.
-
-## 14. Consulta de información parcial y frontera personal (1.1.5)
-
-Se mantienen D-03 a D-06: entrada flexible, ausencia sin valores inventados ni falsas alarmas y conservación de oferta de otras sedes con analizable:false fuera de los cálculos. Un componente desconocido conserva su vacío en S/S0. «Sin clasificar» es una selección de consulta representada por la cadena vacía; no crea un componente académico. Está seleccionada inicialmente y «Todos» la restituye. La malla usa semestres desde el 1; el semestre 0 no es un semestre de carrera y no genera columna.
-
-El escenario personal conserva programaId desde la proyección del contrato. EscenarioPersonal.recuperar es la frontera común de archivos y almacenamiento: comprueba contexto, aplica solo propiedades editables sobre una copia de S0 y valida tipos y relaciones antes de devolver el estado. Los IDs explícitos prevalecen sin respaldo por nombre. Los archivos version:1 ya existentes sin programaId necesitan referencias inequívocas de la base; las copias locales sin metadato ya están aisladas por la clave del programa. Los archivos ambiguos no se aplican silenciosamente. No se recuperan snapshots ni formatos de desarrollo retirados.
-
-La integridad técnica no exige cobertura: créditos y semestre desconocidos pueden permanecer nulos, y las colecciones vacías continúan admitidas. Un semestre de texto se rechaza como archivo personal inválido antes de sustituir S. El modelo obtiene el máximo semestre únicamente de números utilizables, sin completar el dato ausente; esa regla también protege la geometría de la distribución visual. Las regresiones están en [frontera-escenarios](../tests/frontera-escenarios.js), además de las pruebas existentes de escenarios y vistas.
-
-## 15. Actualización de oferta documental sin nuevos lectores (1.1.6)
-
-Los contratos `versionEsquema: 1` de Electrónica, Industrial, Mecánica y Química reciben oferta de cursos, actividades, grupos y franjas horarios procedentes de fuentes documentales de agosto–diciembre de 2026. Cada contrato mantiene el mismo lector, los mismos cálculos y la misma interfaz; solo cambia el contenido y los parámetros públicos de caché. Se preservan las posiciones curriculares y sus requisitos previos. El archivo `data/programas/<id>/revision-oferta-2026.json` guarda evidencia pendiente, nunca participa como fuente adicional web. No se vinculan actividades múltiples ni asignaturas fuera de malla por inferencia. Las cuatro carreras restantes sin oferta mantienen vistas completas, sin resultados inventados. Documento de control: [informe](INFORME-COMPLEMENTACION-HORARIOS-2026.md).
-
-## 16. Requisitos y calidad de datos en Mecánica (1.1.7)
-
-Se integra la malla 2018 de Mecánica sin modificar ARQ-01: 41 aristas explícitas que vinculan exclusivamente posiciones con IDs existentes (29 corroboradas mediante alternativas actuales del SIA, 12 solo con evidencia gráfica histórica). Se conserva aparte la información condicional completa y tres porcentajes de avance, porque el contrato no dispone de semántica institucional verificable para convertirlos a mínimos de créditos. Se limpia el catálogo institucional, se respetan los códigos y nombres de posiciones, se completan grupos de oferta sin inferir combinaciones y se aparta el grupo de reserva G40 de TPI de los cálculos mediante `analizable:false`. Este cambio es solo de contrato y pruebas de datos; no cambia ninguna regla del lector ni del motor. Ver [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md).
-
-## 17. Limpieza académica de Ingeniería Química (1.1.8)
-
-Sin modificar ARQ-01, el contrato de Química incorpora 37 prerrequisitos por ID: 28 condiciones de tipo M del SIA 2026-2, con alternativas vigentes identificadas en el plan, y 9 flechas documentadas solo en la malla histórica de 2013. Las 35 condiciones completas, alternativas históricas y casos ambiguos se preservan por separado en `data/programas/quimica/revision-prerrequisitos-2026.json` (no lo lee la aplicación). Se normalizan códigos y componentes con el catálogo y se preservan los 63 IDs de la malla y las 48 agrupaciones. Dos grupos PEAMA–Orinoquía se conservan como oferta sin agrupar para Bogotá. La equivalencia TPI 2015737/2024045 y los umbrales numéricos de avance están pendientes de prueba normativa. Ver [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md).
-
-## 18. Carga académica independiente de Electrónica (1.1.9)
-
-Se reconstruye exclusivamente el contrato de Electrónica tomando la malla 2545 de 2023 y catálogo/oferta SIA 2026-2. El programa conserva 56 posiciones (una corregida más una casilla sin código retirada) y sus 31 agrupaciones, incorpora 32 aristas por ID (23 de SIA y 9 solo de malla) y tres mínimos explícitos: 121 créditos académicos para TPI y Diseño, 63 créditos disciplinares para Trabajo de Grado. Las 27 condiciones institucionales se mantienen completas en un expediente externo, sin modificar el motor. Dos PEAMA–Sumapaz sin horario se almacenan solo en oferta; Control multiactividad se excluye de análisis por no haber emparejamiento verificado. Código de TPI 2016510/2024045 y Diseño 2016494/2028816 no se equiparan automáticamente. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
-
-## 19. Corrección de cupos sin cambios estructurales (1.1.10)
-
-Una fuente de oferta de Electrónica corregida repite parcialmente la información de origen. Se coteja por identidad código de asignatura + actividad + grupo, sin reemplazar colecciones enteras: solo se actualizan tres `cuposDisponibles` verificados; se ignoran los duplicados y el segundo bloque parcial de TPI. No cambia el contrato ARQ-01, ninguna relación de requisitos ni la interpretación del motor. Se conserva el número de grupos y sus IDs (146), las 31 agrupaciones y todos los demás programas. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
-
-## 20. Distinción entre oferta, visibilidad y analizabilidad (1.1.11)
-
-El contrato multicarrera conserva ARQ-01: `oferta` contiene los registros institucionales, mientras `agrupaciones` determina qué grupos y bloques se proyectan a las vistas y al escenario. Se identifica la omisión de Electrónica: 146 grupos almacenados, pero solo 31 agrupaciones disponibles en UI. Sin modificar el motor ni añadir parsers de ejecución, se reconstruyen las agrupaciones de Electrónica desde la fuente normalizada: 139 visibles (53 analizables de actividad única, 86 componentes independientes para consulta). Los grupos con clases y laboratorio no se cruzan de forma cartesiana; carecen de vinculación académica certificada. Los grupos PEAMA sin horario y las reservas TPI permanecen únicamente en `oferta`. Las posiciones del plan mantienen identidad; sus requisitos y créditos no se infieren desde la oferta. El rótulo general `analizable:false` se neutraliza a «solo consulta» para no afirmar falsamente otra sede. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).

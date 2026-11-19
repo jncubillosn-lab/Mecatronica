@@ -6,7 +6,7 @@ La oferta registra grupos de actividad. Una agrupación analizable representa un
 
 ## Cobertura comprobada en 1.1.14
 
-Se cotejaron los archivos de horarios citados en [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md), [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md) y [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md) con la oferta por código, actividad, grupo, día, hora inicial y final y cupos disponibles. Se aplicó el G1 único de TPI documentado en [DAT-01](CONTRATOS-POR-PROGRAMA.md). En Química se contabiliza cada franja semanal una sola vez por grupo, aunque el texto la repita para aulas o fechas. Los detalles originales de horario permanecen en la oferta.
+Se cotejaron los horarios del contrato vigente de cada carrera con la oferta por código, actividad, grupo, día, hora inicial y final y cupos disponibles. Se aplicó el G1 único de TPI documentado en [DAT-01](CONTRATOS-POR-PROGRAMA.md). En Química se contabiliza cada franja semanal una sola vez por grupo, aunque el texto la repita para aulas o fechas. Los detalles originales de horario permanecen en la oferta.
 
 | Carrera | Asignaturas en oferta | Grupos de actividad en oferta | Grupos de actividad con horario o ficha en las vistas | Opciones analizables | Registros solo consulta | Bloques semanales en las vistas |
 |---|---:|---:|---:|---:|---:|---:|
