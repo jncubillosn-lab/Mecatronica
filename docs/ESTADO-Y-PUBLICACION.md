@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación vigente
 
-**Versión pública de referencia:** 1.1.14 · **Rama de ejecución:** `main`.
+**Versión pública de referencia:** 1.1.15 · **Rama de ejecución:** `main`.
 
 La [arquitectura vigente](ARQUITECTURA.md) rige el comportamiento; el [alcance actual](DECISIONES-Y-ALCANCE.md), el [contrato por programa](CONTRATOS-POR-PROGRAMA.md) y la [revisión de agrupaciones 2026-2](AGRUPACIONES-OFERTA-2026.md) permiten comprobar reglas y datos. No se utilizan como instrucciones los antecedentes de versiones anteriores.
 
