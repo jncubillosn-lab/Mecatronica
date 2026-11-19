@@ -2,6 +2,14 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.8 — Reconstrucción limpia de Ingeniería Química (18 nov 2026)
+
+- Se coteja el catálogo, la oferta SIA 2026-2 y la malla Acuerdo 02 de 2013 de Química, conservando su contrato independiente, los 63 IDs curriculares y las 48 agrupaciones existentes.
+- Se corrigen ocho campos de código curricular, cinco componentes de optativas y tipologías de catálogo (72 entradas únicas). La malla suma B69/C75/L36 = 180, con N20 de Nivelación adicional.
+- Se añaden 37 enlaces de requisitos (28 con condición M SIA actual y 9 con respaldo exclusivo de malla 2013). Las 35 condiciones originales del SIA, sus alternativas históricas, el tipo Y y los requisitos de optativas fuera de malla permanecen en revisión externa.
+- Los 89 grupos previos preservan horarios, fechas y cupos; se incorporan dos PEAMA–Orinoquía únicamente a la oferta, no al análisis Bogotá. No se asume vínculo entre TPI 2015737 y la oferta 2024045 ni se convierten indicadores de avance a mínimos de crédito sin norma.
+- Nueva regresión `tests/quimica-datos.js`, versión de caché y documentación de calidad. Ninguna otra carrera ni algoritmo de análisis se modifica.
+
 ## 1.1.7 — Limpieza curricular y requisitos de Ingeniería Mecánica (18 nov 2026)
 
 - La base independiente de Mecánica se completa a partir de `Mecanica(1).txt`, `Mecanica horarios(1).txt` y la malla del Acuerdo No. 68 de 2018. Se integran 41 relaciones identificadas por IDs (29 corroboradas en la oferta SIA y 12 contenidas solo en la malla gráfica), sin agregar referencias inexistentes.
