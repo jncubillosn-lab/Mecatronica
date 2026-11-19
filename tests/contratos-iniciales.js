@@ -19,7 +19,7 @@ assert.deepEqual(Object.keys(programas.fuentes).sort(), ids.sort());
 const esperado = {
  agricola:[66,61,0,0], civil:[66,60,0,0], electrica:[65,54,0,0],
  electronica:[63,56,23,93], industrial:[67,49,34,20],
- mecanica:[59,58,24,86], quimica:[72,63,29,56], sistemas:[96,55,0,0]
+ mecanica:[59,58,24,82], quimica:[72,63,29,56], sistemas:[96,55,0,0]
 };
 const ofertaDocumentada = new Set(['electronica','industrial','mecanica','quimica']);
 for(const id of ids){
@@ -126,7 +126,21 @@ for(const r of mecanica.requisitos.prerrequisitos){
 const gruposMecanica=mecanica.oferta.flatMap(a=>a.actividades.flatMap(t=>t.grupos));
 assert.equal(gruposMecanica.length,90);
 assert.equal(gruposMecanica.filter(g=>g.horarios.length===0).length,3);
-assert.equal(mecanica.agrupaciones.filter(g=>g.analizable!==false).length,55);
+assert.equal(mecanica.agrupaciones.filter(g=>g.analizable!==false).length,67);
+for (const [codigo, cantidad, magistral] of [
+ ['2017260',3,2], ['2017264',2,2], ['2017274',4,1], ['2017275',3,2]
+]) {
+ const opciones=mecanica.agrupaciones.filter(g=>g.posicionId.endsWith(':'+codigo));
+ assert.equal(opciones.length,cantidad);
+ opciones.forEach((g,i)=>{
+  const esperado=[codigo+':act:'+(3-magistral)+':G'+(i+1), codigo+':act:'+magistral+':G1M'];
+  assert.notEqual(g.analizable,false);
+  assert.deepEqual(g.componentes.map(c=>c.id),esperado);
+  const [a,b]=g.componentes;
+  assert(!a.bloques.some(x=>b.bloques.some(y=>x.dia===y.dia&&x.inicio<y.fin&&y.inicio<x.fin)),g.id);
+ });
+}
+assert.deepEqual(mecanica.exclusionesAgrupacion.map(x=>x.codigoAsignatura),['2017262','2017266']);
 for(const c of ['2017278','2017265'])
   assert.equal(mecanica.malla.find(x=>x.codigoAsignatura===c).componente,'C');
 const revisionMecanica=leer('data/programas/mecanica/revision-prerrequisitos-2026.json');
