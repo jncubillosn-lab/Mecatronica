@@ -44,7 +44,7 @@
       "creditos": 3,
       "tipologia": "FUND. OPTATIVA (O)",
       "rotulo": "FUND. OPTATIVA (O)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "1000003-B",
@@ -92,7 +92,7 @@
       "creditos": 3,
       "tipologia": "DISCIPLINAR OPTATIVA (T)",
       "rotulo": "DISCIPLINAR OPTATIVA (T)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "2016489",
@@ -124,7 +124,7 @@
       "creditos": 12,
       "tipologia": "NIVELACIÓN (E)",
       "rotulo": "NIVELACIÓN (E)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "2016492",
@@ -220,7 +220,7 @@
       "creditos": 3,
       "tipologia": "FUND. OBLIGATORIA (B)",
       "rotulo": "FUND. OBLIGATORIA (B)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "1000017-B",
@@ -420,7 +420,7 @@
       "creditos": 3,
       "tipologia": "FUND. OPTATIVA (O)",
       "rotulo": "FUND. OPTATIVA (O)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "2015734",
@@ -484,7 +484,7 @@
       "creditos": 12,
       "tipologia": "NIVELACIÓN (E)",
       "rotulo": "NIVELACIÓN (E)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "2016509",
@@ -508,7 +508,7 @@
       "creditos": 6,
       "tipologia": "TRABAJO DE GRADO (P)",
       "rotulo": "TRABAJO DE GRADO (P)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "2015317",
@@ -516,7 +516,7 @@
       "creditos": 6,
       "tipologia": "TRABAJO DE GRADO (P)",
       "rotulo": "TRABAJO DE GRADO (P)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "2015159",
@@ -532,15 +532,15 @@
       "creditos": 3,
       "tipologia": "DISCIPLINAR OPTATIVA (T)",
       "rotulo": "DISCIPLINAR OPTATIVA (T)",
-      "descripcion": null
+      "descripcion": ""
     },
     {
       "codigo": "2016510",
       "nombre": "Taller de proyectos interdisciplinarios",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
-      "descripcion": null
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "Código curricular documentado en la malla 2023 plan 2545; la oferta SIA usa 2024045. Equivalencia normativa no confirmada."
     }
   ],
   "malla": [
@@ -976,33 +976,33 @@
     },
     {
       "id": "electronica:pos:5:optativa-sin-asignatura-especificada:4",
-      "nombre": "Optativa sin asignatura especificada (1)",
+      "nombre": "Optativa Probabilidad y Estadística",
       "codigoAsignatura": null,
       "semestre": 5,
       "creditos": 3,
       "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Probabilidad y Estadística"
+      "nota": "Casilla curricular del plan 2545 (2023). Su oferta concreta no está identificada por un código fijo."
     },
     {
       "id": "electronica:pos:6:optativa-sin-asignatura-especificada:5",
-      "nombre": "Optativa sin asignatura especificada (2)",
+      "nombre": "Optativa Electrónica Análoga",
       "codigoAsignatura": null,
       "semestre": 6,
       "creditos": 3,
       "componente": "C",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Electrónica Análoga"
+      "nota": "Casilla curricular del plan 2545 (2023). Su oferta concreta no está identificada por un código fijo."
     },
     {
       "id": "electronica:pos:7:optativa-sin-asignatura-especificada:6",
-      "nombre": "Optativa sin asignatura especificada (3)",
+      "nombre": "Optativa Electrónica Digital",
       "codigoAsignatura": null,
       "semestre": 7,
       "creditos": 3,
       "componente": "C",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Electrónica Digital"
+      "nota": "Casilla curricular del plan 2545 (2023). Su oferta concreta no está identificada por un código fijo."
     },
     {
       "id": "electronica:pos:8:libre-eleccion:7",
@@ -1026,13 +1026,13 @@
     },
     {
       "id": "electronica:pos:8:optativa-sin-asignatura-especificada:9",
-      "nombre": "Optativa sin asignatura especificada (5)",
+      "nombre": "Optativa Administración (VIII)",
       "codigoAsignatura": null,
       "semestre": 8,
       "creditos": 3,
       "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Ciencias Económicas y Administrativas"
+      "nota": "Casilla curricular del plan 2545 (2023). Su oferta concreta no está identificada por un código fijo."
     },
     {
       "id": "electronica:pos:9:libre-eleccion:11",
@@ -1066,13 +1066,13 @@
     },
     {
       "id": "electronica:pos:9:optativa-sin-asignatura-especificada:14",
-      "nombre": "Optativa sin asignatura especificada",
+      "nombre": "Optativa Administración (IX)",
       "codigoAsignatura": null,
       "semestre": 9,
       "creditos": 3,
       "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Ciencias Económicas y Administrativas"
+      "nota": "Casilla curricular del plan 2545 (2023). Su oferta concreta no está identificada por un código fijo."
     },
     {
       "id": "electronica:pos:10:libre-eleccion:15",
@@ -1302,7 +1302,7 @@
       "nombre": "Campos electromagnéticos",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016487:act:1",
@@ -1312,7 +1312,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Nicolas Mora Parra.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON. JUEVES de 11:00 a 13:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 6,
               "horarios": [
                 {
@@ -1336,7 +1336,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Francisco Jose Roman Campos.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 07:00 a 09:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON. VIERNES de 07:00 a 09:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -1360,7 +1360,7 @@
               "id": "3",
               "nombre": "Grupo 3",
               "profesor": "Nicolas Mora Parra.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026LUNES de 14:00 a 16:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON. MIÉRCOLES de 14:00 a 16:00.SALON DE CLASE 454-307. 454-307. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 4,
               "horarios": [
                 {
@@ -1384,7 +1384,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "Francisco Jose Roman Campos.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 11:00 a 13:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON. MIÉRCOLES de 11:00 a 13:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -1413,7 +1413,7 @@
       "nombre": "Circuitos Eléctricos I",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016489:act:1",
@@ -1447,7 +1447,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Rene Alexander Soto Perez.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 09:00 a 11:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON. VIERNES de 09:00 a 11:00.SALÓN DE CLASE 401-206. 401-206. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 20,
               "horarios": [
                 {
@@ -1471,7 +1471,7 @@
               "id": "3",
               "nombre": "Grupo 3",
               "profesor": "Fabio Andres Pavas Martinez.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.SALÓN DE CLASE 401-207. 401-207. 401 - Julio Garavito Armero. SALON. JUEVES de 09:00 a 11:00.SALÓN DE CLASE 401-207. 401-207. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -1495,7 +1495,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "Carlos Andres Perilla Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 453-415. 453-415. 453 - Guillermina Uribe Bone. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 453-415. 453-415. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -1519,7 +1519,7 @@
               "id": "5",
               "nombre": "Grupo 5",
               "profesor": "Carlos Andres Perilla Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026MARTES de 14:00 a 16:00.SALÓN DE CLASE 401-306. 401-306. 401 - Julio Garavito Armero. SALON. JUEVES de 14:00 a 16:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -1543,7 +1543,7 @@
               "id": "6",
               "nombre": "Grupo 6",
               "profesor": "Oscar German Duarte Velasco.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON. JUEVES de 11:00 a 13:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -1572,7 +1572,7 @@
       "nombre": "Circuitos Eléctricos II",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016490:act:1",
@@ -1630,7 +1630,7 @@
               "id": "3",
               "nombre": "Grupo 3",
               "profesor": "Daniel Rodriguez Manrique.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 14:00 a 16:00.SALON DE CLASE 453-317 (SALA TIC). 453-317. 453 - Guillermina Uribe Bone. SALA DE AUDIOVISUALES. MIÉRCOLES de 14:00 a 16:00.SALON DE CLASE 453-317 (SALA TIC). 453-317. 453 - Guillermina Uribe Bone. SALA DE AUDIOVISUALES.",
               "cuposDisponibles": 7,
               "horarios": [
                 {
@@ -1654,7 +1654,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "Carlos Eduardo Sanchez Diaz.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 07:00 a 09:00.SALON DE CLASE 453-317 (SALA TIC). 453-317. 453 - Guillermina Uribe Bone. SALA DE AUDIOVISUALES. MIÉRCOLES de 07:00 a 09:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 21,
               "horarios": [
                 {
@@ -1683,8 +1683,8 @@
             {
               "id": "1",
               "nombre": "Grupo 1 - Lab",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 14:00 a 16:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 5,
               "horarios": [
                 {
@@ -1702,8 +1702,8 @@
             {
               "id": "2",
               "nombre": "Grupo 2 - Lab",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 14:00 a 16:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 10,
               "horarios": [
                 {
@@ -1722,7 +1722,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Lab",
               "profesor": "Luis Eduardo Gallego Vega. Jorge Enrique Rodriguez Manrique.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 16:00 a 18:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 4,
               "horarios": [
                 {
@@ -1741,7 +1741,7 @@
               "id": "4",
               "nombre": "Grupo 4 - Lab",
               "profesor": "Luis Eduardo Gallego Vega. Jorge Enrique Rodriguez Manrique.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 11:00 a 13:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -1760,7 +1760,7 @@
               "id": "5",
               "nombre": "Grupo 5 - Lab",
               "profesor": "Daniel Rodriguez Manrique.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 09:00 a 11:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 7,
               "horarios": [
                 {
@@ -1779,7 +1779,7 @@
               "id": "6",
               "nombre": "Grupo 6 - Lab",
               "profesor": "Daniel Rodriguez Manrique.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 09:00 a 11:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -1798,7 +1798,7 @@
               "id": "7",
               "nombre": "Grupo 7 - Lab",
               "profesor": "Carlos Eduardo Sanchez Diaz. Cristian Camilo Acosta Castro.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 16:00 a 18:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 12,
               "horarios": [
                 {
@@ -1817,7 +1817,7 @@
               "id": "8",
               "nombre": "Grupo 8 - Lab",
               "profesor": "Carlos Eduardo Sanchez Diaz. Cristian Camilo Acosta Castro.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 16:00 a 18:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 9,
               "horarios": [
                 {
@@ -1841,7 +1841,7 @@
       "nombre": "Comunicaciones",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016492:act:1",
@@ -1851,7 +1851,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Javier Enrique Arevalo Peña.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 11:00 a 13:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON. MIÉRCOLES de 11:00 a 13:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 5,
               "horarios": [
                 {
@@ -1875,7 +1875,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "GLORIA MARGARITA VARON DURAN.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 14:00 a 16:00.SALÓN DE CLASE. 401-105. 401 - Julio Garavito Armero. SALON. MIÉRCOLES de 14:00 a 16:00.SALÓN DE CLASE. 401-105. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -1904,7 +1904,7 @@
       "nombre": "Control",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016493:act:1",
@@ -1914,7 +1914,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "German Andres Ramos Fuentes.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 11:00 a 13:00.SALON DE CLASE 453-415. 453-415. 453 - Guillermina Uribe Bone. SALON. MIÉRCOLES de 11:00 a 13:00.SALON DE CLASE 453-415. 453-415. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -1961,8 +1961,8 @@
             {
               "id": "3",
               "nombre": "Grupo 3",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 09:00 a 11:00.SALON DE CLASE 453-415. 453-415. 453 - Guillermina Uribe Bone. SALON. MIÉRCOLES de 09:00 a 11:00.SALON DE CLASE 453-111. 453-111. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 7,
               "horarios": [
                 {
@@ -1986,7 +1986,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "Jhon Alexander Cortes Romero.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.SALÓN DE CLASE 401-101. 401-101. 401 - Julio Garavito Armero. SALON. MIÉRCOLES de 16:00 a 18:00.SALÓN DE CLASE 401-101. 401-101. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2016,7 +2016,7 @@
               "id": "1",
               "nombre": "Grupo 1 - Grupo Lab",
               "profesor": "PAULA ANDREA MOZUCA TAMAYO. German Andres Ramos Fuentes.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026JUEVES de 09:00 a 11:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2035,7 +2035,7 @@
               "id": "2",
               "nombre": "Grupo 2 - Grupo Lab",
               "profesor": "PAULA ANDREA MOZUCA TAMAYO. German Andres Ramos Fuentes.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 11:00 a 13:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2054,7 +2054,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Grupo Lab",
               "profesor": "EDUARDO ALIRIO MOJICA NAVA. Omar Ferney Alvarez Herrera.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2073,7 +2073,7 @@
               "id": "4",
               "nombre": "Grupo 4 - Grupo Lab",
               "profesor": "EDUARDO ALIRIO MOJICA NAVA. Omar Ferney Alvarez Herrera.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 14:00 a 16:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2092,7 +2092,7 @@
               "id": "5",
               "nombre": "Grupo 5 - Grupo Lab",
               "profesor": "Leonardo Enrique Bermeo Clavijo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -2111,7 +2111,7 @@
               "id": "6",
               "nombre": "Grupo 6 - Grupo Lab",
               "profesor": "Leonardo Enrique Bermeo Clavijo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 11:00 a 13:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2130,7 +2130,7 @@
               "id": "7",
               "nombre": "Grupo 7 - Grupo Lab",
               "profesor": "Omar Ferney Alvarez Herrera. Jhon Alexander Cortes Romero.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 14:00 a 16:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2149,7 +2149,7 @@
               "id": "8",
               "nombre": "Grupo 8 - Grupo Lab",
               "profesor": "Omar Ferney Alvarez Herrera. Jhon Alexander Cortes Romero.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 16:00 a 18:00.LABORATORIO DE INSTRUMENTACION. 411-104B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2173,7 +2173,7 @@
       "nombre": "Diseño de sistemas electrónicos",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2028816:act:1",
@@ -2183,7 +2183,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Óscar Julián Perdomo Charry.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.SALON DE CLASE 454-307. 454-307. 454 - Luis Carlos Sarmiento Angulo. SALON. JUEVES de 09:00 a 11:00.SALON DE CLASE 454-307. 454-307. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 18,
               "horarios": [
                 {
@@ -2207,7 +2207,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Óscar Julián Perdomo Charry.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.SALÓN DE CLASE 401-202. 401-202. 401 - Julio Garavito Armero. SALON. JUEVES de 11:00 a 13:00.SALÓN DE CLASE 401-202. 401-202. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -2236,7 +2236,7 @@
       "nombre": "Electrónica análoga I",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016495:act:1",
@@ -2246,7 +2246,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Pablo Enrique Rodriguez Espinosa.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.SALON DE CLASE 453-411. 453-411. 453 - Guillermina Uribe Bone. SALON. JUEVES de 09:00 a 11:00.SALON DE CLASE 453-409. 453-409. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2270,7 +2270,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Jhon Jairo Ramirez Echeverry.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 07:00 a 09:00.AUDITORIO B INGENIERIA. 453-232. 453 - Guillermina Uribe Bone. AUDITORIO. VIERNES de 07:00 a 09:00.AUDITORIO A INGENIERIA. 453-231. 453 - Guillermina Uribe Bone. AUDITORIO.",
               "cuposDisponibles": 7,
               "horarios": [
                 {
@@ -2294,7 +2294,7 @@
               "id": "3",
               "nombre": "Grupo 3",
               "profesor": "Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 09:00 a 11:00.SALON DE CLASE 453-417. 453-417. 453 - Guillermina Uribe Bone. SALON. VIERNES de 09:00 a 11:00.SALON DE CLASE 453-411. 453-411. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 6,
               "horarios": [
                 {
@@ -2318,7 +2318,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "Jesus Maria Quintero Quintero.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 07:00 a 09:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON. JUEVES de 07:00 a 09:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -2342,7 +2342,7 @@
               "id": "5",
               "nombre": "Grupo 5",
               "profesor": "EDGAR DANIEL TORRES GARCIA.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026MARTES de 09:00 a 11:00.SALON DE CLASE 453-303. 453-303. 453 - Guillermina Uribe Bone. SALON. JUEVES de 09:00 a 11:00.SALON DE CLASE 453-415. 453-415. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 10,
               "horarios": [
                 {
@@ -2372,7 +2372,7 @@
               "id": "1",
               "nombre": "Grupo 1 - Grupo Lab",
               "profesor": "Diana Sofia Lopez Cardenas. Pablo Enrique Rodriguez Espinosa.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 14:00 a 16:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2391,7 +2391,7 @@
               "id": "10",
               "nombre": "Grupo 10 - Grupo Lab",
               "profesor": "Jesus Maria Quintero Quintero. Johan Sebastian Gamba Sierra.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2409,8 +2409,8 @@
             {
               "id": "11",
               "nombre": "Grupo 11 - Grupo Lab",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026MARTES de 11:00 a 13:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 4,
               "horarios": [
                 {
@@ -2428,8 +2428,8 @@
             {
               "id": "12",
               "nombre": "Grupo 12- Grupo Lab",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026JUEVES de 11:00 a 13:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 6,
               "horarios": [
                 {
@@ -2448,7 +2448,7 @@
               "id": "2",
               "nombre": "Grupo 2 - Grupo Lab",
               "profesor": "Diana Sofia Lopez Cardenas. Pablo Enrique Rodriguez Espinosa.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2467,7 +2467,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Grupo Lab",
               "profesor": "Jhon Jairo Ramirez Echeverry.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -2486,7 +2486,7 @@
               "id": "4",
               "nombre": "Grupo 4 - Grupo Lab",
               "profesor": "Jhon Jairo Ramirez Echeverry.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -2505,7 +2505,7 @@
               "id": "5",
               "nombre": "Grupo 5 - Grupo Lab",
               "profesor": "Jhon Jairo Ramirez Echeverry.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 14:00 a 16:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2524,7 +2524,7 @@
               "id": "6",
               "nombre": "Grupo 6 - Grupo Lab",
               "profesor": "Jhon Jairo Ramirez Echeverry.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 11:00 a 13:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2543,7 +2543,7 @@
               "id": "7",
               "nombre": "Grupo 7 - Grupo Lab",
               "profesor": "Diana Sofia Lopez Cardenas. Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 07:00 a 09:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -2562,7 +2562,7 @@
               "id": "8",
               "nombre": "Grupo 8 - Grupo Lab",
               "profesor": "Diana Sofia Lopez Cardenas. Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 07:00 a 09:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 4,
               "horarios": [
                 {
@@ -2581,7 +2581,7 @@
               "id": "9",
               "nombre": "Grupo 9 - Grupo Lab",
               "profesor": "Johan Sebastian Gamba Sierra. Jesus Maria Quintero Quintero.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2605,7 +2605,7 @@
       "nombre": "Electrónica análoga II",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016496:act:1",
@@ -2615,7 +2615,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "GLORIA MARGARITA VARON DURAN.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 09:00 a 11:00.SALON DE CLASE 453-115. 453-115. 453 - Guillermina Uribe Bone. SALON. VIERNES de 09:00 a 11:00.SALON DE CLASE 453-315. 453-315. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -2669,7 +2669,7 @@
               "id": "1",
               "nombre": "Grupo 1 - Grupo Lab",
               "profesor": "GLORIA MARGARITA VARON DURAN. Carlos Julian Furnieles Chipagra.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2688,7 +2688,7 @@
               "id": "2",
               "nombre": "Grupo 2 - Grupo Lab",
               "profesor": "GLORIA MARGARITA VARON DURAN. Carlos Julian Furnieles Chipagra.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 14:00 a 16:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -2707,7 +2707,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Grupo Lab",
               "profesor": "GLORIA MARGARITA VARON DURAN. Carlos Julian Furnieles Chipagra.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -2726,7 +2726,7 @@
               "id": "4",
               "nombre": "Grupo 4 - Grupo Lab",
               "profesor": "GLORIA MARGARITA VARON DURAN. Carlos Julian Furnieles Chipagra.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 11:00 a 13:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2750,7 +2750,7 @@
       "nombre": "Electrónica de potencia",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016497:act:1",
@@ -2760,7 +2760,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Johan Sebastian Sanchez Choachi.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 14:00 a 16:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON. MIÉRCOLES de 14:00 a 16:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -2814,7 +2814,7 @@
               "id": "1",
               "nombre": "Grupo 1 - Grupo Lab",
               "profesor": "Johan Sebastian Sanchez Choachi.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA DE POTENCIA. 411-104A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -2833,7 +2833,7 @@
               "id": "2",
               "nombre": "Grupo 2 - Grupo Lab",
               "profesor": "Johan Sebastian Sanchez Choachi.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA DE POTENCIA. 411-104A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -2852,7 +2852,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Grupo Lab",
               "profesor": "RICARDO ISAZA RUGET.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA DE POTENCIA. 411-104A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 8,
               "horarios": [
                 {
@@ -2871,7 +2871,7 @@
               "id": "4",
               "nombre": "Grupo 4 - Grupo Lab",
               "profesor": "RICARDO ISAZA RUGET.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA DE POTENCIA. 411-104A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 11,
               "horarios": [
                 {
@@ -2895,7 +2895,7 @@
       "nombre": "Electrónica digital I",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016498:act:1",
@@ -2905,7 +2905,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Andres Junior Gallego Garces.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON. JUEVES de 09:00 a 11:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -2977,7 +2977,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "Carlos Ivan Camargo Bareño.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 07:00 a 09:00.SALON DE CLASE 453-415. 453-415. 453 - Guillermina Uribe Bone. SALON. JUEVES de 07:00 a 09:00.SALON DE CLASE 453-411. 453-411. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -3001,7 +3001,7 @@
               "id": "5",
               "nombre": "Grupo 5",
               "profesor": "JOHNNY GERMAN CUBIDES CASTRO.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026MARTES de 18:00 a 20:00.SALÓN DE CLASE 401-208. 401-208. 401 - Julio Garavito Armero. SALON. JUEVES de 18:00 a 20:00.SALÓN DE CLASE 401-208. 401-208. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3031,7 +3031,7 @@
               "id": "1",
               "nombre": "Grupo 1 - Grupo Lab",
               "profesor": "Andres Junior Gallego Garces.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3050,7 +3050,7 @@
               "id": "10",
               "nombre": "Grupo 10 - Grupo Lab",
               "profesor": "JOHNNY GERMAN CUBIDES CASTRO.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3069,7 +3069,7 @@
               "id": "2",
               "nombre": "Grupo 2 - Grupo Lab",
               "profesor": "Andres Junior Gallego Garces.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3088,7 +3088,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Grupo Lab",
               "profesor": "DIEGO ALEXANDER TIBADUIZA BURGOS. Johan Sebastian Eslava Garzon. RICARDO ISAZA RUGET.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 14:00 a 16:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3107,7 +3107,7 @@
               "id": "4",
               "nombre": "Grupo 4 - Grupo Lab",
               "profesor": "DIEGO ALEXANDER TIBADUIZA BURGOS. RICARDO ISAZA RUGET. Johan Sebastian Eslava Garzon.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3126,7 +3126,7 @@
               "id": "5",
               "nombre": "Grupo 5 - Grupo Lab",
               "profesor": "DIEGO ALEXANDER TIBADUIZA BURGOS. Johan Sebastian Eslava Garzon.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 11:00 a 13:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3145,7 +3145,7 @@
               "id": "6",
               "nombre": "Grupo 6 - Grupo Lab",
               "profesor": "DIEGO ALEXANDER TIBADUIZA BURGOS. Johan Sebastian Eslava Garzon.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 07:00 a 09:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3164,7 +3164,7 @@
               "id": "7",
               "nombre": "Grupo 7 - Grupo Lab",
               "profesor": "Carlos Ivan Camargo Bareño. JOHNNY GERMAN CUBIDES CASTRO.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 07:00 a 09:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3183,7 +3183,7 @@
               "id": "8",
               "nombre": "Grupo 8 - Grupo Lab",
               "profesor": "Carlos Ivan Camargo Bareño. JOHNNY GERMAN CUBIDES CASTRO.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3202,7 +3202,7 @@
               "id": "9",
               "nombre": "Grupo 9- Grupo Lab",
               "profesor": "JOHNNY GERMAN CUBIDES CASTRO.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026MARTES de 14:00 a 16:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3226,7 +3226,7 @@
       "nombre": "Electrónica digital II",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016499:act:1",
@@ -3236,7 +3236,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Carlos Ivan Camargo Bareño.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.SALON DE CLASE 454-205. 454-205. 454 - Luis Carlos Sarmiento Angulo. SALON. JUEVES de 09:00 a 11:00.SALON DE CLASE 454-205. 454-205. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 4,
               "horarios": [
                 {
@@ -3290,7 +3290,7 @@
               "id": "1",
               "nombre": "Grupo 1 - Grupo Lab",
               "profesor": "Carlos Ivan Camargo Bareño.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 11:00 a 13:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -3309,7 +3309,7 @@
               "id": "2",
               "nombre": "Grupo 2 - Grupo Lab",
               "profesor": "Carlos Ivan Camargo Bareño.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3328,7 +3328,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Grupo Lab",
               "profesor": "DIEGO ALEXANDER TIBADUIZA BURGOS.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 14:00 a 16:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3347,7 +3347,7 @@
               "id": "4",
               "nombre": "Grupo 4 - Grupo Lab",
               "profesor": "DIEGO ALEXANDER TIBADUIZA BURGOS.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 14:00 a 16:00.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3371,7 +3371,7 @@
       "nombre": "Instrumentación y medidas",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016501:act:1",
@@ -3381,7 +3381,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 11:00 a 13:00.SALON DE CLASE 453-417. 453-417. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 4,
               "horarios": [
                 {
@@ -3400,7 +3400,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Carlos Eduardo Sanchez Diaz.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.LABORATORIO DE CIRCUITOS. 411-202B. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3425,7 +3425,7 @@
               "id": "1",
               "nombre": "Grupo 1 - Grupo Lab",
               "profesor": "Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 11:00 a 13:00.LABORATORIO DE ELECTRONICA DE POTENCIA. 411-104A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 5,
               "horarios": [
                 {
@@ -3444,7 +3444,7 @@
               "id": "2",
               "nombre": "Grupo 2 - Grupo Lab",
               "profesor": "Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 07:00 a 09:00.LABORATORIO DE ELECTRONICA DE POTENCIA. 411-104A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3463,7 +3463,7 @@
               "id": "3",
               "nombre": "Grupo 3 - Grupo Lab",
               "profesor": "Carlos Eduardo Sanchez Diaz.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3487,12 +3487,25 @@
       "nombre": "Introducción a ingeniería electrónica",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 5,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016502:act:1",
           "nombre": "CLASE MAGISTRAL (2016502)",
           "grupos": [
+            {
+              "id": "SUMA-01",
+              "nombre": "Grupo PEAMA Sumapaz",
+              "profesor": "Andres Ricardo Beira Combariza.",
+              "facultad": "SEDE BOGOTÁ",
+              "cuposDisponibles": 0,
+              "horarios": [],
+              "detalleHorario": "No informado",
+              "fechaInicio": null,
+              "fechaFin": null,
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            },
             {
               "id": "1",
               "nombre": "Grupo 1",
@@ -3511,19 +3524,6 @@
               "fechaFin": "12/12/2026",
               "duracion": "Semestral",
               "jornada": "DIURNO"
-            },
-            {
-              "id": "SUMA-01",
-              "nombre": "Grupo PEAMA Sumapaz",
-              "profesor": "Andres Ricardo Beira Combariza.",
-              "facultad": "SEDE BOGOTÁ",
-              "cuposDisponibles": 0,
-              "horarios": [],
-              "detalleHorario": "No informado",
-              "fechaInicio": null,
-              "fechaFin": null,
-              "duracion": "Semestral",
-              "jornada": "DIURNO"
             }
           ]
         },
@@ -3532,10 +3532,23 @@
           "nombre": "CLASE TALLER (20126502)",
           "grupos": [
             {
+              "id": "SUMA-01",
+              "nombre": "Grupo PEAMA Sumapaz",
+              "profesor": "JHON FREDDY LOPEZ MEDINA.",
+              "facultad": "SEDE BOGOTÁ",
+              "cuposDisponibles": 0,
+              "horarios": [],
+              "detalleHorario": "No informado",
+              "fechaInicio": null,
+              "fechaFin": null,
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            },
+            {
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Pablo Enrique Rodriguez Espinosa.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.SALÓN DE CLASE 401-102. 401-102. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -3554,7 +3567,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Pablo Enrique Rodriguez Espinosa.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 11:00 a 13:00.SALÓN DE CLASE 401-102. 401-102. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -3568,19 +3581,6 @@
               "fechaFin": "12/12/2026",
               "duracion": "Semestral",
               "jornada": "DIURNO"
-            },
-            {
-              "id": "SUMA-01",
-              "nombre": "Grupo PEAMA Sumapaz",
-              "profesor": "JHON FREDDY LOPEZ MEDINA.",
-              "facultad": "SEDE BOGOTÁ",
-              "cuposDisponibles": 0,
-              "horarios": [],
-              "detalleHorario": "No informado",
-              "fechaInicio": null,
-              "fechaFin": null,
-              "duracion": "Semestral",
-              "jornada": "DIURNO"
             }
           ]
         }
@@ -3591,7 +3591,7 @@
       "nombre": "Líneas y antenas",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016503:act:1",
@@ -3630,7 +3630,7 @@
       "nombre": "Señales y sistemas I",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016506:act:1",
@@ -3640,7 +3640,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "JAN BACCA RODRIGUEZ.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 11:00 a 13:00.SALÓN DE CLASE 401-202. 401-202. 401 - Julio Garavito Armero. SALON. VIERNES de 11:00 a 13:00.SALÓN DE CLASE 401-202. 401-202. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -3664,7 +3664,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Jorge Ivan Sofrony Esmeral.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.MIÉRCOLES de 16:00 a 18:00.",
               "cuposDisponibles": 7,
               "horarios": [
                 {
@@ -3688,7 +3688,7 @@
               "id": "3",
               "nombre": "Grupo 3",
               "profesor": "Freddy Alexander Velandia Vivas.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 14:00 a 16:00.AUDITORIO JUAN BAUTISTA GOMES RODRIGUEZ (PARANINFO B). 401-PAR-B. 401 - Julio Garavito Armero. AUDITORIO. MIÉRCOLES de 14:00 a 16:00.SALON DE CLASE 453-115. 453-115. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3712,7 +3712,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "PAULA ANDREA MOZUCA TAMAYO.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 14:00 a 16:00.SALON DE CLASE 453-417. 453-417. 453 - Guillermina Uribe Bone. SALON. JUEVES de 14:00 a 16:00.SALON DE CLASE 453-417. 453-417. 453 - Guillermina Uribe Bone. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -3736,7 +3736,7 @@
               "id": "5",
               "nombre": "Grupo 5",
               "profesor": "Diego Alejandro Monroy Ortiz.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 16:00 a 18:00.SALÓN DE CLASE 401-101. 401-101. 401 - Julio Garavito Armero. SALON. JUEVES de 16:00 a 18:00.SALÓN DE CLASE 401-101. 401-101. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 2,
               "horarios": [
                 {
@@ -3760,7 +3760,7 @@
               "id": "6",
               "nombre": "Grupo 6",
               "profesor": "Freddy Alexander Velandia Vivas.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 16:00 a 18:00.SALÓN DE CLASE 401-304. 401-304. 401 - Julio Garavito Armero. SALON. MIÉRCOLES de 16:00 a 18:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -3789,7 +3789,7 @@
       "nombre": "Señales y Sistemas II",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016507:act:1",
@@ -3847,7 +3847,7 @@
               "id": "3",
               "nombre": "Grupo 3",
               "profesor": "JAN BACCA RODRIGUEZ.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 11:00 a 13:00.SALÓN DE CLASE 401-101. 401-101. 401 - Julio Garavito Armero. SALON. JUEVES de 11:00 a 13:00.SALÓN DE CLASE 401-101. 401-101. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 4,
               "horarios": [
                 {
@@ -3871,7 +3871,7 @@
               "id": "4",
               "nombre": "Grupo 4",
               "profesor": "Maribel Anaya Vejar.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 11:00 a 13:00.SALÓN DE CLASE 401-101. 401-101. 401 - Julio Garavito Armero. SALON. VIERNES de 11:00 a 13:00.SALÓN DE CLASE 401-203. 401-203. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -3900,7 +3900,7 @@
       "nombre": "Taller de ingeniería electrónica",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 2,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016509:act:1",
@@ -3909,7 +3909,7 @@
             {
               "id": "1",
               "nombre": "Grupo 1",
-              "profesor": "No informado",
+              "profesor": null,
               "facultad": "FACULTAD DE INGENIERÍA",
               "cuposDisponibles": 2,
               "horarios": [
@@ -4004,8 +4004,8 @@
             {
               "id": "6",
               "nombre": "Grupo 6",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 07:00 a 10:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -4024,7 +4024,7 @@
               "id": "7",
               "nombre": "Grupo 7",
               "profesor": "Oscar Andres Eraso Eraso.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026LUNES de 10:00 a 13:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -4048,7 +4048,7 @@
       "nombre": "Taller de proyectos interdisciplinarios",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2024045:act:1",
@@ -4082,7 +4082,7 @@
               "id": "10",
               "nombre": "2024045-10 Taller de proyectos interdisciplinarios",
               "profesor": "Oscar Andres Eraso Eraso.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 14:00 a 16:00.SALON DE CLASE 454-205. 454-205. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 14:00 a 16:00.SALON DE CLASE 454-205. 454-205. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4154,7 +4154,7 @@
               "id": "14",
               "nombre": "2024045-14 Taller de proyectos interdisciplinarios",
               "profesor": "Dolly Santos Barbosa.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 454-202. 454-202. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 454-202. 454-202. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4178,7 +4178,7 @@
               "id": "15",
               "nombre": "2024045-15 Taller de proyectos interdisciplinarios",
               "profesor": "Oscar Andres Eraso Eraso.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 454-205. 454-205. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 454-205. 454-205. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4202,7 +4202,7 @@
               "id": "16",
               "nombre": "2024045-16 Taller de proyectos interdisciplinarios",
               "profesor": "Luis Ignacio Rodriguez Varela.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 454-208. 454-208. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 454-208. 454-208. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4226,7 +4226,7 @@
               "id": "17",
               "nombre": "2024045-17 Taller de proyectos interdisciplinarios",
               "profesor": "JOHANA CATALINA MANOSALVA BARRERA.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 454-203. 454-203. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 454-203. 454-203. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4250,7 +4250,7 @@
               "id": "19",
               "nombre": "2024045-19 Taller de proyectos interdisciplinarios",
               "profesor": "FRANCISCO JAVIER VÁSQUEZ VÁSQUEZ.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 454-206. 454-206. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 454-206. 454-206. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4298,7 +4298,7 @@
               "id": "22",
               "nombre": "2024045-22 Taller de proyectos interdisciplinarios",
               "profesor": "Ubaldo Garcia Zaragoza.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 454-204. 454-204. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 454-204. 454-204. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4322,7 +4322,7 @@
               "id": "23",
               "nombre": "2024045-23 Taller de proyectos interdisciplinarios",
               "profesor": "Camilo Ernesto Zuñiga Bello.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 16:00 a 18:00.SALON DE VIDEO CONFERENCIAS 454-302. 454-302. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE VIDEO CONFERENCIAS 454-302. 454-302. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4417,8 +4417,8 @@
             {
               "id": "40",
               "nombre": "2024045-40 TPI-- NO BORRAR-- BLOQ ESPACIOS",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 07:00 a 18:00.SALON DE CLASE 454-201. 454-201. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 14:00 a 18:00.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4441,8 +4441,8 @@
             {
               "id": "41",
               "nombre": "2024045-41 TPI -- No BORRAR - - BLQ ESPACIOS",
-              "profesor": "No informado",
-              "facultad": null,
+              "profesor": null,
+              "facultad": "Horarios/Aula: No informado",
               "cuposDisponibles": 0,
               "horarios": [],
               "detalleHorario": "No informado",
@@ -4455,7 +4455,7 @@
               "id": "5",
               "nombre": "2024045-5 Taller de proyectos interdisciplinarios",
               "profesor": "CARLOS ALBERTO CUSGUEN GÓMEZ.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:28/08/2026 - 16/12/2026LUNES de 16:00 a 18:00.SALON DE CLASE 454-305. 454-305. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 16:00 a 18:00.SALON DE CLASE 454-305. 454-305. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4551,7 +4551,7 @@
               "id": "9",
               "nombre": "2024045-9 Taller de proyectos interdisciplinarios",
               "profesor": "Manuel Alejandro Mayorga Betancourt.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:27/08/2026 - 17/12/2026LUNES de 14:00 a 16:00.SALON DE CLASE 454-305. 454-305. 454 - Luis Carlos Sarmiento Angulo. SALON. MIÉRCOLES de 14:00 a 16:00.SALON DE CLASE 454-305. 454-305. 454 - Luis Carlos Sarmiento Angulo. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4580,7 +4580,7 @@
       "nombre": "Circuitos de RF",
       "tipologia": "DISCIPLINAR OPTATIVA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016488:act:1",
@@ -4590,7 +4590,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Cristian Andres Triana Infante.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MIÉRCOLES de 09:00 a 11:00.SALON DE CLASE 453-417. 453-417. 453 - Guillermina Uribe Bone. SALON. VIERNES de 09:00 a 11:00.SALÓN DE CLASE 401-305. 401-305. 401 - Julio Garavito Armero. SALON.",
               "cuposDisponibles": 6,
               "horarios": [
                 {
@@ -4620,7 +4620,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Cristian Andres Triana Infante.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026MARTES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA DE POTENCIA. 411-104A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -4639,7 +4639,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Cristian Andres Triana Infante.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 12/12/2026JUEVES de 09:00 a 11:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 3,
               "horarios": [
                 {
@@ -4663,7 +4663,7 @@
       "nombre": "Circuitos integrados lineales y aplicaciones",
       "tipologia": "DISCIPLINAR OPTATIVA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2028211:act:1",
@@ -4673,7 +4673,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026LUNES de 07:00 a 09:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON. VIERNES de 07:00 a 09:00.LABORATORIO DE ELECTRONICA ANALOGA. 411-102A. 411 - Laboratorios de Eléctrica y Mecánica. SALON.",
               "cuposDisponibles": 0,
               "horarios": [
                 {
@@ -4697,7 +4697,7 @@
               "id": "2",
               "nombre": "Grupo 2",
               "profesor": "Giovanny Aldemar Baquero Rozo.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026LUNES de 07:00 a 09:00.SALON DE CLASE 453-413. 453-413. 453 - Guillermina Uribe Bone. SALON. MARTES de 07:00 a 09:00.LABORATORIO DE ELECTRONICA DIGITAL Y MICROPROCESADORES. 411-202A. 411 - Laboratorios de Eléctrica y Mecánica. LABORATORIO.",
               "cuposDisponibles": 1,
               "horarios": [
                 {
@@ -4726,7 +4726,7 @@
       "nombre": "Redes de telecomunicaciones",
       "tipologia": "DISCIPLINAR OPTATIVA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2019125:act:1",
@@ -4760,7 +4760,7 @@
       "nombre": "Sistemas embebidos",
       "tipologia": "DISCIPLINAR OPTATIVA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016508:act:1",
@@ -4799,7 +4799,7 @@
       "nombre": "Verificación de sistemas digitales",
       "tipologia": "DISCIPLINAR OPTATIVA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016512:act:1",
@@ -4809,7 +4809,7 @@
               "id": "1",
               "nombre": "Grupo 1",
               "profesor": "Johan Sebastian Eslava Garzon.",
-              "facultad": null,
+              "facultad": "Horarios/Aula: No informadoFecha:24/08/2026 - 17/12/2026MARTES de 09:00 a 11:00.SALON DE CLASE 453-317 (SALA TIC). 453-317. 453 - Guillermina Uribe Bone. SALA DE AUDIOVISUALES. JUEVES de 09:00 a 11:00.SALON DE CLASE 453-317 (SALA TIC). 453-317. 453 - Guillermina Uribe Bone. SALA DE AUDIOVISUALES.",
               "cuposDisponibles": 7,
               "horarios": [
                 {
@@ -4858,7 +4858,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:6:2016487|G2",
@@ -4883,7 +4883,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:6:2016487|G3",
@@ -4908,7 +4908,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:6:2016487|G4",
@@ -4933,7 +4933,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:3:2016489|G1",
@@ -4958,7 +4958,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:3:2016489|G2",
@@ -4983,7 +4983,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:3:2016489|G3",
@@ -5008,7 +5008,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:3:2016489|G4",
@@ -5033,7 +5033,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:3:2016489|G5",
@@ -5058,7 +5058,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:3:2016489|G6",
@@ -5083,7 +5083,271 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
+    },
+    {
+      "id": "electronica:pos:4:2016490|Magistral G1",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016490:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Magistral G2",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016490:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Magistral G3",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Magistral G3",
+      "componentes": [
+        {
+          "id": "2016490:act:1:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Magistral G4",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Magistral G4",
+      "componentes": [
+        {
+          "id": "2016490:act:1:G4",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G1",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G2",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G2",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G3",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G3",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G4",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G4",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G5",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G5",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G5",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G6",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G6",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G6",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G7",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G7",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G7",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016490|Laboratorio G8",
+      "posicionId": "electronica:pos:4:2016490",
+      "etiqueta": "Laboratorio G8",
+      "componentes": [
+        {
+          "id": "2016490:act:2:G8",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
     },
     {
       "id": "electronica:pos:7:2016492|G1",
@@ -5108,7 +5372,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:7:2016492|G2",
@@ -5133,7 +5397,1577 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
+    },
+    {
+      "id": "electronica:pos:7:2016493|Magistral G1",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016493:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Magistral G2",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016493:act:1:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Magistral G3",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Magistral G3",
+      "componentes": [
+        {
+          "id": "2016493:act:1:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Magistral G4",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Magistral G4",
+      "componentes": [
+        {
+          "id": "2016493:act:1:G4",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G1",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G1",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G2",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G2",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G3",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G3",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G4",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G4",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G5",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G5",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G5",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G6",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G6",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G6",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G7",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G7",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G7",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:2016493|Laboratorio G8",
+      "posicionId": "electronica:pos:7:2016493",
+      "etiqueta": "Laboratorio G8",
+      "componentes": [
+        {
+          "id": "2016493:act:2:G8",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:10:diseno-de-sistemas-electronicos|G1",
+      "posicionId": "electronica:pos:10:diseno-de-sistemas-electronicos",
+      "etiqueta": "G1",
+      "componentes": [
+        {
+          "id": "2028816:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:10:diseno-de-sistemas-electronicos|G2",
+      "posicionId": "electronica:pos:10:diseno-de-sistemas-electronicos",
+      "etiqueta": "G2",
+      "componentes": [
+        {
+          "id": "2028816:act:1:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:4:2016495|Magistral G1",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Magistral G2",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Magistral G3",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Magistral G3",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Magistral G4",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Magistral G4",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G4",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Magistral G5",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Magistral G5",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G5",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G1",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G1",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G10",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G10",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G10",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G11",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G11",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G11",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G12",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G12",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G12",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G2",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G2",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G3",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G4",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G4",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G5",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G5",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G5",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G6",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G6",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G6",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G7",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G7",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G7",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G8",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G8",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G8",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:4:2016495|Laboratorio G9",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "Laboratorio G9",
+      "componentes": [
+        {
+          "id": "2016495:act:2:G9",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016496|Magistral G1",
+      "posicionId": "electronica:pos:5:2016496",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016496:act:1:G1",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016496|Magistral G2",
+      "posicionId": "electronica:pos:5:2016496",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016496:act:1:G2",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016496|Laboratorio G1",
+      "posicionId": "electronica:pos:5:2016496",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016496:act:2:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016496|Laboratorio G2",
+      "posicionId": "electronica:pos:5:2016496",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016496:act:2:G2",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016496|Laboratorio G3",
+      "posicionId": "electronica:pos:5:2016496",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016496:act:2:G3",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016496|Laboratorio G4",
+      "posicionId": "electronica:pos:5:2016496",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2016496:act:2:G4",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:8:2016497|Magistral G1",
+      "posicionId": "electronica:pos:8:2016497",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016497:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:8:2016497|Magistral G2",
+      "posicionId": "electronica:pos:8:2016497",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016497:act:1:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:8:2016497|Laboratorio G1",
+      "posicionId": "electronica:pos:8:2016497",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016497:act:2:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:8:2016497|Laboratorio G2",
+      "posicionId": "electronica:pos:8:2016497",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016497:act:2:G2",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:8:2016497|Laboratorio G3",
+      "posicionId": "electronica:pos:8:2016497",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016497:act:2:G3",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:8:2016497|Laboratorio G4",
+      "posicionId": "electronica:pos:8:2016497",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2016497:act:2:G4",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Magistral G1",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016498:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Magistral G2",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016498:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Magistral G3",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Magistral G3",
+      "componentes": [
+        {
+          "id": "2016498:act:1:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Magistral G4",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Magistral G4",
+      "componentes": [
+        {
+          "id": "2016498:act:1:G4",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Magistral G5",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Magistral G5",
+      "componentes": [
+        {
+          "id": "2016498:act:1:G5",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "18:00",
+              "fin": "20:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "18:00",
+              "fin": "20:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G1",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G1",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G10",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G10",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G10",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G2",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G2",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G3",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G4",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G4",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G5",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G5",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G5",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G6",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G6",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G6",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G7",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G7",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G7",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G8",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G8",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G8",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016498|Laboratorio G9",
+      "posicionId": "electronica:pos:5:2016498",
+      "etiqueta": "Laboratorio G9",
+      "componentes": [
+        {
+          "id": "2016498:act:2:G9",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:6:2016499|Magistral G1",
+      "posicionId": "electronica:pos:6:2016499",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016499:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:6:2016499|Magistral G2",
+      "posicionId": "electronica:pos:6:2016499",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016499:act:1:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:6:2016499|Laboratorio G1",
+      "posicionId": "electronica:pos:6:2016499",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016499:act:2:G1",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:6:2016499|Laboratorio G2",
+      "posicionId": "electronica:pos:6:2016499",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016499:act:2:G2",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:6:2016499|Laboratorio G3",
+      "posicionId": "electronica:pos:6:2016499",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016499:act:2:G3",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:6:2016499|Laboratorio G4",
+      "posicionId": "electronica:pos:6:2016499",
+      "etiqueta": "Laboratorio G4",
+      "componentes": [
+        {
+          "id": "2016499:act:2:G4",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016501|Magistral G1",
+      "posicionId": "electronica:pos:5:2016501",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016501:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016501|Magistral G2",
+      "posicionId": "electronica:pos:5:2016501",
+      "etiqueta": "Magistral G2",
+      "componentes": [
+        {
+          "id": "2016501:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016501|Laboratorio G1",
+      "posicionId": "electronica:pos:5:2016501",
+      "etiqueta": "Laboratorio G1",
+      "componentes": [
+        {
+          "id": "2016501:act:2:G1",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016501|Laboratorio G2",
+      "posicionId": "electronica:pos:5:2016501",
+      "etiqueta": "Laboratorio G2",
+      "componentes": [
+        {
+          "id": "2016501:act:2:G2",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:5:2016501|Laboratorio G3",
+      "posicionId": "electronica:pos:5:2016501",
+      "etiqueta": "Laboratorio G3",
+      "componentes": [
+        {
+          "id": "2016501:act:2:G3",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:1:2016502|Magistral G1",
+      "posicionId": "electronica:pos:1:2016502",
+      "etiqueta": "Magistral G1",
+      "componentes": [
+        {
+          "id": "2016502:act:1:G1",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:1:2016502|Taller G1",
+      "posicionId": "electronica:pos:1:2016502",
+      "etiqueta": "Taller G1",
+      "componentes": [
+        {
+          "id": "2016502:act:2:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:1:2016502|Taller G2",
+      "posicionId": "electronica:pos:1:2016502",
+      "etiqueta": "Taller G2",
+      "componentes": [
+        {
+          "id": "2016502:act:2:G2",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
+      "analizable": false
     },
     {
       "id": "electronica:pos:7:2016503|G1",
@@ -5158,7 +6992,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:5:2016506|G1",
@@ -5183,7 +7017,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:5:2016506|G2",
@@ -5208,7 +7042,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:5:2016506|G3",
@@ -5233,7 +7067,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:5:2016506|G4",
@@ -5258,7 +7092,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:5:2016506|G5",
@@ -5283,7 +7117,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:5:2016506|G6",
@@ -5308,7 +7142,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:6:2016507|G1",
@@ -5333,7 +7167,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:6:2016507|G2",
@@ -5358,7 +7192,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:6:2016507|G3",
@@ -5383,7 +7217,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:6:2016507|G4",
@@ -5408,7 +7242,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:1:2016509|G1",
@@ -5427,7 +7261,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:1:2016509|G2",
@@ -5446,7 +7280,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:1:2016509|G3",
@@ -5465,7 +7299,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:1:2016509|G4",
@@ -5484,7 +7318,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:1:2016509|G5",
@@ -5503,7 +7337,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:1:2016509|G6",
@@ -5522,7 +7356,7 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
     },
     {
       "id": "electronica:pos:1:2016509|G7",
@@ -5541,7 +7375,559 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G1",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G1",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G10",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G10",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G10",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G12",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G12",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G12",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G13",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G13",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G13",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G14",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G14",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G14",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G15",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G15",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G15",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G16",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G16",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G16",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G17",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G17",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G17",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G19",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G19",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G19",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G2",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G2",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G22",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G22",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G22",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G23",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G23",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G23",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G24",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G24",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G24",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G3",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G3",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G4",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G4",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G4",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G5",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G5",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G5",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G6",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G6",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G6",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G7",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G7",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G7",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G8",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G8",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G8",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:9:2016510|G9",
+      "posicionId": "electronica:pos:9:2016510",
+      "etiqueta": "G9",
+      "componentes": [
+        {
+          "id": "2024045:act:1:G9",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "X",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
+    },
+    {
+      "id": "electronica:pos:6:optativa-sin-asignatura-especificada:5|2028211 G1",
+      "posicionId": "electronica:pos:6:optativa-sin-asignatura-especificada:5",
+      "etiqueta": "2028211 G1",
+      "componentes": [
+        {
+          "id": "2028211:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:6:optativa-sin-asignatura-especificada:5|2028211 G2",
+      "posicionId": "electronica:pos:6:optativa-sin-asignatura-especificada:5",
+      "etiqueta": "2028211 G2",
+      "componentes": [
+        {
+          "id": "2028211:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
+      "analizable": false
     },
     {
       "id": "electronica:pos:8:2019125|G1",
@@ -5560,54 +7946,106 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "SIA-2026-grupo-actividad-unica"
+    },
+    {
+      "id": "electronica:pos:7:optativa-sin-asignatura-especificada:6|2016508 G1",
+      "posicionId": "electronica:pos:7:optativa-sin-asignatura-especificada:6",
+      "etiqueta": "2016508 G1",
+      "componentes": [
+        {
+          "id": "2016508:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
+      "analizable": false
+    },
+    {
+      "id": "electronica:pos:7:optativa-sin-asignatura-especificada:6|2016512 G1",
+      "posicionId": "electronica:pos:7:optativa-sin-asignatura-especificada:6",
+      "etiqueta": "2016512 G1",
+      "componentes": [
+        {
+          "id": "2016512:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
+      "analizable": false
     }
   ],
   "exclusionesAgrupacion": [
     {
       "posicionId": "electronica:pos:4:2016490",
       "codigoAsignatura": "2016490",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "electronica:pos:4:2016495",
-      "codigoAsignatura": "2016495",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "electronica:pos:5:2016496",
-      "codigoAsignatura": "2016496",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "electronica:pos:8:2016497",
-      "codigoAsignatura": "2016497",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "electronica:pos:5:2016498",
-      "codigoAsignatura": "2016498",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "electronica:pos:6:2016499",
-      "codigoAsignatura": "2016499",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "electronica:pos:5:2016501",
-      "codigoAsignatura": "2016501",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
-    },
-    {
-      "posicionId": "electronica:pos:1:2016502",
-      "codigoAsignatura": "2016502",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
     },
     {
       "posicionId": "electronica:pos:7:2016493",
       "codigoAsignatura": "2016493",
-      "motivo": "actividades-multiples-sin-agrupacion-verificada"
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
+    },
+    {
+      "posicionId": "electronica:pos:4:2016495",
+      "codigoAsignatura": "2016495",
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
+    },
+    {
+      "posicionId": "electronica:pos:5:2016496",
+      "codigoAsignatura": "2016496",
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
+    },
+    {
+      "posicionId": "electronica:pos:8:2016497",
+      "codigoAsignatura": "2016497",
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
+    },
+    {
+      "posicionId": "electronica:pos:5:2016498",
+      "codigoAsignatura": "2016498",
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
+    },
+    {
+      "posicionId": "electronica:pos:6:2016499",
+      "codigoAsignatura": "2016499",
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
+    },
+    {
+      "posicionId": "electronica:pos:5:2016501",
+      "codigoAsignatura": "2016501",
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
+    },
+    {
+      "posicionId": "electronica:pos:1:2016502",
+      "codigoAsignatura": "2016502",
+      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
     }
   ],
   "configuracion": {
@@ -5671,16 +8109,25 @@
   },
   "procedencia": {
     "catalogo": {
-      "descripcion": "Cotejado con Electronica(2).txt: 62 registros idénticos, más registro del curso 2016510 exclusivo de malla 2023.",
+      "descripcion": "Extracción limpia de Electronica(3).txt: 62 cursos SIA, más TPI 2016510 de la malla 2023 como identidad curricular histórica, no homologación.",
+      "fuentes": [
+        "Electronica(3).txt",
+        "Malla_Ing_Electrnica_2023(3).pdf"
+      ],
       "fechaCaptura": null
     },
     "oferta": {
-      "descripcion": "Electronica horarios(1).txt: 144 grupos preservados con horarios, cupos y fechas; dos PEAMA–Sumapaz adicionales sin horario, solo consulta. Corrección del 18-11-2026 a partir de Electronica horarios(2).txt: solo tres campos de cuposDisponibles; el archivo reitera doce asignaturas y la segunda copia de TPI es parcial, por lo que se conservan todos los grupos previos. No cambian actividades, horarios ni requisitos.",
-      "fechaCaptura": null,
-      "periodo": null
+      "descripcion": "Reextracción de Electronica horarios(3).txt: 23 asignaturas y 33 actividades, 146 grupos. Doce bloques duplicados conciliados por código, actividad y grupo; tres valores de cupos corregidos según la segunda aparición.",
+      "fuentes": [
+        "Electronica horarios(3).txt"
+      ],
+      "periodo": "2026-2"
     },
     "malla": {
-      "descripcion": "Plan 2545, malla 2023: Control 2016493 recuperado y casilla repetida de VIII excluida. B60, C78, L34, N20 adicional.",
+      "descripcion": "Malla 2023 del plan 2545: 56 posiciones, Fundamentación 60, Disciplinar 78, Libre elección 34, Nivelación 20 adicional; optativas expresadas como agrupaciones.",
+      "fuentes": [
+        "Malla_Ing_Electrnica_2023(3).pdf"
+      ],
       "version": "plan-2545"
     },
     "metadatos": {
@@ -5688,13 +8135,14 @@
       "tipologias": "Malla inicial y Electronica(1).txt; diferencias conservadas para revisión.",
       "horarios": "Archivo Electronica horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada.",
       "revisionRequisitos": "data/programas/electronica/revision-prerrequisitos-2026.json",
-      "ultimaCorreccionOferta": "Electronica horarios(2).txt, 18-11-2026: tres cupos corregidos; duplicados y TPI parcial descartados"
+      "ultimaCorreccionOferta": "Electronica horarios(2).txt, 18-11-2026: tres cupos corregidos; duplicados y TPI parcial descartados",
+      "reconstruccionIntegral": "2026-11-18; oferta completa reconstruida; 139 grupos consultables en interfaz, 53 analizables, 86 solo consulta, 7 conservados solo en oferta; no se forman pares de teoría y laboratorio"
     },
     "requisitos": {
-      "descripcion": "23 aristas tipo M directamente identificadas en SIA 2026 y nueve aristas visibles en la malla 2023 con vigencia pendiente. Tres umbrales explícitos del plan: 121 créditos B+C+L en TPI y Diseño, 63 de C en Trabajo de Grado. Expediente externo conserva 27 condiciones completas.",
+      "descripcion": "32 conexiones existentes respaldadas en 23 condiciones tipo M SIA y nueve enlaces de malla 2023; tres mínimos curriculares. Todas las 27 condiciones originales recalculadas desde el SIA en el expediente.",
       "fuentes": [
-        "Electronica horarios(1).txt",
-        "Malla_Ing_Electrnica_2023(2).pdf"
+        "Electronica horarios(3).txt",
+        "Malla_Ing_Electrnica_2023(3).pdf"
       ]
     }
   }

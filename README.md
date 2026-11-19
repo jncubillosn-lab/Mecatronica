@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.10 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
+**Versión pública:** 1.1.11 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -139,3 +139,17 @@ Más información: [ELE-01 — informe técnico](docs/ELE-01-CARGA-CURRICULAR-20
 El archivo `Electronica horarios(2).txt` reproduce íntegramente la primera oferta y añade doce copias de asignaturas ya presentes; la segunda copia de TPI está incompleta y no reemplaza la oferta previa. Se cotejó toda la parte añadida, conservando los **146 grupos** y las **31 agrupaciones verificadas** de Electrónica. Las únicas correcciones confirmadas son tres valores de **cupos disponibles**: Introducción a Ingeniería Electrónica `2016502` magistral G1 **2→3**, taller G1 **1→2**, y Taller de Ingeniería Electrónica `2016509` G4 **1→2**.
 
 Los 32 prerrequisitos, tres mínimos, 56 posiciones curriculares, horarios, profesores, fechas y otras carreras quedan intactos. Véase el [informe ELE-01](docs/ELE-01-CARGA-CURRICULAR-2026.md) y la [revisión académica](data/programas/electronica/revision-prerrequisitos-2026.json).
+
+## Electrónica: corrección integral de visibilidad y horarios (1.1.11)
+
+Se reconstruyeron desde cero las colecciones académicas de Ingeniería Electrónica mediante **`Electronica(3).txt`**, **`Electronica horarios(3).txt`** y la malla **`Malla_Ing_Electrnica_2023(3).pdf`**, en lugar de conservar las 31 agrupaciones incompletas de versiones anteriores.
+
+El catálogo contiene 62 cursos documentados en el TXT más TPI `2016510` identificado exclusivamente en el plan 2545; la oferta contiene **23 cursos, 33 actividades y 146 grupos** después de reconciliar doce encabezados duplicados y tres cupos actualizados. La malla conserva **56 posiciones y 172 créditos del plan**; se nombran cinco agrupaciones optativas según el PDF.
+
+La interfaz ahora dispone de **139 grupos registrados y 212 bloques semanales** vinculados a las posiciones del plan: **53 agrupaciones completas analizables** y **86 actividades individuales solo para consulta**, con su horario real. Quedan en `oferta` **7 grupos no proyectados como clases del plan**: tres de `Circuitos de RF` (optativa sin posición institucional individual acreditada), dos PEAMA–Sumapaz sin horario y dos reservas de espacios de TPI. Ninguna oferta se borra ni se convierte en horario ficticio.
+
+Las asignaturas **Electrónica Digital II, Electrónica de Potencia, Control, Instrumentación y medidas, Introducción a Ingeniería Electrónica, Diseño de sistemas electrónicos**, y otras de múltiples actividades muestran ahora los bloques de sus grupos. **No se inventaron parejas magistral–laboratorio**: al faltar la relación oficial de matrícula, sus actividades se señalan como `solo consulta` y se excluyen de estadísticas de combinaciones completas. Los grupos de actividad única verificados siguen computándose. La asociación de Diseño `2028816` y TPI `2024045` con las posiciones históricas homónimas se hace **para mostrar horarios**, sin declarar homologación normativa de códigos.
+
+Se mantienen **32 prerrequisitos** y los tres mínimos de crédito ya documentados. Solo se reemplaza el contrato independiente de Electrónica, su expediente de procedencia y una etiqueta genérica `solo consulta` para que la interfaz no llame erróneamente «otra sede» a un laboratorio sin pareja confirmada. No se añaden herramientas, programas ni lógica de cálculo.
+
+Consultar [ELE-01](docs/ELE-01-CARGA-CURRICULAR-2026.md) para el recuento completo, los casos especiales y la matriz de regresión.

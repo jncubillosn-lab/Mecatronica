@@ -2,10 +2,9 @@
   "programaId": "electronica",
   "fechaRevision": "2026-11-18",
   "fuentes": [
-    "Electronica(2).txt",
-    "Electronica horarios(1).txt",
-    "Malla_Ing_Electrnica_2023(2).pdf (Plan 2545)",
-    "Electronica horarios(2).txt"
+    "Electronica(3).txt",
+    "Electronica horarios(3).txt",
+    "Malla_Ing_Electrnica_2023(3).pdf (plan 2545)"
   ],
   "conteos": {
     "catalogo": 63,
@@ -1106,5 +1105,116 @@
       "otras ocho carreras"
     ],
     "criterio": "No usar una segunda copia parcial para borrar registros existentes. Mantener el número de grupo dentro de su actividad; no inventar parejas clase/laboratorio."
+  },
+  "reconstruccionDesdeFuentes": {
+    "fecha": "2026-11-18",
+    "origenError": "Solo 31 agrupaciones eran proyectadas al escenario; oferta tenía 146 grupos que el lector no incorporaba a las vistas",
+    "fuentes": {
+      "catalogoRegistros": 62,
+      "catalogoConCodigoHistoricoMalla": 63,
+      "ofertaEncabezados": 35,
+      "ofertaCursosUnicos": 23,
+      "actividades": 33,
+      "grupos": 146,
+      "condicionesSIA": 27,
+      "encabezadosRepetidos": 12
+    },
+    "resultados": {
+      "agrupacionesPrevias": 31,
+      "agrupacionesNuevas": 139,
+      "completasAnalizables": 53,
+      "horariosPorActividadSoloConsulta": 86,
+      "soloEnOferta": 7,
+      "bloques": 212,
+      "exclusionesPorActividadesMultiples": 9
+    },
+    "cambiosCupos": [
+      {
+        "codigoAsignatura": "2016502",
+        "actividadId": "2016502:act:1",
+        "grupoId": "1",
+        "antes": 2,
+        "despues": 3
+      },
+      {
+        "codigoAsignatura": "2016502",
+        "actividadId": "2016502:act:2",
+        "grupoId": "1",
+        "antes": 1,
+        "despues": 2
+      },
+      {
+        "codigoAsignatura": "2016509",
+        "actividadId": "2016509:act:1",
+        "grupoId": "4",
+        "antes": 1,
+        "despues": 2
+      }
+    ],
+    "excepciones": [
+      {
+        "codigoAsignatura": "2016502",
+        "actividad": "2016502:act:1",
+        "grupo": "SUMA-01",
+        "motivo": "PEAMA Sumapaz sin horario, permanece en oferta",
+        "numeroGrupos": 1
+      },
+      {
+        "codigoAsignatura": "2016502",
+        "actividad": "2016502:act:2",
+        "grupo": "SUMA-01",
+        "motivo": "PEAMA Sumapaz sin horario, permanece en oferta",
+        "numeroGrupos": 1
+      },
+      {
+        "codigoAsignatura": "2024045",
+        "actividad": "2024045:act:1",
+        "grupo": "40",
+        "motivo": "Reserva de espacio TPI, no clase",
+        "numeroGrupos": 1
+      },
+      {
+        "codigoAsignatura": "2024045",
+        "actividad": "2024045:act:1",
+        "grupo": "41",
+        "motivo": "Reserva de espacio TPI, no clase",
+        "numeroGrupos": 1
+      },
+      {
+        "codigoAsignatura": "2016488",
+        "motivo": "Oferta optativa sin ubicación curricular acreditada. No se inventa una posición en la malla.",
+        "numeroGrupos": 3
+      }
+    ],
+    "correspondenciasDePresentacionNoNormativas": [
+      {
+        "oferta": "2028816",
+        "posicion": "electronica:pos:10:diseno-de-sistemas-electronicos",
+        "base": "Nombre y créditos iguales; código del plan 2016494 no homologado"
+      },
+      {
+        "oferta": "2024045",
+        "posicion": "electronica:pos:9:2016510",
+        "base": "Nombre y créditos iguales; código de plan 2016510 no homologado"
+      }
+    ],
+    "optativasParaConsultaTematica": [
+      {
+        "codigo": "2028211",
+        "posicionId": "electronica:pos:6:optativa-sin-asignatura-especificada:5",
+        "advertencia": "Asociación de consulta; no implica pertenencia institucional verificada a esa agrupación"
+      },
+      {
+        "codigo": "2016508",
+        "posicionId": "electronica:pos:7:optativa-sin-asignatura-especificada:6",
+        "advertencia": "Asociación de consulta; no implica pertenencia institucional verificada a esa agrupación"
+      },
+      {
+        "codigo": "2016512",
+        "posicionId": "electronica:pos:7:optativa-sin-asignatura-especificada:6",
+        "advertencia": "Asociación de consulta; no implica pertenencia institucional verificada a esa agrupación"
+      }
+    ],
+    "limitacion": "El documento no relaciona formalmente grupos magistrales y de laboratorio. Se muestran todos sus horarios por actividad como solo consulta; no se presume combinación completa matriculable."
   }
 }

@@ -1,4 +1,6 @@
-# ELE-01 — Carga limpia de Ingeniería Electrónica
+# ELE-01 — Auditoría y reconstrucción de Ingeniería Electrónica
+
+**Estado vigente: 1.1.11.** Las secciones 1–8 conservan la historia de las versiones 1.1.9–1.1.10, pero la cobertura de agrupaciones y horarios descrita en ellas fue corregida por la sección 9. No utilizar los números históricos 31/144 para determinar la disponibilidad curricular vigente.
 
 **Corte:** 18 de noviembre de 2026. **Carrera:** Ingeniería Electrónica, Sede Bogotá, Plan de Estudios 2545. **Contrato:** `datos/programas/electronica/academico.json`. **Formato:** `versionEsquema: 1`.
 
@@ -87,3 +89,51 @@ La reconciliación por código institucional, actividad y grupo arrojó únicame
 No hay asignaturas ni grupos nuevos. La base conserva **146 grupos**, **23 cursos**, **56 posiciones**, **31 agrupaciones**, **32 enlaces de prerrequisitos** y **tres mínimos** sin variar la lógica de matrícula. Tampoco se cambian horarios, fechas, docentes ni aulas de las entradas preexistentes, y no se modifican las bases de otras carreras.
 
 El registro de procedencia de la revisión externa contiene los tres valores anteriores y nuevos, la fecha, ambas fuentes y la razón para ignorar duplicados documentales. La prueba `tests/electronica-datos.js` comprueba explícitamente esos tres cupos, los 22 grupos de TPI y la identidad del contrato para evitar regresiones.
+
+## 9. Reconstrucción integral del contrato desde fuentes (1.1.11)
+
+### Hallazgo causal
+
+La base anterior registraba correctamente múltiples grupos con días y horas dentro de `oferta`, pero no los convertía a `agrupaciones`. El lector único del servicio construye `S0.gr`, `S0.bl` y las ocho vistas **exclusivamente desde `agrupaciones`**, por lo que se podían encontrar materias en el SIA que el programa mostraba sin horarios. La comprobación previa de 146 entradas de grupos no garantizaba su uso por la interfaz.
+
+### Fuentes nuevamente reconstruidas
+
+- **`Electronica(3).txt`**: 62 códigos SIA, créditos, tipologías y descripciones. Se añade al catálogo el código histórico de TPI `2016510` únicamente porque figura en la malla 2023 (63 entradas en total), sin homologarlo automáticamente con `2024045`.
+- **`Electronica horarios(3).txt`**: 35 encabezados documentales, que representan **23 asignaturas distintas**, 33 actividades y **146 grupos únicos**. Doce encabezados finales se repiten; un segundo bloque de TPI es parcial. Las tres diferencias de cupos se resuelven por código+actividad+grupo, sin perder información previa. Se conservan también las 27 condiciones SIA.
+- **`Malla_Ing_Electrnica_2023(3).pdf`**: plan 2545, 56 posiciones curriculares, diez semestres, **B60/C78/L34 = 172 créditos** y N20 adicionales. Se nombran explícitamente las cinco agrupaciones optativas del diagrama, conservando sus IDs.
+
+### Cobertura de publicación por nivel
+
+| Nivel | Anterior | Vigente |
+|---|---:|---:|
+| Asignaturas de catálogo | 63 | **63** |
+| Cursos ofertados únicos | 23 | **23** |
+| Actividades de oferta | 33 | **33** |
+| Grupos documentales `oferta` | 146 | **146** |
+| Agrupaciones que lee la interfaz | 31 | **139** |
+| Bloques semanales visibles en Grupos/Horarios | parcial | **212** |
+| Grupos académicos analizables como completos | 31 | **53** |
+| Componentes de horario informativos sin matrícula conjunta acreditada | 0 | **86** |
+| Grupos preservados exclusivamente en oferta | 115 | **7** |
+| Prerrequisitos por ID | 32 | **32** |
+| Mínimos de créditos | 3 | **3** |
+
+**Controles específicos:** Electrónica Digital II `2016499` (dos magistrales + cuatro laboratorios), Control `2016493` (cuatro + ocho), Electrónica de potencia `2016497` (dos + cuatro), Instrumentación y medidas `2016501` (dos + tres), Introducción a Ingeniería Electrónica `2016502` (magistral y taller), Diseño de sistemas electrónicos `2028816` (dos grupos teóricos) y TPI `2024045` (20 grupos reales más dos reservas). Todos los grupos con horarios de estas asignaturas quedan asociados al escenario con sus horas auténticas.
+
+### Regla de veracidad de las agrupaciones
+
+Cada grupo de oferta se conserva con su asignatura por **código**, actividad, ID de grupo, franjas, cupos, fechas y docente. Las asignaturas de **actividad única** dan grupos completos analizables. Donde el SIA lista magistral y laboratorio **sin indicar cuáles se matriculan juntos**, se conservan sus **horarios individuales** bajo la posición curricular, diferenciando «Magistral Gx» de «Laboratorio Gx», con `analizable:false`. Se visualizan los horarios pero no se calcula choque de una supuesta combinación matriculable. No se usa el producto cartesiano de actividades.
+
+Dos asignaturas presentan códigos de malla y oferta distintos: TPI `2016510` (malla) y `2024045` (SIA); Diseño `2016494` (malla) y `2028816` (SIA). Como sus nombres y créditos coinciden, se vinculan **solo para mostrar la oferta de horarios**, manteniendo constancia de que ello no certifica equivalencia normativa. Las optativas `2028211`, `2016508` y `2016512` se asocian temáticamente a casillas optativas de la malla únicamente para consulta, con `analizable:false`, y no se les atribuye una equivalencia curricular oficial.
+
+### Siete registros que no se simulan como clases de una posición concreta
+
+- **Tres** grupos de Circuitos de RF (`2016488`): la oferta sí está completa (magistral + dos laboratorios), pero las fuentes no acreditan una posición individual o una agrupación reglamentaria concreta del plan; permanecen en `oferta`, con sus días y horas, sin crear una posición ficticia.
+- **Dos** grupos PEAMA–Sumapaz `SUMA-01` de Introducción: sin horario; están en `oferta`, no en el análisis Bogotá.
+- **Dos** grupos de TPI `40` y `41`: reservas de espacios y no clases académicas, permanecen en `oferta`.
+
+La única modificación del sistema compartido es el texto de la etiqueta `analizable:false`: se muestra «solo consulta» en lugar de «otra sede», porque la condición también identifica grupos de laboratorio sin combinación matricular certificada. No cambia la elegibilidad ni el algoritmo.
+
+### Pruebas y publicación
+
+`tests/electronica-datos.js` debe verificar **cobertura bidireccional**: cada grupo y cada bloque de horario que corresponda a una posición de consulta existe en `agrupaciones`, coincide por código+actividad+grupo y mantiene los mismos días/horas; no hay duplicados, no aparecen parejas supuestas y los siete registros exceptuados están contabilizados. El lector `EntradaAcademica` tiene que generar exactamente 139 grupos y 212 bloques, y permitir consultar las asignaturas reportadas. La integración se condiciona a ARQ-01, auditoría, versión pública y despliegue Pages.

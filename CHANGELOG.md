@@ -2,6 +2,16 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.11 — Reconstrucción integral de Ingeniería Electrónica (18 nov 2026)
+
+- Se corrige la causa de asignaturas con horario en la oferta pero «sin grupos»: el lector usa `agrupaciones`, no `oferta` directamente; la carga 1.1.10 proyectaba solo 31 grupos.
+- Las tres fuentes recibidas se interpretan de nuevo: 62 asignaturas de catálogo SIA + TPI histórico (63), 23 cursos de oferta, 33 actividades y 146 grupos. Se resuelven 12 duplicaciones documentales y tres cupos corregidos, sin pérdida de grupos ni horarios.
+- Se reconstruyen **139 agrupaciones consultables** con **212 bloques**, de las cuales **53** son grupos de actividad única válidos para comparación y **86** se muestran sin cálculo por falta de emparejamiento teoría-laboratorio o acreditación curricular de optativa. Antes solo había 31.
+- Digital II, Potencia, Control, Instrumentación, Introducción, Diseño y las restantes actividades quedan visibles en Grupos y Horarios. TPI se enlaza por coincidencia documentada de nombre y créditos, sin equiparar oficialmente 2016510 y 2024045; análogo para Diseño 2016494/2028816.
+- Siete registros son únicamente de `oferta`: tres Circuitos RF sin posición individual verificada, dos PEAMA sin horario y dos grupos de reserva TPI. Los tres cursos optativos que se asocian temáticamente a casillas libres están señalados como `solo consulta`.
+- Malla de 56 posiciones B60/C78/L34=172 y N20, 32 prerrequisitos y tres mínimos preservados. Prueba de correspondencia de cada grupo-horario con su origen, ausencia de emparejamientos inventados y etiqueta de «solo consulta» en la UI.
+- Sin nuevos motores, lectores ni programas, y sin modificar las otras ocho bases. Ver [ELE-01](docs/ELE-01-CARGA-CURRICULAR-2026.md).
+
 ## 1.1.10 — Corrección puntual de cupos de Ingeniería Electrónica (18 nov 2026)
 
 - Se confronta `Electronica horarios(2).txt` contra la fuente anterior y el contrato 1.1.9. El texto es una copia completa de la fuente previa más 12 secciones repetidas; una segunda copia de TPI contiene solamente un grupo y no se usa para borrar grupos válidos.

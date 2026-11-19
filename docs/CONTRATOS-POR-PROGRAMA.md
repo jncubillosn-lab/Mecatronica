@@ -1,6 +1,6 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-**Estado vigente:** 1.1.10. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.11. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -72,3 +72,7 @@ La carga limpia de Mecánica se conserva íntegra en su único `academico.json`.
 ## 9. Electrónica: tres cupos corregidos de una fuente duplicada (1.1.10)
 
 El archivo `Electronica horarios(2).txt` contiene doce duplicados documentales añadidos, pero ninguna nueva asignatura ni nuevo grupo: tres cupos del SIA cambiaron respecto de `Electronica horarios(1).txt`. Se aplica actualización por código+actividad+grupo sin reconstruir las agrupaciones ni tocar prerrequisitos. El expediente `data/programas/electronica/revision-prerrequisitos-2026.json` registra el cotejo. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
+
+## 10. Contrato de Electrónica: cobertura comprobable (1.1.11)
+
+La integridad de datos debe medirse en **tres niveles**: oferta bruta (146 grupos), proyección a vistas (139 agrupaciones y 212 bloques) y combinaciones analizables (53), no solo comparando cupos o contando grupos. 86 agrupaciones representan actividades individuales de asignaturas multiactividad u optativas temáticas y son visibles, pero no computables como matrícula completa. La fuente no acredita cómo combinar magistral+laboratorio. Siete entradas se conservan exclusivamente en oferta por ausencia de posición curricular verificada, reserva de espacios o pertenencia a PEAMA sin horario. Los resultados se auditan por curso, actividad, grupo, día y hora; no se modifica el contrato de otras carreras ni se añaden fuentes al lector web. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
