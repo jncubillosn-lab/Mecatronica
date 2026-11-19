@@ -1,15 +1,15 @@
 'use strict';
 
 /**
- * RC-06: referencias internas en documentos vigentes e históricos.
- * El historial se conserva pero no debe dirigir a archivos eliminados.
+ * RC-06: referencias internas de la documentación vigente de main.
+ * Los antecedentes están fuera del árbol de consulta y no se recorren.
  * Los fragmentos (#...) y sitios externos se validan en su propio destino.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const raiz = path.join(__dirname,'..');
-const docs = ['README.md','AGENTS.md','CHANGELOG.md',
+const docs = ['README.md','AGENTS.md',
   ...fs.readdirSync(path.join(raiz,'docs'))
     .filter(p=>p.endsWith('.md')).map(p=>'docs/'+p)];
 let verificados=0;

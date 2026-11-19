@@ -110,8 +110,8 @@ eliminación debe aportar evidencia, pruebas y una PR separada.
 
 ## 7. Selector multicarrera
 
-`tests/multicarrera.js` verifica las nueve identidades, ocho espacios sin datos, una carga académica para Mecatrónica, contratos con ID incorrecto y almacenamiento personal aislado. Los verificadores de versiones y publicación consultan solo los recursos académicos registrados, sin suponer archivos para todas las carreras.
+`tests/multicarrera.js` verifica las nueve identidades, contratos académicos separados, estados sin oferta y almacenamiento personal aislado. Los verificadores de versiones y publicación consultan solo los recursos académicos registrados, sin suponer archivos para todas las carreras.
 
-## 8. Regresión del estado sin datos (1.1.1)
+## 8. Regresión de estructura sin oferta
 
-La batería ejecuta `tests/multicarrera.js` para cada una de las ocho carreras sin fuente y exige que **las ocho páginas** conserven sus marcos, instrucciones, filtros y controles. Verifica también que el mapa curricular esté vacío pero equipado con zoom, que Demanda conserve su gráfica sin datos simulados y que no se confundan cifras desconocidas con ceros; la regresión de Mecatrónica permanece separada. La comprobación estructural no reemplaza una inspección visual de geometría real en escritorio y móvil.
+La prueba `tests/multicarrera.js` comprueba que todas las carreras mantengan las ocho páginas, sus marcos, filtros e instrucciones, incluso si el contrato no informa grupos. La ausencia de oferta no habilita horarios ni indicadores inventados.
