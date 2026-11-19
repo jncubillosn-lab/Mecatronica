@@ -1,6 +1,6 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-**Estado vigente:** 1.1.7. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.8. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -60,3 +60,7 @@ Los contratos de `electronica`, `industrial`, `mecanica` y `quimica` incorporan 
 ## 6. Mecánica: contrato y expediente de evidencia (1.1.7)
 
 La carga limpia de Mecánica se conserva íntegra en su único `academico.json`. Las 30 condiciones originales del SIA con códigos alternativos, las 41 evidencias de flechas de la malla y los umbrales porcentuales se depositan en `data/programas/mecanica/revision-prerrequisitos-2026.json`, **no interpretado en la web**. El mapa usa únicamente pares de posiciones verificadas; los mínimos porcentuales no se modelan con una condición de créditos inventada. [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md) explica las diferencias.
+
+## 7. Química: SIA, malla y separación de ambigüedades (1.1.8)
+
+`datos/programas/quimica/academico.json` contiene el contrato único normalizado de Química con 37 relaciones por ID y catálogos cotejados, sin nuevos lectores. `data/programas/quimica/revision-prerrequisitos-2026.json` conserva las 35 condiciones de matrícula completas, las alternativas de códigos históricos y la justificación de cada una de las nueve flechas que solo aparecen en la malla de 2013. Los casos de tipo Y y las optativas sin una posición de plan verificable no se fuerzan a flechas. [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md).

@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.7 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
+**Versión pública:** 1.1.8 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -107,3 +107,15 @@ Con las **mismas tres fuentes originales** se reconstruyó el contrato de `mecan
 Se limpiaron las tipologías por código del catálogo, seis componentes curriculares (dos asignaturas y cuatro casillas optativas) y se completaron los **111 grupos** de las 24 asignaturas ofertadas: los 101 existentes conservaron horarios/cupos/fechas y se recuperaron diez faltantes. Las 72 agrupaciones declaradas preservan sus IDs y orden, con **G40 de TPI como reserva no analizable**. No se inventan emparejamientos entre actividades ni franjas ausentes.
 
 La malla de Mecánica suma **58 B + 86 C + 36 L = 180 créditos**, con 12 de inglés adicionales. Los umbrales de avance **55 %, 75 % y 80 %** se documentan como porcentajes sin introducir falsos mínimos en `requisitos.minimosCreditos`, que permanece vacío. El informe complementario es [MEC-01](docs/MEC-01-CARGA-CURRICULAR-2026.md).
+
+## Química: malla y prerrequisitos normalizados (1.1.8)
+
+Se contrastaron `Química(1).txt` (catálogo), `Química horarios(1).txt` (grupos y condiciones SIA del segundo semestre de 2026) y la malla **Acuerdo 02 de 2013**. Se actualizaron exclusivamente los datos del programa `quimica`, sin modificar lector, motor ni las demás ocho carreras.
+
+En `datos/programas/quimica/academico.json` se conservan **63 posiciones y 48 agrupaciones** con los mismos IDs. Se restauran los códigos verificados de Biología molecular y celular (`1000010-B`), Laboratorio de Química Orgánica (`1000031-B`) y Manejo de sólidos (`2015726`), y se corrigen los sufijos institucionales `-B` de otras cinco asignaturas. Se clasifican cinco posiciones optativas a partir de la malla sin asignarles una materia ficticia: B69 + C75 + L36 = 180 créditos; N20 adicionales.
+
+Se integran **37 relaciones** identificadas por posición: **28** respaldadas por condiciones SIA tipo M con alternativa reconocible y **9** documentadas solamente por la malla de 2013, con advertencia de vigencia. Las **35 condiciones originales**, alternativas de códigos y casos pendientes se conservan en [revisión académica de Química](data/programas/quimica/revision-prerrequisitos-2026.json). No se añaden mínimos absolutos interpretando cifras de avance de la malla.
+
+La oferta conserva sin modificación los horarios, cupos y fechas de **89 grupos ya cargados** e incorpora dos grupos PEAMA de Orinoquía solo para consulta, fuera de las agrupaciones de Bogotá. Los grupos 40 y 41 de TPI son reservas de espacio; no generan choques. Tampoco se presume la equivalencia entre el código TPI del plan de 2013 (`2015737`) y el de la oferta 2026 (`2024045`).
+
+El informe de cotejo está en [QUI-01](docs/QUI-01-CARGA-CURRICULAR-2026.md).

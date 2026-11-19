@@ -1,6 +1,6 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.7. **La migración ARQ-01 está terminada y cerrada.**
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.8. **La migración ARQ-01 está terminada y cerrada.**
 > **Revisión operativa:** 13 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, con ocho contratos académicos preliminares adicionales sin oferta de grupos y Mecatrónica con oferta operativa.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
@@ -517,3 +517,7 @@ Los contratos `versionEsquema: 1` de Electrónica, Industrial, Mecánica y Quím
 ## 16. Requisitos y calidad de datos en Mecánica (1.1.7)
 
 Se integra la malla 2018 de Mecánica sin modificar ARQ-01: 41 aristas explícitas que vinculan exclusivamente posiciones con IDs existentes (29 corroboradas mediante alternativas actuales del SIA, 12 solo con evidencia gráfica histórica). Se conserva aparte la información condicional completa y tres porcentajes de avance, porque el contrato no dispone de semántica institucional verificable para convertirlos a mínimos de créditos. Se limpia el catálogo institucional, se respetan los códigos y nombres de posiciones, se completan grupos de oferta sin inferir combinaciones y se aparta el grupo de reserva G40 de TPI de los cálculos mediante `analizable:false`. Este cambio es solo de contrato y pruebas de datos; no cambia ninguna regla del lector ni del motor. Ver [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md).
+
+## 17. Limpieza académica de Ingeniería Química (1.1.8)
+
+Sin modificar ARQ-01, el contrato de Química incorpora 37 prerrequisitos por ID: 28 condiciones de tipo M del SIA 2026-2, con alternativas vigentes identificadas en el plan, y 9 flechas documentadas solo en la malla histórica de 2013. Las 35 condiciones completas, alternativas históricas y casos ambiguos se preservan por separado en `data/programas/quimica/revision-prerrequisitos-2026.json` (no lo lee la aplicación). Se normalizan códigos y componentes con el catálogo y se preservan los 63 IDs de la malla y las 48 agrupaciones. Dos grupos PEAMA–Orinoquía se conservan como oferta sin agrupar para Bogotá. La equivalencia TPI 2015737/2024045 y los umbrales numéricos de avance están pendientes de prueba normativa. Ver [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md).

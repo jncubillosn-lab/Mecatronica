@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.7, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
+**Corte de evaluación:** 1.1.8, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; cuatro siguen sin oferta de grupos y cinco tienen oferta documental (con distintas fechas de referencia).  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -144,3 +144,7 @@ Se incorporan catálogos y ofertas parciales de Electrónica, Industrial, Mecán
 ## 14. Mecánica: reconstrucción verificable sin cambiar motor (1.1.7)
 
 Se publican 41 relaciones de malla por ID para Mecánica, 30 condiciones SIA preservadas en registro de revisión, catalogación institucional normalizada y diez grupos de oferta recuperados sin tocar los 101 existentes. Dos asignaturas y cuatro casillas optativas corrigen componentes para B58/C86/L36. El grupo de reserva G40 de TPI se mantiene consultable pero no analizable; los cuatro grupos sin horario permanecen sin datos. Las 12 flechas únicamente documentadas en la malla de 2018 se señalan como evidencia histórica pendiente de contraste de vigencia. Los tres umbrales de avance se retienen en revisión externa sin convertirse a mínimos absolutos. No hubo cambios al lector, motor, UI ni otros contratos. [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md).
+
+## 15. Ingeniería Química: incorporación limpia (1.1.8)
+
+Se complementa solo la base independiente de Química. Conserva 63 posiciones, 72 cursos de catálogo y 48 agrupaciones; se reconcilian códigos de malla con SIA y cinco casillas optativas sin inventar asignaturas, B69/C75/L36. Se incorporan 37 aristas de requisitos (28 SIA M, nueve solo malla), se conservan 35 condiciones originales en registro de evidencia y se cargan dos grupos PEAMA de Orinoquía sin hacerlos analizables en Bogotá. Se mantienen todos los 89 grupos preexistentes y sus horarios/cupos/fechas. Los códigos 2015737 y 2024045 de TPI no se equiparan automáticamente. Los párrafos de versiones previas conservan valor histórico. Véase [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md).
