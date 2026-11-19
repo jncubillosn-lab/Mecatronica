@@ -53,6 +53,22 @@ assert.equal(r.condicionesOriginalesSIA.reduce((n,x)=>n+x.condiciones.length,0),
 assert.equal(r.evidencias.filter(x=>x.fuente==='SIA-2026').length,23);
 assert.equal(r.evidencias.filter(x=>x.fuente==='MALLA-2023').length,9);
 assert.equal(r.condicionesPendientes.length,4);
+// Regresión de la segunda exportación SIA: tres cupos sin descartar grupos.
+function grupo(codigo,actividad,id){
+ const curso=d.oferta.find(x=>x.codigoAsignatura===codigo);
+ assert(curso,'Falta curso '+codigo);
+ const act=curso.actividades.find(x=>x.id===actividad);
+ assert(act,'Falta actividad '+actividad);
+ const g=act.grupos.find(x=>x.id===id);
+ assert(g,'Falta grupo '+id);
+ return g;
+}
+assert.equal(grupo('2016502','2016502:act:1','1').cuposDisponibles,3);
+assert.equal(grupo('2016502','2016502:act:2','1').cuposDisponibles,2);
+assert.equal(grupo('2016509','2016509:act:1','4').cuposDisponibles,2);
+assert.equal(d.oferta.find(x=>x.codigoAsignatura==='2024045').actividades[0].grupos.length,22);
+assert.equal(r.actualizacionOfertaPosterior.cambiosCupos.length,3);
+assert.equal(r.actualizacionOfertaPosterior.gruposExistentesPreservados,146);
 const raw=new EntradaAcademica(d).generarEscenarioBase();
 assert.equal(raw.pre.length,32);
 assert.equal(raw.reqCred.length,3);

@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.9, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
+**Corte de evaluación:** 1.1.10, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; cuatro siguen sin oferta de grupos y cinco tienen oferta documental (con distintas fechas de referencia).  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -152,3 +152,7 @@ Se complementa solo la base independiente de Química. Conserva 63 posiciones, 7
 ## 16. Electrónica: carga limpia y verificación (1.1.9)
 
 Las fuentes permiten conciliar 172 créditos del plan 2545 y 20 de nivelación, incorporar Control 2016493 y retirar casilla genérica duplicada sin tocar los restantes IDs. Se cargan 32 aristas académicas (23 SIA + nueve únicamente históricas), tres mínimos de créditos y se conservan 27 condiciones originales fuera del motor. De la oferta: 144 grupos preexistentes intactos y dos PEAMA–Sumapaz de consulta sin horarios. Las 31 agrupaciones históricas mantienen IDs; Control no recibe agrupaciones de teoría/laboratorio inventadas. Solo cambia el contrato de Electrónica y su evidencia, con versión 1.1.9. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
+
+## 17. Electrónica: actualización correctiva de cupos (1.1.10)
+
+La segunda exportación de horarios reitera la primera y añade doce copias de asignaturas, incluida una repetición incompleta de TPI. El cotejo revela solo tres cupos corregidos: `2016502` magistral G1 3, taller G1 2; `2016509` G4 2. Se preservan todos los demás datos y las 146 entradas de grupos, incluidos los 22 de TPI, así como 31 agrupaciones, 32 prerrequisitos y tres mínimos de créditos. Se actualizan solamente el contrato de Electrónica, su evidencia, pruebas y versión 1.1.10. Véase [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).

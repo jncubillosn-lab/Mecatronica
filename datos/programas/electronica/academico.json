@@ -3498,7 +3498,7 @@
               "nombre": "Grupo 1",
               "profesor": "JHON FREDDY LOPEZ MEDINA.",
               "facultad": "FACULTAD DE INGENIERÍA",
-              "cuposDisponibles": 2,
+              "cuposDisponibles": 3,
               "horarios": [
                 {
                   "dia": "X",
@@ -3536,7 +3536,7 @@
               "nombre": "Grupo 1",
               "profesor": "Pablo Enrique Rodriguez Espinosa.",
               "facultad": null,
-              "cuposDisponibles": 1,
+              "cuposDisponibles": 2,
               "horarios": [
                 {
                   "dia": "M",
@@ -3968,7 +3968,7 @@
               "nombre": "Grupo 4",
               "profesor": "Oscar Andres Eraso Eraso.",
               "facultad": "FACULTAD DE INGENIERÍA",
-              "cuposDisponibles": 1,
+              "cuposDisponibles": 2,
               "horarios": [
                 {
                   "dia": "M",
@@ -5675,7 +5675,7 @@
       "fechaCaptura": null
     },
     "oferta": {
-      "descripcion": "Electronica horarios(1).txt: 144 grupos preservados con horarios, cupos y fechas; dos PEAMA–Sumapaz adicionales sin horario, solo consulta.",
+      "descripcion": "Electronica horarios(1).txt: 144 grupos preservados con horarios, cupos y fechas; dos PEAMA–Sumapaz adicionales sin horario, solo consulta. Corrección del 18-11-2026 a partir de Electronica horarios(2).txt: solo tres campos de cuposDisponibles; el archivo reitera doce asignaturas y la segunda copia de TPI es parcial, por lo que se conservan todos los grupos previos. No cambian actividades, horarios ni requisitos.",
       "fechaCaptura": null,
       "periodo": null
     },
@@ -5687,7 +5687,8 @@
       "malla": "Malla_Ing_Electrnica_2023.pdf",
       "tipologias": "Malla inicial y Electronica(1).txt; diferencias conservadas para revisión.",
       "horarios": "Archivo Electronica horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada.",
-      "revisionRequisitos": "data/programas/electronica/revision-prerrequisitos-2026.json"
+      "revisionRequisitos": "data/programas/electronica/revision-prerrequisitos-2026.json",
+      "ultimaCorreccionOferta": "Electronica horarios(2).txt, 18-11-2026: tres cupos corregidos; duplicados y TPI parcial descartados"
     },
     "requisitos": {
       "descripcion": "23 aristas tipo M directamente identificadas en SIA 2026 y nueve aristas visibles en la malla 2023 con vigencia pendiente. Tres umbrales explícitos del plan: 121 créditos B+C+L en TPI y Diseño, 63 de C en Trabajo de Grado. Expediente externo conserva 27 condiciones completas.",

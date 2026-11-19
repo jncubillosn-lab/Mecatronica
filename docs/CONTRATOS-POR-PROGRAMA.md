@@ -1,6 +1,6 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-**Estado vigente:** 1.1.9. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.10. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -68,3 +68,7 @@ La carga limpia de Mecánica se conserva íntegra en su único `academico.json`.
 ## 8. Electrónica: fuentes y requisitos con identificadores estables (1.1.9)
 
 `datos/programas/electronica/academico.json` concentra 32 prerrequisitos y tres requisitos mínimos de créditos, derivados de 2026 SIA y malla 2023 plan 2545. En `data/programas/electronica/revision-prerrequisitos-2026.json` se conservan las 27 condiciones completas, los códigos alternativos e incidencias por verificar. Se mantiene separación de malla, catálogo y oferta: la coincidencia de nombres no demuestra que los códigos TPI 2016510/2024045 y Diseño 2016494/2028816 sean equivalentes. Sin lector adicional. [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).
+
+## 9. Electrónica: tres cupos corregidos de una fuente duplicada (1.1.10)
+
+El archivo `Electronica horarios(2).txt` contiene doce duplicados documentales añadidos, pero ninguna nueva asignatura ni nuevo grupo: tres cupos del SIA cambiaron respecto de `Electronica horarios(1).txt`. Se aplica actualización por código+actividad+grupo sin reconstruir las agrupaciones ni tocar prerrequisitos. El expediente `data/programas/electronica/revision-prerrequisitos-2026.json` registra el cotejo. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).

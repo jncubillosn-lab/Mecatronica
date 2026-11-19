@@ -4,7 +4,8 @@
   "fuentes": [
     "Electronica(2).txt",
     "Electronica horarios(1).txt",
-    "Malla_Ing_Electrnica_2023(2).pdf (Plan 2545)"
+    "Malla_Ing_Electrnica_2023(2).pdf (Plan 2545)",
+    "Electronica horarios(2).txt"
   ],
   "conteos": {
     "catalogo": 63,
@@ -1057,5 +1058,53 @@
     "8": 16,
     "9": 16,
     "10": 18
+  },
+  "actualizacionOfertaPosterior": {
+    "fecha": "2026-11-18",
+    "fuente": "Electronica horarios(2).txt",
+    "fuentePrevio": "Electronica horarios(1).txt",
+    "comparacion": "El texto nuevo comienza con una copia byte a byte del archivo anterior y agrega doce encabezados de cursos ya existentes. Las únicas diferencias de contenido en la repetición son tres valores de cupos; la segunda aparición de TPI solo informa grupo 1 y es parcial.",
+    "gruposExistentesPreservados": 146,
+    "asignaturasUnicas": 23,
+    "encabezadosRepetidos": 12,
+    "cambiosCupos": [
+      {
+        "codigoAsignatura": "2016502",
+        "actividadId": "2016502:act:1",
+        "grupoId": "1",
+        "cuposAnteriores": 2,
+        "cuposNuevos": 3,
+        "descripcion": "Introducción a ingeniería electrónica — Clase magistral grupo 1"
+      },
+      {
+        "codigoAsignatura": "2016502",
+        "actividadId": "2016502:act:2",
+        "grupoId": "1",
+        "cuposAnteriores": 1,
+        "cuposNuevos": 2,
+        "descripcion": "Introducción a ingeniería electrónica — Clase taller grupo 1"
+      },
+      {
+        "codigoAsignatura": "2016509",
+        "actividadId": "2016509:act:1",
+        "grupoId": "4",
+        "cuposAnteriores": 1,
+        "cuposNuevos": 2,
+        "descripcion": "Taller de ingeniería electrónica — Grupo 4"
+      }
+    ],
+    "sinCambios": [
+      "catalogo",
+      "malla",
+      "requisitos",
+      "agrupaciones",
+      "exclusionesAgrupacion",
+      "horarios",
+      "fechas",
+      "profesores",
+      "nombres",
+      "otras ocho carreras"
+    ],
+    "criterio": "No usar una segunda copia parcial para borrar registros existentes. Mantener el número de grupo dentro de su actividad; no inventar parejas clase/laboratorio."
   }
 }
