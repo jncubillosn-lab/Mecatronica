@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.8 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
+**Versión pública:** 1.1.9 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -119,3 +119,17 @@ Se integran **37 relaciones** identificadas por posición: **28** respaldadas po
 La oferta conserva sin modificación los horarios, cupos y fechas de **89 grupos ya cargados** e incorpora dos grupos PEAMA de Orinoquía solo para consulta, fuera de las agrupaciones de Bogotá. Los grupos 40 y 41 de TPI son reservas de espacio; no generan choques. Tampoco se presume la equivalencia entre el código TPI del plan de 2013 (`2015737`) y el de la oferta 2026 (`2024045`).
 
 El informe de cotejo está en [QUI-01](docs/QUI-01-CARGA-CURRICULAR-2026.md).
+
+## Electrónica: malla 2545 y requisitos contrastados (1.1.9)
+
+Se cotejaron tres fuentes: el catálogo `Electronica(2).txt`, los grupos y condiciones SIA 2026-2 de `Electronica horarios(1).txt` y la malla **Plan 2545 (2023)**. Se actualizaron solo el contrato independiente de `electronica`, su expediente externo, las pruebas, la documentación y la versión de caché. No se alteraron algoritmos, vistas ni las otras ocho carreras.
+
+La malla mantiene **56 posiciones**, ahora con Control 2016493 en séptimo semestre y sin una casilla genérica duplicada de octavo. Cinco optativas se clasificaron con su agrupación sin inventar asignaturas; la suma coincide con el diagrama: **Fundamentación 60 + Disciplinar 78 + Libre elección 34 = 172 créditos** (Nivelación 20 adicionales). El catálogo conserva 63 registros y la oferta 23 cursos.
+
+Se cargaron **32 relaciones** entre posiciones (23 condiciones tipo M del SIA con correspondencia única y 9 flechas documentadas solo en la malla 2023). La malla establece explícitamente mínimos de **121 créditos académicos** para TPI y Diseño de sistemas electrónicos y **63 créditos disciplinares** para Trabajo de Grado; se aplican únicamente a las tres posiciones pertinentes. Las **27 condiciones SIA originales** (con alternativas históricas y casos no mapeables) permanecen en [expediente de Electrónica](data/programas/electronica/revision-prerrequisitos-2026.json).
+
+Los **144 grupos ya existentes** conservan horarios, cupos y fechas; se agregaron dos PEAMA–Sumapaz sin horario, solo para consulta. Las 31 agrupaciones existentes conservan IDs y bloques; Control tiene magistral + laboratorio, pero sus emparejamientos no se infieren.
+
+No se afirma equivalencia institucional entre TPI **2016510** (malla) / **2024045** (SIA), ni entre Diseño **2016494** (malla) / **2028816** (SIA). Se conservan separados; la posición de Diseño permanece sin código asociado hasta su verificación.
+
+Más información: [ELE-01 — informe técnico](docs/ELE-01-CARGA-CURRICULAR-2026.md).

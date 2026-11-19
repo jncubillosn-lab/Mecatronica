@@ -1,6 +1,6 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-**Estado vigente:** 1.1.8. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.9. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -64,3 +64,7 @@ La carga limpia de Mecánica se conserva íntegra en su único `academico.json`.
 ## 7. Química: SIA, malla y separación de ambigüedades (1.1.8)
 
 `datos/programas/quimica/academico.json` contiene el contrato único normalizado de Química con 37 relaciones por ID y catálogos cotejados, sin nuevos lectores. `data/programas/quimica/revision-prerrequisitos-2026.json` conserva las 35 condiciones de matrícula completas, las alternativas de códigos históricos y la justificación de cada una de las nueve flechas que solo aparecen en la malla de 2013. Los casos de tipo Y y las optativas sin una posición de plan verificable no se fuerzan a flechas. [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md).
+
+## 8. Electrónica: fuentes y requisitos con identificadores estables (1.1.9)
+
+`datos/programas/electronica/academico.json` concentra 32 prerrequisitos y tres requisitos mínimos de créditos, derivados de 2026 SIA y malla 2023 plan 2545. En `data/programas/electronica/revision-prerrequisitos-2026.json` se conservan las 27 condiciones completas, los códigos alternativos e incidencias por verificar. Se mantiene separación de malla, catálogo y oferta: la coincidencia de nombres no demuestra que los códigos TPI 2016510/2024045 y Diseño 2016494/2028816 sean equivalentes. Sin lector adicional. [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).

@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.8, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
+**Corte de evaluación:** 1.1.9, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; cuatro siguen sin oferta de grupos y cinco tienen oferta documental (con distintas fechas de referencia).  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -148,3 +148,7 @@ Se publican 41 relaciones de malla por ID para Mecánica, 30 condiciones SIA pre
 ## 15. Ingeniería Química: incorporación limpia (1.1.8)
 
 Se complementa solo la base independiente de Química. Conserva 63 posiciones, 72 cursos de catálogo y 48 agrupaciones; se reconcilian códigos de malla con SIA y cinco casillas optativas sin inventar asignaturas, B69/C75/L36. Se incorporan 37 aristas de requisitos (28 SIA M, nueve solo malla), se conservan 35 condiciones originales en registro de evidencia y se cargan dos grupos PEAMA de Orinoquía sin hacerlos analizables en Bogotá. Se mantienen todos los 89 grupos preexistentes y sus horarios/cupos/fechas. Los códigos 2015737 y 2024045 de TPI no se equiparan automáticamente. Los párrafos de versiones previas conservan valor histórico. Véase [QUI-01](QUI-01-CARGA-CURRICULAR-2026.md).
+
+## 16. Electrónica: carga limpia y verificación (1.1.9)
+
+Las fuentes permiten conciliar 172 créditos del plan 2545 y 20 de nivelación, incorporar Control 2016493 y retirar casilla genérica duplicada sin tocar los restantes IDs. Se cargan 32 aristas académicas (23 SIA + nueve únicamente históricas), tres mínimos de créditos y se conservan 27 condiciones originales fuera del motor. De la oferta: 144 grupos preexistentes intactos y dos PEAMA–Sumapaz de consulta sin horarios. Las 31 agrupaciones históricas mantienen IDs; Control no recibe agrupaciones de teoría/laboratorio inventadas. Solo cambia el contrato de Electrónica y su evidencia, con versión 1.1.9. Ver [ELE-01](ELE-01-CARGA-CURRICULAR-2026.md).

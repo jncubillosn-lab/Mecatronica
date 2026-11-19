@@ -2,6 +2,15 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.9 — Integración limpia de Ingeniería Electrónica (18 nov 2026)
+
+- Se coteja malla plan 2545 (2023), catálogo institucional y oferta SIA 2026-2 de Electrónica. Se conserva su contrato académico independiente y no se modifica otra carrera, motor, UI ni lector.
+- **56 posiciones curriculares**: se incluye Control 2016493 (4 créditos en VII), se retira una casilla optativa sin código duplicada en VIII y se clasifican cinco optativas. Los diez semestres suman B60/C78/L34 = **172 créditos**, con N20 adicional.
+- **32 relaciones de prerrequisitos**: 23 condiciones tipo M del SIA con origen/destino inequívocos y 9 flechas solo de malla 2023. Las 27 condiciones SIA, alternativas históricas y cuatro casos no mapeables se preservan en expediente externo.
+- Tres mínimos **explícitos en la malla**: 121 créditos del plan para TPI y Diseño de sistemas electrónicos, y 63 créditos disciplinares para Trabajo de Grado. Se distingue el código histórico de TPI 2016510 y el de oferta actual 2024045, así como Diseño 2016494/2028816; no se asume equivalencia.
+- Los **144 grupos originales** preservan horarios/cupos/fechas; se incorporan dos PEAMA–Sumapaz sin horario, excluidos de agrupaciones. Control se marca como multiactividad sin combinación verificada. Se preservan las 31 agrupaciones originales.
+- Nueva prueba `tests/electronica-datos.js`, revisión documental y versión de caché 1.1.9. Véase [ELE-01](docs/ELE-01-CARGA-CURRICULAR-2026.md).
+
 ## 1.1.8 — Reconstrucción limpia de Ingeniería Química (18 nov 2026)
 
 - Se coteja el catálogo, la oferta SIA 2026-2 y la malla Acuerdo 02 de 2013 de Química, conservando su contrato independiente, los 63 IDs curriculares y las 48 agrupaciones existentes.
