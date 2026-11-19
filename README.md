@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.14 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
+**Versión pública:** 1.1.15 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main)
 

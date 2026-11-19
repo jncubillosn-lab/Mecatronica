@@ -15,8 +15,8 @@ assert.equal(new Set(d.malla.map(x=>x.id)).size,56);
 assert.equal(d.catalogo.length,63);
 assert.equal(new Set(d.catalogo.map(x=>x.codigo)).size,63);
 assert.equal(d.oferta.length,23);
-assert.equal(d.agrupaciones.length,100);
-assert.equal(d.exclusionesAgrupacion.length,2);
+assert.equal(d.agrupaciones.length,93);
+assert.equal(d.exclusionesAgrupacion.length,0);
 assert(!d.exclusionesAgrupacion.some(x=>x.codigoAsignatura==='2016493'));
 const groups=d.oferta.flatMap(o=>o.actividades.flatMap(a=>a.grupos));
 assert.equal(groups.length,125);
@@ -68,12 +68,12 @@ assert.equal(r.actualizacionOfertaPosterior.gruposExistentesPreservados,146);
 const raw=new EntradaAcademica(d).generarEscenarioBase();
 assert.equal(raw.pre.length,32);
 assert.equal(raw.reqCred.length,3);
-assert.equal(raw.gr.length,100);
+assert.equal(raw.gr.length,93);
 assert(raw.bl.length>0);
 
 assert.equal(d.oferta.reduce((n,o)=>n+o.actividades.length,0),33);
-assert.equal(d.agrupaciones.filter(g=>g.analizable===false).length,26);
-assert.equal(d.agrupaciones.filter(g=>g.analizable!==false).length,74);
+assert.equal(d.agrupaciones.filter(g=>g.analizable===false).length,0);
+assert.equal(d.agrupaciones.filter(g=>g.analizable!==false).length,93);
 assert.equal(raw.bl.length,174);
 assert.equal(r.reconstruccionDesdeFuentes.resultados.agrupacionesNuevas,139);
 assert.equal(r.reconstruccionDesdeFuentes.resultados.soloEnOferta,7);
@@ -90,11 +90,38 @@ for (const codigo of vinculadas) {
    assert(opciones.some(g => g.analizable !== false && JSON.stringify(g.componentes.map(c => c.id)) === JSON.stringify(ids)), codigo + ' grupo ' + k);
  }
 }
+for (const [codigo, magistrales] of Object.entries({
+ '2016495': [1,1,2,2,2,2,3,3,4,4,5,5], '2016501': [1,1,2]
+})) {
+ const pos = d.malla.find(p => p.codigoAsignatura === codigo);
+ const opciones = d.agrupaciones.filter(g => g.posicionId === pos.id);
+ assert.equal(opciones.length, magistrales.length);
+ magistrales.forEach((m, i) => {
+   const l = i + 1;
+   const g = opciones.find(o => o.etiqueta === 'M'+m+'+L'+l);
+   assert.deepEqual(g.componentes.map(c => c.id), [codigo+':act:1:G'+m, codigo+':act:2:G'+l]);
+ });
+ vinculadas.add(codigo);
+}
+for (const [nombre, etiquetas] of [
+ ['Optativa Electrónica Análoga', ['2028211 G1', '2028211 G2']],
+ ['Optativa Electrónica Digital', ['2016508 G1', '2016512 G1']]
+]) {
+ const pos = d.malla.find(p => p.nombre === nombre);
+ const opciones = d.agrupaciones.filter(g => g.posicionId === pos.id);
+ assert.deepEqual(opciones.map(g => g.etiqueta).sort(), etiquetas);
+ for (const g of opciones) assert.equal(g.componentes[0].id, g.etiqueta.replace(' ', ':act:1:'));
+}
+for (const g of d.agrupaciones.filter(g => g.analizable !== false)) {
+ for (const [i, a] of g.componentes.entries()) for (const b of g.componentes.slice(i+1)) {
+   assert(!a.bloques.some(x => b.bloques.some(y => x.dia === y.dia && x.inicio < y.fin && y.inicio < x.fin)), g.id);
+ }
+}
 const wanted = new Map([
  ['2016499',['electronica:pos:6:2016499',4]],
  ['2016497',['electronica:pos:8:2016497',4]],
  ['2016493',['electronica:pos:7:2016493',8]],
- ['2016501',['electronica:pos:5:2016501',5]],
+ ['2016501',['electronica:pos:5:2016501',3]],
  ['2016502',['electronica:pos:1:2016502',2]],
  ['2028816',['electronica:pos:10:diseno-de-sistemas-electronicos',2]],
  ['2024045',['electronica:pos:9:2016510',1]]

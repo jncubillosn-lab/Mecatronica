@@ -1,6 +1,6 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** para el corte multicarrera 1.1.14. **La migración ARQ-01 está terminada y cerrada.**
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** para el corte multicarrera 1.1.15. **La migración ARQ-01 está terminada y cerrada.**
 > **Revisión operativa:** 13 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, con ocho contratos académicos preliminares adicionales sin oferta de grupos y Mecatrónica con oferta operativa.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  

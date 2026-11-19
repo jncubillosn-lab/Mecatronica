@@ -5269,9 +5269,9 @@
       "procedencia": "SIA-2026-coincidencia-texto-creditos-sin-homologacion"
     },
     {
-      "id": "electronica:pos:4:2016495|Magistral G1",
+      "id": "electronica:pos:4:2016495|M1+L1",
       "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Magistral G1",
+      "etiqueta": "M1+L1",
       "componentes": [
         {
           "id": "2016495:act:1:G1",
@@ -5289,15 +5289,61 @@
               "nota": null
             }
           ]
+        },
+        {
+          "id": "2016495:act:2:G1",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
-      "id": "electronica:pos:4:2016495|Magistral G2",
+      "id": "electronica:pos:4:2016495|M1+L2",
       "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Magistral G2",
+      "etiqueta": "M1+L2",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G1",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016495:act:2:G2",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
+    },
+    {
+      "id": "electronica:pos:4:2016495|M2+L3",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "M2+L3",
       "componentes": [
         {
           "id": "2016495:act:1:G2",
@@ -5315,15 +5361,133 @@
               "nota": null
             }
           ]
+        },
+        {
+          "id": "2016495:act:2:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
-      "id": "electronica:pos:4:2016495|Magistral G3",
+      "id": "electronica:pos:4:2016495|M2+L4",
       "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Magistral G3",
+      "etiqueta": "M2+L4",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016495:act:2:G4",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
+    },
+    {
+      "id": "electronica:pos:4:2016495|M2+L5",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "M2+L5",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016495:act:2:G5",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "14:00",
+              "fin": "16:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
+    },
+    {
+      "id": "electronica:pos:4:2016495|M2+L6",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "M2+L6",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016495:act:2:G6",
+          "bloques": [
+            {
+              "dia": "V",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
+    },
+    {
+      "id": "electronica:pos:4:2016495|M3+L7",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "M3+L7",
       "componentes": [
         {
           "id": "2016495:act:1:G3",
@@ -5341,15 +5505,61 @@
               "nota": null
             }
           ]
+        },
+        {
+          "id": "2016495:act:2:G7",
+          "bloques": [
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
-      "id": "electronica:pos:4:2016495|Magistral G4",
+      "id": "electronica:pos:4:2016495|M3+L8",
       "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Magistral G4",
+      "etiqueta": "M3+L8",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G3",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "V",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016495:act:2:G8",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
+    },
+    {
+      "id": "electronica:pos:4:2016495|M4+L9",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "M4+L9",
       "componentes": [
         {
           "id": "2016495:act:1:G4",
@@ -5367,15 +5577,61 @@
               "nota": null
             }
           ]
+        },
+        {
+          "id": "2016495:act:2:G9",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
-      "id": "electronica:pos:4:2016495|Magistral G5",
+      "id": "electronica:pos:4:2016495|M4+L10",
       "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Magistral G5",
+      "etiqueta": "M4+L10",
+      "componentes": [
+        {
+          "id": "2016495:act:1:G4",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "07:00",
+              "fin": "09:00",
+              "nota": null
+            }
+          ]
+        },
+        {
+          "id": "2016495:act:2:G10",
+          "bloques": [
+            {
+              "dia": "X",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        }
+      ],
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
+    },
+    {
+      "id": "electronica:pos:4:2016495|M5+L11",
+      "posicionId": "electronica:pos:4:2016495",
+      "etiqueta": "M5+L11",
       "componentes": [
         {
           "id": "2016495:act:1:G5",
@@ -5393,56 +5649,7 @@
               "nota": null
             }
           ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G1",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G1",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G1",
-          "bloques": [
-            {
-              "dia": "J",
-              "inicio": "14:00",
-              "fin": "16:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G10",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G10",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G10",
-          "bloques": [
-            {
-              "dia": "X",
-              "inicio": "16:00",
-              "fin": "18:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G11",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G11",
-      "componentes": [
+        },
         {
           "id": "2016495:act:2:G11",
           "bloques": [
@@ -5455,14 +5662,30 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
-      "id": "electronica:pos:4:2016495|Laboratorio G12",
+      "id": "electronica:pos:4:2016495|M5+L12",
       "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G12",
+      "etiqueta": "M5+L12",
       "componentes": [
+        {
+          "id": "2016495:act:1:G5",
+          "bloques": [
+            {
+              "dia": "M",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            },
+            {
+              "dia": "J",
+              "inicio": "09:00",
+              "fin": "11:00",
+              "nota": null
+            }
+          ]
+        },
         {
           "id": "2016495:act:2:G12",
           "bloques": [
@@ -5475,168 +5698,7 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G2",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G2",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G2",
-          "bloques": [
-            {
-              "dia": "J",
-              "inicio": "16:00",
-              "fin": "18:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G3",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G3",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G3",
-          "bloques": [
-            {
-              "dia": "L",
-              "inicio": "16:00",
-              "fin": "18:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G4",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G4",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G4",
-          "bloques": [
-            {
-              "dia": "V",
-              "inicio": "09:00",
-              "fin": "11:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G5",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G5",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G5",
-          "bloques": [
-            {
-              "dia": "L",
-              "inicio": "14:00",
-              "fin": "16:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G6",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G6",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G6",
-          "bloques": [
-            {
-              "dia": "V",
-              "inicio": "11:00",
-              "fin": "13:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G7",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G7",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G7",
-          "bloques": [
-            {
-              "dia": "J",
-              "inicio": "07:00",
-              "fin": "09:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G8",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G8",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G8",
-          "bloques": [
-            {
-              "dia": "M",
-              "inicio": "07:00",
-              "fin": "09:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:4:2016495|Laboratorio G9",
-      "posicionId": "electronica:pos:4:2016495",
-      "etiqueta": "Laboratorio G9",
-      "componentes": [
-        {
-          "id": "2016495:act:2:G9",
-          "bloques": [
-            {
-              "dia": "M",
-              "inicio": "16:00",
-              "fin": "18:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
       "id": "electronica:pos:5:2016496|M1+L1",
@@ -6431,9 +6493,9 @@
       "procedencia": "criterio-del-gestor-pares-consecutivos-2026-2"
     },
     {
-      "id": "electronica:pos:5:2016501|Magistral G1",
+      "id": "electronica:pos:5:2016501|M1+L1",
       "posicionId": "electronica:pos:5:2016501",
-      "etiqueta": "Magistral G1",
+      "etiqueta": "M1+L1",
       "componentes": [
         {
           "id": "2016501:act:1:G1",
@@ -6445,36 +6507,7 @@
               "nota": null
             }
           ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:5:2016501|Magistral G2",
-      "posicionId": "electronica:pos:5:2016501",
-      "etiqueta": "Magistral G2",
-      "componentes": [
-        {
-          "id": "2016501:act:1:G2",
-          "bloques": [
-            {
-              "dia": "L",
-              "inicio": "16:00",
-              "fin": "18:00",
-              "nota": null
-            }
-          ]
-        }
-      ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
-    },
-    {
-      "id": "electronica:pos:5:2016501|Laboratorio G1",
-      "posicionId": "electronica:pos:5:2016501",
-      "etiqueta": "Laboratorio G1",
-      "componentes": [
+        },
         {
           "id": "2016501:act:2:G1",
           "bloques": [
@@ -6487,14 +6520,24 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
-      "id": "electronica:pos:5:2016501|Laboratorio G2",
+      "id": "electronica:pos:5:2016501|M1+L2",
       "posicionId": "electronica:pos:5:2016501",
-      "etiqueta": "Laboratorio G2",
+      "etiqueta": "M1+L2",
       "componentes": [
+        {
+          "id": "2016501:act:1:G1",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "11:00",
+              "fin": "13:00",
+              "nota": null
+            }
+          ]
+        },
         {
           "id": "2016501:act:2:G2",
           "bloques": [
@@ -6507,14 +6550,24 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
-      "id": "electronica:pos:5:2016501|Laboratorio G3",
+      "id": "electronica:pos:5:2016501|M2+L3",
       "posicionId": "electronica:pos:5:2016501",
-      "etiqueta": "Laboratorio G3",
+      "etiqueta": "M2+L3",
       "componentes": [
+        {
+          "id": "2016501:act:1:G2",
+          "bloques": [
+            {
+              "dia": "L",
+              "inicio": "16:00",
+              "fin": "18:00",
+              "nota": null
+            }
+          ]
+        },
         {
           "id": "2016501:act:2:G3",
           "bloques": [
@@ -6527,8 +6580,7 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-actividad-independiente-sin-pareja-verificada",
-      "analizable": false
+      "procedencia": "asociacion-confirmada-gestor-2026-2"
     },
     {
       "id": "electronica:pos:1:2016502|M1+T1",
@@ -7046,8 +7098,7 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
-      "analizable": false
+      "procedencia": "vinculacion-optativa-confirmada-gestor-2026-2"
     },
     {
       "id": "electronica:pos:6:optativa-sin-asignatura-especificada:5|2028211 G2",
@@ -7072,8 +7123,7 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
-      "analizable": false
+      "procedencia": "vinculacion-optativa-confirmada-gestor-2026-2"
     },
     {
       "id": "electronica:pos:8:2019125|G1",
@@ -7117,8 +7167,7 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
-      "analizable": false
+      "procedencia": "vinculacion-optativa-confirmada-gestor-2026-2"
     },
     {
       "id": "electronica:pos:7:optativa-sin-asignatura-especificada:6|2016512 G1",
@@ -7143,22 +7192,10 @@
           ]
         }
       ],
-      "procedencia": "SIA-2026-agrupacion-optativa-tematica-provisional",
-      "analizable": false
+      "procedencia": "vinculacion-optativa-confirmada-gestor-2026-2"
     }
   ],
-  "exclusionesAgrupacion": [
-    {
-      "posicionId": "electronica:pos:4:2016495",
-      "codigoAsignatura": "2016495",
-      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
-    },
-    {
-      "posicionId": "electronica:pos:5:2016501",
-      "codigoAsignatura": "2016501",
-      "motivo": "actividades-multiples-sin-agrupacion-conjunta-verificada; grupos por actividad disponibles para consulta"
-    }
-  ],
+  "exclusionesAgrupacion": [],
   "configuracion": {
     "calendario": {
       "dias": [
