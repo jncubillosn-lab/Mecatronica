@@ -84,6 +84,33 @@ for(const id of ids){
  assert(Array.isArray(ajuste.ajustes));
  if(id!=='mecatronica')assert.deepEqual(ajuste.ajustes,[]);
 }
+// Regresión integral del contrato normalizado de Mecánica (malla 2018 + SIA 2026-2).
+const mecanica=leer('datos/programas/mecanica/academico.json');
+const suma={B:0,C:0,L:0,N:0};
+for(const p of mecanica.malla)suma[p.componente]+=p.creditos;
+assert.deepEqual(suma,{B:58,C:86,L:36,N:12});
+assert.equal(mecanica.requisitos.prerrequisitos.length,41);
+assert.equal(new Set(mecanica.requisitos.prerrequisitos.map(r=>r.desde+'|'+r.hasta)).size,41);
+assert.deepEqual(mecanica.requisitos.minimosCreditos,[],
+  'Los porcentajes sin base normativa verificada no son mínimos absolutos');
+const conocidos=new Set(mecanica.malla.map(p=>p.id));
+for(const r of mecanica.requisitos.prerrequisitos){
+  assert(conocidos.has(r.desde)&&conocidos.has(r.hasta));
+  assert.equal(r.metodo,'flecha');
+}
+const gruposMecanica=mecanica.oferta.flatMap(a=>a.actividades.flatMap(t=>t.grupos));
+assert.equal(gruposMecanica.length,111);
+assert.equal(gruposMecanica.filter(g=>g.horarios.length===0).length,4);
+const g40=mecanica.agrupaciones.find(g=>g.id==='mecanica:pos:6:2024045|G40');
+assert(g40&&g40.analizable===false,'Bloque de reserva TPI no debe generar choques');
+assert.equal(mecanica.agrupaciones.filter(g=>g.analizable!==false).length,71);
+for(const c of ['2017278','2017265'])
+  assert.equal(mecanica.malla.find(x=>x.codigoAsignatura===c).componente,'C');
+const revisionMecanica=leer('data/programas/mecanica/revision-prerrequisitos-2026.json');
+assert.equal(revisionMecanica.condicionesOriginalesSIA.length,30);
+assert.equal(revisionMecanica.evidenciaRelaciones.length,41);
+assert.deepEqual(revisionMecanica.porcentajesSinConversionAReglaDeCreditos
+  .map(r=>r.porcentajePlan),[55,75,80]);
 assert.equal(leer('datos/programas/mecatronica/academico.json').agrupaciones.length,432);
 assert.equal(programas.contextoSinDatos('civil').sinDatos,true,
  'El estado sin fuente sigue disponible como estado visual futuro');

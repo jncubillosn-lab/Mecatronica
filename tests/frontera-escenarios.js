@@ -55,7 +55,9 @@ probar('Las posiciones sin clasificación siguen consultables en las nueve carre
 });
 
 probar('La selección sin clasificar se comparte con demanda y no cambia cálculos completos',()=>{
-  const api=abrir('mecanica'),m=api.S.malla.find(m=>!m.comp&&m.s>0);
+  // Mecánica ya tiene sus cuatro optativas clasificadas; Industrial mantiene vacíos legítimos.
+  const api=abrir('industrial'),m=api.S.malla.find(m=>!m.comp&&m.s>0);
+  assert(m,'La prueba requiere una asignatura sin componente real');
   api.S.demanda={tipo:'demanda-preinscripcion',version:1,solicitudes:[{posicionId:m.idPos,cantidad:8}]};
   const antes=JSON.stringify(api.compute(api.S));
   assert(api.pageDemanda().includes(api.esc(m.n)));

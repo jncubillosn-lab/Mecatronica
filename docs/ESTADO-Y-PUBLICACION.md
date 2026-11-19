@@ -1,6 +1,6 @@
 # EST-01 — Estado operativo y publicación
 
-**Corte de evaluación:** 1.1.6, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
+**Corte de evaluación:** 1.1.7, ocho vistas compartidas con y sin datos sobre el núcleo estable de Mecatrónica.
 **Estado:** limpieza de rutas obsoletas y cierre del alcance actual; comprobar CI, fusión y Pages **por separado en cada publicación**. Las nueve carreras tienen contratos independientes; cuatro siguen sin oferta de grupos y cinco tienen oferta documental (con distintas fechas de referencia).  
 **Norma rectora:** [ARQ-01](ARQUITECTURA.md).  
 **Decisiones vigentes:** [DEC-01](DECISIONES-Y-ALCANCE.md).  
@@ -140,3 +140,7 @@ Se incorporan la consulta «Sin clasificar», programaId en los escenarios y la 
 ## 13. Oferta documentada de cuatro programas (1.1.6)
 
 Se incorporan catálogos y ofertas parciales de Electrónica, Industrial, Mecánica y Química (agosto–diciembre de 2026), respetando una entrada normalizada por carrera sin modificar reglas del motor. Se conservan por separado sus `revision-oferta-2026.json` externos con condiciones de requisitos pendientes, grupos incompletos y ambigüedades curriculares. Las carreras Eléctrica, Sistemas, Civil y Agrícola aún no tienen oferta de grupos; Mecatrónica conserva la anterior. Los párrafos de hitos 1.1.2–1.1.5 describen estados pasados, no el inventario actual. Véase [informe de complementación](INFORME-COMPLEMENTACION-HORARIOS-2026.md).
+
+## 14. Mecánica: reconstrucción verificable sin cambiar motor (1.1.7)
+
+Se publican 41 relaciones de malla por ID para Mecánica, 30 condiciones SIA preservadas en registro de revisión, catalogación institucional normalizada y diez grupos de oferta recuperados sin tocar los 101 existentes. Dos asignaturas y cuatro casillas optativas corrigen componentes para B58/C86/L36. El grupo de reserva G40 de TPI se mantiene consultable pero no analizable; los cuatro grupos sin horario permanecen sin datos. Las 12 flechas únicamente documentadas en la malla de 2018 se señalan como evidencia histórica pendiente de contraste de vigencia. Los tres umbrales de avance se retienen en revisión externa sin convertirse a mínimos absolutos. No hubo cambios al lector, motor, UI ni otros contratos. [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md).

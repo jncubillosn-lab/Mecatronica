@@ -1,6 +1,6 @@
 # ARQ-01 — Arquitectura de referencia del sistema
 
-> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.6. **La migración ARQ-01 está terminada y cerrada.**
+> **Estado:** documento rector de arquitectura, principios y requisitos **vigentes** en el corte multicarrera 1.1.7. **La migración ARQ-01 está terminada y cerrada.**
 > **Revisión operativa:** 13 de noviembre de 2026. **Antecedente:** ARQ-01 adoptada el 7 de noviembre de 2026 e integrada desde v0.5.0.
 > **Alcance:** Gestor de horarios, aplicación web estática estudiantil **no oficial** para Ingeniería Mecatrónica. El motor se diseña sin reglas fijas de una carrera, la selección de nueve carreras ya existe desde 1.1.0, con ocho contratos académicos preliminares adicionales sin oferta de grupos y Mecatrónica con oferta operativa.  
 > **Propósito:** regresar a **una referencia común** antes de modificar, diagnosticar, limpiar o mantener el sistema. Este documento reúne frontera, flujo efectivo, requisitos, principios, responsabilidades, restricciones y criterios de verificación; no constituye una nueva arquitectura.  
@@ -513,3 +513,7 @@ La integridad técnica no exige cobertura: créditos y semestre desconocidos pue
 ## 15. Actualización de oferta documental sin nuevos lectores (1.1.6)
 
 Los contratos `versionEsquema: 1` de Electrónica, Industrial, Mecánica y Química reciben oferta de cursos, actividades, grupos y franjas horarios procedentes de fuentes documentales de agosto–diciembre de 2026. Cada contrato mantiene el mismo lector, los mismos cálculos y la misma interfaz; solo cambia el contenido y los parámetros públicos de caché. Se preservan las posiciones curriculares y sus requisitos previos. El archivo `data/programas/<id>/revision-oferta-2026.json` guarda evidencia pendiente, nunca participa como fuente adicional web. No se vinculan actividades múltiples ni asignaturas fuera de malla por inferencia. Las cuatro carreras restantes sin oferta mantienen vistas completas, sin resultados inventados. Documento de control: [informe](INFORME-COMPLEMENTACION-HORARIOS-2026.md).
+
+## 16. Requisitos y calidad de datos en Mecánica (1.1.7)
+
+Se integra la malla 2018 de Mecánica sin modificar ARQ-01: 41 aristas explícitas que vinculan exclusivamente posiciones con IDs existentes (29 corroboradas mediante alternativas actuales del SIA, 12 solo con evidencia gráfica histórica). Se conserva aparte la información condicional completa y tres porcentajes de avance, porque el contrato no dispone de semántica institucional verificable para convertirlos a mínimos de créditos. Se limpia el catálogo institucional, se respetan los códigos y nombres de posiciones, se completan grupos de oferta sin inferir combinaciones y se aparta el grupo de reserva G40 de TPI de los cálculos mediante `analizable:false`. Este cambio es solo de contrato y pruebas de datos; no cambia ninguna regla del lector ni del motor. Ver [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md).

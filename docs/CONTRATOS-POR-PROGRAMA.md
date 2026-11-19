@@ -1,6 +1,6 @@
 # DAT-01 — Contratos independientes y ajustes académicos
 
-**Estado vigente:** 1.1.6. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
+**Estado vigente:** 1.1.7. Esta guía documenta la preparación académica por programa sin modificar ARQ-01 ni el lector web.
 
 ## 1. Propiedad y ubicación
 
@@ -56,3 +56,7 @@ Desde 1.1.3 los nueve programas tienen contrato registrado; las ocho bases nueva
 ## 5. Carga de oferta documental 2026
 
 Los contratos de `electronica`, `industrial`, `mecanica` y `quimica` incorporan oferta externa normalizada. Los expedientes `data/programas/<id>/revision-oferta-2026.json` conservan casos pendientes, **no se leen en tiempo de ejecución** y no sustituyen a `ajustes.json`. En particular, ninguna alternativa de condición prerrequisito se convirtió automáticamente en un vínculo del mapa; tampoco se asignaron semestres a asignaturas fuera de la malla. Mecatrónica, Eléctrica, Sistemas, Civil y Agrícola no cambiaron. [Informe](INFORME-COMPLEMENTACION-HORARIOS-2026.md).
+
+## 6. Mecánica: contrato y expediente de evidencia (1.1.7)
+
+La carga limpia de Mecánica se conserva íntegra en su único `academico.json`. Las 30 condiciones originales del SIA con códigos alternativos, las 41 evidencias de flechas de la malla y los umbrales porcentuales se depositan en `data/programas/mecanica/revision-prerrequisitos-2026.json`, **no interpretado en la web**. El mapa usa únicamente pares de posiciones verificadas; los mínimos porcentuales no se modelan con una condición de créditos inventada. [MEC-01](MEC-01-CARGA-CURRICULAR-2026.md) explica las diferencias.
