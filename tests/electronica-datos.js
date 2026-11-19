@@ -15,18 +15,15 @@ assert.equal(new Set(d.malla.map(x=>x.id)).size,56);
 assert.equal(d.catalogo.length,63);
 assert.equal(new Set(d.catalogo.map(x=>x.codigo)).size,63);
 assert.equal(d.oferta.length,23);
-assert.equal(d.agrupaciones.length,139);
+assert.equal(d.agrupaciones.length,120);
 assert.equal(d.exclusionesAgrupacion.length,9);
 assert(d.exclusionesAgrupacion.some(x=>x.codigoAsignatura==='2016493'));
 const groups=d.oferta.flatMap(o=>o.actividades.flatMap(a=>a.grupos));
-assert.equal(groups.length,146);
+assert.equal(groups.length,125);
 const peama=d.oferta.find(x=>x.codigoAsignatura==='2016502');
 assert.equal(peama.actividades.flatMap(a=>a.grupos).filter(g=>g.id==='SUMA-01').length,2);
 assert(peama.actividades.flatMap(a=>a.grupos).filter(g=>g.id==='SUMA-01').every(g=>g.horarios.length===0));
 assert.equal(d.agrupaciones.filter(x=>x.posicionId==='electronica:pos:7:2016493').length,12);
-const reserved=d.oferta.find(x=>x.codigoAsignatura==='2024045');
-assert(reserved.actividades.flatMap(a=>a.grupos).some(g=>g.id==='40'));
-assert(reserved.actividades.flatMap(a=>a.grupos).some(g=>g.id==='41'));
 assert.equal(d.requisitos.prerrequisitos.length,32);
 assert.equal(d.requisitos.minimosCreditos.length,3);
 const pos=new Set(d.malla.map(x=>x.id));
@@ -66,19 +63,18 @@ function grupo(codigo,actividad,id){
 assert.equal(grupo('2016502','2016502:act:1','1').cuposDisponibles,3);
 assert.equal(grupo('2016502','2016502:act:2','1').cuposDisponibles,2);
 assert.equal(grupo('2016509','2016509:act:1','4').cuposDisponibles,2);
-assert.equal(d.oferta.find(x=>x.codigoAsignatura==='2024045').actividades[0].grupos.length,22);
 assert.equal(r.actualizacionOfertaPosterior.cambiosCupos.length,3);
 assert.equal(r.actualizacionOfertaPosterior.gruposExistentesPreservados,146);
 const raw=new EntradaAcademica(d).generarEscenarioBase();
 assert.equal(raw.pre.length,32);
 assert.equal(raw.reqCred.length,3);
-assert.equal(raw.gr.length,139);
+assert.equal(raw.gr.length,120);
 assert(raw.bl.length>0);
 
 assert.equal(d.oferta.reduce((n,o)=>n+o.actividades.length,0),33);
 assert.equal(d.agrupaciones.filter(g=>g.analizable===false).length,86);
-assert.equal(d.agrupaciones.filter(g=>g.analizable!==false).length,53);
-assert.equal(raw.bl.length,212);
+assert.equal(d.agrupaciones.filter(g=>g.analizable!==false).length,34);
+assert.equal(raw.bl.length,174);
 assert.equal(r.reconstruccionDesdeFuentes.resultados.agrupacionesNuevas,139);
 assert.equal(r.reconstruccionDesdeFuentes.resultados.soloEnOferta,7);
 const wanted = new Map([
@@ -88,7 +84,7 @@ const wanted = new Map([
  ['2016501',['electronica:pos:5:2016501',5]],
  ['2016502',['electronica:pos:1:2016502',3]],
  ['2028816',['electronica:pos:10:diseno-de-sistemas-electronicos',2]],
- ['2024045',['electronica:pos:9:2016510',20]]
+ ['2024045',['electronica:pos:9:2016510',1]]
 ]);
 for(const [codigo,[id,n]] of wanted){
  const actual=d.agrupaciones.filter(g=>g.posicionId===id);
@@ -96,7 +92,7 @@ for(const [codigo,[id,n]] of wanted){
  assert(actual.every(g=>g.componentes.length===1),'No crear emparejamientos de actividades');
 }
 const verify=new Map(d.agrupaciones.flatMap(g=>g.componentes.map(c=>[c.id,{grupo:g,bloques:c.bloques}])));
-assert.equal(verify.size,139,'No repetir componente de una misma actividad');
+assert.equal(verify.size,120,'No repetir componente de una misma actividad');
 let accounted=0,onlyOffer=0;
 for(const curso of d.oferta)for(const actividad of curso.actividades)for(const grupo of actividad.grupos){
  const key=actividad.id+':G'+grupo.id;
@@ -104,8 +100,7 @@ for(const curso of d.oferta)for(const actividad of curso.actividades)for(const g
  if(!item){
   onlyOffer++;
   assert(curso.codigoAsignatura==='2016488'
-    || (curso.codigoAsignatura==='2016502'&&grupo.id==='SUMA-01')
-    || (curso.codigoAsignatura==='2024045'&&['40','41'].includes(grupo.id)), 'Grupo ofertado omitido: '+key);
+    || (curso.codigoAsignatura==='2016502'&&grupo.id==='SUMA-01'), 'Grupo ofertado omitido: '+key);
   continue;
  }
  accounted++;
@@ -116,8 +111,8 @@ for(const curso of d.oferta)for(const actividad of curso.actividades)for(const g
  }
  if(curso.actividades.length>1)assert.equal(item.grupo.analizable,false,'Combinación no acreditada '+key);
 }
-assert.equal(accounted,139);
-assert.equal(onlyOffer,7);
+assert.equal(accounted,120);
+assert.equal(onlyOffer,5);
 for(const nombre of ['Electrónica digital II','Electrónica de potencia','Control','Instrumentación y medidas','Introducción a ingeniería electrónica','Diseño de sistemas electrónicos']){
  assert(raw.asg.some(a=>a[0]===nombre),'Materia sin grupos en interfaz: '+nombre);
  assert(raw.bl.some(b=>b[0]===nombre),'Materia sin bloques de horario: '+nombre);

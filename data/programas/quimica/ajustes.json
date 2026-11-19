@@ -1,5 +1,37 @@
 {
   "versionAjustes": 1,
   "programaId": "quimica",
-  "ajustes": []
+  "ajustes": [
+    {
+      "id": "tpi-horario-grupo-unico",
+      "motivo": "Corrección de la oferta 2026-2 confirmada por el responsable de la base. TPI 2024045 tiene un único grupo G1 con dos sesiones. Los registros adicionales de la captura no representan grupos ofertados.",
+      "ruta": [
+        "oferta",
+        {
+          "codigoAsignatura": "2024045"
+        },
+        "actividades",
+        {
+          "id": "2024045:act:1"
+        },
+        "grupos",
+        {
+          "id": "1"
+        }
+      ],
+      "campo": "horarios",
+      "valor": [
+        {
+          "dia": "L",
+          "inicio": "14:00",
+          "fin": "16:00"
+        },
+        {
+          "dia": "X",
+          "inicio": "14:00",
+          "fin": "16:00"
+        }
+      ]
+    }
+  ]
 }

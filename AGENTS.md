@@ -1,6 +1,6 @@
 # Guía de trabajo para agentes y colaboradores
 
-**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para la versión 1.1.11 (ARQ-01 permanece cerrada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
+**Referencia rectora obligatoria:** [ARQ-01 — arquitectura, funcionamiento real, principios, requisitos, no-requisitos y criterios de mantenimiento](docs/ARQUITECTURA.md), vigente para la versión 1.1.12 (ARQ-01 permanece cerrada). Antes de proponer un cambio, localizar el requisito RF/RC o la decisión expresa correspondiente y clasificar si es fallo, deuda, incertidumbre, historia o no requisito. [DEC-01](docs/DECISIONES-Y-ALCANCE.md) conserva el detalle de decisiones; [EST-01](docs/ESTADO-Y-PUBLICACION.md) y [MIG-ARQ01](docs/MIGRACION-ARQ01.md) contienen cortes e historia que pueden referirse a versiones anteriores; no se aplican literalmente al código vigente sin contrastarlo.
 
 ## Antes de cualquier cambio
 
@@ -85,7 +85,7 @@ El contrato `datos/programas/electronica/academico.json` corresponde al plan 254
 
 ## Electrónica: corrección de fuente repetida (1.1.10)
 
-`Electronica horarios(2).txt` no constituye una nueva oferta completa independiente. Contiene una copia íntegra de `Electronica horarios(1).txt`, seguida de 12 bloques repetidos; solo tres campos `cuposDisponibles` cambian en esos bloques: `2016502` magistral G1 2→3, `2016502` taller G1 1→2, `2016509` G4 1→2. La repetición de TPI `2024045` tiene un solo grupo; **no sustituir el listado completo de 22 grupos**. Se conserva el catálogo, malla, 32 aristas, tres mínimos, 31 agrupaciones, 146 grupos de oferta y bases de las demás carreras. Evidencia en `data/programas/electronica/revision-prerrequisitos-2026.json`; [ELE-01](docs/ELE-01-CARGA-CURRICULAR-2026.md).
+`Electronica horarios(2).txt` no constituye una nueva oferta completa independiente. Contiene una copia íntegra de `Electronica horarios(1).txt`, seguida de 12 bloques repetidos; solo tres campos `cuposDisponibles` cambian en esos bloques: `2016502` magistral G1 2→3, `2016502` taller G1 1→2, `2016509` G4 1→2. En ese corte se preservó el listado documental de 22 grupos de TPI `2024045`. La corrección aprobada en 1.1.12 establece G1 como único grupo en la oferta normalizada. Se conserva el catálogo, malla, 32 aristas, tres mínimos, 31 agrupaciones, 146 grupos de oferta y bases de las demás carreras. Evidencia en `data/programas/electronica/revision-prerrequisitos-2026.json`; [ELE-01](docs/ELE-01-CARGA-CURRICULAR-2026.md).
 
 ## Electrónica 1.1.11 — Visibilidad real ≠ oferta bruta
 

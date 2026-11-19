@@ -2,6 +2,10 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.12 — Grupo único de TPI (18 nov 2026)
+
+En la oferta 2026-2 de Mecánica, Química y Electrónica, TPI (`2024045`) tiene un solo grupo, G1, con clase los lunes y miércoles de 14:00 a 16:00. La captura de cada carrera contenía 22 registros. Se conserva el G1 original y se retiran las demás entradas de TPI de la oferta y de las agrupaciones que las utilizaban.
+
 ## 1.1.11 — Reconstrucción integral de Ingeniería Electrónica (18 nov 2026)
 
 - Se corrige la causa de asignaturas con horario en la oferta pero «sin grupos»: el lector usa `agrupaciones`, no `oferta` directamente; la carga 1.1.10 proyectaba solo 31 grupos.
