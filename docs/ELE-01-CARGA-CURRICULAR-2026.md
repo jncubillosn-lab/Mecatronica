@@ -71,3 +71,19 @@ Estas diferencias explican por qué una materia puede constar en la oferta sin a
 ## 7. Aseguramiento
 
 La regresión `tests/electronica-datos.js` comprueba los totales por semestre/componente, referencias por ID, integridad de grupos, exclusiones y reglas de créditos, además de ejecutar el adaptador institucional actual `EntradaAcademica`. Las pruebas generales del repositorio, el despliegue Pages y la certificación de versión son condiciones obligatorias antes de afirmar publicación.
+
+## 8. Corrección de una exportación ampliada (18 nov 2026; versión 1.1.10)
+
+Se recibió `Electronica horarios(2).txt`, que reproduce **exactamente** la totalidad de `Electronica horarios(1).txt` y luego añade otros **12 encabezados de asignaturas existentes**. En 11 copias finales de asignaturas los grupos y condiciones no aportan novedades sustantivas; en la sección repetida de TPI (`2024045`) solo aparece su **grupo 1**, a diferencia de los **22 grupos** de su sección completa. Esa sección parcial no debe interpretarse como baja de los 21 grupos omitidos.
+
+La reconciliación por código institucional, actividad y grupo arrojó únicamente los siguientes cambios:
+
+| Asignatura | Actividad y grupo | Cupos de la fuente inicial | Cupos actualizados |
+|---|---|---:|---:|
+| Introducción a ingeniería electrónica (`2016502`) | Clase magistral, G1 | 2 | **3** |
+| Introducción a ingeniería electrónica (`2016502`) | Clase taller, G1 | 1 | **2** |
+| Taller de ingeniería electrónica (`2016509`) | Clase magistral, G4 | 1 | **2** |
+
+No hay asignaturas ni grupos nuevos. La base conserva **146 grupos**, **23 cursos**, **56 posiciones**, **31 agrupaciones**, **32 enlaces de prerrequisitos** y **tres mínimos** sin variar la lógica de matrícula. Tampoco se cambian horarios, fechas, docentes ni aulas de las entradas preexistentes, y no se modifican las bases de otras carreras.
+
+El registro de procedencia de la revisión externa contiene los tres valores anteriores y nuevos, la fecha, ambas fuentes y la razón para ignorar duplicados documentales. La prueba `tests/electronica-datos.js` comprueba explícitamente esos tres cupos, los 22 grupos de TPI y la identidad del contrato para evitar regresiones.

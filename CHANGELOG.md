@@ -2,6 +2,13 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.10 — Corrección puntual de cupos de Ingeniería Electrónica (18 nov 2026)
+
+- Se confronta `Electronica horarios(2).txt` contra la fuente anterior y el contrato 1.1.9. El texto es una copia completa de la fuente previa más 12 secciones repetidas; una segunda copia de TPI contiene solamente un grupo y no se usa para borrar grupos válidos.
+- Se actualizan **exclusivamente tres cupos disponibles**: Introducción a Ingeniería Electrónica `2016502` magistral G1 (2→3), taller G1 (1→2); Taller de Ingeniería Electrónica `2016509` G4 (1→2).
+- Se conservan 23 cursos, **146 grupos**, 31 agrupaciones, 56 posiciones, 32 prerrequisitos y tres mínimos curriculares. No cambian horarios, docentes, actividades, fechas, otras ocho carreras, lector, motor ni vistas.
+- Se documenta la resolución de duplicados y se refuerza `tests/electronica-datos.js`; solo se incrementa el parámetro de versión/caché a 1.1.10.
+
 ## 1.1.9 — Integración limpia de Ingeniería Electrónica (18 nov 2026)
 
 - Se coteja malla plan 2545 (2023), catálogo institucional y oferta SIA 2026-2 de Electrónica. Se conserva su contrato académico independiente y no se modifica otra carrera, motor, UI ni lector.

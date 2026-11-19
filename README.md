@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.9 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
+**Versión pública:** 1.1.10 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -133,3 +133,9 @@ Los **144 grupos ya existentes** conservan horarios, cupos y fechas; se agregaro
 No se afirma equivalencia institucional entre TPI **2016510** (malla) / **2024045** (SIA), ni entre Diseño **2016494** (malla) / **2028816** (SIA). Se conservan separados; la posición de Diseño permanece sin código asociado hasta su verificación.
 
 Más información: [ELE-01 — informe técnico](docs/ELE-01-CARGA-CURRICULAR-2026.md).
+
+## Corrección de cupos de Electrónica (1.1.10)
+
+El archivo `Electronica horarios(2).txt` reproduce íntegramente la primera oferta y añade doce copias de asignaturas ya presentes; la segunda copia de TPI está incompleta y no reemplaza la oferta previa. Se cotejó toda la parte añadida, conservando los **146 grupos** y las **31 agrupaciones verificadas** de Electrónica. Las únicas correcciones confirmadas son tres valores de **cupos disponibles**: Introducción a Ingeniería Electrónica `2016502` magistral G1 **2→3**, taller G1 **1→2**, y Taller de Ingeniería Electrónica `2016509` G4 **1→2**.
+
+Los 32 prerrequisitos, tres mínimos, 56 posiciones curriculares, horarios, profesores, fechas y otras carreras quedan intactos. Véase el [informe ELE-01](docs/ELE-01-CARGA-CURRICULAR-2026.md) y la [revisión académica](data/programas/electronica/revision-prerrequisitos-2026.json).
