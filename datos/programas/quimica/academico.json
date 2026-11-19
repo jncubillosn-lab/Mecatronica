@@ -42,160 +42,160 @@
       "codigo": "1000024-B",
       "nombre": "Principios de química",
       "creditos": 3,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Suministrar a los estudiantes los conceptos básicos de la Química que le permitan la interpretación de fenómenos involucrados en diferentes procesos químicos. La asignatura se desarrollará mediante exposiciones orales por parte del profesor. Se propondrán actividades de reforzamiento y repaso (talleres y lecturas complementarias). OBJETIVOS: 1. Preparar al estudiante para la interpretación de fenómenos involucrados en diferentes procesos químicos. 2. Promover el aprendizaje y comprensión del lenguaje básico de la Química como herramienta indispensable para su desarrollo profesional, el trabajo interdisciplinario y para que entienda la vida cotidiana desde la óptica de los procesos químicos. 3. Aumentar el interés en los estudiantes por la comprensión de la materia a nivel atómico y molecular. 4. Potencializar competencias interpretativas, propositivas y argumentativas fundamentadas en el lenguaje químico. 5. Fomentar la integración de los conceptos de materia y energía de creciente relevancia en el presente siglo, en todas las actividades del quehacer cotidiano. 6. Desarrollar habilidades y destrezas para la resolución de ejercicios y problemas que requieran de conocimientos de Química. 7. Promover en el estudiante el uso responsable de los conocimientos de química en su entorno, especialmente en lo que tiene que ver con el cuidado del medio ambiente. Conceptos Previos: Considerando que es un curso para los ciclos de fundamentación de diferentes programas académicos de la Universidad Nacional de Colombia no se requieren conocimientos previos"
     },
     {
-      "codigo": "1000025",
-      "nombre": "Laboratorio de técnicas básicas en química",
+      "codigo": "1000025-B",
+      "nombre": "Laboratorio tecnicas básicas en química",
       "creditos": 3,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS: 1.Introducir al estudiante en las técnicas que usualmente se emplean en un laboratorio de química. 2.Educar y desarrollar capacidad de observación. 3. Conocer y emplear el nombre del material y equipos usados en las prácticas. 4.Conocer y saber utilizar las técnicas básicas empleadas en un laboratorio de química. 5.Aprender a preparar y utilizar el cuaderno de laboratorio. 6.Entender la posibilidad de que se presenten errores experimentales, entender sus causas y saber corregirlos. METODOLOGÍA Este curso de laboratorio ha sido diseñado de forma tal, que al inicio, se introduce lentamente al estudiante en el trabajo práctico de manera inductiva con la implementación de PRÁCTICAS GUIADAS. Este tipo de prácticas tienen una guía muy detallada en la que son explícitos el problema a abordar, los objetivos y el marco conceptual básico. El estudiante sigue un procedimiento preestablecido y tiene ayudas (tablas, cuadros) para el reporte de datos. Para encaminar el análisis de los resultados obtenidos, se hacen preguntas adicionales, se piden cálculos específicos y se sugieren otras búsquedas y complementos."
     },
     {
       "codigo": "1000004-B",
       "nombre": "Cálculo diferencial",
       "creditos": 4,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS Estudiar los conceptos de límite y derivada para funciones de una variable real y utilizar estas ideas en la solución de problemas de optimización, trazado de curvas y razones de cambio. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
     },
     {
       "codigo": "2015718",
       "nombre": "Introducción a la ingeniería química",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Objetivo General: Proporcionar al alumno, a manera de contextualización, información y conocimientos sobre la Carrera, la Profesión y la Universidad, para hacer consciente y afianzar su decisión de estudiar Ingeniería Química, promover su interés por una"
     },
     {
-      "codigo": "1000026",
+      "codigo": "1000026-B",
       "nombre": "Principios de análisis químico",
       "creditos": 3,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVO GENERAL: Desarrollar capacidad de análisis y de síntesis para la solución de problemas teórico-prácticos en química analítica. OBJETIVOS ESPECIFICOS: Conocer y comprender los principios del Equilibrio Químico y la estequiometría aplicables a las separaciones analíticas y determinaciones cualitativas y cuantitativas de especies iónicas o moleculares en los diferentes tipos de reacciones químicas. Aplicar los principios del Equilibrio Químico a métodos volumétricos y gravimétricos del análisis cuantitativo. OBSERVACIONES: Evaluaciones: 4 pruebas parciales 100% (25% c/u)"
     },
     {
       "codigo": "1000003-B",
       "nombre": "Álgebra Lineal",
       "creditos": 4,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS: Asimilar los fundamentos del Algebra Lineal, a nivel elemental, pero con la profundidad necesaria para adquirir los conocimientos y habilidades básicas (capacidad de análisis y de razonamiento lógico - deductivo) para la solución de problemas en las cuales estén involucrados los elementos matemáticos de sistemas de ecuaciones lineales, espacios vectoriales, valores y vectores propios de una matriz y diagonalización de matrices. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
     },
     {
       "codigo": "1000005-B",
       "nombre": "Cálculo Integral",
       "creditos": 4,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS General ¿ Lograr la apropiación por parte del. estudiante de los conceptos fundamentales del cálculo integral de funciones de una variable real y crear habilidades que le permitan aplicar estos conocimientos en problemas propios de su disciplina y abordar de manera elemental los conceptos de sucesiones y series. Específicos ¿ Conocer y manejar con propiedad el concepto de integral definida de una función real de una variable real y su relación con el concepto de primitiva o antiderivada, para facilitar los cálculos. ¿ Estudiar algunas de las diferentes aplicaciones del concepto de integral. ¿ Adquirir destrezas en el estudio de la convergencia de sucesiones y series"
     },
     {
       "codigo": "1000019-B",
       "nombre": "Fundamentos de mecánica",
       "creditos": 4,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Asignatura de pregrado orientada al estudio de los principios básicos de la mecánica clásica, proporcionando herramientas para comprender y analizar el movimiento de los cuerpos y las fuerzas que actúan sobre ellos. El curso constituye una base esencial para la formación científica y tecnológica al permitir interpretar fenómenos físicos presentes en diferentes contextos naturales y aplicados. A lo largo de la asignatura, el estudiante desarrollará habilidades para describir movimientos, analizar sistemas dinámicos, interpretar leyes físicas y resolver problemas relacionados con cinemática, dinámica, trabajo, energía y conservación del momento. Asimismo, fortalecerá competencias en razonamiento cuantitativo, pensamiento analítico y modelación matemática de fenómenos físicos. La asignatura tiene un enfoque interdisciplinar al conectarse con áreas como ingeniería, matemáticas aplicadas, ciencias ambientales, astronomía, biomecánica y ciencias computacionales, permitiendo que estudiantes de distintas disciplinas comprendan principios fundamentales del comportamiento de sistemas físicos. Los conocimientos adquiridos tienen aplicación práctica en el análisis de movimientos, diseño y comprensión de sistemas mecánicos, interpretación de fenómenos naturales y desarrollo de soluciones tecnológicas, además de fortalecer capacidades útiles para contextos académicos y profesionales diversos. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en matemáticas básicas y nociones introductorias de física. Se sugiere un nivel inicial de avance curricular que facilite la apropiación gradual de los conceptos y herramientas del curso."
     },
     {
       "codigo": "2015708",
       "nombre": "Balance de materia",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Se ocupa de la aplicación del principio de conservación de la materia a los procesos de transformación física y química. Por la naturaleza de tal aplicación se ubica a los estudiantes en el ambiente general de las industrias de procesamiento químico, de m"
     },
     {
-      "codigo": "1000027",
-      "nombre": "Laboratorio de principios de análisis químico",
+      "codigo": "1000027-B",
+      "nombre": "Laboratorio principios de análisis químico",
       "creditos": 3,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Objetivo general: proporcionar las herramientas adecudas para la comprensión de los aspectos básicos de la química analítica aplicada en procesos de análisis cualitativos y cuantitativos. Objetivos específicos: Aplicar algunas de las técnicas analíticas (separación de iones, análisis gravimétrico y análisis volumétrico) para la determinación cualitativa o cuantitativa de analitos en diferentes clases de muestras. Ejecutar con pulcritud las determinaciones analíticas y comparar su resultado frente al trabajo de grupo y/o las normas de calidad. OBSERVACIONES:Evalución: Quices (20%), Informes (15 %) , 2 evaluaciones (50%, 25% c/u), Practica especial (15%)"
     },
     {
       "codigo": "1000006-B",
       "nombre": "Cálculo en varias variables",
       "creditos": 4,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS: ¿ Estudiar los conceptos fundamentales del cálculo de funciones de varias variables (límites, continuidad, diferenciación e integración) y los teoremas centrales del Cálculo vectorial (Teoremas de Green, Gauss y Stokes). ¿ Estimular y desarrollar la capacidad de análisis y de razonamiento lógico-deductivo del estudiante. ¿ Capacitar al estudiante para la interpretación, formulación y solución de problemas en las áreas relacionadas con su especialidad en las cuales se haga necesario la aplicación del cálculo de funciones de varias variables y del cálculo vectorial."
     },
     {
       "codigo": "1000017-B",
       "nombre": "Fundamentos de electricidad y magnetismo",
       "creditos": 4,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Asignatura de pregrado orientada al estudio de los principios fundamentales de la electricidad y el magnetismo, así como de las interacciones electromagnéticas presentes en sistemas naturales y tecnológicos. El curso proporciona herramientas conceptuales y matemáticas para comprender fenómenos eléctricos, magnéticos y electromagnéticos esenciales en la formación científica y tecnológica. Durante la asignatura, el estudiante desarrollará habilidades para analizar campos eléctricos y magnéticos, interpretar circuitos básicos, comprender fenómenos de inducción electromagnética y resolver problemas relacionados con cargas, corrientes y potenciales eléctricos. Asimismo, fortalecerá competencias en razonamiento lógico, modelación matemática, análisis experimental y solución de problemas físicos. La asignatura posee un carácter interdisciplinar al relacionarse con áreas como física, ingeniería, telecomunicaciones, electrónica, bioingeniería y ciencias aplicadas, beneficiando a estudiantes interesados en comprender el funcionamiento de múltiples tecnologías contemporáneas. Los contenidos tienen aplicación práctica en sistemas eléctricos, dispositivos electrónicos, telecomunicaciones, instrumentación científica y tecnologías de uso cotidiano, además de aportar herramientas fundamentales para la comprensión de fenómenos físicos presentes en diversos contextos académicos y profesionales. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en física general y matemáticas básicas, especialmente en álgebra y cálculo diferencial. Se sugiere un avance curricular inicial o intermedio para favorecer la apropiación conceptual y matemática de los contenidos."
     },
     {
-      "codigo": "1000028",
+      "codigo": "1000028-B",
       "nombre": "Principios de química inorgánica",
       "creditos": 3,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Objetivos: General: Comprender la relación entre estructura, periodicidad y reactividad de especies químicas inorgánicas. Específicos: 1. Utilizar las propiedades periódicas en la interpretación del comportamiento químico y físico de elementos y de compuestos inorgánicos. 2. Identificar las estructuras cristalinas de compuestos inorgánicos en estado sólido. 3. Emplear conceptos y criterios termodinámicos para predecir la reactividad de elementos y de compuestos inorgánicos. 4. Conocer las propiedades de acidez y basicidad de especies inorgánicas (óxidos, hidrácidos, cationes y aniones) en soluciones acuosas. 5. Describir las principales reacciones (obtención y transformación) de elementos químicos de importancia geológica e industrial. 6. Reconocer la estructura y usos de algunos minerales de importancia química e industrial. Metodología:La función del profesor es la de orientador y evaluador de ese aprendizaje. Esto implica que el estudiante deberá preparar con anterioridad a la clase la temática y actividades pertinentes a cada unidad con base en la bibliografía especificada y el cronograma del curso. En cada unidad, se hará una presentación general del tema. Se harán evaluaciones escritas."
     },
     {
       "codigo": "1000013-B",
       "nombre": "Probabilidad y estadística fundamental",
       "creditos": 3,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": null
     },
     {
       "codigo": "1000007-B",
       "nombre": "Ecuaciones Diferenciales",
       "creditos": 4,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS: Modelar por medio de ecuaciones diferenciales algunos sistemas simples y predecir su comportamiento. Comprender y utilizar las diferentes técnicas analíticas y cualitativas para resolver ecuaciones diferenciales. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
     },
     {
       "codigo": "2015714",
       "nombre": "Fluidos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Trata del estudio de los conceptos y principios básicos que gobiernan el comportamiento de los fluidos newtonianos tanto en estado de equilibrio relativo y de reposo, como en estado de movimiento general con deformación, para aplicarlos en el diseño preli"
     },
     {
       "codigo": "2015735",
       "nombre": "Taller 1",
       "creditos": 1,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Resultados del aprendizaje: El estudiante adquiere habilidades para integrar y poner en contexto su conocimiento con el desarrollo de proyectos en los que trabaja en equipo en ejercicios de selección información, argumentación, presentación de informes or"
     },
     {
       "codigo": "2015740",
       "nombre": "Termodinámica química",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El estudiante estará en capacidad de elaborar relaciones entre propiedades termodinámicas de sistemas mono y multicomponentes. Empleará ecuaciones de estado en el cálculo de propiedades termodinámicas. Comprenderá y aplicará los criterios de equilibrio fí"
     },
     {
-      "codigo": "1000030",
+      "codigo": "1000030-B",
       "nombre": "Principios de química orgánica",
       "creditos": 3,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "METODOLOGÍA El curso se desarrolla mediante la exposición de los temas a tratar, actividades de mecanización y repaso (talleres, tareas, lecturas complementarias) que el estudiante deberá desarrollar a su propio juicio y necesidad soportados en la consulta bibliográfica sugerida, y finalmente se realizan actividades de evaluación (exámenes y talleres). OBJETIVOS: Al finalizar el curso, el estudiante debe estar en capacidad de: 1. Identificar las clases más comunes de compuestos orgánicos según su función química. 2. Predecir el comportamiento de los distintos tipos de moléculas orgánicas más comunes en función de sus características estructurales, 3. Emplear las reglas más generales de la nomenclatura IUPAC para denominar compuestos orgánicos incluyendo los descriptores estereoquímicos, y reconocer nombres comunes de estos compuestos 4. Conocer los principales mecanismos por los cuales se explican las reacciones orgánicas"
     },
     {
       "codigo": "2015970",
       "nombre": "Métodos numéricos",
       "creditos": 3,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVO GENERAL Capacitar al estudiante en los conceptos fundamentales del análisis numérico para la solución de problemas matemáticos mediante algoritmos numéricos, con la orientación necesaria para su implementación en computador y aplicados a la solución de problemas en ingeniería. OBJETIVOS ESPECÍFICOS - Implementar soluciones a diversos problemas con procedimientos numéricos en el computador, mediante el paquete matemático MATLAB. - Estimular al alumno para crear sus propias soluciones en el computador para resolver problemas particulares. METODOLOGÍA El propósito de este curso es darle apoyo al estudiante de manera que pueda llevar a cabo su proceso de aprendizaje de manera autónoma; este apoyo está representado por: material escrito, desarrollo de talleres y laboratorios, ejercicios teóricos y prácticos, software didáctico y explicaciones por parte de profesores y monitores. Cada módulo temático está conformado por 4 sesiones distribuidas en dos semanas: una conferencia, una clase, un taller y un laboratorio. A continuación se describe cada tipo de sesión."
     },
     {
@@ -218,24 +218,16 @@
       "codigo": "2015707",
       "nombre": "Balance de energía y equilibrio químico",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El estudiante estará en capacidad de formular y resolver el balance de energía de procesos de transformación fisicoquímica habituales en la industria química, reconociendo la pertinencia del empleo de modelos ideales o reales en el cálculo de propiedades"
-    },
-    {
-      "codigo": "1000010",
-      "nombre": "Laboratorio de principios de química orgánica",
-      "creditos": 2,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
-      "descripcion": null
     },
     {
       "codigo": "2015703",
       "nombre": "Ingeniería económica",
       "creditos": 3,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Suministrar al estudiante de ingeniería en la Universidad Nacional de Colombia los conceptos básicos de la teoría económica que le permitan desarrollar su capacidad de análisis y comprensión de las áreas propias de sus actividades profesionales y en parti"
     },
     {
@@ -250,72 +242,72 @@
       "codigo": "2015736",
       "nombre": "Taller 2",
       "creditos": 1,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "OBJETIVO Conocimiento de los recursos naturales del país, elaborar un diagrama de flujo para el proceso de elaboración de un producto, identificando las operaciones de transferencia de masa involucradas y sus condiciones de operación. OBJETIVOS ESPECÍFI"
     },
     {
       "codigo": "2015721",
-      "nombre": "Propiedades termodinámicas y de transporte",
+      "nombre": "Laboratorio de propiedades termodinámicas y de transporte",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "La asignatura permite que el estudiante desarrolle habilidades experimentales y a través de ellas ponga en consonancia el conocimiento de los principios de la termodinámica, los fundamentos del transporte de fluidos, materia y energía para diseñar, ejecut"
     },
     {
       "codigo": "2015702",
       "nombre": "Gerencia y gestión de proyectos",
       "creditos": 3,
-      "tipologia": "FUND. SIN CARÁCTER CONFIRMADO",
-      "rotulo": "FUND. SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Objetivos: El curso busca preparar al futuro ingeniero en las metodologías de formulación, evaluación y gestión de proyectos, como una de las actividades habituales que desempeñan los ingenieros en entidades públicas o privadas."
     },
     {
       "codigo": "2015731",
-      "nombre": "Operaciones de separación",
+      "nombre": "Operaciones de Separación",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El curso está diseñado para que el estudiante desarrolle habilidades para la aplicación de conceptos de transferencia de masa y fenómenos de transporte, para la especificación de las operaciones de separación apropiadas para situaciones particulares, así"
     },
     {
       "codigo": "2015719",
       "nombre": "Laboratorio de fluidos, sólidos y transferencia de calor",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "La asignatura permite que el estudiante desarrolle habilidades experimentales y a través de ellas ponga en consonancia el conocimiento de los fundamentos del transporte de fluidos, operaciones con materiales sólidos y la transferencia de calor para dise"
     },
     {
       "codigo": "2015716",
-      "nombre": "Ingeniería de reacciones químicas",
+      "nombre": "Ingeniería de Reacciones Químicas",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El curso de Ingeniería de Reacciones Químicas tiene como objetivo introducir al estudiante en los conceptos básicos de la cinética química y el comportamiento de los reactores con el fin de aplicarlos en el análisis y diseño de reactores isotérmicos y no-"
     },
     {
       "codigo": "2015710",
       "nombre": "Control de procesos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "OBJETIVOS: Identificar el papel del Control de Procesos en la industria química. Proporcionar al estudiante los fundamentos, técnicas y tecnologías necesarias para poder abordar el modelado, análisis y diseño de sistemas de control de procesos químicos."
     },
     {
       "codigo": "2015720",
-      "nombre": "Laboratorio de separación, reacción y control",
+      "nombre": "Laboratorio de operaciones de separación, reaccion y control",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "La asignatura permite que el estudiante desarrolle habilidades experimentales y a través de ellas ponga en consonancia el conocimiento de los fundamentos de las operaciones de separación, reacción y control automático de procesos para diseñar, ejecutar y"
     },
     {
       "codigo": "2015713",
       "nombre": "Diseño de procesos químicos y bioquímicos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El objetivo principal de la asignatura es aplicar los conceptos adquiridos durante el transcurso de la carrera de ingeniería química al análisis y diseño conceptual de los procesos de transformación química. Se estudiarán los fundamentos de algunos proces"
     },
     {
@@ -330,16 +322,16 @@
       "codigo": "2015712",
       "nombre": "Diseño de plantas y equipos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Se estudiarán las etapas principales de la ingeniería deuna planta de procesamiento: conceptual, básica y de detalle, definiendo los alcances, objetivos, características, actividades, documentos principales y especificaciones técnicas aplicables. Se hará"
     },
     {
       "codigo": "2015715",
-      "nombre": "Ingeniería de procesos",
+      "nombre": "Ingeniería de Procesos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Al concluir este curso, el alumno será capaz de analizar integralmente proceso químicos y bioquímicos, identificando las variables con mayor incidencia sobre el proceso, evaluando los efectos de los cambios en estas variables, definiendo modificaciones pa"
     },
     {
@@ -355,7 +347,7 @@
       "nombre": "Termodinámica",
       "creditos": 3,
       "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El estudiante estará en capacidad de emplear los principios de la Termodinámica en el análisis de sistemas que involucren transformaciónes físicas con sustancias puras en estados sólido, líquido o vapor. Podrá identificar las diferentes formas de energía"
     },
     {
@@ -372,7 +364,7 @@
       "creditos": 3,
       "tipologia": "DISCIPLINAR OPTATIVA (T)",
       "rotulo": "DISCIPLINAR OPTATIVA (T)",
-      "descripcion": "OBJETIVOS: General Conocer los materiales de ingeniería, su estructura, propiedades y aplicaciones en diseño. Dar una visión general sobre los tipos de materiales de ingeniería mas conocidos, sus características, y aplicaciones, y mostrar su importancia en la evolución del desarrollo tecnológico e industrial de manera que el estudiante adquiera una perspectiva orientada hacia la producción y manufactura a partir de los diferentes materiales. Específicos Dar a los estudiantes diversos temas de física y química aplicadas, que son la base para comprender los “principios de la ciencia de los materiales”, describiendo el equilibrio entre los principios científicos y la ingeniería práctica que se precisan al seleccionar los materiales apropiados en la tecnología moderna. Metodología: Clases magistrales y practicas de laboratorio de refuerzo de aprendizaje en el semestre: Laboratorio de caracterización de materiales, composición química y dureza, laboratorio de ensayos mecánicos, laboratorio de preparación de muestras metalográficas, laboratorio de tratamientos térmicos y templabilidad."
+      "descripcion": "OBJETIVOS: General Conocer los materiales de ingeniería, su estructura, propiedades y aplicaciones en diseño. Dar una visión general sobre los tipos de materiales de ingeniería mas conocidos, sus características, y aplicaciones, y mostrar su importancia en la evolución del desarrollo tecnológico e industrial de manera que el estudiante adquiera una perspectiva orientada hacia la producción y manufactura a partir de los diferentes materiales. Específicos Dar a los estudiantes diversos temas de física y química aplicadas, que son la base para comprender los principios de la ciencia de los materiales, describiendo el equilibrio entre los principios científicos y la ingeniería práctica que se precisan al seleccionar los materiales apropiados en la tecnología moderna. Metodología: Clases magistrales y practicas de laboratorio de refuerzo de aprendizaje en el semestre: Laboratorio de caracterización de materiales, composición química y dureza, laboratorio de ensayos mecánicos, laboratorio de preparación de muestras metalográficas, laboratorio de tratamientos térmicos y templabilidad."
     },
     {
       "codigo": "2015709",
@@ -613,6 +605,14 @@
       "tipologia": "DISCIPLINAR OPTATIVA (T)",
       "rotulo": "DISCIPLINAR OPTATIVA (T)",
       "descripcion": "Al finalizar la asignatura el estudiante estará en capacidad de: Identificar, analizar y evaluar el comportamiento molecular de una sustancia pura o de una mezcla, para seleccionar y aplicar los modelos termodinámicas adecuados para el diseño eficiente,"
+    },
+    {
+      "codigo": "1000010-B",
+      "nombre": "Biología molecular y celular",
+      "creditos": 3,
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": ""
     }
   ],
   "malla": [
@@ -629,7 +629,7 @@
     {
       "id": "quimica:pos:1:1000025",
       "nombre": "Laboratorio de técnicas básicas en química",
-      "codigoAsignatura": "1000025",
+      "codigoAsignatura": "1000025-B",
       "semestre": 1,
       "creditos": 3,
       "componente": "B",
@@ -659,7 +659,7 @@
     {
       "id": "quimica:pos:2:1000026",
       "nombre": "Principios de análisis químico",
-      "codigoAsignatura": "1000026",
+      "codigoAsignatura": "1000026-B",
       "semestre": 2,
       "creditos": 3,
       "componente": "B",
@@ -709,7 +709,7 @@
     {
       "id": "quimica:pos:3:1000027",
       "nombre": "Laboratorio de principios de análisis químico",
-      "codigoAsignatura": "1000027",
+      "codigoAsignatura": "1000027-B",
       "semestre": 3,
       "creditos": 3,
       "componente": "B",
@@ -719,7 +719,7 @@
     {
       "id": "quimica:pos:3:biologia-molecular-y-celular",
       "nombre": "Biología molecular y celular",
-      "codigoAsignatura": null,
+      "codigoAsignatura": "1000010-B",
       "semestre": 3,
       "creditos": 3,
       "componente": "B",
@@ -749,7 +749,7 @@
     {
       "id": "quimica:pos:4:1000028",
       "nombre": "Principios de química inorgánica",
-      "codigoAsignatura": "1000028",
+      "codigoAsignatura": "1000028-B",
       "semestre": 4,
       "creditos": 3,
       "componente": "B",
@@ -809,7 +809,7 @@
     {
       "id": "quimica:pos:5:1000030",
       "nombre": "Principios de química orgánica",
-      "codigoAsignatura": "1000030",
+      "codigoAsignatura": "1000030-B",
       "semestre": 5,
       "creditos": 3,
       "componente": "B",
@@ -839,7 +839,7 @@
     {
       "id": "quimica:pos:5:2015276",
       "nombre": "Manejo de sólidos",
-      "codigoAsignatura": "2015276",
+      "codigoAsignatura": "2015726",
       "semestre": 5,
       "creditos": 3,
       "componente": "C",
@@ -859,7 +859,7 @@
     {
       "id": "quimica:pos:6:1000010",
       "nombre": "Laboratorio de principios de química orgánica",
-      "codigoAsignatura": "1000010",
+      "codigoAsignatura": "1000031-B",
       "semestre": 6,
       "creditos": 2,
       "componente": "B",
@@ -1092,9 +1092,9 @@
       "codigoAsignatura": null,
       "semestre": 1,
       "creditos": 3,
-      "componente": "",
+      "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Agrupación de la malla 2013: Optativa - Herramientas de la Ingeniería"
     },
     {
       "id": "quimica:pos:3:libre-eleccion:2",
@@ -1132,9 +1132,9 @@
       "codigoAsignatura": null,
       "semestre": 6,
       "creditos": 3,
-      "componente": "",
+      "componente": "C",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Agrupación de la malla 2013: Optativa - Termodinámica"
     },
     {
       "id": "quimica:pos:7:libre-eleccion:6",
@@ -1152,9 +1152,9 @@
       "codigoAsignatura": null,
       "semestre": 7,
       "creditos": 3,
-      "componente": "",
+      "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Agrupación de la malla 2013: Optativa - Ciencias Económicas y Administrativas"
     },
     {
       "id": "quimica:pos:8:libre-eleccion:8",
@@ -1172,9 +1172,9 @@
       "codigoAsignatura": null,
       "semestre": 8,
       "creditos": 3,
-      "componente": "",
+      "componente": "C",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Agrupación de la malla 2013: Optativa - Procesos Químicos y Bioquímicos"
     },
     {
       "id": "quimica:pos:8:optativa-sin-asignatura-especificada:10",
@@ -1182,9 +1182,9 @@
       "codigoAsignatura": null,
       "semestre": 8,
       "creditos": 3,
-      "componente": "",
+      "componente": "C",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Agrupación de la malla 2013: Optativa - Materiales"
     },
     {
       "id": "quimica:pos:9:libre-eleccion:11",
@@ -1248,7 +1248,193 @@
     }
   ],
   "requisitos": {
-    "prerrequisitos": [],
+    "prerrequisitos": [
+      {
+        "desde": "quimica:pos:4:2015740",
+        "hasta": "quimica:pos:5:2015707",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:2015970",
+        "hasta": "quimica:pos:8:2015710",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:7:2015716",
+        "hasta": "quimica:pos:8:2015710",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:7:2015731",
+        "hasta": "quimica:pos:9:2015712",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:8:2015713",
+        "hasta": "quimica:pos:9:2015712",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:2015707",
+        "hasta": "quimica:pos:8:2015713",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:2:1000019",
+        "hasta": "quimica:pos:4:2015714",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:2015741",
+        "hasta": "quimica:pos:4:2015714",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:8:2015713",
+        "hasta": "quimica:pos:9:2015715",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:2015707",
+        "hasta": "quimica:pos:7:2015716",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:4:2015714",
+        "hasta": "quimica:pos:7:2015719",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:2015276",
+        "hasta": "quimica:pos:7:2015719",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:2015743",
+        "hasta": "quimica:pos:7:2015719",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:7:2015731",
+        "hasta": "quimica:pos:8:2015720",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:2015707",
+        "hasta": "quimica:pos:6:2015721",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:4:2015714",
+        "hasta": "quimica:pos:5:2015276",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:6:2015744",
+        "hasta": "quimica:pos:7:2015731",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:2015707",
+        "hasta": "quimica:pos:7:2015731",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:2015741",
+        "hasta": "quimica:pos:4:2015735",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:1000006",
+        "hasta": "quimica:pos:4:2015735",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:4:1000007",
+        "hasta": "quimica:pos:6:2015736",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:1:1000004",
+        "hasta": "quimica:pos:3:2015741",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:2:2015708",
+        "hasta": "quimica:pos:3:2015741",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:2015741",
+        "hasta": "quimica:pos:4:2015740",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:1000006",
+        "hasta": "quimica:pos:4:2015740",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:2015741",
+        "hasta": "quimica:pos:5:2015743",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:4:1000007",
+        "hasta": "quimica:pos:5:2015743",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:4:1000007",
+        "hasta": "quimica:pos:6:2015744",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:1:1000024",
+        "hasta": "quimica:pos:2:1000026",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:2:1000026",
+        "hasta": "quimica:pos:3:1000027",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:1000027",
+        "hasta": "quimica:pos:4:1000028",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:4:1000028",
+        "hasta": "quimica:pos:5:1000030",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:5:1000030",
+        "hasta": "quimica:pos:6:1000010",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:1:1000004",
+        "hasta": "quimica:pos:2:1000005",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:2:1000005",
+        "hasta": "quimica:pos:3:1000006",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:3:1000006",
+        "hasta": "quimica:pos:4:1000007",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "quimica:pos:2:1000019",
+        "hasta": "quimica:pos:3:1000017",
+        "metodo": "flecha"
+      }
+    ],
     "minimosCreditos": []
   },
   "oferta": [
@@ -1856,12 +2042,62 @@
         {
           "id": "2015718:act:1",
           "nombre": "CLASE TALLER (2015718)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "ORIN-01",
+              "nombre": "Peama- Orinoquia Grupo 1 (Presencial)",
+              "profesor": "Ezequiel José Pérez Monterroza.",
+              "facultad": "SEDE ORINOQUIA",
+              "cuposDisponibles": 12,
+              "horarios": [
+                {
+                  "dia": "L",
+                  "inicio": "07:00",
+                  "fin": "09:00"
+                },
+                {
+                  "dia": "J",
+                  "inicio": "11:00",
+                  "fin": "13:00"
+                }
+              ],
+              "detalleHorario": "No informadoFecha:24/08/2026 - 17/12/2026LUNES de 07:00 a 09:00.AULA DE CLASE ORINOQUIA 3. AULA 3. AULAS DE CLASE ORINOQUIA. SALON. JUEVES de 11:00 a 13:00.AULA DE CLASE ORINOQUIA 3. AULA 3. AULAS DE CLASE ORINOQUIA. SALON.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "17/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         },
         {
           "id": "2015718:act:2",
           "nombre": "CLASE TEORICA (2015718)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "ORIN-01",
+              "nombre": "Peama- Orinoquia Grupo 1 (Presencial)",
+              "profesor": "Ezequiel José Pérez Monterroza.",
+              "facultad": "SEDE ORINOQUIA",
+              "cuposDisponibles": 12,
+              "horarios": [
+                {
+                  "dia": "L",
+                  "inicio": "07:00",
+                  "fin": "09:00"
+                },
+                {
+                  "dia": "J",
+                  "inicio": "11:00",
+                  "fin": "13:00"
+                }
+              ],
+              "detalleHorario": "No informadoFecha:24/08/2026 - 17/12/2026LUNES de 07:00 a 09:00.AULA DE CLASE ORINOQUIA 3. AULA 3. AULAS DE CLASE ORINOQUIA. SALON. JUEVES de 11:00 a 13:00.AULA DE CLASE ORINOQUIA 3. AULA 3. AULAS DE CLASE ORINOQUIA. SALON.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "17/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         }
       ]
     },
@@ -4863,22 +5099,30 @@
   },
   "procedencia": {
     "catalogo": {
-      "descripcion": "Catálogo inicial del plan, complementado con Química.txt; nuevas descripciones y tipologías por código institucional.",
+      "descripcion": "67 entradas TXT de catálogo 2026 cotejadas por código; se conservan cinco entradas previas adicionales. Tipologías y seis identificaciones -B recuperadas sin duplicar asignaturas.",
       "fechaCaptura": null
     },
     "oferta": {
-      "descripcion": "Grupos y horarios extraídos de Química horarios.txt; franjas por día/hora únicamente si se informan en fuente. Las ofertas de múltiples actividades no se combinan sin verificación.",
+      "descripcion": "Oferta 2026-2: 89 grupos existentes cotejados y preservados, 2 PEAMA-Orinoquía incorporados únicamente como oferta sin alterar agrupaciones Bogotá.",
       "fechaCaptura": null,
       "periodo": null
     },
     "malla": {
-      "descripcion": "Malla_Curricular_-_Ingeniería_Química.pdf",
+      "descripcion": "Malla Acuerdo 02 de 2013 (páginas 1 y 2): 63 posiciones conservadas; código equivocado del laboratorio orgánico, Biología y Manejo de sólidos contrastado con catálogo SIA. Componentes B69/C75/L36, N20 adicional.",
       "version": "acuerdo-02-2013"
     },
     "metadatos": {
       "malla": "Malla_Curricular_-_Ingeniería_Química.pdf",
       "tipologias": "Malla inicial y Química.txt; diferencias conservadas para revisión.",
-      "horarios": "Archivo Química horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada."
+      "horarios": "Archivo Química horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada.",
+      "revisionRequisitos": "data/programas/quimica/revision-prerrequisitos-2026.json"
+    },
+    "requisitos": {
+      "descripcion": "28 aristas de condiciones M del SIA 2026-2, más 9 aristas visibles de malla 2013. Se conservan alternativas históricas completas y condiciones no mapeables en revisión externa.",
+      "fuentes": [
+        "Química horarios(1).txt",
+        "Malla_Curricular_-_Ingeniería_Química(2).pdf"
+      ]
     }
   }
 }

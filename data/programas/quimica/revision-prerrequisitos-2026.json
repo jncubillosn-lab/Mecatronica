@@ -1,0 +1,1545 @@
+{
+  "programaId": "quimica",
+  "fechaRevision": "2026-11-18",
+  "fuentes": [
+    "Química(1).txt",
+    "Química horarios(1).txt",
+    "Malla_Curricular_-_Ingeniería_Química(2).pdf"
+  ],
+  "resultados": {
+    "catalogoFuente": 67,
+    "catalogoFinal": 72,
+    "gruposPrevios": 89,
+    "gruposFinales": 91,
+    "agrupacionesAnaliticas": 48,
+    "condicionesSIA": 35,
+    "aristasSIA": 28,
+    "aristasSoloMalla": 9,
+    "totalAristas": 37,
+    "condicionesPendientes": 7
+  },
+  "decisiones": [
+    "No crear equivalencia normativa entre TPI 2015737 de malla 2013 y TPI 2024045 de oferta 2026. Los grupos TPI 40 y 41 son reservas, no clases.",
+    "Conservar actividades múltiples sin asumir qué grupos se cursan juntos.",
+    "Preservar grupos PEAMA-Orinoquía como oferta, sin convertirlos en agrupaciones de la sede Bogotá.",
+    "Malla 2013: 108, 53 y 60 créditos visibles como marcadores de avance; no convertirlos a mínimos absolutos del motor sin confirmar base normativa, componentes ni fecha de vigencia.",
+    "Se corrigen códigos de Biología 1000010-B, laboratorio orgánico 1000031-B y Manejo de sólidos 2015726 mediante coincidencia entre catálogo y fuente SIA actual.",
+    "Las casillas genéricas de optativas conservan su identidad, nombre y semestre; se clasifican y se anota la agrupación de la malla.",
+    "Las 9 flechas basadas solamente en malla 2013 requieren comprobar su vigencia; no se hace pasar la malla como validación SIA de 2026.",
+    "Se conserva el tipo Y de Control de procesos → Lab. de separación, reacción y control sin transformarlo en requisito M.",
+    "No se inventan enlaces desde optativas ofertadas hacia posiciones genéricas de opción."
+  ],
+  "cambiosMalla": [
+    {
+      "posicionId": "quimica:pos:1:1000025",
+      "anterior": "1000025",
+      "actual": "1000025-B"
+    },
+    {
+      "posicionId": "quimica:pos:2:1000026",
+      "anterior": "1000026",
+      "actual": "1000026-B"
+    },
+    {
+      "posicionId": "quimica:pos:3:1000027",
+      "anterior": "1000027",
+      "actual": "1000027-B"
+    },
+    {
+      "posicionId": "quimica:pos:4:1000028",
+      "anterior": "1000028",
+      "actual": "1000028-B"
+    },
+    {
+      "posicionId": "quimica:pos:5:1000030",
+      "anterior": "1000030",
+      "actual": "1000030-B"
+    },
+    {
+      "posicionId": "quimica:pos:3:biologia-molecular-y-celular",
+      "anterior": null,
+      "actual": "1000010-B"
+    },
+    {
+      "posicionId": "quimica:pos:6:1000010",
+      "anterior": "1000010",
+      "actual": "1000031-B"
+    },
+    {
+      "posicionId": "quimica:pos:5:2015276",
+      "anterior": "2015276",
+      "actual": "2015726"
+    }
+  ],
+  "catalogoDepurado": {
+    "entradaAntiguaEliminada": {
+      "codigo": "1000010",
+      "nombre": "Laboratorio de principios de química orgánica"
+    },
+    "codigoBiologiaAnadido": "1000010-B",
+    "recodificaciones": [
+      {
+        "codigoAnterior": "1000024-B",
+        "codigoVigente": "1000024-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000025",
+        "codigoVigente": "1000025-B",
+        "tipologiaAnterior": "FUND. OBLIGATORIA",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000004-B",
+        "codigoVigente": "1000004-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "2015718",
+        "codigoVigente": "2015718",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "1000026",
+        "codigoVigente": "1000026-B",
+        "tipologiaAnterior": "FUND. OBLIGATORIA",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000003-B",
+        "codigoVigente": "1000003-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000005-B",
+        "codigoVigente": "1000005-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000019-B",
+        "codigoVigente": "1000019-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "2015708",
+        "codigoVigente": "2015708",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "1000027",
+        "codigoVigente": "1000027-B",
+        "tipologiaAnterior": "FUND. OBLIGATORIA",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000006-B",
+        "codigoVigente": "1000006-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000017-B",
+        "codigoVigente": "1000017-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000028",
+        "codigoVigente": "1000028-B",
+        "tipologiaAnterior": "FUND. OBLIGATORIA",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000013-B",
+        "codigoVigente": "1000013-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "1000007-B",
+        "codigoVigente": "1000007-B",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "2015714",
+        "codigoVigente": "2015714",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015735",
+        "codigoVigente": "2015735",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015740",
+        "codigoVigente": "2015740",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "1000030",
+        "codigoVigente": "1000030-B",
+        "tipologiaAnterior": "FUND. OBLIGATORIA",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "2015970",
+        "codigoVigente": "2015970",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "2015707",
+        "codigoVigente": "2015707",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015703",
+        "codigoVigente": "2015703",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "2015736",
+        "codigoVigente": "2015736",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015721",
+        "codigoVigente": "2015721",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015702",
+        "codigoVigente": "2015702",
+        "tipologiaAnterior": "FUND. SIN CARÁCTER CONFIRMADO",
+        "tipologiaSIA": "FUND. OBLIGATORIA (B)"
+      },
+      {
+        "codigoAnterior": "2015731",
+        "codigoVigente": "2015731",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015719",
+        "codigoVigente": "2015719",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015716",
+        "codigoVigente": "2015716",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015710",
+        "codigoVigente": "2015710",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015720",
+        "codigoVigente": "2015720",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015713",
+        "codigoVigente": "2015713",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015712",
+        "codigoVigente": "2015712",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      },
+      {
+        "codigoAnterior": "2015715",
+        "codigoVigente": "2015715",
+        "tipologiaAnterior": "DISCIPLINAR OBLIGATORIA",
+        "tipologiaSIA": "DISCIPLINAR OBLIGATORIA (C)"
+      }
+    ]
+  },
+  "clasificacionOptativas": [
+    {
+      "posicionId": "quimica:pos:1:optativa-sin-asignatura-especificada:1",
+      "componente": "B",
+      "agrupacion": "Herramientas de la Ingeniería"
+    },
+    {
+      "posicionId": "quimica:pos:6:optativa-sin-asignatura-especificada:5",
+      "componente": "C",
+      "agrupacion": "Termodinámica"
+    },
+    {
+      "posicionId": "quimica:pos:7:optativa-sin-asignatura-especificada:7",
+      "componente": "B",
+      "agrupacion": "Ciencias Económicas y Administrativas"
+    },
+    {
+      "posicionId": "quimica:pos:8:optativa-sin-asignatura-especificada:9",
+      "componente": "C",
+      "agrupacion": "Procesos Químicos y Bioquímicos"
+    },
+    {
+      "posicionId": "quimica:pos:8:optativa-sin-asignatura-especificada:10",
+      "componente": "C",
+      "agrupacion": "Materiales"
+    }
+  ],
+  "gruposAdicionados": [
+    {
+      "asignatura": "2015718",
+      "actividad": "2015718:act:1",
+      "grupo": "ORIN-01",
+      "analizable": false
+    },
+    {
+      "asignatura": "2015718",
+      "actividad": "2015718:act:2",
+      "grupo": "ORIN-01",
+      "analizable": false
+    }
+  ],
+  "condicionesOriginalesSIA": [
+    {
+      "destino": "2015707",
+      "nombreDestino": "Balance de energía y equilibrio químico",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015740",
+              "nombre": "Termodinámica química"
+            },
+            {
+              "codigo": "2001379",
+              "nombre": "Termodinamica quimica i"
+            }
+          ],
+          "linea": 59
+        }
+      ]
+    },
+    {
+      "destino": "2015710",
+      "nombreDestino": "Control de procesos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001852",
+              "nombre": "Metodos numericos"
+            },
+            {
+              "codigo": "2015970",
+              "nombre": "Métodos numéricos"
+            }
+          ],
+          "linea": 121
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001800",
+              "nombre": "Diseño de reactores"
+            },
+            {
+              "codigo": "2015716",
+              "nombre": "Ingeniería de Reacciones Químicas"
+            }
+          ],
+          "linea": 124
+        }
+      ]
+    },
+    {
+      "destino": "2015712",
+      "nombreDestino": "Diseño de plantas y equipos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015731",
+              "nombre": "Operaciones de Separación"
+            },
+            {
+              "codigo": "2001371",
+              "nombre": "Transferencia de masa ii"
+            }
+          ],
+          "linea": 185
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015713",
+              "nombre": "Diseño de procesos químicos y bioquímicos"
+            },
+            {
+              "codigo": "2001799",
+              "nombre": "Procesos quimicos ii"
+            }
+          ],
+          "linea": 188
+        }
+      ]
+    },
+    {
+      "destino": "2015713",
+      "nombreDestino": "Diseño de procesos químicos y bioquímicos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico"
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii"
+            }
+          ],
+          "linea": 249
+        }
+      ]
+    },
+    {
+      "destino": "2015714",
+      "nombreDestino": "Fluidos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2000438",
+              "nombre": "Fisica i"
+            },
+            {
+              "codigo": "1000019-B",
+              "nombre": "Fundamentos de mecánica"
+            }
+          ],
+          "linea": 298
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica"
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i"
+            }
+          ],
+          "linea": 301
+        }
+      ]
+    },
+    {
+      "destino": "2015715",
+      "nombreDestino": "Ingeniería de Procesos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015713",
+              "nombre": "Diseño de procesos químicos y bioquímicos"
+            },
+            {
+              "codigo": "2001799",
+              "nombre": "Procesos quimicos ii"
+            }
+          ],
+          "linea": 317
+        }
+      ]
+    },
+    {
+      "destino": "2015716",
+      "nombreDestino": "Ingeniería de Reacciones Químicas",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico"
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii"
+            }
+          ],
+          "linea": 366
+        }
+      ]
+    },
+    {
+      "destino": "2015719",
+      "nombreDestino": "Laboratorio de fluidos, sólidos y transferencia de calor",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015714",
+              "nombre": "Fluidos"
+            }
+          ],
+          "linea": 494
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001367",
+              "nombre": "Manejo de solidos"
+            },
+            {
+              "codigo": "2015726",
+              "nombre": "Manejo de sólidos"
+            }
+          ],
+          "linea": 496
+        },
+        {
+          "numero": 3,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015743",
+              "nombre": "Transferencia de calor"
+            },
+            {
+              "codigo": "2001368",
+              "nombre": "Transferencia de calor i"
+            }
+          ],
+          "linea": 499
+        }
+      ]
+    },
+    {
+      "destino": "2015720",
+      "nombreDestino": "Laboratorio de operaciones de separación, reaccion y control",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015731",
+              "nombre": "Operaciones de Separación"
+            },
+            {
+              "codigo": "2001371",
+              "nombre": "Transferencia de masa ii"
+            }
+          ],
+          "linea": 581
+        },
+        {
+          "numero": 2,
+          "tipo": "Y",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001806",
+              "nombre": "Control de procesos"
+            },
+            {
+              "codigo": "2015710",
+              "nombre": "Control de procesos"
+            }
+          ],
+          "linea": 584
+        }
+      ]
+    },
+    {
+      "destino": "2015721",
+      "nombreDestino": "Laboratorio de propiedades termodinámicas y de transporte",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico"
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii"
+            }
+          ],
+          "linea": 677
+        }
+      ]
+    },
+    {
+      "destino": "2015726",
+      "nombreDestino": "Manejo de sólidos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2015714",
+              "nombre": "Fluidos"
+            }
+          ],
+          "linea": 693
+        }
+      ]
+    },
+    {
+      "destino": "2015731",
+      "nombreDestino": "Operaciones de Separación",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015744",
+              "nombre": "Transferencia de masa"
+            },
+            {
+              "codigo": "2001370",
+              "nombre": "Transferencia de masa i"
+            }
+          ],
+          "linea": 719
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico"
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii"
+            }
+          ],
+          "linea": 722
+        }
+      ]
+    },
+    {
+      "destino": "2015735",
+      "nombreDestino": "Taller 1",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica"
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i"
+            }
+          ],
+          "linea": 1020
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables"
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii"
+            }
+          ],
+          "linea": 1023
+        }
+      ]
+    },
+    {
+      "destino": "2015736",
+      "nombreDestino": "Taller 2",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales"
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv"
+            }
+          ],
+          "linea": 1061
+        }
+      ]
+    },
+    {
+      "destino": "2015741",
+      "nombreDestino": "Termodinámica",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000004-B",
+              "nombre": "Cálculo diferencial"
+            },
+            {
+              "codigo": "2001285",
+              "nombre": "Matematicas i"
+            }
+          ],
+          "linea": 1132
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2015708",
+              "nombre": "Balance de materia"
+            }
+          ],
+          "linea": 1135
+        }
+      ]
+    },
+    {
+      "destino": "2015740",
+      "nombreDestino": "Termodinámica química",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica"
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i"
+            }
+          ],
+          "linea": 1161
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables"
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii"
+            }
+          ],
+          "linea": 1164
+        }
+      ]
+    },
+    {
+      "destino": "2015743",
+      "nombreDestino": "Transferencia de calor",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015741",
+              "nombre": "Termodinámica"
+            },
+            {
+              "codigo": "2001377",
+              "nombre": "Termodinamica i"
+            }
+          ],
+          "linea": 1213
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales"
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv"
+            }
+          ],
+          "linea": 1216
+        }
+      ]
+    },
+    {
+      "destino": "2015744",
+      "nombreDestino": "Transferencia de masa",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales"
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv"
+            }
+          ],
+          "linea": 1232
+        }
+      ]
+    },
+    {
+      "destino": "1000038-B",
+      "nombreDestino": "Fisicoquímica II",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico"
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii"
+            }
+          ],
+          "linea": 1326
+        }
+      ]
+    },
+    {
+      "destino": "2015717",
+      "nombreDestino": "Introducción a la Ingeniería de Materiales",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015740",
+              "nombre": "Termodinámica química"
+            },
+            {
+              "codigo": "2001379",
+              "nombre": "Termodinamica quimica i"
+            }
+          ],
+          "linea": 1342
+        }
+      ]
+    },
+    {
+      "destino": "2015729",
+      "nombreDestino": "Modelamiento y simulación de procesos químicos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015744",
+              "nombre": "Transferencia de masa"
+            },
+            {
+              "codigo": "2001370",
+              "nombre": "Transferencia de masa i"
+            }
+          ],
+          "linea": 1410
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001800",
+              "nombre": "Diseño de reactores"
+            },
+            {
+              "codigo": "2015716",
+              "nombre": "Ingeniería de Reacciones Químicas"
+            }
+          ],
+          "linea": 1413
+        }
+      ]
+    },
+    {
+      "destino": "2015738",
+      "nombreDestino": "Termodinámica de Ciclos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015707",
+              "nombre": "Balance de energía y equilibrio químico"
+            },
+            {
+              "codigo": "2001791",
+              "nombre": "Termodinamica quimica ii"
+            }
+          ],
+          "linea": 1440
+        }
+      ]
+    },
+    {
+      "destino": "2015739",
+      "nombreDestino": "Termodinámica molecular",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2015740",
+              "nombre": "Termodinámica química"
+            },
+            {
+              "codigo": "2001379",
+              "nombre": "Termodinamica quimica i"
+            }
+          ],
+          "linea": 1467
+        }
+      ]
+    }
+  ],
+  "evidenciaAristas": [
+    {
+      "desde": "quimica:pos:4:2015740",
+      "hasta": "quimica:pos:5:2015707",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015707",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015740",
+        "2001379"
+      ]
+    },
+    {
+      "desde": "quimica:pos:5:2015970",
+      "hasta": "quimica:pos:8:2015710",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015710",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2001852",
+        "2015970"
+      ]
+    },
+    {
+      "desde": "quimica:pos:7:2015716",
+      "hasta": "quimica:pos:8:2015710",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015710",
+      "condicion": 2,
+      "alternativasSIA": [
+        "2001800",
+        "2015716"
+      ]
+    },
+    {
+      "desde": "quimica:pos:7:2015731",
+      "hasta": "quimica:pos:9:2015712",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015712",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015731",
+        "2001371"
+      ]
+    },
+    {
+      "desde": "quimica:pos:8:2015713",
+      "hasta": "quimica:pos:9:2015712",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015712",
+      "condicion": 2,
+      "alternativasSIA": [
+        "2015713",
+        "2001799"
+      ]
+    },
+    {
+      "desde": "quimica:pos:5:2015707",
+      "hasta": "quimica:pos:8:2015713",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015713",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015707",
+        "2001791"
+      ]
+    },
+    {
+      "desde": "quimica:pos:2:1000019",
+      "hasta": "quimica:pos:4:2015714",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015714",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2000438",
+        "1000019-B"
+      ]
+    },
+    {
+      "desde": "quimica:pos:3:2015741",
+      "hasta": "quimica:pos:4:2015714",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015714",
+      "condicion": 2,
+      "alternativasSIA": [
+        "2015741",
+        "2001377"
+      ]
+    },
+    {
+      "desde": "quimica:pos:8:2015713",
+      "hasta": "quimica:pos:9:2015715",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015715",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015713",
+        "2001799"
+      ]
+    },
+    {
+      "desde": "quimica:pos:5:2015707",
+      "hasta": "quimica:pos:7:2015716",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015716",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015707",
+        "2001791"
+      ]
+    },
+    {
+      "desde": "quimica:pos:4:2015714",
+      "hasta": "quimica:pos:7:2015719",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015719",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015714"
+      ]
+    },
+    {
+      "desde": "quimica:pos:5:2015276",
+      "hasta": "quimica:pos:7:2015719",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015719",
+      "condicion": 2,
+      "alternativasSIA": [
+        "2001367",
+        "2015726"
+      ]
+    },
+    {
+      "desde": "quimica:pos:5:2015743",
+      "hasta": "quimica:pos:7:2015719",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015719",
+      "condicion": 3,
+      "alternativasSIA": [
+        "2015743",
+        "2001368"
+      ]
+    },
+    {
+      "desde": "quimica:pos:7:2015731",
+      "hasta": "quimica:pos:8:2015720",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015720",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015731",
+        "2001371"
+      ]
+    },
+    {
+      "desde": "quimica:pos:5:2015707",
+      "hasta": "quimica:pos:6:2015721",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015721",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015707",
+        "2001791"
+      ]
+    },
+    {
+      "desde": "quimica:pos:4:2015714",
+      "hasta": "quimica:pos:5:2015276",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015726",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015714"
+      ]
+    },
+    {
+      "desde": "quimica:pos:6:2015744",
+      "hasta": "quimica:pos:7:2015731",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015731",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015744",
+        "2001370"
+      ]
+    },
+    {
+      "desde": "quimica:pos:5:2015707",
+      "hasta": "quimica:pos:7:2015731",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015731",
+      "condicion": 2,
+      "alternativasSIA": [
+        "2015707",
+        "2001791"
+      ]
+    },
+    {
+      "desde": "quimica:pos:3:2015741",
+      "hasta": "quimica:pos:4:2015735",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015735",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015741",
+        "2001377"
+      ]
+    },
+    {
+      "desde": "quimica:pos:3:1000006",
+      "hasta": "quimica:pos:4:2015735",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015735",
+      "condicion": 2,
+      "alternativasSIA": [
+        "1000006-B",
+        "2000927"
+      ]
+    },
+    {
+      "desde": "quimica:pos:4:1000007",
+      "hasta": "quimica:pos:6:2015736",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015736",
+      "condicion": 1,
+      "alternativasSIA": [
+        "1000007-B",
+        "2019619"
+      ]
+    },
+    {
+      "desde": "quimica:pos:1:1000004",
+      "hasta": "quimica:pos:3:2015741",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015741",
+      "condicion": 1,
+      "alternativasSIA": [
+        "1000004-B",
+        "2001285"
+      ]
+    },
+    {
+      "desde": "quimica:pos:2:2015708",
+      "hasta": "quimica:pos:3:2015741",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015741",
+      "condicion": 2,
+      "alternativasSIA": [
+        "2015708"
+      ]
+    },
+    {
+      "desde": "quimica:pos:3:2015741",
+      "hasta": "quimica:pos:4:2015740",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015740",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015741",
+        "2001377"
+      ]
+    },
+    {
+      "desde": "quimica:pos:3:1000006",
+      "hasta": "quimica:pos:4:2015740",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015740",
+      "condicion": 2,
+      "alternativasSIA": [
+        "1000006-B",
+        "2000927"
+      ]
+    },
+    {
+      "desde": "quimica:pos:3:2015741",
+      "hasta": "quimica:pos:5:2015743",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015743",
+      "condicion": 1,
+      "alternativasSIA": [
+        "2015741",
+        "2001377"
+      ]
+    },
+    {
+      "desde": "quimica:pos:4:1000007",
+      "hasta": "quimica:pos:5:2015743",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015743",
+      "condicion": 2,
+      "alternativasSIA": [
+        "1000007-B",
+        "2019619"
+      ]
+    },
+    {
+      "desde": "quimica:pos:4:1000007",
+      "hasta": "quimica:pos:6:2015744",
+      "tipo": "SIA-2026",
+      "codigoDestino": "2015744",
+      "condicion": 1,
+      "alternativasSIA": [
+        "1000007-B",
+        "2019619"
+      ]
+    },
+    {
+      "desde": "quimica:pos:1:1000024",
+      "hasta": "quimica:pos:2:1000026",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000024-B",
+      "codigoDestino": "1000026-B"
+    },
+    {
+      "desde": "quimica:pos:2:1000026",
+      "hasta": "quimica:pos:3:1000027",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000026-B",
+      "codigoDestino": "1000027-B"
+    },
+    {
+      "desde": "quimica:pos:3:1000027",
+      "hasta": "quimica:pos:4:1000028",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000027-B",
+      "codigoDestino": "1000028-B"
+    },
+    {
+      "desde": "quimica:pos:4:1000028",
+      "hasta": "quimica:pos:5:1000030",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000028-B",
+      "codigoDestino": "1000030-B"
+    },
+    {
+      "desde": "quimica:pos:5:1000030",
+      "hasta": "quimica:pos:6:1000010",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000030-B",
+      "codigoDestino": "1000031-B"
+    },
+    {
+      "desde": "quimica:pos:1:1000004",
+      "hasta": "quimica:pos:2:1000005",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000004-B",
+      "codigoDestino": "1000005-B"
+    },
+    {
+      "desde": "quimica:pos:2:1000005",
+      "hasta": "quimica:pos:3:1000006",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000005-B",
+      "codigoDestino": "1000006-B"
+    },
+    {
+      "desde": "quimica:pos:3:1000006",
+      "hasta": "quimica:pos:4:1000007",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000006-B",
+      "codigoDestino": "1000007-B"
+    },
+    {
+      "desde": "quimica:pos:2:1000019",
+      "hasta": "quimica:pos:3:1000017",
+      "tipo": "MALLA-2013",
+      "fuente": "Acuerdo 02 de 2013 — malla gráfica, página 1",
+      "vigencia": "Verificar equivalencia con reglas actuales de inscripción",
+      "codigoOrigen": "1000019-B",
+      "codigoDestino": "1000017-B"
+    }
+  ],
+  "condicionesPendientes": [
+    {
+      "codigoDestino": "2015720",
+      "condicion": 2,
+      "tipo": "Y",
+      "todas": false,
+      "alternativas": [
+        "2001806",
+        "2015710"
+      ],
+      "motivo": "Condición de tipo distinto de M"
+    },
+    {
+      "codigoDestino": "1000038-B",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": false,
+      "alternativas": [
+        "2015707",
+        "2001791"
+      ],
+      "motivo": "Materia fuera de la malla específica"
+    },
+    {
+      "codigoDestino": "2015717",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": false,
+      "alternativas": [
+        "2015740",
+        "2001379"
+      ],
+      "motivo": "Materia fuera de la malla específica"
+    },
+    {
+      "codigoDestino": "2015729",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": false,
+      "alternativas": [
+        "2015744",
+        "2001370"
+      ],
+      "motivo": "Materia fuera de la malla específica"
+    },
+    {
+      "codigoDestino": "2015729",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": false,
+      "alternativas": [
+        "2001800",
+        "2015716"
+      ],
+      "motivo": "Materia fuera de la malla específica"
+    },
+    {
+      "codigoDestino": "2015738",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": false,
+      "alternativas": [
+        "2015707",
+        "2001791"
+      ],
+      "motivo": "Materia fuera de la malla específica"
+    },
+    {
+      "codigoDestino": "2015739",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": false,
+      "alternativas": [
+        "2015740",
+        "2001379"
+      ],
+      "motivo": "Materia fuera de la malla específica"
+    }
+  ],
+  "discrepanciasSinAplicacion": [
+    {
+      "codigoMalla": "2015737",
+      "codigoOferta": "2024045",
+      "asignatura": "Taller de proyectos interdisciplinarios",
+      "motivo": "Equivalencia normativa no establecida"
+    },
+    {
+      "tipo": "MALLA",
+      "curso": "2015736",
+      "precedente": "2015743",
+      "motivo": "Flecha gráfica no verificada con condiciones de SIA actuales"
+    },
+    {
+      "tipo": "MALLA",
+      "curso": "2015713",
+      "precedente": "2015716",
+      "motivo": "Flecha gráfica no verificada con condiciones de SIA actuales"
+    },
+    {
+      "tipo": "SIA",
+      "curso": "2015720",
+      "precedente": "2015710",
+      "motivo": "Tipo Y, no equivalente automáticamente a M"
+    }
+  ],
+  "creditos": {
+    "B": 69,
+    "C": 75,
+    "L": 36,
+    "N_adicional": 20,
+    "totalPlan": 180
+  }
+}
