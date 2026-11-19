@@ -15,8 +15,8 @@ assert.equal(new Set(d.malla.map(x=>x.id)).size,56);
 assert.equal(d.catalogo.length,63);
 assert.equal(new Set(d.catalogo.map(x=>x.codigo)).size,63);
 assert.equal(d.oferta.length,23);
-assert.equal(d.agrupaciones.length,116);
-assert.equal(d.exclusionesAgrupacion.length,8);
+assert.equal(d.agrupaciones.length,100);
+assert.equal(d.exclusionesAgrupacion.length,2);
 assert(!d.exclusionesAgrupacion.some(x=>x.codigoAsignatura==='2016493'));
 const groups=d.oferta.flatMap(o=>o.actividades.flatMap(a=>a.grupos));
 assert.equal(groups.length,125);
@@ -68,28 +68,41 @@ assert.equal(r.actualizacionOfertaPosterior.gruposExistentesPreservados,146);
 const raw=new EntradaAcademica(d).generarEscenarioBase();
 assert.equal(raw.pre.length,32);
 assert.equal(raw.reqCred.length,3);
-assert.equal(raw.gr.length,116);
+assert.equal(raw.gr.length,100);
 assert(raw.bl.length>0);
 
 assert.equal(d.oferta.reduce((n,o)=>n+o.actividades.length,0),33);
-assert.equal(d.agrupaciones.filter(g=>g.analizable===false).length,74);
-assert.equal(d.agrupaciones.filter(g=>g.analizable!==false).length,42);
+assert.equal(d.agrupaciones.filter(g=>g.analizable===false).length,26);
+assert.equal(d.agrupaciones.filter(g=>g.analizable!==false).length,74);
 assert.equal(raw.bl.length,174);
 assert.equal(r.reconstruccionDesdeFuentes.resultados.agrupacionesNuevas,139);
 assert.equal(r.reconstruccionDesdeFuentes.resultados.soloEnOferta,7);
+const vinculadas = new Set(["2016493","2016490","2016496","2016497","2016498","2016499","2016502"]);
+for (const codigo of vinculadas) {
+ const curso = d.oferta.find(o => o.codigoAsignatura === codigo);
+ const [principal, secundaria] = curso.actividades;
+ const posicion = d.malla.find(p => p.codigoAsignatura === codigo);
+ const opciones = d.agrupaciones.filter(g => g.posicionId === posicion.id);
+ const esperados = secundaria.grupos.filter(g => /^\d+$/.test(g.id)).map(g => Number(g.id)).sort((a,b) => a-b);
+ assert.equal(opciones.length, esperados.length);
+ for (const k of esperados) {
+   const ids = [principal.id + ':G' + Math.ceil(k/2), secundaria.id + ':G' + k];
+   assert(opciones.some(g => g.analizable !== false && JSON.stringify(g.componentes.map(c => c.id)) === JSON.stringify(ids)), codigo + ' grupo ' + k);
+ }
+}
 const wanted = new Map([
- ['2016499',['electronica:pos:6:2016499',6]],
- ['2016497',['electronica:pos:8:2016497',6]],
+ ['2016499',['electronica:pos:6:2016499',4]],
+ ['2016497',['electronica:pos:8:2016497',4]],
  ['2016493',['electronica:pos:7:2016493',8]],
  ['2016501',['electronica:pos:5:2016501',5]],
- ['2016502',['electronica:pos:1:2016502',3]],
+ ['2016502',['electronica:pos:1:2016502',2]],
  ['2028816',['electronica:pos:10:diseno-de-sistemas-electronicos',2]],
  ['2024045',['electronica:pos:9:2016510',1]]
 ]);
 for(const [codigo,[id,n]] of wanted){
  const actual=d.agrupaciones.filter(g=>g.posicionId===id);
  assert.equal(actual.length,n,'Faltan grupos en '+codigo);
- assert(actual.every(g=>g.componentes.length===(codigo==='2016493'?2:1)),'Número de componentes documentados');
+ assert(actual.every(g=>g.componentes.length===(vinculadas.has(codigo)?2:1)),'Número de componentes documentados');
 }
 const verify=new Map(d.agrupaciones.flatMap(g=>g.componentes.map(c=>[c.id,{grupo:g,bloques:c.bloques}])));
 assert.equal(verify.size,120,'Cada actividad ofertada y proyectada tiene una identidad única');
@@ -109,7 +122,7 @@ for(const curso of d.oferta)for(const actividad of curso.actividades)for(const g
   const src=grupo.horarios[i],out=item.bloques[i];
   assert.deepEqual([out.dia,out.inicio,out.fin],[src.dia,src.inicio,src.fin],'Franja incorrecta '+key);
  }
- if(curso.actividades.length>1 && curso.codigoAsignatura!=='2016493')assert.equal(item.grupo.analizable,false,'Combinación no acreditada '+key);
+ if(curso.actividades.length>1 && !vinculadas.has(curso.codigoAsignatura))assert.equal(item.grupo.analizable,false,'Combinación no acreditada '+key);
 }
 assert.equal(accounted,120);
 assert.equal(onlyOffer,5);
