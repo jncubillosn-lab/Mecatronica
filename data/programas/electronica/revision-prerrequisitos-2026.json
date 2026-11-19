@@ -1,0 +1,1061 @@
+{
+  "programaId": "electronica",
+  "fechaRevision": "2026-11-18",
+  "fuentes": [
+    "Electronica(2).txt",
+    "Electronica horarios(1).txt",
+    "Malla_Ing_Electrnica_2023(2).pdf (Plan 2545)"
+  ],
+  "conteos": {
+    "catalogo": 63,
+    "catalogoSIA": 62,
+    "posicionesAntes": 56,
+    "posicionesDespues": 56,
+    "gruposAntes": 144,
+    "gruposDespues": 146,
+    "agrupaciones": 31,
+    "condicionesSIA": 27,
+    "aristasSIA": 23,
+    "aristasSoloMalla": 9,
+    "aristasTotales": 32,
+    "minimos": 3,
+    "pendientes": 4,
+    "exclusionesAgrupacion": 9
+  },
+  "decisiones": [
+    "Se agrega Control 2016493 en semestre VII (4 créditos) porque está presente en malla y catálogo, y se retira una casilla optativa genérica duplicada en VIII.",
+    "Los 55 IDs de malla no duplicados sobreviven, junto con el orden y los 31 IDs de agrupaciones; los 144 grupos originales conservan todos sus horarios/cupos/fechas.",
+    "Los dos nuevos grupos SUMA-01 corresponden a PEAMA Sumapaz y carecen de horario; solo se preservan en la oferta sin construir agrupaciones de horarios.",
+    "Se clasifican cinco casillas optativas genéricas por componente sin atribuirles una asignatura concreta.",
+    "La posición 2019125 en VIII representa una opción ofertada de Telecomunicaciones, pero no se afirma que sea la única posible.",
+    "Los mínimos de 121 créditos académicos para TPI y Diseño de sistemas electrónicos, y de 63 disciplinares para Trabajo de Grado, están expresos en la malla 2023; se asignan solo a estos tres destinos.",
+    "No se presume equivalencia TPI 2016510 (malla) con 2024045 (oferta). Tampoco equivalencia confirmada de Diseño 2016494 (malla) y 2028816 (SIA): la posición de Diseño permanece con código null, oferta disponible separadamente.",
+    "El total B60/C78/L34=172 concilia, pero el desglose de optatividad del catálogo para 2019125 no debe imponerse al resumen del plan 72 obligatorios/6 optativos C sin estudio normativo.",
+    "No se forman combinaciones entre teoría y laboratorio si la fuente no certifica sus correspondencias.",
+    "La condición de probabilidad 1000013-B no se identifica con cualquier optativa genérica de Probabilidad; se conserva fuera del mapa de flechas hasta determinar posición definitiva.",
+    "Control 2016493 incluye magistral y laboratorio. Se agrega a exclusiones de agrupación (ahora 9): la oferta tiene 12 grupos, pero no existe una vinculación verificada por matrícula entre magistral y laboratorio; no generar combinación cartesiana."
+  ],
+  "cambioControl": {
+    "id": "electronica:pos:7:2016493",
+    "nombre": "Control",
+    "codigoAsignatura": "2016493",
+    "semestre": 7,
+    "creditos": 4,
+    "componente": "C",
+    "caracter": "obl",
+    "nota": "Plan 2545, malla 2023; código y 4 créditos cotejados con catálogo SIA 2026."
+  },
+  "casillaRetirada": {
+    "id": "electronica:pos:8:optativa-sin-asignatura-especificada:10",
+    "nombre": "Optativa sin asignatura especificada (4)",
+    "codigoAsignatura": null,
+    "semestre": 8,
+    "creditos": 3,
+    "componente": "",
+    "caracter": "opt",
+    "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+  },
+  "casillasClasificadas": [
+    {
+      "posicion": "electronica:pos:5:optativa-sin-asignatura-especificada:4",
+      "componente": "B",
+      "agrupacion": "Probabilidad y Estadística"
+    },
+    {
+      "posicion": "electronica:pos:6:optativa-sin-asignatura-especificada:5",
+      "componente": "C",
+      "agrupacion": "Electrónica Análoga"
+    },
+    {
+      "posicion": "electronica:pos:7:optativa-sin-asignatura-especificada:6",
+      "componente": "C",
+      "agrupacion": "Electrónica Digital"
+    },
+    {
+      "posicion": "electronica:pos:8:optativa-sin-asignatura-especificada:9",
+      "componente": "B",
+      "agrupacion": "Ciencias Económicas y Administrativas"
+    },
+    {
+      "posicion": "electronica:pos:9:optativa-sin-asignatura-especificada:14",
+      "componente": "B",
+      "agrupacion": "Ciencias Económicas y Administrativas"
+    }
+  ],
+  "gruposSumapaz": [
+    {
+      "codigo": "2016502",
+      "actividad": "2016502:act:1",
+      "grupo": "SUMA-01",
+      "analizable": false
+    },
+    {
+      "codigo": "2016502",
+      "actividad": "2016502:act:2",
+      "grupo": "SUMA-01",
+      "analizable": false
+    }
+  ],
+  "requisitosCreditos": [
+    {
+      "destino": "electronica:pos:9:2016510",
+      "minimo": 121,
+      "componentes": [
+        "B",
+        "C",
+        "L"
+      ]
+    },
+    {
+      "destino": "electronica:pos:10:diseno-de-sistemas-electronicos",
+      "minimo": 121,
+      "componentes": [
+        "B",
+        "C",
+        "L"
+      ]
+    },
+    {
+      "destino": "electronica:pos:10:2015316",
+      "minimo": 63,
+      "componentes": [
+        "C"
+      ]
+    }
+  ],
+  "condicionesOriginalesSIA": [
+    {
+      "destino": "2016487",
+      "nombre": "Campos electromagnéticos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000006-B",
+              "nombre": "Cálculo en varias variables"
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2000439",
+              "nombre": "Fisica II"
+            },
+            {
+              "codigo": "1000017-B",
+              "nombre": "Fundamentos de electricidad y magnetismo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016489",
+      "nombre": "Circuitos Eléctricos I",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000003-B",
+              "nombre": "Álgebra Lineal"
+            },
+            {
+              "codigo": "2000927",
+              "nombre": "Matematicas iii"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001331",
+              "nombre": "Taller de electronica"
+            },
+            {
+              "codigo": "2016509",
+              "nombre": "Taller de ingeniería electrónica"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016490",
+      "nombre": "Circuitos Eléctricos II",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016489",
+              "nombre": "Circuitos Eléctricos I"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales"
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016492",
+      "nombre": "Comunicaciones",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001619",
+              "nombre": "Analisis de sistemas dinamicos"
+            },
+            {
+              "codigo": "2016507",
+              "nombre": "Señales y Sistemas II"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000015-B",
+              "nombre": "Probabilidad fundamental"
+            },
+            {
+              "codigo": "2001065",
+              "nombre": "Probabilidad y estadistica"
+            },
+            {
+              "codigo": "1000013-B",
+              "nombre": "Probabilidad y estadística fundamental"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016493",
+      "nombre": "Control",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001619",
+              "nombre": "Analisis de sistemas dinamicos"
+            },
+            {
+              "codigo": "2016507",
+              "nombre": "Señales y Sistemas II"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016495",
+      "nombre": "Electrónica análoga I",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016489",
+              "nombre": "Circuitos Eléctricos I"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016496",
+      "nombre": "Electrónica análoga II",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2016490",
+              "nombre": "Circuitos Eléctricos II"
+            },
+            {
+              "codigo": "2001603",
+              "nombre": "Circuitos electricos ii"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016497",
+      "nombre": "Electrónica de potencia",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2016490",
+              "nombre": "Circuitos Eléctricos II"
+            },
+            {
+              "codigo": "2001603",
+              "nombre": "Circuitos electricos ii"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016498",
+      "nombre": "Electrónica digital I",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016499",
+      "nombre": "Electrónica digital II",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016498",
+              "nombre": "Electrónica digital I"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016501",
+      "nombre": "Instrumentación y medidas",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016495",
+              "nombre": "Electrónica análoga I"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016503",
+      "nombre": "Líneas y antenas",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2001608",
+              "nombre": "Campos electromagneticos"
+            },
+            {
+              "codigo": "2016487",
+              "nombre": "Campos electromagnéticos"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2019615",
+              "nombre": "Fisica iii"
+            },
+            {
+              "codigo": "1000020-B",
+              "nombre": "Fundamentos de oscilaciones, ondas y óptica"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016506",
+      "nombre": "Señales y sistemas I",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016489",
+              "nombre": "Circuitos Eléctricos I"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "1000007-B",
+              "nombre": "Ecuaciones Diferenciales"
+            },
+            {
+              "codigo": "2019619",
+              "nombre": "Matematicas iv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016507",
+      "nombre": "Señales y Sistemas II",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2016506",
+              "nombre": "Señales y sistemas I"
+            },
+            {
+              "codigo": "2000490",
+              "nombre": "Tratamiento de señales"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "tipo": "M",
+          "todas": false,
+          "numeroAsignaturas": 1,
+          "alternativas": [
+            {
+              "codigo": "2000967",
+              "nombre": "Matematicas v"
+            },
+            {
+              "codigo": "2015159",
+              "nombre": "Variable compleja"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016488",
+      "nombre": "Circuitos de RF",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016496",
+              "nombre": "Electrónica análoga II"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2019125",
+      "nombre": "Redes de telecomunicaciones",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016492",
+              "nombre": "Comunicaciones"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016508",
+      "nombre": "Sistemas embebidos",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016499",
+              "nombre": "Electrónica digital II"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "destino": "2016512",
+      "nombre": "Verificación de sistemas digitales",
+      "condiciones": [
+        {
+          "numero": 1,
+          "tipo": "M",
+          "todas": true,
+          "numeroAsignaturas": null,
+          "alternativas": [
+            {
+              "codigo": "2016499",
+              "nombre": "Electrónica digital II"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "evidencias": [
+    {
+      "desde": "electronica:pos:3:1000006",
+      "hasta": "electronica:pos:6:2016487",
+      "fuente": "SIA-2026",
+      "curso": "2016487",
+      "numero": 1,
+      "todas": false,
+      "alternativas": [
+        "1000006-B",
+        "2000927"
+      ]
+    },
+    {
+      "desde": "electronica:pos:3:1000017",
+      "hasta": "electronica:pos:6:2016487",
+      "fuente": "SIA-2026",
+      "curso": "2016487",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "2000439",
+        "1000017-B"
+      ]
+    },
+    {
+      "desde": "electronica:pos:2:1000003",
+      "hasta": "electronica:pos:3:2016489",
+      "fuente": "SIA-2026",
+      "curso": "2016489",
+      "numero": 1,
+      "todas": false,
+      "alternativas": [
+        "1000003-B",
+        "2000927"
+      ]
+    },
+    {
+      "desde": "electronica:pos:1:2016509",
+      "hasta": "electronica:pos:3:2016489",
+      "fuente": "SIA-2026",
+      "curso": "2016489",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "2001331",
+        "2016509"
+      ]
+    },
+    {
+      "desde": "electronica:pos:3:2016489",
+      "hasta": "electronica:pos:4:2016490",
+      "fuente": "SIA-2026",
+      "curso": "2016490",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016489"
+      ]
+    },
+    {
+      "desde": "electronica:pos:3:1000007",
+      "hasta": "electronica:pos:4:2016490",
+      "fuente": "SIA-2026",
+      "curso": "2016490",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "1000007-B",
+        "2019619"
+      ]
+    },
+    {
+      "desde": "electronica:pos:6:2016507",
+      "hasta": "electronica:pos:7:2016492",
+      "fuente": "SIA-2026",
+      "curso": "2016492",
+      "numero": 1,
+      "todas": false,
+      "alternativas": [
+        "2001619",
+        "2016507"
+      ]
+    },
+    {
+      "desde": "electronica:pos:6:2016507",
+      "hasta": "electronica:pos:7:2016493",
+      "fuente": "SIA-2026",
+      "curso": "2016493",
+      "numero": 1,
+      "todas": false,
+      "alternativas": [
+        "2001619",
+        "2016507"
+      ]
+    },
+    {
+      "desde": "electronica:pos:3:2016489",
+      "hasta": "electronica:pos:4:2016495",
+      "fuente": "SIA-2026",
+      "curso": "2016495",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016489"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:2016495",
+      "hasta": "electronica:pos:5:2016496",
+      "fuente": "SIA-2026",
+      "curso": "2016496",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016495"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:2016490",
+      "hasta": "electronica:pos:5:2016496",
+      "fuente": "SIA-2026",
+      "curso": "2016496",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "2016490",
+        "2001603"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:2016495",
+      "hasta": "electronica:pos:8:2016497",
+      "fuente": "SIA-2026",
+      "curso": "2016497",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016495"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:2016490",
+      "hasta": "electronica:pos:8:2016497",
+      "fuente": "SIA-2026",
+      "curso": "2016497",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "2016490",
+        "2001603"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:2016495",
+      "hasta": "electronica:pos:5:2016498",
+      "fuente": "SIA-2026",
+      "curso": "2016498",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016495"
+      ]
+    },
+    {
+      "desde": "electronica:pos:5:2016498",
+      "hasta": "electronica:pos:6:2016499",
+      "fuente": "SIA-2026",
+      "curso": "2016499",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016498"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:2016495",
+      "hasta": "electronica:pos:5:2016501",
+      "fuente": "SIA-2026",
+      "curso": "2016501",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016495"
+      ]
+    },
+    {
+      "desde": "electronica:pos:6:2016487",
+      "hasta": "electronica:pos:7:2016503",
+      "fuente": "SIA-2026",
+      "curso": "2016503",
+      "numero": 1,
+      "todas": false,
+      "alternativas": [
+        "2001608",
+        "2016487"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:1000020",
+      "hasta": "electronica:pos:7:2016503",
+      "fuente": "SIA-2026",
+      "curso": "2016503",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "2019615",
+        "1000020-B"
+      ]
+    },
+    {
+      "desde": "electronica:pos:3:2016489",
+      "hasta": "electronica:pos:5:2016506",
+      "fuente": "SIA-2026",
+      "curso": "2016506",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016489"
+      ]
+    },
+    {
+      "desde": "electronica:pos:3:1000007",
+      "hasta": "electronica:pos:5:2016506",
+      "fuente": "SIA-2026",
+      "curso": "2016506",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "1000007-B",
+        "2019619"
+      ]
+    },
+    {
+      "desde": "electronica:pos:5:2016506",
+      "hasta": "electronica:pos:6:2016507",
+      "fuente": "SIA-2026",
+      "curso": "2016507",
+      "numero": 1,
+      "todas": false,
+      "alternativas": [
+        "2016506",
+        "2000490"
+      ]
+    },
+    {
+      "desde": "electronica:pos:4:2015159",
+      "hasta": "electronica:pos:6:2016507",
+      "fuente": "SIA-2026",
+      "curso": "2016507",
+      "numero": 2,
+      "todas": false,
+      "alternativas": [
+        "2000967",
+        "2015159"
+      ]
+    },
+    {
+      "desde": "electronica:pos:7:2016492",
+      "hasta": "electronica:pos:8:2019125",
+      "fuente": "SIA-2026",
+      "curso": "2019125",
+      "numero": 1,
+      "todas": true,
+      "alternativas": [
+        "2016492"
+      ]
+    },
+    {
+      "desde": "electronica:pos:1:1000004",
+      "hasta": "electronica:pos:2:1000005",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000004-B",
+      "codigoHasta": "1000005-B",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:2:1000005",
+      "hasta": "electronica:pos:3:1000006",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000005-B",
+      "codigoHasta": "1000006-B",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:2:1000005",
+      "hasta": "electronica:pos:3:1000007",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000005-B",
+      "codigoHasta": "1000007-B",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:2:1000003",
+      "hasta": "electronica:pos:3:1000006",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000003-B",
+      "codigoHasta": "1000006-B",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:2:1000003",
+      "hasta": "electronica:pos:3:1000007",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000003-B",
+      "codigoHasta": "1000007-B",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:3:1000007",
+      "hasta": "electronica:pos:4:2015159",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000007-B",
+      "codigoHasta": "2015159",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:3:1000007",
+      "hasta": "electronica:pos:4:1000020",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000007-B",
+      "codigoHasta": "1000020-B",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:2:1000019",
+      "hasta": "electronica:pos:3:1000017",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "1000019-B",
+      "codigoHasta": "1000017-B",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    },
+    {
+      "desde": "electronica:pos:1:2015734",
+      "hasta": "electronica:pos:2:2016375",
+      "fuente": "MALLA-2023",
+      "codigoDesde": "2015734",
+      "codigoHasta": "2016375",
+      "estado": "Representación gráfica en el plan; confirmar vigencia matricular"
+    }
+  ],
+  "condicionesPendientes": [
+    {
+      "curso": "2016492",
+      "nombre": "Comunicaciones",
+      "condicion": {
+        "numero": 2,
+        "tipo": "M",
+        "todas": false,
+        "numeroAsignaturas": 1,
+        "alternativas": [
+          {
+            "codigo": "1000015-B",
+            "nombre": "Probabilidad fundamental"
+          },
+          {
+            "codigo": "2001065",
+            "nombre": "Probabilidad y estadistica"
+          },
+          {
+            "codigo": "1000013-B",
+            "nombre": "Probabilidad y estadística fundamental"
+          }
+        ]
+      },
+      "motivo": "Alternativas no representadas por una posición verificada"
+    },
+    {
+      "curso": "2016488",
+      "nombre": "Circuitos de RF",
+      "condicion": {
+        "numero": 1,
+        "tipo": "M",
+        "todas": true,
+        "numeroAsignaturas": null,
+        "alternativas": [
+          {
+            "codigo": "2016496",
+            "nombre": "Electrónica análoga II"
+          }
+        ]
+      },
+      "motivo": "Curso optativo sin posición individual"
+    },
+    {
+      "curso": "2016508",
+      "nombre": "Sistemas embebidos",
+      "condicion": {
+        "numero": 1,
+        "tipo": "M",
+        "todas": true,
+        "numeroAsignaturas": null,
+        "alternativas": [
+          {
+            "codigo": "2016499",
+            "nombre": "Electrónica digital II"
+          }
+        ]
+      },
+      "motivo": "Curso optativo sin posición individual"
+    },
+    {
+      "curso": "2016512",
+      "nombre": "Verificación de sistemas digitales",
+      "condicion": {
+        "numero": 1,
+        "tipo": "M",
+        "todas": true,
+        "numeroAsignaturas": null,
+        "alternativas": [
+          {
+            "codigo": "2016499",
+            "nombre": "Electrónica digital II"
+          }
+        ]
+      },
+      "motivo": "Curso optativo sin posición individual"
+    }
+  ],
+  "creditos": {
+    "B": 60,
+    "C": 78,
+    "L": 34,
+    "N": 20
+  },
+  "semestres": {
+    "1": 17,
+    "2": 18,
+    "3": 18,
+    "4": 19,
+    "5": 17,
+    "6": 17,
+    "7": 16,
+    "8": 16,
+    "9": 16,
+    "10": 18
+  }
+}

@@ -805,6 +805,16 @@
       "nota": null
     },
     {
+      "id": "electronica:pos:7:2016493",
+      "nombre": "Control",
+      "codigoAsignatura": "2016493",
+      "semestre": 7,
+      "creditos": 4,
+      "componente": "C",
+      "caracter": "obl",
+      "nota": "Plan 2545, malla 2023; código y 4 créditos cotejados con catálogo SIA 2026."
+    },
+    {
       "id": "electronica:pos:7:2016503",
       "nombre": "Líneas y antenas",
       "codigoAsignatura": "2016503",
@@ -832,7 +842,7 @@
       "creditos": 3,
       "componente": "C",
       "caracter": "opt",
-      "nota": null
+      "nota": "Materia disponible en Optativa Telecomunicaciones; no se presenta como única alternativa admitida."
     },
     {
       "id": "electronica:pos:8:2016497",
@@ -970,9 +980,9 @@
       "codigoAsignatura": null,
       "semestre": 5,
       "creditos": 3,
-      "componente": "",
+      "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Probabilidad y Estadística"
     },
     {
       "id": "electronica:pos:6:optativa-sin-asignatura-especificada:5",
@@ -980,9 +990,9 @@
       "codigoAsignatura": null,
       "semestre": 6,
       "creditos": 3,
-      "componente": "",
+      "componente": "C",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Electrónica Análoga"
     },
     {
       "id": "electronica:pos:7:optativa-sin-asignatura-especificada:6",
@@ -990,9 +1000,9 @@
       "codigoAsignatura": null,
       "semestre": 7,
       "creditos": 3,
-      "componente": "",
+      "componente": "C",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Electrónica Digital"
     },
     {
       "id": "electronica:pos:8:libre-eleccion:7",
@@ -1020,19 +1030,9 @@
       "codigoAsignatura": null,
       "semestre": 8,
       "creditos": 3,
-      "componente": "",
+      "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
-    },
-    {
-      "id": "electronica:pos:8:optativa-sin-asignatura-especificada:10",
-      "nombre": "Optativa sin asignatura especificada (4)",
-      "codigoAsignatura": null,
-      "semestre": 8,
-      "creditos": 3,
-      "componente": "",
-      "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Ciencias Económicas y Administrativas"
     },
     {
       "id": "electronica:pos:9:libre-eleccion:11",
@@ -1070,9 +1070,9 @@
       "codigoAsignatura": null,
       "semestre": 9,
       "creditos": 3,
-      "componente": "",
+      "componente": "B",
       "caracter": "opt",
-      "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
+      "nota": "Posición flexible; no identifica asignatura SIA ni grupo. | Malla 2023, agrupación: Ciencias Económicas y Administrativas"
     },
     {
       "id": "electronica:pos:10:libre-eleccion:15",
@@ -1106,8 +1106,195 @@
     }
   ],
   "requisitos": {
-    "prerrequisitos": [],
-    "minimosCreditos": []
+    "prerrequisitos": [
+      {
+        "desde": "electronica:pos:3:1000006",
+        "hasta": "electronica:pos:6:2016487",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:1000017",
+        "hasta": "electronica:pos:6:2016487",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:2:1000003",
+        "hasta": "electronica:pos:3:2016489",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:1:2016509",
+        "hasta": "electronica:pos:3:2016489",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:2016489",
+        "hasta": "electronica:pos:4:2016490",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:1000007",
+        "hasta": "electronica:pos:4:2016490",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:6:2016507",
+        "hasta": "electronica:pos:7:2016492",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:6:2016507",
+        "hasta": "electronica:pos:7:2016493",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:2016489",
+        "hasta": "electronica:pos:4:2016495",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:2016495",
+        "hasta": "electronica:pos:5:2016496",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:2016490",
+        "hasta": "electronica:pos:5:2016496",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:2016495",
+        "hasta": "electronica:pos:8:2016497",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:2016490",
+        "hasta": "electronica:pos:8:2016497",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:2016495",
+        "hasta": "electronica:pos:5:2016498",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:5:2016498",
+        "hasta": "electronica:pos:6:2016499",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:2016495",
+        "hasta": "electronica:pos:5:2016501",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:6:2016487",
+        "hasta": "electronica:pos:7:2016503",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:1000020",
+        "hasta": "electronica:pos:7:2016503",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:2016489",
+        "hasta": "electronica:pos:5:2016506",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:1000007",
+        "hasta": "electronica:pos:5:2016506",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:5:2016506",
+        "hasta": "electronica:pos:6:2016507",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:4:2015159",
+        "hasta": "electronica:pos:6:2016507",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:7:2016492",
+        "hasta": "electronica:pos:8:2019125",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:1:1000004",
+        "hasta": "electronica:pos:2:1000005",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:2:1000005",
+        "hasta": "electronica:pos:3:1000006",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:2:1000005",
+        "hasta": "electronica:pos:3:1000007",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:2:1000003",
+        "hasta": "electronica:pos:3:1000006",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:2:1000003",
+        "hasta": "electronica:pos:3:1000007",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:1000007",
+        "hasta": "electronica:pos:4:2015159",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:3:1000007",
+        "hasta": "electronica:pos:4:1000020",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:2:1000019",
+        "hasta": "electronica:pos:3:1000017",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "electronica:pos:1:2015734",
+        "hasta": "electronica:pos:2:2016375",
+        "metodo": "flecha"
+      }
+    ],
+    "minimosCreditos": [
+      {
+        "destino": "electronica:pos:9:2016510",
+        "minimo": 121,
+        "componentes": [
+          "B",
+          "C",
+          "L"
+        ]
+      },
+      {
+        "destino": "electronica:pos:10:diseno-de-sistemas-electronicos",
+        "minimo": 121,
+        "componentes": [
+          "B",
+          "C",
+          "L"
+        ]
+      },
+      {
+        "destino": "electronica:pos:10:2015316",
+        "minimo": 63,
+        "componentes": [
+          "C"
+        ]
+      }
+    ]
   },
   "oferta": [
     {
@@ -3324,6 +3511,19 @@
               "fechaFin": "12/12/2026",
               "duracion": "Semestral",
               "jornada": "DIURNO"
+            },
+            {
+              "id": "SUMA-01",
+              "nombre": "Grupo PEAMA Sumapaz",
+              "profesor": "Andres Ricardo Beira Combariza.",
+              "facultad": "SEDE BOGOTÁ",
+              "cuposDisponibles": 0,
+              "horarios": [],
+              "detalleHorario": "No informado",
+              "fechaInicio": null,
+              "fechaFin": null,
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
             }
           ]
         },
@@ -3366,6 +3566,19 @@
               "detalleHorario": "No informadoFecha:24/08/2026 - 12/12/2026VIERNES de 11:00 a 13:00.SALÓN DE CLASE 401-102. 401-102. 401 - Julio Garavito Armero. SALON.",
               "fechaInicio": "24/08/2026",
               "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            },
+            {
+              "id": "SUMA-01",
+              "nombre": "Grupo PEAMA Sumapaz",
+              "profesor": "JHON FREDDY LOPEZ MEDINA.",
+              "facultad": "SEDE BOGOTÁ",
+              "cuposDisponibles": 0,
+              "horarios": [],
+              "detalleHorario": "No informado",
+              "fechaInicio": null,
+              "fechaFin": null,
               "duracion": "Semestral",
               "jornada": "DIURNO"
             }
@@ -5390,6 +5603,11 @@
       "posicionId": "electronica:pos:1:2016502",
       "codigoAsignatura": "2016502",
       "motivo": "actividades-multiples-sin-agrupacion-verificada"
+    },
+    {
+      "posicionId": "electronica:pos:7:2016493",
+      "codigoAsignatura": "2016493",
+      "motivo": "actividades-multiples-sin-agrupacion-verificada"
     }
   ],
   "configuracion": {
@@ -5453,22 +5671,30 @@
   },
   "procedencia": {
     "catalogo": {
-      "descripcion": "Catálogo inicial del plan, complementado con Electronica(1).txt; nuevas descripciones y tipologías por código institucional.",
+      "descripcion": "Cotejado con Electronica(2).txt: 62 registros idénticos, más registro del curso 2016510 exclusivo de malla 2023.",
       "fechaCaptura": null
     },
     "oferta": {
-      "descripcion": "Grupos y horarios extraídos de Electronica horarios.txt; franjas por día/hora únicamente si se informan en fuente. Las ofertas de múltiples actividades no se combinan sin verificación.",
+      "descripcion": "Electronica horarios(1).txt: 144 grupos preservados con horarios, cupos y fechas; dos PEAMA–Sumapaz adicionales sin horario, solo consulta.",
       "fechaCaptura": null,
       "periodo": null
     },
     "malla": {
-      "descripcion": "Malla_Ing_Electrnica_2023.pdf",
+      "descripcion": "Plan 2545, malla 2023: Control 2016493 recuperado y casilla repetida de VIII excluida. B60, C78, L34, N20 adicional.",
       "version": "plan-2545"
     },
     "metadatos": {
       "malla": "Malla_Ing_Electrnica_2023.pdf",
       "tipologias": "Malla inicial y Electronica(1).txt; diferencias conservadas para revisión.",
-      "horarios": "Archivo Electronica horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada."
+      "horarios": "Archivo Electronica horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada.",
+      "revisionRequisitos": "data/programas/electronica/revision-prerrequisitos-2026.json"
+    },
+    "requisitos": {
+      "descripcion": "23 aristas tipo M directamente identificadas en SIA 2026 y nueve aristas visibles en la malla 2023 con vigencia pendiente. Tres umbrales explícitos del plan: 121 créditos B+C+L en TPI y Diseño, 63 de C en Trabajo de Grado. Expediente externo conserva 27 condiciones completas.",
+      "fuentes": [
+        "Electronica horarios(1).txt",
+        "Malla_Ing_Electrnica_2023(2).pdf"
+      ]
     }
   }
 }
