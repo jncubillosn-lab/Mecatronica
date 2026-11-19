@@ -19,7 +19,7 @@ assert.deepEqual(Object.keys(programas.fuentes).sort(), ids.sort());
 const esperado = {
  agricola:[66,61,0,0], civil:[66,60,0,0], electrica:[65,54,0,0],
  electronica:[63,56,23,93], industrial:[67,49,34,20],
- mecanica:[59,58,24,82], quimica:[72,63,29,56], sistemas:[96,55,0,0]
+ mecanica:[59,58,24,82], quimica:[72,63,29,54], sistemas:[96,55,0,0]
 };
 const ofertaDocumentada = new Set(['electronica','industrial','mecanica','quimica']);
 for(const id of ids){

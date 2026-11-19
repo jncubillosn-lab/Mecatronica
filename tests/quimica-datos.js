@@ -14,7 +14,7 @@ assert.equal(new Set(d.malla.map(m=>m.id)).size,63);
 assert.equal(d.catalogo.length,72);
 assert.equal(new Set(d.catalogo.map(c=>c.codigo)).size,72);
 assert.equal(d.oferta.length,29);
-assert.equal(d.agrupaciones.length,56);
+assert.equal(d.agrupaciones.length,54);
 const grupos=d.oferta.flatMap(c=>c.actividades.flatMap(a=>a.grupos));
 assert.equal(grupos.length,70);
 const ort=d.oferta.find(c=>c.codigoAsignatura==='2015718');
@@ -50,6 +50,19 @@ assert.equal(rev.condicionesPendientes.length,7);
 assert(rev.condicionesPendientes.some(x=>x.tipo==='Y'));
 const raw=new EntradaAcademica(d).generarEscenarioBase();
 assert.equal(raw.pre.length,37);
-assert.equal(raw.gr.length,56);
-assert(raw.bl.length>0);
+assert.equal(raw.gr.length,54);
+assert.equal(raw.bl.length,84);
+assert(d.agrupaciones.every(g=>g.analizable!==false));
+assert.deepEqual(d.exclusionesAgrupacion.map(x=>x.codigoAsignatura),['2015718']);
+for(const codigo of ['2015712','2015713']){
+ const pos=d.malla.find(p=>p.codigoAsignatura===codigo);
+ const grupos=d.agrupaciones.filter(g=>g.posicionId===pos.id);
+ assert.equal(grupos.length,3);
+ grupos.forEach((g,i)=>{
+   assert.equal(g.etiqueta,'G'+(i+1));
+   assert.deepEqual(g.componentes.map(c=>c.id),[codigo+':act:1:G'+(i+1),codigo+':act:2:G1']);
+   const [a,b]=g.componentes;
+   assert(!a.bloques.some(x=>b.bloques.some(y=>x.dia===y.dia&&x.inicio<y.fin&&y.inicio<x.fin)),g.id);
+ });
+}
 console.log('OK: Química — catálogo, malla, grupos, prerrequisitos y condiciones.');

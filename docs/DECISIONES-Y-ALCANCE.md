@@ -1,7 +1,7 @@
 # DEC-01 — Decisiones, alcance y criterios de conservación
 
 **Estado:** acuerdos adoptados para el desarrollo de Gestor de horarios · Mecatrónica.  
-**Revisión de vigencia:** 18 de noviembre de 2026, versión 1.1.16. Esta tabla recoge reglas aplicables, no fases o propuestas históricas.
+**Revisión de vigencia:** 18 de noviembre de 2026, versión 1.1.17. Esta tabla recoge reglas aplicables, no fases o propuestas históricas.
 **Documento superior:** [ARQ-01](ARQUITECTURA.md).  
 **Estado del código y publicación:** [ESTADO-Y-PUBLICACION.md](ESTADO-Y-PUBLICACION.md).
 
@@ -59,7 +59,7 @@ La selección por componente conserva «Sin clasificar» sin mutar los datos. Un
 - **Tipología institucional** no equivale necesariamente a **componente curricular**: por ejemplo, Inglés puede conservar tipología institucional `E` mientras pertenece al componente `N` del plan.
 - **Selección de componentes para consulta** no equivale a **modificación del escenario**. Los filtros no alteran ni eliminan datos.
 - **Mapa de calor de grupos** no equivale a aulas ocupadas, estudiantes matriculados ni disponibilidad real de salones.
-- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública del sitio** (`1.1.16` en la entrega actual) son números independientes.
+- **Versión del contrato** (`versionEsquema: 1`), **versión del archivo de escenario personal** (`version: 1`) y **versión pública del sitio** (`1.1.17` en la entrega actual) son números independientes.
 
 ## 4. Qué constituye un problema y qué no
 
@@ -82,4 +82,4 @@ Para nuevas decisiones añadir identificador, fecha, motivo, impacto sobre datos
 
 Mecatrónica, Electrónica, Industrial, Mecánica y Química disponen de oferta de grupos en sus contratos; las otras cuatro carreras no cuentan con horarios cargados. `oferta` conserva la información documental y `agrupaciones` define la proyección y analizabilidad de grupos. Las combinaciones de actividades deben estar respaldadas por el contrato académico, no por coincidencias de números o nombres. Los grupos informativos `analizable:false` se muestran como «solo consulta».
 
-En Mecánica, Química y Electrónica, TPI (`2024045`) tiene únicamente el grupo G1, lunes y miércoles de 14:00 a 16:00 en el periodo documentado. En Electrónica, los grupos multiactividad se rigen por las asociaciones verificadas de la versión 1.1.16; no se sustituyen por los recuentos o reconstrucciones de versiones anteriores. Véase [cobertura vigente](AGRUPACIONES-OFERTA-2026.md).
+En Mecánica, Química y Electrónica, TPI (`2024045`) tiene únicamente el grupo G1, lunes y miércoles de 14:00 a 16:00 en el periodo documentado. En Electrónica, los grupos multiactividad se rigen por las asociaciones verificadas de la versión 1.1.17; no se sustituyen por los recuentos o reconstrucciones de versiones anteriores. Véase [cobertura vigente](AGRUPACIONES-OFERTA-2026.md).
