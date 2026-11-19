@@ -42,320 +42,320 @@
       "codigo": "1000004-B",
       "nombre": "Cálculo diferencial",
       "creditos": 4,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS Estudiar los conceptos de límite y derivada para funciones de una variable real y utilizar estas ideas en la solución de problemas de optimización, trazado de curvas y razones de cambio. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
     },
     {
       "codigo": "2015734",
       "nombre": "Programación de computadores",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. OBJETIVOS Con el curso de programación de computadores se espera que un estudiante este en capacidad de:  Reconocer problemas a los que se les puede dar solución mediante un algoritmo Aplicar una metodología sistemática para su solución.  Especificar algoritmos de manera precisa utilizando conceptos y elementos de programación.  Implementar la solución algorítmica mediante un lenguaje de programación como Python. Aprende a programar, como aprender a nadar, es un proceso de aprendizaje activo que solo se logra si el estudiante trata de programar, es decir, aprender a programar depende en gran parte de la motivación y trabajo activo del estudiante. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la exlicación por parte de profesores y monitores."
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": "Asignatura de primer semestre del Programa de Ingeniería de Sistemas y Computación y ofertado a otras Ingenierías. El objetivo principal es enseñar a los estudiantes a solucionar problemas mediante la especificación de algoritmos (secuencia finita de pasos bien definida) en un lenguaje de programación como Python, Java, C y/o JavaScript. OBJETIVOS Con el curso de programación de computadores se espera que un estudiante este en capacidad de: Reconocer problemas a los que se les puede dar solución mediante un algoritmo Aplicar una metodología sistemática para su solución. Especificar algoritmos de manera precisa utilizando conceptos y elementos de programación. Implementar la solución algorítmica mediante un lenguaje de programación como Python. Aprende a programar, como aprender a nadar, es un proceso de aprendizaje activo que solo se logra si el estudiante trata de programar, es decir, aprender a programar depende en gran parte de la motivación y trabajo activo del estudiante. METODOLOGÍA En este curso se proporciona material escrito, software didáctico, guías para el desarrollo de talleres y laboratorios (tanto en clase como fuera de ella) y se proponen ejercicios 'básicos' de problemas reales de programación, junto con la exlicación por parte de profesores y monitores."
     },
     {
       "codigo": "2015711",
       "nombre": "Dibujo básico",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Al finalizar la asignatura el estudiante estará en capacidad de: 1. Comprender el espacio, fomentando las capacidades y competencias necesarias para expresar sus ideas gráficamente a mano alzada, con instrumentos y/o por medio de software en 2D y 3D 2. Interpretar lo expresado gráficamente por otras personas. 3. Conocer e interpretar las principales normas de dibujo técnico. 4. Interpretar vistas para componer sólidos y viceversa. 5. Conocer y aplicar los conceptos básicos y fundamentales de Geometría descriptiva como son: conceptos de líneas y planos, vistas auxiliares, perpendicularidad, paralelismo, topografía de líneas y planos, intersecciones de línea con plano o con prisma, plano con plano o con prisma, prisma con prisma. 6. Realizar en equipo un proyecto de aplicación con software, según la disciplina."
     },
     {
       "codigo": "2017278",
       "nombre": "Tecnología mecánica básica",
       "creditos": 3,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "OBJETIVOS: General Presentar al estudiante los conceptos básicos sobre fabricación de componentes mecánicos, que le permitan comprender los aspectos introductorios sobre medición dimensional, colado, soldadura, ajuste, mecanizado y CNC. Específicos 1. Que el estudiante adquiera los conocimientos básicos sobre los procesos de fabricación tratados, sus máquinas y herramientas necesarias, y las variables de proceso principales que afectan la precisión dimensional y el acabado superficial de la pieza obtenida. 2. Que el estudiante asimile las posibilidades geométricas básicas que puede obtener de una pieza al fabricarla por alguno de los procesos tratados en el curso. Metodología: Se trata de una asignatura práctica donde el estudio del componente teórico será abordado de manera autónoma por cada estudiante de acuerdo al contenido de la materia, haciéndose énsasis en clase en el desarrollo de prácticas de laboratorio, fabricación de piezas, ensamble de las mismas y pruebas de funcionamiento de los proyectos de construcción asignados."
     },
     {
       "codigo": "2017265",
       "nombre": "Ingeniería y desarrollo sostenible",
       "creditos": 3,
-      "tipologia": "FUND. OBLIGATORIA",
-      "rotulo": "FUND. OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El curso de Ingeniería y Desarrollo Sostenible pretende familiarizar al estudiante que recién inicia su carrera de Ingeniería Mecánica o Mecatrónica sobre lo que es cada una de estas carreras y sus campos de acción, así como en los conocimientos y herramientas necesarias para su ejercicio, y en la responsabilidad social y ambiental que debe observar quien ejerce la ingeniería. Al finalizar este curso, el estudiante estará en capacidad de: 1. Recordar los hitos más importantes de la historia de los programas de Ingeniería Mecánica y Mecatrónica de la UN Sede Bogotá. 2. Identificar los campos de acción de las ingenierías mecánica y mecatrónica. 3. Emplear herramientas para la identificación y análisis tanto un problema de ingeniería como sus contextos político, económico, social, tecnológico, ecológico y legal. 5. Redactar una propuesta preliminar de proyecto de ingeniería. 6. Aplicar estrategias para facilitar el trabajo en equipo. 7. Aplicar estrategias para facilitar la comunicación oral en público. El curso no requiere conceptos previos."
     },
     {
       "codigo": "1000005-B",
       "nombre": "Cálculo Integral",
       "creditos": 4,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS General ¿ Lograr la apropiación por parte del. estudiante de los conceptos fundamentales del cálculo integral de funciones de una variable real y crear habilidades que le permitan aplicar estos conocimientos en problemas propios de su disciplina y abordar de manera elemental los conceptos de sucesiones y series. Específicos ¿ Conocer y manejar con propiedad el concepto de integral definida de una función real de una variable real y su relación con el concepto de primitiva o antiderivada, para facilitar los cálculos. ¿ Estudiar algunas de las diferentes aplicaciones del concepto de integral. ¿ Adquirir destrezas en el estudio de la convergencia de sucesiones y series"
     },
     {
       "codigo": "1000003-B",
       "nombre": "Álgebra Lineal",
       "creditos": 4,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS: Asimilar los fundamentos del Algebra Lineal, a nivel elemental, pero con la profundidad necesaria para adquirir los conocimientos y habilidades básicas (capacidad de análisis y de razonamiento lógico - deductivo) para la solución de problemas en las cuales estén involucrados los elementos matemáticos de sistemas de ecuaciones lineales, espacios vectoriales, valores y vectores propios de una matriz y diagonalización de matrices. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
     },
     {
       "codigo": "1000019-B",
       "nombre": "Fundamentos de mecánica",
       "creditos": 4,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Asignatura de pregrado orientada al estudio de los principios básicos de la mecánica clásica, proporcionando herramientas para comprender y analizar el movimiento de los cuerpos y las fuerzas que actúan sobre ellos. El curso constituye una base esencial para la formación científica y tecnológica al permitir interpretar fenómenos físicos presentes en diferentes contextos naturales y aplicados. A lo largo de la asignatura, el estudiante desarrollará habilidades para describir movimientos, analizar sistemas dinámicos, interpretar leyes físicas y resolver problemas relacionados con cinemática, dinámica, trabajo, energía y conservación del momento. Asimismo, fortalecerá competencias en razonamiento cuantitativo, pensamiento analítico y modelación matemática de fenómenos físicos. La asignatura tiene un enfoque interdisciplinar al conectarse con áreas como ingeniería, matemáticas aplicadas, ciencias ambientales, astronomía, biomecánica y ciencias computacionales, permitiendo que estudiantes de distintas disciplinas comprendan principios fundamentales del comportamiento de sistemas físicos. Los conocimientos adquiridos tienen aplicación práctica en el análisis de movimientos, diseño y comprensión de sistemas mecánicos, interpretación de fenómenos naturales y desarrollo de soluciones tecnológicas, además de fortalecer capacidades útiles para contextos académicos y profesionales diversos. Está dirigida a estudiantes de pregrado. No requiere conocimientos especializados previos, aunque se recomienda contar con bases en matemáticas básicas y nociones introductorias de física. Se sugiere un nivel inicial de avance curricular que facilite la apropiación gradual de los conceptos y herramientas del curso."
     },
     {
       "codigo": "2017257",
-      "nombre": "Dibujo de máquinas",
+      "nombre": "Dibujo de Máquinas",
       "creditos": 4,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El dibujo de máquinas desarrolla las capacidades para que el ingeniero pueda comunicar e interpretar, mediante planos de fabricación y producción de piezas y ensambles, cumpliendo con los estándares nacionales e internacionales, utilizando para ello manuales de ingeniería, catálogos de ingeniería, textos de ingeniería sobre áreas de conocimiento especifico (normas de ingeniería, materiales, procesos de fabricación, ajustes, tolerancias, acabados superficiales, tratamientos térmicos etc.) Y herramientas CAD, desarrollando competencias para el trabajo en equipo, en un ambiente de desarrollo de proyectos y de producción."
     },
     {
       "codigo": "1000006-B",
       "nombre": "Cálculo en varias variables",
       "creditos": 4,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS: ¿ Estudiar los conceptos fundamentales del cálculo de funciones de varias variables (límites, continuidad, diferenciación e integración) y los teoremas centrales del Cálculo vectorial (Teoremas de Green, Gauss y Stokes). ¿ Estimular y desarrollar la capacidad de análisis y de razonamiento lógico-deductivo del estudiante. ¿ Capacitar al estudiante para la interpretación, formulación y solución de problemas en las áreas relacionadas con su especialidad en las cuales se haga necesario la aplicación del cálculo de funciones de varias variables y del cálculo vectorial."
     },
     {
       "codigo": "1000013-B",
       "nombre": "Probabilidad y estadística fundamental",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "descripcion": null
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
+      "descripcion": ""
     },
     {
       "codigo": "1000024-B",
       "nombre": "Principios de química",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Suministrar a los estudiantes los conceptos básicos de la Química que le permitan la interpretación de fenómenos involucrados en diferentes procesos químicos. La asignatura se desarrollará mediante exposiciones orales por parte del profesor. Se propondrán actividades de reforzamiento y repaso (talleres y lecturas complementarias). OBJETIVOS: 1. Preparar al estudiante para la interpretación de fenómenos involucrados en diferentes procesos químicos. 2. Promover el aprendizaje y comprensión del lenguaje básico de la Química como herramienta indispensable para su desarrollo profesional, el trabajo interdisciplinario y para que entienda la vida cotidiana desde la óptica de los procesos químicos. 3. Aumentar el interés en los estudiantes por la comprensión de la materia a nivel atómico y molecular. 4. Potencializar competencias interpretativas, propositivas y argumentativas fundamentadas en el lenguaje químico. 5. Fomentar la integración de los conceptos de materia y energía de creciente relevancia en el presente siglo, en todas las actividades del quehacer cotidiano. 6. Desarrollar habilidades y destrezas para la resolución de ejercicios y problemas que requieran de conocimientos de Química. 7. Promover en el estudiante el uso responsable de los conocimientos de química en su entorno, especialmente en lo que tiene que ver con el cuidado del medio ambiente. Conceptos Previos: Considerando que es un curso para los ciclos de fundamentación de diferentes programas académicos de la Universidad Nacional de Colombia no se requieren conocimientos previos"
     },
     {
       "codigo": "2016640",
-      "nombre": "Principios de estática",
+      "nombre": "Principios de Estática",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "OBJETIVO GENERAL: Profundizar en el conocimiento de los fundamentos físicos de la mecánica, aplicar los principios de la estática a la resolución de problemas de ingeniería relacionados con el equilibrio mecánico y desarrollar en los alumnos su capacidad de análisis ante soluciones que involucren equilibrio de cuerpos mecánicos. METODOLOGÍA: Exposición magistral por parte del profesor para explicar los conceptos básicos, reforzados con ejercicios prácticos realizados en forma autónoma por los estudiantes, y en algunos casos supervisados por el profesor."
     },
     {
       "codigo": "1000007-B",
       "nombre": "Ecuaciones Diferenciales",
       "creditos": 4,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVOS: Modelar por medio de ecuaciones diferenciales algunos sistemas simples y predecir su comportamiento. Comprender y utilizar las diferentes técnicas analíticas y cualitativas para resolver ecuaciones diferenciales. METODOLOGÍA: La modalidad de cursos magistrales consiste de un sistema integrado de conferencias teóricas, talleres y asesorías. Cada curso magistral tiene dos conferencias teóricas a la semana, de dos horas cada una, y son atendidas por profesores de planta, por monitores académicos de posgrado y en casos excepcionales por docentes ocasionales. El estudiante de un curso magistral tiene la opción de asistir a un taller semanal de dos horas, que sirve de refuerzo a la clase teórica y que está a cargo de un monitor académico de posgrado o de pregrado. Así mismo el estudiante puede ser atendido de manera individual en las asesorías. Las asesorías son brinadadas, tanto por los profesores de planta como por los monitores académicos de posgardo y pregrado. En las asesorías el estudiante consulta las dudas teóricas y recibe orientación acerca de los ejercicios que no pudo resolver en su trabajo personal. La asistencia de los estudiantes a las asesorías es opcional."
     },
     {
       "codigo": "2017271",
       "nombre": "Principios de dinámica",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El estudio de la dinámica tiene como propósito profundizar en el conocimiento de los fundamentos de la geometria del movimiento de los cuerpos y de las causas que originan y/o modifican dicho movimiento, aplicando los principios de la cinematica y de la cinética a la resolucion de los problemas de ingenieria que involucren y tengan que ver con cuerpos en movimiento, con el fin de desarrollar en los estudiantes la capacidad de analisis ante problemas reales y concretos."
     },
     {
       "codigo": "2017256",
       "nombre": "Ciencia e ingeniería de materiales",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
-      "descripcion": "OBJETIVOS: General Conocer los materiales de ingeniería, su estructura, propiedades y aplicaciones en diseño. Dar una visión general sobre los tipos de materiales de ingeniería mas conocidos, sus características, y aplicaciones, y mostrar su importancia en la evolución del desarrollo tecnológico e industrial de manera que el estudiante adquiera una perspectiva orientada hacia la producción y manufactura a partir de los diferentes materiales. Específicos Dar a los estudiantes diversos temas de física y química aplicadas, que son la base para comprender los “principios de la ciencia de los materiales”, describiendo el equilibrio entre los principios científicos y la ingeniería práctica que se precisan al seleccionar los materiales apropiados en la tecnología moderna. Metodología: Clases magistrales y practicas de laboratorio de refuerzo de aprendizaje en el semestre: Laboratorio de caracterización de materiales, composición química y dureza, laboratorio de ensayos mecánicos, laboratorio de preparación de muestras metalográficas, laboratorio de tratamientos térmicos y templabilidad."
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
+      "descripcion": "OBJETIVOS: General Conocer los materiales de ingeniería, su estructura, propiedades y aplicaciones en diseño. Dar una visión general sobre los tipos de materiales de ingeniería mas conocidos, sus características, y aplicaciones, y mostrar su importancia en la evolución del desarrollo tecnológico e industrial de manera que el estudiante adquiera una perspectiva orientada hacia la producción y manufactura a partir de los diferentes materiales. Específicos Dar a los estudiantes diversos temas de física y química aplicadas, que son la base para comprender los principios de la ciencia de los materiales , describiendo el equilibrio entre los principios científicos y la ingeniería práctica que se precisan al seleccionar los materiales apropiados en la tecnología moderna. Metodología: Clases magistrales y practicas de laboratorio de refuerzo de aprendizaje en el semestre: Laboratorio de caracterización de materiales, composición química y dureza, laboratorio de ensayos mecánicos, laboratorio de preparación de muestras metalográficas, laboratorio de tratamientos térmicos y templabilidad."
     },
     {
       "codigo": "2017279",
       "nombre": "Termodinámica técnica",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "EN ESTA ASIGNATURA SE BRINDA A LOS ESTUDIANTES UNA INTRODUCCIÓN EN LOS FUNDAMENTOS TEÓRICOS DE LA TERMIDINÁMICA QUE LES PERMITA ANALIZAR Y EXPLICAR PROCESOS DE TRANSFORMACIÓN Y UTILIZACIÓN DE LA ENERGÍA EN APLICACIONES PROPIAS DE LA INGENIERÍA MECÁNICA."
     },
     {
       "codigo": "2015970",
       "nombre": "Métodos numéricos",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "OBJETIVO GENERAL Capacitar al estudiante en los conceptos fundamentales del análisis numérico para la solución de problemas matemáticos mediante algoritmos numéricos, con la orientación necesaria para su implementación en computador y aplicados a la solución de problemas en ingeniería. OBJETIVOS ESPECÍFICOS - Implementar soluciones a diversos problemas con procedimientos numéricos en el computador, mediante el paquete matemático MATLAB. - Estimular al alumno para crear sus propias soluciones en el computador para resolver problemas particulares. METODOLOGÍA El propósito de este curso es darle apoyo al estudiante de manera que pueda llevar a cabo su proceso de aprendizaje de manera autónoma; este apoyo está representado por: material escrito, desarrollo de talleres y laboratorios, ejercicios teóricos y prácticos, software didáctico y explicaciones por parte de profesores y monitores. Cada módulo temático está conformado por 4 sesiones distribuidas en dos semanas: una conferencia, una clase, un taller y un laboratorio. A continuación se describe cada tipo de sesión."
     },
     {
       "codigo": "2017277",
-      "nombre": "Resistencia de materiales",
+      "nombre": "Resistencia de Materiales",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Objetivo General: Al terminar el curso el estudiante deberá estar en capacidad de aplicar a situaciones de ingeniería los fundamentos teóricos de la Mecánica de Materiales, realizando el cálculo de diseño y/o comprobación de componentes estructurales y de"
     },
     {
       "codigo": "2017268",
-      "nombre": "Fundamentos de mecanismos",
+      "nombre": "Mecanismos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "OBJETIVO GENERAL: Estudiar (analizar) la cinemática y cinética de mecanismos y máquinas, con el propósito de aplicar sus fundamentos en la síntesis (diseño) de los mismos, que cumplan el comportamiento deseado en lo referente a las características de su movimiento (características funcionales), a la resistencia mecánica de sus componentes, a su presentación, a su confiabilidad, y algunas otras exigencias de Ingeniería."
     },
     {
       "codigo": "2017267",
-      "nombre": "Materiales de ingeniería",
+      "nombre": "Materiales de Ingeniería",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Objetivos Generales Dar a conocer al estudiante los materiales más empleados en Ingeniería, abordando la interdependencia entre la estructura interna de los materiales para de esta forma obtener propiedades determinadas, que los hacen interesante para alcanzar un rendimiento óptimo de utilización. Objetivos Específicos Dar una visión conceptual entre el diseño de la estructura interna para obtener determinadas propiedades de materiales y a su vez proporcionar al estudiante conocimientos básicos para la selección de materiales. Concienciar al estudiante sobre la importancia de la formación e investigación en materiales, a la hora de diseñar y desarrollar productos competitivos, tanto desde el punto de vista de prestaciones y funcionalidad como en términos económicos, incluyendo su impacto medioambiental."
     },
     {
       "codigo": "2017272",
       "nombre": "Principios de mecánica de fluidos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "\"Estudio de los principios de la mecánica de los fluidos, propiedades, definición de los invariantes, masa, momento, energía, flujos, continuidad, fluidos vicosos, fluido potencial, compresibles, incompresibles, regímenes laminar, turbulento, técnicas integrales, diferenciales, experimentales.\""
     },
     {
       "codigo": "2017266",
       "nombre": "Instalaciones y máquinas eléctricas",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "La asignatura brinda al estudiante de Ingeniería Mecánica conocimientos básicos sobre circuitos y máquinas eléctricas, este tema complementa la formación del ingeniero mecánico para resolver de forma preliminar problemas relacionados y/o aplicar la electricidad en máquinas, dispositivos o plantas industriales."
     },
     {
       "codigo": "2017293",
       "nombre": "Modelación matemática",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "En esta asignatura se busca familiarizar al estudiante en la solución de problemas de ingeniería mediante el uso de herramientas matemáticas y computacionales, con énfasis en el proceso de planteamiento, desarrollo y evaluación de modelos matemáticos. Se busca que el estudiante pueda diferenciar entre modelos analíticos, numéricos y observacionales, distinguiendo ventajas y limitantes de cada uno de ellos. Igualmente se desea que el estudiante desarrolle habilidades para la solución de problemas de ingeniería mediante el uso de herramientas matemáticas. La metodología usada es la exposición y análisis del proceso de desarrollo de modelos matemáticos para casos particulares de estudio, y la presentación de los fundamentos matemáticos detrás de dichos modelos."
     },
     {
       "codigo": "2015703",
       "nombre": "Ingeniería económica",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Suministrar al estudiante de ingeniería en la Universidad Nacional de Colombia los conceptos básicos de la teoría económica que le permitan desarrollar su capacidad de análisis y comprensión de las áreas propias de sus actividades profesionales y en parti"
     },
     {
       "codigo": "2017273",
-      "nombre": "Procesos de manufactura I",
+      "nombre": "Procesos de Manufactura I",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Introducción a los procesos de manufactura. Procesos de fundición de metales. Configuración de metales pulverizados y materiales cerámicos. Procesos de conformado mecánico de materiales metálicos. Procesos de configuración de lámina metálica. Manufactura"
     },
     {
       "codigo": "2017262",
-      "nombre": "Transferencia de calor",
+      "nombre": "Fundamentos de transferencia de calor",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Se pretende que el estudiante obtenga el concepto y manejo de las relaciones patemáticas que enterpretan los principios físicos mediante los cuales se realiza la transferencia de calor. Se estudiante las leyes cuantitativas de la transferencia de calor p"
     },
     {
       "codigo": "2017260",
       "nombre": "Electrónica básica",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "En este curso se pretende que el estudiante de Ingeniería Mecánica adquiera capacidad de manejo de variables eléctricas y pueda aplicar y seleccionar componentes para ensamblar circuitos de control o monitoreo aplicables a procesos o maquinas .al finaliza"
     },
     {
       "codigo": "2016506",
       "nombre": "Señales y sistemas I",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El curso de Señales y Sistemas I tiene como objetivos: Conocer y manejar métodos de análisis más generales como las transformadas de Fourier y Laplace, introducir el estudio y manejo de señales dentro del conocimiento de sistemas de transmisión de información y reconocer las características de funcionamiento, análisis y diseño de sistemas de elementos lineales que no varían en el tiempo."
     },
     {
       "codigo": "2024045",
       "nombre": "Taller de proyectos interdisciplinarios",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El Taller de Proyectos Interdisciplinarios es una asignatura común para varios programas curriculares de la Facultad de Ingeniería que pretende promover el trabajo en equipo e interdisciplinario de los estudiantes, en torno a la solución de problemas en"
     },
     {
       "codigo": "2015942",
       "nombre": "Aplicaciones de elementos finitos",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Aplicaciones de elementos finitos."
     },
     {
       "codigo": "2015702",
       "nombre": "Gerencia y gestión de proyectos",
       "creditos": 3,
-      "tipologia": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
-      "rotulo": "NO IDENTIFICADA SIN CARÁCTER CONFIRMADO",
+      "tipologia": "FUND. OBLIGATORIA (B)",
+      "rotulo": "FUND. OBLIGATORIA (B)",
       "descripcion": "Objetivos: El curso busca preparar al futuro ingeniero en las metodologías de formulación, evaluación y gestión de proyectos, como una de las actividades habituales que desempeñan los ingenieros en entidades públicas o privadas."
     },
     {
       "codigo": "2017258",
       "nombre": "Diseño de elementos de máquinas I",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El estudiante deberá adquirir la capacidad de identificar los requerimientos de diseño y proponer soluciones, soportadas mediante muestra de cálculos, así como adquirir criterios para identificar problemas de funcionamiento y causas de falla, en los sigui"
     },
     {
       "codigo": "2017274",
-      "nombre": "Procesos de manufactura II",
+      "nombre": "Procesos de Manufactura II",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Introducción a la ingeniería de procesos de fabricación. Operaciones, terminología y cálculos en maquinado. Geometría, materiales y selección de herramientas de corte. Planeación de procesos de fabricación. Fluidos de corte. Ingeniería de superficies maquinadas. Fallas, desgaste y vida de la herramienta. Condiciones económicas de maquinado. Procesos de maquinado no convencionales. Práctica de maquinado con control numérico. Práctica de maquinado asistido por computador. Metodología 1. Antes de cada sesión deberá realizarse una actividad de preparación por parte del estudiante. 2. En la sesión de clase se presentará el tema y siempre se realizará una actividad de evaluación basada en la actividad de preparación propuesta. 3. El aprendizaje se refuerza con un complemento de la actividad realizada en clase que se realiza después de la clase. Prácticas 1. Las prácticas serán acerca del uso de las tecnologías CNC (computer numerical control) y CAM (computer-aided manufacturing). 2. Para CNC se estudiará la operación del centro de maquinado Hartford SMC 5. 3. Para CAM se aprenderá a usar el módulo de fabricación de NX-Siemens."
     },
     {
       "codigo": "2017259",
       "nombre": "Diseño de elementos de máquinas II",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "El estudiante deberá adquirir la capacidad de identificar los requerimientos de diseño y proponer soluciones, soportadas mediante muestra de cálculos, así como adquirir criterios para identificar problemas de funcionamiento y causas de falla, en los sigui"
     },
     {
       "codigo": "2017264",
-      "nombre": "Ingeniería de manufactura",
+      "nombre": "Ingeniería de Manufactura",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Objetivos: - Promover relación con el entorno industrial para conocer, analizar y bosquejar soluciones a problemas de Manufactura en empresas productivas de bienes o servicios. - Estudiar y aplicar fundamentos base de ingeniería de manufactura. - Propiciar la exploración de las nuevas tendencias en manufactura como Industria 4.0, Manufactura Esbelta (Lean Manufacturing), Producción Flexible-Celular-Automatizada, Prototipado Rápido, Remanufacturabilidad. - Motivar revisión crítica bibliográfica especializada para la indagación de la realidad y del nivel tecnológico en la industria nacional (Revistas Metalmecánica y Metal Actual) y foránea Metodología - Formulación de un proyecto de curso en la una industria-empresa o en laboratorio, donde se aplican los conceptos desarrollados en la materia. - Realización y seguimiento mediante presentaciones periódicas del proyecto de curso. - Exploración de software enfocado hacia Diseño y Planeamiento de la Manufactura con enfoque Industria 4.0. - Resolución de ejercicios teóricos en clase por parte del estudiante para viabilizar asimilación de temas."
     },
     {
       "codigo": "2015215",
       "nombre": "Análisis de sistemas dinámicos",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Es una asignatura teórica, se desarrolla por medio de clases magistrales con un enfoque de señales y sistemas. Las actividades extra clase están orientadas hacia el fortalecimiento de los métodos de cálculo y conceptos suministrados en clase, y en ocasiones mediante la simulación con ayuda de software. La asignatura busca que el estudiante comprenda las propiedades que le confiere a un sistema cada uno de los elementos que lo componen, para ello se dispone de algunas herramientas y técnicas de análisis de las que el estudiante de la asignatura debe apropiarse."
     },
     {
       "codigo": "2017261",
       "nombre": "Fundamentos de control",
       "creditos": 3,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "Es una asignatura teórico-práctica, donde el componente teórico se desarrolla por medio de clases magistrales y la parte práctica se lleva a cabo con sesiones de laboratorio. Las actividades extraclase están orientadas hacia el fortalecimiento de los métodos de cálculo y conceptos suministrados en clase, junto con el componente de simulación para los sistemas de control. En las sesiones teóricas se hace un estudio de los diferentes métodos de diseño y análisis relacionados con los sistemas de control análogo. En laboratorio se realizan pruebas de desempeño para las diferentes configuraciones de controladores construidos con amplificadores operacionales y su implementación a un sistema físico."
     },
     {
       "codigo": "2017275",
       "nombre": "Proyecto aplicado de ingeniería",
       "creditos": 4,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "DISCIPLINAR OBLIGATORIA (C)",
+      "rotulo": "DISCIPLINAR OBLIGATORIA (C)",
       "descripcion": "OBJETIVOS Objetivo general: Al finalizar el curso el estudiante estará en capacidad de identificar y utilizar los procedimientos de la metodología de diseño en ingeniería mediante el diseño, construcción y validación del desempeño de un dispositivo o máquina de naturaleza mecánica o mecatrónica. Objetivos específicos: 1. Promover el trabajo en equipos de estudiantes de ingeniería. 2. Mejorar las habilidades de solución de problemas, análisis, modelado y diseño en ingeniería. 3. Perfeccionar las habilidades comunicativas (orales, escritas y gráficas). 4. Fortalecer la capacidad investigativa. 5. Promover la autonomía y el aprendizaje activo. 6. Desarrollar y hacer uso de la creatividad. 7. Mejorar la interacción con el gremio industrial."
     },
     {
       "codigo": "2017295",
-      "nombre": "Trabajo de grado",
+      "nombre": "Trabajo de Grado",
       "creditos": 6,
-      "tipologia": "DISCIPLINAR OBLIGATORIA",
-      "rotulo": "DISCIPLINAR OBLIGATORIA",
+      "tipologia": "TRABAJO DE GRADO (P)",
+      "rotulo": "TRABAJO DE GRADO (P)",
       "descripcion": "La asignatura Trabajo de Grado es aquella en la cual el estudiante concreta y consolida el proceso investigativo, creativo o de innovación, en el tratamiento de un problema específico, como fruto de la aplicación de los conocimientos y métodos adquiridos durante su proceso de formación universitaria."
     },
     {
@@ -548,7 +548,7 @@
       "codigoAsignatura": "2017278",
       "semestre": 1,
       "creditos": 3,
-      "componente": "B",
+      "componente": "C",
       "caracter": "obl",
       "nota": null
     },
@@ -558,7 +558,7 @@
       "codigoAsignatura": "2017265",
       "semestre": 1,
       "creditos": 3,
-      "componente": "B",
+      "componente": "C",
       "caracter": "obl",
       "nota": null
     },
@@ -968,7 +968,7 @@
       "codigoAsignatura": null,
       "semestre": 3,
       "creditos": 4,
-      "componente": "",
+      "componente": "B",
       "caracter": "opt",
       "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
     },
@@ -978,7 +978,7 @@
       "codigoAsignatura": null,
       "semestre": 5,
       "creditos": 3,
-      "componente": "",
+      "componente": "B",
       "caracter": "opt",
       "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
     },
@@ -988,7 +988,7 @@
       "codigoAsignatura": null,
       "semestre": 7,
       "creditos": 3,
-      "componente": "",
+      "componente": "C",
       "caracter": "opt",
       "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
     },
@@ -1018,7 +1018,7 @@
       "codigoAsignatura": null,
       "semestre": 8,
       "creditos": 3,
-      "componente": "",
+      "componente": "C",
       "caracter": "opt",
       "nota": "Posición flexible; no identifica asignatura SIA ni grupo."
     },
@@ -1094,7 +1094,213 @@
     }
   ],
   "requisitos": {
-    "prerrequisitos": [],
+    "prerrequisitos": [
+      {
+        "desde": "mecanica:pos:1:1000004",
+        "hasta": "mecanica:pos:2:1000003",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:1:1000004",
+        "hasta": "mecanica:pos:2:1000005",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:1:1000004",
+        "hasta": "mecanica:pos:2:1000019",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:1:2015711",
+        "hasta": "mecanica:pos:2:2017257",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:1000003",
+        "hasta": "mecanica:pos:3:1000006",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:1000005",
+        "hasta": "mecanica:pos:3:1000006",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:1:1000004",
+        "hasta": "mecanica:pos:3:1000013",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:1000003",
+        "hasta": "mecanica:pos:3:2016640",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:1000005",
+        "hasta": "mecanica:pos:4:1000007",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:3:1000024",
+        "hasta": "mecanica:pos:4:2017256",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:1:2017278",
+        "hasta": "mecanica:pos:4:2017256",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:1000003",
+        "hasta": "mecanica:pos:4:2017271",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:3:1000024",
+        "hasta": "mecanica:pos:4:2017279",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:4:1000007",
+        "hasta": "mecanica:pos:5:2015970",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:1000003",
+        "hasta": "mecanica:pos:5:2017266",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:4:2017256",
+        "hasta": "mecanica:pos:5:2017267",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:4:2017271",
+        "hasta": "mecanica:pos:5:2017268",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:4:1000007",
+        "hasta": "mecanica:pos:5:2017272",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:3:2016640",
+        "hasta": "mecanica:pos:5:2017277",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:1000005",
+        "hasta": "mecanica:pos:6:2015703",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017266",
+        "hasta": "mecanica:pos:6:2016506",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017266",
+        "hasta": "mecanica:pos:6:2017260",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017272",
+        "hasta": "mecanica:pos:6:2017262",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:4:2017279",
+        "hasta": "mecanica:pos:6:2017262",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017267",
+        "hasta": "mecanica:pos:6:2017273",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017277",
+        "hasta": "mecanica:pos:6:2017273",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:4:1000007",
+        "hasta": "mecanica:pos:6:2017293",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:1:2017265",
+        "hasta": "mecanica:pos:6:2024045",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:6:2015703",
+        "hasta": "mecanica:pos:7:2015702",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:4:1000007",
+        "hasta": "mecanica:pos:7:2015942",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017268",
+        "hasta": "mecanica:pos:7:2017258",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017277",
+        "hasta": "mecanica:pos:7:2017258",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017267",
+        "hasta": "mecanica:pos:7:2017274",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:5:2017277",
+        "hasta": "mecanica:pos:7:2017274",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:6:2016506",
+        "hasta": "mecanica:pos:8:2015215",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:6:2017260",
+        "hasta": "mecanica:pos:8:2015215",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:2:2017257",
+        "hasta": "mecanica:pos:8:2017259",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:7:2017258",
+        "hasta": "mecanica:pos:8:2017259",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:3:1000013",
+        "hasta": "mecanica:pos:8:2017264",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:7:2017274",
+        "hasta": "mecanica:pos:8:2017264",
+        "metodo": "flecha"
+      },
+      {
+        "desde": "mecanica:pos:8:2015215",
+        "hasta": "mecanica:pos:9:2017261",
+        "metodo": "flecha"
+      }
+    ],
     "minimosCreditos": []
   },
   "oferta": [
@@ -1103,7 +1309,7 @@
       "nombre": "Análisis de sistemas dinámicos",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2015215:act:1",
@@ -1166,7 +1372,7 @@
       "nombre": "Ciencia e ingeniería de materiales",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017256:act:1",
@@ -1297,7 +1503,7 @@
       "nombre": "Dibujo de Máquinas",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017257:act:1",
@@ -1336,7 +1542,7 @@
       "nombre": "Diseño de elementos de máquinas I",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017258:act:1",
@@ -1399,7 +1605,7 @@
       "nombre": "Diseño de elementos de máquinas II",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017259:act:1",
@@ -1462,7 +1668,7 @@
       "nombre": "Electrónica básica",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017260:act:1",
@@ -1530,7 +1736,32 @@
         {
           "id": "2017260:act:2",
           "nombre": "CLASE MAGISTRAL (2017260)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "1M",
+              "nombre": "2017260-1M Electrónica Básica - Clase Magistral",
+              "profesor": "WILFER ARMANDO FIQUITIVA MENDEZ. Ricardo Emiro Ramirez Heredia.",
+              "facultad": null,
+              "cuposDisponibles": 5,
+              "horarios": [
+                {
+                  "dia": "M",
+                  "inicio": "16:00",
+                  "fin": "18:00"
+                },
+                {
+                  "dia": "J",
+                  "inicio": "16:00",
+                  "fin": "18:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. M 16:00–18:00: AUDITORIO B INGENIERIA. 453-232. 453 - Guillermina Uribe Bone. AUDITORIO. J 16:00–18:00: AUDITORIO B INGENIERIA. 453-232. 453 - Guillermina Uribe Bone. AUDITORIO.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         }
       ]
     },
@@ -1539,7 +1770,7 @@
       "nombre": "Fundamentos de control",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017261:act:1",
@@ -1602,12 +1833,51 @@
       "nombre": "Fundamentos de transferencia de calor",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017262:act:1",
           "nombre": "CLASE TEORICA (2017262)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "2T",
+              "nombre": "2017262-2 Fundamentos de Transferencia de Calor - Teórica",
+              "profesor": "Sonia Lucia Rincon Prat.",
+              "facultad": "FACULTAD DE INGENIERÍA",
+              "cuposDisponibles": 1,
+              "horarios": [
+                {
+                  "dia": "J",
+                  "inicio": "09:00",
+                  "fin": "11:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. J 09:00–11:00: SALON DE CLASE 453-405. 453-405. 453 - Guillermina Uribe Bone. SALON.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            },
+            {
+              "id": "3T",
+              "nombre": "2017262-3 Fundamentos de Transferencia de Calor - Teórica",
+              "profesor": "Sonia Lucia Rincon Prat.",
+              "facultad": null,
+              "cuposDisponibles": 3,
+              "horarios": [
+                {
+                  "dia": "J",
+                  "inicio": "11:00",
+                  "fin": "13:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. J 11:00–13:00: SALON DE CLASE 453-405. 453-405. 453 - Guillermina Uribe Bone. SALON.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         },
         {
           "id": "2017262:act:2",
@@ -1732,7 +2002,27 @@
         {
           "id": "2017262:act:3",
           "nombre": "CLASE MAGISTRAL (2017262)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "1M",
+              "nombre": "2017262-1M Fundamentos de Transferencia de Calor - Magistral",
+              "profesor": "Sonia Lucia Rincon Prat.",
+              "facultad": null,
+              "cuposDisponibles": 12,
+              "horarios": [
+                {
+                  "dia": "M",
+                  "inicio": "07:00",
+                  "fin": "09:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. M 07:00–09:00: AUDITORIO C - ANTONIO MARÍA GÓMEZ. 453-233. 453 - Guillermina Uribe Bone. AUDITORIO.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         }
       ]
     },
@@ -1741,7 +2031,7 @@
       "nombre": "Ingeniería de Manufactura",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017264:act:1",
@@ -1790,7 +2080,27 @@
         {
           "id": "2017264:act:2",
           "nombre": "CLASE MAGISTRAL 2017264 (2017264)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "1M",
+              "nombre": "2017264-1M Ingeniería de Manufactura - MAGISTRAL",
+              "profesor": "Carlos Julio Cortes Rodriguez.",
+              "facultad": null,
+              "cuposDisponibles": 3,
+              "horarios": [
+                {
+                  "dia": "J",
+                  "inicio": "09:00",
+                  "fin": "11:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. J 09:00–11:00: SALÓN DE CLASE 401-304. 401-304. 401 - Julio Garavito Armero. SALON.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         }
       ]
     },
@@ -1799,7 +2109,7 @@
       "nombre": "Ingeniería y desarrollo sostenible",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017265:act:1",
@@ -1861,13 +2171,59 @@
               "fechaFin": "12/12/2026",
               "duracion": "Semestral",
               "jornada": "DIURNO"
+            },
+            {
+              "id": "SUMA-01",
+              "nombre": "Grupo PEAMA Sumapaz",
+              "profesor": "Alexei Gabriel Ochoa Duarte.",
+              "facultad": "SEDE BOGOTÁ",
+              "cuposDisponibles": 0,
+              "horarios": [],
+              "detalleHorario": "No informado",
+              "fechaInicio": null,
+              "fechaFin": null,
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
             }
           ]
         },
         {
           "id": "2017265:act:2",
           "nombre": "CLASE MAGISTRAL (2017265)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "SUMA-01",
+              "nombre": "Grupo 1 - PEAMA Sumapaz",
+              "profesor": "JHON FREDDY LOPEZ MEDINA.",
+              "facultad": "SEDE BOGOTÁ",
+              "cuposDisponibles": 0,
+              "horarios": [],
+              "detalleHorario": "No informado",
+              "fechaInicio": null,
+              "fechaFin": null,
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            },
+            {
+              "id": "1M",
+              "nombre": "2017265-1M Ingeniería y Desarrollo Sostenible - Magistral",
+              "profesor": "Carlos Julio Camacho Lopez.",
+              "facultad": null,
+              "cuposDisponibles": 42,
+              "horarios": [
+                {
+                  "dia": "L",
+                  "inicio": "11:00",
+                  "fin": "13:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. L 11:00–13:00: AUDITORIO A INGENIERIA. 453-231. 453 - Guillermina Uribe Bone. AUDITORIO.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         }
       ]
     },
@@ -1876,7 +2232,7 @@
       "nombre": "Instalaciones y máquinas eléctricas",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017266:act:1",
@@ -2021,7 +2377,7 @@
       "nombre": "Materiales de Ingeniería",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017267:act:1",
@@ -2094,7 +2450,7 @@
       "nombre": "Mecanismos",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017268:act:1",
@@ -2157,7 +2513,7 @@
       "nombre": "Principios de dinámica",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017271:act:1",
@@ -2268,7 +2624,7 @@
       "nombre": "Principios de Estática",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016640:act:1",
@@ -2416,7 +2772,7 @@
       "nombre": "Principios de mecánica de fluidos",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017272:act:1",
@@ -2503,7 +2859,7 @@
       "nombre": "Procesos de Manufactura I",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017273:act:1",
@@ -2576,12 +2932,32 @@
       "nombre": "Procesos de Manufactura II",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017274:act:1",
           "nombre": "CLASE MAGISTRAL (2017274)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "1M",
+              "nombre": "2017274 -1M Procesos de Manufactura II - Magistral",
+              "profesor": "Jose Manuel Arroyo Osorio.",
+              "facultad": null,
+              "cuposDisponibles": 4,
+              "horarios": [
+                {
+                  "dia": "X",
+                  "inicio": "11:00",
+                  "fin": "13:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. X 11:00–13:00: AUDITORIO C - ANTONIO MARÍA GÓMEZ. 453-233. 453 - Guillermina Uribe Bone. AUDITORIO.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         },
         {
           "id": "2017274:act:2",
@@ -2672,7 +3048,7 @@
       "nombre": "Proyecto aplicado de ingeniería",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 4,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017275:act:1",
@@ -2740,7 +3116,27 @@
         {
           "id": "2017275:act:2",
           "nombre": "CLASE MAGISTRAL (2017275)",
-          "grupos": []
+          "grupos": [
+            {
+              "id": "1M",
+              "nombre": "2017275-1M Proyecto aplicado de ingeniería - Magistral",
+              "profesor": "Juan Edilberto Rincon Pardo. Aníbal Alejandro Martinez Camelo. JUAN CARLOS GARCIA VERGARA.",
+              "facultad": null,
+              "cuposDisponibles": 50,
+              "horarios": [
+                {
+                  "dia": "L",
+                  "inicio": "09:00",
+                  "fin": "11:00"
+                }
+              ],
+              "detalleHorario": "Fecha: 24/08/2026 - 12/12/2026. L 09:00–11:00: AUDITORIO CARLOS ALBERTO BARBERI PERDOMO (PARANINFO A). 401-PAR-A. 401 - Julio Garavito Armero. AUDITORIO.",
+              "fechaInicio": "24/08/2026",
+              "fechaFin": "12/12/2026",
+              "duracion": "Semestral",
+              "jornada": "DIURNO"
+            }
+          ]
         }
       ]
     },
@@ -2749,7 +3145,7 @@
       "nombre": "Resistencia de Materiales",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017277:act:1",
@@ -2836,7 +3232,7 @@
       "nombre": "Señales y sistemas I",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2016506:act:1",
@@ -2995,7 +3391,7 @@
       "nombre": "Taller de proyectos interdisciplinarios",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2024045:act:1",
@@ -3527,7 +3923,7 @@
       "nombre": "Tecnología mecánica básica",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017278:act:1",
@@ -3675,7 +4071,7 @@
       "nombre": "Termodinámica técnica",
       "tipologia": "DISCIPLINAR OBLIGATORIA",
       "creditos": 3,
-      "periodo": null,
+      "periodo": "2026-2",
       "actividades": [
         {
           "id": "2017279:act:1",
@@ -5229,7 +5625,8 @@
           ]
         }
       ],
-      "procedencia": "oferta-verificada-por-actividad-unica-2026"
+      "procedencia": "oferta-verificada-por-actividad-unica-2026",
+      "analizable": false
     },
     {
       "id": "mecanica:pos:6:2024045|G5",
@@ -5688,22 +6085,30 @@
   },
   "procedencia": {
     "catalogo": {
-      "descripcion": "Catálogo inicial del plan, complementado con Mecanica.txt; nuevas descripciones y tipologías por código institucional.",
+      "descripcion": "Catálogo SIA de Ingeniería Mecánica cotejado por código con Mecanica(1).txt: tipologías, descripciones y créditos normalizados.",
       "fechaCaptura": null
     },
     "oferta": {
-      "descripcion": "Grupos y horarios extraídos de Mecanica horarios.txt; franjas por día/hora únicamente si se informan en fuente. Las ofertas de múltiples actividades no se combinan sin verificación.",
+      "descripcion": "Oferta Mecanica horarios(1).txt, periodo 2026-2. Actividades múltiples conservadas sin emparejamientos supuestos; el grupo 40 de TPI se considera reserva de espacios.",
       "fechaCaptura": null,
-      "periodo": null
+      "periodo": "2026-2"
     },
     "malla": {
-      "descripcion": "MallaCurricular-IngenieraMecnicaUNAL_Ac_86_-18_.pdf",
+      "descripcion": "Malla curricular del Acuerdo No. 68 de 2018, PDF página 1: 180 créditos (B58/C86/L36) y 12 adicionales de inglés.",
       "version": "acuerdo-68-2018"
     },
     "metadatos": {
       "malla": "MallaCurricular-IngenieraMecnicaUNAL_Ac_86_-18_.pdf",
       "tipologias": "Malla inicial y Mecanica.txt; diferencias conservadas para revisión.",
-      "horarios": "Archivo Mecanica horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada."
+      "horarios": "Archivo Mecanica horarios.txt; fechas de actividad entre agosto y diciembre de 2026 según grupos; consulta/captura no fechada.",
+      "requisitos": "Condiciones, evidencia y umbrales: data/programas/mecanica/revision-prerrequisitos-2026.json"
+    },
+    "requisitos": {
+      "descripcion": "41 relaciones explícitas de la malla; 29 corroboradas por alternativas actuales del SIA y 12 documentadas solo en la malla. Se conservan externamente 30 condiciones SIA completas, códigos antiguos y umbrales 55/75/80 sin conversión normativa inventada.",
+      "fuentes": [
+        "MallaCurricular-IngenieraMecnicaUNAL_Ac_86_-18_(2).pdf, página 1",
+        "Mecanica horarios(1).txt"
+      ]
     }
   }
 }

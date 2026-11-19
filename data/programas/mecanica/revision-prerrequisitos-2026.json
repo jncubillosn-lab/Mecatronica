@@ -1,0 +1,1710 @@
+{
+  "programaId": "mecanica",
+  "estado": "extraccion_confirmada_con_limitaciones",
+  "fechaExtraccion": "2026-11-18",
+  "fuentes": [
+    "Mecanica(1).txt",
+    "Mecanica horarios(1).txt",
+    "MallaCurricular-IngenieraMecnicaUNAL_Ac_86_-18_(2).pdf, página 1"
+  ],
+  "condicionesOriginalesSIA": [
+    {
+      "destinoCodigo": "2015215",
+      "destinoNombre": "Análisis de sistemas dinámicos",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2000967",
+          "nombre": "Matematicas v"
+        },
+        {
+          "codigo": "2022341",
+          "nombre": "Matematicas v"
+        },
+        {
+          "codigo": "2016506",
+          "nombre": "Señales y sistemas I"
+        }
+      ],
+      "lineaFuente": 1089
+    },
+    {
+      "destinoCodigo": "2015215",
+      "destinoNombre": "Análisis de sistemas dinámicos",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001771",
+          "nombre": "Electronica basica"
+        },
+        {
+          "codigo": "2017260",
+          "nombre": "Electrónica básica"
+        }
+      ],
+      "lineaFuente": 1093
+    },
+    {
+      "destinoCodigo": "2017256",
+      "destinoNombre": "Ciencia e ingeniería de materiales",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001753",
+          "nombre": "Materiales i"
+        },
+        {
+          "codigo": "1000024-B",
+          "nombre": "Principios de química"
+        }
+      ],
+      "lineaFuente": 2550
+    },
+    {
+      "destinoCodigo": "2017256",
+      "destinoNombre": "Ciencia e ingeniería de materiales",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001747",
+          "nombre": "Tecnologia mecanica basica"
+        },
+        {
+          "codigo": "2017278",
+          "nombre": "Tecnología mecánica básica"
+        }
+      ],
+      "lineaFuente": 2553
+    },
+    {
+      "destinoCodigo": "2017257",
+      "destinoNombre": "Dibujo de Máquinas",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001731",
+          "nombre": "Dibujo basico"
+        },
+        {
+          "codigo": "2015711",
+          "nombre": "Dibujo básico"
+        }
+      ],
+      "lineaFuente": 738
+    },
+    {
+      "destinoCodigo": "2017257",
+      "destinoNombre": "Dibujo de Máquinas",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2015711",
+          "nombre": "Dibujo básico"
+        },
+        {
+          "codigo": "2001730",
+          "nombre": "Geometria descriptiva"
+        }
+      ],
+      "lineaFuente": 741
+    },
+    {
+      "destinoCodigo": "2017258",
+      "destinoNombre": "Diseño de elementos de máquinas I",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017277",
+          "nombre": "Resistencia de Materiales"
+        },
+        {
+          "codigo": "2001737",
+          "nombre": "Resistencia de materiales"
+        }
+      ],
+      "lineaFuente": 1268
+    },
+    {
+      "destinoCodigo": "2017258",
+      "destinoNombre": "Diseño de elementos de máquinas I",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001736",
+          "nombre": "Cinetica"
+        },
+        {
+          "codigo": "2017268",
+          "nombre": "Mecanismos"
+        }
+      ],
+      "lineaFuente": 1271
+    },
+    {
+      "destinoCodigo": "2017259",
+      "destinoNombre": "Diseño de elementos de máquinas II",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017257",
+          "nombre": "Dibujo de Máquinas"
+        },
+        {
+          "codigo": "2001732",
+          "nombre": "Dibujo de maquinas"
+        }
+      ],
+      "lineaFuente": 1213
+    },
+    {
+      "destinoCodigo": "2017259",
+      "destinoNombre": "Diseño de elementos de máquinas II",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017258",
+          "nombre": "Diseño de elementos de máquinas I"
+        },
+        {
+          "codigo": "2001739",
+          "nombre": "Elementos de maquinas i"
+        }
+      ],
+      "lineaFuente": 1216
+    },
+    {
+      "destinoCodigo": "2017260",
+      "destinoNombre": "Electrónica básica",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001612",
+          "nombre": "Instalaciones y maquinas electricas"
+        },
+        {
+          "codigo": "2017266",
+          "nombre": "Instalaciones y máquinas eléctricas"
+        }
+      ],
+      "lineaFuente": 1924
+    },
+    {
+      "destinoCodigo": "2017261",
+      "destinoNombre": "Fundamentos de control",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2015215",
+          "nombre": "Análisis de sistemas dinámicos"
+        },
+        {
+          "codigo": "2001772",
+          "nombre": "Sistemas dinamicos y control"
+        }
+      ],
+      "lineaFuente": 1284
+    },
+    {
+      "destinoCodigo": "2017262",
+      "destinoNombre": "Fundamentos de transferencia de calor",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2019611",
+          "nombre": "TERMODINAMICA"
+        },
+        {
+          "codigo": "2001762",
+          "nombre": "Termodinamica"
+        },
+        {
+          "codigo": "2017279",
+          "nombre": "Termodinámica técnica"
+        }
+      ],
+      "lineaFuente": 3796
+    },
+    {
+      "destinoCodigo": "2017262",
+      "destinoNombre": "Fundamentos de transferencia de calor",
+      "condicion": 3,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001563",
+          "nombre": "Mecanica de fluidos"
+        },
+        {
+          "codigo": "2017272",
+          "nombre": "Principios de mecánica de fluidos"
+        }
+      ],
+      "lineaFuente": 3800
+    },
+    {
+      "destinoCodigo": "2017264",
+      "destinoNombre": "Ingeniería de Manufactura",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017274",
+          "nombre": "Procesos de Manufactura II"
+        },
+        {
+          "codigo": "2001748",
+          "nombre": "Procesos de mecanizado"
+        }
+      ],
+      "lineaFuente": 1686
+    },
+    {
+      "destinoCodigo": "2017264",
+      "destinoNombre": "Ingeniería de Manufactura",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001065",
+          "nombre": "Probabilidad y estadistica"
+        },
+        {
+          "codigo": "1000013-B",
+          "nombre": "Probabilidad y estadística fundamental"
+        }
+      ],
+      "lineaFuente": 1689
+    },
+    {
+      "destinoCodigo": "2017266",
+      "destinoNombre": "Instalaciones y máquinas eléctricas",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "1000003-B",
+          "nombre": "Álgebra Lineal"
+        },
+        {
+          "codigo": "2000916",
+          "nombre": "Matematicas ii"
+        }
+      ],
+      "lineaFuente": 2984
+    },
+    {
+      "destinoCodigo": "2017267",
+      "destinoNombre": "Materiales de Ingeniería",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017256",
+          "nombre": "Ciencia e ingeniería de materiales"
+        },
+        {
+          "codigo": "2022886",
+          "nombre": "Materiales I-B"
+        }
+      ],
+      "lineaFuente": 2065
+    },
+    {
+      "destinoCodigo": "2017268",
+      "destinoNombre": "Mecanismos",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001735",
+          "nombre": "Cinematica"
+        },
+        {
+          "codigo": "2017271",
+          "nombre": "Principios de dinámica"
+        }
+      ],
+      "lineaFuente": 1851
+    },
+    {
+      "destinoCodigo": "2017271",
+      "destinoNombre": "Principios de dinámica",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "1000003-B",
+          "nombre": "Álgebra Lineal"
+        },
+        {
+          "codigo": "2000916",
+          "nombre": "Matematicas ii"
+        }
+      ],
+      "lineaFuente": 2626
+    },
+    {
+      "destinoCodigo": "2016640",
+      "destinoNombre": "Principios de Estática",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "1000003-B",
+          "nombre": "Álgebra Lineal"
+        },
+        {
+          "codigo": "2000916",
+          "nombre": "Matematicas ii"
+        }
+      ],
+      "lineaFuente": 3211
+    },
+    {
+      "destinoCodigo": "2017272",
+      "destinoNombre": "Principios de mecánica de fluidos",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "1000007-B",
+          "nombre": "Ecuaciones Diferenciales"
+        },
+        {
+          "codigo": "2017294",
+          "nombre": "Ecuaciones diferenciales"
+        },
+        {
+          "codigo": "2019609",
+          "nombre": "Matematicas iv"
+        }
+      ],
+      "lineaFuente": 2349
+    },
+    {
+      "destinoCodigo": "2017273",
+      "destinoNombre": "Procesos de Manufactura I",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017267",
+          "nombre": "Materiales de Ingeniería"
+        },
+        {
+          "codigo": "2001754",
+          "nombre": "Materiales ii"
+        }
+      ],
+      "lineaFuente": 2139
+    },
+    {
+      "destinoCodigo": "2017273",
+      "destinoNombre": "Procesos de Manufactura I",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017277",
+          "nombre": "Resistencia de Materiales"
+        },
+        {
+          "codigo": "2001737",
+          "nombre": "Resistencia de materiales"
+        }
+      ],
+      "lineaFuente": 2142
+    },
+    {
+      "destinoCodigo": "2017274",
+      "destinoNombre": "Procesos de Manufactura II",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017267",
+          "nombre": "Materiales de Ingeniería"
+        },
+        {
+          "codigo": "2001754",
+          "nombre": "Materiales ii"
+        }
+      ],
+      "lineaFuente": 2895
+    },
+    {
+      "destinoCodigo": "2017274",
+      "destinoNombre": "Procesos de Manufactura II",
+      "condicion": 2,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017277",
+          "nombre": "Resistencia de Materiales"
+        },
+        {
+          "codigo": "2001737",
+          "nombre": "Resistencia de materiales"
+        }
+      ],
+      "lineaFuente": 2898
+    },
+    {
+      "destinoCodigo": "2017277",
+      "destinoNombre": "Resistencia de Materiales",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001733",
+          "nombre": "Estatica"
+        },
+        {
+          "codigo": "2016640",
+          "nombre": "Principios de Estática"
+        }
+      ],
+      "lineaFuente": 2540
+    },
+    {
+      "destinoCodigo": "2016506",
+      "destinoNombre": "Señales y sistemas I",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001612",
+          "nombre": "Instalaciones y maquinas electricas"
+        },
+        {
+          "codigo": "2017266",
+          "nombre": "Instalaciones y máquinas eléctricas"
+        }
+      ],
+      "lineaFuente": 3473
+    },
+    {
+      "destinoCodigo": "2024045",
+      "destinoNombre": "Taller de proyectos interdisciplinarios",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2017265",
+          "nombre": "Ingeniería y desarrollo sostenible"
+        },
+        {
+          "codigo": "2001722",
+          "nombre": "Introduccion a la ingenieria mecánica"
+        }
+      ],
+      "lineaFuente": 10851
+    },
+    {
+      "destinoCodigo": "2017279",
+      "destinoNombre": "Termodinámica técnica",
+      "condicion": 1,
+      "tipo": "M",
+      "todas": "N",
+      "numeroAsignaturas": 1,
+      "alternativas": [
+        {
+          "codigo": "2001753",
+          "nombre": "Materiales i"
+        },
+        {
+          "codigo": "1000024-B",
+          "nombre": "Principios de química"
+        }
+      ],
+      "lineaFuente": 3386
+    }
+  ],
+  "evidenciaRelaciones": [
+    {
+      "desde": "mecanica:pos:1:1000004",
+      "hasta": "mecanica:pos:2:1000003",
+      "desdeCodigo": "1000004-B",
+      "hastaCodigo": "1000003-B",
+      "nombreDesde": "Cálculo diferencial",
+      "nombreHasta": "Álgebra lineal",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:1:1000004",
+      "hasta": "mecanica:pos:2:1000005",
+      "desdeCodigo": "1000004-B",
+      "hastaCodigo": "1000005-B",
+      "nombreDesde": "Cálculo diferencial",
+      "nombreHasta": "Cálculo integral",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:1:1000004",
+      "hasta": "mecanica:pos:2:1000019",
+      "desdeCodigo": "1000004-B",
+      "hastaCodigo": "1000019-B",
+      "nombreDesde": "Cálculo diferencial",
+      "nombreHasta": "Fundamentos de mecánica",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:1:2015711",
+      "hasta": "mecanica:pos:2:2017257",
+      "desdeCodigo": "2015711",
+      "hastaCodigo": "2017257",
+      "nombreDesde": "Dibujo básico",
+      "nombreHasta": "Dibujo de máquinas",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 738
+        },
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 741
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:2:1000003",
+      "hasta": "mecanica:pos:3:1000006",
+      "desdeCodigo": "1000003-B",
+      "hastaCodigo": "1000006-B",
+      "nombreDesde": "Álgebra lineal",
+      "nombreHasta": "Cálculo en varias variables",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "D",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:2:1000005",
+      "hasta": "mecanica:pos:3:1000006",
+      "desdeCodigo": "1000005-B",
+      "hastaCodigo": "1000006-B",
+      "nombreDesde": "Cálculo integral",
+      "nombreHasta": "Cálculo en varias variables",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:1:1000004",
+      "hasta": "mecanica:pos:3:1000013",
+      "desdeCodigo": "1000004-B",
+      "hastaCodigo": "1000013-B",
+      "nombreDesde": "Cálculo diferencial",
+      "nombreHasta": "Probabilidad y estadística fundamental",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:2:1000003",
+      "hasta": "mecanica:pos:3:2016640",
+      "desdeCodigo": "1000003-B",
+      "hastaCodigo": "2016640",
+      "nombreDesde": "Álgebra lineal",
+      "nombreHasta": "Principios de estática",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "D",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 3211
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:2:1000005",
+      "hasta": "mecanica:pos:4:1000007",
+      "desdeCodigo": "1000005-B",
+      "hastaCodigo": "1000007-B",
+      "nombreDesde": "Cálculo integral",
+      "nombreHasta": "Ecuaciones diferenciales",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "C",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:3:1000024",
+      "hasta": "mecanica:pos:4:2017256",
+      "desdeCodigo": "1000024-B",
+      "hastaCodigo": "2017256",
+      "nombreDesde": "Principios de química",
+      "nombreHasta": "Ciencia e ingeniería de materiales",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2550
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:1:2017278",
+      "hasta": "mecanica:pos:4:2017256",
+      "desdeCodigo": "2017278",
+      "hastaCodigo": "2017256",
+      "nombreDesde": "Tecnología mecánica básica",
+      "nombreHasta": "Ciencia e ingeniería de materiales",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "A",
+      "condicionesSia": [
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2553
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:2:1000003",
+      "hasta": "mecanica:pos:4:2017271",
+      "desdeCodigo": "1000003-B",
+      "hastaCodigo": "2017271",
+      "nombreDesde": "Álgebra lineal",
+      "nombreHasta": "Principios de dinámica",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "D",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2626
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:3:1000024",
+      "hasta": "mecanica:pos:4:2017279",
+      "desdeCodigo": "1000024-B",
+      "hastaCodigo": "2017279",
+      "nombreDesde": "Principios de química",
+      "nombreHasta": "Termodinámica técnica",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 3386
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:4:1000007",
+      "hasta": "mecanica:pos:5:2015970",
+      "desdeCodigo": "1000007-B",
+      "hastaCodigo": "2015970",
+      "nombreDesde": "Ecuaciones diferenciales",
+      "nombreHasta": "Métodos numéricos",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:2:1000003",
+      "hasta": "mecanica:pos:5:2017266",
+      "desdeCodigo": "1000003-B",
+      "hastaCodigo": "2017266",
+      "nombreDesde": "Álgebra lineal",
+      "nombreHasta": "Instalaciones y máquinas eléctricas",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "D",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2984
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:4:2017256",
+      "hasta": "mecanica:pos:5:2017267",
+      "desdeCodigo": "2017256",
+      "hastaCodigo": "2017267",
+      "nombreDesde": "Ciencia e ingeniería de materiales",
+      "nombreHasta": "Materiales de ingeniería",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "J",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2065
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:4:2017271",
+      "hasta": "mecanica:pos:5:2017268",
+      "desdeCodigo": "2017271",
+      "hastaCodigo": "2017268",
+      "nombreDesde": "Principios de dinámica",
+      "nombreHasta": "Mecanismos",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "I",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1851
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:4:1000007",
+      "hasta": "mecanica:pos:5:2017272",
+      "desdeCodigo": "1000007-B",
+      "hastaCodigo": "2017272",
+      "nombreDesde": "Ecuaciones diferenciales",
+      "nombreHasta": "Principios de mecánica de fluidos",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "H",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2349
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:3:2016640",
+      "hasta": "mecanica:pos:5:2017277",
+      "desdeCodigo": "2016640",
+      "hastaCodigo": "2017277",
+      "nombreDesde": "Principios de estática",
+      "nombreHasta": "Resistencia de materiales",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "G",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2540
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:2:1000005",
+      "hasta": "mecanica:pos:6:2015703",
+      "desdeCodigo": "1000005-B",
+      "hastaCodigo": "2015703",
+      "nombreDesde": "Cálculo integral",
+      "nombreHasta": "Ingeniería económica",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "C",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:5:2017266",
+      "hasta": "mecanica:pos:6:2016506",
+      "desdeCodigo": "2017266",
+      "hastaCodigo": "2016506",
+      "nombreDesde": "Instalaciones y máquinas eléctricas",
+      "nombreHasta": "Señales y sistemas I",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "N",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 3473
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:5:2017266",
+      "hasta": "mecanica:pos:6:2017260",
+      "desdeCodigo": "2017266",
+      "hastaCodigo": "2017260",
+      "nombreDesde": "Instalaciones y máquinas eléctricas",
+      "nombreHasta": "Electrónica básica",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "N",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1924
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:5:2017272",
+      "hasta": "mecanica:pos:6:2017262",
+      "desdeCodigo": "2017272",
+      "hastaCodigo": "2017262",
+      "nombreDesde": "Principios de mecánica de fluidos",
+      "nombreHasta": "Fundamentos de transferencia de calor",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "M",
+      "condicionesSia": [
+        {
+          "condicion": 3,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 3800
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:4:2017279",
+      "hasta": "mecanica:pos:6:2017262",
+      "desdeCodigo": "2017279",
+      "hastaCodigo": "2017262",
+      "nombreDesde": "Termodinámica técnica",
+      "nombreHasta": "Fundamentos de transferencia de calor",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 3796
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:5:2017267",
+      "hasta": "mecanica:pos:6:2017273",
+      "desdeCodigo": "2017267",
+      "hastaCodigo": "2017273",
+      "nombreDesde": "Materiales de ingeniería",
+      "nombreHasta": "Procesos de manufactura I",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "L",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2139
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:5:2017277",
+      "hasta": "mecanica:pos:6:2017273",
+      "desdeCodigo": "2017277",
+      "hastaCodigo": "2017273",
+      "nombreDesde": "Resistencia de materiales",
+      "nombreHasta": "Procesos de manufactura I",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2142
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:4:1000007",
+      "hasta": "mecanica:pos:6:2017293",
+      "desdeCodigo": "1000007-B",
+      "hastaCodigo": "2017293",
+      "nombreDesde": "Ecuaciones diferenciales",
+      "nombreHasta": "Modelación matemática",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:1:2017265",
+      "hasta": "mecanica:pos:6:2024045",
+      "desdeCodigo": "2017265",
+      "hastaCodigo": "2024045",
+      "nombreDesde": "Ingeniería y desarrollo sostenible",
+      "nombreHasta": "Taller de proyectos interdisciplinarios",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "B",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 10851
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:6:2015703",
+      "hasta": "mecanica:pos:7:2015702",
+      "desdeCodigo": "2015703",
+      "hastaCodigo": "2015702",
+      "nombreDesde": "Ingeniería económica",
+      "nombreHasta": "Gerencia y gestión de proyectos",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:4:1000007",
+      "hasta": "mecanica:pos:7:2015942",
+      "desdeCodigo": "1000007-B",
+      "hastaCodigo": "2015942",
+      "nombreDesde": "Ecuaciones diferenciales",
+      "nombreHasta": "Aplicaciones de elementos finitos",
+      "fuentes": [
+        "Malla PDF"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [],
+      "metodo": "flecha",
+      "estado": "flecha_documentada_pdf_sin_condicion_sia_visible"
+    },
+    {
+      "desde": "mecanica:pos:5:2017268",
+      "hasta": "mecanica:pos:7:2017258",
+      "desdeCodigo": "2017268",
+      "hastaCodigo": "2017258",
+      "nombreDesde": "Mecanismos",
+      "nombreHasta": "Diseño de elementos de máquinas I",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1271
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:5:2017277",
+      "hasta": "mecanica:pos:7:2017258",
+      "desdeCodigo": "2017277",
+      "hastaCodigo": "2017258",
+      "nombreDesde": "Resistencia de materiales",
+      "nombreHasta": "Diseño de elementos de máquinas I",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1268
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:5:2017267",
+      "hasta": "mecanica:pos:7:2017274",
+      "desdeCodigo": "2017267",
+      "hastaCodigo": "2017274",
+      "nombreDesde": "Materiales de ingeniería",
+      "nombreHasta": "Procesos de manufactura II",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "L",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2895
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:5:2017277",
+      "hasta": "mecanica:pos:7:2017274",
+      "desdeCodigo": "2017277",
+      "hastaCodigo": "2017274",
+      "nombreDesde": "Resistencia de materiales",
+      "nombreHasta": "Procesos de manufactura II",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "K",
+      "condicionesSia": [
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 2898
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:6:2016506",
+      "hasta": "mecanica:pos:8:2015215",
+      "desdeCodigo": "2016506",
+      "hastaCodigo": "2015215",
+      "nombreDesde": "Señales y sistemas I",
+      "nombreHasta": "Análisis de sistemas dinámicos",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1089
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:6:2017260",
+      "hasta": "mecanica:pos:8:2015215",
+      "desdeCodigo": "2017260",
+      "hastaCodigo": "2015215",
+      "nombreDesde": "Electrónica básica",
+      "nombreHasta": "Análisis de sistemas dinámicos",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1093
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:2:2017257",
+      "hasta": "mecanica:pos:8:2017259",
+      "desdeCodigo": "2017257",
+      "hastaCodigo": "2017259",
+      "nombreDesde": "Dibujo de máquinas",
+      "nombreHasta": "Diseño de elementos de máquinas II",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "E",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1213
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:7:2017258",
+      "hasta": "mecanica:pos:8:2017259",
+      "desdeCodigo": "2017258",
+      "hastaCodigo": "2017259",
+      "nombreDesde": "Diseño de elementos de máquinas I",
+      "nombreHasta": "Diseño de elementos de máquinas II",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1216
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:3:1000013",
+      "hasta": "mecanica:pos:8:2017264",
+      "desdeCodigo": "1000013-B",
+      "hastaCodigo": "2017264",
+      "nombreDesde": "Probabilidad y estadística fundamental",
+      "nombreHasta": "Ingeniería de manufactura",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "F",
+      "condicionesSia": [
+        {
+          "condicion": 2,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1689
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:7:2017274",
+      "hasta": "mecanica:pos:8:2017264",
+      "desdeCodigo": "2017274",
+      "hastaCodigo": "2017264",
+      "nombreDesde": "Procesos de manufactura II",
+      "nombreHasta": "Ingeniería de manufactura",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "directa",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1686
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    },
+    {
+      "desde": "mecanica:pos:8:2015215",
+      "hasta": "mecanica:pos:9:2017261",
+      "desdeCodigo": "2015215",
+      "hastaCodigo": "2017261",
+      "nombreDesde": "Análisis de sistemas dinámicos",
+      "nombreHasta": "Fundamentos de control",
+      "fuentes": [
+        "Malla PDF",
+        "SIA"
+      ],
+      "marcadorPdf": "P",
+      "condicionesSia": [
+        {
+          "condicion": 1,
+          "todas": "N",
+          "numeroAsignaturas": 1,
+          "lineaFuente": 1284
+        }
+      ],
+      "metodo": "flecha",
+      "estado": "coincidencia_malla_y_sia"
+    }
+  ],
+  "porcentajesSinConversionAReglaDeCreditos": [
+    {
+      "codigo": "2024045",
+      "nombre": "Taller de proyectos interdisciplinarios",
+      "porcentajePlan": 55,
+      "creditosReferencialesCalculados": 99,
+      "baseCalculoCreditos": 180,
+      "estado": "registrado_como_porcentaje; no traducir a requisito de créditos disciplinarios sin norma específica"
+    },
+    {
+      "codigo": "2017275",
+      "nombre": "Proyecto aplicado de ingeniería",
+      "porcentajePlan": 75,
+      "creditosReferencialesCalculados": 135,
+      "baseCalculoCreditos": 180,
+      "estado": "registrado_como_porcentaje; no imponer condición por componente sin aclarar norma"
+    },
+    {
+      "codigo": "2017295",
+      "nombre": "Trabajo de grado",
+      "porcentajePlan": 80,
+      "creditosReferencialesCalculados": 144,
+      "baseCalculoCreditos": 180,
+      "estado": "registrado_como_porcentaje; no imponer condición por componente sin aclarar norma"
+    }
+  ],
+  "relacionesHaciaCasillasGenericasSinCodigo": [
+    {
+      "desde": "1000019-B",
+      "hasta": "Optativa de Física III",
+      "relacion": "flecha",
+      "nota": "Sin código de asignatura; no crear un requisito para una materia específica"
+    },
+    {
+      "desde": "2017262",
+      "hasta": "Optativa de ingeniería térmica y fluidos VII",
+      "relacion": "flecha",
+      "nota": "Casilla genérica sin código"
+    },
+    {
+      "desde": "2017262",
+      "hasta": "Optativa de ingeniería térmica y fluidos VIII",
+      "relacion": "O",
+      "nota": "Casilla genérica sin código"
+    },
+    {
+      "desde": "Optativa de ingeniería térmica y fluidos VII",
+      "hasta": "Optativa de ingeniería térmica y fluidos VIII",
+      "relacion": "O",
+      "nota": "La lectura de la conexión genérica requiere confirmar si corresponde a trayectoria de grupo u obligación; no extrapolar a asignaturas concretas"
+    }
+  ],
+  "alertasExtraccion": [
+    {
+      "prioridad": "alta",
+      "tipo": "grupo_reserva_espacios_no_clase",
+      "asignatura": "2024045",
+      "grupo": "40",
+      "textoFuente": "TPI-- NO BORRAR-- BLOQ ESPACIOS",
+      "riesgo": "Actualmente existe como agrupación analizable en la base; causa choques falsos de 15 horas o más si se analiza como clase."
+    },
+    {
+      "prioridad": "media",
+      "tipo": "sin_horario",
+      "grupos": [
+        {
+          "codigo": "2017265",
+          "actividad": "TEORICA",
+          "id": "SUMA-01"
+        },
+        {
+          "codigo": "2017265",
+          "actividad": "MAGISTRAL",
+          "id": "SUMA-01"
+        },
+        {
+          "codigo": "2016640",
+          "actividad": "TEORICA",
+          "id": "7"
+        },
+        {
+          "codigo": "2024045",
+          "actividad": "TEORICA",
+          "id": "41"
+        }
+      ],
+      "riesgo": "No inventar clases para estos grupos."
+    },
+    {
+      "prioridad": "alta",
+      "tipo": "grupos_no_importados",
+      "cantidad": 10,
+      "detalle": [
+        {
+          "codigo": "2017260",
+          "tipoActividad": "MAGISTRAL",
+          "grupo": "1M"
+        },
+        {
+          "codigo": "2017262",
+          "tipoActividad": "TEORICA",
+          "grupo": "2T"
+        },
+        {
+          "codigo": "2017262",
+          "tipoActividad": "TEORICA",
+          "grupo": "3T"
+        },
+        {
+          "codigo": "2017262",
+          "tipoActividad": "MAGISTRAL",
+          "grupo": "1M"
+        },
+        {
+          "codigo": "2017264",
+          "tipoActividad": "MAGISTRAL",
+          "grupo": "1M"
+        },
+        {
+          "codigo": "2017265",
+          "tipoActividad": "TEORICA",
+          "grupo": "SUMA-01"
+        },
+        {
+          "codigo": "2017265",
+          "tipoActividad": "MAGISTRAL",
+          "grupo": "SUMA-01"
+        },
+        {
+          "codigo": "2017265",
+          "tipoActividad": "MAGISTRAL",
+          "grupo": "1M"
+        },
+        {
+          "codigo": "2017274",
+          "tipoActividad": "MAGISTRAL",
+          "grupo": "1M"
+        },
+        {
+          "codigo": "2017275",
+          "tipoActividad": "MAGISTRAL",
+          "grupo": "1M"
+        }
+      ],
+      "riesgo": "El JSON existente contenía 101 de los 111 grupos declarados en el archivo fuente. Completar la oferta sin asociar automáticamente actividades."
+    },
+    {
+      "prioridad": "alta",
+      "tipo": "tipologias_catalogo_sin_clasificar",
+      "cantidad": 17,
+      "riesgo": "17 registros del catálogo publicado dicen NO IDENTIFICADA SIN CARÁCTER CONFIRMADO, pero el catálogo fuente sí determina tipología."
+    },
+    {
+      "prioridad": "alta",
+      "tipo": "componente_malla_incorrecto",
+      "codigo": [
+        "2017278",
+        "2017265"
+      ],
+      "de": "B",
+      "a": "C",
+      "riesgo": "Estos registros son disciplinares en la malla y el catálogo; asignados como B en el JSON existente."
+    },
+    {
+      "prioridad": "media",
+      "tipo": "tipologia_optativas_sin_componente",
+      "posiciones": [
+        "mecanica:pos:3:optativa-sin-asignatura-especificada:2",
+        "mecanica:pos:5:optativa-sin-asignatura-especificada:3",
+        "mecanica:pos:7:optativa-sin-asignatura-especificada:4",
+        "mecanica:pos:8:optativa-sin-asignatura-especificada:7"
+      ],
+      "tipologias": [
+        "B",
+        "B",
+        "C",
+        "C"
+      ],
+      "riesgo": "En la base vigente figura componente vacío, pero el PDF identifica Física (B) e Ingeniería térmica y fluidos (C)."
+    },
+    {
+      "prioridad": "media",
+      "tipo": "alias_de_asignatura",
+      "codigo": "2017268",
+      "malla": "Fundamentos de mecanismos",
+      "SIA": "Mecanismos",
+      "riesgo": "Usar el código institucional como identidad y preservar las dos denominaciones como variantes, sin duplicar casilla."
+    },
+    {
+      "prioridad": "media",
+      "tipo": "alias_de_asignatura",
+      "codigo": "2017262",
+      "mallaActual": "Transferencia de calor",
+      "SIA": "Fundamentos de transferencia de calor",
+      "riesgo": "Diferencia nominal, mismo código; no crear una segunda asignatura."
+    },
+    {
+      "prioridad": "alta",
+      "tipo": "requisitos_porcentuales",
+      "detalle": [
+        {
+          "codigo": "2024045",
+          "nombre": "Taller de proyectos interdisciplinarios",
+          "porcentajePlan": 55,
+          "creditosReferencialesCalculados": 99,
+          "baseCalculoCreditos": 180,
+          "estado": "registrado_como_porcentaje; no traducir a requisito de créditos disciplinarios sin norma específica"
+        },
+        {
+          "codigo": "2017275",
+          "nombre": "Proyecto aplicado de ingeniería",
+          "porcentajePlan": 75,
+          "creditosReferencialesCalculados": 135,
+          "baseCalculoCreditos": 180,
+          "estado": "registrado_como_porcentaje; no imponer condición por componente sin aclarar norma"
+        },
+        {
+          "codigo": "2017295",
+          "nombre": "Trabajo de grado",
+          "porcentajePlan": 80,
+          "creditosReferencialesCalculados": 144,
+          "baseCalculoCreditos": 180,
+          "estado": "registrado_como_porcentaje; no imponer condición por componente sin aclarar norma"
+        }
+      ],
+      "riesgo": "55 %, 75 % y 80 % son porcentajes del plan, distintos de umbrales disciplinares de Mecatrónica; no traducir automáticamente a minimosCreditos en el motor."
+    },
+    {
+      "prioridad": "media",
+      "tipo": "agrupaciones_actividades_multiples",
+      "detalle": [
+        "2017260",
+        "2017262",
+        "2017264",
+        "2017265",
+        "2017266",
+        "2017274",
+        "2017275"
+      ],
+      "riesgo": "Conservar teoría, magistral, taller, laboratorio por separado; no crear producto cartesiano de grupos."
+    },
+    {
+      "prioridad": "alta",
+      "tipo": "condiciones_sia_complejas",
+      "riesgo": "Todas=N, Número=1: elegir 1 de varias alternativas; las distintas condiciones del mismo destino pueden requerir cumplimiento conjunto. No convertir alternativas históricas en cursos vigentes sin validar equivalencias."
+    },
+    {
+      "prioridad": "media",
+      "tipo": "denominacion_acuerdo_en_archivo",
+      "observacion": "El archivo adjunto lleva Ac_86_-18 en su nombre, mientras la página 1 de la malla imprime ACUERDO No. 68 DE 2018. Se conserva como referencia normativa el texto dentro del documento, sin asumir que el nombre del archivo sea la numeración real."
+    },
+    {
+      "prioridad": "media",
+      "tipo": "caracter_trabajo_de_grado",
+      "codigo": "2017295",
+      "tipologiaEnCatalogo": "TRABAJO DE GRADO (P)",
+      "caracterEnBaseActual": "DISCIPLINAR OBLIGATORIA",
+      "observacion": "El carácter de catálogo es específico, aunque el plan ubica la casilla en el componente disciplinar. No confundir tipología de asignatura con componente del plan."
+    }
+  ],
+  "nota": "Documentación externa al navegador. No sustituye el contrato academico.json, no inventa equivalencias SIA ni mínimos de créditos. Las flechas solo malla (12) requieren confirmación de vigencia; las otras 29 coinciden en SIA y malla."
+}

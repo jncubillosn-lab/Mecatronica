@@ -2,6 +2,14 @@
 
 La **versión pública de la aplicación** se consulta en el pie de página y en `index.html` (metadato `version`). Las rutas de JS, CSS y el contrato por carrera (`datos/programas/<id>/academico.json`) incluyen el mismo parámetro `?v=` para evitar mezclas de versiones en caché. `tests/versionado.js` comprueba esta coherencia y la CI exige incrementar la versión cuando se modifican recursos productivos. El número de versión del sitio **no es** `versionEsquema` (contrato académico) ni `escenario-personal.version` (formato de cambios personales).
 
+## 1.1.7 — Limpieza curricular y requisitos de Ingeniería Mecánica (18 nov 2026)
+
+- La base independiente de Mecánica se completa a partir de `Mecanica(1).txt`, `Mecanica horarios(1).txt` y la malla del Acuerdo No. 68 de 2018. Se integran 41 relaciones identificadas por IDs (29 corroboradas en la oferta SIA y 12 contenidas solo en la malla gráfica), sin agregar referencias inexistentes.
+- Se corrige la clasificación curricular de dos materias y cuatro casillas optativas. Los créditos se verifican contra el total institucional: 58 B, 86 C y 36 L; los 12 de inglés permanecen adicionales.
+- Se recuperan diez grupos omitidos y se conservan 101 anteriores sin alterar sus horarios, cupos ni fechas. No se inventan emparejamientos entre teoría, magistral y laboratorio. El grupo 40 de TPI se retiene como reserva de espacios con `analizable:false`.
+- Se preservan las 30 condiciones SIA, alternativas históricas y requisitos porcentuales 55 % / 75 % / 80 % en un registro de revisión externo. No se convierten a requisitos absolutos sin validación normativa.
+- Se agregan regresiones de integridad, ajustando la prueba histórica de posiciones sin clasificar; se incrementa la versión pública para invalidar caché. Sin modificaciones a otros programas ni a las reglas del motor.
+
 ## 1.1.6 — Incorporación de oferta documental por carrera (18 nov 2026)
 
 - Se actualizan los contratos independientes de Electrónica, Industrial, Mecánica y Química con grupos, horarios, descripciones y datos aportados del segundo semestre de 2026; sin modificar la malla institucional original ni sus requisitos ya registrados.

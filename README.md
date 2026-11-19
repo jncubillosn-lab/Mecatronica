@@ -1,6 +1,6 @@
 # Gestor de horarios · Facultad de Ingeniería
 
-**Versión pública:** 1.1.6 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
+**Versión pública:** 1.1.7 · **Estado:** nueve carreras con contratos; cinco con oferta de grupos (una previa y cuatro nuevas), cuatro aún sin oferta de horarios · **Rama publicada:** `main`
 
 [**Abrir la aplicación**](https://jncubillosn-lab.github.io/Mecatronica/) · [**Consultar el código vigente**](https://github.com/jncubillosn-lab/Mecatronica/tree/main) · [Historial de versiones](CHANGELOG.md)
 
@@ -99,3 +99,11 @@ Las ayudas de Inicio describen únicamente el contrato seleccionado; ya no conti
 Las posiciones sin componente confirmado permanecen consultables mediante «Sin clasificar», sin asignarles una tipología. La selección global se comparte con las ocho vistas. La malla de carrera conserva sus semestres desde el 1; los registros de semestre 0 no crean una columna nueva.
 
 Los archivos personales version:1 incluyen ahora programaId. La recuperación comprueba el programa, respeta IDs explícitos y valida el estado antes de sustituir el escenario. Los archivos vigentes previos sin ese metadato solo se identifican por referencias inequívocas, y el almacenamiento local conserva su aislamiento por clave. Un valor de semestre técnicamente inválido no puede vaciar la malla. Los vacíos legítimos siguen admitidos y la oferta marcada analizable:false sigue excluida del análisis.
+
+## Mecánica: revisión curricular limpia (1.1.7)
+
+Con las **mismas tres fuentes originales** se reconstruyó el contrato de `mecanica`, sin modificar motor, vistas, selector ni los demás contratos. Se incorporaron **41 relaciones entre posiciones** de la malla de 2018: 29 coinciden con alternativas de matrícula del SIA 2026-2 y 12 figuran solo como flechas en la malla y conservan esa advertencia de vigencia. Se preservan por separado las **30 condiciones completas del SIA**, incluidos los códigos históricos y la lógica de alternativas, en [revisión académica de Mecánica](data/programas/mecanica/revision-prerrequisitos-2026.json).
+
+Se limpiaron las tipologías por código del catálogo, seis componentes curriculares (dos asignaturas y cuatro casillas optativas) y se completaron los **111 grupos** de las 24 asignaturas ofertadas: los 101 existentes conservaron horarios/cupos/fechas y se recuperaron diez faltantes. Las 72 agrupaciones declaradas preservan sus IDs y orden, con **G40 de TPI como reserva no analizable**. No se inventan emparejamientos entre actividades ni franjas ausentes.
+
+La malla de Mecánica suma **58 B + 86 C + 36 L = 180 créditos**, con 12 de inglés adicionales. Los umbrales de avance **55 %, 75 % y 80 %** se documentan como porcentajes sin introducir falsos mínimos en `requisitos.minimosCreditos`, que permanece vacío. El informe complementario es [MEC-01](docs/MEC-01-CARGA-CURRICULAR-2026.md).
